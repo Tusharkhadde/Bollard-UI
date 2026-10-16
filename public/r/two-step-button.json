@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "two-step-button",
+  "title": "Two-Step Button",
+  "description": "Prevents one-click destruction: the first click arms the button with a draining timer, a second deliberate click confirms, and accidental double-clicks, held keys, blur, Escape or the timeout all disarm it.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/two-step-button/two-step-button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { LoaderCircle } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst variants = {\n  default: \"bg-primary text-primary-foreground shadow-xs hover:bg-primary/90\",\n  destructive:\n    \"bg-destructive text-white shadow-xs hover:bg-destructive/90 dark:bg-destructive/60 dark:hover:bg-destructive/70\",\n  outline:\n    \"border bg-background text-foreground shadow-xs hover:bg-accent dark:border-input dark:bg-input/30 dark:hover:bg-input/50\",\n} as const\n\nconst sizes = { default: \"h-9 px-4\", sm: \"h-8 px-3\" } as const\n\ntype Phase = \"idle\" | \"armed\" | \"pending\" | \"confirmed\"\n\nexport interface TwoStepButtonProps extends Omit<React.ComponentProps<\"button\">, \"onClick\"> {\n  /** Runs on the confirming click. Return a promise to show a pending state until it settles. */\n  onConfirm: () => void | Promise<void>\n  /** How long the button stays armed, in milliseconds. */\n  timeout?: number\n  /** Second clicks sooner than this (ms) are ignored as an accidental double-click. */\n  guard?: number\n  /** Visual intent of the idle button. The armed state is always destructive. */\n  variant?: keyof typeof variants\n  size?: keyof typeof sizes\n  /** Label while armed. */\n  armedLabel?: React.ReactNode\n  /** Read to screen readers when the button arms. */\n  armedHint?: string\n  /** Label while an async `onConfirm` is running. */\n  pendingLabel?: React.ReactNode\n  /** Label shown for a moment after the action is confirmed. */\n  confirmedLabel?: React.ReactNode\n  /** Milliseconds before the button resets after confirming. 0 keeps it confirmed. */\n  resetAfter?: number\n}\n\n/**\n * An inline \"are you sure?\" without a modal. The first click arms the button\n * and a timer bar drains; a second click inside the window confirms. It\n * disarms on timeout, blur or Escape, and ignores a second click that lands\n * within `guard` ms, so a double-click (or a held Enter key) can't arm and\n * confirm in one motion. All labels share one grid cell, so the button never\n * changes width and the second click lands where the first one did.\n */\nexport function TwoStepButton({\n  onConfirm,\n  timeout = 3000,\n  guard = 300,\n  variant = \"destructive\",\n  size = \"default\",\n  armedLabel = \"Click again to confirm\",\n  armedHint = \"Press again to confirm, or Escape to cancel.\",\n  pendingLabel = \"Working…\",\n  confirmedLabel = \"Done\",\n  resetAfter = 1600,\n  disabled,\n  className,\n  children,\n  onBlur,\n  onKeyDown,\n  ...props\n}: TwoStepButtonProps) {\n  const [phase, setPhase] = React.useState<Phase>(\"idle\")\n  const [draining, setDraining] = React.useState(false)\n  const armedAt = React.useRef(0)\n\n  // Start the drain two frames after arming, once the full bar has painted, so the transition runs.\n  React.useEffect(() => {\n    if (phase !== \"armed\") {\n      setDraining(false)\n      return\n    }\n    let frame = requestAnimationFrame(() => {\n      frame = requestAnimationFrame(() => setDraining(true))\n    })\n    const timer = setTimeout(() => setPhase(\"idle\"), timeout)\n    return () => {\n      cancelAnimationFrame(frame)\n      clearTimeout(timer)\n    }\n  }, [phase, timeout])\n\n  React.useEffect(() => {\n    if (phase !== \"confirmed\" || resetAfter <= 0) return\n    const timer = setTimeout(() => setPhase(\"idle\"), resetAfter)\n    return () => clearTimeout(timer)\n  }, [phase, resetAfter])\n\n  const handleClick = async () => {\n    if (disabled || phase === \"pending\" || phase === \"confirmed\") return\n    if (phase === \"idle\") {\n      armedAt.current = performance.now()\n      setPhase(\"armed\")\n      return\n    }\n    if (performance.now() - armedAt.current < guard) return\n    setPhase(\"pending\")\n    try {\n      await onConfirm()\n      setPhase(\"confirmed\")\n    } catch {\n      // The caller reports the error; the button just becomes usable again.\n      setPhase(\"idle\")\n    }\n  }\n\n  const disarm = () => setPhase((current) => (current === \"armed\" ? \"idle\" : current))\n\n  return (\n    <>\n      <button\n        type=\"button\"\n        data-slot=\"two-step-button\"\n        data-state={phase}\n        disabled={disabled}\n        aria-busy={phase === \"pending\" || undefined}\n        onClick={() => void handleClick()}\n        onBlur={(event) => {\n          disarm()\n          onBlur?.(event)\n        }}\n        onKeyDown={(event) => {\n          if (event.key === \"Escape\" && phase === \"armed\") {\n            event.preventDefault()\n            disarm()\n          }\n          // A held Enter fires a click on every auto-repeat; only the first press counts.\n          if (event.key === \"Enter\" && event.repeat) event.preventDefault()\n          onKeyDown?.(event)\n        }}\n        className={cn(\n          \"relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-[color,background-color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-progress\",\n          phase === \"idle\" || phase === \"confirmed\"\n            ? variants[variant]\n            : cn(variants.destructive, variant === \"outline\" && \"border border-transparent\"),\n          sizes[size],\n          className,\n        )}\n        {...props}\n      >\n        <span className=\"grid\">\n          {([\"idle\", \"armed\", \"pending\", \"confirmed\"] as const).map((key) => (\n            <span\n              key={key}\n              aria-hidden={phase !== key || undefined}\n              className={cn(\n                \"col-start-1 row-start-1 inline-flex items-center justify-center gap-2\",\n                phase !== key && \"invisible\",\n              )}\n            >\n              {key === \"idle\" && children}\n              {key === \"armed\" && armedLabel}\n              {key === \"pending\" && (\n                <>\n                  <LoaderCircle aria-hidden className=\"size-4 animate-spin\" />\n                  {pendingLabel}\n                </>\n              )}\n              {key === \"confirmed\" && confirmedLabel}\n            </span>\n          ))}\n        </span>\n        <span\n          aria-hidden\n          className=\"absolute inset-x-0 bottom-0 h-1 origin-left bg-white/70 ease-linear\"\n          style={{\n            opacity: phase === \"armed\" ? 1 : 0,\n            transform: `scaleX(${draining ? 0 : 1})`,\n            transitionProperty: draining ? \"transform\" : \"none\",\n            transitionDuration: `${timeout}ms`,\n          }}\n        />\n      </button>\n      <span aria-live=\"polite\" className=\"sr-only\">\n        {phase === \"armed\" ? armedHint : \"\"}\n      </span>\n    </>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "stops": "One click deleted without confirmation",
+    "mistakes": [
+      "double click deleted twice",
+      "delete button no confirm",
+      "click again to confirm",
+      "accidental delete click"
+    ],
+    "aliases": [
+      "confirm button",
+      "click twice",
+      "arm button",
+      "inline confirm",
+      "delete button",
+      "are you sure",
+      "destructive button"
+    ],
+    "flows": [
+      "danger-zone"
+    ],
+    "fields": []
+  },
+  "categories": [
+    "Destructive actions"
+  ],
+  "type": "registry:ui"
+}

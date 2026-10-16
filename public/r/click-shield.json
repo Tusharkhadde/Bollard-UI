@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "click-shield",
+  "title": "Click Shield",
+  "description": "Stops clicks that land on a button only because it just appeared, shifted under the cursor or changed its label, by ignoring pointer presses for ~500ms with a quiet fade-in cue, while keyboard users are only shielded from focus that code moved onto the button.",
+  "files": [
+    {
+      "path": "registry/default/click-shield/click-shield.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Why the shield went up: the target just mounted, shifted, relabelled, the tab came back, or focus was moved onto it by code. */\nexport type ShieldReason = \"appeared\" | \"moved\" | \"changed\" | \"returned\" | \"focused\"\n\nexport interface ClickShieldOptions {\n  /** How long clicks are ignored after a change, in ms. Chrome's dialog guard uses 500. */\n  duration?: number\n  /** Turn the shield off entirely. */\n  enabled?: boolean\n  /** Called for every click the shield swallowed, with the reason it was up. */\n  onBlockedClick?: (reason: ShieldReason) => void\n}\n\n/** Pixels an element may drift (subpixel layout, zoom) before it counts as moved. */\nconst MOVE_TOLERANCE = 2\n/** A focus that follows a Tab, arrow key or pointer press within this many ms was the user's own. */\nconst USER_FOCUS_WINDOW = 400\n\nconst NAV_KEYS = new Set([\"Tab\", \"ArrowUp\", \"ArrowDown\", \"ArrowLeft\", \"ArrowRight\", \"Home\", \"End\"])\n\n/**\n * Ignores pointer clicks on `ref` for `duration` ms after it appears, moves\n * (not counting scrolls), changes its label, or the tab becomes visible again.\n * A press that *started* inside the window is ignored even if released after it.\n *\n * Keyboard users aim with focus, not a cursor, so moves and relabels never block\n * them. Their one trap is a dialog that steals focus onto a button while they are\n * mid-keystroke, so Enter/Space are only shielded right after code (not the user)\n * moved focus there, and a held Enter's auto-repeat never activates.\n */\nexport function useClickShield(\n  ref: React.RefObject<HTMLElement | null>,\n  { duration = 500, enabled = true, onBlockedClick }: ClickShieldOptions = {},\n) {\n  const [reason, setReason] = React.useState<ShieldReason | null>(null)\n  const until = React.useRef(0)\n  const reasonRef = React.useRef<ShieldReason>(\"appeared\")\n  const pressShielded = React.useRef(false)\n  const focus = React.useRef({ at: -Infinity, byUser: true })\n  const userInputAt = React.useRef(-Infinity)\n  const timer = React.useRef<ReturnType<typeof setTimeout>>(undefined)\n\n  const raise = React.useCallback(\n    (next: ShieldReason) => {\n      until.current = performance.now() + duration\n      reasonRef.current = next\n      setReason(next)\n      clearTimeout(timer.current)\n      timer.current = setTimeout(() => setReason(null), duration)\n    },\n    [duration],\n  )\n\n  React.useEffect(() => {\n    const el = ref.current\n    if (!enabled || !el) return\n    raise(\"appeared\")\n\n    // Positions are polled per frame: nothing else reports a shift caused by content elsewhere on the page.\n    let scrolledAt = -Infinity\n    let last = el.getBoundingClientRect()\n    let frame = requestAnimationFrame(function tick() {\n      const rect = el.getBoundingClientRect()\n      const moved = Math.abs(rect.left - last.left) > MOVE_TOLERANCE || Math.abs(rect.top - last.top) > MOVE_TOLERANCE\n      if (moved && performance.now() - scrolledAt > 100) raise(\"moved\")\n      last = rect\n      frame = requestAnimationFrame(tick)\n    })\n\n    let label = el.textContent\n    const observer = new MutationObserver(() => {\n      if (el.textContent === label) return\n      label = el.textContent\n      raise(\"changed\")\n    })\n    observer.observe(el, { subtree: true, childList: true, characterData: true })\n\n    const onScroll = () => (scrolledAt = performance.now())\n    const onVisible = () => document.visibilityState === \"visible\" && raise(\"returned\")\n    const onUserInput = (event: Event) => {\n      if (event.type === \"pointerdown\" || NAV_KEYS.has((event as KeyboardEvent).key)) userInputAt.current = performance.now()\n    }\n    document.addEventListener(\"scroll\", onScroll, { capture: true, passive: true })\n    document.addEventListener(\"visibilitychange\", onVisible)\n    document.addEventListener(\"keydown\", onUserInput, true)\n    document.addEventListener(\"pointerdown\", onUserInput, true)\n    return () => {\n      cancelAnimationFrame(frame)\n      observer.disconnect()\n      clearTimeout(timer.current)\n      document.removeEventListener(\"scroll\", onScroll, true)\n      document.removeEventListener(\"visibilitychange\", onVisible)\n      document.removeEventListener(\"keydown\", onUserInput, true)\n      document.removeEventListener(\"pointerdown\", onUserInput, true)\n    }\n  }, [ref, enabled, raise])\n\n  const handlers = {\n    onPointerDownCapture: () => {\n      pressShielded.current = enabled && performance.now() < until.current\n    },\n    onFocusCapture: () => {\n      const now = performance.now()\n      const byUser = now - userInputAt.current < USER_FOCUS_WINDOW\n      focus.current = { at: now, byUser }\n      if (enabled && !byUser) raise(\"focused\")\n    },\n    onKeyDownCapture: (event: React.KeyboardEvent) => {\n      // A held Enter clicks on every auto-repeat; only a fresh press may activate.\n      if (enabled && event.repeat && (event.key === \"Enter\" || event.key === \" \")) event.preventDefault()\n    },\n    onClickCapture: (event: React.MouseEvent) => {\n      if (!enabled) return\n      const now = performance.now()\n      const keyboard = event.detail === 0\n      const blocked = keyboard\n        ? !focus.current.byUser && now - focus.current.at < duration\n        : pressShielded.current || now < until.current\n      pressShielded.current = false\n      if (!blocked) return\n      event.preventDefault()\n      event.stopPropagation()\n      onBlockedClick?.(keyboard ? \"focused\" : reasonRef.current)\n    },\n  }\n\n  return { shielded: reason !== null, reason, handlers }\n}\n\nexport interface ClickShieldProps extends ClickShieldOptions, React.ComponentProps<\"span\"> {}\n\n/**\n * Wrap a button (or a group of them) so a click meant for something else can't\n * land on it: when a banner loads above it, a popup opens under the cursor or\n * its label flips from \"Save\" to \"Delete\", clicks are ignored for ~500ms while\n * it fades back in. See `useClickShield` for how keyboard users are treated.\n */\nexport function ClickShield({ duration, enabled, onBlockedClick, className, children, ref: forwarded, ...props }: ClickShieldProps) {\n  const ref = React.useRef<HTMLSpanElement>(null)\n  React.useImperativeHandle(forwarded, () => ref.current as HTMLSpanElement)\n  const { shielded, reason, handlers } = useClickShield(ref, { duration, enabled, onBlockedClick })\n\n  return (\n    <span\n      ref={ref}\n      data-slot=\"click-shield\"\n      data-shielded={shielded || undefined}\n      data-reason={reason ?? undefined}\n      className={cn(\n        \"inline-flex [&>*]:transition-[opacity,filter] [&>*]:duration-300\",\n        shielded && \"[&>*]:opacity-60 [&>*]:saturate-50 [&>*]:duration-0\",\n        className,\n      )}\n      {...props}\n      {...handlers}\n    >\n      {children}\n    </span>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "stops": "Clicked button that just appeared",
+    "mistakes": [
+      "button moved under cursor",
+      "layout shift click",
+      "clicked wrong button after load",
+      "popup appeared and got clicked"
+    ],
+    "aliases": [
+      "layout shift",
+      "cls",
+      "misclick",
+      "click protection",
+      "late button",
+      "dialog appears",
+      "ghost click"
+    ],
+    "flows": [
+      "danger-zone",
+      "forms"
+    ],
+    "fields": []
+  },
+  "categories": [
+    "Destructive actions"
+  ],
+  "type": "registry:ui"
+}
