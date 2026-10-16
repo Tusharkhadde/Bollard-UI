@@ -53,12 +53,16 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
 
   // Keep the active link in view inside the sidebar's own scroll area.
   React.useEffect(() => {
-    const root = scrollRef.current
-    const link = root?.querySelector<HTMLElement>('[aria-current="page"]')
-    if (!root || !link) return
-    const r = root.getBoundingClientRect()
-    const l = link.getBoundingClientRect()
-    if (l.top < r.top + 8 || l.bottom > r.bottom - 8) root.scrollTop += l.top - r.top - r.height / 3
+    const frame = requestAnimationFrame(() => {
+      const root = scrollRef.current
+      const link = root?.querySelector<HTMLElement>('[aria-current="page"]')
+      if (!root || !link) return
+      const r = root.getBoundingClientRect()
+      const l = link.getBoundingClientRect()
+      // Centre the current page in the rail, like the best docs sites do.
+      if (l.top < r.top + 8 || l.bottom > r.bottom - 8) root.scrollTop += l.top - r.top - r.height / 2 + l.height / 2
+    })
+    return () => cancelAnimationFrame(frame)
   }, [current])
 
   // The same query and filters as the /components grid, so both always show the same set.

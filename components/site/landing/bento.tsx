@@ -7,7 +7,11 @@ import { LiveDemo, type ShowcaseName } from "./live-demo"
 import { Reveal } from "./reveal"
 import { Section, SectionHeading } from "./section-heading"
 
-/** Bento layout: a tall SQL card on the left of a 6-col grid, two stacked on the right, three below. */
+/**
+ * Bento layout: a tall SQL card on the left of a 6-col grid, two stacked on the right, three below.
+ * At lg the first two rows are 1fr each, so the two stacked cards share the SQL card's height equally.
+ * Resting and hover states keep every card on the same plane (no lift or shadow), so edges always align.
+ */
 const cards: { name: ShowcaseName; span: string; stage?: string }[] = [
   { name: "sql-guard", span: "md:col-span-2 lg:col-span-4 lg:row-span-2", stage: "max-w-xl" },
   { name: "type-to-confirm", span: "lg:col-span-2" },
@@ -27,7 +31,7 @@ export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
     return item ? [{ ...item, ...card }] : []
   })
   return (
-    <Section id="components" labelledBy="bento-heading">
+    <Section id="components" labelledBy="bento-heading" bordered={false} padding="pt-14 pb-20 sm:pt-20 sm:pb-28">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading id="bento-heading" eyebrow="Live components" title="Every card is the real thing.">
           Each one already has a mistake in it. Try to get it past.
@@ -40,18 +44,18 @@ export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
           <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
         </Link>
       </div>
-      <ul className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-6">
+      <ul className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-6 lg:grid-rows-[1fr_1fr_auto]">
         {list.map((card, i) => (
           <Reveal
             as="li"
             key={card.name}
             delay={(i % 3) * 0.05}
             className={cn(
-              "group/card flex min-w-0 flex-col overflow-hidden rounded-xl border bg-card transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[0_12px_32px_-16px_rgb(0_0_0/0.18)] motion-reduce:hover:translate-y-0 dark:hover:shadow-[0_12px_32px_-12px_rgb(0_0_0/0.6)]",
+              "group/card flex min-w-0 flex-col overflow-hidden rounded-xl border bg-card transition-colors duration-200 hover:border-border-strong",
               card.span,
             )}
           >
-            <div className="bg-dots flex flex-1 items-center justify-center border-b bg-surface px-5 py-8 sm:px-8 sm:py-10">
+            <div className="ink-amber bg-dots flex flex-1 items-center justify-center border-b bg-surface px-5 py-8 sm:px-8 sm:py-10">
               <div className={cn("w-full", card.stage ?? "max-w-md")}>
                 <LiveDemo name={card.name} />
               </div>

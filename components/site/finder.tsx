@@ -454,8 +454,8 @@ export function IncidentCard({
       )}
       data-card={item.name}
     >
-      <Link href={`/components/${item.name}`} className={cn("flex flex-1 flex-col gap-1.5 rounded-xl p-4 pr-12", focusRing)}>
-        <span className="flex min-w-0 items-center gap-2">
+      <Link href={`/components/${item.name}`} className={cn("flex flex-1 flex-col gap-1.5 rounded-xl p-4", focusRing)}>
+        <span className="flex min-w-0 items-center gap-2 pr-8">
           <span className="truncate text-sm font-medium">{item.title}</span>
           {top && (
             <span className="shrink-0 rounded border border-brand/40 bg-brand/10 px-1.5 py-px text-[10.5px] font-medium text-amber-800 dark:text-amber-300">Best match</span>

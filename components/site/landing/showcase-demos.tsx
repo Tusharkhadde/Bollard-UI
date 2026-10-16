@@ -15,6 +15,11 @@ import { UpiIdInput, type UpiVerification } from "@/registry/default/upi-id-inpu
 
 const note = "text-xs text-muted-foreground"
 
+// Site-side triggers match the registry buttons' geometry (h-9, rounded-md, px-4, medium, shadow-xs),
+// so every card's main action reads as the same button family. Registry files are untouched.
+const demoButton =
+  "inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 text-sm font-medium shadow-xs outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50"
+
 export function SqlDemo() {
   const [log, setLog] = React.useState("")
   return (
@@ -56,6 +61,7 @@ export function CooldownDemo() {
       <CooldownButton
         id="landing-resend-otp"
         startCoolingDown
+        variant="default"
         cooldowns={[20, 40, 80]}
         onAction={() => new Promise<void>((resolve) => setTimeout(() => (setSent((n) => n + 1), resolve()), 500))}
         className="items-center"
@@ -82,7 +88,7 @@ export function TypeToConfirmDemo() {
       <button
         type="button"
         onClick={() => (deleted ? setDeleted(false) : setOpen(true))}
-        className="inline-flex h-9 items-center gap-2 rounded-md border border-destructive/40 bg-background px-4 text-sm font-medium text-destructive outline-none hover:bg-destructive/10 focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"
+        className={`${demoButton} border border-destructive/40 bg-background text-destructive hover:bg-destructive/10 dark:bg-input/30`}
       >
         <Trash2 aria-hidden className="size-4" />
         {deleted ? "Restore demo" : "Delete repository"}

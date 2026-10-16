@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
@@ -40,17 +41,17 @@ export function HeroPreview({ className }: { className?: string }) {
   }
 
   return (
-    // Outer bezel: a translucent hairline frame around the window, like a product shot.
-    <div className={cn("rounded-[1.1rem] border bg-surface/60 p-1.5 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.25)] backdrop-blur-sm sm:p-2 dark:shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)]", className)}>
+    // Outer bezel: a borderless tinted rim around the window (one hairline only, on the inner window), like a product shot.
+    <div className={cn("rounded-[1rem] bg-foreground/[0.04] p-1 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.22)] sm:p-1.5 dark:bg-white/[0.05] dark:shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)]", className)}>
       <div className="overflow-hidden rounded-xl border bg-background">
         {/* Chrome: traffic lights, address, tabs */}
         <div className="flex h-11 items-center gap-3 border-b px-3 sm:px-4">
           <div aria-hidden className="hidden shrink-0 gap-1.5 sm:flex">
-            <span className="size-2.5 rounded-full bg-foreground/12" />
-            <span className="size-2.5 rounded-full bg-foreground/12" />
-            <span className="size-2.5 rounded-full bg-foreground/12" />
+            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
+            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
+            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
           </div>
-          <div className="mx-auto flex h-7 min-w-0 max-w-[16rem] flex-1 items-center justify-center gap-1.5 truncate rounded-md bg-muted/70 px-3 font-mono text-[11px] text-muted-foreground">
+          <div className="mx-auto flex h-7 min-w-0 max-w-[16rem] flex-1 items-center justify-center gap-1.5 truncate rounded-md border bg-muted px-3 font-mono text-xs text-foreground/80">
             <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500/80" />
             <span className="truncate">{tab.path}</span>
           </div>
@@ -104,7 +105,7 @@ export function HeroPreview({ className }: { className?: string }) {
           role="tabpanel"
           id={`${baseId}-panel`}
           aria-labelledby={`${baseId}-tab-${active}`}
-          className="bg-dots relative flex justify-center bg-surface px-3 py-8 sm:min-h-[37rem] sm:px-8 sm:py-12"
+          className="ink-amber bg-dots relative flex justify-center bg-surface px-3 py-8 sm:min-h-[37rem] sm:px-8 sm:py-12"
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -113,7 +114,7 @@ export function HeroPreview({ className }: { className?: string }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.16, ease: "easeOut" }}
-              className="flex w-full min-w-0 items-start justify-center"
+              className="flex w-full min-w-0 items-center justify-center"
             >
               <tab.Screen />
             </motion.div>
@@ -132,6 +133,14 @@ export function HeroPreview({ className }: { className?: string }) {
               {name}
             </Link>
           ))}
+          {/* Right-hand anchor so every tab's row is balanced, whether it lists one component or four. */}
+          <Link
+            href="/components"
+            className="ml-auto hidden items-center gap-1 rounded-md text-xs text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:inline-flex"
+          >
+            All components
+            <ArrowRight aria-hidden className="size-3" />
+          </Link>
         </div>
       </div>
     </div>

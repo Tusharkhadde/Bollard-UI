@@ -55,7 +55,7 @@
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.21 0.006 285.885);
-  --muted-foreground: oklch(0.705 0.015 286.067);
+  --muted-foreground: oklch(0.745 0.014 286.067); /* a touch above zinc-400: small helper text stays comfortably legible on near-black */
   --accent: oklch(0.24 0.006 286);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -190,6 +190,18 @@ html {
 .bg-dots {
   background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
   background-size: 14px 14px;
+}
+
+/*
+ * Small amber warning text inside site previews (hero window, bento stages).
+ * Registry components use amber-700 for warning copy; at 12px on white that sits
+ * right at the AA line, so in light mode the site deepens it to amber-800
+ * (≈7:1 on white). Unlayered, light-mode only: dark keeps the components' own amber-400.
+ */
+:root:not(.dark) .ink-amber .text-amber-700,
+.dark .light .ink-amber .text-amber-700,
+.dark .ink-amber .light .text-amber-700 {
+  color: var(--color-amber-800, oklch(0.473 0.137 46.201));
 }
 
 /* Very soft amber glow behind framed product shots. */

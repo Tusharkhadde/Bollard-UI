@@ -43,7 +43,7 @@ const linkClass =
 export function SiteFooter() {
   return (
     <footer className="border-t">
-      <div className="mx-auto max-w-6xl px-4 pt-14 pb-8 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 pt-14 pb-[max(3rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-14">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))]">
           <div className="col-span-2 max-w-xs md:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 rounded-md text-sm font-semibold tracking-tight outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50">

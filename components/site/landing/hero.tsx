@@ -57,7 +57,7 @@ export function Hero({ registryBase }: { registryBase: string }) {
               <InstallCommand
                 registryBase={registryBase}
                 name="amount-input"
-                className="h-10 w-full min-w-0 rounded-lg sm:w-[26rem] [&_button]:h-7 [&_button]:rounded-md"
+                className="min-h-10 w-full min-w-0 rounded-lg py-1 sm:w-[30rem] [&_button]:h-7 [&_button]:rounded-md"
               />
             </motion.div>
           </motion.div>

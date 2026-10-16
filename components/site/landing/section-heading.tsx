@@ -3,6 +3,14 @@ import { cn } from "@/lib/utils"
 /** The shared page width for landing (and any marketing-style) sections. */
 export const container = "mx-auto w-full max-w-6xl px-4 sm:px-6"
 
+/**
+ * Anchor offset for landing sections (#flows, #faq, …). The sticky top bar is h-14;
+ * html already has scroll-padding-top 4.5rem (header + 1rem) for docs anchors, so a
+ * section only adds a small margin: its top hairline lands just under the header and
+ * the heading below it is never covered, without a double gap.
+ */
+export const sectionAnchor = "scroll-mt-2"
+
 /** A full-width landing section: hairline top border and the standard vertical rhythm. */
 export function Section({
   id,
@@ -10,16 +18,19 @@ export function Section({
   className,
   children,
   bordered = true,
+  padding = "py-20 sm:py-28",
 }: {
   id?: string
   labelledBy: string
   className?: string
   children: React.ReactNode
   bordered?: boolean
+  /** Vertical padding of the inner container; override when a section follows a framed strip. */
+  padding?: string
 }) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("scroll-mt-16", bordered && "border-t", className)}>
-      <div className={cn(container, "py-20 sm:py-28")}>{children}</div>
+    <section id={id} aria-labelledby={labelledBy} className={cn(sectionAnchor, bordered && "border-t", className)}>
+      <div className={cn(container, padding)}>{children}</div>
     </section>
   )
 }

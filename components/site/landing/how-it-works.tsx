@@ -59,7 +59,7 @@ export function HowItWorks({ registryBase }: { registryBase: string }) {
         </ol>
       </Reveal>
       <Reveal delay={0.06} className="mt-3 grid min-w-0 gap-3">
-        <InstallCommand registryBase={registryBase} name="amount-input" className="h-12 w-full min-w-0" />
+        <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
         <CodeBlock files={[{ path: "rent-field.tsx", source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
       </Reveal>
     </Section>

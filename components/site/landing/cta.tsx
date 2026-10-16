@@ -6,12 +6,12 @@ import { GithubIcon } from "@/components/site/github-icon"
 import { InstallCommand } from "@/components/site/install-command"
 
 import { Reveal } from "./reveal"
-import { container } from "./section-heading"
+import { container, sectionAnchor } from "./section-heading"
 
 /** The closing band: a framed panel on a masked grid with a faint amber glow, the install line and two actions. */
 export function Cta({ registryBase, githubUrl }: { registryBase: string; githubUrl: string }) {
   return (
-    <section id="get-started" aria-labelledby="cta-heading" className="scroll-mt-16 border-t">
+    <section id="get-started" aria-labelledby="cta-heading" className={`${sectionAnchor} border-t`}>
       <div className={`${container} py-20 sm:py-28`}>
         <Reveal className="relative isolate overflow-hidden rounded-2xl border bg-surface px-5 py-16 text-center sm:px-10 sm:py-24">
           <div aria-hidden className="bg-grid-fade pointer-events-none absolute inset-0 -z-10" />
