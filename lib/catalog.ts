@@ -156,7 +156,7 @@ export const catalog: CatalogEntry[] = registry.items
     category: item.categories?.[0] ?? "More",
     files: item.files.map((file) => file.path),
     dependencies: item.dependencies ?? [],
-    registryDependencies: item.registryDependencies ?? [],
+    registryDependencies: (item.registryDependencies ?? []).map((d) => d.replace(/^.*\/r\/([^/]+)\.json$/, "$1")),
     ...discovery(item),
     ...pageDocs(item),
   }))

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ssh-key-input · MIT licence · https://bollard-ui.vercel.app/components/ssh-key-input
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, KeyRound, ShieldAlert, TriangleAlert } from "lucide-react"
 

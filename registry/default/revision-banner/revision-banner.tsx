@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — revision-banner · MIT licence · https://bollard-ui.vercel.app/components/revision-banner
+
 import * as React from "react"
 import { ArchiveRestore, History, LoaderCircle, Lock, TriangleAlert } from "lucide-react"
 

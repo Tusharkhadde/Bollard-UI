@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — share-link · MIT licence · https://bollard-ui.vercel.app/components/share-link
+
 import * as React from "react"
 import { Building2, Check, Copy, Globe, Link2Off, LoaderCircle, Lock, Timer, TriangleAlert } from "lucide-react"
 

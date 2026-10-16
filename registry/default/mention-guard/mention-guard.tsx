@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mention-guard · MIT licence · https://bollard-ui.vercel.app/components/mention-guard
+
 import * as React from "react"
 import { BellRing, LoaderCircle, SendHorizontal, UserX } from "lucide-react"
 

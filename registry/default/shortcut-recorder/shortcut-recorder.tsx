@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — shortcut-recorder · MIT licence · https://bollard-ui.vercel.app/components/shortcut-recorder
+
 import * as React from "react"
 import { CircleX, TriangleAlert, X } from "lucide-react"
 

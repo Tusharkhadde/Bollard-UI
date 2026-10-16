@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — diff-table · MIT licence · https://bollard-ui.vercel.app/components/diff-table
+
 import * as React from "react"
 import { Check, CircleHelp, X } from "lucide-react"
 

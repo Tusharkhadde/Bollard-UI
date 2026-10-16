@@ -25,8 +25,8 @@
     "motion"
   ],
   "registryDependencies": [
-    "pii-post-guard",
-    "secret-paste-guard"
+    "https://bollard-ui.vercel.app/r/pii-post-guard.json",
+    "https://bollard-ui.vercel.app/r/secret-paste-guard.json"
   ],
   "stops": "Helps keep a customer list out of an AI chat",
   "mistakes": [

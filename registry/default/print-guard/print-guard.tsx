@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — print-guard · MIT licence · https://bollard-ui.vercel.app/components/print-guard
+
 import * as React from "react"
 import { ChevronsDownUp, Link2Off, Moon, Printer, Scissors, Table, TriangleAlert } from "lucide-react"
 

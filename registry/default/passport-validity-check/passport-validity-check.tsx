@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — passport-validity-check · MIT licence · https://bollard-ui.vercel.app/components/passport-validity-check
+
 import * as React from "react"
 import { CircleCheck, CircleHelp, CircleX, ExternalLink, Stamp } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — webhook-url-input · MIT licence · https://bollard-ui.vercel.app/components/webhook-url-input
+
 import * as React from "react"
 import { CircleX, Info, TriangleAlert } from "lucide-react"
 

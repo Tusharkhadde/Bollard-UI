@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — guest-count-picker · MIT licence · https://bollard-ui.vercel.app/components/guest-count-picker
+
 import * as React from "react"
 import { CircleAlert, Minus, Plus } from "lucide-react"
 

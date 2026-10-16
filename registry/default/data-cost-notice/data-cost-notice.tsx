@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — data-cost-notice · MIT licence · https://bollard-ui.vercel.app/components/data-cost-notice
+
 import * as React from "react"
 import { Feather, Signal, SignalLow, Wifi } from "lucide-react"
 

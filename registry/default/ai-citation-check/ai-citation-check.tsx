@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ai-citation-check · MIT licence · https://bollard-ui.vercel.app/components/ai-citation-check
+
 import * as React from "react"
 import { BookOpen, Bot, Check, CircleHelp, ExternalLink, Link2, Loader2, Quote, Scale, Trash2, Wrench, XCircle } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

@@ -1,3 +1,5 @@
+// Bollard UI — webhook-test · MIT licence · https://bollard-ui.vercel.app/components/webhook-test
+
 export type WebhookTone = "ok" | "warning" | "danger"
 
 export interface WebhookNote {

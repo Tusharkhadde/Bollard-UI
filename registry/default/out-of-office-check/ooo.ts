@@ -1,3 +1,5 @@
+// Bollard UI — out-of-office-check · MIT licence · https://bollard-ui.vercel.app/components/out-of-office-check
+
 /**
  * Pure checks for an out-of-office auto-reply. Dates are wall-clock strings in the
  * account's time zone: "YYYY-MM-DD" for Gmail (which runs from 12:00 AM on the start

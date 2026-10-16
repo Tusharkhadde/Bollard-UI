@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — upi-id-input · MIT licence · https://bollard-ui.vercel.app/components/upi-id-input
+
 import * as React from "react"
 import { BadgeCheck, CircleAlert, Link2, LoaderCircle, RotateCw, Smartphone, TriangleAlert } from "lucide-react"
 

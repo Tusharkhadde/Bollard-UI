@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — spend-cap-button · MIT licence · https://bollard-ui.vercel.app/components/spend-cap-button
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { Ban, Check, LoaderCircle, Repeat } from "lucide-react"

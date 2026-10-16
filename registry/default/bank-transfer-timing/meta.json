@@ -73,5 +73,8 @@
   "fields": [
     "amount",
     "datetime"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/amount-in-words.json"
   ]
 }

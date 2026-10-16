@@ -1,3 +1,5 @@
+// Bollard UI — email-change-guard · MIT licence · https://bollard-ui.vercel.app/components/email-change-guard
+
 import { COMMON_EMAIL_DOMAINS, suggestEmailDomain } from "@/registry/default/email-input/email-domains"
 
 export type EmailChangeIssue =

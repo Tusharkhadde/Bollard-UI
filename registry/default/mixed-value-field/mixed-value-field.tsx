@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mixed-value-field · MIT licence · https://bollard-ui.vercel.app/components/mixed-value-field
+
 import * as React from "react"
 import { Eraser, PencilLine, Undo2 } from "lucide-react"
 

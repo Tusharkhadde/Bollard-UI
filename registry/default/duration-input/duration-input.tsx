@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — duration-input · MIT licence · https://bollard-ui.vercel.app/components/duration-input
+
 import * as React from "react"
 import { Timer, TriangleAlert } from "lucide-react"
 

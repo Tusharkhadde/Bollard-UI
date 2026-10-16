@@ -1,3 +1,5 @@
+// Bollard UI — version-bump · MIT licence · https://bollard-ui.vercel.app/components/version-bump
+
 // Semantic Versioning 2.0.0 helpers behind VersionBump. Pure functions, safe on the server.
 
 export interface Version {

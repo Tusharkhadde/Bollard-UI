@@ -1,3 +1,5 @@
+// Bollard UI — text-diff · MIT licence · https://bollard-ui.vercel.app/components/text-diff
+
 import * as React from "react"
 import { EyeOff, Hash } from "lucide-react"
 

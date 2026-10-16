@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — permission-pre-ask · MIT licence · https://bollard-ui.vercel.app/components/permission-pre-ask
+
 import * as React from "react"
 import { ArrowUpLeft, Bell, Camera, CircleCheck, LoaderCircle, MapPin, Mic, ShieldAlert, Smartphone } from "lucide-react"
 

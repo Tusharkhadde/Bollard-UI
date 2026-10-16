@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — zero-result-rescue · MIT licence · https://bollard-ui.vercel.app/components/zero-result-rescue
+
 import * as React from "react"
 import { ArrowRight, LoaderCircle, SearchX } from "lucide-react"
 

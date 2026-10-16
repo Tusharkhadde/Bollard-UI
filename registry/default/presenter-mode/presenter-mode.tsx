@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — presenter-mode · MIT licence · https://bollard-ui.vercel.app/components/presenter-mode
+
 import * as React from "react"
 import { EyeOff, ScreenShare } from "lucide-react"
 

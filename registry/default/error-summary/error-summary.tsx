@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — error-summary · MIT licence · https://bollard-ui.vercel.app/components/error-summary
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleAlert, CircleCheck } from "lucide-react"

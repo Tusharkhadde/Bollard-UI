@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — edit-lock · MIT licence · https://bollard-ui.vercel.app/components/edit-lock
+
 import * as React from "react"
 import { Lock, LockOpen, TriangleAlert } from "lucide-react"
 

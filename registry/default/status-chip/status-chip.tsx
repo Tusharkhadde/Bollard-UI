@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — status-chip · MIT licence · https://bollard-ui.vercel.app/components/status-chip
+
 import * as React from "react"
 import { CircleCheck, CircleDashed, CircleDotDashed, CircleHelp, Info, OctagonX, TriangleAlert, type LucideIcon } from "lucide-react"
 

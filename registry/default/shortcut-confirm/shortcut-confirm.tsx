@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — shortcut-confirm · MIT licence · https://bollard-ui.vercel.app/components/shortcut-confirm
+
 import * as React from "react"
 import { Check, Keyboard, TriangleAlert } from "lucide-react"
 

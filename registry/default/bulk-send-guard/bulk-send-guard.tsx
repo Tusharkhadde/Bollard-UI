@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-send-guard · MIT licence · https://bollard-ui.vercel.app/components/bulk-send-guard
+
 import * as React from "react"
 import { Check, CircleAlert, LoaderCircle, Moon, Send, TrendingUp, UserX, Wallet } from "lucide-react"
 

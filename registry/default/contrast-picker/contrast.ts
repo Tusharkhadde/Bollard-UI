@@ -1,3 +1,5 @@
+// Bollard UI — contrast-picker · MIT licence · https://bollard-ui.vercel.app/components/contrast-picker
+
 /** WCAG 2 contrast maths (relative luminance per WCAG 2.2, sRGB threshold 0.04045) and a lightness-only fixer. */
 
 export type Rgb = [number, number, number]

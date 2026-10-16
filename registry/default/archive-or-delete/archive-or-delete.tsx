@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — archive-or-delete · MIT licence · https://bollard-ui.vercel.app/components/archive-or-delete
+
 import * as React from "react"
 import { Archive, Check, LoaderCircle, Minus, Trash2, X } from "lucide-react"
 

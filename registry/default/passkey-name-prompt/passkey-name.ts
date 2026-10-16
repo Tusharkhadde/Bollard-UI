@@ -1,3 +1,5 @@
+// Bollard UI — passkey-name-prompt · MIT licence · https://bollard-ui.vercel.app/components/passkey-name-prompt
+
 // Pure passkey naming helpers. Names come from the AAGUID first, the user agent second
 // (web.dev "Determine the passkey provider with AAGUID"). Never a trust decision: display only.
 

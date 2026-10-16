@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — qr-share · MIT licence · https://bollard-ui.vercel.app/components/qr-share
+
 import * as React from "react"
 import { CircleCheck, OctagonAlert, TriangleAlert } from "lucide-react"
 

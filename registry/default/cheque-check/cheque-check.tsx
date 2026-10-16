@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cheque-check · MIT licence · https://bollard-ui.vercel.app/components/cheque-check
+
 import * as React from "react"
 import { CalendarCheck, CalendarX, Landmark } from "lucide-react"
 

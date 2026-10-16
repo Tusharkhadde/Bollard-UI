@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — safe-submit · MIT licence · https://bollard-ui.vercel.app/components/safe-submit
+
 import * as React from "react"
 import { Check, CircleAlert, LoaderCircle, RotateCw } from "lucide-react"
 

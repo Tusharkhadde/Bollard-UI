@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — account-switch-guard · MIT licence · https://bollard-ui.vercel.app/components/account-switch-guard
+
 import * as React from "react"
 import { ArrowLeftRight, LoaderCircle } from "lucide-react"
 

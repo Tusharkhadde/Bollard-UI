@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sql-guard · MIT licence · https://bollard-ui.vercel.app/components/sql-guard
+
 import * as React from "react"
 import { DatabaseZap, LoaderCircle, Play, TriangleAlert } from "lucide-react"
 

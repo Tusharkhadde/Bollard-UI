@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — undo-toast · MIT licence · https://bollard-ui.vercel.app/components/undo-toast
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleAlert, Undo2, X } from "lucide-react"

@@ -1,3 +1,5 @@
+// Bollard UI — bank-transfer-timing · MIT licence · https://bollard-ui.vercel.app/components/bank-transfer-timing
+
 export type Rail = "IMPS" | "NEFT" | "RTGS" | "UPI"
 export const RAILS: Rail[] = ["IMPS", "NEFT", "RTGS", "UPI"]
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — password-policy-input · MIT licence · https://bollard-ui.vercel.app/components/password-policy-input
+
 import * as React from "react"
 import { Check, CircleCheck, Loader2, ShieldAlert, Wand2, X } from "lucide-react"
 

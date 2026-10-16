@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sunset-notice · MIT licence · https://bollard-ui.vercel.app/components/sunset-notice
+
 import * as React from "react"
 import { ArrowUpRight, BellOff, Sunset } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — nominee-check · MIT licence · https://bollard-ui.vercel.app/components/nominee-check
+
 import * as React from "react"
 import { CircleCheck, Plus, Trash2, TriangleAlert, Users } from "lucide-react"
 

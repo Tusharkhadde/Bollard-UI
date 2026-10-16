@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — out-of-office-check · MIT licence · https://bollard-ui.vercel.app/components/out-of-office-check
+
 import * as React from "react"
 import { CalendarClock, CalendarRange, CircleAlert, Globe, HeartPulse, LoaderCircle, Mail, MapPin, Phone, Undo2 } from "lucide-react"
 

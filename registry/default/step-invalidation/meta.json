@@ -40,5 +40,8 @@
     "forms",
     "signup-login"
   ],
-  "fields": []
+  "fields": [],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/dependent-reset.json"
+  ]
 }

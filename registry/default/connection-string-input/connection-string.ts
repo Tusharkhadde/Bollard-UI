@@ -1,3 +1,5 @@
+// Bollard UI — connection-string-input · MIT licence · https://bollard-ui.vercel.app/components/connection-string-input
+
 /**
  * Database connection URLs, split the way drivers split them and checked for
  * the mistakes that break or weaken a connection. Sources: libpq connection

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sign-in-approve · MIT licence · https://bollard-ui.vercel.app/components/sign-in-approve
+
 import * as React from "react"
 import { Clock, LoaderCircle, MapPin, Monitor, ShieldCheck, ShieldQuestion, ShieldX, TriangleAlert } from "lucide-react"
 

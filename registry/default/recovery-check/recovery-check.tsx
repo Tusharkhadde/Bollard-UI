@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recovery-check · MIT licence · https://bollard-ui.vercel.app/components/recovery-check
+
 import * as React from "react"
 import { CircleCheck, KeyRound, LoaderCircle, Mail, Phone, ShieldAlert, ShieldCheck, Smartphone } from "lucide-react"
 

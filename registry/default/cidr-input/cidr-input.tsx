@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cidr-input · MIT licence · https://bollard-ui.vercel.app/components/cidr-input
+
 import * as React from "react"
 import { Globe, Layers, Network, TriangleAlert } from "lucide-react"
 

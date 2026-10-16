@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sort-indicator · MIT licence · https://bollard-ui.vercel.app/components/sort-indicator
+
 import * as React from "react"
 import { ArrowDown, ArrowDownWideNarrow, ArrowUp, ArrowUpDown, EyeOff, Pin } from "lucide-react"
 

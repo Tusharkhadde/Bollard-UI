@@ -51,5 +51,8 @@
   ],
   "fields": [
     "name"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/name-input.json"
   ]
 }

@@ -1,3 +1,5 @@
+// Bollard UI — csp-input · MIT licence · https://bollard-ui.vercel.app/components/csp-input
+
 // Pure Content-Security-Policy parsing and checks (CSP Level 3, the CSP Evaluator and MDN's guidance).
 
 export interface CspDirective {

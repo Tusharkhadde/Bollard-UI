@@ -1,3 +1,5 @@
+// Bollard UI — meeting-time-spread · MIT licence · https://bollard-ui.vercel.app/components/meeting-time-spread
+
 /**
  * Pure helpers for meeting-time-spread: what part of their day a meeting lands in for each attendee
  * (tz database via @date-fns/tz, so DST is right), and the kindest slot in a day. Safe on the server.

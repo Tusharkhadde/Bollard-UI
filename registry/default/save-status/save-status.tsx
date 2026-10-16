@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — save-status · MIT licence · https://bollard-ui.vercel.app/components/save-status
+
 import * as React from "react"
 import { Check, CircleAlert, CloudOff, LoaderCircle, RotateCw } from "lucide-react"
 

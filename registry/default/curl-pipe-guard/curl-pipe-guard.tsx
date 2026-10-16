@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — curl-pipe-guard · MIT licence · https://bollard-ui.vercel.app/components/curl-pipe-guard
+
 import * as React from "react"
 import { Check, CircleAlert, Copy, Info, Loader2, Lock, LockOpen, Play, ShieldCheck, Terminal, TriangleAlert } from "lucide-react"
 

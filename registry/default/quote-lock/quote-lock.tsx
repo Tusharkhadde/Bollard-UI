@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quote-lock · MIT licence · https://bollard-ui.vercel.app/components/quote-lock
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { ArrowDownRight, ArrowUpRight, Check, LoaderCircle, Lock, RefreshCw } from "lucide-react"

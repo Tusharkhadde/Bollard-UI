@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-runner · MIT licence · https://bollard-ui.vercel.app/components/bulk-runner
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"

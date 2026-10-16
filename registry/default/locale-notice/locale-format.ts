@@ -1,3 +1,5 @@
+// Bollard UI — locale-notice · MIT licence · https://bollard-ui.vercel.app/components/locale-notice
+
 /** Pure helpers for reading numbers and dates the way another locale would. Safe on the server. */
 
 export interface Separators {

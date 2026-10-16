@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — workflow-yaml-guard · MIT licence · https://bollard-ui.vercel.app/components/workflow-yaml-guard
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, Loader2, ShieldAlert, TriangleAlert, WandSparkles } from "lucide-react"
 

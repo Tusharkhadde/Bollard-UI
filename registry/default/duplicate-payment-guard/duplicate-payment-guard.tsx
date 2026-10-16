@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — duplicate-payment-guard · MIT licence · https://bollard-ui.vercel.app/components/duplicate-payment-guard
+
 import * as React from "react"
 import { Check, CircleCheck, Hourglass, LoaderCircle, Repeat, Search } from "lucide-react"
 

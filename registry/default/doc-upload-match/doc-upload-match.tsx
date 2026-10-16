@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — doc-upload-match · MIT licence · https://bollard-ui.vercel.app/components/doc-upload-match
+
 import * as React from "react"
 import { CircleCheck, FileLock2, FileText, ImageOff, Loader2, ScanEye, Upload } from "lucide-react"
 

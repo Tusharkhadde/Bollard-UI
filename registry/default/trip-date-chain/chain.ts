@@ -1,3 +1,5 @@
+// Bollard UI — trip-date-chain · MIT licence · https://bollard-ui.vercel.app/components/trip-date-chain
+
 import { tzOffset } from "@date-fns/tz"
 import { addDays, differenceInCalendarDays, format, isValid, parseISO } from "date-fns"
 

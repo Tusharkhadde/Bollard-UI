@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — split-allocator · MIT licence · https://bollard-ui.vercel.app/components/split-allocator
+
 import * as React from "react"
 import { Check, CircleAlert, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unit-price · MIT licence · https://bollard-ui.vercel.app/components/unit-price
+
 import * as React from "react"
 import { BadgeCheck, PackageMinus, Scale, Tags, TriangleAlert } from "lucide-react"
 

@@ -1,3 +1,5 @@
+// Bollard UI — qr-scan-check · MIT licence · https://bollard-ui.vercel.app/components/qr-scan-check
+
 /** What a scanned QR code contains. */
 export type QrPayload =
   | { type: "url"; raw: string; url: URL; registrable: string }

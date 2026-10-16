@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — agent-action-approve · MIT licence · https://bollard-ui.vercel.app/components/agent-action-approve
+
 import * as React from "react"
 import { AlertTriangle, Ban, Check, Loader2, ShieldAlert, ShieldCheck, Terminal, X } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

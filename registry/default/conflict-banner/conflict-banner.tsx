@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — conflict-banner · MIT licence · https://bollard-ui.vercel.app/components/conflict-banner
+
 import * as React from "react"
 import { ChevronDown, TriangleAlert, UserPen } from "lucide-react"
 

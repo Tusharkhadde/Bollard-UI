@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — partial-period · MIT licence · https://bollard-ui.vercel.app/components/partial-period
+
 import * as React from "react"
 import { TrendingDown, TrendingUp, TriangleAlert } from "lucide-react"
 

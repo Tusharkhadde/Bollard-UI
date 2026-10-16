@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — passkey-name-prompt · MIT licence · https://bollard-ui.vercel.app/components/passkey-name-prompt
+
 import * as React from "react"
 import { CircleCheck, Cloud, KeyRound, LoaderCircle, ShieldAlert, Smartphone, TriangleAlert } from "lucide-react"
 

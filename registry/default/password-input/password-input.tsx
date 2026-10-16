@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — password-input · MIT licence · https://bollard-ui.vercel.app/components/password-input
+
 import * as React from "react"
 import { ArrowBigUpDash, Eye, EyeOff, Languages, Space } from "lucide-react"
 

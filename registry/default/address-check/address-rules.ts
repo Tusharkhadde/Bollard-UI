@@ -1,3 +1,5 @@
+// Bollard UI — address-check · MIT licence · https://bollard-ui.vercel.app/components/address-check
+
 /** A postal address as the form holds it. `country` is an ISO 3166-1 alpha-2 code. */
 export interface Address {
   country: string

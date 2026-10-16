@@ -1,3 +1,5 @@
+// Bollard UI — change-readout · MIT licence · https://bollard-ui.vercel.app/components/change-readout
+
 import * as React from "react"
 import { TrendingDown, TrendingUp } from "lucide-react"
 

@@ -34,7 +34,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/generate.mjs && shadcn build",
-    "generate": "node scripts/generate.mjs"
+    "generate": "node scripts/generate.mjs",
+    "registry:validate": "node scripts/validate-registry.mjs",
+    "headers:stamp": "node scripts/stamp-headers.mjs"
   },
   "dependencies": {
     "@date-fns/tz": "^1.5.0",

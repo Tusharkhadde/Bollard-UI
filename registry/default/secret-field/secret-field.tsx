@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — secret-field · MIT licence · https://bollard-ui.vercel.app/components/secret-field
+
 import * as React from "react"
 import { Check, Copy, Eye, EyeOff } from "lucide-react"
 

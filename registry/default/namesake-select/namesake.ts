@@ -1,3 +1,5 @@
+// Bollard UI — namesake-select · MIT licence · https://bollard-ui.vercel.app/components/namesake-select
+
 /** Pure helpers for <NamesakeSelect>: who shares a name, and which details tell them apart. */
 
 export interface NamesakeOption {

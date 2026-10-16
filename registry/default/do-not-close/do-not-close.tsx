@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — do-not-close · MIT licence · https://bollard-ui.vercel.app/components/do-not-close
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Hourglass, RotateCcw } from "lucide-react"
 

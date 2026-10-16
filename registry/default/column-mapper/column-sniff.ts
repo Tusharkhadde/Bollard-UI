@@ -1,3 +1,5 @@
+// Bollard UI — column-mapper · MIT licence · https://bollard-ui.vercel.app/components/column-mapper
+
 /** What a column's values look like, or what a field expects. */
 export type ValueKind = "email" | "phone" | "date" | "number" | "first-name" | "last-name" | "text"
 export type DateOrder = "dmy" | "mdy"

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — payee-check · MIT licence · https://bollard-ui.vercel.app/components/payee-check
+
 import * as React from "react"
 import { BadgeCheck, CircleAlert, LoaderCircle, RotateCw, TriangleAlert, UserPlus } from "lucide-react"
 

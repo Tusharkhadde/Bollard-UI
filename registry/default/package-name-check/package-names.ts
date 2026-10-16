@@ -1,3 +1,5 @@
+// Bollard UI — package-name-check · MIT licence · https://bollard-ui.vercel.app/components/package-name-check
+
 /**
  * Install commands and package names checked for typosquats and lookalikes.
  * Rules: npm package names (https://docs.npmjs.com/cli/v10/configuring-npm/package-json#name),

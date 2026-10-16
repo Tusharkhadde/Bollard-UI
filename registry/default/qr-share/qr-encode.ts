@@ -1,3 +1,5 @@
+// Bollard UI — qr-share · MIT licence · https://bollard-ui.vercel.app/components/qr-share
+
 /**
  * A small, dependency-free QR Code encoder (ISO/IEC 18004): byte mode, error
  * correction level M, versions 1–40, automatic mask choice. Also a reader that

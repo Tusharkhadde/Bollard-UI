@@ -1,3 +1,5 @@
+// Bollard UI — utm-check · MIT licence · https://bollard-ui.vercel.app/components/utm-check
+
 /** UTM parsing, GA4 channel prediction and the checks utm-check runs. Pure, so it runs on the server too. */
 
 export const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id"] as const

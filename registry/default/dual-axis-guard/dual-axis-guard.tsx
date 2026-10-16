@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dual-axis-guard · MIT licence · https://bollard-ui.vercel.app/components/dual-axis-guard
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 

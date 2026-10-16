@@ -1,3 +1,5 @@
+// Bollard UI — upi-autopay-review · MIT licence · https://bollard-ui.vercel.app/components/upi-autopay-review
+
 /**
  * Pure checks for a UPI AutoPay (e-mandate) before the customer approves it.
  * Rules: RBI "Digital Payments – E-mandate Framework, 2026" (21 Apr 2026): validity period on every

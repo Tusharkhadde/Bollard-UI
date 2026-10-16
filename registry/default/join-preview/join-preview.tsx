@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — join-preview · MIT licence · https://bollard-ui.vercel.app/components/join-preview
+
 import * as React from "react"
 import { ArrowRight, CircleX, LoaderCircle, TriangleAlert } from "lucide-react"
 

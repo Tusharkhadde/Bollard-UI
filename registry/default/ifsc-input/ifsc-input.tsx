@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ifsc-input · MIT licence · https://bollard-ui.vercel.app/components/ifsc-input
+
 import * as React from "react"
 import { CircleAlert, Landmark, LoaderCircle, RotateCw, TriangleAlert } from "lucide-react"
 

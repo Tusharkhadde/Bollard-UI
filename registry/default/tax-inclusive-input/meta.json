@@ -27,7 +27,7 @@
         "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2164586"
       }
     ],
-    "note": "Confirmed: from 22 Sep 2025 GST moved from 5/12/18/28% to 5% and 18% plus a 40% special rate (some tobacco products stayed on old rates). Informational; check CBIC rate notifications for an item's rate."
+    "note": "Re-checked 2026-10-17 against PIB release 2164586 (8 Sep 2025): the 56th GST Council moved GST from four slabs (5/12/18/28%) to two main rates, 5% (merit) and 18% (standard), plus a 40% special rate for sin/luxury goods, effective 22 Sep 2025. The default list [0, 5, 18, 40] (0 = nil-rated) matches; special rates such as 3% on gold and 0.25% on rough diamonds, and tobacco items still on 28% plus cess, are not in it. Informational; check CBIC rate notifications for an item's rate."
   },
   "dependencies": [
     "lucide-react"

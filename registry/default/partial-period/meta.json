@@ -45,5 +45,8 @@
   "fields": [
     "number",
     "datetime"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/change-readout.json"
   ]
 }

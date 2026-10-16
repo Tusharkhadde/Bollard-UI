@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — guarded-switch · MIT licence · https://bollard-ui.vercel.app/components/guarded-switch
+
 import * as React from "react"
 import { LoaderCircle, ShieldAlert, TriangleAlert } from "lucide-react"
 

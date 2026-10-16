@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — replace-file · MIT licence · https://bollard-ui.vercel.app/components/replace-file
+
 import * as React from "react"
 import { FileText, LoaderCircle, TriangleAlert, Upload } from "lucide-react"
 

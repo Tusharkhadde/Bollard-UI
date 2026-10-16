@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — gap-aware-line · MIT licence · https://bollard-ui.vercel.app/components/gap-aware-line
+
 import * as React from "react"
 import { ChartLine, Table2 } from "lucide-react"
 

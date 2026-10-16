@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — clock-skew · MIT licence · https://bollard-ui.vercel.app/components/clock-skew
+
 import * as React from "react"
 import { ChevronDown, ClockAlert, LoaderCircle } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cooldown-button · MIT licence · https://bollard-ui.vercel.app/components/cooldown-button
+
 import * as React from "react"
 import { Hourglass, LoaderCircle } from "lucide-react"
 

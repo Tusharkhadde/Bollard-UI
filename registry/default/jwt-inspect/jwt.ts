@@ -1,3 +1,5 @@
+// Bollard UI — jwt-inspect · MIT licence · https://bollard-ui.vercel.app/components/jwt-inspect
+
 // Pure JWT decoding and checks (RFC 7519, RFC 7515, RFC 8725 best practices).
 // Decodes only: the signature is never verified here, and nothing leaves the page.
 

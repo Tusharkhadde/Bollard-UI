@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — prompt-data-guard · MIT licence · https://bollard-ui.vercel.app/components/prompt-data-guard
+
 import * as React from "react"
 import { ArrowUp, Eye, EyeOff, FileText, Loader2, ShieldAlert, ShieldCheck, X } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

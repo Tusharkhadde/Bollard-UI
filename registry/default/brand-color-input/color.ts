@@ -1,3 +1,5 @@
+// Bollard UI — brand-color-input · MIT licence · https://bollard-ui.vercel.app/components/brand-color-input
+
 // Colour parsing and brand-palette matching behind BrandColorInput. Pure functions, safe on the server.
 
 /** Red, green, blue (0–255) and alpha (0–1). */

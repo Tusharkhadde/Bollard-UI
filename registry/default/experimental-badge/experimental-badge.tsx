@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — experimental-badge · MIT licence · https://bollard-ui.vercel.app/components/experimental-badge
+
 import * as React from "react"
 import { CircleSlash, DatabaseZap, FlaskConical, LoaderCircle, MessageSquareText, Shuffle, Undo2 } from "lucide-react"
 

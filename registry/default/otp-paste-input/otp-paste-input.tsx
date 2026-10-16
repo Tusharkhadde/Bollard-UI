@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — otp-paste-input · MIT licence · https://bollard-ui.vercel.app/components/otp-paste-input
+
 import * as React from "react"
 import { MessageSquareCode, MessageSquareWarning } from "lucide-react"
 

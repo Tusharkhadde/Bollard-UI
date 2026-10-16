@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reset-preview · MIT licence · https://bollard-ui.vercel.app/components/reset-preview
+
 import * as React from "react"
 import { ArrowRight, Download, LoaderCircle, RotateCcw, TriangleAlert, Undo2 } from "lucide-react"
 

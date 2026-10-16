@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — consent-group · MIT licence · https://bollard-ui.vercel.app/components/consent-group
+
 import * as React from "react"
 import { ClipboardCheck, ListChecks } from "lucide-react"
 

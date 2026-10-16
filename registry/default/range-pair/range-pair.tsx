@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — range-pair · MIT licence · https://bollard-ui.vercel.app/components/range-pair
+
 import * as React from "react"
 import { ArrowLeftRight, ArrowRight, TriangleAlert } from "lucide-react"
 

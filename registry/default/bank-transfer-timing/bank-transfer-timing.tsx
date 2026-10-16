@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bank-transfer-timing · MIT licence · https://bollard-ui.vercel.app/components/bank-transfer-timing
+
 import * as React from "react"
 import { CalendarClock, Clock, Info, Loader2, TriangleAlert, Zap } from "lucide-react"
 

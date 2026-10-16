@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — paste-target-guard · MIT licence · https://bollard-ui.vercel.app/components/paste-target-guard
+
 import * as React from "react"
 import { CircleCheck, ShieldAlert } from "lucide-react"
 

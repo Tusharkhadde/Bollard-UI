@@ -12,8 +12,8 @@
   ],
   "limits": [
     "Pattern checks only: it does not parse full SQL or prevent SQL injection, and a query with a WHERE can still be destructive",
-    "Tokenizer understands -- and /* */ comments, '…' and $$…$$ strings, and \"…\", `…` and […] identifiers; MySQL # comments are not recognised",
-    "\"WHERE 1=1 AND …\" (a query-builder pattern) is flagged as always-true even though AND narrows it",
+    "Tokenizer understands --, # (MySQL) and /* */ comments, '…' and $$…$$ strings, and \"…\", `…` and […] identifiers; \"#>\" and \"#-\" are read as Postgres operators, but a bare Postgres \"#\" (bitwise XOR) is read as a comment",
+    "Always-true checks look at a single term right after WHERE or OR (\"WHERE 1=1\", \"OR 1=1\", \"OR id = id\"); a term followed by AND (\"WHERE 1=1 AND …\", the query-builder pattern) is not flagged, and tautologies inside parentheses or longer expressions are missed",
     "Not dialect-aware beyond that; CTEs are judged by their writing verb"
   ],
   "a11y": [

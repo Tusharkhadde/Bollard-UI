@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — presence-lock · MIT licence · https://bollard-ui.vercel.app/components/presence-lock
+
 import * as React from "react"
 import { Clock3, LockKeyhole, TriangleAlert } from "lucide-react"
 

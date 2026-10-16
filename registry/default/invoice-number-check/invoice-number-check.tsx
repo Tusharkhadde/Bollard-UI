@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — invoice-number-check · MIT licence · https://bollard-ui.vercel.app/components/invoice-number-check
+
 import * as React from "react"
 import { CircleAlert, Hash, TriangleAlert } from "lucide-react"
 

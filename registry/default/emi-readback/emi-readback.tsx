@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — emi-readback · MIT licence · https://bollard-ui.vercel.app/components/emi-readback
+
 import * as React from "react"
 import { CalendarClock, Percent, PiggyBank, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — precise-number · MIT licence · https://bollard-ui.vercel.app/components/precise-number
+
 import * as React from "react"
 import {
   FloatingPortal,

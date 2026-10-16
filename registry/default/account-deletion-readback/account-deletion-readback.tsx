@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — account-deletion-readback · MIT licence · https://bollard-ui.vercel.app/components/account-deletion-readback
+
 import * as React from "react"
 import { CalendarClock, CircleCheck, Download, ExternalLink, Loader2, Trash2, TriangleAlert, Users } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — utm-check · MIT licence · https://bollard-ui.vercel.app/components/utm-check
+
 import * as React from "react"
 import { ChartPie, CircleAlert, TriangleAlert, Undo2, WandSparkles } from "lucide-react"
 

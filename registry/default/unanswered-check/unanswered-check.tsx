@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unanswered-check · MIT licence · https://bollard-ui.vercel.app/components/unanswered-check
+
 import * as React from "react"
 import { CircleDashed, CircleHelp, Flag, Hourglass, LoaderCircle, SquareSplitHorizontal } from "lucide-react"
 
@@ -98,6 +100,10 @@ export interface UnansweredCheckProps extends Omit<React.ComponentProps<"section
   pendingLabel?: string
   /** Shown when onSubmit rejects. */
   errorText?: string
+  /** Accessible label of a question jump button. */
+  goToLabel?: (question: string, note?: string) => string
+  /** Screen-reader note on a flagged question that has no answer. */
+  notAnsweredSrText?: string
 }
 
 /**
@@ -132,6 +138,8 @@ export function UnansweredCheck({
   savingLabel = "Saving {count}…",
   pendingLabel = "Submitting…",
   errorText = "Not submitted. Your answers are kept, try again.",
+  goToLabel = (question, note) => `Go to question ${question}${note ? `, ${note}` : ""}`,
+  notAnsweredSrText = ", not answered",
   className,
   ...props
 }: UnansweredCheckProps) {
@@ -239,7 +247,7 @@ export function UnansweredCheck({
                       type="button"
                       onClick={() => onJump(q.id)}
                       title={q.note}
-                      aria-label={`Go to question ${q.label}${q.note ? `, ${q.note}` : ""}`}
+                      aria-label={goToLabel(String(q.label), q.note)}
                       className={cn(
                         "inline-flex h-8 min-w-8 items-center justify-center gap-1 rounded-md border bg-background px-2 text-xs font-medium tabular-nums transition-colors outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50",
                         chip,
@@ -248,7 +256,7 @@ export function UnansweredCheck({
                     >
                       {q.label}
                       {key === "partial" && q.note && <span className="font-normal opacity-80">· {q.note}</span>}
-                      {key === "flagged" && q.answered !== true && <span className="sr-only">, not answered</span>}
+                      {key === "flagged" && q.answered !== true && <span className="sr-only">{notAnsweredSrText}</span>}
                     </button>
                   </li>
                 ))}

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — embed-code · MIT licence · https://bollard-ui.vercel.app/components/embed-code
+
 import * as React from "react"
 import { Check, Copy, Eye, Globe, Radar, ShieldAlert, TriangleAlert, X } from "lucide-react"
 

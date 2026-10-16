@@ -1,3 +1,5 @@
+// Bollard UI — json-field · MIT licence · https://bollard-ui.vercel.app/components/json-field
+
 /**
  * A small JSON checker that, unlike JSON.parse, reports the same exact position in every browser
  * and recognises the classic hand-editing mistakes so each can be fixed in one step.

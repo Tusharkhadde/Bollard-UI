@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — file-guard · MIT licence · https://bollard-ui.vercel.app/components/file-guard
+
 import * as React from "react"
 import { FileCheck2, FileWarning, Upload, Wand2, X } from "lucide-react"
 

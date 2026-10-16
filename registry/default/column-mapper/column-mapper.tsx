@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — column-mapper · MIT licence · https://bollard-ui.vercel.app/components/column-mapper
+
 import * as React from "react"
 import { ArrowLeftRight, CalendarDays, CircleAlert, CircleCheck } from "lucide-react"
 

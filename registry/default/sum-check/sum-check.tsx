@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sum-check · MIT licence · https://bollard-ui.vercel.app/components/sum-check
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleAlert, CircleCheck, Info } from "lucide-react"

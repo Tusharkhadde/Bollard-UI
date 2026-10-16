@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — photo-location-guard · MIT licence · https://bollard-ui.vercel.app/components/photo-location-guard
+
 import * as React from "react"
 import { Camera, CircleCheck, Clock, ImageUp, Images, LoaderCircle, MapPin, UserRound } from "lucide-react"
 

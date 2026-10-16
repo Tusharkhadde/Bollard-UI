@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — chat-audience-check · MIT licence · https://bollard-ui.vercel.app/components/chat-audience-check
+
 import * as React from "react"
 import { Building2, Check, LoaderCircle, SendHorizontal, ShieldAlert, UserRoundSearch, Users, UserX } from "lucide-react"
 

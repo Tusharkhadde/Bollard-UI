@@ -1,3 +1,5 @@
+// Bollard UI — size-fit-picker · MIT licence · https://bollard-ui.vercel.app/components/size-fit-picker
+
 export type SizeSystem = "UK" | "US" | "EU" | "IN"
 
 export interface SizeRow {

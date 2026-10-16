@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — scope-picker · MIT licence · https://bollard-ui.vercel.app/components/scope-picker
+
 import * as React from "react"
 import { ShieldAlert, ShieldCheck, TriangleAlert, Wand2 } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — swipe-delete-row · MIT licence · https://bollard-ui.vercel.app/components/swipe-delete-row
+
 import * as React from "react"
 import { Trash2, Undo2 } from "lucide-react"
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useTransform } from "motion/react"

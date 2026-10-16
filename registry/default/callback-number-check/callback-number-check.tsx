@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — callback-number-check · MIT licence · https://bollard-ui.vercel.app/components/callback-number-check
+
 import * as React from "react"
 import type { CountryCode } from "libphonenumber-js/max"
 import { Ban, Globe, Phone, PhoneMissed, ShieldAlert, TriangleAlert } from "lucide-react"

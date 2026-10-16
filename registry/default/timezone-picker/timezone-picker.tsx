@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — timezone-picker · MIT licence · https://bollard-ui.vercel.app/components/timezone-picker
+
 import * as React from "react"
 import { tzOffset } from "@date-fns/tz"
 import { autoUpdate, flip, offset as gap, shift, size, useFloating } from "@floating-ui/react"

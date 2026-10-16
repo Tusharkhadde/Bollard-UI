@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — review-step · MIT licence · https://bollard-ui.vercel.app/components/review-step
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, Pencil } from "lucide-react"
 

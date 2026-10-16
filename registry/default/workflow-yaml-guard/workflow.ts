@@ -1,3 +1,5 @@
+// Bollard UI — workflow-yaml-guard · MIT licence · https://bollard-ui.vercel.app/components/workflow-yaml-guard
+
 /**
  * GitHub Actions workflow review, following GitHub Security Lab ("Preventing pwn requests", "Untrusted input")
  * and GitHub's "Secure use reference" and workflow syntax docs. Includes a small, line-aware YAML reader

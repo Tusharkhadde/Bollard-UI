@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — trip-date-chain · MIT licence · https://bollard-ui.vercel.app/components/trip-date-chain
+
 import * as React from "react"
 import { BedDouble, CircleCheck, Moon, Plane, TriangleAlert, Undo2 } from "lucide-react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"

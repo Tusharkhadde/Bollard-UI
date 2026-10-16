@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — calendar-external-guest-guard · MIT licence · https://bollard-ui.vercel.app/components/calendar-external-guest-guard
+
 import * as React from "react"
 import { Contact, Eye, FileText, Globe, LoaderCircle, Pencil, Repeat, Send, ShieldAlert, Undo2, UserPlus, Users, X } from "lucide-react"
 

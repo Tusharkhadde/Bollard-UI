@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cors-origin-input · MIT licence · https://bollard-ui.vercel.app/components/cors-origin-input
+
 import * as React from "react"
 import { CircleCheck, CircleX, ShieldAlert, WandSparkles, X } from "lucide-react"
 

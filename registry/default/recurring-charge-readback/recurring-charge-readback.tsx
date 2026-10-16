@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recurring-charge-readback · MIT licence · https://bollard-ui.vercel.app/components/recurring-charge-readback
+
 import * as React from "react"
 import { Repeat, TriangleAlert } from "lucide-react"
 

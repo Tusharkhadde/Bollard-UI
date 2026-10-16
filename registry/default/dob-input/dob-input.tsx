@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dob-input · MIT licence · https://bollard-ui.vercel.app/components/dob-input
+
 import * as React from "react"
 import { Cake, CircleAlert, TriangleAlert } from "lucide-react"
 

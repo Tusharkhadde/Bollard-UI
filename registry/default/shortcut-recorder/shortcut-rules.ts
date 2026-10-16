@@ -1,3 +1,5 @@
+// Bollard UI — shortcut-recorder · MIT licence · https://bollard-ui.vercel.app/components/shortcut-recorder
+
 /**
  * Shortcuts are stored platform-neutral: `Mod` is ⌘ on Mac and Ctrl elsewhere, `Ctrl` is the
  * Mac ⌃ key, then `Alt`, `Shift` and the key, e.g. "Mod+Shift+K".

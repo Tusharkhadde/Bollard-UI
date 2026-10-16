@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — type-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/type-to-confirm
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, TriangleAlert } from "lucide-react"
 

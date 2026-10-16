@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — honest-bar · MIT licence · https://bollard-ui.vercel.app/components/honest-bar
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 

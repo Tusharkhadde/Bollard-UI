@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — error-explainer · MIT licence · https://bollard-ui.vercel.app/components/error-explainer
+
 import * as React from "react"
 import { Check, ChevronRight, CircleX, Copy, LifeBuoy, LoaderCircle, RotateCw, Settings, TriangleAlert } from "lucide-react"
 

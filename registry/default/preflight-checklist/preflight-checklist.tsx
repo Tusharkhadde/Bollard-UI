@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — preflight-checklist · MIT licence · https://bollard-ui.vercel.app/components/preflight-checklist
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, CircleDashed, CircleX, LoaderCircle, Lock, RotateCw, Rocket } from "lucide-react"
 

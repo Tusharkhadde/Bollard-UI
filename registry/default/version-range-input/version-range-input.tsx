@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — version-range-input · MIT licence · https://bollard-ui.vercel.app/components/version-range-input
+
 import * as React from "react"
 import { Check, TriangleAlert } from "lucide-react"
 
@@ -67,6 +69,12 @@ export interface VersionRangeInputProps extends Omit<
   latestOutsideText?: string
   /** Badge on the version a fresh install would resolve to. */
   installsLabel?: string
+  /** Accessible label of a suggested-range fix button. */
+  fixAriaLabel?: (fix: string) => string
+  /** Accessible name of the published-versions list. */
+  versionsLabel?: string
+  /** Screen-reader note on each listed version. */
+  matchSrText?: (matches: boolean) => string
 }
 
 /**
@@ -96,6 +104,9 @@ export function VersionRangeInput({
   latestOutsideText = "Excludes the latest, {version}.",
   installsLabel = "installs",
   id,
+  fixAriaLabel = (fix) => `Use ${fix}`,
+  versionsLabel = "Published versions",
+  matchSrText = (matches) => (matches ? " matches" : " does not match"),
   className,
   onBlur,
   ref,
@@ -217,7 +228,7 @@ export function VersionRangeInput({
             <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
               <span className="py-1">{text}</span>
               {fix && (
-                <button type="button" onClick={() => apply(fix)} aria-label={`Use ${fix}`} className={fixClass}>
+                <button type="button" onClick={() => apply(fix)} aria-label={fixAriaLabel(fix)} className={fixClass}>
                   {fix}
                 </button>
               )}
@@ -233,7 +244,7 @@ export function VersionRangeInput({
               total: String(published.length),
             })}
           </p>
-          <ul className="flex flex-wrap gap-1" aria-label="Published versions">
+          <ul className="flex flex-wrap gap-1" aria-label={versionsLabel}>
             {published.map((version, index) => (
               <li
                 key={formatVersion(version)}
@@ -247,7 +258,7 @@ export function VersionRangeInput({
               >
                 {matched[index] && <Check aria-hidden className="size-3" />}
                 {formatVersion(version)}
-                <span className="sr-only">{matched[index] ? " matches" : " does not match"}</span>
+                <span className="sr-only">{matchSrText(Boolean(matched[index]))}</span>
                 {index === installs && (
                   <span className="rounded-sm bg-emerald-600 px-1 font-sans text-[10px] leading-4 font-medium text-white dark:bg-emerald-400 dark:text-emerald-950">
                     {installsLabel}

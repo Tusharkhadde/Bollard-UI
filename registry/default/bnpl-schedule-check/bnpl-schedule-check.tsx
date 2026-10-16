@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bnpl-schedule-check · MIT licence · https://bollard-ui.vercel.app/components/bnpl-schedule-check
+
 import * as React from "react"
 import { addDays, differenceInCalendarDays, startOfWeek } from "date-fns"
 import { CalendarClock, CircleCheck, CreditCard, Info, Landmark, LoaderCircle, TriangleAlert } from "lucide-react"

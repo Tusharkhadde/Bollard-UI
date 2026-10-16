@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — invite-check · MIT licence · https://bollard-ui.vercel.app/components/invite-check
+
 import * as React from "react"
 import { CalendarCheck, CalendarClock, CopyX, Globe, MapPinOff, Moon, TriangleAlert, Video } from "lucide-react"
 

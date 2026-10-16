@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — namesake-select · MIT licence · https://bollard-ui.vercel.app/components/namesake-select
+
 import * as React from "react"
 import { autoUpdate, flip, offset, shift, size, useDismiss, useFloating, useInteractions, useMergeRefs } from "@floating-ui/react"
 import { CircleCheck, TriangleAlert, Users } from "lucide-react"

@@ -1,3 +1,5 @@
+// Bollard UI — gift-card-scam-guard · MIT licence · https://bollard-ui.vercel.app/components/gift-card-scam-guard
+
 /** One line of the gift card order. */
 export interface GiftCardLine {
   /** Brand, e.g. "Google Play". */

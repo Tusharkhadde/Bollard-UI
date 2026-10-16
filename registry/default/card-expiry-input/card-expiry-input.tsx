@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — card-expiry-input · MIT licence · https://bollard-ui.vercel.app/components/card-expiry-input
+
 import * as React from "react"
 import { CalendarClock, CircleX, TriangleAlert } from "lucide-react"
 

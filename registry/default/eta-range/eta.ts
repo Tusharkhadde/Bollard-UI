@@ -1,3 +1,5 @@
+// Bollard UI — eta-range · MIT licence · https://bollard-ui.vercel.app/components/eta-range
+
 /** Delivery-estimate maths for EtaRange. Dates are whole days ("day numbers" since 1970-01-01) in the shipper's zone. */
 
 export interface EtaInput {

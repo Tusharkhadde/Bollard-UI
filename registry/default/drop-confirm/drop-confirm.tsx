@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — drop-confirm · MIT licence · https://bollard-ui.vercel.app/components/drop-confirm
+
 import * as React from "react"
 import { Check, Folder, FolderInput, Hand, LoaderCircle, TriangleAlert, Undo2 } from "lucide-react"
 

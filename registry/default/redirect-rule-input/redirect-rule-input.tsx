@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — redirect-rule-input · MIT licence · https://bollard-ui.vercel.app/components/redirect-rule-input
+
 import * as React from "react"
 import { ArrowRight, CircleAlert, CircleCheck, Info, Repeat, TriangleAlert, WandSparkles } from "lucide-react"
 

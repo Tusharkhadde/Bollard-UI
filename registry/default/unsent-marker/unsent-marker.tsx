@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unsent-marker · MIT licence · https://bollard-ui.vercel.app/components/unsent-marker
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, PenLine, SendHorizontal } from "lucide-react"
 

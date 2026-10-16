@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — leftover-text-check · MIT licence · https://bollard-ui.vercel.app/components/leftover-text-check
+
 import * as React from "react"
 import { Bot, Check, CopyX, Loader2, PenLine, Trash2, Undo2 } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

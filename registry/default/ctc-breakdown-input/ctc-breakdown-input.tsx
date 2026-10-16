@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ctc-breakdown-input · MIT licence · https://bollard-ui.vercel.app/components/ctc-breakdown-input
+
 import * as React from "react"
 import { CircleAlert, Info, TriangleAlert, Wallet } from "lucide-react"
 

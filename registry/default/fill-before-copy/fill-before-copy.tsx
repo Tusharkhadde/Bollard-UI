@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — fill-before-copy · MIT licence · https://bollard-ui.vercel.app/components/fill-before-copy
+
 import * as React from "react"
 import { Check, Copy, TextCursorInput, TriangleAlert } from "lucide-react"
 

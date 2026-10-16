@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — alt-text-check · MIT licence · https://bollard-ui.vercel.app/components/alt-text-check
+
 import * as React from "react"
 import { CircleCheck, ImageOff, Type } from "lucide-react"
 

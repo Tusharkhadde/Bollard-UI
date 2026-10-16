@@ -1,3 +1,5 @@
+// Bollard UI — kube-context-guard · MIT licence · https://bollard-ui.vercel.app/components/kube-context-guard
+
 /** The kubeconfig context a command will run against. */
 export interface KubeContext {
   /** Context name (`kubectl config current-context`). */

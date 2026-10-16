@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hashtag-input · MIT licence · https://bollard-ui.vercel.app/components/hashtag-input
+
 import * as React from "react"
 import { Hash, TriangleAlert, X } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retention-change · MIT licence · https://bollard-ui.vercel.app/components/retention-change
+
 import * as React from "react"
 import { CircleCheck, Download, History, LoaderCircle, Trash2, Undo2 } from "lucide-react"
 

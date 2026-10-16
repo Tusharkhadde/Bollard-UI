@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — csv-export-guard · MIT licence · https://bollard-ui.vercel.app/components/csv-export-guard
+
 import * as React from "react"
 import { Check, Download, FileSpreadsheet, TriangleAlert } from "lucide-react"
 

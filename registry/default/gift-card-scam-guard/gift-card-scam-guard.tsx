@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — gift-card-scam-guard · MIT licence · https://bollard-ui.vercel.app/components/gift-card-scam-guard
+
 import * as React from "react"
 import { Gift, Loader2, OctagonX, PhoneOff, ShieldAlert } from "lucide-react"
 

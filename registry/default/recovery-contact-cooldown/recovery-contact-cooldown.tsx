@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recovery-contact-cooldown · MIT licence · https://bollard-ui.vercel.app/components/recovery-contact-cooldown
+
 import * as React from "react"
 import { CircleCheck, Hourglass, LoaderCircle, ShieldAlert, ShieldCheck } from "lucide-react"
 

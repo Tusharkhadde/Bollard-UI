@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cutoff-picker · MIT licence · https://bollard-ui.vercel.app/components/cutoff-picker
+
 import * as React from "react"
 import NumberFlow, { NumberFlowGroup } from "@number-flow/react"
 import { TZDate } from "@date-fns/tz"

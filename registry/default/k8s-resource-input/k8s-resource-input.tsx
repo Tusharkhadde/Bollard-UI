@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — k8s-resource-input · MIT licence · https://bollard-ui.vercel.app/components/k8s-resource-input
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Cpu, Info, MemoryStick, TriangleAlert } from "lucide-react"
 

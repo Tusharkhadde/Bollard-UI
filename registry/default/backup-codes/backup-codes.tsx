@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — backup-codes · MIT licence · https://bollard-ui.vercel.app/components/backup-codes
+
 import * as React from "react"
 import { Check, Copy, Download, KeyRound, LoaderCircle, Printer } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reset-hard-readback · MIT licence · https://bollard-ui.vercel.app/components/reset-hard-readback
+
 import * as React from "react"
 import { Archive, CircleCheck, FileWarning, GitCommitHorizontal, History, Info, Loader2, TriangleAlert } from "lucide-react"
 

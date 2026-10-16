@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — epoch-input · MIT licence · https://bollard-ui.vercel.app/components/epoch-input
+
 import * as React from "react"
 import { Check, CircleAlert, CircleCheck, Clock, Copy, Info, TriangleAlert } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"

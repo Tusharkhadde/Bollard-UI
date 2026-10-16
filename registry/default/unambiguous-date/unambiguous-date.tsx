@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unambiguous-date · MIT licence · https://bollard-ui.vercel.app/components/unambiguous-date
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 

@@ -1,3 +1,5 @@
+// Bollard UI — stale-attachment-check · MIT licence · https://bollard-ui.vercel.app/components/stale-attachment-check
+
 /** A file, attached or sitting nearby (same folder, drive or recent files). */
 export interface StaleFile {
   id: string

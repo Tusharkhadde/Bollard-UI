@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — merge-field-check · MIT licence · https://bollard-ui.vercel.app/components/merge-field-check
+
 import * as React from "react"
 import { Braces, ChevronLeft, ChevronRight, CircleAlert, CircleCheck, SkipForward, TriangleAlert } from "lucide-react"
 

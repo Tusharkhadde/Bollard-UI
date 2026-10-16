@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — public-env-guard · MIT licence · https://bollard-ui.vercel.app/components/public-env-guard
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Globe, Info, RotateCcwKey, TriangleAlert, WandSparkles, X } from "lucide-react"
 

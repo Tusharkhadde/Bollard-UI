@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — spell-out · MIT licence · https://bollard-ui.vercel.app/components/spell-out
+
 import * as React from "react"
 import { Check, Copy, Eye, EyeOff, TriangleAlert } from "lucide-react"
 

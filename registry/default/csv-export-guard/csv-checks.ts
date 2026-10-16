@@ -1,3 +1,5 @@
+// Bollard UI — csv-export-guard · MIT licence · https://bollard-ui.vercel.app/components/csv-export-guard
+
 /** Pure checks behind CsvExportGuard: what a spreadsheet does to each cell when it opens a CSV. */
 
 export type CsvIssueKind = "formula" | "leading-zero" | "long-number" | "plus-number" | "date-like"

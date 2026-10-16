@@ -9,7 +9,7 @@
     "Window crossing midnight"
   ],
   "limits": [
-    "Doesn't make your app read-only; it only tells users and warns on reload",
+    "Disables only the fields it wraps (a disabled fieldset) in this tab; it doesn't make your app or API read-only, so block writes on the server during the window",
     "Times come from your start and end props",
     "The reload warning depends on the browser showing beforeunload prompts"
   ],

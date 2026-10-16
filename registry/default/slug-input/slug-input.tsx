@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — slug-input · MIT licence · https://bollard-ui.vercel.app/components/slug-input
+
 import * as React from "react"
 import { CircleCheck, Link2, LoaderCircle, TriangleAlert } from "lucide-react"
 

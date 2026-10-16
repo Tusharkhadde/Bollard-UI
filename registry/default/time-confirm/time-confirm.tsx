@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — time-confirm · MIT licence · https://bollard-ui.vercel.app/components/time-confirm
+
 import * as React from "react"
 import { TZDate, tzOffset } from "@date-fns/tz"
 import { Clock, TriangleAlert } from "lucide-react"
@@ -116,6 +118,8 @@ export interface TimeConfirmProps
   nextDayLabel?: string
   /** Flag for a time on the previous day in another zone. */
   previousDayLabel?: string
+  /** Accessible name of the AM/PM choice; `time` is like "7:30". */
+  meridiemQuestion?: (time: string) => string
 }
 
 const fieldClass =
@@ -164,6 +168,7 @@ export function TimeConfirm({
   previousDayLabel = "previous day",
   placeholder = "e.g. 2:30 pm or 14:30",
   id,
+  meridiemQuestion = (time) => `${time} in the morning or evening?`,
   className,
   onBlur,
   "aria-describedby": describedBy,
@@ -230,7 +235,7 @@ export function TimeConfirm({
       />
       {ambiguous && (
         <LayoutGroup id={`${inputId}-meridiem`}>
-        <div role="radiogroup" aria-label={`${ambiguous.hour12}:${pad(ambiguous.minute)} in the morning or evening?`} className="grid grid-cols-2 gap-1.5">
+        <div role="radiogroup" aria-label={meridiemQuestion(`${ambiguous.hour12}:${pad(ambiguous.minute)}`)} className="grid grid-cols-2 gap-1.5">
           {(["am", "pm"] as const).map((option) => (
             <button
               key={option}

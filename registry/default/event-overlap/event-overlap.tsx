@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — event-overlap · MIT licence · https://bollard-ui.vercel.app/components/event-overlap
+
 import * as React from "react"
 import { CalendarCheck2, CalendarClock, CalendarOff, Car, Coffee, Globe, Undo2 } from "lucide-react"
 

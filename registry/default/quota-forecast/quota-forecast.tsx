@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quota-forecast · MIT licence · https://bollard-ui.vercel.app/components/quota-forecast
+
 import * as React from "react"
 import { ArrowRight, Gauge, OctagonAlert, TrendingUp } from "lucide-react"
 

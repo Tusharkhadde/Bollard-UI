@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quantity-stepper · MIT licence · https://bollard-ui.vercel.app/components/quantity-stepper
+
 import * as React from "react"
 import { Minus, Plus, TriangleAlert } from "lucide-react"
 

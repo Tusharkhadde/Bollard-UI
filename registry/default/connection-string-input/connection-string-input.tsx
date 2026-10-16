@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — connection-string-input · MIT licence · https://bollard-ui.vercel.app/components/connection-string-input
+
 import * as React from "react"
 import { Check, CircleAlert, CircleCheck, Copy, Database, Eye, EyeOff, Info, TriangleAlert } from "lucide-react"
 

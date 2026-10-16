@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — autofill-check · MIT licence · https://bollard-ui.vercel.app/components/autofill-check
+
 import * as React from "react"
 import { Check, ScanSearch, TriangleAlert } from "lucide-react"
 

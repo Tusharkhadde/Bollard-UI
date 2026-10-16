@@ -1,3 +1,5 @@
+// Bollard UI — homoglyph-guard · MIT licence · https://bollard-ui.vercel.app/components/homoglyph-guard
+
 /**
  * Look-alike character detection for usernames, handles and domains, following the ideas in
  * Unicode UTS #39 (confusables, mixed-script and whole-script confusable detection) and the

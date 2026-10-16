@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — progress-heartbeat · MIT licence · https://bollard-ui.vercel.app/components/progress-heartbeat
+
 import * as React from "react"
 import { CircleCheck, RotateCcw, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — repeat-rows · MIT licence · https://bollard-ui.vercel.app/components/repeat-rows
+
 import * as React from "react"
 import { Eraser, Plus, TriangleAlert, Undo2, X } from "lucide-react"
 

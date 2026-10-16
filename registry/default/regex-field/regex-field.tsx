@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — regex-field · MIT licence · https://bollard-ui.vercel.app/components/regex-field
+
 import * as React from "react"
 import { Check, CircleX, Plus, Timer, TriangleAlert, X } from "lucide-react"
 

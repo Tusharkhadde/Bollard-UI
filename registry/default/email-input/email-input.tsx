@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — email-input · MIT licence · https://bollard-ui.vercel.app/components/email-input
+
 import * as React from "react"
 import { autoUpdate, flip, offset, shift, size, useFloating } from "@floating-ui/react"
 import { Check, MailWarning, X } from "lucide-react"

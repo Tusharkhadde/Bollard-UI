@@ -1,3 +1,5 @@
+// Bollard UI — password-hint-guard · MIT licence · https://bollard-ui.vercel.app/components/password-hint-guard
+
 /** Pure check for a password hint or security answer that gives the password away. No React. */
 
 export type HintLeak =

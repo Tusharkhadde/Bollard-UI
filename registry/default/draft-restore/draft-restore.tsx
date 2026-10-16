@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — draft-restore · MIT licence · https://bollard-ui.vercel.app/components/draft-restore
+
 import * as React from "react"
 import { ChevronDown, History } from "lucide-react"
 

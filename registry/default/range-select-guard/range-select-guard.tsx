@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — range-select-guard · MIT licence · https://bollard-ui.vercel.app/components/range-select-guard
+
 import * as React from "react"
 import { Check, ChevronLeft, ChevronRight, EyeOff, TextSelect } from "lucide-react"
 

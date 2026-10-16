@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — offline-banner · MIT licence · https://bollard-ui.vercel.app/components/offline-banner
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, LoaderCircle, RotateCcw, WifiOff } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — name-input · MIT licence · https://bollard-ui.vercel.app/components/name-input
+
 import * as React from "react"
 import { ArrowLeftRight, TriangleAlert, X } from "lucide-react"
 

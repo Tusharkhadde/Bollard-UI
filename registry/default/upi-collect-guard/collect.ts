@@ -1,3 +1,5 @@
+// Bollard UI — upi-collect-guard · MIT licence · https://bollard-ui.vercel.app/components/upi-collect-guard
+
 /**
  * Pure risk checks for an incoming UPI collect ("request money") or any screen that asks for the
  * UPI PIN. The PIN only ever authorises money leaving the account (RBI "BE(A)WARE" booklet;

@@ -1,3 +1,5 @@
+// Bollard UI — dns-record-guard · MIT licence · https://bollard-ui.vercel.app/components/dns-record-guard
+
 /** A record in the zone. `name` is relative ("@", "www", "s1._domainkey") or fully qualified. */
 export interface DnsRecord {
   id: string

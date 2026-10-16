@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — import-preview · MIT licence · https://bollard-ui.vercel.app/components/import-preview
+
 import * as React from "react"
 import { ChevronDown, CircleAlert, FileSpreadsheet, LoaderCircle, Rows3 } from "lucide-react"
 

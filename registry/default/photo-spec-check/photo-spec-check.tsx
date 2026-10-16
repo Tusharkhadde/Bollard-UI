@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — photo-spec-check · MIT licence · https://bollard-ui.vercel.app/components/photo-spec-check
+
 import * as React from "react"
 import { CircleCheck, Crop, ExternalLink, ImageUp, Loader2, TriangleAlert, Undo2, UserRound } from "lucide-react"
 

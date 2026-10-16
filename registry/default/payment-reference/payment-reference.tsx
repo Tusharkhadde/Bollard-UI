@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — payment-reference · MIT licence · https://bollard-ui.vercel.app/components/payment-reference
+
 import * as React from "react"
 import { Check, Scissors, TriangleAlert } from "lucide-react"
 

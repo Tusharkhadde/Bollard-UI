@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — private-mode-notice · MIT licence · https://bollard-ui.vercel.app/components/private-mode-notice
+
 import * as React from "react"
 import { Check, Download, EyeOff, HardDrive, ShieldOff } from "lucide-react"
 

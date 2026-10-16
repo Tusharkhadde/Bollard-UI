@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hidden-field-guard · MIT licence · https://bollard-ui.vercel.app/components/hidden-field-guard
+
 import * as React from "react"
 import { EyeOff, Undo2 } from "lucide-react"
 

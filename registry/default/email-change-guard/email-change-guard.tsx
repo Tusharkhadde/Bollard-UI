@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — email-change-guard · MIT licence · https://bollard-ui.vercel.app/components/email-change-guard
+
 import * as React from "react"
 import { KeyRound, LogIn, Loader2, MailCheck, MailWarning, Receipt, ShieldCheck, X } from "lucide-react"
 

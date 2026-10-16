@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — i18n-string-field · MIT licence · https://bollard-ui.vercel.app/components/i18n-string-field
+
 import * as React from "react"
 import { Languages, TriangleAlert, X } from "lucide-react"
 

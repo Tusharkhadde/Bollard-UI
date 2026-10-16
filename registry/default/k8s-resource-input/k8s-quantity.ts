@@ -1,3 +1,5 @@
+// Bollard UI — k8s-resource-input · MIT licence · https://bollard-ui.vercel.app/components/k8s-resource-input
+
 /**
  * Kubernetes resource quantities, read the way the API server reads them
  * (k8s.io/apimachinery resource.Quantity) and checked for the mistakes the

@@ -1,3 +1,5 @@
+// Bollard UI — port-expose-guard · MIT licence · https://bollard-ui.vercel.app/components/port-expose-guard
+
 import { clean, detectSource, isVariable, parseCompose, parseDocker, parseServices, resolveVar, type PortFinding, type PortMapping, type PortSource, type Span } from "./parse-ports"
 
 export { clean, detectSource, isVariable, parsePortSpec, resolveVar, type PortFinding, type PortMapping, type PortSource, type ServiceType, type Span } from "./parse-ports"

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — form-progress · MIT licence · https://bollard-ui.vercel.app/components/form-progress
+
 import * as React from "react"
 import { ArrowDownToLine, CircleCheck } from "lucide-react"
 

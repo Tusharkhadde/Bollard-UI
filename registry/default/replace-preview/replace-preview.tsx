@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — replace-preview · MIT licence · https://bollard-ui.vercel.app/components/replace-preview
+
 import * as React from "react"
 import { ALargeSmall, CaseSensitive, Replace, TriangleAlert, Undo2, WholeWord } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — code-input · MIT licence · https://bollard-ui.vercel.app/components/code-input
+
 import * as React from "react"
 import { Braces, Check, CircleAlert, ShieldAlert, TriangleAlert, WandSparkles } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — size-context · MIT licence · https://bollard-ui.vercel.app/components/size-context
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — fair-rank · MIT licence · https://bollard-ui.vercel.app/components/fair-rank
+
 import * as React from "react"
 import { ArrowDown, ArrowUp, Minus, UserMinus } from "lucide-react"
 

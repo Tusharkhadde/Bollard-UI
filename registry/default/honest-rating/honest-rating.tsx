@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — honest-rating · MIT licence · https://bollard-ui.vercel.app/components/honest-rating
+
 import * as React from "react"
 import { Scale, Split, Star, TriangleAlert } from "lucide-react"
 

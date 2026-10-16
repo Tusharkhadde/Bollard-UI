@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — attachment-nudge · MIT licence · https://bollard-ui.vercel.app/components/attachment-nudge
+
 import * as React from "react"
 import { Paperclip, Send, X } from "lucide-react"
 

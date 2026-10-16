@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reading-level · MIT licence · https://bollard-ui.vercel.app/components/reading-level
+
 import * as React from "react"
 import { ArrowRight, BookOpen, Languages } from "lucide-react"
 

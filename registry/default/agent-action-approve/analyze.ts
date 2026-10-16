@@ -1,3 +1,5 @@
+// Bollard UI — agent-action-approve · MIT licence · https://bollard-ui.vercel.app/components/agent-action-approve
+
 /** How far a call reaches, narrowest first. */
 export type Scope = "none" | "item" | "folder" | "project" | "outside" | "home" | "drive" | "remote" | "prod"
 export const SCOPES: Scope[] = ["item", "folder", "project", "outside", "home", "drive", "remote", "prod"]

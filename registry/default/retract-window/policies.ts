@@ -1,3 +1,5 @@
+// Bollard UI — retract-window · MIT licence · https://bollard-ui.vercel.app/components/retract-window
+
 /** How long a sent message stays editable and removable on a platform. Times are in ms; Infinity means any time, 0 never. */
 export interface RetractPolicy {
   editFor: number

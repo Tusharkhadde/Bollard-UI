@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — eta-range · MIT licence · https://bollard-ui.vercel.app/components/eta-range
+
 import * as React from "react"
 import { CalendarX, Clock, History, Truck } from "lucide-react"
 

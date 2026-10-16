@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — otp-share-guard · MIT licence · https://bollard-ui.vercel.app/components/otp-share-guard
+
 import * as React from "react"
 import { Check, Copy, Hand, Loader2, MonitorUp, PhoneCall, ShieldAlert, ShieldCheck, Shuffle } from "lucide-react"
 

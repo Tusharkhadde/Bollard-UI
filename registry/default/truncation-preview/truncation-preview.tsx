@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — truncation-preview · MIT licence · https://bollard-ui.vercel.app/components/truncation-preview
+
 import * as React from "react"
 import { AtSign, Link2, Rows3, TriangleAlert } from "lucide-react"
 
@@ -69,6 +71,10 @@ export interface TruncationPreviewProps extends Omit<React.ComponentProps<"div">
   tightenLabel?: string
   /** Label for text below the fold. */
   hiddenLabel?: string
+  /** Accessible name of the places tab list. */
+  placesLabel?: string
+  /** Screen-reader note on a tab where the key point or link is cut off. */
+  hiddenSrText?: string
 }
 
 /**
@@ -96,6 +102,8 @@ export function TruncationPreview({
   tightenLabel = "Remove blank lines up top",
   hiddenLabel = "Hidden: {count} characters",
   id,
+  placesLabel = "Where it appears",
+  hiddenSrText = " (something is hidden)",
   className,
   ...props
 }: TruncationPreviewProps) {
@@ -171,7 +179,7 @@ export function TruncationPreview({
       </div>
 
       <div className="grid gap-2">
-        <div role="tablist" aria-label="Where it appears" className="flex flex-wrap gap-1.5">
+        <div role="tablist" aria-label={placesLabel} className="flex flex-wrap gap-1.5">
           {results.map((r, i) => (
             <button
               key={r.rule.label}
@@ -193,7 +201,7 @@ export function TruncationPreview({
             >
               {(r.keyHidden || r.linkHidden) && <span aria-hidden className="size-1.5 rounded-full bg-amber-500" />}
               {r.rule.label}
-              {(r.keyHidden || r.linkHidden) && <span className="sr-only"> (something is hidden)</span>}
+              {(r.keyHidden || r.linkHidden) && <span className="sr-only">{hiddenSrText}</span>}
             </button>
           ))}
         </div>

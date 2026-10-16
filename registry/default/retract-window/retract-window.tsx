@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retract-window · MIT licence · https://bollard-ui.vercel.app/components/retract-window
+
 import * as React from "react"
 import { Eye, Info, LoaderCircle, MessageSquareX, Pencil, Smartphone, Trash2, Undo2 } from "lucide-react"
 

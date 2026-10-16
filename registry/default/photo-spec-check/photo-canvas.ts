@@ -1,3 +1,5 @@
+// Bollard UI — photo-spec-check · MIT licence · https://bollard-ui.vercel.app/components/photo-spec-check
+
 import { byteWindow, planCrop, planSize, setJpegDpi, sniff, type FaceBox, type PhotoFacts, type PhotoSpec } from "./photo-spec"
 
 // Browser-only helpers: call them from effects and event handlers, never during render.

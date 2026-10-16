@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — filter-notice · MIT licence · https://bollard-ui.vercel.app/components/filter-notice
+
 import * as React from "react"
 import { ListFilter, SearchX, X } from "lucide-react"
 

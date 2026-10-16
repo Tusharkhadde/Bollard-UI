@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — commit-secret-guard · MIT licence · https://bollard-ui.vercel.app/components/commit-secret-guard
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, ExternalLink, EyeOff, FileKey, Loader2, RotateCcwKey, ShieldAlert, TriangleAlert, Undo2 } from "lucide-react"
 

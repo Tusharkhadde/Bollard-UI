@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — low-battery-guard · MIT licence · https://bollard-ui.vercel.app/components/low-battery-guard
+
 import * as React from "react"
 import { BatteryCharging, BatteryLow, BatteryWarning, PlugZap } from "lucide-react"
 

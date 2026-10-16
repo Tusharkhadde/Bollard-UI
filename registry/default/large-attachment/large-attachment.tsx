@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — large-attachment · MIT licence · https://bollard-ui.vercel.app/components/large-attachment
+
 import * as React from "react"
 import { FileArchive, Link2, Paperclip } from "lucide-react"
 

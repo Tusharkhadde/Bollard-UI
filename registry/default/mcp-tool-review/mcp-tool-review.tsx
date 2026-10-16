@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mcp-tool-review · MIT licence · https://bollard-ui.vercel.app/components/mcp-tool-review
+
 import * as React from "react"
 import { AlertTriangle, Check, ChevronDown, Fingerprint, Loader2, Power, ShieldCheck, Undo2, Wrench } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

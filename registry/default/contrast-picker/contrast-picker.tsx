@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — contrast-picker · MIT licence · https://bollard-ui.vercel.app/components/contrast-picker
+
 import * as React from "react"
 import { Check, TriangleAlert, X } from "lucide-react"
 

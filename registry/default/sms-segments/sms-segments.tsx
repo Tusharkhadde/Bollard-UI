@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sms-segments · MIT licence · https://bollard-ui.vercel.app/components/sms-segments
+
 import * as React from "react"
 import { TriangleAlert, WandSparkles } from "lucide-react"
 

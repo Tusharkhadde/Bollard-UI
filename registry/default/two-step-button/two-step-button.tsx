@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — two-step-button · MIT licence · https://bollard-ui.vercel.app/components/two-step-button
+
 import * as React from "react"
 import { LoaderCircle } from "lucide-react"
 

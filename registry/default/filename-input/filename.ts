@@ -1,3 +1,5 @@
+// Bollard UI — filename-input · MIT licence · https://bollard-ui.vercel.app/components/filename-input
+
 /** Extensions made of two parts, kept together so "backup.tar.gz" keeps ".tar.gz". */
 export const COMPOUND_EXTENSIONS = [".tar.gz", ".tar.bz2", ".tar.xz", ".tar.zst"]
 

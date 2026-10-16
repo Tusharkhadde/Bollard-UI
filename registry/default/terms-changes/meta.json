@@ -47,5 +47,8 @@
   ],
   "fields": [
     "text"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/text-diff.json"
   ]
 }

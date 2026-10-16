@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — amount-in-words · MIT licence · https://bollard-ui.vercel.app/components/amount-in-words
+
 import * as React from "react"
 import { Check, CircleAlert, Copy, TriangleAlert } from "lucide-react"
 

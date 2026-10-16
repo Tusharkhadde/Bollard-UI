@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — feature-flag-rollout · MIT licence · https://bollard-ui.vercel.app/components/feature-flag-rollout
+
 import * as React from "react"
 import { ArrowRight, Check, TriangleAlert, Undo2 } from "lucide-react"
 

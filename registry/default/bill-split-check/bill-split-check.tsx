@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bill-split-check · MIT licence · https://bollard-ui.vercel.app/components/bill-split-check
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleCheck, Info, TriangleAlert, Undo2 } from "lucide-react"

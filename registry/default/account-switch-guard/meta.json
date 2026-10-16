@@ -46,5 +46,8 @@
   "fields": [
     "name",
     "email"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/acting-as-banner.json"
   ]
 }

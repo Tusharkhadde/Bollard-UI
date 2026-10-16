@@ -1,3 +1,5 @@
+// Bollard UI — retry-after · MIT licence · https://bollard-ui.vercel.app/components/retry-after
+
 /** Anything shaped like a fetch Response: a status and its headers. */
 export interface RateLimitResponse {
   status: number

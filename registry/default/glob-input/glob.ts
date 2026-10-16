@@ -1,3 +1,5 @@
+// Bollard UI — glob-input · MIT licence · https://bollard-ui.vercel.app/components/glob-input
+
 /** Expands the first top-level {a,b} group, recursively: "src/{app,lib}/*.{ts,tsx}" → four patterns. */
 export function expandBraces(pattern: string, limit = 200): string[] {
   let depth = 0

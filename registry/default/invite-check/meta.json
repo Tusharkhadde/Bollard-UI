@@ -46,5 +46,8 @@
   "fields": [
     "email",
     "datetime"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/send-time-check.json"
   ]
 }

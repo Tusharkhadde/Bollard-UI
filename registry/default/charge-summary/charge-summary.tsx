@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — charge-summary · MIT licence · https://bollard-ui.vercel.app/components/charge-summary
+
 import * as React from "react"
 import { CalendarClock, TriangleAlert } from "lucide-react"
 

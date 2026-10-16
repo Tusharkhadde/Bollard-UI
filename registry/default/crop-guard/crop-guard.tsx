@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — crop-guard · MIT licence · https://bollard-ui.vercel.app/components/crop-guard
+
 import * as React from "react"
 import { ScanFace, Scissors, Smartphone, Type } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — shift-time-input · MIT licence · https://bollard-ui.vercel.app/components/shift-time-input
+
 import * as React from "react"
 import { TZDate } from "@date-fns/tz"
 import NumberFlow, { NumberFlowGroup } from "@number-flow/react"

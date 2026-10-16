@@ -1,3 +1,5 @@
+// Bollard UI — boolean-query-input · MIT licence · https://bollard-ui.vercel.app/components/boolean-query-input
+
 /** Pure tokenizer, parser and linter for boolean search strings (LinkedIn, ATS, job boards). No React. */
 
 export type BooleanOperator = "AND" | "OR" | "NOT"

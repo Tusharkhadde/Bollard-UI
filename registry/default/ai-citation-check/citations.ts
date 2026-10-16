@@ -1,3 +1,5 @@
+// Bollard UI — ai-citation-check · MIT licence · https://bollard-ui.vercel.app/components/ai-citation-check
+
 export type RefKind = "doi" | "case" | "url" | "cite" | "quote" | "marker"
 export type IssueCode = "doi-dash" | "doi-publisher" | "reporter-year" | "future-year" | "marker" | "unsourced-quote"
 

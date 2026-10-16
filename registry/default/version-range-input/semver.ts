@@ -1,3 +1,5 @@
+// Bollard UI — version-range-input · MIT licence · https://bollard-ui.vercel.app/components/version-range-input
+
 /** A small, dependency-free implementation of npm's semver range rules (node-semver, default options). */
 
 export interface SemVer {

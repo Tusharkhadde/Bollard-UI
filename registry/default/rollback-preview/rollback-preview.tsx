@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — rollback-preview · MIT licence · https://bollard-ui.vercel.app/components/rollback-preview
+
 import * as React from "react"
 import { Database, History, LoaderCircle, TriangleAlert, Undo2 } from "lucide-react"
 

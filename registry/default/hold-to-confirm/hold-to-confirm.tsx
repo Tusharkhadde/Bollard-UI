@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hold-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/hold-to-confirm
+
 import * as React from "react"
 import { Check, LoaderCircle } from "lucide-react"
 import { animate, motion, useMotionValue, useReducedMotion, type AnimationPlaybackControls } from "motion/react"

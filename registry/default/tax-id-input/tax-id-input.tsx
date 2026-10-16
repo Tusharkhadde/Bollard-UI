@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tax-id-input · MIT licence · https://bollard-ui.vercel.app/components/tax-id-input
+
 import * as React from "react"
 import { CircleCheck, ExternalLink, TriangleAlert } from "lucide-react"
 

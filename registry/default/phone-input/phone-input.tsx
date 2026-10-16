@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — phone-input · MIT licence · https://bollard-ui.vercel.app/components/phone-input
+
 import * as React from "react"
 import { isSupportedCountry, parsePhoneNumberFromString, type CountryCode, type NumberType } from "libphonenumber-js/max"
 import { Check, ChevronDown, TriangleAlert, WandSparkles } from "lucide-react"

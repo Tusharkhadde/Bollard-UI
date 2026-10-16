@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — yaml-field · MIT licence · https://bollard-ui.vercel.app/components/yaml-field
+
 import * as React from "react"
 import { CircleCheck, TriangleAlert } from "lucide-react"
 

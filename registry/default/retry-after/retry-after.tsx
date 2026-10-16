@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retry-after · MIT licence · https://bollard-ui.vercel.app/components/retry-after
+
 import * as React from "react"
 import { Hourglass, LoaderCircle, TrafficCone } from "lucide-react"
 

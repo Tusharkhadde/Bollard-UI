@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — external-link · MIT licence · https://bollard-ui.vercel.app/components/external-link
+
 import * as React from "react"
 import { ExternalLink as ExternalIcon, ShieldAlert } from "lucide-react"
 

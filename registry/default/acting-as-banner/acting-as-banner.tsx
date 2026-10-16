@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — acting-as-banner · MIT licence · https://bollard-ui.vercel.app/components/acting-as-banner
+
 import * as React from "react"
 import { Clock, LoaderCircle, Undo2, UserCog } from "lucide-react"
 

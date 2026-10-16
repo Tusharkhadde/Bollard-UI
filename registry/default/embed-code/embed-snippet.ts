@@ -1,3 +1,5 @@
+// Bollard UI — embed-code · MIT licence · https://bollard-ui.vercel.app/components/embed-code
+
 export type EmbedVisibility = "public" | "unlisted" | "private" | "draft"
 
 export interface EmbedResource {

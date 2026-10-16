@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — env-diff · MIT licence · https://bollard-ui.vercel.app/components/env-diff
+
 import * as React from "react"
 import { Check, Copy, KeyRound } from "lucide-react"
 

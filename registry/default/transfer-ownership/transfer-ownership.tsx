@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — transfer-ownership · MIT licence · https://bollard-ui.vercel.app/components/transfer-ownership
+
 import * as React from "react"
 import { ArrowRightLeft, CircleCheck, Clock, Crown, LoaderCircle, TriangleAlert, X } from "lucide-react"
 

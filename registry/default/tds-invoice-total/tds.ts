@@ -1,3 +1,5 @@
+// Bollard UI — tds-invoice-total · MIT licence · https://bollard-ui.vercel.app/components/tds-invoice-total
+
 /**
  * Pure TDS maths for an Indian freelancer's invoice.
  * - Income-tax Act, 2025 s.393(1) Table Sl. 6(iii) (old s.194J): professional fees 10%, technical

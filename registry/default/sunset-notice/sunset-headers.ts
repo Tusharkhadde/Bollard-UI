@@ -1,3 +1,5 @@
+// Bollard UI — sunset-notice · MIT licence · https://bollard-ui.vercel.app/components/sunset-notice
+
 // Pure parsing for the Sunset (RFC 8594) and Deprecation (RFC 9745) response headers.
 // No "use client": safe to run on the server, e.g. in a fetch wrapper or a route handler.
 

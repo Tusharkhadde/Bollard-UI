@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cancel-readback · MIT licence · https://bollard-ui.vercel.app/components/cancel-readback
+
 import * as React from "react"
 import { CalendarClock, Check, CircleCheck, LoaderCircle, Receipt, X } from "lucide-react"
 

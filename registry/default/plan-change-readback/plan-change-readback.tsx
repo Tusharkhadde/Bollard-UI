@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — plan-change-readback · MIT licence · https://bollard-ui.vercel.app/components/plan-change-readback
+
 import * as React from "react"
 import { ArrowRight, CalendarClock, Check, LoaderCircle, TriangleAlert, X } from "lucide-react"
 

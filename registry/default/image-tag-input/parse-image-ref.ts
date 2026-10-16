@@ -1,3 +1,5 @@
+// Bollard UI — image-tag-input · MIT licence · https://bollard-ui.vercel.app/components/image-tag-input
+
 export type ImageIssueKind =
   | "invalid" | "scheme" | "uppercase" | "hub-website" | "registry-typo" | "deprecated-registry" | "missing-registry" | "localhost"
   | "digest-format" | "no-tag" | "latest" | "mutable-tag" | "tag-and-digest" | "arch-mismatch" | "arch-pinned"

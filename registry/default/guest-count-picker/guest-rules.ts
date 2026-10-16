@@ -1,3 +1,5 @@
+// Bollard UI — guest-count-picker · MIT licence · https://bollard-ui.vercel.app/components/guest-count-picker
+
 export interface GuestRoom {
   adults: number
   children: number

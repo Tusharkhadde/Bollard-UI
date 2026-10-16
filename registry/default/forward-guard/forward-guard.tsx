@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — forward-guard · MIT licence · https://bollard-ui.vercel.app/components/forward-guard
+
 import * as React from "react"
 import { AtSign, Eye, Forward, LoaderCircle, Paperclip, StickyNote } from "lucide-react"
 

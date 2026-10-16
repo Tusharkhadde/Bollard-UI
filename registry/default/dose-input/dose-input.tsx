@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dose-input · MIT licence · https://bollard-ui.vercel.app/components/dose-input
+
 import * as React from "react"
 import { Pill, TriangleAlert } from "lucide-react"
 

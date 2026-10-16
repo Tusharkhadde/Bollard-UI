@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reorder-readback · MIT licence · https://bollard-ui.vercel.app/components/reorder-readback
+
 import * as React from "react"
 import { ArrowDown, ArrowUp, Check, GripVertical, Lock, Undo2 } from "lucide-react"
 import { AnimatePresence, MotionConfig, Reorder, animate, motion, useDragControls, useReducedMotion } from "motion/react"

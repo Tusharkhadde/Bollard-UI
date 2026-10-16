@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unit-input · MIT licence · https://bollard-ui.vercel.app/components/unit-input
+
 import * as React from "react"
 import { ArrowRightLeft, TriangleAlert, X } from "lucide-react"
 

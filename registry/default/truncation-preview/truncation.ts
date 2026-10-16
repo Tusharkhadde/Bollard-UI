@@ -1,3 +1,5 @@
+// Bollard UI — truncation-preview · MIT licence · https://bollard-ui.vercel.app/components/truncation-preview
+
 /**
  * Where feeds cut text behind "…more". None of these products publish their fold, so every number is a
  * measured approximation (sources in each note) and can be overridden.

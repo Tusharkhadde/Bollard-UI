@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dependency-license-check · MIT licence · https://bollard-ui.vercel.app/components/dependency-license-check
+
 import * as React from "react"
 import { CircleCheck, Loader2, Package, Pin, Scale, ShieldAlert, Trash2 } from "lucide-react"
 

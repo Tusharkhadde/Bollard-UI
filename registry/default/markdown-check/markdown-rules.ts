@@ -1,3 +1,5 @@
+// Bollard UI — markdown-check · MIT licence · https://bollard-ui.vercel.app/components/markdown-check
+
 /** Every kind of Markdown slip `checkMarkdown` reports. */
 export type MarkdownMistake =
   | "unclosed-code"

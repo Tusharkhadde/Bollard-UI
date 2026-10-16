@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — change-highlight · MIT licence · https://bollard-ui.vercel.app/components/change-highlight
+
 import * as React from "react"
 import { X } from "lucide-react"
 

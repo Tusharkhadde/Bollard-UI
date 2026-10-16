@@ -1,3 +1,5 @@
+// Bollard UI — mcp-tool-review · MIT licence · https://bollard-ui.vercel.app/components/mcp-tool-review
+
 /** An MCP tool definition as a server lists it (tools/list). */
 export interface McpTool {
   name: string

@@ -1,3 +1,5 @@
+// Bollard UI — recurring-charge-readback · MIT licence · https://bollard-ui.vercel.app/components/recurring-charge-readback
+
 export type ChargeInterval = "day" | "week" | "month" | "year"
 
 export interface RecurringPlan {

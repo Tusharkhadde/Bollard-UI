@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — formula-overwrite-guard · MIT licence · https://bollard-ui.vercel.app/components/formula-overwrite-guard
+
 import * as React from "react"
 import { ClipboardPaste, Lock, TriangleAlert, Undo2 } from "lucide-react"
 

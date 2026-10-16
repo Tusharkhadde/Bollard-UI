@@ -1,3 +1,5 @@
+// Bollard UI — regex-field · MIT licence · https://bollard-ui.vercel.app/components/regex-field
+
 /**
  * Static checks for JavaScript regular expressions (they never run the pattern), plus a
  * sandboxed runner that matches in a Web Worker and gives up after a time budget, so a

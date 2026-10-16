@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — click-shield · MIT licence · https://bollard-ui.vercel.app/components/click-shield
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

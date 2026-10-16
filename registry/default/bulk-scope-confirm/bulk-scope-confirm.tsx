@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-scope-confirm · MIT licence · https://bollard-ui.vercel.app/components/bulk-scope-confirm
+
 import * as React from "react"
 import { LoaderCircle, RotateCw, TriangleAlert } from "lucide-react"
 

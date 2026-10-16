@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reauth-gate · MIT licence · https://bollard-ui.vercel.app/components/reauth-gate
+
 import * as React from "react"
 import { Fingerprint, KeyRound, LoaderCircle, LockKeyhole, ShieldCheck, X } from "lucide-react"
 

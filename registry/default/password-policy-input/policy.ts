@@ -1,3 +1,5 @@
+// Bollard UI — password-policy-input · MIT licence · https://bollard-ui.vercel.app/components/password-policy-input
+
 /** A site's password rules, as an admin configures them. */
 export interface PasswordPolicy {
   /** Shortest password accepted. */

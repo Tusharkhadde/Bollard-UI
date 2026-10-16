@@ -1,3 +1,5 @@
+// Bollard UI — quote-lock · MIT licence · https://bollard-ui.vercel.app/components/quote-lock
+
 /** Pure helpers for QuoteLock: time left on a held price and how a new quote compares with the one shown. */
 
 export interface Quote {

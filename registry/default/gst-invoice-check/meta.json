@@ -65,5 +65,8 @@
   "fields": [
     "id-number",
     "amount"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/tax-id-input.json"
   ]
 }

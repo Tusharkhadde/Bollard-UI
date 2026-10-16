@@ -1,3 +1,5 @@
+// Bollard UI — reply-all-guard · MIT licence · https://bollard-ui.vercel.app/components/reply-all-guard
+
 /** Pure helpers for ReplyAllGuard: address parsing and the reply-all recipient set (RFC 5322 §3.6.3). */
 
 export interface Mailbox {

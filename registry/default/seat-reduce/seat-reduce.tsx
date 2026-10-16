@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — seat-reduce · MIT licence · https://bollard-ui.vercel.app/components/seat-reduce
+
 import * as React from "react"
 import { LoaderCircle, Mail, Minus, Plus, TriangleAlert, Users } from "lucide-react"
 

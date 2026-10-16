@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — slide-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/slide-to-confirm
+
 import * as React from "react"
 import { ArrowRight, Check, LoaderCircle } from "lucide-react"
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useTransform } from "motion/react"

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ai-paste-guard · MIT licence · https://bollard-ui.vercel.app/components/ai-paste-guard
+
 import * as React from "react"
 import { EyeOff, ShieldAlert } from "lucide-react"
 

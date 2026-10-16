@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — impact-preview · MIT licence · https://bollard-ui.vercel.app/components/impact-preview
+
 import * as React from "react"
 import { ChevronRight, LoaderCircle, RotateCw, ShieldCheck, Trash2, Unlink } from "lucide-react"
 

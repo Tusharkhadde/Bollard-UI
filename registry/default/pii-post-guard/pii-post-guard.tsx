@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — pii-post-guard · MIT licence · https://bollard-ui.vercel.app/components/pii-post-guard
+
 import * as React from "react"
 import { EyeOff, Globe, Loader2, ShieldAlert } from "lucide-react"
 

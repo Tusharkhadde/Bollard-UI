@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — address-check · MIT licence · https://bollard-ui.vercel.app/components/address-check
+
 import * as React from "react"
 import { LoaderCircle, MapPinOff, PackageX, Tag } from "lucide-react"
 

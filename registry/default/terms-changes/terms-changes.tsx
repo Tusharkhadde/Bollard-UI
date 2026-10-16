@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — terms-changes · MIT licence · https://bollard-ui.vercel.app/components/terms-changes
+
 import * as React from "react"
 import { ArrowDown, Check, Hash, LoaderCircle } from "lucide-react"
 

@@ -1,3 +1,5 @@
+// Bollard UI — prompt-data-guard · MIT licence · https://bollard-ui.vercel.app/components/prompt-data-guard
+
 import { detectPii } from "@/registry/default/pii-post-guard/pii"
 
 /** What a stand-in replaces. */

@@ -1,3 +1,5 @@
+// Bollard UI — migration-preview · MIT licence · https://bollard-ui.vercel.app/components/migration-preview
+
 export type MigrationRiskKind =
   | "drop-table" | "drop-column" | "truncate" | "delete-all" | "not-null-no-default" | "volatile-default" | "rewrite-column"
   | "type-change" | "set-not-null" | "index-blocking" | "drop-index-blocking" | "concurrently-in-tx" | "constraint-validate"

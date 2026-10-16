@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — move-readback · MIT licence · https://bollard-ui.vercel.app/components/move-readback
+
 import * as React from "react"
 import { ArrowRight, ChevronRight, Eye, EyeOff, FolderInput, Link2, Link2Off, LoaderCircle, Settings2 } from "lucide-react"
 

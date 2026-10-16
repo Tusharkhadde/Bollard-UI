@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — stale-data-notice · MIT licence · https://bollard-ui.vercel.app/components/stale-data-notice
+
 import * as React from "react"
 import { History, LoaderCircle, RefreshCw, X } from "lucide-react"
 

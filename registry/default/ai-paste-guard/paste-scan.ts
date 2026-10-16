@@ -1,3 +1,5 @@
+// Bollard UI — ai-paste-guard · MIT licence · https://bollard-ui.vercel.app/components/ai-paste-guard
+
 /** How a passage was hidden from the person pasting it. */
 export type HiddenKind = "comment" | "display" | "transparent" | "tiny" | "same-color" | "offscreen" | "clipped" | "attribute" | "tags"
 

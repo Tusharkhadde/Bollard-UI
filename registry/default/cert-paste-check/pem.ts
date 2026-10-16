@@ -1,3 +1,5 @@
+// Bollard UI — cert-paste-check · MIT licence · https://bollard-ui.vercel.app/components/cert-paste-check
+
 // Pure PEM / X.509 reading (RFC 7468 PEM, RFC 5280 certificates, RFC 2986 CSRs,
 // RFC 5208/5958 PKCS#8, RFC 8017 PKCS#1, RFC 5915 SEC1) and the checks a TLS paste needs.
 // A small DER reader, no crypto: signatures are not verified.

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — resume-marker · MIT licence · https://bollard-ui.vercel.app/components/resume-marker
+
 import * as React from "react"
 import { ArrowDown, ArrowUp, X } from "lucide-react"
 

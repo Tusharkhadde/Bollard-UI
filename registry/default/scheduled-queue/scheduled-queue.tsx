@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — scheduled-queue · MIT licence · https://bollard-ui.vercel.app/components/scheduled-queue
+
 import * as React from "react"
 import { CalendarClock, Clock, Lock, MoonStar, TriangleAlert, X } from "lucide-react"
 

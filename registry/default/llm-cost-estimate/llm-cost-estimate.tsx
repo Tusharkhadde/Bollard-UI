@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — llm-cost-estimate · MIT licence · https://bollard-ui.vercel.app/components/llm-cost-estimate
+
 import * as React from "react"
 import { Coins, Info, Loader2, PiggyBank, TriangleAlert } from "lucide-react"
 

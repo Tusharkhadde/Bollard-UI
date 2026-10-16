@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tip-picker · MIT licence · https://bollard-ui.vercel.app/components/tip-picker
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { HandCoins, TriangleAlert } from "lucide-react"
@@ -80,6 +82,12 @@ export interface TipPickerProps extends Omit<React.ComponentProps<"fieldset">, "
   highText?: (amount: string, percent: string) => string
   /** Label of the keep-this-tip confirmation. */
   keepLabel?: (amount: string) => string
+  /** Accessible name of the pre-tax / post-tax choice. */
+  baseGroupLabel?: string
+  /** Accessible label of the custom tip field. */
+  customTipLabel?: string
+  /** Accessible name of the % / amount choice for a custom tip. */
+  customUnitLabel?: string
 }
 
 const chip =
@@ -119,6 +127,9 @@ export function TipPicker({
   percentInAmountText = (typed, percent) => `${typed} is a very small tip. Did you mean ${percent}?`,
   highText = (amount, percent) => `${amount} is ${percent} of the bill.`,
   keepLabel = (amount) => `Yes, tip ${amount}`,
+  baseGroupLabel = "Tip is calculated on",
+  customTipLabel = "Custom tip",
+  customUnitLabel = "Custom tip unit",
   className,
   ...props
 }: TipPickerProps) {
@@ -200,7 +211,7 @@ export function TipPicker({
       )}
 
       {allowBaseSwitch && tax > 0 ? (
-        <div role="radiogroup" aria-label="Tip is calculated on" className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1 text-xs">
+        <div role="radiogroup" aria-label={baseGroupLabel} className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1 text-xs">
           {(["pre-tax", "post-tax"] as const).map((b) => (
             <button
               key={b}
@@ -246,7 +257,7 @@ export function TipPicker({
 
       {custom && (
         <div>
-          <label htmlFor={`${id}-custom`} className="sr-only">Custom tip</label>
+          <label htmlFor={`${id}-custom`} className="sr-only">{customTipLabel}</label>
           <div className={cn("flex h-9 items-center rounded-md border shadow-xs focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 dark:bg-input/30", pending && "border-amber-500 dark:border-amber-400")}>
             <input
               ref={inputRef}
@@ -259,7 +270,7 @@ export function TipPicker({
               placeholder={custom.mode === "percent" ? "e.g. 12" : "e.g. 250"}
               className="h-full min-w-0 flex-1 bg-transparent px-3 text-base outline-none md:text-sm"
             />
-            <div role="radiogroup" aria-label="Custom tip unit" className="mr-1 flex gap-0.5 rounded-md bg-muted p-0.5 text-xs">
+            <div role="radiogroup" aria-label={customUnitLabel} className="mr-1 flex gap-0.5 rounded-md bg-muted p-0.5 text-xs">
               {(["percent", "amount"] as const).map((m) => (
                 <button key={m} type="button" role="radio" aria-checked={custom.mode === m} onClick={() => editCustom({ ...custom, mode: m })} className="h-6 rounded px-2 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-checked:bg-background aria-checked:shadow-xs">
                   {m === "percent" ? "%" : symbol}

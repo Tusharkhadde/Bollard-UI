@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dns-record-guard · MIT licence · https://bollard-ui.vercel.app/components/dns-record-guard
+
 import * as React from "react"
 import { CircleCheck, Globe, LoaderCircle, OctagonX, Timer, TriangleAlert } from "lucide-react"
 

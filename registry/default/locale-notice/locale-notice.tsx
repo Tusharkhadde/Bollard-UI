@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — locale-notice · MIT licence · https://bollard-ui.vercel.app/components/locale-notice
+
 import * as React from "react"
 import { Globe, TriangleAlert, X } from "lucide-react"
 

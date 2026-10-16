@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — revoke-access-preview · MIT licence · https://bollard-ui.vercel.app/components/revoke-access-preview
+
 import * as React from "react"
 import { KeyRound, LoaderCircle, Monitor, Plug, TriangleAlert, Unplug, UserMinus } from "lucide-react"
 

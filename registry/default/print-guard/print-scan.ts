@@ -1,3 +1,5 @@
+// Bollard UI — print-guard · MIT licence · https://bollard-ui.vercel.app/components/print-guard
+
 // What a page loses on paper, found in the live DOM, and print-only fixes that undo themselves.
 // Browser only: call from events or effects.
 

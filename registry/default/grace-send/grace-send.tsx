@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — grace-send · MIT licence · https://bollard-ui.vercel.app/components/grace-send
+
 import * as React from "react"
 import { Check, LoaderCircle, Send } from "lucide-react"
 

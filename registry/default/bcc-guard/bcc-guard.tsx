@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bcc-guard · MIT licence · https://bollard-ui.vercel.app/components/bcc-guard
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { EyeOff, Loader2, Send, ShieldCheck, Undo2, Users } from "lucide-react"

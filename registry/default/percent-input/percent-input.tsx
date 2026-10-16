@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — percent-input · MIT licence · https://bollard-ui.vercel.app/components/percent-input
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert } from "lucide-react"
 

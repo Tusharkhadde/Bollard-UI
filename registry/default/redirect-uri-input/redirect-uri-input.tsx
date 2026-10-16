@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — redirect-uri-input · MIT licence · https://bollard-ui.vercel.app/components/redirect-uri-input
+
 import * as React from "react"
 import { CircleCheck, Info, ShieldAlert, TriangleAlert } from "lucide-react"
 

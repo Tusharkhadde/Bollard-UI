@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — fx-send-receive · MIT licence · https://bollard-ui.vercel.app/components/fx-send-receive
+
 import * as React from "react"
 import { ArrowDown, CircleCheck, Info, Lock, TriangleAlert } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"

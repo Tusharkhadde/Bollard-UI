@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — timezone-mismatch · MIT licence · https://bollard-ui.vercel.app/components/timezone-mismatch
+
 import * as React from "react"
 import { tzOffset, tzScan } from "@date-fns/tz"
 import NumberFlow from "@number-flow/react"
@@ -90,6 +92,8 @@ export interface TimezoneMismatchProps extends Omit<React.ComponentProps<"div">,
   keepAccountLabel?: string
   /** Shown for a moment after the answer. `{zone}` is the city now used. */
   doneText?: string
+  /** Accessible name of the banner. */
+  regionLabel?: string
 }
 
 const fill = (template: string, values: Record<string, string>) =>
@@ -131,6 +135,7 @@ export function TimezoneMismatch({
   useDeviceLabel = "Use device zone",
   keepAccountLabel = "Keep account zone",
   doneText = "Times now show in {zone} time.",
+  regionLabel = "Time zone mismatch",
   className,
   ...props
 }: TimezoneMismatchProps) {
@@ -226,7 +231,7 @@ export function TimezoneMismatch({
             data-slot="timezone-mismatch"
             data-state={done ? "done" : "asking"}
             role="region"
-            aria-label="Time zone mismatch"
+            aria-label={regionLabel}
             className={cn("overflow-hidden rounded-lg border", tone.surface, className)}
             {...props}
           >

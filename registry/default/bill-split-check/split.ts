@@ -1,3 +1,5 @@
+// Bollard UI — bill-split-check · MIT licence · https://bollard-ui.vercel.app/components/bill-split-check
+
 /** One line on the receipt. `price` is the line total (all units), as printed. */
 export interface ReceiptItem {
   id: string

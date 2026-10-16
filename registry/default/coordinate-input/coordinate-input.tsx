@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — coordinate-input · MIT licence · https://bollard-ui.vercel.app/components/coordinate-input
+
 import * as React from "react"
 import { ExternalLink, MapPin, TriangleAlert } from "lucide-react"
 

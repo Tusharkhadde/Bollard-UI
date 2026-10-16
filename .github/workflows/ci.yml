@@ -34,6 +34,12 @@ jobs:
             exit 1
           }
 
+      - name: Registry is valid
+        run: npm run registry:validate
+
+      - name: Source headers are stamped
+        run: node scripts/stamp-headers.mjs --check
+
       - name: Typecheck
         run: npx tsc --noEmit --incremental false -p .
 

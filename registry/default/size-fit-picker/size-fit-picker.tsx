@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — size-fit-picker · MIT licence · https://bollard-ui.vercel.app/components/size-fit-picker
+
 import * as React from "react"
 import { Ruler, TriangleAlert } from "lucide-react"
 

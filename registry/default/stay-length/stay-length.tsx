@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — stay-length · MIT licence · https://bollard-ui.vercel.app/components/stay-length
+
 import * as React from "react"
 import { ArrowLeftRight, CalendarRange, MoonStar, PartyPopper } from "lucide-react"
 

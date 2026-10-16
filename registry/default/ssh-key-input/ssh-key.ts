@@ -1,3 +1,5 @@
+// Bollard UI — ssh-key-input · MIT licence · https://bollard-ui.vercel.app/components/ssh-key-input
+
 // Pure SSH public key checks (RFC 4253 §6.6 wire format, RFC 4716 export format,
 // OpenSSH "openssh-key-v1" private keys). No DOM, no network: safe on the server.
 

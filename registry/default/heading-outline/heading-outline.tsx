@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — heading-outline · MIT licence · https://bollard-ui.vercel.app/components/heading-outline
+
 import * as React from "react"
 import { CircleCheck, Heading, TriangleAlert } from "lucide-react"
 

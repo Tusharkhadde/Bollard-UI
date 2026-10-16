@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — key-rotate · MIT licence · https://bollard-ui.vercel.app/components/key-rotate
+
 import * as React from "react"
 import { CircleCheck, Clock, KeyRound, LoaderCircle, OctagonX, TriangleAlert } from "lucide-react"
 

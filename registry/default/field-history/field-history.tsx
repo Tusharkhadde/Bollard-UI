@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — field-history · MIT licence · https://bollard-ui.vercel.app/components/field-history
+
 import * as React from "react"
 import { History, LoaderCircle, RotateCcw, Undo2 } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — export-scope · MIT licence · https://bollard-ui.vercel.app/components/export-scope
+
 import * as React from "react"
 import { CalendarRange, Columns3, Download, FileDown, Filter, Rows3, ShieldAlert, TriangleAlert } from "lucide-react"
 

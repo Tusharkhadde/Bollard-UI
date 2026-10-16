@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — kyc-name-match · MIT licence · https://bollard-ui.vercel.app/components/kyc-name-match
+
 import * as React from "react"
 import { CircleCheck, IdCard, TriangleAlert } from "lucide-react"
 

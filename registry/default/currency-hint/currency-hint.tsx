@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — currency-hint · MIT licence · https://bollard-ui.vercel.app/components/currency-hint
+
 import * as React from "react"
 import { ArrowRightLeft, CreditCard, TriangleAlert } from "lucide-react"
 

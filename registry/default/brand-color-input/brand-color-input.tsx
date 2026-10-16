@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — brand-color-input · MIT licence · https://bollard-ui.vercel.app/components/brand-color-input
+
 import * as React from "react"
 import { Check, Pipette } from "lucide-react"
 

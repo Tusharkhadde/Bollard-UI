@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — update-available · MIT licence · https://bollard-ui.vercel.app/components/update-available
+
 import * as React from "react"
 import { CircleArrowUp, Clock, RefreshCw } from "lucide-react"
 
@@ -104,6 +106,8 @@ export interface UpdateAvailableProps extends Omit<React.ComponentProps<"div">, 
   cancelLabel?: string
   /** Label of the Later button. */
   laterLabel?: string
+  /** Accessible name of the banner. */
+  regionLabel?: string
 }
 
 /**
@@ -129,6 +133,7 @@ export function UpdateAvailable({
   refreshAfterSaveLabel = "Refresh after I save",
   cancelLabel = "Cancel",
   laterLabel = "Later",
+  regionLabel = "Update available",
   className,
   ...props
 }: UpdateAvailableProps) {
@@ -159,7 +164,7 @@ export function UpdateAvailable({
       data-slot="update-available"
       data-state={armed ? "armed" : dirty ? "blocked" : "ready"}
       role="region"
-      aria-label="Update available"
+      aria-label={regionLabel}
       className={cn("overflow-hidden rounded-lg border transition-colors", tone.surface, className)}
       {...props}
     >

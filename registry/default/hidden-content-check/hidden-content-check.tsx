@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hidden-content-check · MIT licence · https://bollard-ui.vercel.app/components/hidden-content-check
+
 import * as React from "react"
 import { Check, ChevronDown, EyeOff, FileWarning, Loader2, ShieldCheck, Trash2 } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"

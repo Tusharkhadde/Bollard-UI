@@ -1,3 +1,5 @@
+// Bollard UI — hidden-content-check · MIT licence · https://bollard-ui.vercel.app/components/hidden-content-check
+
 /**
  * Reads an Office Open XML file (.xlsx, .docx, .pptx) in the browser or on the server and lists what is
  * inside it that the person sharing it can't see on screen: hidden and "very hidden" sheets, hidden

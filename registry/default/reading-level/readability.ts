@@ -1,3 +1,5 @@
+// Bollard UI — reading-level · MIT licence · https://bollard-ui.vercel.app/components/reading-level
+
 /** Wordy words and phrases with a plainer swap (plainlanguage.gov, GOV.UK style). Keys are lowercase. */
 export const PLAIN_WORDS: Record<string, string> = {
   utilize: "use", utilise: "use", utilization: "use", commence: "start", commencement: "start", terminate: "end",

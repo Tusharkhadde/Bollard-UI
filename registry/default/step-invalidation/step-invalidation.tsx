@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — step-invalidation · MIT licence · https://bollard-ui.vercel.app/components/step-invalidation
+
 import * as React from "react"
 import { Check, GitBranch, Route } from "lucide-react"
 

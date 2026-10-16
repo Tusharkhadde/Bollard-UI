@@ -1,3 +1,5 @@
+// Bollard UI — dockerfile-check · MIT licence · https://bollard-ui.vercel.app/components/dockerfile-check
+
 /**
  * Dockerfile reader and rules, checked against docs.docker.com (Dockerfile reference, building best practices,
  * build checks and build secrets). Pure functions: safe on the server and with any input.

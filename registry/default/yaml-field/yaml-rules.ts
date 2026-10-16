@@ -1,3 +1,5 @@
+// Bollard UI — yaml-field · MIT licence · https://bollard-ui.vercel.app/components/yaml-field
+
 /** Every kind of YAML slip `checkYaml` reports. */
 export type YamlMistake = "tab" | "indent" | "dedent" | "boolean" | "version" | "octal" | "sexagesimal" | "duplicate"
 

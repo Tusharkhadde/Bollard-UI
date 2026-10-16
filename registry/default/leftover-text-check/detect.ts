@@ -1,3 +1,5 @@
+// Bollard UI — leftover-text-check · MIT licence · https://bollard-ui.vercel.app/components/leftover-text-check
+
 /**
  * Pure detectors for leftover-text-check: what a person forgot to take out of text before publishing it.
  * Chatbot chatter and refusals, unfilled placeholders, TK/TODO markers and a paragraph pasted twice.

@@ -1,3 +1,5 @@
+// Bollard UI — llm-cost-estimate · MIT licence · https://bollard-ui.vercel.app/components/llm-cost-estimate
+
 /** One row of your price table. Prices are per million tokens, in the table's currency. */
 export interface ModelPrice {
   id: string

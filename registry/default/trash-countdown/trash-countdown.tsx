@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — trash-countdown · MIT licence · https://bollard-ui.vercel.app/components/trash-countdown
+
 import * as React from "react"
 import { FileText, LoaderCircle, RotateCcw, TriangleAlert, Trash2 } from "lucide-react"
 

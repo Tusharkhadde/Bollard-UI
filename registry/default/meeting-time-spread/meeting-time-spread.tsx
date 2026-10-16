@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — meeting-time-spread · MIT licence · https://bollard-ui.vercel.app/components/meeting-time-spread
+
 import * as React from "react"
 import { tzOffset } from "@date-fns/tz"
 import { Clock, HeartHandshake, Moon } from "lucide-react"

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — clean-paste-input · MIT licence · https://bollard-ui.vercel.app/components/clean-paste-input
+
 import * as React from "react"
 import { Eraser, EyeOff, Undo2, X } from "lucide-react"
 

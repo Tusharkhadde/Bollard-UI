@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dedupe-key-picker · MIT licence · https://bollard-ui.vercel.app/components/dedupe-key-picker
+
 import * as React from "react"
 import { LoaderCircle, TriangleAlert } from "lucide-react"
 

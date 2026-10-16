@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — merge-records · MIT licence · https://bollard-ui.vercel.app/components/merge-records
+
 import * as React from "react"
 import { ChevronDown, GitMerge, KeyRound, LoaderCircle, TriangleAlert } from "lucide-react"
 

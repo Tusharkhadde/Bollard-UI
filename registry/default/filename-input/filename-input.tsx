@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — filename-input · MIT licence · https://bollard-ui.vercel.app/components/filename-input
+
 import * as React from "react"
 import { CircleAlert, FileWarning } from "lucide-react"
 

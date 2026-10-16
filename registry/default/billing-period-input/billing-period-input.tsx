@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — billing-period-input · MIT licence · https://bollard-ui.vercel.app/components/billing-period-input
+
 import * as React from "react"
 import { TriangleAlert, Users } from "lucide-react"
 

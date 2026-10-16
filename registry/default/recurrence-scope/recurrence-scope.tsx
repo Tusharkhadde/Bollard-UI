@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recurrence-scope · MIT licence · https://bollard-ui.vercel.app/components/recurrence-scope
+
 import * as React from "react"
 import { LoaderCircle, Repeat, TriangleAlert } from "lucide-react"
 

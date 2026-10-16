@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — danger-zone · MIT licence · https://bollard-ui.vercel.app/components/danger-zone
+
 import * as React from "react"
 import { LoaderCircle, Lock, LockOpen } from "lucide-react"
 

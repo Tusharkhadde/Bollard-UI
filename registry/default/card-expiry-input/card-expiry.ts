@@ -1,3 +1,5 @@
+// Bollard UI — card-expiry-input · MIT licence · https://bollard-ui.vercel.app/components/card-expiry-input
+
 /** What `checkExpiry` found. `fix` is the corrected MM/YY when one reading is clearly meant. */
 export type ExpiryCheck =
   | { kind: "empty" | "incomplete" }

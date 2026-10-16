@@ -1,3 +1,5 @@
+// Bollard UI — relative-date-input · MIT licence · https://bollard-ui.vercel.app/components/relative-date-input
+
 /**
  * Reads everyday date phrases ("next Fri", "in 2 weeks", "the 15th", "15 Oct") against a given
  * today, with date-fns, and returns every date the phrase can honestly mean. Two readings mean the

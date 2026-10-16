@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — refund-picker · MIT licence · https://bollard-ui.vercel.app/components/refund-picker
+
 import * as React from "react"
 import { CalendarClock, LoaderCircle, Minus, Plus, TriangleAlert } from "lucide-react"
 

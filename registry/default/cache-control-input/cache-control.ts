@@ -1,3 +1,5 @@
+// Bollard UI — cache-control-input · MIT licence · https://bollard-ui.vercel.app/components/cache-control-input
+
 /**
  * Cache header logic for CacheControlInput. Pure functions, safe on the server.
  * Semantics follow RFC 9111 (HTTP Caching), RFC 9213 (CDN-Cache-Control),

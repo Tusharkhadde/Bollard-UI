@@ -25,7 +25,7 @@
     "motion"
   ],
   "registryDependencies": [
-    "timezone-mismatch"
+    "https://bollard-ui.vercel.app/r/timezone-mismatch.json"
   ],
   "stops": "Meeting scheduled in the wrong zone",
   "mistakes": [

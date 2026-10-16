@@ -1,3 +1,5 @@
+// Bollard UI — irreversible-diff-badge · MIT licence · https://bollard-ui.vercel.app/components/irreversible-diff-badge
+
 /** A form field that can't (or can only rarely) be changed back once saved. */
 export interface IrreversibleField {
   key: string

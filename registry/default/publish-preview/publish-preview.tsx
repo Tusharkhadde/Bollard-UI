@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — publish-preview · MIT licence · https://bollard-ui.vercel.app/components/publish-preview
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, Loader2, Package, RefreshCw, TriangleAlert } from "lucide-react"
 

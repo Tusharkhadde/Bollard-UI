@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — checksum-input · MIT licence · https://bollard-ui.vercel.app/components/checksum-input
+
 import * as React from "react"
 import { CircleCheck, TriangleAlert } from "lucide-react"
 

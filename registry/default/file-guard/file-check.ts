@@ -1,3 +1,5 @@
+// Bollard UI — file-guard · MIT licence · https://bollard-ui.vercel.app/components/file-guard
+
 // Pure file checks used by <FileGuard>. No React, so they also run in workers and on the server.
 
 export type SniffedType = "png" | "jpeg" | "gif" | "webp" | "pdf" | "zip" | "mp4"

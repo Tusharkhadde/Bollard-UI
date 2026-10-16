@@ -1,3 +1,5 @@
+// Bollard UI — photo-location-guard · MIT licence · https://bollard-ui.vercel.app/components/photo-location-guard
+
 /** What a JPEG gives away about where, when and with what it was taken. */
 export interface PhotoMetadata {
   /** GPS position in decimal degrees, with how precisely it was stored (metres). */

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recipient-check · MIT licence · https://bollard-ui.vercel.app/components/recipient-check
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert, Undo2, X } from "lucide-react"
 

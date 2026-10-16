@@ -1,3 +1,5 @@
+// Bollard UI — billing-period-input · MIT licence · https://bollard-ui.vercel.app/components/billing-period-input
+
 export type BillingPeriod = "week" | "month" | "quarter" | "year"
 export type PriceBasis = "seat" | "total"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — link-text-check · MIT licence · https://bollard-ui.vercel.app/components/link-text-check
+
 import * as React from "react"
 import { CircleCheck, Link2, TriangleAlert } from "lucide-react"
 

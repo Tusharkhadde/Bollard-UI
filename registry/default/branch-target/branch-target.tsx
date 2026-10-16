@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — branch-target · MIT licence · https://bollard-ui.vercel.app/components/branch-target
+
 import * as React from "react"
 import { ChevronDown, GitBranch, GitMerge, LoaderCircle, Rocket, TriangleAlert } from "lucide-react"
 

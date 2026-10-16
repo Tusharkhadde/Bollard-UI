@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — upload-wait · MIT licence · https://bollard-ui.vercel.app/components/upload-wait
+
 import * as React from "react"
 import { Check, CircleAlert, LoaderCircle, Paperclip, RotateCcw } from "lucide-react"
 
@@ -57,6 +59,10 @@ export interface UploadWaitProps extends Omit<React.ComponentProps<"form">, "onS
   queuedHint?: string
   /** Hint when an upload failed. */
   failedHint?: string
+  /** Accessible name of the upload list. */
+  listLabel?: string
+  /** Accessible label of the done tick. */
+  uploadedLabel?: string
 }
 
 /**
@@ -81,6 +87,8 @@ export function UploadWait({
   idleHint = "{count} still uploading. You can press {submit} now; it sends when they finish.",
   queuedHint = "Sends automatically when they finish.",
   failedHint = "Retry the failed upload to send.",
+  listLabel = "Uploads",
+  uploadedLabel = "Uploaded",
   className,
   children,
   ref,
@@ -150,7 +158,7 @@ export function UploadWait({
     <form ref={setRefs} data-slot="upload-wait" data-state={paused ? "paused" : phase} onSubmit={handleSubmit} className={cn("grid w-full gap-3", className)} {...props}>
       {children}
       {uploads.length > 0 && (
-        <ul aria-label="Uploads" className="grid gap-1.5">
+        <ul aria-label={listLabel} className="grid gap-1.5">
           {uploads.map((upload) => (
             <li key={upload.id} className="flex h-9 items-center gap-2 rounded-md border px-3 text-sm dark:bg-input/30">
               <Paperclip aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
@@ -163,7 +171,7 @@ export function UploadWait({
                   {Math.round((upload.progress ?? 0) * 100)}%
                 </span>
               )}
-              {upload.status === "done" && <Check aria-label="Uploaded" className="size-4 text-emerald-600 dark:text-emerald-400" />}
+              {upload.status === "done" && <Check aria-label={uploadedLabel} className="size-4 text-emerald-600 dark:text-emerald-400" />}
               {upload.status === "error" && (
                 <button
                   ref={upload.id === failed[0]?.id ? retryRef : undefined}

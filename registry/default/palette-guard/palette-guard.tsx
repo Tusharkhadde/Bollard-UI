@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — palette-guard · MIT licence · https://bollard-ui.vercel.app/components/palette-guard
+
 import * as React from "react"
 import { CircleCheck, TriangleAlert, WandSparkles } from "lucide-react"
 

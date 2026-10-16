@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — webhook-test · MIT licence · https://bollard-ui.vercel.app/components/webhook-test
+
 import * as React from "react"
 import { CircleCheck, CircleX, LoaderCircle, Send, TriangleAlert } from "lucide-react"
 

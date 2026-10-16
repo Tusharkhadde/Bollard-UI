@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tax-inclusive-input · MIT licence · https://bollard-ui.vercel.app/components/tax-inclusive-input
+
 import * as React from "react"
 import { TriangleAlert, Undo2 } from "lucide-react"
 

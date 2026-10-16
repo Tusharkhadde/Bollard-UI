@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — deadline · MIT licence · https://bollard-ui.vercel.app/components/deadline
+
 import * as React from "react"
 import { AlarmClock, CalendarClock, CircleAlert } from "lucide-react"
 

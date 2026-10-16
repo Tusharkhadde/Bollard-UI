@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — session-list · MIT licence · https://bollard-ui.vercel.app/components/session-list
+
 import * as React from "react"
 import { LoaderCircle, LogOut, MapPin, Monitor, Smartphone, Tablet, TriangleAlert } from "lucide-react"
 
