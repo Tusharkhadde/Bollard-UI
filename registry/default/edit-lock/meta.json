@@ -1,0 +1,10 @@
+{
+  "title": "Edit Lock",
+  "description": "Prevents accidental edits to finished or approved records by locking the form in a disabled fieldset (\"Locked by Priya after approval\"), stating before unlocking that any change needs re-approval, voiding the approval only when something actually changes, and relocking itself after a stretch of idleness, never mid-typing.",
+  "dependencies": ["lucide-react"],
+  "stops": "Approved invoice edited by mistake",
+  "mistakes": ["edited approved record", "changed invoice after approval", "locked form", "re-approval needed"],
+  "aliases": ["read only", "locked form", "approval", "invoice", "purchase order", "fieldset disabled", "edit mode", "po"],
+  "flows": ["forms"],
+  "fields": ["amount"]
+}

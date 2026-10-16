@@ -1,0 +1,7 @@
+{"title": "Drop Confirm", "description": "Stops accidental drag-and-drop moves: the target names exactly what will move and where, ignores a drop that lands before the pointer has rested on it, asks once before large moves or moves that change who can see the items, and offers Undo, with a Move here button for keyboard and touch.", "dependencies": ["lucide-react"],
+  "stops": "Folder dropped into wrong place",
+  "mistakes": ["drag and drop moved wrong folder", "accidental drag drop", "dropped file in shared folder", "drag changed permissions"],
+  "aliases": ["drag and drop", "dnd", "move to folder", "kanban", "file manager", "dnd-kit", "drop zone"],
+  "flows": ["danger-zone"],
+  "fields": ["file"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Sign-in Approve",
+  "description": "Stops MFA-fatigue approvals: there is no one-tap Approve, the user must type the number from the sign-in screen, and the prompt shows location and device, warns about request bursts and numbers sent by \"support\", refuses after wrong guesses and ends every denial on a secure-my-account step.",
+  "dependencies": ["lucide-react"],
+  "stops": "Attacker's login approved through push fatigue",
+  "mistakes": ["mfa fatigue attack", "user approved fake login", "push notification spam approve", "number matching 2fa"],
+  "aliases": ["mfa", "2fa", "push approval", "number matching", "login approval", "authenticator", "is this you", "sign-in request"],
+  "flows": ["signup-login", "account-settings"],
+  "fields": ["code"]
+}

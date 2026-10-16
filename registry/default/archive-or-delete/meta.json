@@ -1,0 +1,7 @@
+{"title": "Archive or Delete", "description": "Stops someone from permanently deleting what they only meant to put away: Archive and Delete sit side by side with each affected thing's honest fate under both, the reversible choice starts selected and focused so Enter archives, and picking Delete flashes what is lost and relabels the button \"Delete forever\".", "dependencies": ["lucide-react"],
+  "stops": "Deleted forever instead of archived",
+  "mistakes": ["clicked delete instead of archive", "meant to archive", "permanent delete by mistake", "archive vs delete"],
+  "aliases": ["archive", "delete forever", "soft delete", "inbox", "project archive", "hide", "remove"],
+  "flows": ["danger-zone"],
+  "fields": []
+}

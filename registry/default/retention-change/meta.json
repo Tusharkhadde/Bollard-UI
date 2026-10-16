@@ -1,0 +1,10 @@
+{
+  "title": "Retention Change",
+  "description": "Stops a shorter data-retention period from destroying data by surprise by saying exactly what goes and when (“Lowering to 30 days deletes 14,210 events older than 13 Sep, tonight at 02:00”), shading the doomed days on a chart, counting down to the purge while changing it back still loses nothing, and naming the confirm button “Delete without export” until an export-first is done.",
+  "dependencies": ["lucide-react"],
+  "stops": "Shorter retention purged months of data",
+  "mistakes": ["lowered retention deleted data", "data retention change", "logs purged after setting change", "export before retention"],
+  "aliases": ["data retention", "retention period", "logs", "purge", "analytics events", "compliance", "export", "ttl"],
+  "flows": ["account-settings", "danger-zone", "devtools"],
+  "fields": ["number"]
+}

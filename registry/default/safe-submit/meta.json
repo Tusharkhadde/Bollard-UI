@@ -1,0 +1,12 @@
+{
+  "title": "Safe Submit",
+  "description": "Stops double charges and duplicate records by collapsing repeated clicks, Enter spam and double-taps into one request, with an idempotency key that is reused on retry after a network error.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Paid twice after a timeout",
+  "mistakes": ["double charge on double click", "duplicate order submitted", "form submitted twice", "enter key submitted twice"],
+  "aliases": ["submit button", "idempotency key", "double submit", "pay now", "place order", "loading button", "debounce", "razorpay", "react hook form"],
+  "flows": ["checkout", "forms"],
+  "fields": ["amount"]
+}

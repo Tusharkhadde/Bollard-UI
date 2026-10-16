@@ -1,0 +1,12 @@
+{
+  "title": "Bulk Scope Confirm",
+  "description": "Prevents bulk actions from hitting more than intended by stating the exact count and risky subsets, defaulting to only this page, and locking Confirm if the match count changes while it is open.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Bulk action hit every record",
+  "mistakes": ["select all deleted everything", "bulk delete more than expected", "applied to all pages not just this", "mass update wrong rows"],
+  "aliases": ["bulk delete", "select all", "bulk edit", "mass action", "data table", "admin panel", "batch update"],
+  "flows": ["danger-zone"],
+  "fields": ["number"]
+}

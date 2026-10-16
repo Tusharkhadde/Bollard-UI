@@ -1,0 +1,10 @@
+{
+  "title": "Rollback Preview",
+  "description": "Prevents rollbacks that undo more or less than you expect by listing what reverts, what won't undo (irreversible migrations, data written since), the target's age and every newer version it skips, and confirming only when you type the target's name, calling out a different version's name instead of silently not matching.",
+  "dependencies": ["lucide-react"],
+  "stops": "Rollback skipped more versions than expected",
+  "mistakes": ["rollback reverted too much", "rolled back wrong version", "migration cant undo on rollback", "redeploy old version"],
+  "aliases": ["rollback", "revert deploy", "redeploy", "release", "vercel", "version history", "deployment", "downgrade"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["text"]
+}

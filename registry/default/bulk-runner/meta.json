@@ -1,0 +1,14 @@
+{
+  "title": "Bulk Runner",
+  "description": "Stops bulk jobs from ending in \"some of it happened, probably\": live done/failed/remaining counts, Pause and Stop that let in-flight items finish and then say exactly what was and wasn't done, failures grouped by reason with retry-failed-only, and a progress bar that never jumps backwards.",
+  "dependencies": [
+    "@number-flow/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Bulk job half done, nobody knows",
+  "mistakes": ["bulk job failed partially", "dont know which items failed", "retry only failed", "progress bar jumped back"],
+  "aliases": ["bulk job", "batch progress", "progress bar", "queue", "retry failed", "import job", "bulk email", "background job"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["number"]
+}

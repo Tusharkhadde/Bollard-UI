@@ -1,0 +1,7 @@
+{"title": "Transfer Ownership", "description": "Stops ownership landing on the wrong person or the wrong plan: it reads back what moves and what you keep, warns when the email is outside your org with a one-tap switch to the colleague you probably meant, blocks a recipient whose plan can't own it, and only transfers once they accept, showing the pending request and its expiry meanwhile.", "dependencies": ["lucide-react"],
+  "stops": "Ownership transferred to wrong email",
+  "mistakes": ["transferred to wrong person", "typo in transfer email", "transfer ownership outside org", "new owner plan cant own"],
+  "aliases": ["transfer ownership", "change owner", "workspace owner", "admin", "transfer repo", "invite", "handover"],
+  "flows": ["account-settings", "danger-zone"],
+  "fields": ["email"]
+}

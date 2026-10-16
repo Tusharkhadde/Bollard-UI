@@ -1,0 +1,10 @@
+{
+  "title": "Reset Hard Readback",
+  "description": "Stops git reset --hard, git clean -fdx, git checkout -- . and git stash drop from silently destroying work by reading porcelain status and listing exactly what will be lost (edited files with +/- lines, staged new files, untracked and ignored files with .env and keys first, commits the branch moves past with unpushed ones marked, stash entries with the id to recover them), saying what stays, and offering to stash first.",
+  "dependencies": ["lucide-react"],
+  "stops": "Uncommitted work wiped by git reset",
+  "mistakes": ["git reset hard lost my changes", "git clean deleted untracked files", "stash drop lost work", "lost .env after git clean"],
+  "aliases": ["git reset --hard", "git clean -fdx", "git stash", "discard changes", "working tree", "cli confirm", "terminal", "uncommitted changes"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["code"]
+}

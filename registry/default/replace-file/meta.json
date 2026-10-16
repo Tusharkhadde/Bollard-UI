@@ -1,0 +1,7 @@
+{"title": "Replace File", "description": "Stops an upload from overwriting a newer file with an older one: each name clash shows both copies side by side with thumbnail, size and date (newer and larger in bold), warns with a one-tap \"Keep both\" when an older file would replace a newer one, spots identical copies, previews the renamed copy, and applies one choice to all with counts while saying the other files upload as normal.", "dependencies": ["lucide-react"],
+  "stops": "Older upload overwrote newer file",
+  "mistakes": ["upload replaced newer file", "file name conflict overwrite", "keep both files", "replace existing file"],
+  "aliases": ["file conflict", "replace or keep both", "upload", "duplicate file name", "overwrite", "dropbox", "file manager"],
+  "flows": ["forms", "danger-zone"],
+  "fields": ["file"]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Guarded Switch",
+  "description": "Stops a critical setting like maintenance mode or a kill switch being flipped by a stray click: a see-through cover, like an aircraft switch guard, must be lifted first, says what flipping will do while it's up, drops back on its own, and reads back the consequence after the change.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Kill switch flipped by accident",
+  "mistakes": ["toggled maintenance mode by mistake", "kill switch toggled", "critical toggle accidental click", "turned off payments by mistake"],
+  "aliases": ["toggle", "switch", "maintenance mode", "kill switch", "feature toggle", "settings toggle", "guarded toggle"],
+  "flows": ["devtools", "account-settings", "danger-zone"],
+  "fields": []
+}

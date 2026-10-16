@@ -1,0 +1,10 @@
+{
+  "title": "Force Push Confirm",
+  "description": "Stops a force push from silently deleting work on the remote by listing every commit it would drop with author, message and age, marking other people's commits (co-authors and GitHub noreply addresses included) and protected branches, building a --force-with-lease command pinned to the tip you were shown (or --force-if-includes, so an IDE's background fetch can't defeat the lease), and asking you to type the branch name only when someone else's work would be lost.",
+  "dependencies": ["lucide-react"],
+  "stops": "Teammates' commits erased by force push",
+  "mistakes": ["force push deleted commits", "git push -f overwrote remote", "lost teammate commits", "force with lease bypassed"],
+  "aliases": ["git push --force", "force-with-lease", "force-if-includes", "rebase", "protected branch", "github", "remote branch"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["code"]
+}

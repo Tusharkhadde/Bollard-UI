@@ -1,0 +1,27 @@
+{
+  "title": "MCP Tool Review",
+  "description": "Stops an MCP rug pull, where a server changes its tools after you approved them, by fingerprinting each tool definition, diffing the new description word by word against the approved one, marking the poisoned phrases inside the added text (<IMPORTANT> blocks, \"do not tell the user\", ~/.ssh and mcp.json, instructions about another server's send_email), flagging new free-text parameters that could carry data out, invisible characters and read-only labels that flipped, and letting the person keep the approved version, turn the tool off or accept the change, with a second press for anything suspicious and a one-tap accept for the safe ones.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "MCP server swaps in poisoned tools",
+  "mistakes": [
+    "mcp tool poisoning",
+    "mcp rug pull",
+    "tool description changed after approval",
+    "malicious mcp server",
+    "prompt injection in tool description"
+  ],
+  "aliases": [
+    "mcp",
+    "model context protocol",
+    "tool pinning",
+    "ai agent",
+    "claude desktop",
+    "cursor",
+    "tools/list",
+    "supply chain",
+    "diff",
+    "ai safety"
+  ],
+  "flows": ["devtools"],
+  "fields": ["code", "text"]
+}

@@ -1,0 +1,7 @@
+{"title": "Click Shield", "description": "Stops clicks that land on a button only because it just appeared, shifted under the cursor or changed its label, by ignoring pointer presses for ~500ms with a quiet fade-in cue, while keyboard users are only shielded from focus that code moved onto the button.", "dependencies": [],
+  "stops": "Clicked button that just appeared",
+  "mistakes": ["button moved under cursor", "layout shift click", "clicked wrong button after load", "popup appeared and got clicked"],
+  "aliases": ["layout shift", "cls", "misclick", "click protection", "late button", "dialog appears", "ghost click"],
+  "flows": ["danger-zone", "forms"],
+  "fields": []
+}

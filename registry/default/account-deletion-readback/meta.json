@@ -1,0 +1,12 @@
+{
+  "title": "Account Deletion Readback",
+  "description": "Stops an account deletion that loses more than the user expects or keeps charging them: before Delete it reads back what goes, teams left with no owner (with a transfer button), App Store and Google Play subscriptions that keep billing until cancelled there, the date it can be restored until, what the law keeps and a data export, and unlocks Delete only after a typed confirmation, labelled \"Delete without export\" until a copy is taken, and lets the user schedule deletion for when a paid period ends instead of losing paid time.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Deleted account still billing subscriptions",
+  "mistakes": ["delete account keeps charging", "account deleted lost team data", "user deleted account by mistake", "no data export before deletion"],
+  "aliases": ["delete account", "close account", "account settings", "gdpr", "dpdp", "data export", "app store subscription", "play store billing", "type to confirm"],
+  "flows": ["account-settings", "danger-zone"],
+  "fields": ["text"]
+}

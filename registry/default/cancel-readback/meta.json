@@ -1,0 +1,7 @@
+{"title": "Cancel Readback", "description": "Stops people cancelling blind, or being tricked out of it: the cancel screen reads back the exact date and time access ends, what is lost and kept and the refund (or plainly that there is none), offers pause or downgrade once below a cancel button that never moves, and ends on a receipt with an undo.", "dependencies": ["lucide-react"],
+  "stops": "Cancelled without knowing when access ends",
+  "mistakes": ["cancel subscription confusion", "dark pattern cancel", "refund unclear on cancel", "lost access immediately"],
+  "aliases": ["cancel subscription", "unsubscribe", "billing", "pause plan", "downgrade", "refund", "churn", "manage plan", "autopay"],
+  "flows": ["account-settings", "checkout"],
+  "fields": ["datetime", "amount"]
+}

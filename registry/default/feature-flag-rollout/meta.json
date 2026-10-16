@@ -1,0 +1,10 @@
+{
+  "title": "Feature Flag Rollout",
+  "description": "Prevents a risky flag release by reading back exactly who gets it (segments plus a percentage of everyone else, in users), asking for a second click before production skips ramp steps or gets ahead of staging, and warning how many users lose the feature on a pullback.",
+  "dependencies": ["lucide-react"],
+  "stops": "Feature flag released to everyone early",
+  "mistakes": ["flag rolled out to 100 percent", "skipped staging rollout", "rollback removed feature from users", "wrong segment got feature"],
+  "aliases": ["feature flag", "rollout", "percentage rollout", "canary", "launchdarkly", "kill switch", "ramp", "segments", "a/b test"],
+  "flows": ["devtools"],
+  "fields": ["number"]
+}

@@ -1,0 +1,7 @@
+{"title": "Merge Records", "description": "Stops a duplicate merge from silently throwing data away: each field defaults to the most recent non-empty value, real conflicts are marked (ignoring case and spacing), and a live readback names every value that will be discarded, which record keeps its ID, and which links move to it.", "dependencies": ["lucide-react"],
+  "stops": "Duplicate merge discarded customer data",
+  "mistakes": ["merge duplicates lost data", "which contact id kept", "merge overwrote phone number", "crm merge wrong values"],
+  "aliases": ["merge duplicates", "dedupe", "crm", "contacts", "customer records", "merge contacts", "duplicate leads"],
+  "flows": ["forms", "danger-zone"],
+  "fields": ["name", "email", "phone"]
+}

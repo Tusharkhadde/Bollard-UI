@@ -1,0 +1,7 @@
+{"title": "Revoke Access Preview", "description": "Stops a member, token or app removal from silently orphaning their work and breaking things: it lists what they lose, what they own with a reassign-to picker and one-tap reassign-all, sessions that end now (flagging any in use this minute) and integrations that stop because they run on that person's credentials, and the button says if anything will be left unowned.", "dependencies": ["lucide-react"],
+  "stops": "Removed member's integrations stopped working",
+  "mistakes": ["removed user broke integration", "revoked token broke prod", "offboarding orphaned files", "remove member lost ownership"],
+  "aliases": ["remove member", "offboarding", "revoke access", "api token", "oauth app", "team members", "reassign", "workspace members"],
+  "flows": ["account-settings", "danger-zone"],
+  "fields": ["email", "secret"]
+}

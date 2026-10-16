@@ -1,0 +1,7 @@
+{"title": "Reauth Gate", "description": "Sudo mode for sensitive actions: it asks for a passkey, password or PIN through your own verify function, names the exact action and why it's asking, runs the queued action right after confirmation, and remembers it for a short window shown as a countdown chip you can end early.", "dependencies": ["lucide-react"],
+  "stops": "Sensitive action on unattended logged-in laptop",
+  "mistakes": ["no password confirm before delete", "sudo mode", "reauthenticate before change", "someone used my open laptop"],
+  "aliases": ["sudo mode", "re-authenticate", "confirm password", "passkey", "pin", "step-up auth", "verify identity", "mpin"],
+  "flows": ["account-settings", "signup-login", "danger-zone"],
+  "fields": ["secret"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Recovery Contact Cooldown",
+  "description": "Stops account takeovers that start by swapping the recovery email or phone by making the security hold visible: it says what the contact is changing to (masked), drains a countdown to when it takes effect, notes that codes still go to the old contact meanwhile, turns urgent in the last hour, and offers a one-tap cancel plus a \"this wasn't me\" path, announcing only the outcome, never the ticking.",
+  "dependencies": ["lucide-react"],
+  "stops": "Account hijacked via swapped recovery email",
+  "mistakes": ["attacker changed recovery email", "recovery phone changed without me", "account takeover recovery contact", "sim swap changed recovery number"],
+  "aliases": ["recovery email", "recovery phone", "security hold", "account recovery", "change email", "mobile number", "+91", "this wasn't me"],
+  "flows": ["account-settings", "signup-login"],
+  "fields": ["email", "phone"]
+}

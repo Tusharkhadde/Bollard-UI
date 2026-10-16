@@ -1,0 +1,7 @@
+{"title": "Shortcut Confirm", "description": "Stops a slipped finger from firing a destructive keyboard shortcut: the first press only shows \"Press ⌘⌫ again to delete 3 items\", and only a separate second press within the window confirms, never a held key, an extra modifier, a stray key in between or a keystroke meant for a text field.", "dependencies": ["lucide-react"],
+  "stops": "Keyboard shortcut deleted items",
+  "mistakes": ["shortcut deleted by accident", "cmd backspace deleted all", "hotkey fired in text field", "press again to confirm"],
+  "aliases": ["keyboard shortcut", "hotkey", "cmd+backspace", "keybinding", "power user", "press again", "shortcuts"],
+  "flows": ["danger-zone"],
+  "fields": []
+}

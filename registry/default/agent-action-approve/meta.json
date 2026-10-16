@@ -1,0 +1,27 @@
+{
+  "title": "Agent Action Approve",
+  "description": "Stops an AI agent's tool call from doing something nobody approved by reading the call itself and saying in plain words what it will delete, send or change, how far that reaches (one file up to a whole drive or production) and whether it can be undone, marking the one token that changes everything (a lone \\ that means the drive root, an unset $VAR, ../, a C:/Users/ALEX~1 short name), setting what the agent said beside what the call does when they disagree, checking MCP read-only labels against the call, reading inside bash -c, cmd /c and encoded PowerShell, flagging curl | bash, making dangerous calls hold-to-approve, and showing what an \"always allow\" rule would also let through while refusing one for npx, bash -c, chained commands and anything irreversible.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "AI agent wipes a whole drive",
+  "mistakes": [
+    "ai agent deleted my files",
+    "agent ran rm -rf on wrong folder",
+    "approve tool call safely",
+    "always allow too broad",
+    "agent deleted production database"
+  ],
+  "aliases": [
+    "tool approval",
+    "human in the loop",
+    "mcp",
+    "coding agent",
+    "claude code",
+    "cursor",
+    "tool call confirmation",
+    "rm -rf",
+    "permission prompt",
+    "ai sdk"
+  ],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["code"]
+}

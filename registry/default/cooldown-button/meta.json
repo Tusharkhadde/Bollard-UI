@@ -1,0 +1,7 @@
+{"title": "Cooldown Button", "description": "Prevents resend spam and double charges by enforcing escalating cooldowns per attempt (30s, 60s, 120s) with a visible countdown and reason, persisted in sessionStorage so a refresh can't bypass it.", "dependencies": ["lucide-react"],
+  "stops": "Resend OTP spammed until blocked",
+  "mistakes": ["resend otp spam", "user keeps clicking resend", "sms bill from resend", "refresh bypasses cooldown"],
+  "aliases": ["resend otp", "resend code", "otp", "rate limit", "countdown timer", "sms", "magic link", "throttle"],
+  "flows": ["signup-login", "india"],
+  "fields": ["code", "phone"]
+}

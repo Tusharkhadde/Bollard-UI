@@ -1,0 +1,7 @@
+{"title": "Trash Countdown", "description": "Stops things vanishing for good by surprise: trashed items show how long until they're deleted forever, soon-to-purge items are highlighted, restore is one tap, and emptying the trash needs the typed item count, which resets if new items arrive mid-confirmation.", "dependencies": ["lucide-react"],
+  "stops": "Trash purged before anyone restored",
+  "mistakes": ["trash emptied by mistake", "items deleted forever surprise", "restore from trash", "auto delete after 30 days"],
+  "aliases": ["trash", "recycle bin", "bin", "restore", "soft delete", "empty trash", "deleted items", "30 days"],
+  "flows": ["danger-zone"],
+  "fields": []
+}

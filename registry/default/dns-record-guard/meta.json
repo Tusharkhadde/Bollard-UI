@@ -1,0 +1,10 @@
+{
+  "title": "DNS Record Guard",
+  "description": "Stops a DNS edit or delete from quietly breaking things by checking it against the whole zone before saving: email that stops (a removed MX, SPF senders dropped or doubled past the 10-lookup limit, a DKIM selector removed, escalated when the DMARC policy enforces it), a CNAME at the root or beside other records and names left pointing at nothing, then saying how long the change takes to spread with a one-tap “lower TTL first” that counts down until old caches clear.",
+  "dependencies": ["lucide-react"],
+  "stops": "Deleted MX record stopped company email",
+  "mistakes": ["dns change broke email", "deleted mx record", "spf too many lookups", "cname at root"],
+  "aliases": ["dns", "mx record", "spf", "dkim", "dmarc", "cname", "ttl", "cloudflare dns", "domain settings", "godaddy"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["url"]
+}

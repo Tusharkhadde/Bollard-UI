@@ -1,0 +1,7 @@
+{"title": "Danger Zone", "description": "Stops a stray click in settings from deleting or transferring something: destructive actions stay listed with their consequences but locked until the user deliberately unlocks the section, which locks itself again after one action, an idle timeout, Escape, a hidden tab or focus leaving it.", "dependencies": ["lucide-react"],
+  "stops": "Stray click deleted from settings",
+  "mistakes": ["delete button in settings clicked by mistake", "settings danger zone", "transfer repo by accident", "locked delete section"],
+  "aliases": ["danger zone", "settings page", "delete account", "delete project", "transfer ownership", "github settings", "admin settings"],
+  "flows": ["danger-zone", "account-settings"],
+  "fields": []
+}

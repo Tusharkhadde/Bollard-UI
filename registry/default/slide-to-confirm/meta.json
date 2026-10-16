@@ -1,0 +1,13 @@
+{
+  "title": "Slide to Confirm",
+  "description": "Prevents accidental taps and pocket presses from sending payments or ending sessions: the thumb must travel the whole track, a held arrow key stops short, and an async confirm shows a pending state.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Pocket tap sent a payment",
+  "mistakes": ["accidental tap sent payment", "pocket press ended session", "swipe to pay", "slide to unlock confirm"],
+  "aliases": ["swipe to pay", "slide to confirm", "swipe button", "upi pay", "slider", "mobile checkout", "end ride", "pay now"],
+  "flows": ["checkout", "india"],
+  "fields": ["amount"]
+}

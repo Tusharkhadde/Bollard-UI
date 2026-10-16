@@ -1,0 +1,12 @@
+{
+  "title": "Grace Send",
+  "description": "Catches the regretted send: pressing Send starts a short countdown with a draining ring before the irreversible action fires, so Cancel, Escape or a leave-page warning can stop it, while Send now skips the wait.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Message sent before second thoughts",
+  "mistakes": ["sent message to wrong person", "undo send email", "regret sending", "send too fast"],
+  "aliases": ["undo send", "unsend", "send delay", "gmail undo send", "chat", "whatsapp", "compose", "send button"],
+  "flows": ["messaging"],
+  "fields": ["text"]
+}

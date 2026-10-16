@@ -1,0 +1,14 @@
+{
+  "title": "Spend Cap Button",
+  "description": "Prevents duplicate purchases and overspending: it remembers recent buys of the same item (\"You bought this 3 min ago\", including a double-click a second ago) and needs a deliberate second click to buy again, previews this purchase as a slice of each daily or monthly cap, and blocks any spend that would break a cap with the overage and when it resets.",
+  "dependencies": [
+    "@number-flow/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Same item bought twice by mistake",
+  "mistakes": ["bought same thing twice", "double purchase", "overspend budget", "spending limit exceeded"],
+  "aliases": ["buy now", "spending limit", "budget", "in-app purchase", "credits", "top-up", "wallet", "duplicate purchase"],
+  "flows": ["checkout"],
+  "fields": ["amount"]
+}

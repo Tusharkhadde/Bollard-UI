@@ -1,0 +1,12 @@
+{
+  "title": "Impact Preview",
+  "description": "Prevents surprise cascade deletes by loading and listing everything that goes with a parent object, grouped by type with counts and samples and marked deleted, detached or kept, and keeps Confirm locked until the list loads.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Cascade delete wiped child records",
+  "mistakes": ["deleted project lost all tasks", "cascade delete surprise", "what else gets deleted", "on delete cascade"],
+  "aliases": ["cascade delete", "delete preview", "related records", "dependencies", "foreign key", "delete folder", "delete workspace"],
+  "flows": ["danger-zone"],
+  "fields": []
+}

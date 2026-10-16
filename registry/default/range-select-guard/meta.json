@@ -1,0 +1,7 @@
+{"title": "Range Select Guard", "description": "Catches runaway shift-click selections: it reads back how many rows a range just selected with Undo, skips and reports rows hidden by the filter, flags rows on pages you never opened with an 'only this page' fix, and calls out selected rows a filter has hidden.", "dependencies": ["lucide-react"],
+  "stops": "Shift-click selected thousand rows",
+  "mistakes": ["shift click selected too many", "selected hidden rows", "range select wrong", "select all included filtered rows"],
+  "aliases": ["shift click", "range select", "multi select", "data table", "checkbox rows", "tanstack table", "bulk select"],
+  "flows": ["danger-zone", "forms"],
+  "fields": ["number"]
+}

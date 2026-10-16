@@ -1,0 +1,10 @@
+{
+  "title": "Session List",
+  "description": "Stops people signing themselves out while cleaning up sessions: this device is pinned and marked, \"Sign out all others\" can never include it, signing out here asks once inline with Cancel focused, and sessions from another country are flagged with honest \"approximate location\" wording.",
+  "dependencies": ["lucide-react"],
+  "stops": "Signed out own device by mistake",
+  "mistakes": ["sign out all logged me out", "logged out current device", "cant tell which session is mine", "unknown login location"],
+  "aliases": ["active sessions", "devices", "logged in devices", "sign out everywhere", "security settings", "where you're logged in", "login activity"],
+  "flows": ["account-settings", "signup-login"],
+  "fields": []
+}

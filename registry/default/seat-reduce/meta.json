@@ -1,0 +1,10 @@
+{
+  "title": "Seat Reduce",
+  "description": "Stops a lower seat count from cutting people off silently by making you choose who goes, suggesting unaccepted invites first and then the least active members (never the owner or admins), calling out an admin or someone active today if you pick them, and showing the new bill, when it starts and what happens to each person's work before you confirm.",
+  "dependencies": ["lucide-react"],
+  "stops": "Fewer seats locked out active admin",
+  "mistakes": ["reducing seats removed users", "downgrade seats who loses access", "removed admin seat", "seat count billing change"],
+  "aliases": ["seats", "licenses", "team plan", "billing", "downgrade", "remove members", "per seat pricing"],
+  "flows": ["account-settings", "checkout"],
+  "fields": ["number"]
+}

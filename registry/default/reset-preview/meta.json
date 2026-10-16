@@ -1,0 +1,7 @@
+{"title": "Reset Preview", "description": "Stops \"Reset to defaults\" from wiping customizations nobody looked at: it lists only the settings the user changed as current → default, lets them keep any, warns with a one-tap export until a copy is saved, and offers a draining Undo after the reset.", "dependencies": ["lucide-react"],
+  "stops": "Reset to defaults wiped customizations",
+  "mistakes": ["reset settings lost my config", "restore defaults by mistake", "reset preferences undo", "lost theme settings"],
+  "aliases": ["reset to defaults", "restore defaults", "settings", "preferences", "export settings", "factory reset", "config"],
+  "flows": ["account-settings", "danger-zone"],
+  "fields": []
+}

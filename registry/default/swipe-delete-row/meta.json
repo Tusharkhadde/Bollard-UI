@@ -1,0 +1,13 @@
+{
+  "title": "Swipe Delete Row",
+  "description": "Prevents accidental swipe-deletes: the row only deletes when dragged past a visible line (not by a fast flick or a vertical scroll), resists like a rubber band, springs back if released early, has a trash button for keyboard users, and keeps an Undo before the delete commits.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Swipe while scrolling deleted row",
+  "mistakes": ["swipe deleted by accident", "flick deleted list item", "scroll triggered delete", "swipe to delete undo"],
+  "aliases": ["swipe to delete", "swipe actions", "list row", "mobile list", "inbox", "gesture", "ios style"],
+  "flows": ["danger-zone", "messaging"],
+  "fields": []
+}

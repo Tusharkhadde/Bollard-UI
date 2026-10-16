@@ -1,0 +1,13 @@
+{
+  "title": "Hold to Confirm",
+  "description": "Prevents stray clicks and taps from triggering destructive actions: the button fires only after a full press-and-hold (mouse, touch or keyboard), rewinds on early release, shows \"Hold to confirm\" when someone just clicks, and lets screen reader and switch users, who can't hold, confirm with a second press instead.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Destructive action fired by stray click",
+  "mistakes": ["accidental click deleted item", "user tapped delete by mistake", "need long press to confirm", "hold button to delete"],
+  "aliases": ["long press", "press and hold", "hold button", "delete button", "confirm button", "mobile tap", "destructive action"],
+  "flows": ["danger-zone"],
+  "fields": []
+}

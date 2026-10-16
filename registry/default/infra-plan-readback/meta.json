@@ -1,0 +1,10 @@
+{
+  "title": "Infra Plan Readback",
+  "description": "Stops a Terraform or OpenTofu apply from quietly destroying data by reading the `terraform show -json` plan back as create, update, replace and destroy counts, putting destroys and replacements of databases, buckets, volumes and keys first with the attribute that forces each replacement (before → after, sensitive values hidden), whether the old one goes before its replacement exists and what force_destroy or skip_final_snapshot will do, flagging production workspaces and a var.environment that says production when the workspace doesn't, and keeping Apply locked until each data loss is acknowledged and, in production, the workspace name is typed.",
+  "dependencies": ["lucide-react"],
+  "stops": "Production database destroyed by terraform apply",
+  "mistakes": ["terraform destroyed my database", "apply replaced rds instance", "force_destroy deleted bucket", "wrong workspace terraform apply"],
+  "aliases": ["terraform plan", "terraform apply", "opentofu", "iac", "infra", "aws rds", "s3 bucket", "devops", "prod workspace"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": ["code", "text"]
+}

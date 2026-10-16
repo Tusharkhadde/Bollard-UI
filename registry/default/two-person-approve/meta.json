@@ -1,0 +1,7 @@
+{"title": "Two-Person Approve", "description": "Enforces the two-person rule for high-risk actions: the requester can't approve their own request, approval is bound to a fingerprint of exactly what will run so an edited plan has to be re-reviewed, rejections need a reason, and expired requests can't be approved.", "dependencies": ["lucide-react"],
+  "stops": "Requester approved their own risky change",
+  "mistakes": ["self approval of request", "four eyes principle", "plan changed after approval", "maker checker"],
+  "aliases": ["maker checker", "four eyes", "approval flow", "two person rule", "approve request", "change management", "bank approval", "access request"],
+  "flows": ["devtools", "danger-zone"],
+  "fields": []
+}

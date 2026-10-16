@@ -1,0 +1,12 @@
+{
+  "title": "Type to Confirm",
+  "description": "Prevents deleting the wrong thing on reflex: a GitHub-style dialog that unlocks only after the exact phrase is typed, highlighting the matched characters and flagging a typo as it happens.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong repo deleted on reflex",
+  "mistakes": ["deleted wrong project", "type name to delete", "github delete repo confirm", "confirm by typing name"],
+  "aliases": ["type to confirm", "delete repository", "delete project", "github style", "confirmation dialog", "modal", "danger zone"],
+  "flows": ["danger-zone", "account-settings"],
+  "fields": ["text"]
+}

@@ -1,0 +1,7 @@
+{"title": "Two-Step Button", "description": "Prevents one-click destruction: the first click arms the button with a draining timer, a second deliberate click confirms, and accidental double-clicks, held keys, blur, Escape or the timeout all disarm it.", "dependencies": ["lucide-react"],
+  "stops": "One click deleted without confirmation",
+  "mistakes": ["double click deleted twice", "delete button no confirm", "click again to confirm", "accidental delete click"],
+  "aliases": ["confirm button", "click twice", "arm button", "inline confirm", "delete button", "are you sure", "destructive button"],
+  "flows": ["danger-zone"],
+  "fields": []
+}
