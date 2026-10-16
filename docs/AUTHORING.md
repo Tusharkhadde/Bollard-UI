@@ -2,7 +2,7 @@
 
 Bollard UI's theme: **components that stop users from making mistakes.** Every component should prevent a real, specific error (lost work, wrong amount, a typo'd email, acting in production, a double charge...). Each one needs a distinctive twist that common libraries (shadcn/ui, Magic UI, Aceternity, Origin UI) don't ship.
 
-Project root: /workspace/projects/7553d9b6-8e80-4611-90b0-60ce103b406f/bollard-ui (Next.js 16, React 19, Tailwind v4, TypeScript 5; node_modules is already installed).
+Stack: Next.js 16, React 19, Tailwind CSS v4, TypeScript 5. Run `npm install` once from the repo root. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full workflow.
 
 ## Files per component `<name>` (kebab-case)
 1. `registry/default/<name>/<name>.tsx`: the component. Named exports only, no default export.
@@ -27,9 +27,7 @@ Project root: /workspace/projects/7553d9b6-8e80-4611-90b0-60ce103b406f/bollard-u
 - Study the existing examples for style first: registry/default/hold-to-confirm/hold-to-confirm.tsx, registry/default/inline-edit/inline-edit.tsx, registry/default/secret-field/secret-field.tsx.
 
 ## Verify before you finish
-Run `npx tsc --noEmit --incremental false -p .` from the project root. Fix every error in YOUR files. Other agents are writing files at the same time, so ignore errors in files that aren't yours. Do not edit registry.json, app/, components/demos.tsx, or anyone else's files. Do not push to GitHub.
-
-Report back: each component name, a one-line pitch, and confirmation that tsc is clean for your files.
+Run `npm run generate` and then `npm run typecheck` from the repo root, and fix every error. Commit the regenerated `registry.json` and `components/demo-index.tsx` with your change. In your pull request, give each component's name, a one-line pitch and the mistake it stops.
 
 ## API conventions (every component follows these)
 - Root element gets `data-slot="<name>"` and accepts `className` (merged with `cn`) plus the rest of the native props of its main element via `...props`, unless that would be misleading.
@@ -40,8 +38,8 @@ Report back: each component name, a one-line pitch, and confirmation that tsc is
 - Every user-visible string that a product would want to change or translate is a prop with a sensible English default.
 
 ## Visual check in a real browser
-- `bash scripts/ensure-chromium.sh` (the sandbox can drop system packages, so run it before each check session).
-- Start your own dev server as a background shell job: `NEXT_DIST_DIR=.next-<you> timeout 1100 npx next dev -p <your port>`. Restart it if it stops.
+- Install a browser for Playwright once: `npx playwright install chromium` (or point `CHROMIUM_PATH` at an existing Chrome/Chromium).
+- Start the dev server: `npm run dev` (or `npx next dev -p <port>`).
 - `/preview/<name>` renders one demo alone (`?theme=dark` for dark mode). `node scripts/check.mjs <port> <name>...` screenshots it in light and dark to `.checks/` and prints runtime errors and overflow. `WIDTH=375` checks mobile. Open the PNGs with read_file and actually look at them.
-- For interactions, write small Playwright scripts in `.checks/` (import `chromium` from "playwright", `executablePath: "/usr/bin/chromium"`, `args: ["--no-sandbox"]`): type, paste, press keys, click, and assert the text that should appear. `.checks/` isn't committed.
-- If several agents are working at once, don't run `next dev` (it gets OOM-killed). Use `node scripts/static-preview.mjs <port> <name>...` as a background job instead: same /preview/<name> URLs and frame, much lighter. After editing files, `curl localhost:<port>/__rebuild`, then run check.mjs.
+- For interactions, write small Playwright scripts in `.checks/` (import `chromium` from "playwright", `executablePath: process.env.CHROMIUM_PATH` if you set one): type, paste, press keys, click, and assert the text that should appear. `.checks/` isn't committed.
+- On a low-memory machine, use `node scripts/static-preview.mjs <port> <name>...` as a background job instead: same /preview/<name> URLs and frame, much lighter. After editing files, `curl localhost:<port>/__rebuild`, then run check.mjs.

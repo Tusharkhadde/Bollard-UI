@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Generated files are up to date
+        run: |
+          npm run generate
+          git diff --exit-code -- registry.json components/demo-index.tsx || {
+            echo "::error::registry.json or components/demo-index.tsx is out of date. Run 'npm run generate' and commit the result."
+            exit 1
+          }
+
+      - name: Typecheck
+        run: npx tsc --noEmit --incremental false -p .
+
+      - name: Registry build
+        run: npx shadcn build
+
+      - name: Site build
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096

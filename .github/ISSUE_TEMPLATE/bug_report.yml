@@ -1,0 +1,60 @@
+name: Bug report
+description: A component or the docs site doesn't work as described.
+title: "[bug]: "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please search existing issues first. For security problems, use SECURITY.md instead of a public issue.
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: The component name as it appears in the registry (kebab-case), or "docs site".
+      placeholder: amount-input
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: The input, keys or clicks that trigger it, or a link to a minimal repo / StackBlitz.
+      placeholder: |
+        1. Type "24000" into the amount field
+        2. Press Tab
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Kind of problem
+      multiple: true
+      options:
+        - Wrong behaviour / logic
+        - Accessibility (keyboard, screen reader, contrast)
+        - Visual / layout (light, dark or mobile)
+        - TypeScript types or API
+        - Install (shadcn CLI / registry)
+        - SSR / hydration
+        - Performance
+        - Docs site
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and OS, plus React / Next.js / Tailwind versions if relevant.
+      placeholder: Chrome 140 on macOS, Next.js 16, React 19, Tailwind 4
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or logs
+      description: Console errors, screenshots or a screen recording help a lot.

@@ -2,8 +2,32 @@
   "name": "bollard-ui",
   "version": "0.1.0",
   "private": true,
-  "description": "Original, copy-paste React components installable with the shadcn CLI.",
+  "description": "React components that stop users from making mistakes. Copy-paste, installable with the shadcn CLI.",
   "license": "MIT",
+  "author": "Tushar Khadde (https://devtushar.tech)",
+  "homepage": "https://bollard-ui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tusharkhadde/Bollard-UI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tusharkhadde/Bollard-UI/issues"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "shadcn",
+    "shadcn-ui",
+    "tailwindcss",
+    "ui",
+    "form-validation",
+    "accessibility",
+    "typescript",
+    "nextjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
