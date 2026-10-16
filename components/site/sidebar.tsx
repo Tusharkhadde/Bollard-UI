@@ -3,23 +3,34 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronRight, LayoutGrid, ListFilter, X } from "lucide-react"
+import { ChevronRight, ListFilter, X } from "lucide-react"
 
 import { isFiltering, runFinder } from "@/lib/finder"
-import { fieldLabel, flowLabel } from "@/lib/kits"
+import { FLOWS, fieldLabel, flowHref, flowLabel } from "@/lib/kits"
 import { cn } from "@/lib/utils"
 import { useSite } from "./site-shell"
 
 const COLLAPSE_KEY = "bollard-ui-sidebar-collapsed"
 
+const groupLabel = "flex w-full items-center gap-1.5 px-2 pb-1.5 text-xs font-medium text-muted-foreground"
+const itemBase =
+  "flex min-w-0 items-center gap-2 rounded-md px-2 py-[5px] text-[13px] text-muted-foreground outline-none transition-colors hover:bg-accent/70 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+const itemActive = "bg-accent font-medium text-foreground"
+
+/**
+ * Docs sidebar, shadcn-style: a filter box (shares the /components query), a
+ * "Get started" group with the flows, then one group per category with counts.
+ * Categories collapse (remembered); the active page is highlighted and kept in view.
+ */
 export function Sidebar({ className, autoFocusFilter = false }: { className?: string; autoFocusFilter?: boolean }) {
   const { items, categories, finder, setFinder, clearFinder } = useSite()
   const pathname = usePathname()
+  const onIndex = pathname === "/components"
   const current = pathname.startsWith("/components/") ? pathname.slice("/components/".length) : null
   const filter = finder.q
   const setFilter = React.useCallback((q: string) => setFinder({ q }), [setFinder])
   const [collapsed, setCollapsed] = React.useState<string[]>([])
-  const scrollRef = React.useRef<HTMLDivElement>(null)
+  const scrollRef = React.useRef<HTMLElement>(null)
   const filterRef = React.useRef<HTMLInputElement>(null)
   const uid = React.useId()
 
@@ -54,6 +65,7 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
   const result = React.useMemo(() => runFinder(items, finder), [items, finder])
   const matches = React.useMemo(() => new Set(result.items.map((item) => item.name)), [result])
   const filtering = isFiltering(finder)
+  const flowCounts = React.useMemo(() => new Map(FLOWS.map((f) => [f.id, items.filter((i) => i.flows?.includes(f.id)).length])), [items])
   const facets = [
     finder.flow && { key: "flow", label: flowLabel(finder.flow) },
     finder.field && { key: "field", label: fieldLabel(finder.field) },
@@ -61,8 +73,8 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
   ].filter((f): f is { key: "flow" | "field" | "category"; label: string } => !!f)
 
   return (
-    <div className={cn("flex min-h-0 flex-col", className)}>
-      <div className="shrink-0 px-3 pt-4 pb-2">
+    <div className={cn("flex min-h-0 flex-col", className)} data-sidebar>
+      <div className="shrink-0 px-3 pt-5 pb-3">
         <label className="relative block">
           <span className="sr-only">Filter components</span>
           <ListFilter aria-hidden className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
@@ -71,9 +83,9 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
             value={filter}
             onChange={(event) => setFilter(event.target.value)}
             onKeyDown={(event) => event.key === "Escape" && setFilter("")}
-            placeholder="Filter: a mistake or a screen"
+            placeholder="Filter components…"
             data-sidebar-filter
-            className="h-8 w-full min-w-0 rounded-md border bg-transparent pr-7 pl-8 text-base shadow-xs outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 md:text-sm dark:bg-input/30"
+            className="h-8 w-full min-w-0 rounded-md border bg-surface pr-7 pl-8 text-base outline-none transition-colors placeholder:text-muted-foreground hover:border-border-strong focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30 md:text-[13px]"
           />
           {filter && (
             <button
@@ -97,59 +109,113 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
                 type="button"
                 onClick={() => setFinder({ [facet.key]: null })}
                 aria-label={`Remove filter ${facet.label}`}
-                className="inline-flex items-center gap-1 rounded-full border bg-accent px-2 py-0.5 text-[11px] text-foreground outline-none hover:bg-accent/70 focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                className="inline-flex h-6 items-center gap-1 rounded-md border bg-background px-2 text-[11px] text-foreground outline-none transition-colors hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
               >
                 {facet.label}
-                <X aria-hidden className="size-3" />
+                <X aria-hidden className="size-3 text-muted-foreground" />
               </button>
             ))}
           </div>
         )}
         {filtering && (
-          <p className="mt-1.5 flex items-center gap-2 px-0.5 text-xs text-muted-foreground" aria-live="polite">
-            <span>{result.fallback ? `No exact match · ${matches.size} closest` : `${matches.size} of ${items.length} components`}</span>
-            <button type="button" onClick={clearFinder} className="ml-auto font-medium text-foreground underline-offset-2 hover:underline">
+          <p className="mt-2 flex items-center gap-2 px-0.5 text-xs text-muted-foreground" aria-live="polite">
+            <span className="tabular-nums">{result.fallback ? `No exact match · ${matches.size} closest` : `${matches.size} of ${items.length}`}</span>
+            <button type="button" onClick={clearFinder} className="ml-auto rounded-sm font-medium text-foreground underline-offset-2 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50">
               Clear
             </button>
           </p>
         )}
       </div>
-      <nav ref={scrollRef} aria-label="Components" className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-6">
-        <Link
-          href="/components"
-          aria-current={pathname === "/components" ? "page" : undefined}
-          className={cn(
-            "mb-2 flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-            pathname === "/components" && "bg-accent font-medium text-foreground",
-          )}
-        >
-          <LayoutGrid className="size-3.5" aria-hidden />
-          All components
-          <span className="ml-auto text-xs tabular-nums">{items.length}</span>
-        </Link>
+
+      <nav
+        ref={scrollRef}
+        aria-label="Components"
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-10 [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin]"
+      >
+        {!filtering && (
+          <div className="mb-6">
+            <p className={groupLabel}>Get started</p>
+            <ul className="space-y-px">
+              <li>
+                <Link
+                  href="/components"
+                  onClick={() => onIndex && clearFinder()}
+                  aria-current={onIndex && !finder.flow ? "page" : undefined} className={cn(itemBase, onIndex && !finder.flow && itemActive)}>
+                  <span className="min-w-0 flex-1 truncate">All components</span>
+                  <span className="text-[11px] tabular-nums text-muted-foreground">{items.length}</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className={itemBase}>
+                  <span className="min-w-0 flex-1 truncate">Introduction</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        {!filtering && (
+          <div className="mb-6" data-sidebar-flows>
+            <p className={groupLabel}>Browse by flow</p>
+            <ul className="space-y-px">
+              {FLOWS.map((flow) => {
+                const active = onIndex && finder.flow === flow.id
+                const inner = (
+                  <>
+                    <span className="min-w-0 flex-1 truncate">{flow.label}</span>
+                    <span className="text-[11px] tabular-nums text-muted-foreground">{flowCounts.get(flow.id)}</span>
+                  </>
+                )
+                return (
+                  <li key={flow.id}>
+                    {onIndex ? (
+                      <button
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => {
+                          setFinder({ flow: active ? null : flow.id, q: "", field: null, category: null })
+                          window.scrollTo({ top: 0 })
+                        }}
+                        className={cn(itemBase, "w-full text-left", active && itemActive)}
+                      >
+                        {inner}
+                      </button>
+                    ) : (
+                      <Link href={flowHref(flow.id)} className={itemBase}>
+                        {inner}
+                      </Link>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
+
         {categories.map((category) => {
           const list = items.filter((item) => item.category === category.name && matches.has(item.name))
           if (filtering && list.length === 0) return null
           const open = filtering || !collapsed.includes(category.name)
           const id = `${uid}-${category.slug}`
           return (
-            <div key={category.name} className="mb-1" data-sidebar-category={category.slug}>
+            <div key={category.name} className="mb-5" data-sidebar-category={category.slug}>
               <button
                 type="button"
                 aria-expanded={open}
                 aria-controls={id}
                 onClick={() => toggle(category.name)}
                 disabled={filtering}
-                className="group flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-left text-[13px] font-semibold text-foreground outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:hover:bg-transparent"
+                className={cn(groupLabel, "group rounded-md py-1 text-left outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:hover:text-muted-foreground")}
               >
-                <ChevronRight className={cn("size-3.5 shrink-0 transition-transform motion-reduce:transition-none", open && "rotate-90")} aria-hidden />
                 <span className="min-w-0 flex-1 truncate">{category.name}</span>
-                <span className="rounded-full bg-muted px-1.5 text-[10px] font-medium tabular-nums text-muted-foreground">
-                  {filtering ? `${list.length}/${category.count}` : category.count}
-                </span>
+                <span className="text-[11px] font-normal tabular-nums">{filtering ? `${list.length}/${category.count}` : category.count}</span>
+                <ChevronRight
+                  className={cn("size-3.5 shrink-0 opacity-60 transition-transform motion-reduce:transition-none", open && "rotate-90", filtering && "hidden")}
+                  aria-hidden
+                />
               </button>
               {open && (
-                <ul id={id} className="mt-0.5 mb-2 ml-3.5 border-l pl-2">
+                <ul id={id} className="space-y-px">
                   {list.map((item) => {
                     const active = item.name === current
                     return (
@@ -157,12 +223,9 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
                         <Link
                           href={`/components/${item.name}`}
                           aria-current={active ? "page" : undefined}
-                          className={cn(
-                            "-ml-[9px] block truncate border-l border-transparent py-1 pr-2 pl-[17px] text-sm text-muted-foreground outline-none transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                            active && "border-foreground font-medium text-foreground hover:border-foreground",
-                          )}
+                          className={cn(itemBase, active && itemActive)}
                         >
-                          {item.title}
+                          <span className="min-w-0 flex-1 truncate">{item.title}</span>
                         </Link>
                       </li>
                     )

@@ -53,6 +53,8 @@ export function SiteShell({
 
   // Close the drawer on navigation.
   React.useEffect(() => setDrawer(false), [pathname])
+  // …and when a flow or category is picked from the drawer's sidebar on /components (same path, new filter).
+  React.useEffect(() => setDrawer(false), [finder.flow, finder.category])
 
   // On /components the URL is the source of truth: read it on arrival and on back/forward.
   React.useEffect(() => {
