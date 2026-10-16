@@ -1,0 +1,33 @@
+{
+  "title": "Webhook URL Input",
+  "description": "Stops a webhook from being pointed somewhere events can't arrive by judging the URL for the environment it's saved to (an ngrok, tunnel, localhost or private-IP URL is an error in production but a hint in test mode, a staging host is flagged, plain http and a missing path get a fix) and diffing it against the last saved URL, warning when only a www or trailing slash changed because senders treat the resulting redirect as a failure, with a one-tap revert.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Webhooks pointed at localhost",
+  "mistakes": [
+    "ngrok webhook in production",
+    "webhook url redirect",
+    "webhook not receiving",
+    "localhost webhook",
+    "stripe webhook url wrong"
+  ],
+  "aliases": [
+    "webhook url",
+    "endpoint url",
+    "callback",
+    "ngrok",
+    "stripe webhooks",
+    "razorpay webhook",
+    "dodo payments",
+    "integrations",
+    "settings"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings"
+  ],
+  "fields": [
+    "url"
+  ]
+}

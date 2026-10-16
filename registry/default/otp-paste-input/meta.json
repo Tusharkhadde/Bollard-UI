@@ -1,0 +1,33 @@
+{
+  "title": "OTP Paste Input",
+  "description": "Prevents failed verifications by pulling the right one-time code out of a whole pasted SMS or email while ignoring phone numbers, amounts and order numbers, and accepting digits typed or pasted in any script (full-width, Devanagari, Arabic-Indic).",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "OTP verification fails on paste",
+  "mistakes": [
+    "paste sms otp",
+    "otp input paste whole message",
+    "verification code wrong",
+    "otp autofill",
+    "devanagari digits otp"
+  ],
+  "aliases": [
+    "otp",
+    "one-time code",
+    "verification code",
+    "sms code",
+    "2fa",
+    "pin input",
+    "login",
+    "mobile verification",
+    "autofill"
+  ],
+  "flows": [
+    "signup-login",
+    "india"
+  ],
+  "fields": [
+    "code"
+  ]
+}

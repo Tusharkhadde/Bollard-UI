@@ -1,0 +1,34 @@
+{
+  "title": "Invoice Number Check",
+  "description": "Keeps GST invoice numbers legal under CGST Rule 46(b) by counting to 16, naming the character that isn't a letter, digit, - or /, catching a number already used this financial year even in different capitals (as GST portals compare them), a stale year token, a skipped or reused counter and gaps in the series, and offering the next number with a fresh series from 1 April.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "GST invoice number rejected",
+  "mistakes": [
+    "gst invoice number format",
+    "invoice number 16 characters",
+    "duplicate invoice number",
+    "invoice series financial year",
+    "rule 46 invoice"
+  ],
+  "aliases": [
+    "invoice number",
+    "gst invoice",
+    "bill number",
+    "cgst rule 46",
+    "e-invoice",
+    "billing",
+    "invoice series",
+    "financial year",
+    "tally"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "id-number",
+    "text"
+  ]
+}

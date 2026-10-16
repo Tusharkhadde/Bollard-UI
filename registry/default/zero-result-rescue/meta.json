@@ -1,0 +1,32 @@
+{
+  "title": "Zero Result Rescue",
+  "description": "Prevents users giving up on an empty search by explaining what got in the way and offering only fixes proven to return results: a did-you-mean from your own vocabulary, the query retyped in the right keyboard layout or without Caps Lock, dropping the filter that hides everything, or searching all categories, each with its result count, counted in memory or by async count-only API calls.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Users quit on empty search results",
+  "mistakes": [
+    "no results found search",
+    "search empty state",
+    "did you mean search",
+    "filters hide all results",
+    "wrong keyboard layout search"
+  ],
+  "aliases": [
+    "no results",
+    "empty state",
+    "search",
+    "did you mean",
+    "zero results",
+    "filters",
+    "search page",
+    "ecommerce search"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "text"
+  ]
+}

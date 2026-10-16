@@ -1,0 +1,33 @@
+{
+  "title": "AI Paste Guard",
+  "description": "Stops hidden prompt injections riding in on a paste: it reads the HTML clipboard data pasted into an AI prompt box, holds the paste when it carries text the person couldn't see (white or same-colour text, zero-size or transparent text, display:none, off-screen and clipped elements, HTML comments, alt or title text with instructions, Unicode tag-character payloads decoded back to ASCII) while ignoring the clipboard's own StartFragment and Word markers, framework comments (WordPress, React, Vue, Angular), gradient text, screen-reader-only labels and light text copied from dark-mode pages (inferred when most of the paste is light, so white-on-white injections still show), shows each passage with injection phrasing marked and whether it would reach a plain-text box, and pastes only the visible text in one tap with an undo.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Hidden prompt injection in a paste",
+  "mistakes": [
+    "prompt injection hidden text",
+    "white text in pasted content",
+    "llm prompt injection paste",
+    "invisible instructions chatbot",
+    "unicode tag characters"
+  ],
+  "aliases": [
+    "prompt injection",
+    "ai chat",
+    "chatbot input",
+    "llm",
+    "prompt box",
+    "clipboard",
+    "paste",
+    "ai safety",
+    "chat composer"
+  ],
+  "flows": [
+    "messaging",
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
+}

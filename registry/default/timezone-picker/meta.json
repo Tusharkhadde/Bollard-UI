@@ -1,0 +1,39 @@
+{
+  "title": "Timezone Picker",
+  "description": "Prevents scheduling in the wrong zone: search by city, country or abbreviation, with ambiguous ones like IST or PST listing every meaning instead of guessing, each result showing local time and UTC offset, plus warnings for a clock change in the coming weeks and a zone that differs from the device's.",
+  "dependencies": [
+    "@date-fns/tz",
+    "@floating-ui/react",
+    "lucide-react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "timezone-mismatch"
+  ],
+  "stops": "Meeting scheduled in the wrong zone",
+  "mistakes": [
+    "ist ambiguous timezone",
+    "timezone select search",
+    "wrong timezone meeting",
+    "dst change timezone",
+    "utc offset picker"
+  ],
+  "aliases": [
+    "timezone",
+    "time zone",
+    "ist",
+    "utc offset",
+    "tz select",
+    "iana",
+    "calendar",
+    "settings",
+    "scheduling"
+  ],
+  "flows": [
+    "scheduling",
+    "account-settings"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

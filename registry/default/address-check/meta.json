@@ -1,0 +1,33 @@
+{
+  "title": "Address Check",
+  "description": "Prevents returned parcels by catching a missing flat or house number, a postcode that doesn't fit the country (or fits another one), a city the postcode lookup places elsewhere, and PO boxes couriers can't reach, with one-tap fixes and a live readback of the printed label.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Parcel returned for bad address",
+  "mistakes": [
+    "missing flat number address",
+    "postcode wrong country",
+    "po box courier",
+    "address validation",
+    "shipping address error"
+  ],
+  "aliases": [
+    "address",
+    "shipping address",
+    "delivery address",
+    "postcode",
+    "zip",
+    "checkout",
+    "address form",
+    "house number",
+    "billing address"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "address"
+  ]
+}

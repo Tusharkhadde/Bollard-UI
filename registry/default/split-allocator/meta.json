@@ -1,0 +1,34 @@
+{
+  "title": "Split Allocator",
+  "description": "Prevents splits that add up to 99%, 101% or leave someone on 0 by showing what's left as you type, giving the rest to any row in one tap, and rounding every automatic split with largest remainder so it sums to the total exactly.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Split adds up to 101%",
+  "mistakes": [
+    "percentages dont add to 100",
+    "split bill rounding",
+    "allocation total mismatch",
+    "revenue split percent",
+    "share split"
+  ],
+  "aliases": [
+    "split",
+    "allocation",
+    "split bill",
+    "percentages",
+    "splitwise",
+    "revenue share",
+    "budget allocation",
+    "rounding",
+    "equity"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

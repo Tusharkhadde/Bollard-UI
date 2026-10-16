@@ -1,0 +1,32 @@
+{
+  "title": "Boolean Query Input",
+  "description": "Prevents boolean searches that quietly return the wrong people by showing how the engine will group AND and OR (with the brackets it implies highlighted) and offering the grouping you meant, and by catching unclosed quotes and brackets, curly quotes, [ ] used as brackets, lowercase and/or searched as words and dangling operators, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Boolean search returns the wrong people",
+  "mistakes": [
+    "boolean search and or grouping",
+    "unclosed quote search",
+    "recruiter boolean string",
+    "brackets in boolean query",
+    "linkedin boolean search"
+  ],
+  "aliases": [
+    "boolean search",
+    "search query",
+    "and or not",
+    "recruiter search",
+    "advanced search",
+    "naukri",
+    "linkedin",
+    "sourcing",
+    "filter"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

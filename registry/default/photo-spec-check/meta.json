@@ -1,0 +1,34 @@
+{
+  "title": "Photo Spec Check",
+  "description": "Stops exam, passport and visa photos being rejected after upload by checking them against the portal's rules (UPSC, SSC, NTA, NEET and US visa presets, or your own): the real file type behind the name, KB, pixels, shape, print size, over-compression, face size and centring when a face box is passed, a background that isn't white and black-and-white photos, with a one-tap canvas fix that crops around the face, resizes and re-encodes into the KB window.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Exam photo rejected after upload",
+  "mistakes": [
+    "photo size kb exam form",
+    "passport photo rejected",
+    "image dimensions wrong upload",
+    "background not white photo",
+    "resize photo under 50kb"
+  ],
+  "aliases": [
+    "photo upload",
+    "upsc",
+    "ssc",
+    "neet",
+    "nta",
+    "passport photo",
+    "visa photo",
+    "image resize",
+    "compress jpg",
+    "signature upload"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

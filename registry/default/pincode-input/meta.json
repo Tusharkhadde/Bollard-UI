@@ -1,0 +1,34 @@
+{
+  "title": "PIN Code Input",
+  "description": "Prevents parcels going to the wrong place by reading the state from an Indian PIN's first digits as you type (offline) and flagging a mismatch with the picked state, catching O typed for 0, wrong lengths, unused prefixes, Army Post codes and ZIP or UK postcodes typed for India, then reading the area back from a pluggable lookup and checking the city, with one-tap fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Parcel sent to the wrong state",
+  "mistakes": [
+    "pincode state mismatch",
+    "invalid pin code",
+    "pincode validation india",
+    "6 digit pincode",
+    "zip code india"
+  ],
+  "aliases": [
+    "pincode",
+    "pin code",
+    "postal code",
+    "zip",
+    "india post",
+    "shipping address",
+    "checkout",
+    "delivery",
+    "state"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "address",
+    "number"
+  ]
+}

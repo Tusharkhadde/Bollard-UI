@@ -1,0 +1,32 @@
+{
+  "title": "Replace Preview",
+  "description": "Stops replace-all from mangling text (\"cat\" → \"dog\" turning \"category\" into \"dogegory\") by previewing every match in context with a count, naming the matches that sit inside longer words with a one-tap whole-word fix, preserving case, letting you skip single matches and undo the replace.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Replace-all mangles other words",
+  "mistakes": [
+    "find replace whole word",
+    "replace all broke text",
+    "replace inside words",
+    "find and replace preview",
+    "case preserving replace"
+  ],
+  "aliases": [
+    "find and replace",
+    "replace all",
+    "search replace",
+    "bulk rename",
+    "editor",
+    "whole word",
+    "preview changes",
+    "text tool"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Wrong Layout Input",
+  "description": "Catches text typed with the wrong keyboard layout (\"ghbdtn\" meant \"привет\", \"руддщ\" meant \"hello\", plus Hebrew, Greek and Hindi InScript) by scoring it against letter-pair models of each language and spellings no real word has, then offers the retyped text as a one-tap fix with undo, leaving names, acronyms, links and code alone.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Text typed in the wrong keyboard layout",
+  "mistakes": [
+    "wrong keyboard layout typing",
+    "ghbdtn privet",
+    "hindi inscript layout",
+    "typed in russian by mistake",
+    "keyboard switch gibberish"
+  ],
+  "aliases": [
+    "keyboard layout",
+    "wrong layout",
+    "transliteration",
+    "hindi inscript",
+    "russian",
+    "search box",
+    "punto switcher",
+    "language switch"
+  ],
+  "flows": [
+    "forms",
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

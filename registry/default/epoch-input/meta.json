@@ -1,0 +1,36 @@
+{
+  "title": "Epoch Input",
+  "description": "Stops a timestamp field storing the wrong moment by reading the value back as a date in the user's zone and in UTC, and catching milliseconds pasted where seconds belong (year 57,754), microseconds and nanoseconds, Excel serials, Windows FILETIME and .NET ticks, ISO strings with no time zone that JavaScript reads as local time and servers as UTC, date-only strings read as UTC midnight, impossible dates like 30 February, years and compact dates (2026, 20261014) that silently read as 1970, and values past the 2038 limit of 32-bit time, each with a one-tap conversion and copy-as seconds, milliseconds or ISO.",
+  "dependencies": [
+    "@date-fns/tz",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Timestamp saved as year 57754",
+  "mistakes": [
+    "milliseconds vs seconds timestamp",
+    "unix time shows 1970",
+    "epoch converter wrong date",
+    "iso date timezone missing",
+    "2038 problem"
+  ],
+  "aliases": [
+    "unix timestamp",
+    "epoch",
+    "epoch converter",
+    "milliseconds",
+    "iso 8601",
+    "utc",
+    "date-fns",
+    "created_at",
+    "unix time"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "datetime",
+    "number"
+  ]
+}

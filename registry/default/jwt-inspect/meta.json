@@ -1,0 +1,33 @@
+{
+  "title": "JWT Inspect",
+  "description": "Stops live tokens being pasted into online decoders by decoding on the page only, and flags alg none, HS-vs-RS key confusion, an expired token or a future nbf shown in the reader's own time zone, millisecond timestamps, a missing aud or iss, a very long lifetime and secrets or personal data readable in the payload.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Live token pasted into jwt.io",
+  "mistakes": [
+    "jwt decode online unsafe",
+    "jwt expired token",
+    "alg none jwt",
+    "jwt exp milliseconds",
+    "secrets in jwt payload"
+  ],
+  "aliases": [
+    "jwt",
+    "jwt decoder",
+    "jwt.io",
+    "bearer token",
+    "access token",
+    "id token",
+    "claims",
+    "exp",
+    "auth"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

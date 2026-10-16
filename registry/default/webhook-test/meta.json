@@ -1,0 +1,33 @@
+{
+  "title": "Webhook Test",
+  "description": "Stops a webhook from being saved to a URL the sender can't deliver to, by flagging localhost and private IPs, plain http, a missing path and tunnel URLs, then judging a pluggable test delivery the way the sender will: redirects fail (with a one-tap switch to the final URL), slow replies near the timeout and 200 login pages are caught.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Webhook saved to an unreachable URL",
+  "mistakes": [
+    "test webhook delivery",
+    "webhook redirect fails",
+    "webhook timeout",
+    "webhook returns login page",
+    "localhost webhook"
+  ],
+  "aliases": [
+    "webhook",
+    "test webhook",
+    "send test event",
+    "endpoint",
+    "integrations",
+    "stripe",
+    "dodo payments",
+    "razorpay",
+    "callback url"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings"
+  ],
+  "fields": [
+    "url"
+  ]
+}

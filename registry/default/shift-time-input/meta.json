@@ -1,0 +1,35 @@
+{
+  "title": "Shift Time Input",
+  "description": "Prevents wrong timesheets and rosters by reading 22:00–06:00 as an 8 h shift that ends the next day, asking whether 9:00–5:00 meant 5 PM (and whether 10–6 is a day or a night shift) instead of logging 20 h, questioning 0 h, over-long and 26:00-style entries, and deducting the break while catching one typed in hours, and, given the day and time zone, counts the real hours when the clocks change mid-shift (a 22:00–06:00 night is 9 h when they fall back).",
+  "dependencies": [
+    "lucide-react",
+    "@date-fns/tz",
+    "@number-flow/react"
+  ],
+  "stops": "Night shift logged as 20 hours",
+  "mistakes": [
+    "overnight shift hours",
+    "shift time am pm",
+    "night shift calculation",
+    "break deduction hours",
+    "roster time wrong"
+  ],
+  "aliases": [
+    "shift",
+    "roster",
+    "timesheet",
+    "attendance",
+    "night shift",
+    "clock in clock out",
+    "rota",
+    "hours worked",
+    "payroll"
+  ],
+  "flows": [
+    "scheduling",
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

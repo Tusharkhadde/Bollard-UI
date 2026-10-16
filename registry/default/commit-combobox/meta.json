@@ -1,0 +1,34 @@
+{
+  "title": "Commit Combobox",
+  "description": "Stops a pick-from-list field saving text the user only typed, or a stale pick they typed over: unpicked text is matched on blur (an exact match is picked, a misspelling gets a one-tap Did you mean, two same-named options ask which), editing after a pick visibly drops it with Undo or Esc, and the stored option is always read back.",
+  "dependencies": [
+    "lucide-react",
+    "@floating-ui/react",
+    "motion"
+  ],
+  "stops": "Typed text saved instead of a pick",
+  "mistakes": [
+    "combobox free text saved",
+    "autocomplete not selected",
+    "select typed value",
+    "combobox blur",
+    "stale selection autocomplete"
+  ],
+  "aliases": [
+    "combobox",
+    "autocomplete",
+    "typeahead",
+    "select",
+    "searchable dropdown",
+    "city picker",
+    "react select",
+    "cmdk",
+    "headless ui"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

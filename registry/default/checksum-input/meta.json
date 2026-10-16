@@ -1,0 +1,34 @@
+{
+  "title": "Checksum Input",
+  "description": "Prevents payments and orders going to a mistyped IBAN, card, ISBN or IFSC by checking mod-97, Luhn and ISBN check digits and country lengths as you type, then highlighting the one swapped or doubled character that explains a failure instead of guessing a digit.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Money sent to a mistyped account",
+  "mistakes": [
+    "iban validation",
+    "luhn check card number",
+    "isbn check digit",
+    "ifsc validation",
+    "account number typo"
+  ],
+  "aliases": [
+    "iban",
+    "card number",
+    "luhn",
+    "isbn",
+    "ifsc",
+    "mod 97",
+    "check digit",
+    "bank details",
+    "payment"
+  ],
+  "flows": [
+    "checkout",
+    "forms",
+    "india"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

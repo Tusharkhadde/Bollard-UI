@@ -1,0 +1,31 @@
+{
+  "title": "Password Input",
+  "description": "Prevents 'wrong password' lockouts that were really Caps Lock, a non-Latin keyboard layout or a pasted trailing space, by warning about each one as it happens.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Lockout caused by Caps Lock",
+  "mistakes": [
+    "caps lock warning password",
+    "wrong password trailing space",
+    "keyboard layout password",
+    "show hide password",
+    "login fails caps lock"
+  ],
+  "aliases": [
+    "password",
+    "login",
+    "sign in",
+    "caps lock",
+    "show password",
+    "password field",
+    "auth form",
+    "signup"
+  ],
+  "flows": [
+    "signup-login"
+  ],
+  "fields": [
+    "secret"
+  ]
+}

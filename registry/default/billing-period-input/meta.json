@@ -1,0 +1,33 @@
+{
+  "title": "Billing Period Input",
+  "description": "Prevents mispriced plans by reading a recurring price back in every period (₹499/month = ₹5,988/year) and, against a reference price, catching a yearly price typed into the monthly field, a team total entered per seat and other implausible jumps, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Yearly price typed into monthly plan",
+  "mistakes": [
+    "monthly vs yearly price",
+    "per seat price wrong",
+    "pricing plan typo",
+    "annual price input",
+    "subscription price"
+  ],
+  "aliases": [
+    "pricing",
+    "plan",
+    "subscription",
+    "billing period",
+    "monthly yearly",
+    "per seat",
+    "dodo payments",
+    "stripe price",
+    "saas"
+  ],
+  "flows": [
+    "checkout",
+    "account-settings"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

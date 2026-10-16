@@ -1,0 +1,33 @@
+{
+  "title": "List Paste",
+  "description": "Prevents importing or inviting a messy pasted list by splitting it on lines, commas, semicolons and tabs (keeping \"Shah, Priya\" <…> whole), counting valid, duplicate and invalid items with the line and reason for each, and removing the bad ones in one undoable tap, with a pluggable validator.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Messy pasted list imported",
+  "mistakes": [
+    "paste list of emails",
+    "bulk invite invalid emails",
+    "split comma separated list",
+    "duplicate emails in list",
+    "invite team members paste"
+  ],
+  "aliases": [
+    "bulk invite",
+    "paste emails",
+    "invite members",
+    "list import",
+    "csv paste",
+    "comma separated",
+    "team invite",
+    "recipients"
+  ],
+  "flows": [
+    "forms",
+    "account-settings"
+  ],
+  "fields": [
+    "email",
+    "text"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Dimension Input",
+  "description": "Prevents wrong sizes on listings, shipments and orders by labelling each side, filling all three from a pasted \"16 x 12 x 8 in\", and checking them against what is being measured to catch the wrong unit, a side with an extra digit and sides entered in the wrong order, then reading the size back in metric and imperial with volume and courier volumetric weight.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong package size ships",
+  "mistakes": [
+    "length width height wrong unit",
+    "volumetric weight calculator",
+    "parcel dimensions typo",
+    "dimensions cm vs inch",
+    "lxwxh input"
+  ],
+  "aliases": [
+    "dimensions",
+    "lxwxh",
+    "length width height",
+    "package size",
+    "shipping",
+    "volumetric weight",
+    "shiprocket",
+    "listing",
+    "courier"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "number"
+  ]
+}

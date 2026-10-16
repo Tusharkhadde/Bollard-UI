@@ -1,0 +1,37 @@
+{
+  "title": "Amount Input",
+  "description": "Prevents paying ten times too much (or too little) by grouping digits live (lakh/crore aware), spelling the amount out like a cheque, and flagging an extra or missing zero against the usual amount with a one-tap fix.",
+  "dependencies": [
+    "@number-flow/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Extra zero on a transfer",
+  "mistakes": [
+    "extra zero payment",
+    "amount in words",
+    "lakh crore formatting",
+    "money input formatting",
+    "paid ten times"
+  ],
+  "aliases": [
+    "amount",
+    "money input",
+    "currency",
+    "rupees",
+    "₹",
+    "lakh crore",
+    "transfer",
+    "send money",
+    "payment",
+    "upi"
+  ],
+  "flows": [
+    "checkout",
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

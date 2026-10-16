@@ -1,0 +1,32 @@
+{
+  "title": "Glob Input",
+  "description": "Prevents config globs that silently miss or swallow files by running the pattern live against the real file list, flagging no-match and match-everything patterns, the * vs ** mix-up that skips subfolders, ** glued to a name, ./ and backslashes, with one-tap fixes and a dependency-free matcher.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Config glob silently misses files",
+  "mistakes": [
+    "glob pattern not matching",
+    "star vs double star",
+    "gitignore pattern",
+    "glob subfolders",
+    "tsconfig include glob"
+  ],
+  "aliases": [
+    "glob",
+    "file pattern",
+    "gitignore",
+    "include exclude",
+    "tsconfig",
+    "eslint",
+    "ci paths",
+    "wildcard",
+    "minimatch"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

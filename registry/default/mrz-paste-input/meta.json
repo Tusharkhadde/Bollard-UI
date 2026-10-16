@@ -1,0 +1,35 @@
+{
+  "title": "MRZ Paste Input",
+  "description": "Stops misread passport details reaching a booking or KYC form by validating a pasted or typed passport MRZ (ICAO 9303 TD3) check digit by check digit, catching OCR slips like O for 0 and K for <, swapped lines, CRLF and stray spaces, proposing the likeliest fix for a wrong check digit (cross-checked against the composite digit) and flagging an expired or soon-expiring passport, then filling in name, number, nationality, dates and sex.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Passport details misread at booking",
+  "mistakes": [
+    "passport mrz check digit",
+    "ocr passport wrong number",
+    "passport expiry check",
+    "mrz parse error",
+    "passport details typo"
+  ],
+  "aliases": [
+    "passport",
+    "mrz",
+    "icao 9303",
+    "td3",
+    "passport scan",
+    "kyc",
+    "flight booking",
+    "visa form",
+    "ocr"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "id-number",
+    "name",
+    "datetime"
+  ]
+}

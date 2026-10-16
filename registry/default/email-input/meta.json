@@ -1,0 +1,35 @@
+{
+  "title": "Email Input",
+  "description": "Prevents bounced sign-ups from typo'd addresses by spotting misspelled domains like gmial.con or rediffmial.com with Damerau-Levenshtein matching and offering a one-tap, never automatic, fix, and offers matching providers while the domain is still being typed so the typo never happens.",
+  "dependencies": [
+    "@floating-ui/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Signup lost to gmial.con typo",
+  "mistakes": [
+    "email typo gmail",
+    "bounced signup emails",
+    "email domain suggestion",
+    "mailcheck alternative",
+    "rediffmail typo"
+  ],
+  "aliases": [
+    "email",
+    "email field",
+    "signup",
+    "newsletter",
+    "mailcheck",
+    "domain suggestion",
+    "login",
+    "register",
+    "react hook form"
+  ],
+  "flows": [
+    "signup-login",
+    "forms"
+  ],
+  "fields": [
+    "email"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Quantity Stepper",
+  "description": "Prevents accidental bulk orders by clamping to min, max and stock with an explanation, holding big typed jumps for a \"Did you mean 10?\" confirmation, ignoring the scroll wheel and accelerating on long-press.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Accidental bulk order",
+  "mistakes": [
+    "quantity typo 100 instead of 10",
+    "scroll changes number input",
+    "quantity exceeds stock",
+    "plus minus stepper",
+    "max quantity cart"
+  ],
+  "aliases": [
+    "quantity",
+    "stepper",
+    "qty",
+    "add to cart",
+    "cart",
+    "plus minus",
+    "number input",
+    "stock",
+    "checkout"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "number"
+  ]
+}

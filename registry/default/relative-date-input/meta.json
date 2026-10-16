@@ -1,0 +1,35 @@
+{
+  "title": "Relative Date Input",
+  "description": "Stops a date typed the way people say it from landing on the wrong day: \"next Fri\", \"in 2 weeks\", \"the 15th\" and \"23 Oct\" are read with date-fns against today, and phrases that split listeners (\"next Friday\" on a Wednesday, \"this Monday\" after Monday, \"the 10th\" once it has passed, \"next weekend\" early in the week) show both dates and wait for a pick, with a read-back and a one-tap rewrite to the unambiguous date.",
+  "dependencies": [
+    "lucide-react",
+    "date-fns",
+    "motion"
+  ],
+  "stops": "Next Friday lands on the wrong day",
+  "mistakes": [
+    "next friday ambiguous",
+    "natural language date",
+    "relative date parse",
+    "in 2 weeks date",
+    "this monday which date"
+  ],
+  "aliases": [
+    "natural language date",
+    "relative date",
+    "next friday",
+    "due date",
+    "chrono",
+    "date-fns",
+    "reminder",
+    "task due",
+    "smart date"
+  ],
+  "flows": [
+    "scheduling",
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

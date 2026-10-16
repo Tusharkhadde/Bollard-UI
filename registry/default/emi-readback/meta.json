@@ -1,0 +1,36 @@
+{
+  "title": "EMI Readback",
+  "description": "Stops a borrower signing for the wrong loan by reading back EMI, total interest, processing fee with GST, other upfront charges, what actually reaches the account and the real yearly cost (APR, computed the way RBI's Key Facts Statement does), catching tenure typed in months when years were meant (and the reverse), a monthly rate typed as yearly, a flat rate that hides a far higher reducing rate and fees that eat the loan, each with the EMI both ways and a one-tap fix, plus what a prepayment saves.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Signed for a loan costing more",
+  "mistakes": [
+    "emi calculator wrong tenure",
+    "flat rate vs reducing rate",
+    "processing fee gst loan",
+    "loan apr hidden charges",
+    "months typed as years"
+  ],
+  "aliases": [
+    "emi",
+    "loan",
+    "emi calculator",
+    "apr",
+    "key facts statement",
+    "personal loan",
+    "home loan",
+    "processing fee",
+    "nbfc",
+    "rbi"
+  ],
+  "flows": [
+    "india",
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

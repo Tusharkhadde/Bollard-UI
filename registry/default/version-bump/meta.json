@@ -1,0 +1,32 @@
+{
+  "title": "Version Bump",
+  "description": "Stops breaking changes shipping as a minor or patch that every ^range installs automatically by reading the changes (Conventional Commits or tagged), marking the bump they need, previewing each option's version, warning when the pick is too small (or a needless major), and reading back \"1.4.2 → 2.0.0\" with who gets it, while handling 0.x's shifted breaking slot, pre-release tags that drop on release, and tags that sort backwards (2.0.0-beta.0 < 2.0.0-rc.1).",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Breaking change shipped as a minor",
+  "mistakes": [
+    "semver major minor patch",
+    "breaking change minor release",
+    "conventional commits version",
+    "npm version bump",
+    "pre-release version order"
+  ],
+  "aliases": [
+    "semver",
+    "version bump",
+    "release",
+    "changelog",
+    "conventional commits",
+    "npm publish",
+    "changesets",
+    "major minor patch",
+    "tag"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

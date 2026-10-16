@@ -1,0 +1,34 @@
+{
+  "title": "Schedule Readback",
+  "description": "Prevents shipping a cron job that fires at the wrong time by reading the expression back in plain English, listing the next runs in your own time zone beside the server's, and catching classics like every-minute stars, day-of-month OR day-of-week, the 31st skipping months and 30 February, with one-tap fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Cron job fires at the wrong time",
+  "mistakes": [
+    "cron expression wrong time",
+    "cron every minute mistake",
+    "cron timezone server",
+    "crontab explain",
+    "cron day of week or month"
+  ],
+  "aliases": [
+    "cron",
+    "crontab",
+    "cron expression",
+    "scheduler",
+    "job schedule",
+    "github actions schedule",
+    "vercel cron",
+    "utc",
+    "next run"
+  ],
+  "flows": [
+    "devtools",
+    "scheduling"
+  ],
+  "fields": [
+    "code",
+    "datetime"
+  ]
+}

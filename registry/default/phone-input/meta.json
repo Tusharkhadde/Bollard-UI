@@ -1,0 +1,37 @@
+{
+  "title": "Phone Input",
+  "description": "Prevents saving unreachable numbers by cleaning pasted input (separators, a leading 0, a doubled +91 or 0091), switching country from the dial code and area code (+1 416 is Canada, +1 876 Jamaica), warning on the wrong digit count, checking the digits against Google's libphonenumber ranges and line types (a landline or premium-rate number in an OTP field), and reading back the exact E.164 value.",
+  "dependencies": [
+    "lucide-react",
+    "libphonenumber-js",
+    "motion"
+  ],
+  "stops": "Unreachable phone number saved",
+  "mistakes": [
+    "indian phone validation",
+    "double +91 in number",
+    "wrong digit count mobile",
+    "landline in otp field",
+    "country code phone input"
+  ],
+  "aliases": [
+    "+91",
+    "mobile number",
+    "otp",
+    "indian phone",
+    "phone number",
+    "country code",
+    "libphonenumber",
+    "e.164",
+    "whatsapp number",
+    "signup"
+  ],
+  "flows": [
+    "signup-login",
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "phone"
+  ]
+}

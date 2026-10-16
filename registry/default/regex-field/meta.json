@@ -1,0 +1,31 @@
+{
+  "title": "Regex Field",
+  "description": "Catches regexes that look right but aren't (an unescaped dot, a missing ^…$ that lets \"abc123x\" pass, a greedy .*, catastrophic backtracking like (a+)+) with plain-English hints, one-tap fixes and live-highlighted test strings matched in a time-capped Web Worker that can't freeze the page.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Regex matches more than intended",
+  "mistakes": [
+    "regex unescaped dot",
+    "regex missing anchors",
+    "catastrophic backtracking",
+    "regex tester",
+    "greedy regex"
+  ],
+  "aliases": [
+    "regex",
+    "regular expression",
+    "pattern",
+    "validation rule",
+    "regex tester",
+    "redos",
+    "match",
+    "filter rule"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

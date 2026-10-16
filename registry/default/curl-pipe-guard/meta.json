@@ -1,0 +1,34 @@
+{
+  "title": "Curl Pipe Guard",
+  "description": "Stops an install one-liner from running a script you didn't mean to trust by showing, before a curl | sh (or wget, or iwr | iex) is copied or run, the script's real host and flagging plain http, raw IPs, shortened links, a host that isn't the product's docs domain, sudo, -k/--insecure, a missing checksum and a missing -f, then offering the same install as download, inspect, verify and run steps to copy instead.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Ran an untrusted install script",
+  "mistakes": [
+    "curl pipe bash unsafe",
+    "install script from wrong domain",
+    "curl sh security",
+    "iwr iex powershell",
+    "curl -k insecure"
+  ],
+  "aliases": [
+    "curl | sh",
+    "curl bash",
+    "install script",
+    "one-liner",
+    "wget",
+    "powershell iex",
+    "terminal",
+    "copy command",
+    "docs code block"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code",
+    "url"
+  ]
+}

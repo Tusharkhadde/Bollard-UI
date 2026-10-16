@@ -1,0 +1,34 @@
+{
+  "title": "Aadhaar Input",
+  "description": "Prevents rejected KYC and over-exposed Aadhaar numbers by masking the entry as XXXX XXXX 1234 while typing (reveal on demand), checking the Verhoeff digit and the never-0-or-1 first digit, offering a one-tap reveal when the check digit fails (instead of guessing a swap that is often wrong), recognising a VID, the 28-digit enrolment ID, a masked copy, a PAN or a mobile number (with or without +91) pasted by mistake, cleaning photocopy spaces and dashes, and saying that a VID or masked number is enough and how the number is stored.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Full Aadhaar exposed or rejected",
+  "mistakes": [
+    "aadhaar number validation",
+    "verhoeff check aadhaar",
+    "mask aadhaar number",
+    "vid pasted instead of aadhaar",
+    "invalid aadhaar kyc"
+  ],
+  "aliases": [
+    "aadhaar",
+    "uidai",
+    "aadhar number",
+    "vid",
+    "masked aadhaar",
+    "kyc",
+    "ekyc",
+    "12 digit",
+    "verhoeff",
+    "indian id"
+  ],
+  "flows": [
+    "india",
+    "signup-login"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

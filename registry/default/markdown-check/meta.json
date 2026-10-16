@@ -1,0 +1,34 @@
+{
+  "title": "Markdown Check",
+  "description": "Catches Markdown that will render differently from how it reads (an unclosed ** or backtick, [text] (url) with a space, empty or space-broken links, #Title with no space, raw HTML the sanitizer strips) and previews each spot the way it will actually render, with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Markdown renders differently than written",
+  "mistakes": [
+    "markdown link broken",
+    "unclosed bold markdown",
+    "markdown heading no space",
+    "markdown preview wrong",
+    "html stripped markdown"
+  ],
+  "aliases": [
+    "markdown",
+    "md editor",
+    "readme",
+    "comment box",
+    "rich text",
+    "preview",
+    "github markdown",
+    "docs",
+    "mdx"
+  ],
+  "flows": [
+    "messaging",
+    "devtools"
+  ],
+  "fields": [
+    "text",
+    "code"
+  ]
+}

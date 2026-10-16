@@ -1,0 +1,32 @@
+{
+  "title": "Mixed Value Field",
+  "description": "Prevents bulk edits from silently overwriting records by showing \"Mixed (3 values)\" with the distribution instead of a blank or the first record's value, leaving each record alone unless you pick a value, and reading back exactly what saving changes, counting only the records that actually change.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Bulk edit overwrites every record",
+  "mistakes": [
+    "bulk edit overwrite",
+    "mixed values multi select",
+    "edit multiple records",
+    "batch update field",
+    "bulk edit blank"
+  ],
+  "aliases": [
+    "bulk edit",
+    "batch edit",
+    "mixed values",
+    "multi select",
+    "table actions",
+    "admin",
+    "multiple records",
+    "mass update"
+  ],
+  "flows": [
+    "forms",
+    "danger-zone"
+  ],
+  "fields": [
+    "text"
+  ]
+}

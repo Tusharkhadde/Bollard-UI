@@ -1,0 +1,34 @@
+{
+  "title": "Namesake Select",
+  "description": "Stops “right name, wrong person” picks (the second Ravi Kumar one row down, a patient or customer with a twin) by flagging options that share a name regardless of case, accents or word order with only the details that tell them apart, asking for one identifier among the namesakes before a shared name becomes the value (the ID re-entry that cut wrong-patient orders most in a randomized trial), offering a one-tap switch when the answer belongs to the other person, reading the choice back with two identifiers and calling out identical records as likely duplicates, in a list that flips and shrinks instead of clipping.",
+  "dependencies": [
+    "@floating-ui/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Right name picked for wrong person",
+  "mistakes": [
+    "same name wrong patient",
+    "duplicate names select",
+    "two people same name",
+    "wrong customer selected",
+    "namesake picker"
+  ],
+  "aliases": [
+    "namesake",
+    "same name",
+    "patient select",
+    "customer picker",
+    "contact picker",
+    "people search",
+    "duplicate records",
+    "crm",
+    "assign"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "name"
+  ]
+}

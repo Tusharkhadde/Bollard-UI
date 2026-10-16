@@ -1,0 +1,33 @@
+{
+  "title": "Cache Control Input",
+  "description": "Stops cache headers from leaking or stranding content by reading back who stores the response and for how long (browser, CDN via CDN-Cache-Control or Surrogate-Control, other shared caches) and flagging per-user pages a CDN can cache, a cookie-setting response made public, no-cache mistaken for no-store, immutable on URLs that keep their name, a missing Vary for compressed or negotiated bodies and HTML kept for days, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Private page cached by the CDN",
+  "mistakes": [
+    "cdn caching user data",
+    "no-cache vs no-store",
+    "cache control header wrong",
+    "stale html after deploy",
+    "vary header missing"
+  ],
+  "aliases": [
+    "cache-control",
+    "http headers",
+    "cdn",
+    "cloudflare",
+    "vercel",
+    "s-maxage",
+    "max-age",
+    "immutable",
+    "surrogate-control"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
+}

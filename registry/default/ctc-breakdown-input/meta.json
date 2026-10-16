@@ -1,0 +1,34 @@
+{
+  "title": "CTC Breakdown Input",
+  "description": "Stops a job offer's headline CTC being mistaken for pay by splitting it into fixed pay, variable, ESOPs, joining bonus, gratuity and PF, estimating gratuity and PF in one tap, working out monthly in-hand pay with every assumption written down, and flagging offers where in-hand is far below the headline.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "CTC mistaken for take-home pay",
+  "mistakes": [
+    "ctc to in hand salary",
+    "in hand salary calculator",
+    "offer letter ctc breakup",
+    "variable pay in ctc",
+    "lpa vs monthly salary"
+  ],
+  "aliases": [
+    "ctc",
+    "in-hand salary",
+    "take home",
+    "lpa",
+    "salary breakup",
+    "offer letter",
+    "esop",
+    "pf",
+    "gratuity",
+    "job offer"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

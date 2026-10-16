@@ -1,0 +1,33 @@
+{
+  "title": "Range Pair",
+  "description": "Prevents filters and bookings built on a backwards, empty or wildly oversized range by catching reversed ends (moving a 28 Dec → 3 Jan end into next year instead of just swapping), equal exclusive ends and year or extra-zero typos, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Backwards date or price range",
+  "mistakes": [
+    "end date before start",
+    "min greater than max",
+    "date range across year",
+    "price range filter wrong",
+    "reversed range"
+  ],
+  "aliases": [
+    "date range",
+    "min max",
+    "price range",
+    "from to",
+    "filter",
+    "check in check out",
+    "range picker",
+    "start end"
+  ],
+  "flows": [
+    "forms",
+    "scheduling"
+  ],
+  "fields": [
+    "datetime",
+    "number"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Public Env Guard",
+  "description": "Stops secrets shipping in the client bundle by reading a .env the way the bundler does, listing every NEXT_PUBLIC_, VITE_, REACT_APP_, EXPO_PUBLIC_ or PUBLIC_ variable that reaches the browser, flagging secret key shapes, Supabase service_role JWTs, passwords in URLs, secret names and high-entropy values (while letting publishable keys through), and renaming a key to server-only in one tap with a reminder to rotate it.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Secret key shipped in the bundle",
+  "mistakes": [
+    "next_public secret exposed",
+    "api key in frontend",
+    "vite env leaked",
+    "service role key client",
+    "stripe secret in browser"
+  ],
+  "aliases": [
+    "next_public",
+    "vite_",
+    "react_app_",
+    ".env",
+    "env vars",
+    "supabase service_role",
+    "api key",
+    "client bundle",
+    "nextjs",
+    "expo"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

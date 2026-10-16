@@ -1,0 +1,33 @@
+{
+  "title": "Cert Paste Check",
+  "description": "Stops a broken TLS install by telling a certificate from a private key from a CSR as they are pasted, and catching a chain out of order or missing its intermediate, an expired or soon-expiring certificate, a domain the SANs don't cover (wildcard and CN-only traps included), a self-signed certificate in production and a private key that doesn't match, with one-tap reorder and remove fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Broken TLS chain in production",
+  "mistakes": [
+    "ssl certificate chain wrong order",
+    "missing intermediate certificate",
+    "private key does not match cert",
+    "certificate expired",
+    "san doesnt cover domain"
+  ],
+  "aliases": [
+    "ssl certificate",
+    "tls",
+    "pem",
+    "csr",
+    "private key",
+    "fullchain",
+    "intermediate",
+    "lets encrypt",
+    "https"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

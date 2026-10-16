@@ -1,0 +1,33 @@
+{
+  "title": "Coordinate Input",
+  "description": "Prevents pins on the wrong continent by reading decimal, DMS and pasted map links (taking Google's pin, not the map centre), catching swapped latitude and longitude, flipped west or south signs against an expected area and 0, 0 defaults, and reading every point back with an OpenStreetMap link.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Pin lands on the wrong continent",
+  "mistakes": [
+    "lat long swapped",
+    "coordinates wrong sign",
+    "google maps link coordinates",
+    "dms to decimal",
+    "0,0 coordinates"
+  ],
+  "aliases": [
+    "latitude longitude",
+    "lat lng",
+    "coordinates",
+    "gps",
+    "google maps link",
+    "dms",
+    "location",
+    "geo",
+    "map pin"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "address",
+    "number"
+  ]
+}

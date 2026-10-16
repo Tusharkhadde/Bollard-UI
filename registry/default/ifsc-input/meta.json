@@ -1,0 +1,34 @@
+{
+  "title": "IFSC Input",
+  "description": "Prevents bank transfers to the wrong branch by catching the letter O typed for the IFSC's fixed zero, a missing 0, digits in the bank code and guessed prefixes like AXIS for UTIB, then reading the branch back from a pluggable lookup (Razorpay IFSC API shape) and warning when it belongs to a different bank than the one picked.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Transfer sent to the wrong branch",
+  "mistakes": [
+    "ifsc code validation",
+    "ifsc letter o vs zero",
+    "wrong ifsc bank",
+    "ifsc lookup branch",
+    "neft ifsc error"
+  ],
+  "aliases": [
+    "ifsc",
+    "ifsc code",
+    "bank branch",
+    "neft",
+    "rtgs",
+    "imps",
+    "beneficiary",
+    "bank details",
+    "razorpay ifsc",
+    "payout"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

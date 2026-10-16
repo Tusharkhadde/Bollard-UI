@@ -1,0 +1,33 @@
+{
+  "title": "Env Paste",
+  "description": "Catches the .env slips loaders accept silently (stray or curly quotes, padded values, a ' #' that cuts a value short, duplicate keys, bad key names, empty values, test keys in production) by showing a parsed table of what the app will actually read, with one-tap fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Env value silently cut short",
+  "mistakes": [
+    "env file quotes wrong",
+    "dotenv hash cuts value",
+    "duplicate env keys",
+    "test key in production",
+    "env var empty"
+  ],
+  "aliases": [
+    ".env",
+    "dotenv",
+    "environment variables",
+    "env vars",
+    "vercel env",
+    "secrets",
+    "config",
+    "api keys",
+    "deploy settings"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

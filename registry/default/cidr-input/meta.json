@@ -1,0 +1,33 @@
+{
+  "title": "CIDR Input",
+  "description": "Prevents misconfigured firewall rules and subnets by reading an IPv4 or IPv6 CIDR back as its exact range and address count, catching host bits set (with both the network and single-host readings as one-tap fixes), and warning on 0.0.0.0/0 and on overlaps with existing ranges.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Firewall opened to 0.0.0.0/0",
+  "mistakes": [
+    "cidr host bits set",
+    "subnet range calculator",
+    "0.0.0.0/0 open",
+    "overlapping subnets",
+    "ip range wrong"
+  ],
+  "aliases": [
+    "cidr",
+    "subnet",
+    "ip range",
+    "security group",
+    "allowlist",
+    "firewall",
+    "vpc",
+    "ipv4",
+    "ipv6"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
+}

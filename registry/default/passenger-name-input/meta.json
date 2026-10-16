@@ -1,0 +1,33 @@
+{
+  "title": "Passenger Name Input",
+  "description": "Prevents denied boarding and name-change fees by checking a flight or train passenger name against the ID, catching swapped names, a missing middle name, a title, suffix or nickname typed into the name, single-name passengers, accents the ticket can't print and names over the airline's limit, each with a one-tap fix, and reading it back as SURNAME/GIVEN TITLE the way it will print.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Boarding denied over a ticket name",
+  "mistakes": [
+    "passenger name mismatch id",
+    "name change fee flight",
+    "first last name swapped ticket",
+    "single name passenger",
+    "name as per passport"
+  ],
+  "aliases": [
+    "passenger details",
+    "flight booking",
+    "irctc",
+    "train ticket",
+    "name as on id",
+    "traveller name",
+    "pnr",
+    "airline",
+    "checkout"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "name"
+  ]
+}

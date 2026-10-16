@@ -1,0 +1,34 @@
+{
+  "title": "Clean Paste Input",
+  "description": "Prevents 'identical' codes and IDs from failing by stripping invisible zero-width, BOM, soft-hyphen and bidi characters on paste with an undo, and flagging any that arrive another way with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Pasted code fails from hidden characters",
+  "mistakes": [
+    "zero width space in paste",
+    "copied code not matching",
+    "invisible characters input",
+    "bom in pasted text",
+    "id fails after copy paste"
+  ],
+  "aliases": [
+    "zero-width",
+    "invisible characters",
+    "paste",
+    "sanitize",
+    "bom",
+    "voucher code",
+    "api key",
+    "clean input",
+    "trim"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
+}

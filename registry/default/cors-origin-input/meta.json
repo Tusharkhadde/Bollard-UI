@@ -1,0 +1,30 @@
+{
+  "title": "CORS Origin Input",
+  "description": "Prevents CORS allow-lists that silently never match or expose the API to every site by catching * with credentials, null, a trailing slash or path, a missing scheme, a default port and http or localhost in production, with one-tap fixes and a tester that names the near miss blocking an origin.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "CORS allow-list never matches",
+  "mistakes": [
+    "cors error trailing slash",
+    "access-control-allow-origin star credentials",
+    "cors origin not allowed",
+    "cors null origin",
+    "localhost cors production"
+  ],
+  "aliases": [
+    "cors",
+    "allowed origins",
+    "access-control-allow-origin",
+    "api config",
+    "express cors",
+    "preflight",
+    "credentials"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "url"
+  ]
+}

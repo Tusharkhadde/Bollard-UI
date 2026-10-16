@@ -1,0 +1,33 @@
+{
+  "title": "Brand Color Input",
+  "description": "Stops near-miss brand colours from shipping by naming the closest palette token with a perceptual (OKLab) distance and offering a one-tap snap when a value is a hair off (#1e40ae vs #1e40af), and by catching pasted junk, the letter O for zero, a digit too many or few, alpha hidden in 4- and 8-digit hex, and Android #AARRGGBB order that CSS renders as a different colour.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Brand colour off by a hex digit",
+  "mistakes": [
+    "hex color typo",
+    "off brand color",
+    "argb vs rgba hex",
+    "hex with alpha",
+    "nearest design token"
+  ],
+  "aliases": [
+    "hex color",
+    "brand color",
+    "color input",
+    "design tokens",
+    "theme",
+    "palette",
+    "oklab",
+    "tailwind colors",
+    "#rrggbb"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

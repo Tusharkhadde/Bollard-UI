@@ -1,0 +1,32 @@
+{
+  "title": "CSP Input",
+  "description": "Prevents Content-Security-Policies that look strict but stop nothing by reading the policy the way a browser does: it flags 'unsafe-inline' without a nonce, 'unsafe-eval', * and data: or https: in script-src, a missing default-src, object-src or base-uri, unquoted keywords, a missing semicolon or a stray comma (which splits a header into two policies), allowlisted hosts known to serve JSONP or AngularJS, typo'd or duplicate directives and report-only traps (a Report-Only header pasted as the real one, no report endpoint, a report-only <meta> tag), pins each to its directive in a readout and fixes most in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "CSP that blocks nothing",
+  "mistakes": [
+    "content security policy unsafe-inline",
+    "csp not working",
+    "csp header syntax",
+    "csp report-only",
+    "xss csp bypass"
+  ],
+  "aliases": [
+    "csp",
+    "content-security-policy",
+    "security headers",
+    "script-src",
+    "nonce",
+    "helmet",
+    "next.config headers",
+    "xss"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
+}

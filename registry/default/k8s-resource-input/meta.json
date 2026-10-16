@@ -1,0 +1,34 @@
+{
+  "title": "K8s Resource Input",
+  "description": "Stops Kubernetes requests and limits that the API rejects or quietly misreads by reading each value back in plain units and catching CPU 500 meaning 500 cores, 400m of memory meaning 0.4 bytes, 512MB and other case-sensitive unit slips, a 1G limit sitting under a 1Gi request, CPU finer than 1m (rounded up) and requests bigger than any node, each with a one-tap fix, plus the pod's QoS class and a pasted resources: block filling all four fields.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Pod asks for 500 CPU cores",
+  "mistakes": [
+    "kubernetes cpu limit wrong unit",
+    "400m memory means bytes",
+    "mi vs mb in k8s yaml",
+    "pod stuck pending resources",
+    "limit lower than request"
+  ],
+  "aliases": [
+    "kubernetes",
+    "k8s",
+    "resources requests limits",
+    "cpu memory",
+    "millicores",
+    "Mi Gi",
+    "deployment yaml",
+    "qos class",
+    "helm values"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "number",
+    "code"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Time Confirm",
+  "description": "Prevents meetings booked 12 hours or a day off by asking AM or PM when a time is ambiguous, spelling out noon and midnight, catching times a DST change skips (with a one-tap move to the real time) or repeats (with a choice of which one), and showing the moment in other time zones with day-shift flags.",
+  "dependencies": [
+    "@date-fns/tz",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Meeting booked 12 hours off",
+  "mistakes": [
+    "am pm confusion",
+    "dst skipped time",
+    "noon midnight ambiguity",
+    "time zone meeting wrong",
+    "12 hour time input"
+  ],
+  "aliases": [
+    "time picker",
+    "time input",
+    "am pm",
+    "meeting time",
+    "dst",
+    "time zone",
+    "booking",
+    "appointment",
+    "calendar invite"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

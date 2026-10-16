@@ -1,0 +1,33 @@
+{
+  "title": "UTM Check",
+  "description": "Stops campaign links that fragment analytics by catching, as the URL is built or pasted, mixed case and spaces (Facebook vs facebook, \"Diwali Sale\" vs diwali_sale, or a value your reports already spell differently), source and medium swapped, a medium GA4's default channel rules file as organic or Unassigned, misspelled keys, a second \"?\", tags after \"#\" and tags on links back to your own site, reading back the GA4 channel and fixing each in one tap or all at once.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "UTM links split analytics",
+  "mistakes": [
+    "utm case mismatch",
+    "utm source medium swapped",
+    "ga4 unassigned traffic",
+    "utm builder",
+    "utm after hash"
+  ],
+  "aliases": [
+    "utm",
+    "utm builder",
+    "campaign url",
+    "ga4",
+    "google analytics",
+    "utm_source",
+    "marketing link",
+    "tracking",
+    "diwali sale"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "url"
+  ]
+}

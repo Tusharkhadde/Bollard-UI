@@ -1,0 +1,32 @@
+{
+  "title": "Robots.txt Guard",
+  "description": "Stops a robots.txt from quietly de-indexing a site by flagging Disallow: / headed for production, staging leftovers, rules that block the CSS and JS Google renders with (tested against real asset paths), relative or wrong-host sitemaps, directive typos and rules Google ignores, with one-tap fixes and a URL tester that names the line deciding each crawl.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Site de-indexed by robots.txt",
+  "mistakes": [
+    "disallow all robots txt",
+    "site not on google",
+    "robots blocks css js",
+    "staging robots in production",
+    "sitemap url wrong"
+  ],
+  "aliases": [
+    "robots.txt",
+    "seo",
+    "disallow",
+    "sitemap",
+    "googlebot",
+    "crawl",
+    "indexing",
+    "search console"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "url"
+  ]
+}

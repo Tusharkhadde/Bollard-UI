@@ -1,0 +1,33 @@
+{
+  "title": "Username Input",
+  "description": "Prevents impersonation and lost handles by reading back the exact handle that gets registered, blocking reserved words even in disguise (adm1n) and case-only duplicates, flagging look-alikes of existing names with a UTS #39-style skeleton, and checking availability after a pause with free alternatives to tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Handle impersonates someone else",
+  "mistakes": [
+    "username already taken",
+    "reserved username admin",
+    "username lookalike",
+    "case duplicate username",
+    "handle availability"
+  ],
+  "aliases": [
+    "username",
+    "handle",
+    "@handle",
+    "signup",
+    "profile url",
+    "availability check",
+    "reserved names",
+    "display name"
+  ],
+  "flows": [
+    "signup-login",
+    "account-settings"
+  ],
+  "fields": [
+    "text",
+    "name"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "UPI ID Input",
+  "description": "Prevents UPI payments to a typo'd or wrong VPA by cleaning pasted upi://pay links, catching emails, typo'd handles (@okaxsi), app names typed as handles (@gpay), wrong-length or +91 phone IDs and the retired @paytm, then reading back the registered name from a pluggable check and flagging when it differs from the expected name or the name the link claimed, with every message overridable for translation.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "UPI payment to the wrong VPA",
+  "mistakes": [
+    "upi id validation",
+    "wrong upi handle",
+    "vpa typo",
+    "upi name mismatch",
+    "paytm handle retired"
+  ],
+  "aliases": [
+    "upi",
+    "upi id",
+    "vpa",
+    "gpay",
+    "phonepe",
+    "paytm",
+    "upi://pay",
+    "payout",
+    "send money",
+    "@okaxis"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

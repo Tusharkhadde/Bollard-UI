@@ -1,0 +1,35 @@
+{
+  "title": "Connection String Input",
+  "description": "Stops a database URL that fails to connect or connects insecurely by masking the password whenever it isn't being edited, reading back the user, host, database and TLS mode the driver will really use, and catching an unencoded @, #, / or % in the password (naming the host a strict parser would try instead), localhost in production, a missing, weak or misspelled sslmode, unknown libpq parameters, a port that belongs to another database, redis:// and MongoDB URLs without TLS (including mongodb+srv:// with tls=false), sslrootcert=system with a weaker sslmode, a colon in a MongoDB password, and quotes or KEY= pasted from a .env file, each with a one-tap fix and a copy-without-password button.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Database URL leaks or skips TLS",
+  "mistakes": [
+    "database url wont connect",
+    "special character in db password",
+    "sslmode disable in production",
+    "postgres connection string password leaked",
+    "localhost database in prod"
+  ],
+  "aliases": [
+    "database url",
+    "DATABASE_URL",
+    "postgres uri",
+    "mongodb+srv",
+    "redis url",
+    "dsn",
+    "sslmode",
+    "connection string",
+    "prisma",
+    "supabase"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "url",
+    "secret"
+  ]
+}

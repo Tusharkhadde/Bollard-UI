@@ -1,0 +1,33 @@
+{
+  "title": "Salary Input",
+  "description": "Prevents mis-stated salaries by catching a monthly figure entered as yearly (and back), a bare \"12\" meant as 12 LPA and an extra zero against the role's range, reading every amount back in lakh/crore, per month and per year, and offering a one-tap fix for each.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Monthly salary entered as yearly",
+  "mistakes": [
+    "salary monthly vs yearly",
+    "12 lpa entered as 12",
+    "extra zero salary",
+    "expected ctc field",
+    "lakh crore salary"
+  ],
+  "aliases": [
+    "salary",
+    "expected ctc",
+    "current ctc",
+    "lpa",
+    "lakh",
+    "job application",
+    "naukri",
+    "monthly salary",
+    "annual"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

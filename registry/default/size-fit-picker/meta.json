@@ -1,0 +1,32 @@
+{
+  "title": "Size Fit Picker",
+  "description": "Prevents wrong-size orders by converting UK, US, EU and IN sizes live without losing the pick, reading back the shopper's usual size adjusted for brands that run small or large, and catching their usual number clicked in the wrong system (US 8 is a UK 7) with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong shoe or clothing size ordered",
+  "mistakes": [
+    "uk us size conversion",
+    "shoe size chart india",
+    "wrong size ordered",
+    "size guide",
+    "brand runs small"
+  ],
+  "aliases": [
+    "size chart",
+    "size guide",
+    "shoe size",
+    "uk us eu in",
+    "fit",
+    "myntra",
+    "ecommerce",
+    "product page",
+    "variant picker"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "number"
+  ]
+}

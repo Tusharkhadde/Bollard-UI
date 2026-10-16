@@ -1,0 +1,34 @@
+{
+  "title": "Duration Input",
+  "description": "Prevents wrong timesheet and estimate entries by parsing 1h30, 90m, 1.5h, 1:30 and 2d 4h into one duration read back in words, catching 1.50 typed for 1 h 50 min and asking whether 1:30 is h:mm or m:ss when the limits can't decide.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Timesheet logs 1.5 as 1h50",
+  "mistakes": [
+    "1.5 hours vs 1:30",
+    "duration format parse",
+    "timesheet hours wrong",
+    "estimate input",
+    "hh:mm vs mm:ss"
+  ],
+  "aliases": [
+    "duration",
+    "timesheet",
+    "hours",
+    "time tracking",
+    "estimate",
+    "jira",
+    "minutes",
+    "1h30m",
+    "time spent"
+  ],
+  "flows": [
+    "forms",
+    "scheduling"
+  ],
+  "fields": [
+    "number",
+    "datetime"
+  ]
+}

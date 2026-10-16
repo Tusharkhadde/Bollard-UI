@@ -1,0 +1,32 @@
+{
+  "title": "Column Mapper",
+  "description": "Stops a spreadsheet landing in the wrong fields by checking a column mapping against the values themselves: emails sitting in the phone column, first and last names swapped, DD/MM read as MM/DD (with a readback of what a date becomes), the same field picked twice and required fields left unmapped, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Spreadsheet imported into wrong fields",
+  "mistakes": [
+    "csv import wrong columns",
+    "date dd mm swapped import",
+    "first last name swapped csv",
+    "column mapping excel import",
+    "required field not mapped"
+  ],
+  "aliases": [
+    "csv import",
+    "excel upload",
+    "column mapping",
+    "bulk import",
+    "spreadsheet",
+    "data import",
+    "field mapping",
+    "xlsx"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "file",
+    "text"
+  ]
+}

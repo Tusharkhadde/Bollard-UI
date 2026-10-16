@@ -1,0 +1,34 @@
+{
+  "title": "Doc Upload Match",
+  "description": "Stops a KYC upload being rejected days later by checking the file against the document asked for (Aadhaar back instead of front, Aadhaar in the PAN slot, a password-locked e-Aadhaar PDF with its password rule, a multi-page PDF, a tiny, blurry or HEIC photo, a screenshot of a screenshot) from cheap in-browser signals plus an optional classify hook, and saying exactly what to upload instead.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong document uploaded for KYC",
+  "mistakes": [
+    "aadhaar back uploaded instead",
+    "password protected e-aadhaar",
+    "kyc document rejected",
+    "blurry document upload",
+    "heic upload not supported"
+  ],
+  "aliases": [
+    "kyc upload",
+    "document upload",
+    "e-aadhaar pdf",
+    "pan upload",
+    "file upload",
+    "dropzone",
+    "id proof",
+    "address proof",
+    "onboarding"
+  ],
+  "flows": [
+    "india",
+    "signup-login",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

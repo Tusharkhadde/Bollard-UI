@@ -1,0 +1,35 @@
+{
+  "title": "KYC Name Match",
+  "description": "Stops a KYC or PAN–Aadhaar submission failing on a name that doesn't match the documents, by comparing the typed name with each document word by word (order, initials, a missing middle name, transliterations like Laxmi and Lakshmi), checking the PAN's 4th and 5th letters against the holder type and surname, flagging a date of birth or gender that differs between documents (which UIDAI says must be identical), and offering each document's exact name in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "KYC rejected for name mismatch",
+  "mistakes": [
+    "pan aadhaar name mismatch",
+    "kyc failed name not matching",
+    "middle name missing on pan",
+    "spelling different on aadhaar",
+    "dob mismatch kyc"
+  ],
+  "aliases": [
+    "kyc",
+    "pan aadhaar link",
+    "name as per pan",
+    "ekyc",
+    "ckyc",
+    "pan card",
+    "aadhaar",
+    "onboarding",
+    "uidai",
+    "video kyc"
+  ],
+  "flows": [
+    "india",
+    "signup-login"
+  ],
+  "fields": [
+    "name",
+    "id-number"
+  ]
+}

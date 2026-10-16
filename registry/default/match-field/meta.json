@@ -1,0 +1,34 @@
+{
+  "title": "Match Field",
+  "description": "Prevents mistyped passwords and bank account numbers by showing exactly which character the confirmation stops matching at, without revealing either value, and by refusing a paste into the confirm box only when it is a copy of the first entry, so password managers keep working.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Mistyped confirm password or account number",
+  "mistakes": [
+    "confirm password mismatch",
+    "re-enter account number",
+    "passwords do not match",
+    "confirm field paste",
+    "bank account confirm"
+  ],
+  "aliases": [
+    "confirm password",
+    "re-enter",
+    "confirm account number",
+    "verify",
+    "signup",
+    "bank details",
+    "beneficiary",
+    "repeat field"
+  ],
+  "flows": [
+    "signup-login",
+    "forms",
+    "india"
+  ],
+  "fields": [
+    "secret",
+    "id-number"
+  ]
+}

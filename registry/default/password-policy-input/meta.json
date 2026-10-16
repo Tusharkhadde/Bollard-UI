@@ -1,0 +1,33 @@
+{
+  "title": "Password Policy Input",
+  "description": "Stops admins shipping password rules that make accounts weaker by reading the policy back against NIST SP 800-63B-4: it flags banned composition rules, forced rotation, security questions and hints, minimums under 15 (8 with MFA), maximums under 64, blocked paste, no breached-password check and no failed-sign-in limit, shows what the rules do to real passwords (Password1! accepted, a long passphrase refused), and fixes each rule or applies NIST defaults in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Password rules weaken every account",
+  "mistakes": [
+    "password complexity rules bad",
+    "forced password rotation",
+    "nist password policy",
+    "max password length too short",
+    "block paste password"
+  ],
+  "aliases": [
+    "password policy",
+    "nist 800-63b",
+    "admin settings",
+    "security settings",
+    "mfa",
+    "breached passwords",
+    "password rules",
+    "auth config"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "secret",
+    "number"
+  ]
+}

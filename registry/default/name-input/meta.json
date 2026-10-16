@@ -1,0 +1,33 @@
+{
+  "title": "Name Input",
+  "description": "Prevents shouty, mangled or swapped names on records by spotting caps lock, all-lowercase, stray digits, doubled spaces and a first/last mix-up, and offering, never forcing, a fix cased the way McDonald, O'Brien, van der Berg and de la Cruz are really written.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Names saved in caps or swapped",
+  "mistakes": [
+    "name all caps",
+    "first last name swapped",
+    "name capitalization",
+    "mcdonald o'brien casing",
+    "name validation"
+  ],
+  "aliases": [
+    "name",
+    "full name",
+    "first name",
+    "last name",
+    "signup",
+    "profile",
+    "title case",
+    "customer name",
+    "form field"
+  ],
+  "flows": [
+    "signup-login",
+    "forms"
+  ],
+  "fields": [
+    "name"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Card Expiry Input",
+  "description": "Prevents declined payments from mistyped card expiries by masking MM/YY, reading the date back as valid through the month's last day, and catching month 13, the year typed first, a four-digit year, an expired card and one that runs out before the next renewal, with one-tap fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Payment declined on card expiry",
+  "mistakes": [
+    "card expiry format mm yy",
+    "expired card checkout",
+    "expiry date input",
+    "card declined expiry",
+    "year typed first"
+  ],
+  "aliases": [
+    "card expiry",
+    "expiry date",
+    "mm/yy",
+    "credit card",
+    "debit card",
+    "checkout",
+    "payment form",
+    "valid thru",
+    "billing"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

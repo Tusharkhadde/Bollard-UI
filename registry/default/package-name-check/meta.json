@@ -1,0 +1,34 @@
+{
+  "title": "Package Name Check",
+  "description": "Stops an npm or pip install pulling in a typosquat by reading the install command or requirements list package by package and catching lookalikes of popular packages (loadsh, crossenv, cross-env.js, jeIlyfish with a capital I, colourama), import names that aren't the package to install (sklearn, cv2, bs4, PIL), built-ins installed from the registry (fs, crypto, json), names npm or PyPI can't publish, and, through an optional registry lookup, names that don't exist yet (the AI-hallucination trap) or appeared days ago with almost no downloads, each with a one-tap switch to the real package.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Typosquatted package gets installed",
+  "mistakes": [
+    "npm typosquat package",
+    "ai hallucinated package name",
+    "pip install wrong package",
+    "malicious npm package lookalike",
+    "sklearn vs scikit-learn"
+  ],
+  "aliases": [
+    "npm install",
+    "pip install",
+    "requirements.txt",
+    "package.json",
+    "typosquatting",
+    "supply chain",
+    "slopsquatting",
+    "dependency check",
+    "yarn add"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Date Sanity Input",
+  "description": "Prevents wrong-date bookings by reading the weekday back and catching year typos, past or future dates on the wrong side of today, and weekends, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Booked on the wrong date",
+  "mistakes": [
+    "wrong year typed date",
+    "date in the past booking",
+    "weekday check date",
+    "date of birth future",
+    "date typo"
+  ],
+  "aliases": [
+    "date picker",
+    "date input",
+    "booking date",
+    "dob",
+    "date of birth",
+    "appointment",
+    "travel date",
+    "calendar"
+  ],
+  "flows": [
+    "scheduling",
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

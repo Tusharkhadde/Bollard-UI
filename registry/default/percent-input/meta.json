@@ -1,0 +1,34 @@
+{
+  "title": "Percent Input",
+  "description": "Prevents 100× rate mistakes by catching 0.15 typed for 15%, 0.25 basis points for 25, and 150% where 100% is the cap, reading the result back in plain money (15% of ₹2,000 = ₹300) and offering a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Rate entered 100 times too small",
+  "mistakes": [
+    "0.15 vs 15 percent",
+    "basis points confusion",
+    "percent over 100",
+    "discount percent input",
+    "interest rate wrong"
+  ],
+  "aliases": [
+    "percent",
+    "percentage",
+    "rate",
+    "discount",
+    "interest rate",
+    "commission",
+    "gst rate",
+    "bps",
+    "tax rate"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "number",
+    "amount"
+  ]
+}

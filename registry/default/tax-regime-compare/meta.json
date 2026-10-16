@@ -1,0 +1,35 @@
+{
+  "title": "Tax Regime Compare",
+  "description": "Stops salaried people in India picking the tax regime that costs them more by working out tax year 2026-27 tax under the old and new regimes from salary, HRA (with the 8 cities at 50% under rule 279), 80C, 80D, NPS and home-loan interest, showing the break-even deductions, and flagging a choice that costs more, deductions that don't count under the new regime and claims over their limit, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Picked the costlier tax regime",
+  "mistakes": [
+    "old vs new tax regime",
+    "which tax regime is better",
+    "hra deduction calculator",
+    "80c not allowed new regime",
+    "income tax calculator india"
+  ],
+  "aliases": [
+    "income tax",
+    "old regime",
+    "new regime",
+    "itr",
+    "hra",
+    "80c",
+    "80d",
+    "nps",
+    "salary slip",
+    "tax declaration"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

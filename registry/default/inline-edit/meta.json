@@ -1,0 +1,31 @@
+{
+  "title": "Inline Edit",
+  "description": "Prevents lost and clobbered edits in click-to-edit text: a cancelled edit can be restored, a failed save keeps your draft, and a value changed by someone else mid-edit is flagged instead of silently overwritten (clicking away then keeps the editor open rather than saving over it).",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Edit lost or overwritten silently",
+  "mistakes": [
+    "click to edit lost changes",
+    "inline edit save failed",
+    "concurrent edit overwrite",
+    "cancel edit undo",
+    "editable text"
+  ],
+  "aliases": [
+    "inline edit",
+    "click to edit",
+    "editable",
+    "contenteditable",
+    "rename",
+    "table cell edit",
+    "optimistic save",
+    "kanban title"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

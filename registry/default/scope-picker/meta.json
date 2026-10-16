@@ -1,0 +1,34 @@
+{
+  "title": "Scope Picker",
+  "description": "Stops over-privileged API keys by reading back in plain words what the key can do (destructive powers in red), flagging write, delete and admin scopes, offering 'Only what you've used' from real usage, and warning when the key never expires.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "API key with admin powers leaks",
+  "mistakes": [
+    "api key too many permissions",
+    "least privilege scopes",
+    "token never expires",
+    "personal access token scopes",
+    "oauth scopes picker"
+  ],
+  "aliases": [
+    "api key",
+    "scopes",
+    "permissions",
+    "access token",
+    "pat",
+    "least privilege",
+    "developer settings",
+    "oauth scopes",
+    "rbac"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "secret"
+  ]
+}

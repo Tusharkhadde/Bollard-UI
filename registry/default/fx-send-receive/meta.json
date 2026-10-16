@@ -1,0 +1,32 @@
+{
+  "title": "FX Send Receive",
+  "description": "Stops an international payment arriving short by locking the side you typed (send or receive), measuring what actually arrives against the invoice, and catching the invoice figure typed into \"You send\", an invoice in another currency, SHA bank deductions on the way and overpaying, each fixed in one tap by sliding the lock to \"They receive\" at the exact amount or switching charges to OUR.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "Invoice paid short after fees",
+  "mistakes": [
+    "typed amount in you send instead of they receive",
+    "transfer arrived short",
+    "sha charges deducted from payment",
+    "wrong currency for invoice",
+    "international payment underpaid"
+  ],
+  "aliases": [
+    "wire transfer",
+    "swift",
+    "fx",
+    "currency converter",
+    "remittance",
+    "send money",
+    "our sha ben",
+    "exchange rate",
+    "invoice payment",
+    "wise"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

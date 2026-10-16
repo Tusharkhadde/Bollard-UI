@@ -1,0 +1,32 @@
+{
+  "title": "Hashtag Input",
+  "description": "Catches hashtags that quietly fail (a space or apostrophe that cuts the tag short, case-only duplicates, all-digit or banned tags, posts over a platform's limit) and suggests CamelCase like #OpenSource so screen readers say the words, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Hashtag cut short by a space",
+  "mistakes": [
+    "hashtag apostrophe breaks",
+    "too many hashtags",
+    "camelcase hashtags accessibility",
+    "banned hashtags",
+    "hashtag spaces"
+  ],
+  "aliases": [
+    "hashtag",
+    "tags",
+    "social post",
+    "instagram",
+    "x post",
+    "linkedin",
+    "camelcase",
+    "caption",
+    "composer"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

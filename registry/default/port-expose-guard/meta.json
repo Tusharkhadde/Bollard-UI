@@ -1,0 +1,34 @@
+{
+  "title": "Port Expose Guard",
+  "description": "Stops a database or admin port being published to the internet by accident: it reads a docker run command, compose ports or a Kubernetes Service back as who can reach each port, flags databases bound to 0.0.0.0 (which Docker opens ahead of ufw), host networking, -P, NodePort or public LoadBalancer for internal services, a container port the image doesn't listen on and unquoted 22:22 that YAML reads as 1342, and fixes each in one tap (bind to 127.0.0.1, ClusterIP, the right port, quotes). It reads ${VAR} ports, long and { … } compose syntax and [::] binds, keeps CRLF line endings, and notes that 127.0.0.1 was LAN-reachable before Docker 28.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Database port open to the internet",
+  "mistakes": [
+    "docker port exposed publicly",
+    "docker bypasses ufw",
+    "postgres open to internet",
+    "nodeport exposed",
+    "compose ports wrong"
+  ],
+  "aliases": [
+    "docker run -p",
+    "docker compose",
+    "ports",
+    "0.0.0.0",
+    "kubernetes service",
+    "loadbalancer",
+    "nodeport",
+    "firewall",
+    "ufw"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code",
+    "number"
+  ]
+}

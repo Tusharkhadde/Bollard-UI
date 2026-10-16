@@ -1,0 +1,34 @@
+{
+  "title": "Chmod Input",
+  "description": "Stops permission mistakes that leak data or lock people out by reading any mode (644, 0755, u+x, -rwxr-xr-x) back as rwx and plain words, and flagging world-writable files, setuid and setgid, private keys and .env files others can read, a writable ~/.ssh or authorized_keys, execute bits on data files, 775 typed for 755, and short or decimal modes, each with a one-tap safe mode.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "World-writable file or exposed key",
+  "mistakes": [
+    "chmod 777 bad",
+    "ssh key permissions too open",
+    "file permissions wrong",
+    "775 vs 755",
+    "env file readable"
+  ],
+  "aliases": [
+    "chmod",
+    "file permissions",
+    "rwx",
+    "unix permissions",
+    "octal mode",
+    "755",
+    "644",
+    "linux",
+    "setuid"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code",
+    "number"
+  ]
+}

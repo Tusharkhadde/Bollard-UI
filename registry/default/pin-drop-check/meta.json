@@ -1,0 +1,33 @@
+{
+  "title": "Pin Drop Check",
+  "description": "Prevents deliveries to the wrong door by measuring a dropped map pin against the typed address and PIN area (ignoring gaps inside GPS accuracy), flagging pins in water or on a highway from your geo helper, drawing the gap on a to-scale SVG sketch with no map library, and asking \"Use pin or address?\".",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Delivery sent to the wrong door",
+  "mistakes": [
+    "map pin far from address",
+    "delivery location wrong",
+    "gps pin mismatch",
+    "pin dropped on highway",
+    "pin vs typed address"
+  ],
+  "aliases": [
+    "map pin",
+    "delivery location",
+    "drop pin",
+    "geolocation",
+    "address",
+    "swiggy",
+    "zomato",
+    "location picker",
+    "gps"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "address"
+  ]
+}

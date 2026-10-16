@@ -1,0 +1,32 @@
+{
+  "title": "Email Change Guard",
+  "description": "Stops people locking themselves out by changing their account email to a typo: it catches misspelled providers (gmial.con) with a one-tap fix, shows exactly where the confirmation stops matching, spots the same inbox (Gmail dots, +tags), says what moves with the address (sign-in, receipts, 2FA codes), and keeps the old address active until the new one is verified, with resend, edit and cancel while it waits.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Locked out by a typo'd new email",
+  "mistakes": [
+    "change email typo",
+    "update email lockout",
+    "new email not verified",
+    "gmial.com typo",
+    "confirm email mismatch"
+  ],
+  "aliases": [
+    "change email",
+    "update email",
+    "account settings",
+    "profile",
+    "email verification",
+    "confirm email",
+    "login email",
+    "2fa"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "email"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Near-Duplicate Input",
+  "description": "Prevents a second \"Marketing\" tag by spotting near-duplicates as you type (capitals, spacing, punctuation, plurals, one-letter typos, but never different numbers like Q3 vs Q4) and offering Use existing, which is also what Enter does.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Duplicate tags with different spelling",
+  "mistakes": [
+    "duplicate tags case",
+    "marketing vs marketings",
+    "create tag duplicate",
+    "similar category exists",
+    "dedupe labels"
+  ],
+  "aliases": [
+    "tags",
+    "labels",
+    "categories",
+    "create new",
+    "dedupe",
+    "folder name",
+    "tag input",
+    "taxonomy"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

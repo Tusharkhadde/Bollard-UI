@@ -1,0 +1,32 @@
+{
+  "title": "Unit Input",
+  "description": "Prevents values stored in the wrong unit by noticing when a number is far more plausible in another one (70 cm is probably inches, 98.6 °C is °F) or is typed as 5'9\", and offering a one-tap conversion at the right precision or a unit switch.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Height saved in the wrong unit",
+  "mistakes": [
+    "cm vs inches",
+    "fahrenheit celsius wrong",
+    "unit conversion input",
+    "5 foot 9 input",
+    "wrong unit stored"
+  ],
+  "aliases": [
+    "units",
+    "unit converter",
+    "cm inches",
+    "kg lbs",
+    "height",
+    "weight",
+    "temperature",
+    "measurements",
+    "metric imperial"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "number"
+  ]
+}

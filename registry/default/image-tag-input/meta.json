@@ -1,0 +1,34 @@
+{
+  "title": "Image Tag Input",
+  "description": "Stops deploys from pulling the wrong container by reading the reference back the way Docker resolves it (implied docker.io/library/ and :latest shown), flagging :latest or no tag in production, tags that move, typo'd or frozen registries, private images that fall back to Docker Hub, malformed digests and arch-specific tags that won't run on the target, with one-tap fixes including pinning a digest.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Deploy pulled the wrong image",
+  "mistakes": [
+    "docker latest tag production",
+    "docker image tag wrong",
+    "pin docker digest",
+    "image arch mismatch",
+    "docker hub fallback private image"
+  ],
+  "aliases": [
+    "docker image",
+    "image tag",
+    "container",
+    "digest",
+    "sha256",
+    "registry",
+    "ghcr",
+    "ecr",
+    "docker pull",
+    "kubernetes"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "AI Citation Check",
+  "description": "Stops made-up references going out in AI-written text by flagging the tells with a reason for each (a DOI prefix that doesn't belong to the journal it names, a long dash inside a DOI, a case cited to F.3d for a year after 2021, a year that hasn't happened, leftover oaicite and 【4†source】 markers, long quotes with nothing saying who said them), looking every DOI, case and link up through a pluggable verify such as Crossref or CourtListener, calling anything it couldn't confirm \"Unverified\" rather than fine, fixing dashes and markers in one tap, and asking for a second press to submit with references that may not exist.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "Fake case cited in a court filing",
+  "mistakes": [
+    "chatgpt made up citations",
+    "hallucinated references",
+    "fake doi in paper",
+    "ai invented court cases",
+    "oaicite left in text"
+  ],
+  "aliases": [
+    "citations",
+    "references",
+    "bibliography",
+    "doi",
+    "crossref",
+    "courtlistener",
+    "legal brief",
+    "hallucination",
+    "fact check",
+    "ai writing"
+  ],
+  "flows": ["forms"],
+  "fields": ["text", "url"]
+}

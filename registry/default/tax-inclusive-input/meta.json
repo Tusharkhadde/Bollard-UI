@@ -1,0 +1,34 @@
+{
+  "title": "Tax-Inclusive Input",
+  "description": "Stops tax being added twice by making 'includes / excludes GST' an explicit toggle, reading back net + tax = gross, and flagging an 'excludes' price that divides back to a round number, a mode switch that silently changed the total, or a typo'd rate like 0.18 or 180.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "GST added twice to a price",
+  "mistakes": [
+    "gst inclusive exclusive",
+    "tax added twice",
+    "price including gst",
+    "18 percent gst calculation",
+    "gst rate typo"
+  ],
+  "aliases": [
+    "gst",
+    "tax inclusive",
+    "tax exclusive",
+    "mrp",
+    "price",
+    "invoice",
+    "vat",
+    "net gross",
+    "product listing"
+  ],
+  "flows": [
+    "india",
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

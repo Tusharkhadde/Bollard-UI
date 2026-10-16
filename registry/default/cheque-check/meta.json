@@ -1,0 +1,34 @@
+{
+  "title": "Cheque Check",
+  "description": "Stops a cheque being deposited after it expires, before its date or with a correction clearing will reject, by reading the date the way it's written in the CTS boxes (so 31 November is caught), showing the safe deposit window under RBI's 3-month rule and warning on the disputed last day, catching a January cheque still carrying last year's date and a two-digit year, and saying when Positive Pay is needed, with one-tap date fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Cheque bounced as expired or post-dated",
+  "mistakes": [
+    "cheque validity 3 months",
+    "post dated cheque deposited",
+    "cheque date wrong year",
+    "cheque rejected correction",
+    "positive pay cheque"
+  ],
+  "aliases": [
+    "cheque",
+    "check",
+    "rbi 3 month rule",
+    "cts cheque",
+    "positive pay",
+    "cheque date",
+    "bank deposit",
+    "pdc",
+    "indian bank"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "datetime",
+    "amount"
+  ]
+}

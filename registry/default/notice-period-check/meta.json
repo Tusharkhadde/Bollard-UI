@@ -1,0 +1,35 @@
+{
+  "title": "Notice Period Check",
+  "description": "Stops people resigning towards the wrong last day by working it out from the resignation and the notice policy (days, weeks or months, calendar or working days, notice from the same or the next day) and flagging month-end arithmetic like 31 Jan + 1 month, a last day on a weekend or holiday, an email HR dates differently in its own time zone, unpaid leave pushing the date out, leave set-off and the buyout cost of leaving early, with one-tap fixes and a line to copy to HR.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong last working day after resigning",
+  "mistakes": [
+    "notice period calculation",
+    "last working day wrong",
+    "resignation date calculator",
+    "notice buyout cost",
+    "month notice end date"
+  ],
+  "aliases": [
+    "notice period",
+    "resignation",
+    "last working day",
+    "lwd",
+    "hr portal",
+    "exit",
+    "notice buyout",
+    "relieving",
+    "offboarding"
+  ],
+  "flows": [
+    "forms",
+    "scheduling",
+    "india"
+  ],
+  "fields": [
+    "datetime",
+    "number"
+  ]
+}

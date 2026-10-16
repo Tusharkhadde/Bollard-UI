@@ -1,0 +1,33 @@
+{
+  "title": "Character Budget",
+  "description": "Prevents posts that get cut off and SMS that silently cost double by counting graphemes against X, SMS, LinkedIn and meta-description limits at once, and naming the curly quote or emoji that forced UCS-2.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Post cut off or SMS costs double",
+  "mistakes": [
+    "character limit tweet",
+    "sms emoji costs double",
+    "ucs-2 sms",
+    "meta description length",
+    "character counter"
+  ],
+  "aliases": [
+    "character count",
+    "char limit",
+    "tweet",
+    "x post",
+    "sms",
+    "linkedin",
+    "meta description",
+    "textarea",
+    "counter"
+  ],
+  "flows": [
+    "messaging",
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

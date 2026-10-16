@@ -1,0 +1,32 @@
+{
+  "title": "Leftover Text Check",
+  "description": "Stops text being published with the parts nobody meant to keep: chatbot chatter and refusals (\"I cannot fulfill that request\"), unfilled placeholders ([product], [task 1], XX%), TK and TODO markers and a paragraph pasted twice, with no false alarms on [1], [sic] or Markdown links, flagging them the moment they are pasted, deleting a chatter sentence in one tap, filling every copy of a placeholder at once, and asking for a second press to publish with leftovers.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "Chatbot reply published as listing",
+  "mistakes": [
+    "chatgpt text left in post",
+    "placeholder published by mistake",
+    "as an ai language model in content",
+    "forgot to fill in template brackets",
+    "paragraph pasted twice"
+  ],
+  "aliases": [
+    "ai generated text",
+    "chatgpt",
+    "product description",
+    "blog post",
+    "cms editor",
+    "textarea",
+    "lorem ipsum",
+    "tk",
+    "todo",
+    "publish"
+  ],
+  "flows": [
+    "forms",
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

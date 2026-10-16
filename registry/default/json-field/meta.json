@@ -1,0 +1,33 @@
+{
+  "title": "JSON Field",
+  "description": "Stops broken JSON from being saved by validating as you type, pointing a caret at the exact line and column, and repairing trailing commas, single or smart quotes, unquoted keys, comments, Python literals, missing commas and unclosed braces in one token-aware tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Broken JSON saved to config",
+  "mistakes": [
+    "json syntax error",
+    "trailing comma json",
+    "invalid json paste",
+    "single quotes json",
+    "json validator input"
+  ],
+  "aliases": [
+    "json",
+    "json editor",
+    "json validator",
+    "config",
+    "payload",
+    "metadata",
+    "settings",
+    "api body",
+    "jsonc"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "code"
+  ]
+}

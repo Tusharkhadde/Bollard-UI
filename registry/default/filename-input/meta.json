@@ -1,0 +1,32 @@
+{
+  "title": "Filename Input",
+  "description": "Prevents broken renames by selecting only the base name on focus, warning with a one-tap undo when the extension changes or disappears, and catching illegal characters, Windows reserved names like CON or NUL.txt, trailing dots and spaces, over-long names and duplicates that differ only in capitals.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Rename strips the file extension",
+  "mistakes": [
+    "rename removes extension",
+    "invalid filename characters",
+    "windows reserved filename",
+    "con nul file name",
+    "filename too long"
+  ],
+  "aliases": [
+    "filename",
+    "rename",
+    "file name",
+    "extension",
+    "upload",
+    "file manager",
+    "save as",
+    "download name"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "file",
+    "text"
+  ]
+}

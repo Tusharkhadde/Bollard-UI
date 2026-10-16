@@ -1,0 +1,35 @@
+{
+  "title": "Paste Target Guard",
+  "description": "Prevents payments to a clipboard-hijacked IBAN, UPI ID or wallet address by comparing what lands in the field with what was copied on the page or entered earlier, and flagging look-alikes of saved recipients, then showing both side by side in groups (start and end first, differing characters marked, \"ends match\" called out because modern clippers copy them) with the original one tap away.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Clipboard hijacker swaps payee address",
+  "mistakes": [
+    "clipboard hijack upi",
+    "crypto address changed on paste",
+    "iban clipper malware",
+    "pasted wrong upi id",
+    "wallet address swapped"
+  ],
+  "aliases": [
+    "clipboard hijacking",
+    "clipper",
+    "upi id",
+    "iban",
+    "wallet address",
+    "crypto",
+    "payee",
+    "send money",
+    "paste"
+  ],
+  "flows": [
+    "checkout",
+    "india",
+    "danger-zone"
+  ],
+  "fields": [
+    "id-number",
+    "text"
+  ]
+}

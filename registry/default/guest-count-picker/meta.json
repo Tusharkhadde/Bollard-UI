@@ -1,0 +1,33 @@
+{
+  "title": "Guest Count Picker",
+  "description": "Prevents bookings a hotel will bounce by asking each child's age and catching a child over the age limit (or young enough to be a free infant), infants with no adult, rooms over capacity or out of cots, and a room split that doesn't add up to the party, each with a one-tap fix.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Hotel booking bounced over guests",
+  "mistakes": [
+    "child age hotel booking",
+    "too many guests per room",
+    "infant without adult",
+    "rooms and guests picker",
+    "hotel occupancy limit"
+  ],
+  "aliases": [
+    "guests",
+    "rooms",
+    "adults children",
+    "hotel booking",
+    "occupancy",
+    "travellers",
+    "child age",
+    "booking widget",
+    "airbnb"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "number"
+  ]
+}

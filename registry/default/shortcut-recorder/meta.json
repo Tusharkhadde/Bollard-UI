@@ -1,0 +1,32 @@
+{
+  "title": "Shortcut Recorder",
+  "description": "Stops users saving a keyboard shortcut that will never fire or will clobber something, by checking what they press against browser and OS reserved keys on every platform (Ctrl+W, ⌘Q, Ctrl+T), the app's own bindings and layouts where the key needs AltGr, then reading it back as ⌘ on Mac and Ctrl on Windows/Linux.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Shortcut clashes with Ctrl+W",
+  "mistakes": [
+    "keyboard shortcut conflict",
+    "hotkey recorder",
+    "reserved browser shortcut",
+    "ctrl vs cmd shortcut",
+    "custom keybinding"
+  ],
+  "aliases": [
+    "keyboard shortcut",
+    "hotkey",
+    "keybinding",
+    "shortcut recorder",
+    "cmd k",
+    "settings",
+    "accessibility",
+    "mac windows"
+  ],
+  "flows": [
+    "account-settings",
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
+}

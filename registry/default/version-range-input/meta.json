@@ -1,0 +1,32 @@
+{
+  "title": "Version Range Input",
+  "description": "Prevents dependency ranges that don't mean what you think by reading npm-style semver ranges back in plain English, marking which published versions match and which one installs, and warning about ^0.x lock-in, a hyphen with no spaces, commas for AND and ranges that match nothing.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Semver range installs the wrong version",
+  "mistakes": [
+    "caret range 0.x",
+    "semver range meaning",
+    "npm version range",
+    "tilde vs caret",
+    "range matches nothing"
+  ],
+  "aliases": [
+    "semver",
+    "version range",
+    "package.json",
+    "caret",
+    "tilde",
+    "npm",
+    "dependencies",
+    "peer deps",
+    "renovate"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

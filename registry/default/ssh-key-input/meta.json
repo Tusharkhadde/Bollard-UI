@@ -1,0 +1,34 @@
+{
+  "title": "SSH Key Input",
+  "description": "Stops a private key being pasted where a public key belongs by saying so loudly, telling the user to rotate it and pulling out the public half in one tap, and catches DSA and short RSA keys, keys wrapped across lines or cut off, a missing or wrong type prefix, the SSH2 export format and a key already on the account, showing the SHA256 fingerprint and comment exactly as ssh-keygen prints them.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Private SSH key pasted publicly",
+  "mistakes": [
+    "pasted private key instead of public",
+    "ssh key invalid format",
+    "rsa key too short",
+    "id_rsa vs id_rsa.pub",
+    "ssh key fingerprint"
+  ],
+  "aliases": [
+    "ssh key",
+    "public key",
+    "id_ed25519.pub",
+    "authorized_keys",
+    "deploy key",
+    "github ssh",
+    "fingerprint",
+    "ssh-keygen",
+    "settings"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

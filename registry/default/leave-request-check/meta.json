@@ -1,0 +1,33 @@
+{
+  "title": "Leave Request Check",
+  "description": "Stops a time-off request costing more (or meaning something else) than the person thinks by reading it back day by day as calendar days, working days and the leave it really uses, and flagging weekends and holidays at the ends, a sandwich rule from your policy that charges the weekend in between, a half day with no half chosen or one that leaves a working gap, a balance going negative and teammates already away, with one-tap fixes and the date they're back at work.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Leave request burns extra days",
+  "mistakes": [
+    "sandwich leave rule",
+    "leave balance negative",
+    "half day leave wrong",
+    "leave days calculation",
+    "holiday in leave range"
+  ],
+  "aliases": [
+    "leave",
+    "time off",
+    "pto",
+    "leave application",
+    "hrms",
+    "sandwich leave",
+    "holiday calendar",
+    "half day",
+    "out of office"
+  ],
+  "flows": [
+    "scheduling",
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

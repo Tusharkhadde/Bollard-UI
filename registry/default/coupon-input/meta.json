@@ -1,0 +1,32 @@
+{
+  "title": "Coupon Input",
+  "description": "Stops shoppers giving up on a code that should work by cleaning pasted spaces, hidden characters and case, catching O-vs-0 style look-alikes with a one-tap fix, saying exactly why a code didn't apply (cart minimum with the gap, expiry date, excluded items, already used), showing the real saving and any cap, and asking before a worse code replaces a better one.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Valid coupon code rejected",
+  "mistakes": [
+    "coupon code not working",
+    "promo code invalid",
+    "discount code spaces",
+    "coupon minimum order",
+    "better coupon replaced"
+  ],
+  "aliases": [
+    "coupon",
+    "promo code",
+    "discount code",
+    "voucher",
+    "offer code",
+    "checkout",
+    "cart",
+    "apply code",
+    "gift card"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "code"
+  ]
+}

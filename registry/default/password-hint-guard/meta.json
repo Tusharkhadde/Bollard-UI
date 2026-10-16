@@ -1,0 +1,32 @@
+{
+  "title": "Password Hint Guard",
+  "description": "Prevents password hints and security answers that give the password away (the flaw that exposed millions of Adobe passwords in 2013) by spotting the password inside them, also backwards, spaced out or in leetspeak, a large piece of it, or a 'same as my bank' reuse admission, without ever displaying the password, and removing the leak in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Password hint reveals the password",
+  "mistakes": [
+    "password hint contains password",
+    "security question answer weak",
+    "adobe password hint leak",
+    "hint gives password away",
+    "password reminder"
+  ],
+  "aliases": [
+    "password hint",
+    "security question",
+    "recovery",
+    "signup",
+    "account security",
+    "memorable word",
+    "password reminder"
+  ],
+  "flows": [
+    "signup-login",
+    "account-settings"
+  ],
+  "fields": [
+    "secret",
+    "text"
+  ]
+}

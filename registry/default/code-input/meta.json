@@ -1,0 +1,32 @@
+{
+  "title": "Code Input",
+  "description": "Prevents commands, JSON and keys that fail for invisible reasons by disabling autocorrect and catching smart quotes, dashes, ellipses and hidden characters by line and column, with a one-tap fix and optional JSON validation.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Smart quotes break a pasted command",
+  "mistakes": [
+    "smart quotes in code",
+    "autocorrect breaks command",
+    "curly quotes json",
+    "em dash in cli flag",
+    "hidden characters in code"
+  ],
+  "aliases": [
+    "code input",
+    "command",
+    "terminal",
+    "json",
+    "smart quotes",
+    "autocorrect off",
+    "api key",
+    "snippet",
+    "monospace"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

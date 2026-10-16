@@ -1,0 +1,33 @@
+{
+  "title": "Slug Input",
+  "description": "Prevents broken and colliding URLs: the slug follows the title with proper transliteration (Straße → strasse) until published, reads back the full URL, checks for collisions as you type with the next free slug one tap away, and warns that editing a live slug breaks links, keeping a redirect by default.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Live URL slug breaks links",
+  "mistakes": [
+    "slug collision",
+    "change slug broke links",
+    "url slug generator",
+    "transliterate slug",
+    "duplicate slug"
+  ],
+  "aliases": [
+    "slug",
+    "permalink",
+    "url slug",
+    "blog post",
+    "cms",
+    "seo url",
+    "handle",
+    "redirect",
+    "path"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "url",
+    "text"
+  ]
+}

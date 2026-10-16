@@ -1,0 +1,32 @@
+{
+  "title": "YAML Field",
+  "description": "Catches YAML that loads without an error but means something else (NO, yes, on and off read as booleans, 1.10 read as 1.1, 0755 as octal, 22:22 as base-60, duplicate keys, tabs and misaligned indentation) by showing each one's line, column and what the parser will really read, with one-tap quoting and alignment fixes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "YAML NO read as false",
+  "mistakes": [
+    "yaml norway problem",
+    "yaml boolean yes no",
+    "yaml indentation error",
+    "yaml version number float",
+    "yaml tabs"
+  ],
+  "aliases": [
+    "yaml",
+    "yml",
+    "config",
+    "docker compose",
+    "github actions",
+    "kubernetes",
+    "helm",
+    "ci config",
+    "front matter"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

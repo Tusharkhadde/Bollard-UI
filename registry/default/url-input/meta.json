@@ -1,0 +1,33 @@
+{
+  "title": "URL Input",
+  "description": "Prevents broken, insecure and disguised links by adding a missing https://, flagging http, Cyrillic or Greek lookalike hostnames and a “paypal.com@” login prefix that hides the real site, fixing typo'd endings like .con, cleaning the words and full stop a copied sentence leaves behind, and stripping tracking parameters in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Lookalike or broken link saved",
+  "mistakes": [
+    "url missing https",
+    "phishing lookalike domain",
+    "url ends with .con",
+    "tracking params in url",
+    "http instead of https"
+  ],
+  "aliases": [
+    "url",
+    "link",
+    "website field",
+    "https",
+    "utm strip",
+    "homograph",
+    "link input",
+    "profile link",
+    "portfolio"
+  ],
+  "flows": [
+    "forms",
+    "messaging"
+  ],
+  "fields": [
+    "url"
+  ]
+}

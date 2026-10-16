@@ -1,0 +1,33 @@
+{
+  "title": "Redirect URI Input",
+  "description": "Prevents redirect_uri_mismatch sign-in failures and leaked authorization codes by checking a redirect URI the way an OAuth server does, exact string match, so it catches a trailing slash, http versus https, letter case, www or a port that differs from the registered list (with the differing characters highlighted side by side and a one-tap swap), plus localhost in production, wildcards, a default :443 port or empty ?, a #fragment, stray whitespace and short custom schemes.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "OAuth redirect_uri_mismatch error",
+  "mistakes": [
+    "redirect_uri_mismatch",
+    "oauth callback url wrong",
+    "trailing slash redirect uri",
+    "google oauth redirect error",
+    "localhost redirect production"
+  ],
+  "aliases": [
+    "oauth",
+    "redirect uri",
+    "callback url",
+    "google sign in",
+    "nextauth",
+    "auth0",
+    "openid",
+    "sso",
+    "login with google"
+  ],
+  "flows": [
+    "devtools",
+    "signup-login"
+  ],
+  "fields": [
+    "url"
+  ]
+}

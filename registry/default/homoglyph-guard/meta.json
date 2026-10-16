@@ -1,0 +1,34 @@
+{
+  "title": "Homoglyph Guard",
+  "description": "Stops spoofed usernames and domains like pаypal.com (Cyrillic а) by detecting look-alike, mixed-script, styled and zero-width characters with UTS #39-style rules, naming each one's real script and code point, and offering the plain-ASCII version in one tap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Spoofed username with Cyrillic letters",
+  "mistakes": [
+    "cyrillic lookalike domain",
+    "homograph attack",
+    "fake username lookalike",
+    "mixed script username",
+    "unicode spoofing"
+  ],
+  "aliases": [
+    "homoglyph",
+    "homograph",
+    "lookalike",
+    "unicode spoofing",
+    "username",
+    "domain",
+    "punycode",
+    "impersonation",
+    "confusables"
+  ],
+  "flows": [
+    "signup-login",
+    "devtools"
+  ],
+  "fields": [
+    "text",
+    "url"
+  ]
+}

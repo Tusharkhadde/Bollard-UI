@@ -1,0 +1,34 @@
+{
+  "title": "Tax ID Input",
+  "description": "Prevents invoices going out with a mistyped GSTIN, PAN or EU VAT number by recomputing the GSTIN's mod-36 check character, reading back the state, holder type and country, and pinpointing the exact wrong character with a one-tap fix for look-alikes, swaps and GR instead of EL.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Invoice sent with wrong GSTIN",
+  "mistakes": [
+    "gstin validation",
+    "pan number format",
+    "vat number check",
+    "gst number typo",
+    "gstin checksum"
+  ],
+  "aliases": [
+    "gstin",
+    "gst number",
+    "pan",
+    "vat number",
+    "tax id",
+    "invoice",
+    "billing",
+    "b2b checkout",
+    "company details"
+  ],
+  "flows": [
+    "india",
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

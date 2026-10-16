@@ -1,0 +1,33 @@
+{
+  "title": "SQL Guard",
+  "description": "Stops a forgotten WHERE from wiping a table: a small tokenizer (comments and strings don't count) flags UPDATE/DELETE without WHERE, a WHERE hidden in a comment, always-true conditions like WHERE 1=1, DROP and TRUNCATE as you type, asks before any write on production, shows estimated affected rows from a pluggable function, and requires typing the table name before a destructive run.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "DELETE without WHERE wipes table",
+  "mistakes": [
+    "delete without where",
+    "update all rows mistake",
+    "drop table production",
+    "sql query safety",
+    "truncate by accident"
+  ],
+  "aliases": [
+    "sql",
+    "query editor",
+    "delete",
+    "update",
+    "where clause",
+    "drop table",
+    "database console",
+    "admin",
+    "production db"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
+}
