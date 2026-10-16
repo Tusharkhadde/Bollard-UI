@@ -3,69 +3,96 @@
 /* .light inside a dark page (a preview forced to light) opts its subtree out of dark styles. */
 @custom-variant dark (&:is(.dark *):not(:is(.light *)));
 
-:root {
+/*
+ * Site tokens (v6). Zinc neutrals, hairline borders, one accent: hazard amber.
+ * The standard shadcn names stay, so every registry component follows the theme.
+ * Extra site-only tokens:
+ *   --brand / --brand-foreground  amber #f59e0b and the ink that sits on it
+ *   --surface                     the faint panel tone for framed areas (code, previews, bento stages)
+ *   --border-strong               a slightly firmer hairline for hovered / framed edges
+ *   --grid-line                   the line colour for the masked background grids
+ *
+ * `:root, .light` comes before `.dark` on purpose: a `.light` subtree inside a
+ * dark page declares its own values, which beat the inherited dark ones.
+ */
+:root,
+.light {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.47 0.016 285.9);
+  --accent: oklch(0.955 0.002 286.35);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --border-strong: oklch(0.87 0.006 286.286);
+  --input: oklch(0.9 0.004 286.32);
+  --ring: oklch(0.666 0.179 58.318); /* amber-600: keeps focus rings visible on white */
+  --brand: oklch(0.769 0.188 70.08);
+  --brand-foreground: oklch(0.141 0.005 285.823);
+  --surface: oklch(0.985 0.001 286.375);
+  --grid-line: oklch(0.141 0.005 285.823 / 6%);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.168 0.005 285.9);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.185 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: oklch(0.21 0.006 285.885);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.24 0.006 286);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(1 0 0 / 9%);
+  --border-strong: oklch(1 0 0 / 15%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.769 0.188 70.08);
+  --brand: oklch(0.769 0.188 70.08);
+  --brand-foreground: oklch(0.141 0.005 285.823);
+  --surface: oklch(0.16 0.005 285.9);
+  --grid-line: oklch(1 0 0 / 5%);
 }
 
-/* Lets a preview force light mode inside a dark page. Must stay after .dark. */
-.light {
+/* Repeat the light set after .dark so `.light` also wins when an element carries both classes. */
+.dark.light,
+.dark .light {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.47 0.016 285.9);
+  --accent: oklch(0.955 0.002 286.35);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --border-strong: oklch(0.87 0.006 286.286);
+  --input: oklch(0.9 0.004 286.32);
+  --ring: oklch(0.666 0.179 58.318);
+  --surface: oklch(0.985 0.001 286.375);
+  --grid-line: oklch(0.141 0.005 285.823 / 6%);
 }
 
 @theme inline {
@@ -89,16 +116,41 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-surface: var(--surface);
+  --color-grid-line: var(--grid-line);
+
+  /* Geist Sans + Geist Mono (the `geist` package sets these variables on <html>). */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
   body {
     @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--brand) 30%, transparent);
   }
 }
 
@@ -118,12 +170,29 @@ html {
   scroll-padding-top: 4.5rem;
 }
 
-/* Thin hazard-stripe accent (the brand's yellow/black), used sparingly on the landing. */
+/* --- Shared site utilities (landing + docs) --- */
+
+/* The thin hazard-stripe band from the logo, used as a tiny brand mark. */
 .hazard-stripes-sm {
-  background-image: repeating-linear-gradient(-45deg, #f59e0b 0 6px, #0a0a0a 6px 12px);
+  background-image: repeating-linear-gradient(-45deg, var(--brand) 0 6px, var(--foreground) 6px 12px);
 }
 
-/* Site typeface: Comic Neue (hand-drawn, Excalidraw-like), code stays monospace. */
-@theme inline {
-  --font-sans: var(--font-comic), "Comic Sans MS", "Comic Sans", ui-rounded, system-ui, sans-serif;
+/* A hairline grid that fades out from the top centre (vercel.com style). Put it on an absolutely positioned layer. */
+.bg-grid-fade {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%);
+}
+
+/* A dotted stage for live previews (bento cards, previews). */
+.bg-dots {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Very soft amber glow behind framed product shots. */
+.glow-brand {
+  background: radial-gradient(50% 50% at 50% 50%, color-mix(in oklch, var(--brand) 22%, transparent), transparent 70%);
 }

@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next"
-import { Comic_Neue } from "next/font/google"
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
 
 import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
-
-const comic = Comic_Neue({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-comic", display: "swap" })
 
 const title = "Bollard UI: build interfaces your users can't break"
 const description =
@@ -35,13 +34,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={comic.variable} suppressHydrationWarning>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

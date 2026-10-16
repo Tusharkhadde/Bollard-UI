@@ -127,3 +127,6 @@ export const KITS: Kit[] = [
 ]
 
 export const kitFor = (flow: string) => KITS.find((k) => k.flow === flow)
+
+/** Where a flow link goes. One place to change it if the components index moves from ?flow= to an anchor. */
+export const flowHref = (flow: string) => `/components?flow=${flow}`

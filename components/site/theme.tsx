@@ -106,3 +106,30 @@ export function ThemeToggle({ className }: { className?: string }) {
     </div>
   )
 }
+
+const nextChoice: Record<ThemeChoice, ThemeChoice> = { light: "dark", dark: "system", system: "light" }
+
+/** One icon button for tight spots (the top bar): cycles light → dark → system and says which one is on. */
+export function ThemeButton({ className }: { className?: string }) {
+  const choice = useThemeChoice()
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+  const current = options.find((o) => o.value === (mounted ? choice : "system")) ?? options[2]
+  const next = options.find((o) => o.value === nextChoice[current.value])!
+  const Icon = current.icon
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(next.value)}
+      aria-label={`Theme: ${current.label}. Switch to ${next.label.toLowerCase()}`}
+      title={`Theme: ${current.label}`}
+      data-theme-button
+      className={cn(
+        "grid size-8 place-items-center rounded-md text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        className,
+      )}
+    >
+      <Icon className="size-4" aria-hidden />
+    </button>
+  )
+}

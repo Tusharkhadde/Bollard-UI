@@ -460,5 +460,3 @@ New component ideas are welcome. The bar: it prevents a real, specific user mist
 ## License
 
 MIT © Tushar Khadde
-#   B o l l a r d - U I  
- 

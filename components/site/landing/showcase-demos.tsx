@@ -1,6 +1,6 @@
 "use client"
 
-// The landing's live examples grid: each one is a real Bollard UI registry component,
+// The landing's bento grid: each one is a real Bollard UI registry component,
 // set up with a mistake already in it. Loaded as one lazy chunk by LiveDemo.
 // (The hero's tabbed preview uses a different set, so the two never repeat.)
 import * as React from "react"
@@ -9,8 +9,6 @@ import { Trash2 } from "lucide-react"
 import { CardExpiryInput } from "@/registry/default/card-expiry-input/card-expiry-input"
 import { CooldownButton } from "@/registry/default/cooldown-button/cooldown-button"
 import { HomoglyphGuard } from "@/registry/default/homoglyph-guard/homoglyph-guard"
-import { IfscInput } from "@/registry/default/ifsc-input/ifsc-input"
-import { PercentInput } from "@/registry/default/percent-input/percent-input"
 import { SqlGuard } from "@/registry/default/sql-guard/sql-guard"
 import { TypeToConfirm } from "@/registry/default/type-to-confirm/type-to-confirm"
 import { UpiIdInput, type UpiVerification } from "@/registry/default/upi-id-input/upi-id-input"
@@ -38,14 +36,6 @@ export function SqlDemo() {
 
 export function CardExpiryDemo() {
   return <CardExpiryInput label="Card expiry" defaultValue="13/28" className="w-full max-w-none" />
-}
-
-export function IfscDemo() {
-  return <IfscInput label="Branch IFSC" defaultValue="HDFCO001234" className="w-full max-w-none" />
-}
-
-export function PercentDemo() {
-  return <PercentInput label="Discount" defaultValue={0.15} base={2000} currency="INR" locale="en-IN" className="w-full max-w-none" />
 }
 
 const directory: Record<string, string> = { "rohan.sharma@okaxis": "ROHAN SHARMA" }
@@ -92,7 +82,7 @@ export function TypeToConfirmDemo() {
       <button
         type="button"
         onClick={() => (deleted ? setDeleted(false) : setOpen(true))}
-        className="inline-flex h-9 items-center gap-2 rounded-md border border-destructive/40 bg-background px-4 text-sm font-medium text-destructive shadow-xs outline-none hover:bg-destructive/10 focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"
+        className="inline-flex h-9 items-center gap-2 rounded-md border border-destructive/40 bg-background px-4 text-sm font-medium text-destructive outline-none hover:bg-destructive/10 focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"
       >
         <Trash2 aria-hidden className="size-4" />
         {deleted ? "Restore demo" : "Delete repository"}

@@ -11,8 +11,6 @@ const pick = (key: keyof Awaited<ReturnType<typeof load>>) => React.lazy(() => l
 const demos = {
   "sql-guard": pick("SqlDemo"),
   "card-expiry-input": pick("CardExpiryDemo"),
-  "ifsc-input": pick("IfscDemo"),
-  "percent-input": pick("PercentDemo"),
   "upi-id-input": pick("UpiDemo"),
   "cooldown-button": pick("CooldownDemo"),
   "homoglyph-guard": pick("HomoglyphDemo"),
@@ -28,7 +26,7 @@ export function LiveDemo({ name }: { name: ShowcaseName }) {
     <Deferred
       margin="400px 0px"
       className="flex w-full justify-center"
-      fallback={<div aria-hidden className="h-20 w-full animate-pulse rounded-lg bg-muted/60 motion-reduce:animate-none" />}
+      fallback={<div aria-hidden className="h-20 w-full animate-pulse rounded-lg bg-muted motion-reduce:animate-none" />}
     >
       <Demo />
     </Deferred>
