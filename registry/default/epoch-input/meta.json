@@ -1,6 +1,23 @@
 {
   "title": "Epoch Input",
-  "description": "Stops a timestamp field storing the wrong moment by reading the value back as a date in the user's zone and in UTC, and catching milliseconds pasted where seconds belong (year 57,754), microseconds and nanoseconds, Excel serials, Windows FILETIME and .NET ticks, ISO strings with no time zone that JavaScript reads as local time and servers as UTC, date-only strings read as UTC midnight, impossible dates like 30 February, years and compact dates (2026, 20261014) that silently read as 1970, and values past the 2038 limit of 32-bit time, each with a one-tap conversion and copy-as seconds, milliseconds or ISO.",
+  "summary": "Reads a timestamp back as a date in your zone and UTC and catches unit mix-ups, so a value isn't saved as year 57,754 or the wrong hour.",
+  "description": "Reads the value back in the user's zone and UTC, and catches milliseconds pasted as seconds, micro- and nanoseconds, Excel serials, Windows FILETIME, .NET ticks, ISO strings without a zone, date-only strings read as UTC midnight and impossible dates like 30 Feb.",
+  "catches": [
+    "Milliseconds where seconds belong (and micro/nanoseconds)",
+    "Excel serial dates, Windows FILETIME and .NET ticks",
+    "ISO strings with no time zone, which JavaScript and servers read differently",
+    "Date-only strings read as UTC midnight",
+    "Impossible dates (30 Feb) and values outside 32-bit range when int32 is set"
+  ],
+  "limits": [
+    "Unit guesses rely on plausible ranges; very old or far-future dates can be misread",
+    "Time zones come from the browser's Intl data"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid and aria-describedby to the readback",
+    "After a fix, focus moves to the next fix or back to the input",
+    "Motion respects prefers-reduced-motion"
+  ],
   "dependencies": [
     "@date-fns/tz",
     "lucide-react",

@@ -63,15 +63,25 @@ export interface TermsChangesProps extends Omit<React.ComponentProps<"section">,
   foldAfter?: number
   /** Templates: `{title}`, `{from}`, `{fromDate}`, `{to}`, `{toDate}`, `{seen}`, `{total}`, `{count}` are filled in. */
   headingText?: string
+  /** Intro line above the changes. */
   introText?: string
+  /** Heading of the plain-language summary. */
   summaryLabel?: string
+  /** Accessible label of the changes region. */
   changesLabel?: string
+  /** Progress text. `{seen}` and `{total}` are filled in. */
   progressText?: string
+  /** Label of the jump-to-next-unread button. */
   nextLabel?: string
+  /** Label of the Accept button. */
   acceptLabel?: string
+  /** Says how many changes are still unread. */
   remainingText?: string
+  /** Shown after accepting. */
   acceptedText?: string
+  /** Label of the Decline button. */
   declineLabel?: string
+  /** Label for folded unchanged text. */
   foldText?: string
 }
 

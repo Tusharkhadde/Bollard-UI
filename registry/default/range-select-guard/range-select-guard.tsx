@@ -38,16 +38,23 @@ export interface RangeSelectGuardProps extends Omit<React.ComponentProps<"div">,
   value?: string[]
   /** Initial selected ids when uncontrolled. */
   defaultValue?: string[]
+  /** Called with the selected ids. */
   onValueChange?: (ids: string[]) => void
   /** Accessible name of the list. */
   label?: string
   /** Templates. `{how}`, `{count}`, `{pages}` are filled in. */
   rangeText?: string
+  /** Template for rows skipped because the filter hides them. */
   skippedText?: string
+  /** Template for selected rows on pages not opened. */
   offPageText?: string
+  /** Button text to keep only this page's rows. */
   onlyPageLabel?: string
+  /** Undo button text. */
   undoLabel?: string
+  /** Template for selected rows the filter hides. */
   hiddenSelectedText?: string
+  /** Button text to deselect hidden rows. */
   deselectHiddenLabel?: string
 }
 

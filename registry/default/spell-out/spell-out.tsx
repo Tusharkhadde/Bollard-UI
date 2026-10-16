@@ -23,23 +23,35 @@ export interface SpellOutProps extends Omit<React.ComponentProps<"div">, "childr
   caseSensitive?: boolean
   /** Mask the value until revealed, then hide it again after `revealFor` ms. */
   secret?: boolean
+  /** How long a revealed secret stays visible, in ms. */
   revealFor?: number
   /** Which view opens first. */
   defaultView?: "characters" | "phonetic"
   /** Called after the exact value was copied. */
   onCopied?: () => void
+  /** Accessible label of the view switch. */
   viewLabel?: string
+  /** Label of the characters view. */
   charactersLabel?: string
+  /** Label of the phonetic (NATO) view. */
   phoneticLabel?: string
+  /** Label of the copy button. */
   copyLabel?: string
+  /** Announced after copying. */
   copiedLabel?: string
+  /** Label of the reveal button. */
   showLabel?: string
+  /** Label of the hide button. */
   hideLabel?: string
+  /** Read in place of a hidden value. */
   hiddenLabel?: string
   /** Templates: `{position}` and `{detail}` are filled in. */
   homoglyphText?: string
+  /** Warning for invisible characters. */
   invisibleText?: string
+  /** Warning for leading or trailing spaces. */
   edgeSpaceText?: string
+  /** Hint explaining look-alike names. */
   confusableHint?: string
 }
 

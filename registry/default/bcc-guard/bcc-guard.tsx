@@ -59,6 +59,7 @@ export interface BccGuardProps extends Omit<React.ComponentProps<"section">, "ch
   from?: string
   /** Subject and body, scanned for terms that make the list itself sensitive. */
   subject?: string
+  /** Email body, scanned for sensitive terms. */
   body?: string
   /** Terms that make membership of the list sensitive. Replaces the default list; spread DEFAULT_SENSITIVE_TERMS to extend it. */
   sensitiveTerms?: string[]
@@ -68,6 +69,7 @@ export interface BccGuardProps extends Omit<React.ComponentProps<"section">, "ch
   onSend?: (value: Recipients, mode: "together" | "individually") => void | Promise<void>
   /** Addresses shown in the preview before "+N more". Default 3. */
   previewCount?: number
+  /** Override any visible string. */
   messages?: Partial<Messages>
 }
 

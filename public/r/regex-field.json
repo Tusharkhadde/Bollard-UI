@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "regex-field",
   "title": "Regex Field",
-  "description": "Catches regexes that look right but aren't (an unescaped dot, a missing ^…$ that lets \"abc123x\" pass, a greedy .*, catastrophic backtracking like (a+)+) with plain-English hints, one-tap fixes and live-highlighted test strings matched in a time-capped Web Worker that can't freeze the page.",
+  "description": "Regex input with static checks (unescaped dot, missing ^…$, greedy .*, nested quantifiers like (a+)+), plain-English hints, one-tap fixes, and live test strings matched in a time-capped Web Worker so a runaway pattern can't freeze the page.",
   "dependencies": [
     "lucide-react"
   ],
@@ -42,10 +42,30 @@
     ],
     "fields": [
       "code"
+    ],
+    "summary": "Flags regexes that look right but match too much or hang: unescaped dots, missing anchors, greedy wildcards and catastrophic backtracking.",
+    "server": "Apply your own timeout or a linear-time engine (e.g. RE2) wherever user-supplied patterns run on the server.",
+    "catches": [
+      "Unescaped . where a literal dot was likely meant",
+      "Missing ^…$ anchors that let partial matches pass",
+      "Greedy .* that swallows more than intended",
+      "Nested quantifiers prone to catastrophic backtracking",
+      "Test strings that pass or fail against your expectation, or time out"
+    ],
+    "limits": [
+      "Checks JavaScript regex syntax; other engines (PCRE, RE2, Python) differ",
+      "Static checks are heuristics; a flagged pattern can be intentional and a clean one can still be wrong",
+      "The Worker time cap protects this page, not wherever you run the pattern later"
+    ],
+    "a11y": [
+      "Visible <label> on the pattern input with aria-invalid and hints via aria-describedby",
+      "Hints render in a polite live region; syntax errors use role=alert",
+      "Each test string, expectation toggle and remove button has an aria-label",
+      "Pass/fail/timeout shown with distinct icons plus the toggle's accessible name; the highlight backdrop is aria-hidden"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

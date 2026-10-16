@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "reset-hard-readback",
   "title": "Reset Hard Readback",
-  "description": "Stops git reset --hard, git clean -fdx, git checkout -- . and git stash drop from silently destroying work by reading porcelain status and listing exactly what will be lost (edited files with +/- lines, staged new files, untracked and ignored files with .env and keys first, commits the branch moves past with unpushed ones marked, stash entries with the id to recover them), saying what stays, and offering to stash first.",
+  "description": "Readback for destructive git commands from porcelain status: edited files with +/- lines, staged new files, untracked and ignored files (.env and keys first), commits the branch moves past with unpushed ones marked, stash ids to recover, what stays, and a stash-first option.",
   "dependencies": [
     "lucide-react"
   ],
@@ -42,6 +42,26 @@
     ],
     "fields": [
       "code"
+    ],
+    "summary": "Lists exactly what git reset --hard, clean, checkout -- . or stash drop would destroy, and offers to stash first.",
+    "server": "In tooling that runs these commands for users, keep a reflog/backup and require explicit confirmation server-side; this component only describes the loss.",
+    "catches": [
+      "Tracked edits that would be discarded, with +/- line counts",
+      "Staged new files and untracked/ignored files, secrets like .env and keys listed first",
+      "Commits the branch would move past, with unpushed ones marked",
+      "Stash entries dropped, with the sha to recover them",
+      "What the command leaves alone (e.g. submodules without --recurse-submodules)"
+    ],
+    "limits": [
+      "Only as complete as the status, numstat, commits and stashes you pass",
+      "Parses common forms of reset, clean, checkout/restore and stash drop; unusual flags may not be modelled",
+      "Does not run git; onStash and onConfirm are yours"
+    ],
+    "a11y": [
+      "Each loss group is a section labelled by its heading; the list is a labelled group",
+      "Long groups expand with a button instead of truncating silently",
+      "Outcome announced via role=status",
+      "Confirm receives focus when the readback opens; buttons set aria-busy while pending"
     ]
   },
   "categories": [

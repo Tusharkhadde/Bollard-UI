@@ -1,7 +1,50 @@
-{"title": "Replace File", "description": "Stops an upload from overwriting a newer file with an older one: each name clash shows both copies side by side with thumbnail, size and date (newer and larger in bold), warns with a one-tap \"Keep both\" when an older file would replace a newer one, spots identical copies, previews the renamed copy, and applies one choice to all with counts while saying the other files upload as normal.", "dependencies": ["lucide-react"],
+{
+  "title": "Replace File",
+  "summary": "Helps prevent an upload from overwriting a newer file with an older one by comparing both copies before replacing.",
+  "description": "Name-clash resolver for uploads: both copies side by side with thumbnail, size and date, a warning plus one-tap Keep both when an older file would replace a newer one, identical copies spotted, renamed-copy preview, and apply-to-all with counts.",
+  "catches": [
+    "Older incoming file about to replace a newer existing one",
+    "Identical copies, with a one-tap Skip",
+    "Newer and larger copy highlighted per clash",
+    "Name the kept copy will get (\"report (1).pdf\")",
+    "Clashes still undecided before Continue"
+  ],
+  "limits": [
+    "Compares the dates and sizes you pass; file timestamps can be wrong after copies or downloads",
+    "\"Identical\" is inferred from size and date, not a content hash",
+    "Does not upload; onContinue receives the choices"
+  ],
+  "a11y": [
+    "Form labelled by its title; each clash is a radiogroup of native radios named after the file",
+    "Warnings and fixes render in polite live regions",
+    "Continue is disabled until every clash is decided, with aria-busy while pending",
+    "Newer/larger shown in bold text, not colour alone; animation skipped under reduced motion"
+  ],
+  "server": "Check the stored file's version or ETag at write time so a stale client choice cannot overwrite a newer upload.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Older upload overwrote newer file",
-  "mistakes": ["upload replaced newer file", "file name conflict overwrite", "keep both files", "replace existing file"],
-  "aliases": ["file conflict", "replace or keep both", "upload", "duplicate file name", "overwrite", "dropbox", "file manager"],
-  "flows": ["forms", "danger-zone"],
-  "fields": ["file"]
+  "mistakes": [
+    "upload replaced newer file",
+    "file name conflict overwrite",
+    "keep both files",
+    "replace existing file"
+  ],
+  "aliases": [
+    "file conflict",
+    "replace or keep both",
+    "upload",
+    "duplicate file name",
+    "overwrite",
+    "dropbox",
+    "file manager"
+  ],
+  "flows": [
+    "forms",
+    "danger-zone"
+  ],
+  "fields": [
+    "file"
+  ]
 }

@@ -1,10 +1,47 @@
 {
   "title": "Field History",
-  "description": "Stops people overwriting or misreading a field someone just changed: a trigger beside the label flags a recent change by someone else, opens \"Was ₹500 until Priya changed it yesterday\" with a one-tap revert of that field alone, says what the revert replaces (including your unsaved edit) and lets you undo it.",
-  "dependencies": ["lucide-react"],
+  "summary": "Flags a field someone else just changed and shows its previous value with a one-tap revert, so a teammate's change isn't overwritten unknowingly.",
+  "description": "A trigger beside the label flags a recent change by someone else and opens \"Was ₹500 until Priya changed it yesterday\" with a one-tap revert of that field alone, says what the revert replaces (including your unsaved edit) and lets you undo it.",
+  "catches": [
+    "Recent changes by someone else (within recentFor)",
+    "The previous value and who changed it",
+    "Reverts that would also replace your unsaved edit",
+    "Regret after a revert, with Undo"
+  ],
+  "limits": [
+    "History comes from your props; it doesn't track changes itself",
+    "Reverting runs your onRevert"
+  ],
+  "a11y": [
+    "Pass htmlFor so the label is a real <label> for the field",
+    "The trigger has aria-expanded, aria-controls and an aria-label that says when it changed",
+    "Animations respect prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Overwrote teammate's change unknowingly",
-  "mistakes": ["someone changed the price", "who changed this field", "revert field change", "overwrote colleague edit"],
-  "aliases": ["field history", "audit log", "change history", "revert", "who changed", "activity", "collaboration", "price change"],
-  "flows": ["forms"],
-  "fields": ["amount", "text"]
+  "mistakes": [
+    "someone changed the price",
+    "who changed this field",
+    "revert field change",
+    "overwrote colleague edit"
+  ],
+  "aliases": [
+    "field history",
+    "audit log",
+    "change history",
+    "revert",
+    "who changed",
+    "activity",
+    "collaboration",
+    "price change"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "amount",
+    "text"
+  ]
 }

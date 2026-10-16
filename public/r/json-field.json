@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "json-field",
   "title": "JSON Field",
-  "description": "Stops broken JSON from being saved by validating as you type, pointing a caret at the exact line and column, and repairing trailing commas, single or smart quotes, unquoted keys, comments, Python literals, missing commas and unclosed braces in one token-aware tap.",
+  "description": "JSON text field that validates as you type, shows a caret at the exact line and column, and repairs trailing commas, single or smart quotes, unquoted keys, comments, Python literals (True/None), missing commas and unclosed braces with a token-aware fix. Includes Format.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,10 +44,28 @@
     ],
     "fields": [
       "code"
+    ],
+    "summary": "Validates JSON as you type, points at the exact line and column, and repairs the usual hand-editing mistakes in one tap.",
+    "catches": [
+      "Trailing commas",
+      "Single or smart quotes, and unquoted keys",
+      "Comments and Python literals such as True and None",
+      "Missing commas and unclosed braces or brackets",
+      "Exact line and column, the same in every browser"
+    ],
+    "limits": [
+      "Checks syntax only; no JSON Schema validation",
+      "Fixes are heuristic; review the result before saving"
+    ],
+    "a11y": [
+      "Visible label; textarea has aria-invalid and is described by the status",
+      "Status is a polite live region and problems wait for a pause while typing",
+      "Position button moves the caret to the problem",
+      "Caret overlay is aria-hidden"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

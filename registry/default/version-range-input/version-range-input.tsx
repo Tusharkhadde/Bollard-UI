@@ -47,14 +47,23 @@ export interface VersionRangeInputProps extends Omit<
   describe?: (sets: ComparatorSet[]) => string
   /** Templates: `{range}`, `{allowed}`, `{token}`, `{version}`, `{count}`, `{total}` are filled in. */
   allowsText?: string
+  /** Count of matching versions. */
   matchCountText?: string
+  /** Shown when the range can't be parsed. */
   invalidText?: string
+  /** Warning when commas are used for AND. */
   andText?: string
+  /** Warning for a hyphen range without spaces. */
   hyphenText?: string
+  /** Warning for ^0.x ranges. */
   zeroMinorText?: string
+  /** Warning for ^0.0.x ranges. */
   zeroPatchText?: string
+  /** Shown when no published version matches. */
   noMatchText?: string
+  /** Shown when the range can never match. */
   neverText?: string
+  /** Shown when the latest version is outside the range. */
   latestOutsideText?: string
   /** Badge on the version a fresh install would resolve to. */
   installsLabel?: string

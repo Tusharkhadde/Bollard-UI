@@ -1,6 +1,34 @@
 {
   "title": "CTC Breakdown Input",
-  "description": "Stops a job offer's headline CTC being mistaken for pay by splitting it into fixed pay, variable, ESOPs, joining bonus, gratuity and PF, estimating gratuity and PF in one tap, working out monthly in-hand pay with every assumption written down, and flagging offers where in-hand is far below the headline.",
+  "summary": "Splits a job offer's CTC into what is actually paid monthly, so the headline number isn't mistaken for take-home pay.",
+  "description": "Splits CTC into fixed pay, variable, ESOPs, joining bonus, gratuity and PF, estimates gratuity and PF in one tap, works out monthly in-hand pay under India's new tax regime with every assumption written down, and flags offers where in-hand is far below the headline.",
+  "catches": [
+    "Variable pay, ESOPs and one-time bonuses counted in the headline",
+    "Gratuity and employer PF that never reach the bank account",
+    "In-hand pay far below the headline (minInHandRatio)",
+    "Parts that add up to more than the CTC"
+  ],
+  "limits": [
+    "An estimate under India's new tax regime only; old-regime deductions, HRA and other income are not modelled",
+    "Assumes basic is 50% of fixed pay, PF capped at the ₹15,000/month wage ceiling and ₹2,500 professional tax unless you change the assumptions",
+    "Tax rules are built in as of the verification date and need updating each budget"
+  ],
+  "a11y": [
+    "Each amount has a <label>; aria-invalid and aria-describedby to its error",
+    "Colour swatches are aria-hidden; parts are named in text",
+    "Results are announced in a visually hidden aria-live=\"polite\" region",
+    "Estimate actions move focus to the field they fill"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Income Tax Department: Salaried individuals for AY 2026-27 (new regime slabs, 87A)",
+        "url": "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
+      }
+    ],
+    "note": "Informational; not tax advice. Checked new-regime slabs (₹4 L nil up to 30% above ₹24 L) and the ₹60,000 87A rebate up to ₹12 L for AY 2026-27. Not checked: that FY 2026-27 is unchanged, surcharge bands, the 4.81% gratuity factor, the PF wage ceiling and professional tax."
+  },
   "dependencies": [
     "lucide-react"
   ],

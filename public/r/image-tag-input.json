@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "image-tag-input",
   "title": "Image Tag Input",
-  "description": "Stops deploys from pulling the wrong container by reading the reference back the way Docker resolves it (implied docker.io/library/ and :latest shown), flagging :latest or no tag in production, tags that move, typo'd or frozen registries, private images that fall back to Docker Hub, malformed digests and arch-specific tags that won't run on the target, with one-tap fixes including pinning a digest.",
+  "description": "Image reference field showing the implied docker.io/library/ and :latest, flags :latest or no tag in production, moving tags, typo'd or frozen registries, private images that fall back to Docker Hub, malformed digests and arch-specific tags, with fixes such as pinning a digest.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Deploy pulled the wrong image",
+    "stops": "Helps prevent a deploy pulling the wrong image",
     "mistakes": [
       "docker latest tag production",
       "docker image tag wrong",
@@ -45,10 +45,29 @@
     "fields": [
       "code",
       "text"
+    ],
+    "summary": "Reads a container image reference back the way Docker resolves it, so :latest, moving tags or a typo'd registry don't deploy the wrong image.",
+    "server": "Pin digests and enforce allowed registries with admission policy in the cluster or CI.",
+    "catches": [
+      ":latest or a missing tag for production",
+      "Moving tags such as stable or main",
+      "Typo'd or frozen registry hosts",
+      "Private image names that would resolve to Docker Hub",
+      "Malformed digests and arch-specific tags that won't run on the target platform"
+    ],
+    "limits": [
+      "Parses the reference; it does not query a registry unless you pass resolveDigest",
+      "Registry typo and moving-tag lists are heuristics",
+      "Doesn't scan the image for vulnerabilities or verify signatures"
+    ],
+    "a11y": [
+      "Visible label; input has aria-invalid on errors and is described by the readback and issues",
+      "Implied parts carry a title explaining they are implied",
+      "Issues use role=status; focus returns to a nearby control after a fix"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

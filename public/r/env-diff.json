@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "env-diff",
   "title": "Env Diff",
-  "description": "Prevents broken deploys from config drift by comparing two environments key by key, putting missing and empty keys first, flagging production values that still point at localhost, a test key or the staging host, and secrets reused across both, while masking every secret behind a short fingerprint so the diff is safe to share.",
+  "description": "Compares two environments key by key, lists missing and empty keys first, flags production values pointing at localhost, a test key or the staging host, and secrets reused across both, masking every secret behind a short fingerprint.",
   "dependencies": [
     "lucide-react"
   ],
@@ -38,6 +38,23 @@
     "fields": [
       "secret",
       "url"
+    ],
+    "summary": "Compares two environments key by key and flags missing keys, localhost in production and reused secrets, masking secrets so the diff is safe to share.",
+    "server": "Validate required config at deploy time on the server, and keep secrets in a secrets manager rather than in shared diffs.",
+    "catches": [
+      "Keys missing or empty in one environment",
+      "Production values that point at localhost, a test key or a staging host",
+      "Secrets reused across both environments",
+      "A copy of the missing keys, ready to fill"
+    ],
+    "limits": [
+      "Fingerprints are 4-hex-digit FNV hashes: fine for spotting reuse, but they can help confirm guesses of short, weak secrets, so don't share diffs of weak secrets",
+      "Which keys are secret is decided by isSecret or name patterns"
+    ],
+    "a11y": [
+      "The comparison is a labelled list; masked dots are aria-hidden and secrets have a labelled icon",
+      "Show-same toggle uses aria-pressed",
+      "Copy feedback is aria-live=\"polite\""
     ]
   },
   "categories": [

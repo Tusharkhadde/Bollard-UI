@@ -1,6 +1,24 @@
 {
   "title": "Coupon Input",
-  "description": "Stops shoppers giving up on a code that should work by cleaning pasted spaces, hidden characters and case, catching O-vs-0 style look-alikes with a one-tap fix, saying exactly why a code didn't apply (cart minimum with the gap, expiry date, excluded items, already used), showing the real saving and any cap, and asking before a worse code replaces a better one.",
+  "summary": "Cleans and checks a coupon code and says exactly why it didn't apply, so shoppers don't give up on a code that should work.",
+  "description": "Cleans pasted spaces, hidden characters and case, catches O-vs-0 look-alikes with a fix, says why a code didn't apply (cart minimum and the gap, expiry, excluded items, already used), shows the real saving and any cap, and asks before a worse code replaces a better one.",
+  "catches": [
+    "Pasted spaces, hidden characters and wrong case",
+    "Look-alike characters (O/0, I/1) against known codes",
+    "The specific reason a code was rejected, such as the amount still needed",
+    "A capped discount, shown as the real saving",
+    "A worse code replacing a better one"
+  ],
+  "limits": [
+    "Look-alike suggestions need knownCodes; otherwise it only cleans",
+    "Validity and rejection reasons come from your onApply"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid and aria-describedby to the status",
+    "Enter applies; suggestion and remove buttons have aria-labels",
+    "Focus returns to the input after actions"
+  ],
+  "server": "Validate and price coupons on the server; never trust a discount computed in the browser.",
   "dependencies": [
     "lucide-react"
   ],

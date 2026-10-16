@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "role-preview",
   "title": "Role Preview",
-  "description": "Prevents over-granting access by showing exactly what the chosen role can and can't do, diffing it against the current role, and suggesting a smaller role when the pick adds dangerous permissions.",
+  "description": "Role picker that shows exactly what the chosen role can and can't do, diffs it against the current role, and suggests the smallest role that keeps the needed abilities when the pick adds dangerous permissions.",
   "dependencies": [
     "lucide-react"
   ],
@@ -36,7 +36,23 @@
       "account-settings",
       "danger-zone"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "Shows what a chosen role can and can't do, the diff from the current role, and a smaller role when the pick adds risky permissions.",
+    "server": "Authorize role changes on the server and check permissions per request; this only previews the role.",
+    "catches": [
+      "Permissions gained and lost versus the current role",
+      "Dangerous capabilities (cost money, destroy data, widen access) marked",
+      "A smaller role that drops the dangerous extras, with one-tap switch"
+    ],
+    "limits": [
+      "Only as accurate as the role matrix you pass",
+      "Suggestion is mechanical least-privilege; it doesn't know what the person actually needs"
+    ],
+    "a11y": [
+      "Role select has a visible label",
+      "Diff list has an aria-label and renders in a polite live region",
+      "Can/Cannot prefixes and \"Can no longer\" are text, not colour alone; icons are aria-hidden"
+    ]
   },
   "categories": [
     "Sharing, sending and paying"

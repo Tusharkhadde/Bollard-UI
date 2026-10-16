@@ -1,7 +1,26 @@
 {
   "title": "QR Share",
-  "description": "Stops a QR code going out that opens the wrong thing by reading the exact URL back under the code, re-decoding the code it drew to prove nothing was truncated, and warning about localhost, staging, http, invisible characters and links long enough to make a dense code, with one-tap fixes; ships its own dependency-free encoder (byte mode, ECC M).",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads the exact URL back under a QR code and re-decodes what it drew, so a shared code doesn't open the wrong page.",
+  "description": "QR code generator that reads the exact URL back under the code, re-decodes the matrix it drew to prove nothing was truncated, and warns about localhost, staging, http, invisible characters and dense codes, with one-tap fixes. Dependency-free encoder (byte mode, ECC M).",
+  "catches": [
+    "localhost or staging URLs, with a swap to publicOrigin",
+    "http instead of https",
+    "Invisible characters in the URL, marked with their code point",
+    "Links long enough to make a dense, hard-to-scan code",
+    "Encoder output that doesn't decode back to the URL"
+  ],
+  "limits": [
+    "Byte mode and error correction M only; no logos or other ECC levels",
+    "Self-check proves the matrix, not that printers or screens reproduce it well"
+  ],
+  "a11y": [
+    "QR SVG is role=img with an aria-label naming the URL",
+    "Issues are a polite live region; a decode mismatch uses role=alert",
+    "Draw animation is skipped under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "QR code opens the wrong page",
   "mistakes": [
     "qr code wrong link",

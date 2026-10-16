@@ -1,6 +1,46 @@
 {
   "title": "Redirect Rule Input",
-  "description": "Stops redirect lists from breaking links, SEO and security: it reads vercel.json, Netlify _redirects or nginx rewrite/return (auto-detected) the way each platform matches, then catches loops and 2+ hop chains with the hop path, rules shadowed by an earlier wildcard, open redirects whose domain comes from the URL, 301/308 on temporary moves, 301/302 turning a POST into a GET, dropped query strings, a ?query or #hash written into the source, missing leading slashes, placeholders the source never captures, trailing-slash traps and hops to http, with a GET/POST URL tester and one-tap fixes (collapse the chain, reorder, make temporary, keep args, match the query separately).",
+  "summary": "Catches redirect rules that loop, chain, shadow each other, open-redirect, drop queries or switch POST to GET, modelled on how each platform matches.",
+  "description": "Redirect list checker for vercel.json, Netlify _redirects and nginx rewrite/return. Finds loops, chains, shadowed rules, open redirects, wrong status codes, dropped queries and trailing-slash traps, with a GET/POST tester and one-tap fixes.",
+  "catches": [
+    "Loops and 2+ hop chains, with the hop path",
+    "Rules shadowed by an earlier wildcard",
+    "Open redirects whose destination host comes from the request",
+    "301/308 on temporary moves and 301/302 turning POST into GET",
+    "Dropped query strings, ?query or #hash in the source, missing leading slash, unmatched placeholders",
+    "Trailing-slash traps and hops to http"
+  ],
+  "limits": [
+    "Models each platform from its docs; framework middleware, headers/has conditions and server config elsewhere are not evaluated",
+    "nginx support covers rewrite/return and location selection, not every module or include",
+    "Open-redirect detection is pattern-based; review any destination built from user input"
+  ],
+  "a11y": [
+    "Visible <label> on the textarea; aria-invalid when errors exist and status wired via aria-describedby",
+    "Issue count is a role=status region",
+    "GET/POST tester is a roving-tabindex radiogroup operated with arrow keys",
+    "After a fix, focus moves to the next fix button or back to the textarea",
+    "Hop outcomes shown with icons and text"
+  ],
+  "server": "Validate redirect destinations against an allowlist on the server; this checks config text, not live traffic.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Vercel – vercel.json redirects",
+        "url": "https://vercel.com/docs/project-configuration/vercel-json#redirects"
+      },
+      {
+        "label": "Netlify – Redirect options",
+        "url": "https://docs.netlify.com/manage/routing/redirects/redirect-options/"
+      },
+      {
+        "label": "nginx – ngx_http_rewrite_module",
+        "url": "https://nginx.org/en/docs/http/ngx_http_rewrite_module.html"
+      }
+    ],
+    "note": "Confirmed on Vercel (permanent defaults to true = 308, source is case-sensitive) and Netlify (default 301, 307 unsupported, query passed for 200/301/302, trailing slash ignored when matching). nginx behaviour not re-checked this round. Platforms change; check their docs."
+  },
   "dependencies": [
     "lucide-react"
   ],

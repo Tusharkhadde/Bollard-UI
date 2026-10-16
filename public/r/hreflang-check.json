@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hreflang-check",
   "title": "Hreflang Check",
-  "description": "Stops Google from silently ignoring hreflang by checking pasted <link> tags or a sitemap for one page or a whole set the way Search Central describes, with a who-links-to-whom grid, and flagging missing or near-miss return links, invalid codes like en-UK or es-419, relative URLs, a missing self-reference or x-default and a canonical that points at another language's page, each with a one-tap fix.",
+  "description": "Checks pasted <link> tags or a sitemap for one page or a set, following Google Search Central: a who-links-to-whom grid, missing return links, invalid codes (en-UK, es-419), relative URLs, missing self-reference or x-default, and canonicals to another language, with fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Google ignored the hreflang tags",
+    "stops": "Helps catch hreflang tags Google would ignore",
     "mistakes": [
       "hreflang not working",
       "missing return links",
@@ -43,7 +43,36 @@
     "fields": [
       "url",
       "code"
-    ]
+    ],
+    "summary": "Checks hreflang tags or a sitemap against Google's rules, so missing return links or bad codes don't get the whole set ignored.",
+    "catches": [
+      "Missing or near-miss return links between versions",
+      "Codes Google doesn't support: en-UK, es-419, region-only codes",
+      "Relative or protocol-relative URLs",
+      "Missing self-reference or x-default",
+      "A canonical pointing at another language's page"
+    ],
+    "limits": [
+      "Checks only what you paste; it does not crawl live pages or HTTP Link headers",
+      "Follows Google's documented rules; other search engines may differ",
+      "Can't tell whether page content actually matches the declared language"
+    ],
+    "a11y": [
+      "Text area has a label, aria-invalid when errors exist, and is described by the hint and status",
+      "Status uses role=status; icons are aria-hidden",
+      "The link grid is a table with row and column headers and a text description in each cell",
+      "Focus returns to a nearby button after a fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Google Search Central: Tell Google about localized versions of your page",
+          "url": "https://developers.google.com/search/docs/specialty/international/localized-versions"
+        }
+      ],
+      "note": "Informational; check the official source. Confirmed: return links, self-reference, fully-qualified URLs, ISO 639-1 + ISO 3166-1 alpha-2 (es-419 unsupported, UK not a valid region), optional ISO 15924 script, x-default."
+    }
   },
   "categories": [
     "Reading without mistakes"

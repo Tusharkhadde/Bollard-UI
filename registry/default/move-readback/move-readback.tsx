@@ -89,11 +89,15 @@ function Path({ location, label }: { location: MoveLocation; label: string }) {
 }
 
 export interface MoveReadbackProps extends Omit<React.ComponentProps<"form">, "onSubmit" | "title"> {
+  /** Items being moved. */
   items: MoveItem[]
+  /** Where they are now. */
   from: MoveLocation
+  /** Where they are going. */
   to: MoveLocation
   /** Runs on confirm. `keepRedirect` is true when old links should keep working. Return a promise to show a pending state. */
   onMove: (options: { keepRedirect: boolean }) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Offer to leave a redirect/shortcut at the old path. Omit when the product can't. */
   canKeepRedirect?: boolean

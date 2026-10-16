@@ -1,7 +1,27 @@
 {
   "title": "Spell Out",
-  "description": "Stops booking refs, wallet addresses and passwords being misread aloud or copied wrong by grouping the characters, naming look-alikes under the glyph (0 zero vs O oh, 1/l/I, 5/S), spelling it in the NATO alphabet with case when it matters, and flagging Cyrillic look-alike letters and invisible characters.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows a code or reference so it can be read aloud and copied correctly: grouped, look-alikes named, NATO spelling and hidden characters flagged.",
+  "description": "Readable display for booking refs, wallet addresses, keys and passwords: grouped characters, look-alikes named under the glyph (0 zero vs O oh, 1/l/I, 5/S), NATO spelling with case when it matters, and Cyrillic look-alikes and invisible characters flagged.",
+  "catches": [
+    "Look-alike characters (0/O, 1/l/I, 5/S), named",
+    "Non-Latin homoglyphs (Cyrillic, Greek) posing as Latin letters",
+    "Invisible characters and leading/trailing spaces",
+    "Case that matters, spoken as capital/lowercase",
+    "Copying the exact value instead of the grouped display"
+  ],
+  "limits": [
+    "Look-alike list is a common set, not exhaustive",
+    "Secret mode masks visually; the value is still in the page"
+  ],
+  "a11y": [
+    "View switch uses aria-pressed buttons in a labelled group",
+    "Groups are a list; each has its spoken spelling for screen readers",
+    "Hidden values announce a hidden label; reveal is an aria-pressed toggle",
+    "Copy result and warnings render in polite live regions"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Booking ref misread over the phone",
   "mistakes": [
     "pnr misread",

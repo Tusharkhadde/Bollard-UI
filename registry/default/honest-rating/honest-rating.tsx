@@ -74,10 +74,15 @@ export interface HonestRatingProps extends Omit<React.ComponentProps<"div">, "ch
   onSelectStars?: (stars: number) => void
   /** Templates: `{count}`, `{low}`, `{high}`, `{one}`, `{five}`, `{score}`, `{mean}`. */
   countText?: string
+  /** Shown when the review count is below minReviews. */
   smallSampleText?: string
+  /** Shown for a love-it-or-hate-it split. */
   polarizedText?: string
+  /** Explains the Bayesian sorting score. */
   adjustedText?: string
+  /** Button text to read the 1-star reviews. */
   readLowLabel?: string
+  /** Shown when there are no reviews. */
   emptyText?: string
 }
 

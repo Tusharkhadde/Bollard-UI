@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "relative-date-input",
   "title": "Relative Date Input",
-  "description": "Stops a date typed the way people say it from landing on the wrong day: \"next Fri\", \"in 2 weeks\", \"the 15th\" and \"23 Oct\" are read with date-fns against today, and phrases that split listeners (\"next Friday\" on a Wednesday, \"this Monday\" after Monday, \"the 10th\" once it has passed, \"next weekend\" early in the week) show both dates and wait for a pick, with a read-back and a one-tap rewrite to the unambiguous date.",
+  "description": "Reads \"next Fri\", \"in 2 weeks\", \"the 15th\" or \"23 Oct\" against today with date-fns. When a phrase can mean two dates (\"next Friday\" on a Wednesday, \"the 10th\" once passed), it shows both and waits for a pick, then offers a rewrite to the explicit date.",
   "dependencies": [
     "lucide-react",
     "date-fns",
@@ -46,10 +46,29 @@
     ],
     "fields": [
       "datetime"
+    ],
+    "summary": "Stops a date typed the way people say it (\"next Fri\", \"the 10th\") from landing on the wrong day by asking when the phrase has two readings.",
+    "catches": [
+      "Phrases with two honest readings (next/this weekday, next weekend early in the week)",
+      "Day-of-month that has already passed (\"the 10th\")",
+      "Read-back of the resolved date with its relative distance",
+      "One-tap rewrite of the field to an unambiguous date"
+    ],
+    "limits": [
+      "English phrases only; other languages are not parsed",
+      "Uses the today you pass (or the device clock) and its time zone",
+      "Covers common everyday phrases, not every natural-language form"
+    ],
+    "a11y": [
+      "Visible <label> on the input; aria-invalid and status via aria-describedby",
+      "Two readings form a roving-tabindex radiogroup operated with arrow keys",
+      "Read-back renders in a polite live region",
+      "Animations respect reduced motion (useReducedMotion)",
+      "After the rewrite, focus returns to the input"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

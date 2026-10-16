@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "list-paste",
   "title": "List Paste",
-  "description": "Prevents importing or inviting a messy pasted list by splitting it on lines, commas, semicolons and tabs (keeping \"Shah, Priya\" <…> whole), counting valid, duplicate and invalid items with the line and reason for each, and removing the bad ones in one undoable tap, with a pluggable validator.",
+  "description": "Paste box that splits on lines, commas, semicolons and tabs (keeping \"Shah, Priya\" <…> whole), counts valid, duplicate and invalid items with the line and reason for each, and removes the bad ones in one undoable tap. Validator is pluggable.",
   "dependencies": [
     "lucide-react"
   ],
@@ -39,10 +39,26 @@
     "fields": [
       "email",
       "text"
+    ],
+    "summary": "Splits a pasted list of emails or names, counts valid, duplicate and invalid items, and removes the bad ones before you import or invite.",
+    "catches": [
+      "Items split wrongly by commas inside quoted names",
+      "Duplicates, by a compare key you choose",
+      "Invalid items with their line and reason",
+      "Invisible characters and Name <email> wrappers stripped"
+    ],
+    "limits": [
+      "Default email check is pragmatic (one @, dotted domain, no spaces), not full RFC 5322 or a deliverability check",
+      "Shows only the first problems (maxProblems)"
+    ],
+    "a11y": [
+      "Visible label; textarea is described by a polite summary region",
+      "Remove buttons have aria-labels with the count they remove",
+      "Undo is a real button; icons are aria-hidden"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

@@ -108,6 +108,7 @@ export interface TreeSelectReadbackProps extends Omit<React.ComponentProps<"fiel
   emptyText?: string
   /** Templates: `{groups}` and `{count}` are filled in. */
   futureText?: string
+  /** Label of the pin-to-today's-items fix. */
   pinLabel?: string
   /** Badge next to a group ticked as a whole. */
   newBadge?: string

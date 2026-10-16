@@ -1,6 +1,33 @@
 {
   "title": "Version Bump",
-  "description": "Stops breaking changes shipping as a minor or patch that every ^range installs automatically by reading the changes (Conventional Commits or tagged), marking the bump they need, previewing each option's version, warning when the pick is too small (or a needless major), and reading back \"1.4.2 → 2.0.0\" with who gets it, while handling 0.x's shifted breaking slot, pre-release tags that drop on release, and tags that sort backwards (2.0.0-beta.0 < 2.0.0-rc.1).",
+  "summary": "Suggests the semver bump a set of changes needs and warns when the pick is too small, so breaking changes don't ship as minor or patch.",
+  "description": "Release picker that reads changes (Conventional Commits or tagged), marks the bump they need, previews each option's version, warns when the pick is too small (or a needless major), and reads back \"1.4.2 → 2.0.0\", handling 0.x, pre-release tags and their ordering.",
+  "catches": [
+    "A minor or patch for breaking changes, which ^ranges would install",
+    "A major with no breaking changes",
+    "0.x versions, where the minor slot carries breaking changes in npm ranges",
+    "Pre-release tags dropped on release and tags that sort backwards (beta < rc)",
+    "Invalid current versions"
+  ],
+  "limits": [
+    "Only as good as the change list: commits without type or ! markers are missed",
+    "Semver says 0.y.z may change anything; the 0.x handling follows npm caret behaviour"
+  ],
+  "a11y": [
+    "Bump options are a roving-tabindex radiogroup with arrow keys",
+    "Needed bump marked with text, not colour alone",
+    "Readback and warnings in polite live regions; invalid input uses role=alert"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Semantic Versioning 2.0.0",
+        "url": "https://semver.org/"
+      }
+    ],
+    "note": "Confirmed §11 pre-release precedence (1.0.0-alpha < … < 1.0.0-rc.1 < 1.0.0) and that 0.y.z is for initial development."
+  },
   "dependencies": [
     "lucide-react"
   ],

@@ -68,6 +68,7 @@ export interface StatusChipProps<K extends string = DefaultStatus> extends Omit<
   statuses?: Record<K, StatusDefinition>
   /** Details about this instance, shown first in the explanation, e.g. "Card ending 4242 was declined." */
   detail?: string
+  /** Chip size. */
   size?: "sm" | "default"
   /** Heading before `next` in the explanation. */
   nextLabel?: string

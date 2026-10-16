@@ -83,11 +83,15 @@ export interface BillSplitCheckProps extends Omit<React.ComponentProps<"div">, "
   currency: string
   /** Controlled claims, tip and options. */
   value?: SplitValue
+  /** Initial split when uncontrolled. */
   defaultValue?: Partial<SplitValue>
+  /** Called with the split whenever it changes. */
   onValueChange?: (value: SplitValue) => void
   /** Show the India service-charge note with the tip warning. Default true when currency is INR. */
   showServiceNote?: boolean
+  /** BCP 47 locale for money formatting. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<BillSplitCheckMessages>
 }
 

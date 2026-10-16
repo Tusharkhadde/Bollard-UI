@@ -1,7 +1,28 @@
 {
   "title": "Join Preview",
-  "description": "Stops a join from silently duplicating or losing rows by predicting the row count for every join type before it runs, naming the repeated keys that fan rows out, counting rows dropped for having no match or a blank key, and catching keys that never match because one side is a number and the other text, or they differ only by spaces, case or leading zeros, each with a one-tap fix that says how many rows it rescues.",
-  "dependencies": ["lucide-react"],
+  "summary": "Predicts a join's row count before it runs, so repeated keys that duplicate rows or keys that never match don't go unnoticed.",
+  "description": "Join preview that predicts the row count for each join type, names repeated keys that fan rows out, counts rows dropped for no match or a blank key, and catches keys that never match (number vs text, spaces, case, leading zeros), with fixes that say how many rows they rescue.",
+  "catches": [
+    "Repeated keys that fan rows out (and break an expected m:1)",
+    "Rows dropped for having no match or a blank key",
+    "Keys that differ only by type: number vs text",
+    "Keys that differ by spaces, case or leading zeros",
+    "Row count for inner, left, right and outer joins side by side"
+  ],
+  "limits": [
+    "Runs on the sample rows you pass, in the browser; large tables need a server-side count",
+    "Normalisations are opt-in and may merge keys that really are different",
+    "Predicts counts; it doesn't run your SQL or know your database's collation and type coercion"
+  ],
+  "a11y": [
+    "Section is labelled with both table names",
+    "Join type is a radiogroup with roving tabindex, arrow keys, Home and End",
+    "Counts are in a polite live region; failures use role=alert",
+    "Run button shows aria-busy while pending"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "SQL join duplicated every row",
   "mistakes": [
     "join duplicates rows",

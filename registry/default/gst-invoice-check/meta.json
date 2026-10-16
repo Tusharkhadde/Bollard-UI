@@ -1,8 +1,43 @@
 {
   "title": "GST Invoice Check",
-  "description": "Stops GST invoices going out under the wrong tax head by comparing the supplier GSTIN's state code with the place of supply to pick CGST + SGST/UTGST or IGST (SEZ and exports always IGST), then checking each rate against the slabs in force on the invoice date (including the 28% slab ending on 1 Feb 2026), zero-rated LUT exports, the CGST/SGST split, every amount and the total, with a one-tap fix.",
-  "dependencies": ["lucide-react"],
-  "stops": "GST invoice under the wrong tax head",
+  "summary": "Checks an Indian GST invoice for the wrong tax head (CGST + SGST vs IGST), a rate not in force on the invoice date, and amounts that don't add up.",
+  "description": "Compares the supplier GSTIN's state with the place of supply to pick CGST + SGST/UTGST or IGST (SEZ and exports always IGST), checks each rate against the slabs in force on the invoice date, LUT exports, the CGST/SGST split and the totals, with a one-tap fix.",
+  "catches": [
+    "Intra-state vs inter-state head chosen wrongly from GSTIN state and place of supply",
+    "UTGST vs SGST for union territories without a legislature",
+    "Rate not in the slab set for the invoice date (pre-22 Sep 2025, GST 2.0, from 1 Feb 2026)",
+    "Zero-rated LUT exports charged tax",
+    "CGST/SGST not split evenly, or line amounts and total that don't add up"
+  ],
+  "limits": [
+    "Checks that a rate exists in a slab set, not that it is the right rate for the HSN/SAC",
+    "Does not validate the GSTIN on the GST portal",
+    "Ignores cess, reverse charge and composition cases",
+    "Rule tables are baked in; future rate changes need a code update"
+  ],
+  "a11y": [
+    "Section labelled by its title; tax table uses column headers",
+    "Findings list is a polite live region with icons that are decorative",
+    "Fix is a real button"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Notification 19/2025-Central Tax (Rate), 31 Dec 2025 (28%/14% schedule omitted, tobacco to 40%, biris to 18% from 1 Feb 2026)",
+        "url": "https://taxinformation.cbic.gov.in/view-pdf/1010534/ENG/Notifications"
+      },
+      {
+        "label": "CBIC GST goods and services rates",
+        "url": "https://cbic-gst.gov.in/gst-goods-services-rates.html"
+      }
+    ],
+    "note": "Informational; check the official source. Verified: the 1 Feb 2026 change. The 22 Sep 2025 GST 2.0 slab set (Notification 9/2025-CT(R)) and the UTGST state-code list were not re-fetched this round."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps catch a GST invoice under the wrong tax head",
   "mistakes": [
     "igst vs cgst sgst wrong",
     "wrong gst rate",

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, Search } from "lucide-react"
 
-import { GITHUB_URL } from "@/lib/site"
+import { REPO_PUBLIC, REPO_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { EnvironmentBadge } from "@/registry/default/environment-badge/environment-badge"
 import { GithubIcon } from "./github-icon"
@@ -16,7 +16,8 @@ const navLink =
   "relative rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 /**
- * Sticky site header: logo, primary nav, ⌘K search, GitHub and the theme switch.
+ * Sticky site header: logo, primary nav, ⌘K search, GitHub (only while the repo is
+ * public, see REPO_PUBLIC) and the theme switch.
  * Blurred translucent background with a hairline bottom border. Below lg the
  * menu button opens the drawer (the docs sidebar).
  */
@@ -24,7 +25,9 @@ export function TopBar({ env }: { env?: string }) {
   const { openSearch, openDrawer } = useSite()
   const pathname = usePathname()
   const nav = [
+    { href: "/docs", label: "Docs", active: pathname === "/docs" },
     { href: "/components", label: "Components", active: pathname.startsWith("/components") },
+    { href: "/start-here", label: "Start here", active: pathname === "/start-here" },
     { href: "/#flows", label: "Flows", active: false },
   ]
   return (
@@ -47,9 +50,11 @@ export function TopBar({ env }: { env?: string }) {
               {item.label}
             </Link>
           ))}
-          <a href={GITHUB_URL} className={navLink}>
-            GitHub
-          </a>
+          {REPO_PUBLIC && (
+            <a href={REPO_URL} className={navLink}>
+              GitHub
+            </a>
+          )}
         </nav>
         <div className="ml-auto flex items-center gap-1.5">
           <button
@@ -66,13 +71,15 @@ export function TopBar({ env }: { env?: string }) {
               ⌘K
             </kbd>
           </button>
-          <a
-            href={GITHUB_URL}
-            aria-label="Bollard UI on GitHub"
-            className="grid size-8 place-items-center rounded-md text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 md:hidden"
-          >
-            <GithubIcon className="size-4" />
-          </a>
+          {REPO_PUBLIC && (
+            <a
+              href={REPO_URL}
+              aria-label="Bollard UI on GitHub"
+              className="grid size-8 place-items-center rounded-md text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 md:hidden"
+            >
+              <GithubIcon className="size-4" />
+            </a>
+          )}
           <ThemeButton />
         </div>
       </div>

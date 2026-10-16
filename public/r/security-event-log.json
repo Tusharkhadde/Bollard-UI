@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "security-event-log",
   "title": "Security Event Log",
-  "description": "Stops an account takeover hiding among routine entries: risky changes from other devices are highlighted, and a burst of them (a new device, then 2-step verification off, then a new recovery email) is grouped and named as a likely takeover, every row has a \"This wasn't me\" path that lists each step it will take (sign the device out, turn 2-step back on, restore recovery details...) as a checkbox the user can untick before it acts, and days and times follow the account's time zone with relative time.",
+  "description": "Security activity log that highlights risky changes from other devices, groups a burst (new device, 2-step off, new recovery email) as a likely takeover, and offers \"This wasn't me\" with each remedy as an untickable checkbox. Times follow the account's zone.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,6 +44,26 @@
     ],
     "fields": [
       "datetime"
+    ],
+    "summary": "Highlights risky account changes from other devices and groups a takeover-shaped burst, with a \"This wasn't me\" path the user can review.",
+    "server": "Run the remedies server-side (revoke sessions, restore factors) and require re-authentication or a recovery check before doing so.",
+    "catches": [
+      "Risky changes from devices other than the current one",
+      "A burst of risky changes within windowMinutes, named as a likely takeover",
+      "Remedies listed before acting (sign out device, re-enable 2-step, restore recovery)",
+      "Required remedies that can't be unticked",
+      "Day grouping in the account's time zone"
+    ],
+    "limits": [
+      "Risk and grouping are heuristics over the events you pass",
+      "Location comes from IP and is approximate",
+      "Remedies run through your onConfirm; nothing is secured until the server does it"
+    ],
+    "a11y": [
+      "Remedy list is a group labelled by its title; Escape cancels",
+      "Remedy checkboxes have <label>s; \"choose one\" note is polite, errors are role=alert",
+      "Focus moves to the secure button on open and back to the row's report button on cancel",
+      "Times use <time> with a machine-readable dateTime"
     ]
   },
   "categories": [

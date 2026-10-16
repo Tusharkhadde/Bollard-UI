@@ -1,10 +1,50 @@
 {
   "title": "Autofill Check",
-  "description": "Catches browser and password-manager autofill putting the wrong value in the wrong field by detecting fills (the :autofill animationstart hook plus a no-typing batch heuristic), outlining and listing them for review, flagging an email in Name or an address that differs from the account with a one-tap fix, and holding the first submit.",
-  "dependencies": ["lucide-react"],
+  "summary": "Highlights fields that the browser or password manager autofilled and flags values that look wrong, like an email in the Name field.",
+  "description": "Detects autofill (the :autofill animationstart hook plus a no-typing batch heuristic), outlines and lists filled fields for review, flags an email in Name or a value that differs from the account with a one-tap fix, and holds the first submit.",
+  "catches": [
+    "Fields filled without typing, detected by the :autofill hook or a timing heuristic",
+    "Values that do not fit the field (an email in Name, a number in Email)",
+    "Values that differ from what the account already holds (an old address), with a one-tap replacement",
+    "The same value filled into two different fields"
+  ],
+  "limits": [
+    "Detection is heuristic; some password managers and browsers fill in ways it cannot see, and fast pasting can look like autofill",
+    "Field types are guessed from autocomplete, type and name attributes",
+    "The first submit is held only once; the second goes through"
+  ],
+  "a11y": [
+    "Review banner is aria-live=\"polite\" and becomes role=\"alert\" when a submit is held",
+    "A held submit moves focus to the first suspect field; list entries focus their field",
+    "The highlight animation respects prefers-reduced-motion",
+    "Field names in the list come from their <label> or aria-label"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Autofill put email in name field",
-  "mistakes": ["autofill wrong field", "password manager filled wrong", "chrome autofill address wrong", "autofill submitted wrong data"],
-  "aliases": ["autofill", "autocomplete", "password manager", "chrome autofill", "address form", "checkout form", "1password"],
-  "flows": ["forms", "checkout"],
-  "fields": ["email", "name", "address"]
+  "mistakes": [
+    "autofill wrong field",
+    "password manager filled wrong",
+    "chrome autofill address wrong",
+    "autofill submitted wrong data"
+  ],
+  "aliases": [
+    "autofill",
+    "autocomplete",
+    "password manager",
+    "chrome autofill",
+    "address form",
+    "checkout form",
+    "1password"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "email",
+    "name",
+    "address"
+  ]
 }

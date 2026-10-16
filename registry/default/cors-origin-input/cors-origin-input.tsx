@@ -139,30 +139,39 @@ export interface CorsOriginInputProps extends Omit<React.ComponentProps<"div">, 
   value?: string[]
   /** Allowed origins when uncontrolled. */
   defaultValue?: string[]
+  /** Called with the origin list whenever it changes. */
   onValueChange?: (origins: string[]) => void
   /** Credentials are allowed for this API. Makes * and *. errors. */
   credentials?: boolean
   /** This list is for production. Flags http and localhost. */
   production?: boolean
+  /** Visible label for the allow-list. */
   label?: string
+  /** Placeholder for the add-origin field. */
   placeholder?: string
   /** Text per issue. */
   messages?: Partial<Record<OriginIssueKind, string>>
   /** Fix button labels. `{fix}` is filled in. */
   useLabel?: string
+  /** Accessible label prefix for remove buttons. */
   removeLabel?: string
   /** `{count}` is filled in. */
   fixAllLabel?: string
+  /** Label for the origin tester. */
   testLabel?: string
+  /** Placeholder for the origin tester. */
   testPlaceholder?: string
   /** Tester results. `{origin}` and `{entry}` are filled in. */
   testMessages?: Partial<Record<OriginTestCode, string>>
   /** Context shown beside the label. */
   credentialsOnLabel?: string
+  /** Text shown when credentials are not allowed. */
   credentialsOffLabel?: string
+  /** Text marking the production environment. */
   productionLabel?: string
   /** Read to screen readers after an entry that has an error or a warning. */
   errorLabel?: string
+  /** Word read for warning-level issues. */
   warningLabel?: string
 }
 

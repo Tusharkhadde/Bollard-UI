@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "doc-upload-match",
   "title": "Doc Upload Match",
-  "description": "Stops a KYC upload being rejected days later by checking the file against the document asked for (Aadhaar back instead of front, Aadhaar in the PAN slot, a password-locked e-Aadhaar PDF with its password rule, a multi-page PDF, a tiny, blurry or HEIC photo, a screenshot of a screenshot) from cheap in-browser signals plus an optional classify hook, and saying exactly what to upload instead.",
+  "description": "Checks a file against the document asked for (Aadhaar back instead of front, Aadhaar in the PAN slot, a password-locked e-Aadhaar PDF, a multi-page PDF, a tiny, blurry or HEIC photo, a screenshot of a screenshot) using in-browser signals plus an optional classify hook.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,39 @@
     ],
     "fields": [
       "file"
-    ]
+    ],
+    "summary": "Checks an uploaded file against the document asked for, so a KYC upload isn't rejected days later for being the wrong side, locked or blurry.",
+    "server": "Re-validate document type, size and content on the server or with your KYC provider; client checks are hints.",
+    "catches": [
+      "Password-locked PDFs, with how the e-Aadhaar password is formed",
+      "Multi-page PDFs where one page is expected",
+      "Images too small, blurry or in HEIC format",
+      "Screenshots of screenshots",
+      "The wrong document or side, when you provide a classify function"
+    ],
+    "limits": [
+      "Without a classify hook it can't tell which document is in the image",
+      "Blur and size checks are heuristics and can misjudge some photos",
+      "Runs in the browser; the file still goes wherever your onAccept sends it"
+    ],
+    "a11y": [
+      "Labelled file picker; focus returns to it after a rejection",
+      "The preview image has empty alt (decorative); status is given in text",
+      "Checking and result messages use icons plus text"
+    ],
+    "rules": {
+      "verified": null,
+      "sources": [
+        {
+          "label": "UIDAI e-Aadhaar FAQs",
+          "url": "https://uidai.gov.in/en/contact-support/have-any-question/284-faqs/aadhaar-online-services/e-aadhaar.html"
+        }
+      ],
+      "note": "Not verified on 2026-10-17: the UIDAI site did not respond. The e-Aadhaar password rule (first 4 letters of the name in capitals + birth year) is unchecked."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

@@ -79,9 +79,11 @@ export interface AccountSwitchGuardProps extends React.ComponentProps<"div"> {
   notText?: string
   /** Warning when another tab switched accounts. `{active}` and `{account}` are filled in. */
   switchedText?: string
+  /** Button text for the action when the accounts match. */
   actionLabel?: string
   /** Action label while the accounts disagree, so the click names its account. */
   explicitActionLabel?: string
+  /** Text for the button that switches the page to the newly active account. */
   switchPageLabel?: string
 }
 

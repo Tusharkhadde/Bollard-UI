@@ -113,10 +113,15 @@ const RADIUS = 9
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 interface ItemProps {
+  /** The pending action. */
   item: UndoItem
+  /** Label of the Undo button. */
   undoLabel: string
+  /** Whether Ctrl/⌘+Z undoes the newest action. */
   hotkey: boolean
+  /** Shown when a commit fails and is rolled back. */
   failedText: React.ReactNode
+  /** Accessible label of the dismiss button. */
   dismissLabel: string
 }
 

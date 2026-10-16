@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "unsaved-changes-bar",
   "title": "Unsaved Changes Bar",
-  "description": "Stops people leaving with edits they think were saved by naming every dirty field, guarding the tab close, saving on Ctrl/⌘+S and asking twice before Discard.",
+  "description": "Unsaved-changes bar that names every dirty field (with per-field revert), guards the tab close, saves on Ctrl/⌘+S and asks twice before Discard; editing a field back to its saved value makes it clean again.",
   "dependencies": [
     "lucide-react"
   ],
@@ -35,7 +35,25 @@
       "forms",
       "account-settings"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "Names every unsaved field, warns before the tab closes, saves on Ctrl/⌘+S and asks twice before discarding.",
+    "catches": [
+      "Each changed field, by name",
+      "Fields edited back to their saved value (clean again, deep compare)",
+      "Closing the tab with unsaved edits (beforeunload)",
+      "Discard, which needs a second confirm",
+      "Save failures, shown as an error"
+    ],
+    "limits": [
+      "In-app navigation must be guarded by your router; only tab close is covered",
+      "Browsers show their own generic leave-page text"
+    ],
+    "a11y": [
+      "Region with an aria-label; changed fields list has an aria-label",
+      "Ctrl/⌘+S saves (aria-keyshortcuts); revert buttons have aria-labels",
+      "Discard confirm is a labelled group focused on Keep; Escape cancels",
+      "Errors use role=alert; status in a polite live region"
+    ]
   },
   "categories": [
     "Forms and saving"

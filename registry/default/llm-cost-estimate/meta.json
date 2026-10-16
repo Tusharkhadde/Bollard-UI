@@ -1,6 +1,26 @@
 {
   "title": "LLM Cost Estimate",
-  "description": "Stops a batch or long prompt running up a surprise API bill: before it runs it estimates input and output tokens and the cost from your own dated price table, shows the worst case when max_tokens is missing, catches a request over the context window, a run many times the last one and a premium model picked for a bulk job, and fixes each in one tap (set max_tokens, switch model), with a Run button that states the cost, and shows the Batch API saving on bulk jobs.",
+  "summary": "Estimates an LLM batch's tokens and cost from your own dated price table before it runs, so a missing max_tokens or wrong model doesn't cause a surprise bill.",
+  "description": "Pre-run cost panel that estimates input/output tokens and cost from your dated price table, shows the worst case without max_tokens, catches context-window overflows, runs far bigger than the last and premium models on bulk jobs, and shows Batch API savings.",
+  "catches": [
+    "No max_tokens: worst-case cost shown",
+    "Request bigger than the model's context window",
+    "Run many times larger than the last one",
+    "Premium model picked for a bulk job, with a switch",
+    "Batch API discount on bulk jobs",
+    "Price table older than staleAfterDays"
+  ],
+  "limits": [
+    "Token counts are estimates unless you pass inputTokens; real tokenizers differ by model",
+    "Prices come only from your table; it doesn't fetch provider pricing",
+    "Doesn't enforce a budget; your API key limits or server must"
+  ],
+  "a11y": [
+    "Model select and max-tokens input have visible labels",
+    "Inputs get aria-invalid when a finding applies",
+    "Focus moves to the first finding's fix after a change"
+  ],
+  "server": "Set spend limits and max_tokens on the server or API key; the estimate doesn't cap anything.",
   "dependencies": [
     "lucide-react"
   ],

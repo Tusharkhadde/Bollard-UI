@@ -1,10 +1,44 @@
 {
   "title": "Tree Select Readback",
-  "description": "Prevents selecting more or less than intended in a nested checkbox tree by reading the choice back in plain words (\"All of Marketing except Paid ads; 3 of 12 in Sales\"), telling a whole-group tick apart from ticking every item, and warning that a whole-group tick also selects items added later, with a one-tap pin to today's items.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads a nested checkbox selection back in plain words and tells a whole-group tick apart from ticking every item today.",
+  "description": "Nested checkbox tree that reads the choice back in plain words (\"All of Marketing except Paid ads; 3 of 12 in Sales\"), tells a whole-group tick apart from ticking every item, and warns that a whole-group tick includes items added later, with a one-tap pin to today's items.",
+  "catches": [
+    "Whole-group selections that will include future items",
+    "Groups partly selected, read back as \"3 of 12\"",
+    "Exceptions inside a selected group",
+    "A pin-to-today option that converts a group rule to today's items"
+  ],
+  "limits": [
+    "Future-items semantics apply only when the group is open (open !== false)",
+    "Readback wording is English by default; override the text props"
+  ],
+  "a11y": [
+    "Expand buttons use aria-expanded/aria-controls and an aria-label",
+    "Children are a role=group labelled by the parent",
+    "Checkboxes use <label>s",
+    "Readback in a polite live region"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Whole group ticked, future items included",
-  "mistakes": ["tree checkbox selected too much", "select parent selects all", "nested checkbox confusion", "indeterminate checkbox"],
-  "aliases": ["tree select", "nested checkbox", "indeterminate", "permissions tree", "category filter", "multi select", "folder picker"],
-  "flows": ["forms"],
+  "mistakes": [
+    "tree checkbox selected too much",
+    "select parent selects all",
+    "nested checkbox confusion",
+    "indeterminate checkbox"
+  ],
+  "aliases": [
+    "tree select",
+    "nested checkbox",
+    "indeterminate",
+    "permissions tree",
+    "category filter",
+    "multi select",
+    "folder picker"
+  ],
+  "flows": [
+    "forms"
+  ],
   "fields": []
 }

@@ -69,10 +69,15 @@ export interface HiddenFieldGuardProps extends Omit<React.ComponentProps<"div">,
   message?: string
   /** Detail line. `{names}` is filled in. */
   submittedText?: string
+  /** Shown when hidden values will be dropped on submit. */
   discardedText?: string
+  /** Shown after the values are cleared. */
   clearedText?: string
+  /** Clear button text. */
   clearLabel?: string
+  /** Keep button text. */
   keepLabel?: string
+  /** Undo button text. */
   undoLabel?: string
 }
 

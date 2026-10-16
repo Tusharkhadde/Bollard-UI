@@ -1,10 +1,49 @@
 {
   "title": "Backup Codes",
-  "description": "Stops users locking themselves out with recovery codes they never kept: Continue unlocks only after the codes are downloaded, printed or copied (or all three with require=\"all\"), then one code must be typed back (paste refused, look-alike characters forgiven) to prove the saved copy is readable.",
-  "dependencies": ["lucide-react"],
+  "summary": "Makes users save their recovery codes and type one back before continuing, so they aren't locked out later by codes they never kept.",
+  "description": "Continue unlocks only after the codes are downloaded, printed or copied (or all three with require=\"all\"); then one code must be typed back, with paste refused and look-alike characters forgiven, to show the saved copy is readable.",
+  "catches": [
+    "Moving on without saving the codes by download, print or copy",
+    "A saved copy that can't be read back, by asking for one code",
+    "Paste into the check field (refused unless allowPaste)",
+    "Leaving the page before finishing (beforeunload warning, on by default)"
+  ],
+  "limits": [
+    "It knows a download, print or copy was started, not that the file was kept",
+    "Typing one code back proves one code was readable, not that all were saved"
+  ],
+  "a11y": [
+    "Codes are an ordered list labelled by the title; save buttons use aria-pressed",
+    "The still-locked Continue uses aria-disabled with aria-describedby to what is left to do",
+    "The check field has a <label>, aria-invalid on a wrong length and an aria-live hint",
+    "Progress messages are aria-live=\"polite\""
+  ],
+  "server": "Store only hashes of the codes, make each one single-use, and rate-limit recovery attempts on the server.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Locked out with unsaved backup codes",
-  "mistakes": ["user never saved recovery codes", "lost 2fa backup codes", "backup codes not downloaded", "2fa lockout"],
-  "aliases": ["backup codes", "recovery codes", "2fa setup", "mfa", "totp", "download codes", "authenticator setup"],
-  "flows": ["signup-login", "account-settings"],
-  "fields": ["code", "secret"]
+  "mistakes": [
+    "user never saved recovery codes",
+    "lost 2fa backup codes",
+    "backup codes not downloaded",
+    "2fa lockout"
+  ],
+  "aliases": [
+    "backup codes",
+    "recovery codes",
+    "2fa setup",
+    "mfa",
+    "totp",
+    "download codes",
+    "authenticator setup"
+  ],
+  "flows": [
+    "signup-login",
+    "account-settings"
+  ],
+  "fields": [
+    "code",
+    "secret"
+  ]
 }

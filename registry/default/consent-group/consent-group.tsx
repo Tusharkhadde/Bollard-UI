@@ -57,6 +57,7 @@ const button =
 const checkbox = "mt-0.5 size-4 shrink-0 accent-primary rounded outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 export interface ConsentGroupProps extends Omit<React.ComponentProps<"fieldset">, "onChange"> {
+  /** The consent checkboxes, required and optional. */
   items: ConsentItem[]
   /** Version of this consent text, stored in every record. */
   version: string
@@ -69,14 +70,21 @@ export interface ConsentGroupProps extends Omit<React.ComponentProps<"fieldset">
   onValueChange?: (choices: ConsentChoices, record: ConsentRecord) => void
   /** Adds a hidden input carrying the JSON record, for plain form posts. */
   name?: string
+  /** Visible title for the group. */
   legend?: string
+  /** Heading for the required items. */
   requiredHeading?: string
+  /** Heading for the optional purposes. */
   optionalHeading?: string
+  /** Text for the accept-all button. */
   acceptAllLabel?: string
+  /** Text for the decline-optional button. */
   declineLabel?: string
   /** `{list}` is what Accept all would tick. */
   acceptAllText?: string
+  /** Text for confirming accept-all. */
   confirmLabel?: string
+  /** Text for cancelling accept-all. */
   cancelLabel?: string
   /** `{when}` and `{version}` are filled in. */
   recordedText?: string

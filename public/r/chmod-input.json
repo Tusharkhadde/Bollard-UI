@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "chmod-input",
   "title": "Chmod Input",
-  "description": "Stops permission mistakes that leak data or lock people out by reading any mode (644, 0755, u+x, -rwxr-xr-x) back as rwx and plain words, and flagging world-writable files, setuid and setgid, private keys and .env files others can read, a writable ~/.ssh or authorized_keys, execute bits on data files, 775 typed for 755, and short or decimal modes, each with a one-tap safe mode.",
+  "description": "Reads any mode (644, 0755, u+x, -rwxr-xr-x) back as rwx and plain words, and flags world-writable files, setuid/setgid, keys and .env files others can read, a writable ~/.ssh or authorized_keys, execute bits on data, 775 typed for 755 and short or decimal modes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,43 @@
     "fields": [
       "code",
       "number"
-    ]
+    ],
+    "summary": "Reads a Unix file mode back in plain words and flags permissions that leak data or lock people out, like a world-readable key.",
+    "server": "Set and audit permissions in your deployment tooling; this field only advises.",
+    "catches": [
+      "World-writable files and directories, and setuid/setgid bits",
+      "Private keys and .env files readable by group or others",
+      "~/.ssh or authorized_keys writable by others (sshd StrictModes rejects these)",
+      "Execute bits on data files, and 775 typed where 755 was likely meant",
+      "Short, symbolic or decimal-looking modes, read back exactly"
+    ],
+    "limits": [
+      "Judges by the path and kind you pass; it can't see the real file, owner or ACLs",
+      "Advice assumes a typical Linux/OpenSSH setup; shared-group setups may be intentional (groupShared)"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to the readback and report",
+      "Summary in a role=\"status\" region; an unreadable mode uses role=\"alert\"",
+      "Permission grid checkboxes have aria-labels naming who and which right",
+      "After a fix, focus moves to the next fix or back to the field"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "OpenBSD sshd_config(5): StrictModes",
+          "url": "https://man.openbsd.org/sshd_config"
+        },
+        {
+          "label": "OpenBSD ssh(1): file permissions",
+          "url": "https://man.openbsd.org/ssh.1"
+        }
+      ],
+      "note": "Informational. Checked: StrictModes (default yes) checks file modes and ownership before login; authorized_keys must not be writable by others. Other per-file recommendations are conventions, not checked against a standard."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

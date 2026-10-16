@@ -1,6 +1,23 @@
 {
   "title": "Do Not Close",
-  "description": "Stops people closing the tab mid-payment, upload or migration with a close warning, a marked tab title, a rolling-rate time-left estimate, a clear 'Safe to close' when done and a Retry when it fails.",
+  "summary": "Warns before closing the tab mid-payment, upload or migration and says clearly when it is safe to close, so work isn't cut off halfway.",
+  "description": "Adds a close warning and a marked tab title while work runs, shows a rolling-rate time-left estimate, says \"Safe to close\" when done and offers Retry when it fails.",
+  "catches": [
+    "Closing or reloading the tab while work is running (beforeunload warning)",
+    "Unclear progress, with a rolling-rate time-left estimate and a stalled notice",
+    "Uncertainty at the end, with an explicit \"Safe to close\"",
+    "Failures, with a Retry"
+  ],
+  "limits": [
+    "Browsers decide whether to show the close warning and use their own text; mobile browsers often skip it",
+    "Can't prevent a crash, power loss or the OS killing the tab"
+  ],
+  "a11y": [
+    "role=\"progressbar\" with aria-valuenow and an aria-valuetext including time left",
+    "Status in a role=\"status\" region; failures use role=\"alert\"",
+    "Retry is a labelled button"
+  ],
+  "server": "Make long operations resumable or idempotent on the server, so a closed tab or retry doesn't leave work half done or duplicated.",
   "dependencies": [
     "lucide-react"
   ],

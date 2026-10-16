@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "boolean-query-input",
   "title": "Boolean Query Input",
-  "description": "Prevents boolean searches that quietly return the wrong people by showing how the engine will group AND and OR (with the brackets it implies highlighted) and offering the grouping you meant, and by catching unclosed quotes and brackets, curly quotes, [ ] used as brackets, lowercase and/or searched as words and dangling operators, each with a one-tap fix.",
+  "description": "Shows how the engine groups AND and OR (implied brackets highlighted) and offers the grouping you meant; catches unclosed quotes and brackets, curly quotes, [ ] used as brackets, lowercase and/or and dangling operators, each with a one-tap fix.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,28 @@
     ],
     "fields": [
       "text"
+    ],
+    "summary": "Shows how a search engine will group AND and OR in a boolean query, so a search doesn't quietly return the wrong people.",
+    "catches": [
+      "Mixed AND/OR without brackets, read back with the engine's implied grouping",
+      "Unclosed quotes or brackets, and curly quotes",
+      "Square brackets used instead of parentheses",
+      "Lowercase and/or that engines search as words",
+      "Dangling operators at the start or end"
+    ],
+    "limits": [
+      "Assumes AND binds first unless you set precedence; engines differ",
+      "Does not know engine-specific syntax beyond AND, OR, NOT, quotes and brackets"
+    ],
+    "a11y": [
+      "Visible <label>; the input is described by the readback and status",
+      "Status and issues are aria-live=\"polite\"",
+      "Fix buttons have aria-labels with the exact query they apply",
+      "Dismiss button has an aria-label"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

@@ -1,6 +1,22 @@
 {
   "title": "DST Shift Notice",
-  "description": "Stops a recurring meeting silently moving by an hour for part of the team when daylight saving changes on different dates (the US and EU weeks apart, India never), listing each attendee's affected dates with the new local time, the clock change behind it and moves outside working hours, and offering to fix the series to the organiser's zone or UTC with a count of who moves under each.",
+  "summary": "Lists who sees a recurring meeting move by an hour when daylight saving changes on different dates, so part of the team doesn't miss it.",
+  "description": "Lists each attendee's affected dates with the new local time when daylight saving changes on different dates (US and EU weeks apart, India never), flags moves outside working hours, and offers to fix the series to the organiser's zone or UTC with a count of who moves.",
+  "catches": [
+    "Recurring meetings that shift by an hour for some attendees",
+    "Weeks where US and EU clock changes differ",
+    "New local times that fall outside working hours",
+    "How many people move under each anchor zone"
+  ],
+  "limits": [
+    "Uses the browser's time zone data (Intl), which can lag behind recent government changes",
+    "Attendee zones and working hours come from your props"
+  ],
+  "a11y": [
+    "Section labelled by its heading; zone choices are labelled radio options",
+    "Apply result is aria-live=\"polite\"; failures use role=\"alert\"",
+    "Icons are aria-hidden; times are written in text"
+  ],
   "dependencies": [
     "lucide-react"
   ],

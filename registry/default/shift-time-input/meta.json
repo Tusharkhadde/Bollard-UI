@@ -1,6 +1,24 @@
 {
   "title": "Shift Time Input",
-  "description": "Prevents wrong timesheets and rosters by reading 22:00–06:00 as an 8 h shift that ends the next day, asking whether 9:00–5:00 meant 5 PM (and whether 10–6 is a day or a night shift) instead of logging 20 h, questioning 0 h, over-long and 26:00-style entries, and deducting the break while catching one typed in hours, and, given the day and time zone, counts the real hours when the clocks change mid-shift (a 22:00–06:00 night is 9 h when they fall back).",
+  "summary": "Reads shift times the way they're meant, so 22:00–06:00 is 8 h overnight and 9–5 isn't logged as 20 h.",
+  "description": "Shift time input that treats 22:00–06:00 as an 8 h overnight shift, asks whether 9:00–5:00 meant 5 PM, questions 0 h, over-long and 26:00-style entries, deducts breaks (catching one typed in hours) and counts real hours across a DST change.",
+  "catches": [
+    "Overnight shifts ending the next day",
+    "Ambiguous 1–12 times with no AM/PM (9–5, 10–6)",
+    "Zero-length, over-long (maxMinutes) and 26:00-style entries",
+    "A break typed in hours instead of minutes",
+    "Real hours when clocks change mid-shift, given date and time zone"
+  ],
+  "limits": [
+    "Break rules and maximums are what you configure; labour law is not built in",
+    "DST correction needs date and timeZone props"
+  ],
+  "a11y": [
+    "Start, end and break inputs have <label>s; aria-invalid on unparseable times",
+    "Readback and status linked via aria-describedby and a polite live region",
+    "Errors use role=alert; warnings are text with icons",
+    "Length has an aria-label in words"
+  ],
   "dependencies": [
     "lucide-react",
     "@date-fns/tz",

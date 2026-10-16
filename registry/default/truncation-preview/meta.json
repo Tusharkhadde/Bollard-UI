@@ -1,7 +1,28 @@
 {
   "title": "Truncation Preview",
-  "description": "Stops the point of a post vanishing behind \"…more\" by showing exactly where LinkedIn, Instagram, X, iOS and Android push and Google (by pixel width) cut the text, warning when the key phrase, a link or an @mention X won't notify sits below the fold, and fixing it in one tap by moving that sentence up or removing the blank lines that each cost a whole preview line.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows where social feeds and search results cut a post behind \"…more\", and warns when the key point or a link falls below the fold.",
+  "description": "Preview of where LinkedIn, Instagram, X, iOS/Android notifications and Google (by pixel width) cut the text, warning when the key phrase, a link or an @mention X won't notify sits below the fold, with fixes that move that sentence up or remove blank lines.",
+  "catches": [
+    "Key phrase hidden below the fold on a surface",
+    "Links hidden behind \"…more\"",
+    "Blank lines that each cost a whole preview line",
+    "An @mention at the start that X won't notify as intended",
+    "Key phrase missing from the text"
+  ],
+  "limits": [
+    "Fold positions are measured approximations; platforms don't publish them and change them",
+    "Pixel widths depend on fonts and devices",
+    "Override surfaces for your own targets"
+  ],
+  "a11y": [
+    "Text and key-point inputs have <label>s",
+    "Surfaces are a tablist with arrow-key navigation and a tabpanel",
+    "Hidden content is flagged in text, not colour alone",
+    "Warnings in a polite live region"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Hook hidden behind \"…more\"",
   "mistakes": [
     "linkedin see more cut",

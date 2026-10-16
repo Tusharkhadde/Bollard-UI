@@ -90,7 +90,9 @@ export interface RecurrenceScopeProps extends Omit<React.ComponentProps<"div">, 
   scopeLabels?: Record<RecurrenceScopeValue, string>
   /** Templates: `{dates}` and `{fields}` are filled in. */
   overwriteText?: string
+  /** Label of the button that keeps individually edited occurrences. */
   keepLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
   /** Save button: `{count}` is filled in. */
   saveLabel?: string

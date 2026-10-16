@@ -83,9 +83,13 @@ export interface PaletteGuardProps extends Omit<React.ComponentProps<"div">, "de
   visionLabels?: Record<Vision, string>
   /** Templates: `{a}`, `{b}`, `{vision}`, `{delta}`, `{name}`, `{direction}`. */
   clashText?: string
+  /** Shown when a pair is too close in normal vision. */
   normalClashText?: string
+  /** Fix button template. */
   fixText?: string
+  /** Shown when no lightness change can clear every clash. */
   noFixText?: string
+  /** Shown when every pair is distinguishable. */
   passText?: string
 }
 

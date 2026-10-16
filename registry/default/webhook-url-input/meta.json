@@ -1,6 +1,24 @@
 {
   "title": "Webhook URL Input",
-  "description": "Stops a webhook from being pointed somewhere events can't arrive by judging the URL for the environment it's saved to (an ngrok, tunnel, localhost or private-IP URL is an error in production but a hint in test mode, a staging host is flagged, plain http and a missing path get a fix) and diffing it against the last saved URL, warning when only a www or trailing slash changed because senders treat the resulting redirect as a failure, with a one-tap revert.",
+  "summary": "Judges a webhook URL for the environment it's saved to and warns when an edit only changed www or a trailing slash, which senders treat as a failed redirect.",
+  "description": "Webhook URL field that judges the URL for its environment (ngrok, tunnel, localhost or private IP is an error in production, a hint in test), flags staging hosts, plain http and missing paths, and diffs against the last saved URL to catch www or trailing-slash-only changes.",
+  "catches": [
+    "Tunnel, localhost, private-IP and cloud-metadata hosts (error in production, hint in test)",
+    "Public request inspectors where anyone can read the payloads",
+    "Staging hosts saved to production",
+    "Plain http and a missing path, with fixes",
+    "Edits that only change www or a trailing slash, with a one-tap revert"
+  ],
+  "limits": [
+    "Hostname rules only; it does not resolve DNS or send a request",
+    "Tunnel and inspector lists are starter sets"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid on errors and notes via aria-describedby",
+    "Notes in a polite live region with icon and text",
+    "After a fix, focus returns to the input"
+  ],
+  "server": "Resolve and validate webhook targets server-side (block private ranges and metadata IPs) to prevent SSRF.",
   "dependencies": [
     "lucide-react"
   ],

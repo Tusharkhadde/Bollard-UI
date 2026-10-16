@@ -75,12 +75,15 @@ export interface ForwardGuardProps extends Omit<React.ComponentProps<"div">, "de
   value?: ForwardSelection
   /** Starting selection. Defaults to everything except internal notes. */
   defaultValue?: ForwardSelection
+  /** Called with the items chosen to include. */
   onValueChange?: (value: ForwardSelection) => void
   /** Sends the forward. Return a promise to show a pending state. */
   onForward?: (selection: ForwardSelection) => void | Promise<void>
   /** Templates: `{who}` is the new recipients. */
   headline?: string
+  /** Forward button text. */
   forwardLabel?: string
+  /** Label for hiding other people's addresses. */
   hideAddressesLabel?: string
   /** Override any other string, including the plural forms. */
   labels?: Partial<typeof FORWARD_GUARD_LABELS>

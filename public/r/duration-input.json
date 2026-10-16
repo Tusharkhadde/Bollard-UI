@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "duration-input",
   "title": "Duration Input",
-  "description": "Prevents wrong timesheet and estimate entries by parsing 1h30, 90m, 1.5h, 1:30 and 2d 4h into one duration read back in words, catching 1.50 typed for 1 h 50 min and asking whether 1:30 is h:mm or m:ss when the limits can't decide.",
+  "description": "Parses 1h30, 90m, 1.5h, 1:30 and 2d 4h into one duration read back in words, catches 1.50 typed for 1 h 50 min, and asks whether 1:30 is h:mm or m:ss when the limits can't decide.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,25 @@
     "fields": [
       "number",
       "datetime"
+    ],
+    "summary": "Parses durations typed many ways and reads them back in words, so 1.5 isn't logged as 1 h 50 min on a timesheet.",
+    "catches": [
+      "1.50 meant as 1 h 50 min versus 1.5 hours",
+      "Ambiguous 1:30 (h:mm or m:ss), asked when limits can't decide",
+      "Values outside min and max, with the limit as a fix",
+      "Days converted using hoursPerDay (24 by default)"
+    ],
+    "limits": [
+      "Parses English unit words and abbreviations only",
+      "Days are 24 hours by default; set hoursPerDay (e.g. 8) for working days"
+    ],
+    "a11y": [
+      "Labelled input with the result read back in words",
+      "Each interpretation is a button with visible text"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Readbacks and calculators"
   ],
   "type": "registry:ui"
 }

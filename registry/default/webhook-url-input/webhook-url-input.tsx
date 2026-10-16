@@ -127,11 +127,13 @@ const fixClass =
   "inline-flex h-6 max-w-full items-center gap-1 rounded-md border border-amber-500/40 px-2 font-medium text-amber-900 transition-colors hover:bg-amber-500/10 dark:text-amber-200 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 export interface WebhookUrlInputProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "type"> {
+  /** Visible label. */
   label?: string
   /** Controlled URL text. */
   value?: string
   /** Initial URL text when uncontrolled. */
   defaultValue?: string
+  /** Called with the URL on every change, including fixes. */
   onValueChange?: (value: string) => void
   /** Where this endpoint delivers. Tunnels and private hosts are errors in production, hints in test. */
   environment?: WebhookEnvironment
@@ -141,6 +143,7 @@ export interface WebhookUrlInputProps extends Omit<React.ComponentProps<"input">
   delay?: number
   /** Badge text per environment. */
   environmentLabels?: Record<WebhookEnvironment, string>
+  /** Label before the last saved URL. */
   savedLabel?: string
   /** Fix button labels, by the kind of note they fix. */
   fixLabels?: Partial<Record<WebhookUrlNote["kind"], string>>

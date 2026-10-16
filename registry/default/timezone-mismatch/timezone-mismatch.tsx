@@ -80,9 +80,13 @@ export interface TimezoneMismatchProps extends Omit<React.ComponentProps<"div">,
   storageKey?: string | null
   /** Templates: `{device}`, `{account}` (city names) and `{gap}` ("5 h 30 min ahead") are filled in. */
   message?: string
+  /** Label of the device clock. */
   deviceLabel?: string
+  /** Label of the account clock. */
   accountLabel?: string
+  /** Label of the use-device-zone button. */
   useDeviceLabel?: string
+  /** Label of the keep-account-zone button. */
   keepAccountLabel?: string
   /** Shown for a moment after the answer. `{zone}` is the city now used. */
   doneText?: string

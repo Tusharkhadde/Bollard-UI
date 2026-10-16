@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "wrong-layout-input",
   "title": "Wrong Layout Input",
-  "description": "Catches text typed with the wrong keyboard layout (\"ghbdtn\" meant \"привет\", \"руддщ\" meant \"hello\", plus Hebrew, Greek and Hindi InScript) by scoring it against letter-pair models of each language and spellings no real word has, then offers the retyped text as a one-tap fix with undo, leaving names, acronyms, links and code alone.",
+  "description": "Text input that catches text typed in the wrong keyboard layout (Russian, Hebrew, Greek, Hindi InScript against US QWERTY) using letter-pair models, offers the retyped text as a one-tap fix with undo, and leaves names, acronyms, links and code alone.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,27 @@
     ],
     "fields": [
       "text"
+    ],
+    "summary": "Notices text typed with the wrong keyboard layout (\"ghbdtn\" for \"привет\") and offers the retyped text as a one-tap fix.",
+    "catches": [
+      "Latin gibberish that is a word in another layout (ghbdtn → привет)",
+      "Non-Latin gibberish that is English in QWERTY (руддщ → hello)",
+      "Words no real language would spell",
+      "Names, acronyms, links, code and your ignore list, left alone"
+    ],
+    "limits": [
+      "Only the layouts you pass, each mapped against US QWERTY",
+      "Statistical: short words can be missed or wrongly flagged"
+    ],
+    "a11y": [
+      "Visible <label>; hint via aria-describedby in a polite live region",
+      "Use button has an aria-label with the converted text; converted text gets a lang attribute",
+      "Keep and undo are labelled; focus returns to the input",
+      "Highlight animation respects reduced motion"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

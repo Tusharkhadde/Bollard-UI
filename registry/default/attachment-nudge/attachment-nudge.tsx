@@ -72,6 +72,7 @@ export interface AttachmentNudgeProps extends Omit<React.HTMLAttributes<HTMLDivE
   extraPhrases?: RegExp[]
   /** Accessible label for the textarea. */
   label?: string
+  /** Placeholder text for the message box. */
   placeholder?: string
   /** Question in the send prompt; the matched phrase is shown before it. */
   promptLabel?: string

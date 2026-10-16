@@ -1,12 +1,52 @@
 {
   "title": "Account Deletion Readback",
-  "description": "Stops an account deletion that loses more than the user expects or keeps charging them: before Delete it reads back what goes, teams left with no owner (with a transfer button), App Store and Google Play subscriptions that keep billing until cancelled there, the date it can be restored until, what the law keeps and a data export, and unlocks Delete only after a typed confirmation, labelled \"Delete without export\" until a copy is taken, and lets the user schedule deletion for when a paid period ends instead of losing paid time.",
+  "summary": "Reads back everything an account deletion loses or keeps charging for, so users do not delete more than they expect or keep paying an app store.",
+  "description": "Before Delete, lists what goes, sole-owner teams (with transfer), App Store / Google Play plans that keep billing until cancelled there, the restore deadline, what is kept and a data export. Delete unlocks after a typed confirmation and can wait for the paid period to end.",
+  "catches": [
+    "Teams or workspaces where the user is the only owner, with a transfer action",
+    "App Store and Google Play subscriptions that keep billing after the account is gone",
+    "Deleting mid-way through a paid period, with an option to delete when it ends",
+    "No data export taken yet (the button reads \"Delete without export\")",
+    "A typed confirmation that does not match the phrase"
+  ],
+  "limits": [
+    "Only shows the items, teams and subscriptions you pass in; it does not discover them",
+    "Whether a store plan is cancelled comes from your data (e.g. the store's server API), not from the component",
+    "It does not perform deletion, export or transfer; those are your callbacks"
+  ],
+  "a11y": [
+    "Labelled confirmation input with aria-invalid and aria-describedby on a mismatch",
+    "Timing options are native radio inputs with labels",
+    "Export progress is announced in an aria-live=\"polite\" region",
+    "The Delete button is described by the list of what still blocks it; focus moves to the first fix button"
+  ],
+  "server": "Authorise the deletion on the server, re-check ownership and active subscriptions there, and run any scheduled deletion and retention from the backend.",
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Deleted account still billing subscriptions",
-  "mistakes": ["delete account keeps charging", "account deleted lost team data", "user deleted account by mistake", "no data export before deletion"],
-  "aliases": ["delete account", "close account", "account settings", "gdpr", "dpdp", "data export", "app store subscription", "play store billing", "type to confirm"],
-  "flows": ["account-settings", "danger-zone"],
-  "fields": ["text"]
+  "mistakes": [
+    "delete account keeps charging",
+    "account deleted lost team data",
+    "user deleted account by mistake",
+    "no data export before deletion"
+  ],
+  "aliases": [
+    "delete account",
+    "close account",
+    "account settings",
+    "gdpr",
+    "dpdp",
+    "data export",
+    "app store subscription",
+    "play store billing",
+    "type to confirm"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "text"
+  ]
 }

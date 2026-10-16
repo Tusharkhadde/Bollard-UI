@@ -1,7 +1,46 @@
-{"title": "Reset Preview", "description": "Stops \"Reset to defaults\" from wiping customizations nobody looked at: it lists only the settings the user changed as current → default, lets them keep any, warns with a one-tap export until a copy is saved, and offers a draining Undo after the reset.", "dependencies": ["lucide-react"],
+{
+  "title": "Reset Preview",
+  "summary": "Shows only the settings a reset would actually change, current → default, so a reset to defaults doesn't wipe customisations unseen.",
+  "description": "Reset-to-defaults preview listing only the settings the user changed as current → default, with per-setting keep checkboxes, an export nudge until a copy is saved, and a draining Undo after the reset.",
+  "catches": [
+    "Customised settings that a reset would change, grouped by section",
+    "Settings to keep, excluded from the reset",
+    "No export saved yet, with a one-tap export",
+    "Settings already at default, counted rather than listed",
+    "Reset regret, with a timed Undo"
+  ],
+  "limits": [
+    "Undo relies on your onUndo and lasts undoFor ms",
+    "Value display uses a simple formatter; pass format for complex values"
+  ],
+  "a11y": [
+    "Preview is a group labelled by its title; each section has an aria-label",
+    "Keep checkboxes have descriptive aria-labels; arrow icon has an aria-label (\"resets to\")",
+    "Export warning in a polite live region; reset button sets aria-busy while pending",
+    "After reset, a role=status message with Undo"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Reset to defaults wiped customizations",
-  "mistakes": ["reset settings lost my config", "restore defaults by mistake", "reset preferences undo", "lost theme settings"],
-  "aliases": ["reset to defaults", "restore defaults", "settings", "preferences", "export settings", "factory reset", "config"],
-  "flows": ["account-settings", "danger-zone"],
+  "mistakes": [
+    "reset settings lost my config",
+    "restore defaults by mistake",
+    "reset preferences undo",
+    "lost theme settings"
+  ],
+  "aliases": [
+    "reset to defaults",
+    "restore defaults",
+    "settings",
+    "preferences",
+    "export settings",
+    "factory reset",
+    "config"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
   "fields": []
 }

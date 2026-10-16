@@ -32,6 +32,7 @@ export const RECURRING_CHARGE_MESSAGES = {
 export interface RecurringChargeReadbackProps extends React.ComponentProps<"div"> {
   /** The regular price per period. */
   amount: number
+  /** Billing period unit, e.g. "month" or "year". */
   interval?: ChargeInterval
   /** Periods per renewal, e.g. 3 with `interval="month"` for quarterly. */
   intervalCount?: number
@@ -51,7 +52,9 @@ export interface RecurringChargeReadbackProps extends React.ComponentProps<"div"
   mandateLimit?: number
   /** The moment of subscribing. Pass it for deterministic rendering; otherwise read after mount. */
   now?: Date | string
+  /** ISO 4217 currency code. INR turns on the e-mandate notes by default. */
   currency?: string
+  /** Locale for money and date formatting. */
   locale?: string
   /** Time zone for every date and time shown. Defaults to the viewer's. */
   timeZone?: string

@@ -1,6 +1,27 @@
 {
   "title": "AI Paste Guard",
-  "description": "Stops hidden prompt injections riding in on a paste: it reads the HTML clipboard data pasted into an AI prompt box, holds the paste when it carries text the person couldn't see (white or same-colour text, zero-size or transparent text, display:none, off-screen and clipped elements, HTML comments, alt or title text with instructions, Unicode tag-character payloads decoded back to ASCII) while ignoring the clipboard's own StartFragment and Word markers, framework comments (WordPress, React, Vue, Angular), gradient text, screen-reader-only labels and light text copied from dark-mode pages (inferred when most of the paste is light, so white-on-white injections still show), shows each passage with injection phrasing marked and whether it would reach a plain-text box, and pastes only the visible text in one tap with an undo.",
+  "summary": "Holds a paste into an AI prompt box when it carries text the person could not see, so hidden prompt injections are noticed before they are sent.",
+  "description": "Reads the HTML clipboard data pasted into an AI prompt box and holds it when it carries invisible text (same-colour, zero-size, display:none, off-screen, comments, alt/title instructions, Unicode tag payloads), shows each hidden passage and can paste only the visible text.",
+  "catches": [
+    "White-on-white, transparent, zero-size, display:none, off-screen and clipped text",
+    "HTML comments and alt/title text that contains instructions",
+    "Unicode tag-character payloads, decoded back to readable text",
+    "Phrasing that reads like a prompt injection (\"ignore previous instructions\")",
+    "Whether each hidden passage would also reach a plain-text box"
+  ],
+  "limits": [
+    "Only sees pastes with an HTML clipboard flavour; plain-text pastes and typed text are not analysed",
+    "Ignores known noise (clipboard and framework comments, screen-reader-only labels), so text hidden that way can be missed",
+    "Light text from dark-mode pages is inferred heuristically and can be misjudged",
+    "Does not protect the model from injections in documents, tools or retrieved pages"
+  ],
+  "a11y": [
+    "Visible <label> tied to the field; the held panel is a role=\"group\" labelled by its heading",
+    "Escape cancels a held paste; focus moves to the primary action and back to the field",
+    "Status is announced through a role=\"status\" region",
+    "Icons are aria-hidden; every state is described in text"
+  ],
+  "server": "Treat all user and retrieved content as untrusted on the model side; this paste check does not replace server-side prompt-injection defences or tool permissions.",
   "dependencies": [
     "lucide-react"
   ],

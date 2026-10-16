@@ -24,6 +24,7 @@ export interface WebhookTestProps extends Omit<React.ComponentProps<"input">, "v
   onSendTest?: (url: string, signal: AbortSignal) => Promise<WebhookTestResponse>
   /** How long the real sender waits, in ms (GitHub: 10 s). Slow replies are flagged against it. */
   timeout?: number
+  /** Label of the send-test button. */
   sendLabel?: string
   /** Label of the fix that switches to a corrected URL. */
   useUrlLabel?: string

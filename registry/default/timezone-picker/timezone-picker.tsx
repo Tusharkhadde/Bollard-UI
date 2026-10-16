@@ -90,24 +90,31 @@ export const TIMEZONE_PICKER_MESSAGES = {
 export type TimezonePickerMessages = typeof TIMEZONE_PICKER_MESSAGES
 
 export interface TimezonePickerProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Visible label. */
   label?: string
   /** Selected IANA zone, e.g. "Asia/Kolkata". */
   value?: string
+  /** Starting IANA zone when uncontrolled. */
   defaultValue?: string
+  /** Called with the chosen IANA zone. */
   onValueChange?: (timeZone: string) => void
   /** Override the detected device zone (tests, demos). */
   deviceTimeZone?: string
   /** Warn about a clock change this many days ahead. */
   dstWarningDays?: number
+  /** Locale for times and names. */
   locale?: string
+  /** Placeholder of the search input. */
   placeholder?: string
   /** `{abbr}` and `{count}` are filled in. */
   ambiguousText?: string
+  /** Shown when nothing matches. */
   noResultsText?: string
   /** `{direction}` (forward/back), `{amount}`, `{date}` and `{offset}` are filled in. */
   dstText?: string
   /** `{city}` and `{gap}` are filled in. */
   mismatchText?: string
+  /** Label of the use-device-zone button. */
   useDeviceLabel?: string
   /** Override any text (see `TIMEZONE_PICKER_MESSAGES`). */
   messages?: Partial<TimezonePickerMessages>

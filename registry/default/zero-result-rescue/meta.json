@@ -1,6 +1,23 @@
 {
   "title": "Zero Result Rescue",
-  "description": "Prevents users giving up on an empty search by explaining what got in the way and offering only fixes proven to return results: a did-you-mean from your own vocabulary, the query retyped in the right keyboard layout or without Caps Lock, dropping the filter that hides everything, or searching all categories, each with its result count, counted in memory or by async count-only API calls.",
+  "summary": "Turns an empty search into fixes that are proven to return results: a spelling fix, a layout fix, a dropped filter or all categories.",
+  "description": "Empty-search helper that explains what got in the way and offers only fixes that return results: did-you-mean from your vocabulary, the query retyped in the right layout or without Caps Lock, dropping the filter that hides everything, or all categories, each with a count.",
+  "catches": [
+    "Misspellings against your own vocabulary",
+    "Wrong keyboard layout and Caps Lock",
+    "The single filter that hides every result",
+    "A category scope that's too narrow",
+    "Only fixes with a non-zero count are shown"
+  ],
+  "limits": [
+    "Counts come from your count function; slow APIs delay suggestions",
+    "Did-you-mean is limited to the vocabulary you pass"
+  ],
+  "a11y": [
+    "Region is role=status with aria-busy while counting",
+    "Fix buttons include their reason and count as text",
+    "Icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

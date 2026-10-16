@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "schedule-readback",
   "title": "Schedule Readback",
-  "description": "Prevents shipping a cron job that fires at the wrong time by reading the expression back in plain English, listing the next runs in your own time zone beside the server's, and catching classics like every-minute stars, day-of-month OR day-of-week, the 31st skipping months and 30 February, with one-tap fixes.",
+  "description": "Cron input that reads the expression back in plain English, lists the next runs in your time zone beside the scheduler's, and catches every-minute stars, day-of-month OR day-of-week, the 31st skipping months and 30 February, with one-tap fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,37 @@
     "fields": [
       "code",
       "datetime"
-    ]
+    ],
+    "summary": "Reads a cron expression back in plain English with the next runs in your zone and the server's, catching classic cron traps.",
+    "catches": [
+      "A * in the minute field that runs every minute",
+      "Day-of-month and day-of-week both set, which runs on either (OR)",
+      "Day 31 (or 29–30) skipping shorter months, and impossible dates like 30 Feb",
+      "Scheduler zone differing from yours, with runs shown in both",
+      "Invalid expressions, with the reason"
+    ],
+    "limits": [
+      "5-field Vixie/POSIX cron only; Quartz seconds/years, Jenkins H and cloud-specific syntaxes are not supported",
+      "Next runs are computed in the browser; DST handling depends on the zones you pass"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid with read-back via aria-describedby",
+      "Parse errors use role=alert; read-back and warnings render in polite live regions",
+      "Each fix button has an aria-label with the corrected expression; focus returns to the input after a fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "crontab(5) – Linux manual page",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ],
+      "note": "Confirmed: when both day-of-month and day-of-week are restricted, the job runs when either matches. Other schedulers (systemd, Quartz, cloud cron) differ."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Readbacks and calculators"
   ],
   "type": "registry:ui"
 }

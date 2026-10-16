@@ -1,7 +1,45 @@
-{"title": "Danger Zone", "description": "Stops a stray click in settings from deleting or transferring something: destructive actions stay listed with their consequences but locked until the user deliberately unlocks the section, which locks itself again after one action, an idle timeout, Escape, a hidden tab or focus leaving it.", "dependencies": ["lucide-react"],
+{
+  "title": "Danger Zone",
+  "summary": "Keeps destructive settings visible but locked until deliberately unlocked, so a stray click doesn't delete or transfer something.",
+  "description": "Destructive actions stay listed with their consequences but locked until the user deliberately unlocks the section, which relocks after one action, an idle timeout (60 s default), Escape, a hidden tab or focus leaving it.",
+  "catches": [
+    "Stray clicks on destructive actions while the section is locked",
+    "An unlocked section left open (idle timeout, tab hidden, focus leaving)",
+    "Chained destructive actions, by relocking after each one"
+  ],
+  "limits": [
+    "Unlocking is a deliberate click, not authentication; pair it with re-auth or typed confirmation for serious actions",
+    "It does not perform or confirm the action itself"
+  ],
+  "a11y": [
+    "Section labelled by its title; the unlock toggle uses aria-pressed",
+    "Locked actions use aria-disabled so they stay focusable and are described by their consequence",
+    "Escape relocks; lock state changes are aria-live=\"polite\"",
+    "Actions set aria-busy while pending"
+  ],
+  "server": "Authorise every destructive action on the server and require re-authentication where it matters; the lock is a UI guard.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Stray click deleted from settings",
-  "mistakes": ["delete button in settings clicked by mistake", "settings danger zone", "transfer repo by accident", "locked delete section"],
-  "aliases": ["danger zone", "settings page", "delete account", "delete project", "transfer ownership", "github settings", "admin settings"],
-  "flows": ["danger-zone", "account-settings"],
+  "mistakes": [
+    "delete button in settings clicked by mistake",
+    "settings danger zone",
+    "transfer repo by accident",
+    "locked delete section"
+  ],
+  "aliases": [
+    "danger zone",
+    "settings page",
+    "delete account",
+    "delete project",
+    "transfer ownership",
+    "github settings",
+    "admin settings"
+  ],
+  "flows": [
+    "danger-zone",
+    "account-settings"
+  ],
   "fields": []
 }

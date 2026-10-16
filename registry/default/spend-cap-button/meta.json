@@ -1,14 +1,50 @@
 {
   "title": "Spend Cap Button",
-  "description": "Prevents duplicate purchases and overspending: it remembers recent buys of the same item (\"You bought this 3 min ago\", including a double-click a second ago) and needs a deliberate second click to buy again, previews this purchase as a slice of each daily or monthly cap, and blocks any spend that would break a cap with the overage and when it resets.",
+  "summary": "Asks for a second click before buying the same item again and shows each purchase against daily or monthly caps before it goes through.",
+  "description": "Buy button that remembers recent purchases of the same item (\"You bought this 3 min ago\") and needs a deliberate second click to buy again, previews the purchase against each cap, and refuses in the UI any spend that would break a cap, with the overage and reset time.",
+  "catches": [
+    "A repeat purchase of the same item within duplicateWindow, including a double-click",
+    "Purchases that would break a daily or monthly cap, with the overage and reset time",
+    "This purchase as a slice of each cap",
+    "Held Enter (auto-repeat) firing a second purchase"
+  ],
+  "limits": [
+    "Caps and recent purchases come from props; another tab or device isn't seen until you update them",
+    "The block is UI-only; the purchase API must enforce caps"
+  ],
+  "a11y": [
+    "aria-disabled when a cap would break, aria-busy while pending, described by a polite hint",
+    "Escape disarms the second-click state; held Enter is ignored",
+    "Blocked reason uses role=alert",
+    "Each cap is a role=meter with value text; animations respect reduced motion"
+  ],
+  "server": "Enforce spending caps and dedupe purchases (idempotency key, recent-purchase check) on the server.",
   "dependencies": [
     "@number-flow/react",
     "lucide-react",
     "motion"
   ],
   "stops": "Same item bought twice by mistake",
-  "mistakes": ["bought same thing twice", "double purchase", "overspend budget", "spending limit exceeded"],
-  "aliases": ["buy now", "spending limit", "budget", "in-app purchase", "credits", "top-up", "wallet", "duplicate purchase"],
-  "flows": ["checkout"],
-  "fields": ["amount"]
+  "mistakes": [
+    "bought same thing twice",
+    "double purchase",
+    "overspend budget",
+    "spending limit exceeded"
+  ],
+  "aliases": [
+    "buy now",
+    "spending limit",
+    "budget",
+    "in-app purchase",
+    "credits",
+    "top-up",
+    "wallet",
+    "duplicate purchase"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount"
+  ]
 }

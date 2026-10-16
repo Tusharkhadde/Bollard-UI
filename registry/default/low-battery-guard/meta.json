@@ -1,7 +1,26 @@
 {
   "title": "Low Battery Guard",
-  "description": "Stops a long upload, export, call or exam dying halfway on a flat battery: before it starts it compares the battery's runway (to a safety reserve, from the Battery Status API or a measured drain rate) with the task's length, draws where the battery would cut it off, and offers \"Start when plugged in\", which starts the task the moment a charger connects, staying silent when the task will finish anyway.",
-  "dependencies": ["lucide-react"],
+  "summary": "Before a long upload, export or call, compares battery runway with the task's length and offers to start once plugged in.",
+  "description": "Pre-task banner that compares battery runway (to a safety reserve, from the Battery Status API or a measured drain rate) with the task's length, shows where the battery would cut it off, and offers \"Start when plugged in\". Stays silent when the task will finish anyway.",
+  "catches": [
+    "Task longer than the battery's remaining runway",
+    "Battery already low before starting",
+    "Start when plugged in: runs the task once a charger connects",
+    "Silent when the task fits"
+  ],
+  "limits": [
+    "The Battery Status API is missing in Safari and Firefox; then it uses your fallback",
+    "Runway is an estimate from current drain",
+    "Doesn't pause or resume the task itself"
+  ],
+  "a11y": [
+    "Banner is role=status",
+    "Runway bar is role=img with an aria-label giving runway and duration",
+    "Pulse animation is motion-safe only; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Upload died on a flat battery",
   "mistakes": [
     "battery died during upload",

@@ -32,6 +32,7 @@ export type DenyReason = "not-me" | "no-number" | "wrong-number" | "expired"
 type Phase = "asking" | "approving" | "approved" | "denied" | "expired"
 
 export interface SignInApproveProps extends React.ComponentProps<"section"> {
+  /** The sign-in request: place, device, app, expiry and burst count. */
   request: SignInRequest
   /** Checks the typed number against the sign-in screen. Resolve `true` to approve; `false` counts as a wrong number. */
   onApprove: (number: string) => boolean | Promise<boolean>
@@ -45,22 +46,37 @@ export interface SignInApproveProps extends React.ComponentProps<"section"> {
   length?: number
   /** Templates: `{app}`, `{count}`, `{left}` and `{device}` are filled in. */
   title?: string
+  /** Label of the number input. */
   numberLabel?: string
+  /** Warning that support will never ask for the number. */
   scamWarning?: string
+  /** Warning for many requests in a short time. */
   burstWarning?: string
+  /** Flag for an unusual location. */
   unusualText?: string
+  /** Label of the approve button. */
   approveLabel?: string
+  /** Label of the deny button. */
   notMeLabel?: string
+  /** Label for "I don't see a number". */
   noNumberLabel?: string
+  /** Shown after a wrong number. */
   wrongText?: string
+  /** Shown after approving. */
   approvedText?: string
+  /** Shown after denying. */
   deniedText?: string
+  /** Shown when the request expired. */
   expiredText?: string
+  /** Label of the secure-my-account button. */
   secureLabel?: string
   /** Used for `{app}` when the request names none. */
   accountLabel?: string
+  /** Term for the location row. */
   locationLabel?: string
+  /** Term for the device row. */
   deviceLabel?: string
+  /** Label before the expiry countdown. */
   expiresLabel?: string
 }
 

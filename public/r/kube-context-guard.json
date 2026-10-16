@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kube-context-guard",
   "title": "Kube Context Guard",
-  "description": "Stops kubectl and helm commands landing on the wrong cluster or namespace by showing, before they run, the context, cluster (EKS ARNs and GKE names shortened) and namespace they will really use, a --context or --kube-context flag included, and flagging production (read word by word, so pre-prod and nonprod aren't), a deploy into the default namespace, a manifest namespace that disagrees with -n (which kubectl refuses but helm silently splits from the release) and a context switched since the last command, each with a one-tap fix such as a server dry run, and asking for the context name before a production change.",
+  "description": "kubectl/helm field that shows the context, cluster and namespace a command will really use, flags production, the default namespace, a manifest namespace that disagrees with -n and a switched context, and asks for the context name before production changes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "kubectl apply on the wrong cluster",
+    "stops": "Helps prevent kubectl apply on the wrong cluster",
     "mistakes": [
       "deployed to prod by mistake",
       "wrong kube context",
@@ -45,6 +45,26 @@
     ],
     "fields": [
       "code"
+    ],
+    "summary": "Shows the cluster, context and namespace a kubectl or helm command will really hit, before it runs, so production isn't changed by accident.",
+    "server": "Restrict production with RBAC and admission control; never rely on a client-side prompt.",
+    "catches": [
+      "Production contexts, read word by word so pre-prod and nonprod aren't",
+      "Deploys into the default namespace",
+      "Manifest namespace that disagrees with -n (helm splits it silently)",
+      "Context switched since the last command",
+      "Fixes such as adding a server-side dry run"
+    ],
+    "limits": [
+      "Works from the contexts you pass; it doesn't read your kubeconfig",
+      "Command parsing covers common kubectl/helm forms, not every flag or plugin",
+      "Typing the context name is friction, not authorization"
+    ],
+    "a11y": [
+      "Command and confirmation inputs have visible labels",
+      "Command is described by the target readback and the issues",
+      "Status uses role=status; warnings are text with aria-hidden icons",
+      "Focus returns to a nearby fix or the input after a fix"
     ]
   },
   "categories": [

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "checksum-input",
   "title": "Checksum Input",
-  "description": "Prevents payments and orders going to a mistyped IBAN, card, ISBN or IFSC by checking mod-97, Luhn and ISBN check digits and country lengths as you type, then highlighting the one swapped or doubled character that explains a failure instead of guessing a digit.",
+  "description": "Checks mod-97 (IBAN), Luhn (card) and ISBN check digits, IBAN country lengths and IFSC format as you type, then highlights the one swapped or doubled character that explains a failure instead of guessing a digit.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,29 @@
     ],
     "fields": [
       "id-number"
+    ],
+    "summary": "Checks IBAN, card and ISBN check digits as you type and points to the swapped or doubled character, so money and orders don't go to a mistyped number.",
+    "server": "Validate the account or card with the bank or payment processor before moving money.",
+    "catches": [
+      "IBAN mod-97 failures and wrong length for the country",
+      "Card numbers failing Luhn or with a wrong length for the brand",
+      "ISBN-10/13 check digit failures",
+      "IFSC codes in the wrong format, with known bank codes read back",
+      "The swapped or doubled character that explains a failure"
+    ],
+    "limits": [
+      "A passing check digit means the number is well-formed, not that the account, card or book exists",
+      "IFSC has no check digit: only format and a few bank codes are checked",
+      "The IBAN length table needs updating when countries join the registry"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to an aria-live=\"polite\" status",
+      "Fix returns focus to the input",
+      "Grouped read-back is aria-hidden; status text carries the result"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

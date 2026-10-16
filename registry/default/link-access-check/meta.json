@@ -1,6 +1,24 @@
 {
   "title": "Link Access Check",
-  "description": "Prevents \"I can't open the link\" and accidental public sharing by checking every Google Drive, OneDrive, Dropbox, Notion, Figma or Box link in a message against its recipients before it is sent, naming who can't open each one with one-tap fixes (give view access, open it to the company, or ask the owner when you can't share it), and warning when an anyone-with-the-link doc is going outside the organisation.",
+  "summary": "Before a message is sent, checks each cloud document link against its recipients, so nobody gets a link they can't open and nothing goes public by accident.",
+  "description": "Pre-send check for Google Drive, OneDrive, Dropbox, Notion, Figma and Box links that names which recipients can't open each one, offers fixes (give view access, open to the company, ask the owner), and warns when an anyone-with-the-link doc goes outside your organisation.",
+  "catches": [
+    "Recipients who can't open a linked document",
+    "Anyone-with-the-link documents going to people outside your domains",
+    "Links you can't re-share: suggests asking the owner",
+    "Links to the same document in different URL forms (?usp=sharing, /edit, /view) are treated as one"
+  ],
+  "limits": [
+    "Relies on your checkAccess function to ask each storage API; it can't see permissions itself",
+    "Only recognises the listed hosts plus extraHosts",
+    "Group memberships are only as accurate as your API's answer"
+  ],
+  "a11y": [
+    "Announcements go to a polite live region",
+    "Focus moves to the first fix, then to Send",
+    "Loading and retry states have text, with icons aria-hidden"
+  ],
+  "server": "Check sharing permissions with each provider's API on the server; never trust the client's view of who can open a document.",
   "dependencies": [
     "lucide-react"
   ],

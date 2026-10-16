@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "cert-paste-check",
   "title": "Cert Paste Check",
-  "description": "Stops a broken TLS install by telling a certificate from a private key from a CSR as they are pasted, and catching a chain out of order or missing its intermediate, an expired or soon-expiring certificate, a domain the SANs don't cover (wildcard and CN-only traps included), a self-signed certificate in production and a private key that doesn't match, with one-tap reorder and remove fixes.",
+  "description": "Identifies certificates, private keys and CSRs in a paste and catches a chain out of order or missing its intermediate, expired or expiring certificates, a hostname the SANs don't cover, self-signed certificates in production and a non-matching key.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,10 +44,30 @@
     "fields": [
       "secret",
       "code"
+    ],
+    "summary": "Tells a certificate, key and CSR apart as they're pasted and catches chain, expiry, hostname and key-mismatch mistakes before a TLS install breaks.",
+    "server": "Validate the full chain and key on the server or in your TLS tooling before deploying; this is a paste-time check.",
+    "catches": [
+      "A private key or CSR pasted where a certificate was expected",
+      "A chain out of order or missing its intermediate",
+      "Expired or soon-expiring certificates (warnDays)",
+      "A hostname the SANs don't cover, including wildcard and CN-only traps",
+      "A self-signed certificate in production, and a private key that doesn't match"
+    ],
+    "limits": [
+      "Parses the DER structure only; signatures are not verified and revocation is not checked",
+      "Does not check that the root is trusted by browsers",
+      "Everything runs in the browser, but a pasted private key is still sensitive: avoid logging the field"
+    ],
+    "a11y": [
+      "Labelled textarea with aria-invalid and aria-describedby to the hint and report",
+      "Summary in a role=\"status\" region; serious problems use role=\"alert\"",
+      "After a fix, focus moves to the next fix or back to the field",
+      "Severity shown with icons and text"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

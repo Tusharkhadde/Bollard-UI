@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "irreversible-diff-badge",
   "title": "Irreversible Diff Badge",
-  "description": "Stops people saving a change they can't take back by marking permanent fields with a chip that turns amber once edited and, before save, listing only the permanent fields that actually changed as a from → to readback with consequences and one-tap Revert, behind a confirmation that resets whenever that list changes.",
+  "description": "Chip for permanent fields that turns amber once edited, plus a pre-save readback listing only the permanent fields that changed (from → to) with consequences and one-tap Revert, behind a confirmation that resets whenever that list changes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -42,6 +42,24 @@
     ],
     "fields": [
       "text"
+    ],
+    "summary": "Marks fields that can't be changed back and, before save, lists only the permanent fields that actually changed, from → to.",
+    "server": "Enforce which fields are immutable on the server and audit-log changes to them.",
+    "catches": [
+      "Permanent or rarely changeable fields edited without notice",
+      "Readback of only the hard-to-undo fields that changed, with consequences",
+      "Confirmation given for one set of changes reused for another: it resets",
+      "One-tap Revert per field"
+    ],
+    "limits": [
+      "You decide which fields are permanent; it can't know",
+      "Comparison uses your equals or a strict/JSON comparison"
+    ],
+    "a11y": [
+      "Readback is a labelled group described by the change list",
+      "Changes are announced in a polite live region; from/to are read as text, with del/ins visuals aria-hidden",
+      "Revert buttons have aria-labels naming the field and old value; focus moves after a revert",
+      "Save errors use role=alert"
     ]
   },
   "categories": [

@@ -1,8 +1,30 @@
 {
   "title": "Bcc Guard",
-  "description": "Stops a group email exposing everyone on it by showing the To line exactly as one recipient will see it, counting the names, private addresses and companies it gives away, flagging when being on the list is itself sensitive (\"HIV\", \"arrears\") and offering one email each, moving every outside recipient to Bcc in one tap with Undo, and asking for a second press to send while addresses still show.",
-  "dependencies": ["lucide-react", "motion", "@number-flow/react"],
-  "stops": "Patient list exposed in To field",
+  "summary": "Shows the To line as each recipient will see it, so a group email doesn't expose everyone's names and addresses to each other.",
+  "description": "Previews the To line as one recipient sees it, counts the names, private addresses and companies exposed, flags lists where membership is itself sensitive (\"HIV\", \"arrears\"), moves outside recipients to Bcc in one tap with Undo, and asks for a second press to send.",
+  "catches": [
+    "Recipients who can see each other's addresses on To or Cc",
+    "Addresses or display names that give away a person's name, and outside companies",
+    "Subjects or bodies with terms that make being on the list sensitive",
+    "Sending while addresses still show, with options to move them to Bcc or send one email each"
+  ],
+  "limits": [
+    "Sensitive-term matching uses a word list (replaceable); other sensitive contexts are missed",
+    "Internal vs outside is decided only by the internalDomains you pass",
+    "It cannot stop replies-all or forwards after sending"
+  ],
+  "a11y": [
+    "The preview is labelled by its heading (aria-labelledby)",
+    "Focus moves to the next sensible action (Move to Bcc, then Send)",
+    "The second-press warning uses role=\"alert\" and the Send button is described by it",
+    "Status is announced in a role=\"status\" region; motion respects prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "@number-flow/react"
+  ],
+  "stops": "Recipients see each other's addresses",
   "mistakes": [
     "forgot to use bcc",
     "group email exposed addresses",

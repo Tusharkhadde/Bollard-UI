@@ -20,6 +20,7 @@ export interface PreflightCheck {
 }
 
 export interface PreflightChecklistProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "children"> {
+  /** The checks to run, in order; omit run for a manual tick. */
   checks: PreflightCheck[]
   /** Label of the gated action, e.g. "Deploy to production". */
   actionLabel: string

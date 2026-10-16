@@ -112,8 +112,11 @@ export interface DeadlineProps extends Omit<React.ComponentProps<"div">, "childr
   hour12?: boolean
   /** Templates: `{relative}`, `{day}` and `{place}` are filled in. */
   dueText?: string
+  /** Text shown when the deadline has passed. */
   overdueText?: string
+  /** Explains that midnight means the end of the previous day. */
   midnightText?: string
+  /** Label used for end-of-day times. */
   endOfDayLabel?: string
   /** The owner's time, after yours. `{time}` and `{place}` are filled in; `{day}` too when the date differs. */
   ownerTimeText?: string

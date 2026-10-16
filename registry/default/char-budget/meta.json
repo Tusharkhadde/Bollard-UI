@@ -1,6 +1,23 @@
 {
   "title": "Character Budget",
-  "description": "Prevents posts that get cut off and SMS that silently cost double by counting graphemes against X, SMS, LinkedIn and meta-description limits at once, and naming the curly quote or emoji that forced UCS-2.",
+  "summary": "Counts text against X, SMS, LinkedIn and meta-description limits at once, so posts aren't cut off and SMS don't silently cost double.",
+  "description": "Counts graphemes against several limits at once (X, SMS segments, LinkedIn, meta description), names the curly quote or emoji that forced UCS-2 SMS encoding, and can swap them for plain characters in one tap.",
+  "catches": [
+    "Text over each platform's limit, counted as people see characters (emoji and flags count once)",
+    "X's weighting (URLs as 23, emoji and CJK as 2)",
+    "Characters that force UCS-2 and shrink an SMS segment from 160 to 70",
+    "Extra SMS segments"
+  ],
+  "limits": [
+    "Platform limits are built in and can change; pass your own targets to override",
+    "Falls back to code points where Intl.Segmenter is unavailable",
+    "Real SMS cost also depends on the carrier and gateway"
+  ],
+  "a11y": [
+    "Visible <label>; the field is described by an aria-live=\"polite\" summary",
+    "Buttons that find a problem character have aria-labels naming it",
+    "Finding a character moves focus to it in the field"
+  ],
   "dependencies": [
     "lucide-react"
   ],

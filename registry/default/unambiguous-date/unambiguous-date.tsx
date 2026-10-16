@@ -111,6 +111,7 @@ export interface UnambiguousDateProps extends Omit<React.ComponentProps<"span">,
   invalidMessage?: string
   /** `{order}` is a reading name. */
   readAsText?: string
+  /** Label of the change-reading button. */
   changeLabel?: string
   /** `{input}` and `{date}` are filled in. */
   alsoText?: string

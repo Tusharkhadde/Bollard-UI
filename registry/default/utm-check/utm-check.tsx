@@ -33,13 +33,19 @@ export interface UtmCheckProps extends UtmCheckOptions, Omit<React.ComponentProp
   defaultValue?: string
   /** Called with the URL on every edit and fix. */
   onValueChange?: (value: string) => void
+  /** Visible label of the URL field. */
   label?: string
   /** Show the source, medium and campaign fields under the URL. */
   builder?: boolean
+  /** Label before the predicted GA4 channel. */
   channelLabel?: string
+  /** Warning for UTM tags on links to your own site. */
   internalText?: string
+  /** Label of the fix-all button. */
   normaliseLabel?: string
+  /** Label of the Undo button. */
   undoLabel?: string
+  /** Shown when no issues are found. */
   cleanText?: string
 }
 

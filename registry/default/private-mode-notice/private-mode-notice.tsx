@@ -51,7 +51,9 @@ export interface PrivateModeNoticeProps extends Omit<React.ComponentProps<"div">
   onReport?: (report: StorageReport) => void
   /** Banner messages per risk. */
   privateText?: string
+  /** Shown when site data is blocked. */
   blockedText?: string
+  /** Shown when storage is nearly full. */
   fullText?: string
   /** Appended when work is at stake. */
   unsavedText?: string
@@ -59,10 +61,15 @@ export interface PrivateModeNoticeProps extends Omit<React.ComponentProps<"div">
   likelyText?: string
   /** One-line messages for the inline variant. */
   inlinePrivateText?: string
+  /** Inline variant text for blocked storage. */
   inlineBlockedText?: string
+  /** Inline variant text for full storage. */
   inlineFullText?: string
+  /** Button text to download unsaved work. */
   exportLabel?: string
+  /** Button text after exporting. */
   exportedLabel?: string
+  /** Button text to dismiss the notice. */
   dismissLabel?: string
 }
 

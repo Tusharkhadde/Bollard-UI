@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "port-expose-guard",
   "title": "Port Expose Guard",
-  "description": "Stops a database or admin port being published to the internet by accident: it reads a docker run command, compose ports or a Kubernetes Service back as who can reach each port, flags databases bound to 0.0.0.0 (which Docker opens ahead of ufw), host networking, -P, NodePort or public LoadBalancer for internal services, a container port the image doesn't listen on and unquoted 22:22 that YAML reads as 1342, and fixes each in one tap (bind to 127.0.0.1, ClusterIP, the right port, quotes). It reads ${VAR} ports, long and { … } compose syntax and [::] binds, keeps CRLF line endings, and notes that 127.0.0.1 was LAN-reachable before Docker 28.",
+  "description": "Port mapping check for docker run, compose and Kubernetes Services that says who can reach each port and flags databases on 0.0.0.0 (which Docker opens ahead of ufw), host networking, -P, NodePort or public LoadBalancers, wrong container ports and unquoted 22:22 YAML, with fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -24,7 +24,7 @@
     }
   ],
   "meta": {
-    "stops": "Database port open to the internet",
+    "stops": "Helps prevent a database port being opened to the internet",
     "mistakes": [
       "docker port exposed publicly",
       "docker bypasses ufw",
@@ -50,10 +50,44 @@
     "fields": [
       "code",
       "number"
-    ]
+    ],
+    "summary": "Reads docker run, compose ports or a Kubernetes Service back as who can reach each port, so a database isn't published to the internet by accident.",
+    "server": "Enforce network policy and firewalls at the host or cloud level; never rely on a config review alone.",
+    "catches": [
+      "Database or admin ports bound to every interface",
+      "Docker's iptables rules bypassing ufw",
+      "Host networking, -P, NodePort or public LoadBalancer for internal services",
+      "Container port the image doesn't listen on (5432:5433)",
+      "Unquoted 22:22 that YAML 1.1 reads as a number",
+      "On Docker older than 28, 127.0.0.1 binds reachable from the LAN"
+    ],
+    "limits": [
+      "Reads the config you paste; it can't see cloud security groups or host firewalls",
+      "${VAR} binds without defaults can't be judged until run time",
+      "Sensitive-port list is a default; pass your own"
+    ],
+    "a11y": [
+      "Visible label; textarea is described by the readback",
+      "Announcements go to a polite live region",
+      "Reach is shown as text with icons aria-hidden; focus moves to the first fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Docker: Port publishing and mapping",
+          "url": "https://docs.docker.com/engine/network/port-publishing/"
+        },
+        {
+          "label": "Docker: Packet filtering and firewalls (Docker and ufw)",
+          "url": "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+        }
+      ],
+      "note": "Informational. Confirmed: before 28.0.0, hosts on the same L2 segment can reach ports published to localhost; Docker's rules divert traffic before ufw. The YAML 1.1 sexagesimal reading was not re-checked."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

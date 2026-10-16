@@ -33,12 +33,19 @@ export interface CidrInputProps extends Omit<React.ComponentProps<"input">, "val
   delay?: number
   /** Templates. `{first}`, `{last}`, `{count}`, `{network}`, `{host}`, `{prefix}`, `{label}`, `{cidr}`, `{all}` are filled in. */
   rangeText?: string
+  /** Warning when host bits are set. */
   hostBitsText?: string
+  /** Warning for leading zeros in an octet. */
   leadingZerosText?: string
+  /** Warning when the /prefix is missing. */
   missingPrefixText?: string
+  /** Warning for 0.0.0.0/0 or ::/0. */
   anywhereText?: string
+  /** Message when the range equals an existing one. */
   sameText?: string
+  /** Message when the range sits inside an existing one. */
   insideText?: string
+  /** Message when the range contains an existing one. */
   containsText?: string
 }
 

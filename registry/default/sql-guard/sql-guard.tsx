@@ -14,6 +14,7 @@ export interface SqlGuardProps extends Omit<React.ComponentProps<"div">, "defaul
   value?: string
   /** Initial query when uncontrolled. */
   defaultValue?: string
+  /** Called with the query text on every change. */
   onValueChange?: (value: string) => void
   /** Runs the query. Return a promise to show a pending state; a rejection is shown under the box. */
   onRun: (sql: string) => void | Promise<void>
@@ -23,14 +24,19 @@ export interface SqlGuardProps extends Omit<React.ComponentProps<"div">, "defaul
   productionEnvs?: string[]
   /** Estimates how many rows a write statement touches. Return null when unknown. */
   estimateRows?: (statement: SqlStatementInfo) => number | null | Promise<number | null>
+  /** Visible label. */
   label?: string
+  /** Label of the Run button. */
   runLabel?: string
+  /** Label of the confirm-run button. */
   runAnywayLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
   /** `{env}` is filled in. */
   productionText?: string
   /** `{table}` is filled in. */
   typeTableText?: string
+  /** Label of the uncomment-WHERE fix. */
   uncommentLabel?: string
 }
 

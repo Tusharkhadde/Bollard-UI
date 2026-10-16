@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "filename-input",
   "title": "Filename Input",
-  "description": "Prevents broken renames by selecting only the base name on focus, warning with a one-tap undo when the extension changes or disappears, and catching illegal characters, Windows reserved names like CON or NUL.txt, trailing dots and spaces, over-long names and duplicates that differ only in capitals.",
+  "description": "Selects only the base name on focus, warns with a one-tap undo when the extension changes or disappears, and catches illegal characters, Windows reserved names (CON, NUL.txt), trailing dots and spaces, over-long names and duplicates differing only in case.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,37 @@
     "fields": [
       "file",
       "text"
-    ]
+    ],
+    "summary": "Selects only the base name when renaming and catches lost extensions and names Windows can't store, so a rename doesn't break a file.",
+    "catches": [
+      "Extensions changed or removed, with undo",
+      "Characters Windows forbids",
+      "Reserved device names such as CON or NUL.txt",
+      "Trailing dots and spaces, and names over the byte limit",
+      "Names that differ from an existing file only in capitals"
+    ],
+    "limits": [
+      "Follows Windows naming rules, the strictest common case; other systems allow more",
+      "Duplicate checks only cover the existingNames you pass"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to an aria-live=\"polite\" status",
+      "Escape restores the original name",
+      "Fixes return focus to the input"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Microsoft Learn: Naming Files, Paths, and Namespaces",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file"
+        }
+      ],
+      "note": "Informational. Checked the reserved device names (including superscript-digit COM/LPT) and the rule against trailing spaces and periods."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "iam-policy-check",
   "title": "IAM Policy Check",
-  "description": "Stops an AWS IAM or S3 bucket policy granting far more than intended by reading each statement back in plain words (who can do what, on what, only if what) and flagging full-admin and service:* wildcards, Resource \"*\", Principal \"*\" that S3 Block Public Access would call public (naming conditions such as aws:SecureTransport or a /1 IP range that don't narrow it), public reads and writes, NotAction with Allow, NotPrincipal traps and iam:PassRole on every role, with scoped one-tap fixes: your account or organization, the actions it really uses, iam:PassedToService inferred from the policy, and a Deny rewritten with aws:PrincipalArn.",
+  "description": "Reads each IAM or S3 bucket policy statement back in plain words (who, what, on what, under which condition) and flags admin and service:* wildcards, Resource \"*\", Principal \"*\" that S3 would call public, NotAction/NotPrincipal traps and wide iam:PassRole, with scoped fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "S3 bucket made public by policy",
+    "stops": "Helps catch an S3 bucket made public by a policy",
     "mistakes": [
       "s3 bucket public",
       "iam policy too broad",
@@ -43,7 +43,36 @@
     ],
     "fields": [
       "code"
-    ]
+    ],
+    "summary": "Reads an AWS IAM or S3 bucket policy back in plain words and flags grants far wider than intended, such as a bucket made public.",
+    "server": "Validate policies with IAM Access Analyzer in CI and keep S3 Block Public Access on at the account level.",
+    "catches": [
+      "Full-admin and service:* action wildcards, and Resource \"*\"",
+      "Principal \"*\" that S3 Block Public Access treats as public, including conditions that don't narrow it",
+      "Public reads and writes on a bucket",
+      "Allow with NotAction, and NotPrincipal traps",
+      "iam:PassRole on every role, with an iam:PassedToService fix"
+    ],
+    "limits": [
+      "Static review of one policy; it can't see SCPs, permission boundaries, session policies or resource policies elsewhere",
+      "Doesn't evaluate a request the way the IAM engine does; use IAM Access Analyzer or the policy simulator to confirm",
+      "Suggested fixes (your account, used actions) depend on the inputs you pass"
+    ],
+    "a11y": [
+      "Text area has a label, aria-invalid when errors exist, and is described by the status",
+      "Status uses role=status; icons are aria-hidden",
+      "Each issue has a labelled button that selects its line; focus returns to a nearby control after a fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "AWS: Blocking public access to your Amazon S3 storage (The meaning of \"public\")",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html"
+        }
+      ],
+      "note": "Informational; check the official source. Confirmed that non-public requires fixed values for principals or aws:SourceIp CIDR sets. The exact CIDR width AWS counts as public and the IAM element reference were not re-checked this round."
+    }
   },
   "categories": [
     "Reading without mistakes"

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "reply-all-guard",
   "title": "Reply All Guard",
-  "description": "Stops the reply all nobody wanted by stating how many people it really reaches (distribution lists expanded), naming everyone outside the organisation by domain, catching a BCC'd or forwarded-to recipient about to reveal themselves (without false alarms when the mail came through a list you're on) and a Reply-To that points elsewhere, with one tap to reply to the sender only or leave out external people, and Undo.",
+  "description": "Reply-all check: counts real reach with distribution lists expanded, names external recipients by domain, catches a BCC'd or forwarded-to reader about to reveal themselves and a Reply-To that points elsewhere, with sender-only or internal-only fixes and Undo.",
   "dependencies": [
     "lucide-react"
   ],
@@ -42,6 +42,24 @@
     ],
     "fields": [
       "email"
+    ],
+    "summary": "Shows how many people a reply-all really reaches and who is outside the organisation before it goes, with a one-tap reply to the sender only.",
+    "catches": [
+      "Real reach, with list member counts you supply",
+      "External recipients, grouped by domain",
+      "You were BCC'd or forwarded the mail, so reply-all would reveal you (not flagged when it came via a list you're on)",
+      "A Reply-To that points somewhere other than the sender",
+      "Large audiences above largeAt"
+    ],
+    "limits": [
+      "List sizes and your list memberships come from props; it cannot expand lists itself",
+      "BCC detection infers from headers; unusual relays can cause misses or false alarms",
+      "Does not send; it changes the recipient set you pass on"
+    ],
+    "a11y": [
+      "Choice outcome announced in a polite live region",
+      "After a fix, focus moves to Undo; after Undo, back to the first fix or returnFocusRef",
+      "Fix options are plain buttons with text labels; icons are aria-hidden"
     ]
   },
   "categories": [

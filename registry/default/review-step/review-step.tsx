@@ -56,15 +56,25 @@ export interface ReviewStepProps extends Omit<React.ComponentProps<"div">, "onSu
   onSubmit: () => void | Promise<void>
   /** Clicks sooner than this (ms) after the review appears are ignored, so a double-click or held Enter on "Next" can't submit. */
   guard?: number
+  /** Heading above the review. */
   heading?: string
+  /** Label of the submit button. */
   submitLabel?: string
+  /** Submit label while onSubmit runs. */
   pendingLabel?: string
+  /** Submit label after success. */
   doneLabel?: string
+  /** Label of each Edit button. */
   editLabel?: string
+  /** Label shown instead of Edit for an empty field. */
   addLabel?: string
+  /** Shown for an empty optional answer. */
   emptyText?: string
+  /** Shown for a missing required answer. */
   missingText?: string
+  /** Marks a value changed since last time. */
   changedText?: string
+  /** Shown when onSubmit rejects. */
   errorText?: string
   /** Under a blocked submit button. `{fields}` lists what is missing. */
   missingHint?: string

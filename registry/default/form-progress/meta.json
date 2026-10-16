@@ -1,7 +1,43 @@
-{"title": "Form Progress", "description": "Prevents the \"why won't it submit?\" hunt by counting the required fields still empty or invalid and jumping focus to the next one with a Next missing button.", "dependencies": ["lucide-react"],
+{
+  "title": "Form Progress",
+  "summary": "Counts required fields still empty or invalid and jumps to the next one, so people aren't left wondering why a form won't submit.",
+  "description": "Watches a form and counts the required fields still empty or invalid, with a Next missing button that moves focus to the next one.",
+  "catches": [
+    "Required fields left empty",
+    "Fields failing native validation (pattern, minlength and similar)",
+    "Fields off-screen, by jumping to them"
+  ],
+  "limits": [
+    "Relies on native required and constraint validation; custom validation isn't seen",
+    "Skips disabled, hidden and inert fields"
+  ],
+  "a11y": [
+    "Field names come from their <label> (or aria-label/name)",
+    "Next missing moves focus to the field",
+    "Updates when required, disabled, hidden or inert attributes change"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Form won't submit, field unknown",
-  "mistakes": ["why wont form submit", "required field missing", "find empty required field", "submit disabled no reason"],
-  "aliases": ["required fields", "form progress", "progress bar", "validation", "next missing", "kyc form", "application form", "react hook form"],
-  "flows": ["forms"],
+  "mistakes": [
+    "why wont form submit",
+    "required field missing",
+    "find empty required field",
+    "submit disabled no reason"
+  ],
+  "aliases": [
+    "required fields",
+    "form progress",
+    "progress bar",
+    "validation",
+    "next missing",
+    "kyc form",
+    "application form",
+    "react hook form"
+  ],
+  "flows": [
+    "forms"
+  ],
   "fields": []
 }

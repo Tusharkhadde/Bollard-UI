@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "markdown-check",
   "title": "Markdown Check",
-  "description": "Catches Markdown that will render differently from how it reads (an unclosed ** or backtick, [text] (url) with a space, empty or space-broken links, #Title with no space, raw HTML the sanitizer strips) and previews each spot the way it will actually render, with a one-tap fix.",
+  "description": "Markdown field that catches unclosed ** or backticks, [text] (url) with a space, empty or space-broken links, #Title with no space and raw HTML the sanitizer strips, previews each spot as it will render, and offers a one-tap fix.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,27 @@
     "fields": [
       "text",
       "code"
+    ],
+    "summary": "Catches Markdown that will render differently from how it reads, like an unclosed ** or a link broken by a space, and previews each spot.",
+    "catches": [
+      "Unclosed emphasis or code backticks",
+      "[text] (url) with a space, and empty or space-broken links",
+      "#Title with no space after #",
+      "Raw HTML tags your sanitizer strips (allowedTags)"
+    ],
+    "limits": [
+      "Follows CommonMark/GitHub-style rules; other renderers differ",
+      "Not a full Markdown parser, so nested edge cases can be missed",
+      "Default allowed tags mirror GitHub-style sanitizers; pass yours"
+    ],
+    "a11y": [
+      "Visible label; textarea is described by a polite status region",
+      "Problems wait for a pause while typing and show at once on blur",
+      "Each issue has a select button and a fix button"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

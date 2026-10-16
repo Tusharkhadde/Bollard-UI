@@ -56,13 +56,21 @@ export interface GapAwareLineProps extends Omit<React.ComponentProps<"figure">, 
   defaultTable?: boolean
   /** Templates: `{from}`, `{to}`, `{count}`, `{gaps}` and `{estimated}` are filled in. */
   gapText?: string
+  /** Label for a gap spanning several readings. */
   gapRangeText?: string
+  /** Text summary read with the chart. */
   summaryText?: string
+  /** Shown in the table for a missing reading. */
   noDataLabel?: string
+  /** Shown in the table for an estimated reading. */
   estimatedLabel?: string
+  /** Toggle text to show the data table. */
   showTableLabel?: string
+  /** Toggle text to show the chart. */
   showChartLabel?: string
+  /** Table header for the value column. */
   valueHeader?: string
+  /** Table header for the note column. */
   noteHeader?: string
 }
 

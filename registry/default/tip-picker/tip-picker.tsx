@@ -44,28 +44,41 @@ export interface TipPickerProps extends Omit<React.ComponentProps<"fieldset">, "
   base?: TipBase
   /** Initial tip base when uncontrolled. Etiquette and most guidance say pre-tax. */
   defaultBase?: TipBase
+  /** Called when the tip base (pre- or post-tax) changes. */
   onBaseChange?: (base: TipBase) => void
   /** Hide the pre-tax / post-tax switch when the merchant fixes the base. */
   allowBaseSwitch?: boolean
   /** Controlled tip amount. A flagged custom tip is only reported once it's fixed or confirmed. */
   value?: number
+  /** Starting tip amount when uncontrolled. */
   defaultValue?: number
+  /** Called with the tip amount. */
   onValueChange?: (amount: number) => void
   /** Custom text the picker opens with, e.g. a value restored from a draft. */
   defaultCustomText?: string
+  /** Whether a custom tip starts in percent or money. */
   defaultCustomMode?: TipMode
   /** Tips at or above this percent of the base need a second tap. */
   highPercent?: number
+  /** ISO 4217 currency code. */
   currency?: string
+  /** Locale for money formatting. */
   locale?: string
+  /** Legend of the tip fieldset. */
   legend?: string
+  /** Label of the no-tip option. */
   noTipLabel?: string
+  /** Label of the custom-tip option. */
   customLabel?: string
+  /** Notice when a service charge is already on the bill. */
   includedText?: (charge: string, percent: string) => string
   /** Receives the typed percent, the tip it gives and the likely meant amount. */
   amountInPercentText?: (typed: string, tip: string, meant: string) => string
+  /** Warning when a percent was typed as money. */
   percentInAmountText?: (typed: string, percent: string) => string
+  /** Warning for an unusually large tip. */
   highText?: (amount: string, percent: string) => string
+  /** Label of the keep-this-tip confirmation. */
   keepLabel?: (amount: string) => string
 }
 

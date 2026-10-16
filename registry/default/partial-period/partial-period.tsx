@@ -68,7 +68,9 @@ export interface PartialPeriodProps extends Omit<React.ComponentProps<"figure">,
   previousLabel?: string
   /** "to-date" compares like for like; "full" compares with the whole previous period. */
   mode?: "to-date" | "full"
+  /** Initial comparison mode when uncontrolled. */
   defaultMode?: "to-date" | "full"
+  /** Called when the user switches between to-date and full. */
   onModeChange?: (mode: "to-date" | "full") => void
   /** Whether a rise is good news. */
   higherIsBetter?: boolean
@@ -78,12 +80,19 @@ export interface PartialPeriodProps extends Omit<React.ComponentProps<"figure">,
   format?: (value: number) => string
   /** Templates: `{current}`, `{previous}`, `{cutoff}`, `{pct}`, `{change}` and `{value}` are filled in. */
   toDateLabel?: string
+  /** Label for the full-period option. */
   fullLabel?: string
+  /** Template for the so-far comparison. */
   soFarText?: string
+  /** Shown when comparing against the full previous period. */
   warningText?: string
+  /** Button text to switch back to like for like. */
   fixLabel?: string
+  /** Template for the projected finish. */
   projectionText?: string
+  /** Label for the bucket still filling. */
   partialLabel?: string
+  /** Label marking the projection as an estimate. */
   estimateLabel?: string
 }
 

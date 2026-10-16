@@ -1,7 +1,26 @@
 {
   "title": "Locale Notice",
-  "description": "Stops numbers and dates being misread across locales by showing the value as you write it and as the reader's locale writes it, saying exactly what they would take it to mean (\"In Germany, 1,000 reads as 1\"), offering a form neither side can flip, and catching numbers typed with the other convention's decimal mark (\"1,5\" becoming 15).",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows a number or date as the reader's locale would read it, so 1,000 isn't taken as 1 in Germany or 04/03 as the wrong day.",
+  "description": "Shows a value as you write it and as the reader's locale writes it, says what they would take it to mean (\"In Germany, 1,000 reads as 1\"), offers a form neither side can flip, and catches numbers typed with the other convention's decimal mark (\"1,5\" becoming 15).",
+  "catches": [
+    "Numbers whose separators flip meaning between locales",
+    "Dates like 04/03 read day-first vs month-first",
+    "Decimal comma or point typed for the wrong locale",
+    "Offers an unambiguous form (SI grouping, worded month)"
+  ],
+  "limits": [
+    "Uses the browser's Intl data, which varies by browser version",
+    "Only compares two locales at a time",
+    "Can't know the reader's locale unless you pass it"
+  ],
+  "a11y": [
+    "Notice and hints are polite live regions",
+    "Input has a visible label and is described by the hint",
+    "Keep button has an aria-label and title; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "1,000 read as one in Germany",
   "mistakes": [
     "comma decimal confusion",

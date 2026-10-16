@@ -1,7 +1,31 @@
 {
   "title": "Hidden Content Check",
-  "description": "Stops a shared spreadsheet, document or deck leaking what isn't on screen by opening the .xlsx, .docx or .pptx in the browser before it goes out, with no dependencies, and listing hidden and very hidden sheets, hidden rows and columns, tracked deletions, hidden text, comments, speaker notes, hidden slides, embedded workbooks, links to internal drives and author details, opening on the worst one with the hidden tab's real first rows, letting each be kept or removed (the cleaned file is re-checked) and asking for a second press to share with items still open.",
-  "dependencies": ["lucide-react", "motion"],
+  "summary": "Opens an .xlsx, .docx or .pptx in the browser before it is shared and lists what is hidden inside: sheets, rows, comments, notes, tracked deletions, author details.",
+  "description": "Pre-share check for Office files that reads the file locally with no dependencies and lists hidden and very hidden sheets, hidden rows and columns, tracked deletions, hidden text, comments, speaker notes, hidden slides, embedded workbooks, internal-drive links and author details.",
+  "catches": [
+    "Hidden and very hidden sheets, with their real first rows shown",
+    "Hidden rows and columns, hidden text and tracked deletions",
+    "Comments, speaker notes and hidden slides",
+    "Embedded workbooks (for example a chart's source data in a deck)",
+    "Links to internal drives and author metadata",
+    "Share pressed with items still open: asks for a second press"
+  ],
+  "limits": [
+    "Office Open XML only (.xlsx, .docx, .pptx); not .xls, .doc, PDF or images",
+    "Removal is done by your onRemove; the component re-checks whatever file you hand back",
+    "Does not detect sensitive data in visible cells, or white-on-white text"
+  ],
+  "a11y": [
+    "Results are labelled by the summary; each finding is a focusable labelled region",
+    "Expanders use aria-expanded and aria-controls; remove buttons show aria-busy while working",
+    "Errors use role=alert; focus moves to the next open finding or the share button",
+    "Animations are skipped under reduced motion"
+  ],
+  "server": "If files are shared through your servers, scan and strip metadata there too; the client check can be skipped.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
   "stops": "Hidden tab leaked staff names",
   "mistakes": [
     "hidden sheet in shared spreadsheet",

@@ -1,7 +1,25 @@
 {
   "title": "ETA Range",
-  "description": "Stops false-precision delivery promises by quoting the range that covers 90% of deliveries with a most likely day only when one really stands out (\"Thu 15 – Sat 17 Oct, most likely Fri 16\"), counting the shipper's business days, holidays and cutoff in its own time zone, previewing the range you get after the cutoff, naming no-delivery days inside it, and explaining when the estimate widened.",
-  "dependencies": ["lucide-react"],
+  "summary": "Quotes delivery as a realistic date range, naming a likely day only when one stands out, so customers aren't promised an impossible day.",
+  "description": "Quotes the range covering 90% of deliveries, with a most likely day only when one stands out (\"Thu 15 – Sat 17 Oct, most likely Fri 16\"), counts business days, holidays and the cutoff in the shipper's zone, previews the post-cutoff range and explains when it widened.",
+  "catches": [
+    "False precision, by quoting a range instead of one date",
+    "Holidays and no-delivery days inside the range",
+    "The order cutoff, with the range you get after it",
+    "A range that widened since last shown, with the reason"
+  ],
+  "limits": [
+    "Accuracy depends on the delivery distribution and calendar you pass",
+    "The 90% range is a statistical estimate, not a carrier guarantee"
+  ],
+  "a11y": [
+    "The distribution chart is aria-hidden, with a text version of each day's share",
+    "Countdown and changes are aria-live=\"polite\"",
+    "aria-busy while the clock hasn't loaded"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Delivery promised on an impossible day",
   "mistakes": [
     "delivery date wrong",

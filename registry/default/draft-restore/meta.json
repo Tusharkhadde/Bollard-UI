@@ -1,12 +1,43 @@
 {
   "title": "Draft Restore",
-  "description": "Stops lost form work and stale-draft overwrites by autosaving to localStorage and, on reopen, offering the draft with a field-by-field preview that keeps any value the server changed since, unless you tick it.",
+  "summary": "Autosaves a form locally and offers the draft back on reopen, keeping any value the server changed since, so work isn't lost or stale data restored.",
+  "description": "Autosaves to localStorage and, on reopen, offers the draft with a field-by-field preview that keeps any value the server changed since, unless you tick it. Drafts expire after 7 days by default.",
+  "catches": [
+    "Form work lost to a refresh, crash or closed tab",
+    "Stale draft values that would overwrite newer server values, kept server-side unless chosen",
+    "Old drafts, via an expiry (ttl)"
+  ],
+  "limits": [
+    "Drafts live in this browser's localStorage: not on other devices, and cleared with site data",
+    "Don't store sensitive fields; use `exclude` for passwords, card numbers and similar",
+    "Anyone with access to the device can read localStorage"
+  ],
+  "a11y": [
+    "A role=\"region\" labelled \"Unsaved draft\"",
+    "Message is aria-live=\"polite\"",
+    "Preview toggle uses aria-expanded and aria-controls"
+  ],
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Lost form after accidental refresh",
-  "mistakes": ["lost form data on refresh", "restore draft", "localstorage form save", "old draft overwrote new data"],
-  "aliases": ["draft", "autosave", "localstorage", "restore", "form persistence", "resume application", "refresh lost data"],
-  "flows": ["forms"],
+  "mistakes": [
+    "lost form data on refresh",
+    "restore draft",
+    "localstorage form save",
+    "old draft overwrote new data"
+  ],
+  "aliases": [
+    "draft",
+    "autosave",
+    "localstorage",
+    "restore",
+    "form persistence",
+    "resume application",
+    "refresh lost data"
+  ],
+  "flows": [
+    "forms"
+  ],
   "fields": []
 }

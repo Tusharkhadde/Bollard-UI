@@ -1,10 +1,49 @@
 {
   "title": "Stay Length",
-  "description": "Catches off-by-one bookings and leave requests by reading the range back as \"Mon 2 Nov – Sun 8 Nov · 6 nights, 7 days\" and flagging an end before the start, nights confused with days, a check-out that may really be the last night, and weekends or pluggable holidays that change how much leave it costs, each with a one-tap fix.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads a date range back as nights and days so bookings and leave requests aren't off by one.",
+  "description": "Date range readback (\"Mon 2 Nov – Sun 8 Nov · 6 nights, 7 days\") that flags an end before the start, nights confused with days, a check-out that may really be the last night, and weekends or holidays that change how much leave it costs, each with a one-tap fix.",
+  "catches": [
+    "End date before start date",
+    "Nights versus days confusion against the expected count",
+    "A check-out date entered as the last night",
+    "Weekend days and holidays inside the range (for leave)"
+  ],
+  "limits": [
+    "Works on calendar dates only, never times",
+    "Holidays are yours to pass; weekend days default to Saturday–Sunday unless you set weekend"
+  ],
+  "a11y": [
+    "Start and end inputs have <label>s; aria-invalid on errors",
+    "Readback in a polite live region via aria-describedby; errors use role=alert",
+    "Fix and keep are labelled buttons"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Booked one night too few",
-  "mistakes": ["nights vs days confusion", "checkout date off by one", "leave days miscounted", "end date before start"],
-  "aliases": ["date range", "check-in check-out", "hotel booking", "leave request", "nights", "holidays", "date picker", "oyo", "airbnb"],
-  "flows": ["scheduling", "checkout", "india"],
-  "fields": ["datetime"]
+  "mistakes": [
+    "nights vs days confusion",
+    "checkout date off by one",
+    "leave days miscounted",
+    "end date before start"
+  ],
+  "aliases": [
+    "date range",
+    "check-in check-out",
+    "hotel booking",
+    "leave request",
+    "nights",
+    "holidays",
+    "date picker",
+    "oyo",
+    "airbnb"
+  ],
+  "flows": [
+    "scheduling",
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "datetime"
+  ]
 }

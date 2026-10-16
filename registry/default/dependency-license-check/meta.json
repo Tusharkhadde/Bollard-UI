@@ -1,10 +1,50 @@
 {
   "title": "Dependency License Check",
-  "description": "Prevents adding a dependency your project isn't allowed to use by reading each SPDX expression against your policy (GPL or AGPL in closed-source code, no or unrecognised license, source-available terms in a hosted product, deny lists) and catching relicenses between versions with a one-tap \"Stay on\" the last version under the old license, while dual licenses and dev-only copyleft pass quietly.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads each new dependency's SPDX license against your policy, so a GPL, unlicensed or relicensed package doesn't slip into your project.",
+  "description": "Reads each SPDX expression against your policy (GPL or AGPL in closed source, no or unknown license, source-available terms in a hosted product, deny lists) and catches relicenses between versions with a one-tap \"Stay on\" the last version under the old license.",
+  "catches": [
+    "Copyleft (GPL, AGPL) licenses in closed-source projects",
+    "Missing or unrecognised licenses",
+    "Source-available terms (e.g. BSL, SSPL) in a hosted product",
+    "Packages on your deny list",
+    "A license change between versions, with an option to stay on the older version"
+  ],
+  "limits": [
+    "Uses the license metadata you pass; packages sometimes declare a license that differs from their files",
+    "Doesn't scan transitive dependencies unless you pass them",
+    "Not legal advice: your policy decides what is allowed"
+  ],
+  "a11y": [
+    "License categories are written in text, not just chip colour",
+    "Focus moves to the first fix, or the add button when clear",
+    "Package names show the version in a title"
+  ],
+  "server": "Enforce license policy in CI (lockfile scan) so dependencies added outside this UI are caught too.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "GPL dependency shipped in closed source",
-  "mistakes": ["gpl package in commercial app", "license changed in new version", "npm license check", "agpl dependency"],
-  "aliases": ["license", "spdx", "npm install", "dependencies", "open source compliance", "gpl", "mit", "package.json", "sbom"],
-  "flows": ["devtools"],
-  "fields": ["code"]
+  "mistakes": [
+    "gpl package in commercial app",
+    "license changed in new version",
+    "npm license check",
+    "agpl dependency"
+  ],
+  "aliases": [
+    "license",
+    "spdx",
+    "npm install",
+    "dependencies",
+    "open source compliance",
+    "gpl",
+    "mit",
+    "package.json",
+    "sbom"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
 }

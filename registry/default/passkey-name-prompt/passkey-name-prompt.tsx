@@ -62,6 +62,7 @@ export interface PasskeyNamePromptProps extends Omit<React.ComponentProps<"input
   value?: string
   /** Initial name when uncontrolled. Defaults to the suggestion. */
   defaultValue?: string
+  /** Called with the name on every change. */
   onValueChange?: (value: string) => void
   /** Saves the name. May return a Promise; the button shows a pending state and a rejection shows an error. */
   onSave?: (name: string) => void | Promise<void>

@@ -1,6 +1,20 @@
 {
   "title": "Update Available",
-  "description": "Gets people onto a new deploy without losing work: it polls a version endpoint (or takes a prop), explains what a refresh does, never refreshes while there are unsaved changes and offers \"Refresh after I save\" instead, and lets \"Later\" skip only that build.",
+  "summary": "Tells people a new version is out without losing work: it never refreshes over unsaved changes and offers \"Refresh after I save\".",
+  "description": "New-deploy banner that polls a version endpoint (or takes a prop), explains what a refresh does, never refreshes while there are unsaved changes (offering \"Refresh after I save\"), and lets \"Later\" skip only that build.",
+  "catches": [
+    "A newer build than the one running",
+    "Unsaved changes, which hold the refresh until saved",
+    "\"Later\" applied to one build only"
+  ],
+  "limits": [
+    "Polling interval and endpoint are yours; nothing is pushed",
+    "Dirty state comes from your dirty prop"
+  ],
+  "a11y": [
+    "Banner is a region with an aria-label; message in a polite live region",
+    "Actions are labelled buttons; icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

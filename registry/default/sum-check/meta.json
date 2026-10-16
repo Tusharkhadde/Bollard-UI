@@ -1,6 +1,23 @@
 {
   "title": "Sum Check",
-  "description": "Stops a wrong total from being trusted by re-adding the rows in exact arithmetic, showing the off-by amount, pointing at the rows that would explain it (swapped digits, a slipped decimal, a flipped sign, a debit on the credit side) and saying honestly when the gap is only rounding, with figures that roll to their new values so a one-tap fix is seen landing (the gap counting down to zero) and focus handed to the status after the fix.",
+  "summary": "Re-adds rows in exact arithmetic and points at the likely slip when a total doesn't match, or says it's only rounding.",
+  "description": "Total checker that re-adds rows in exact integer arithmetic, shows the off-by amount, points at rows that would explain it (swapped digits, slipped decimal, flipped sign, debit on the credit side) and says when the gap is only rounding, with a one-tap use-the-sum fix.",
+  "catches": [
+    "Totals that don't equal the sum of rows",
+    "Gaps divisible by 9 (transposed digits)",
+    "A shifted decimal point, flipped sign or wrong side",
+    "A row left out or counted twice",
+    "Gaps explained by rounding when decimals are set"
+  ],
+  "limits": [
+    "Suggests single-row slips only; several errors at once may not be explained",
+    "Rounding tolerance depends on the decimals you set"
+  ],
+  "a11y": [
+    "Status in a polite live region; focus moves to it after a fix",
+    "Suspects list has an aria-label; each suspect is a button",
+    "Rolling figures respect reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "@number-flow/react",

@@ -1,7 +1,30 @@
 {
   "title": "Callback Number Check",
-  "description": "Stops expensive and scam callbacks by saying what a number you're about to call back really is (country and line type, from libphonenumber) and flagging a Caribbean +1 876 number posing as a US area code, a one-ring missed call from abroad, premium-rate and shared-cost lines, toll-free numbers that are only free in their own country, unassigned ranges and a 'bank' number missing from the bank's published list, with risky calls needing a second press as the Call button morphs into 'Call anyway' in place.",
-  "dependencies": ["lucide-react", "libphonenumber-js", "motion"],
+  "summary": "Says what a number really is before you call it back, so a Caribbean, premium-rate or one-ring scam number isn't mistaken for a local one.",
+  "description": "Reads a callback number's country and line type with libphonenumber and flags +1 Caribbean codes posing as US area codes, one-ring calls from abroad, premium-rate and shared-cost lines, foreign toll-free, unassigned ranges and 'bank' numbers missing from its list.",
+  "catches": [
+    "+1 numbers in Caribbean countries that look like US area codes (e.g. 876 Jamaica)",
+    "One-ring missed calls from abroad (wangiri pattern)",
+    "Premium-rate and shared-cost lines",
+    "Toll-free numbers that are only free in their own country, and unassigned ranges",
+    "A number claiming to be an organisation that isn't in the officialNumbers you pass"
+  ],
+  "limits": [
+    "Line types come from libphonenumber metadata, which can lag behind real number allocations",
+    "It cannot tell who owns a number or detect a spoofed caller ID",
+    "Risky calls still go through after a second press"
+  ],
+  "a11y": [
+    "Findings are a labelled list with icon plus text",
+    "The Call button is described by the status once armed for a second press",
+    "Status is announced in a role=\"status\" region (visually hidden until armed)",
+    "Motion respects prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "libphonenumber-js",
+    "motion"
+  ],
   "stops": "Called back a premium-rate scam number",
   "mistakes": [
     "missed call from abroad scam",

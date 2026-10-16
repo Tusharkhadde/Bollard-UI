@@ -32,13 +32,19 @@ export interface LinkTextCheckProps extends Omit<React.ComponentProps<"section">
   onJump?: (link: LinkItem) => void
   /** Text treated as meaningless out of context. Replace it to translate. */
   genericText?: string[]
+  /** Heading shown above the check. */
   title?: string
   /** `{count}` is filled in. */
   summaryText?: string
+  /** Shown when no problems are found. */
   allGoodText?: string
+  /** Shown when there are no links. */
   emptyText?: string
+  /** Accessible label for the issues list. */
   issuesLabel?: string
+  /** Heading for the links-list preview. */
   listLabel?: string
+  /** Explains the links-list preview. */
   listHint?: string
   /** Shown in place of the text of an empty link. */
   emptyLinkText?: string
@@ -48,6 +54,7 @@ export interface LinkTextCheckProps extends Omit<React.ComponentProps<"section">
   fixLabel?: string
   /** Shown instead of a fix in live mode. `{text}` is filled in. */
   tryText?: string
+  /** Override any issue message. */
   messages?: Partial<typeof LINK_TEXT_MESSAGES>
 }
 

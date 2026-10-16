@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "nominee-check",
   "title": "Nominee Check",
-  "description": "Stops a bank, locker or demat nomination that won't do what the holder thinks, by checking it against the 2025 bank nomination rules and SEBI's 2026 limits: shares that don't add to 100%, a fifth bank nominee (or fourth demat one) that won't count, a split on a locker that can only go in order, a demat nominee with no relationship or a minor with no date of birth, a minor with no adult to receive, the same person twice and no nominee at all, then reading back in plain words who gets what, with one-tap fixes.",
+  "description": "Nomination form check for bank deposits, lockers and demat/MF holdings: shares not adding to 100%, nominees past the limit (4 bank, 3 demat), splits on a locker, missing relationship or minor's date of birth, minors with no adult, duplicates and no nominee, with a plain readback.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Nominee shares don't add to 100%",
+    "stops": "Helps catch nominee shares that don't add to 100%",
     "mistakes": [
       "nominee percentage wrong",
       "minor nominee no guardian",
@@ -45,7 +45,39 @@
     "fields": [
       "name",
       "number"
-    ]
+    ],
+    "summary": "Checks a bank, locker or demat nomination against India's 2025 bank rules and SEBI's 2026 limits, and reads back who gets what.",
+    "catches": [
+      "Simultaneous shares that don't add to 100%",
+      "Nominees beyond the limit: 4 for bank deposits and lockers, 3 for demat and MF from 1 Sep 2026",
+      "Percentage split on a locker, which allows successive nomination only",
+      "Demat nominee without a relationship, or a minor without a date of birth",
+      "Minor nominee with no adult to receive, the same person twice, and no nominee"
+    ],
+    "limits": [
+      "Indian rules only, baked in as of the sources below; they can change",
+      "Doesn't submit or verify the nomination with your bank or depository",
+      "Not legal advice"
+    ],
+    "a11y": [
+      "The nominee list is a labelled group described by the issues list",
+      "Each row's inputs have labels",
+      "Focus moves to the relevant row or fix after a change"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Banking Companies (Nomination) Rules, 2025 (in force 1 Nov 2025)",
+          "url": "https://thc.nic.in/Central%20Governmental%20Rules/Banking%20Companies%20(Nomination)%20Rules,%202025.pdf"
+        },
+        {
+          "label": "SEBI circular SEBI/HO/OIAE/OIAE_IAD-3/P/CIR/2026/12676 (29 May 2026, effective 1 Sep 2026)",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1780397706130.pdf"
+        }
+      ],
+      "note": "Informational; check the official source. Confirmed: deposits up to four nominees successive or simultaneous, lockers up to four successively, from 1 Nov 2025; demat/MF up to 3 nominees from 1 Sep 2026. Minor-nominee and odd-lot details were not re-checked line by line."
+    }
   },
   "categories": [
     "Forms and saving"

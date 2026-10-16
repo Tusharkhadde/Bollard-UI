@@ -43,13 +43,21 @@ export interface EtaRangeProps extends Omit<React.ComponentProps<"div">, "childr
   locale?: string
   /** Templates: `{range}`, `{day}`, `{share}`, `{wait}`, `{cutoff}`, `{ship}`, `{after}`, `{days}`, `{previous}`. */
   titleText?: string
+  /** Text naming the most likely day. */
   likelyText?: string
+  /** Text used when no day stands out. */
   flatText?: string
+  /** Countdown to the cutoff. */
   countdownText?: string
+  /** Shown after the cutoff has passed. */
   missedText?: string
+  /** Text saying when the order ships. */
   shipsText?: string
+  /** Text naming no-delivery days in the range. */
   closedText?: string
+  /** Explains why the range widened. */
   widenedText?: string
+  /** Word used for today. */
   todayLabel?: string
 }
 

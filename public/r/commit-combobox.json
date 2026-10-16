@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "commit-combobox",
   "title": "Commit Combobox",
-  "description": "Stops a pick-from-list field saving text the user only typed, or a stale pick they typed over: unpicked text is matched on blur (an exact match is picked, a misspelling gets a one-tap Did you mean, two same-named options ask which), editing after a pick visibly drops it with Undo or Esc, and the stored option is always read back.",
+  "description": "Unpicked text is matched on blur (an exact match is picked, a misspelling gets a Did you mean, duplicate names ask which), editing after a pick visibly drops it with Undo or Esc, and the stored option is always read back.",
   "dependencies": [
     "lucide-react",
     "@floating-ui/react",
@@ -45,10 +45,27 @@
     ],
     "fields": [
       "text"
+    ],
+    "summary": "A pick-from-list field that never saves text the user only typed, and visibly drops a pick when it is typed over.",
+    "catches": [
+      "Typed text left without a pick when leaving the field",
+      "Misspellings, with a one-tap Did you mean",
+      "Two options with the same name, by asking which",
+      "A pick silently replaced by later typing"
+    ],
+    "limits": [
+      "Fuzzy matching is for suggestions only; it never picks a near match on its own",
+      "With loadOptions, matching only covers the options returned"
+    ],
+    "a11y": [
+      "role=\"combobox\" with aria-autocomplete=\"list\", aria-expanded, aria-controls and aria-activedescendant",
+      "Arrow keys move through options, Enter picks, Escape closes or undoes",
+      "Visible <label> tied to the input",
+      "Motion respects prefers-reduced-motion"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

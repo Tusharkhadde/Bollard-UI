@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "upi-autopay-review",
   "title": "UPI AutoPay Review",
-  "description": "Stops a ₹199 plan being approved as a ₹9,999 \"as presented\" mandate that never ends by reading the cap, schedule, validity and merchant back against the plan before the PIN, flagging a cap far above the price, no fixed schedule, no end date, the wrong merchant and debits above the RBI PIN-free limit, with one-tap fixes to cap it at the plan price or end it in a year.",
+  "description": "Pre-approval review of a UPI AutoPay mandate: cap, schedule, validity and merchant read back against the plan, flagging a cap far above the price, \"as presented\" schedules, no end date, the wrong merchant and debits above the PIN-free limit, with one-tap fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "₹199 plan approved as ₹9,999 mandate",
+    "stops": "₹199 plan approved as a ₹9,999 mandate",
     "mistakes": [
       "upi autopay mandate too high",
       "autopay never ends",
@@ -44,7 +44,36 @@
     ],
     "fields": [
       "amount"
-    ]
+    ],
+    "summary": "Reads a UPI AutoPay mandate back against the plan before the PIN, flagging a cap far above the price, no end date or the wrong merchant.",
+    "server": "The PSP/bank enforces mandate terms; your server should create mandates with the plan's real cap and validity and verify them after registration.",
+    "catches": [
+      "A cap far above the plan price (capRatio)",
+      "No fixed schedule (\"as presented\")",
+      "No end date or 30+ year validity",
+      "Merchant name that doesn't match the plan",
+      "Debits above the PIN-free (AFA) limit"
+    ],
+    "limits": [
+      "Format and consistency checks only; it does not register or validate the mandate with NPCI or the bank",
+      "Merchant match compares names you pass",
+      "The ₹15,000 limit is the general case; some categories have ₹1,00,000"
+    ],
+    "a11y": [
+      "Mandate terms in a <dl>; warnings summarised and linked via aria-describedby",
+      "After a fix, focus moves to the next fix or Approve",
+      "Approve uses aria-disabled while pending; status is role=status"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "RBI – Digital Payments – E-mandate Framework, 2026 (Apr 21, 2026)",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13374&Mode=0"
+        }
+      ],
+      "note": "Confirmed: every mandate specifies a validity period the customer can modify or withdraw; issuer pre-debit notice at least 24 hours before; opt-out of a debit; AFA above ₹15,000 (₹1,00,000 for insurance, mutual funds, credit card bills). Informational; check the official source."
+    }
   },
   "categories": [
     "Sharing, sending and paying"

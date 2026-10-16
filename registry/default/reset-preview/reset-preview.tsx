@@ -36,6 +36,7 @@ const fixClass =
   "inline-flex h-6 shrink-0 items-center gap-1 rounded-md border border-amber-500/40 px-2 font-medium text-amber-900 transition-colors hover:bg-amber-500/10 dark:text-amber-200 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 export interface ResetPreviewProps extends Omit<React.ComponentProps<"div">, "children" | "title" | "onReset"> {
+  /** Settings the user changed, with current and default values. */
   settings: ResetSetting[]
   /** Resets the listed keys. Return a promise to show a pending state; a rejection is caught. */
   onReset: (keys: string[]) => void | Promise<void>
@@ -47,18 +48,29 @@ export interface ResetPreviewProps extends Omit<React.ComponentProps<"div">, "ch
   undoFor?: number
   /** File name for the built-in export. */
   exportFileName?: string
+  /** Formats a value for display. */
   format?: (value: unknown, setting: ResetSetting) => string
+  /** Heading for the number of changed settings. */
   title?: (count: number) => string
+  /** Says how many settings are already at their default. */
   atDefaultText?: (count: number) => string
+  /** Accessible label prefix of each keep checkbox. */
   keepLabel?: string
   /** Shown until the user exports. Gets the Undo window in seconds, or null without Undo. */
   noExportText?: (undoSeconds: number | null) => string
+  /** Label of the export button. */
   exportLabel?: string
+  /** Shown once a copy has been exported. */
   exportedText?: string
+  /** Reset button label, given how many reset and how many are kept. */
   resetLabel?: (resetting: number, keeping: number) => string
+  /** Reset button label while onReset runs. */
   pendingLabel?: string
+  /** Shown when nothing differs from the defaults. */
   nothingText?: string
+  /** Shown after reset, with the count. */
   doneText?: (count: number) => string
+  /** Label of the Undo button. */
   undoLabel?: string
 }
 

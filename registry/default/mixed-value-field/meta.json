@@ -1,6 +1,22 @@
 {
   "title": "Mixed Value Field",
-  "description": "Prevents bulk edits from silently overwriting records by showing \"Mixed (3 values)\" with the distribution instead of a blank or the first record's value, leaving each record alone unless you pick a value, and reading back exactly what saving changes, counting only the records that actually change.",
+  "summary": "In a bulk edit, shows \"Mixed (3 values)\" with the spread instead of a blank, so saving doesn't silently overwrite every record.",
+  "description": "Bulk-edit field that shows \"Mixed (3 values)\" with the distribution instead of a blank or the first record's value, leaves each record alone unless you pick a value, and reads back exactly what saving changes, counting only records that actually change.",
+  "catches": [
+    "Mixed values hidden behind a blank or the first record's value",
+    "Saving overwrites records nobody meant to touch: nothing changes unless a value is picked",
+    "Count of records that would really change, skipping those that already match",
+    "Clearing a field on every record: explicit Clear button"
+  ],
+  "limits": [
+    "Works on one field at a time",
+    "The save itself is yours; it only reports the planned change"
+  ],
+  "a11y": [
+    "Visible label; the control is described by the readback",
+    "Clear uses aria-pressed; Revert is a button",
+    "The distribution bar is aria-hidden and summarised in text"
+  ],
   "dependencies": [
     "lucide-react"
   ],

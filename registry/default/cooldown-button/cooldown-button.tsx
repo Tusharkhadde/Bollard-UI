@@ -69,7 +69,9 @@ export interface CooldownButtonProps extends Omit<React.ComponentProps<"button">
   maxAttempts?: number
   /** Treat mount as the first attempt (the code was sent when the page opened). */
   startCoolingDown?: boolean
+  /** Visual style of the button. */
   variant?: keyof typeof variants
+  /** Size of the button. */
   size?: keyof typeof sizes
   /** Label while cooling down, given the remaining time ("0:42"). */
   waitingLabel?: (remaining: string) => React.ReactNode
@@ -92,7 +94,9 @@ export interface CooldownButtonProps extends Omit<React.ComponentProps<"button">
 /**
  * For "Resend code", "Retry" and other actions that cost something each time.
  * Each attempt waits longer (30s, 60s, 120s…), the cooldown survives a page
- * refresh because it lives in sessionStorage as an absolute deadline, and the
+ * refresh in the same tab because it lives in sessionStorage as an absolute
+ * deadline (a new tab or cleared storage starts fresh, so rate-limit on the
+ * server too), and the
  * button locks with a clear message once the attempts run out. It stays
  * focusable while waiting (aria-disabled), so keyboard users keep their place.
  */

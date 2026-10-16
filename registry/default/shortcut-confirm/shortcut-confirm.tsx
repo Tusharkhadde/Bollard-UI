@@ -69,7 +69,9 @@ export interface ShortcutConfirmProps extends Omit<React.ComponentProps<"div">, 
   action: string
   /** Templates: `{keys}` and `{action}` are filled in. */
   idleText?: string
+  /** Prompt after the first press. `{shortcut}` and `{action}` are filled in. */
   armedText?: string
+  /** Shown after the action is confirmed. */
   doneText?: string
 }
 

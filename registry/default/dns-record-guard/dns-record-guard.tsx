@@ -24,6 +24,7 @@ export interface DnsRecordGuardProps extends Omit<React.ComponentProps<"section"
   change: DnsChange
   /** Applies the change. Return a promise to show a pending state; a rejection is caught. */
   onConfirm: (change: DnsChange) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Saves a lower TTL on the record now, so the real change later spreads in minutes. Hides the fix when omitted. */
   onLowerTtl?: (record: DnsRecord, ttl: number) => void | Promise<void>
@@ -31,14 +32,23 @@ export interface DnsRecordGuardProps extends Omit<React.ComponentProps<"section"
   safeTtl?: number
   /** Records cached longer than this (seconds) get the "lower TTL first" suggestion. */
   slowTtl?: number
+  /** Heading; receives the change and record. */
   title?: (change: DnsChange, record: DnsRecord) => React.ReactNode
+  /** Confirm button text. */
   confirmLabel?: (change: DnsChange, breaking: number) => string
+  /** Confirm button text while onConfirm runs. */
   pendingLabel?: string
+  /** Cancel button text. */
   cancelLabel?: string
+  /** Shown when no problems are found. */
   safeText?: string
+  /** Text estimating how long the change takes to spread. */
   spreadText?: (ttl: string) => string
+  /** Text for the lower-TTL-first button. */
   lowerLabel?: (ttl: string) => string
+  /** Text shown while waiting for old caches to expire. */
   waitText?: (oldTtl: string, time: string) => string
+  /** Shown once old caches have expired. */
   clearedText?: (ttl: string) => string
 }
 

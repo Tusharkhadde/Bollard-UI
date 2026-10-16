@@ -1,7 +1,44 @@
-{"title": "Two-Step Button", "description": "Prevents one-click destruction: the first click arms the button with a draining timer, a second deliberate click confirms, and accidental double-clicks, held keys, blur, Escape or the timeout all disarm it.", "dependencies": ["lucide-react"],
+{
+  "title": "Two-Step Button",
+  "summary": "Needs two deliberate clicks for a destructive action: the first arms it with a draining timer, the second confirms.",
+  "description": "Destructive button where the first click arms it with a draining timer and a second deliberate click confirms; accidental double-clicks, held keys, blur, Escape or the timeout all disarm it.",
+  "catches": [
+    "A single accidental click (only arms)",
+    "Double-clicks faster than guard ms",
+    "Held Enter (auto-repeat)",
+    "Losing focus, Escape or timeout, which disarm"
+  ],
+  "limits": [
+    "A deliberate second click still confirms; it is not a full review step",
+    "UI guard only, not authorization"
+  ],
+  "a11y": [
+    "Arming is announced via a polite live region (armedHint)",
+    "Escape disarms; held Enter is ignored",
+    "aria-busy while an async confirm is pending",
+    "Label changes are text, not colour alone"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "One click deleted without confirmation",
-  "mistakes": ["double click deleted twice", "delete button no confirm", "click again to confirm", "accidental delete click"],
-  "aliases": ["confirm button", "click twice", "arm button", "inline confirm", "delete button", "are you sure", "destructive button"],
-  "flows": ["danger-zone"],
+  "mistakes": [
+    "double click deleted twice",
+    "delete button no confirm",
+    "click again to confirm",
+    "accidental delete click"
+  ],
+  "aliases": [
+    "confirm button",
+    "click twice",
+    "arm button",
+    "inline confirm",
+    "delete button",
+    "are you sure",
+    "destructive button"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

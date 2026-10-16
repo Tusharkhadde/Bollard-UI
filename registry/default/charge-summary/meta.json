@@ -1,6 +1,23 @@
 {
   "title": "Charge Summary",
-  "description": "Prevents surprise charges by showing today's amount, the first charge and renewal dates, taxes and one-time credits upfront, and a plain-language sentence of what you'll pay.",
+  "summary": "Shows what will be charged today, when the first and renewal charges happen and what taxes apply, so checkout has no surprise charges.",
+  "description": "Shows today's amount, the first charge and renewal dates, taxes (added or included) and one-time credits upfront, and sums it up in one plain sentence of what you'll pay.",
+  "catches": [
+    "A trial that turns into a charge, with the exact date",
+    "One-time credits or discounts that won't repeat at renewal",
+    "Taxes added on top versus already included",
+    "The renewal amount and interval"
+  ],
+  "limits": [
+    "Displays the lines and tax rates you pass; it doesn't calculate tax rules",
+    "Dates use the time zone you pass, or the visitor's"
+  ],
+  "a11y": [
+    "Wrapped in a region with an aria-label",
+    "Line items are a description list (<dl>)",
+    "Icons are aria-hidden; everything is stated in text"
+  ],
+  "server": "Charge the amount your billing system computes, not the client's figures.",
   "dependencies": [
     "lucide-react"
   ],

@@ -1,7 +1,51 @@
-{"title": "Cancel Readback", "description": "Stops people cancelling blind, or being tricked out of it: the cancel screen reads back the exact date and time access ends, what is lost and kept and the refund (or plainly that there is none), offers pause or downgrade once below a cancel button that never moves, and ends on a receipt with an undo.", "dependencies": ["lucide-react"],
+{
+  "title": "Cancel Readback",
+  "summary": "Reads back exactly when access ends, what is lost and what is refunded before someone cancels, and ends on a receipt with an undo.",
+  "description": "The cancel screen reads back the exact date and time access ends, what is lost and kept, and the refund (or plainly that there is none), offers pause or downgrade once below a cancel button that never moves, and ends on a receipt with undo.",
+  "catches": [
+    "Cancelling without knowing when access actually ends (date, time, zone and days left)",
+    "Unclear refunds, by stating the refund or that there is none",
+    "Dark-pattern retention: alternatives appear once, below a cancel button that stays put",
+    "Regret, with a resume action on the receipt"
+  ],
+  "limits": [
+    "Shows the access end, refund and items you pass; it does not compute them",
+    "Cancelling and resuming happen in your callbacks"
+  ],
+  "a11y": [
+    "Labelled by its title (aria-labelledby)",
+    "The receipt is announced with role=\"status\"",
+    "Buttons set aria-busy while pending",
+    "Lost and kept items use icons plus text"
+  ],
+  "server": "Cancel and resume on the server and compute access end and refunds from billing records, not from what the screen showed.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Cancelled without knowing when access ends",
-  "mistakes": ["cancel subscription confusion", "dark pattern cancel", "refund unclear on cancel", "lost access immediately"],
-  "aliases": ["cancel subscription", "unsubscribe", "billing", "pause plan", "downgrade", "refund", "churn", "manage plan", "autopay"],
-  "flows": ["account-settings", "checkout"],
-  "fields": ["datetime", "amount"]
+  "mistakes": [
+    "cancel subscription confusion",
+    "dark pattern cancel",
+    "refund unclear on cancel",
+    "lost access immediately"
+  ],
+  "aliases": [
+    "cancel subscription",
+    "unsubscribe",
+    "billing",
+    "pause plan",
+    "downgrade",
+    "refund",
+    "churn",
+    "manage plan",
+    "autopay"
+  ],
+  "flows": [
+    "account-settings",
+    "checkout"
+  ],
+  "fields": [
+    "datetime",
+    "amount"
+  ]
 }

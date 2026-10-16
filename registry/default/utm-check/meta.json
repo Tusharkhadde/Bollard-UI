@@ -1,6 +1,34 @@
 {
   "title": "UTM Check",
-  "description": "Stops campaign links that fragment analytics by catching, as the URL is built or pasted, mixed case and spaces (Facebook vs facebook, \"Diwali Sale\" vs diwali_sale, or a value your reports already spell differently), source and medium swapped, a medium GA4's default channel rules file as organic or Unassigned, misspelled keys, a second \"?\", tags after \"#\" and tags on links back to your own site, reading back the GA4 channel and fixing each in one tap or all at once.",
+  "summary": "Catches campaign links that split analytics: inconsistent casing, swapped source and medium, misspelled keys and tags that land as Unassigned.",
+  "description": "UTM link checker that catches mixed case and spaces, source and medium swapped, a medium GA4's default channel rules file as organic or Unassigned, misspelled keys, a second \"?\", tags after \"#\" and tags on internal links, and reads back the GA4 channel.",
+  "catches": [
+    "Case and spacing that split reports (Facebook vs facebook)",
+    "Values your reports already spell differently",
+    "Source and medium swapped",
+    "Mediums that GA4 default channel rules send to organic or Unassigned",
+    "Misspelled UTM keys, a second ?, or tags after #",
+    "UTM tags on links to your own site"
+  ],
+  "limits": [
+    "Channel prediction follows GA4's default channel group; custom channel groups differ",
+    "Source lists are short built-ins; pass your own for wider coverage"
+  ],
+  "a11y": [
+    "URL and builder fields have <label>s; issues linked via aria-describedby",
+    "Issues and the predicted channel in a polite live region",
+    "Fix and fix-all are labelled buttons with Undo"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Google Analytics Help – [GA4] Default channel group",
+        "url": "https://support.google.com/analytics/answer/9756891"
+      }
+    ],
+    "note": "Confirmed the page defines GA4 default channels (e.g. Paid Social) and that Unassigned is used when no channel rule matches. The individual rule conditions in utm.ts were not re-checked one by one."
+  },
   "dependencies": [
     "lucide-react"
   ],

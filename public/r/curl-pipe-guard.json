@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "curl-pipe-guard",
   "title": "Curl Pipe Guard",
-  "description": "Stops an install one-liner from running a script you didn't mean to trust by showing, before a curl | sh (or wget, or iwr | iex) is copied or run, the script's real host and flagging plain http, raw IPs, shortened links, a host that isn't the product's docs domain, sudo, -k/--insecure, a missing checksum and a missing -f, then offering the same install as download, inspect, verify and run steps to copy instead.",
+  "description": "Before a curl | sh (or wget, or iwr | iex) one-liner is copied or run, shows the script's real host and flags plain http, raw IPs, shortened links, a host off the product's docs domain, sudo, -k/--insecure and missing checksum or -f; offers safer step-by-step commands.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,28 @@
     "fields": [
       "code",
       "url"
+    ],
+    "summary": "Shows where a curl | sh install script really comes from and offers download, inspect and verify steps instead, before an untrusted script runs.",
+    "catches": [
+      "Plain http:// and raw IP addresses",
+      "Link shorteners and hosts that aren't the product's own domain",
+      "sudo and -k/--insecure",
+      "No checksum and no -f (fail on HTTP errors)",
+      "A safer download, inspect, verify and run sequence to copy instead"
+    ],
+    "limits": [
+      "Parses the command text; it cannot tell whether the script itself is safe",
+      "Command forms it can't parse are flagged as unparsed rather than analysed",
+      "A matching domain can still serve a compromised script"
+    ],
+    "a11y": [
+      "Copy mode is a role=\"radiogroup\" with roving tabIndex and arrow keys",
+      "HTTPS vs HTTP is shown with icons and text",
+      "Findings are written out in text"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

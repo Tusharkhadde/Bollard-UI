@@ -34,8 +34,11 @@ export interface ImportPreviewProps extends Omit<React.ComponentProps<"div">, "c
   onImport?: (records: Record<string, string>[]) => void | Promise<void>
   /** Templates: `{count}` and `{skip}` are filled in. */
   importLabel?: string
+  /** Template for the skip count; {skip} is filled in. */
   skipLabel?: string
+  /** Option text for a column that won't be imported. */
   notMappedLabel?: string
+  /** Shown while a required field is unmapped. */
   requiredText?: string
 }
 

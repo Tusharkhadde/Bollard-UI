@@ -1,10 +1,47 @@
 {
   "title": "Version Scrubber",
-  "description": "Prevents restoring the wrong version by letting you scrub a timeline with the current version pinned, previewing a word diff of exactly what a restore would change, and requiring a second step that counts the words lost and gained and names changed numbers.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lets people scrub through saved versions and see exactly what a restore would change before confirming it.",
+  "description": "Version timeline with the current version pinned, a word diff of exactly what a restore would change, and a second confirm step that counts words lost and gained and names changed numbers.",
+  "catches": [
+    "What a restore would change, as a word diff",
+    "Changed numbers, called out",
+    "Words lost and gained, counted in the confirmation",
+    "Selecting the current or an identical version (nothing to restore)",
+    "Restore failures, with the current version kept"
+  ],
+  "limits": [
+    "Word-level diff, not semantic",
+    "Restore runs through your onRestore"
+  ],
+  "a11y": [
+    "Timeline slider is labelled with aria-valuetext naming the version",
+    "Diff parts have sr-only \"comes back\" / \"removed\" prefixes",
+    "Confirm is a labelled group; Cancel gets focus; Escape closes",
+    "Errors use role=alert; summary in a polite live region"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Restored wrong version of document",
-  "mistakes": ["restored wrong version", "version history lost words", "rollback document", "compare versions"],
-  "aliases": ["version history", "restore version", "diff", "timeline", "google docs history", "revisions", "time travel"],
-  "flows": ["forms"],
-  "fields": ["text"]
+  "mistakes": [
+    "restored wrong version",
+    "version history lost words",
+    "rollback document",
+    "compare versions"
+  ],
+  "aliases": [
+    "version history",
+    "restore version",
+    "diff",
+    "timeline",
+    "google docs history",
+    "revisions",
+    "time travel"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
 }

@@ -1,7 +1,46 @@
-{"title": "Range Select Guard", "description": "Catches runaway shift-click selections: it reads back how many rows a range just selected with Undo, skips and reports rows hidden by the filter, flags rows on pages you never opened with an 'only this page' fix, and calls out selected rows a filter has hidden.", "dependencies": ["lucide-react"],
+{
+  "title": "Range Select Guard",
+  "summary": "Reads back how many rows a shift-click just selected, with Undo, so a runaway range selection doesn't act on rows nobody saw.",
+  "description": "Selectable list that reads back how many rows a shift-click range selected (with Undo), skips and reports rows hidden by the filter, flags rows on pages never opened with an \"only this page\" fix, and calls out selected rows a filter now hides.",
+  "catches": [
+    "Shift-click ranges much larger than intended",
+    "Rows hidden by the filter: skipped and reported",
+    "Selected rows on pages never opened",
+    "Selected rows that a filter now hides, with deselect"
+  ],
+  "limits": [
+    "Works on the rows you pass; server-side \"select all\" isn't covered",
+    "Bulk actions are yours to gate"
+  ],
+  "a11y": [
+    "Pagination buttons have aria-labels; the page indicator is a polite live region",
+    "Selection readback is a polite live region",
+    "Focus stays on the clicked row; highlight motion is skipped under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Shift-click selected thousand rows",
-  "mistakes": ["shift click selected too many", "selected hidden rows", "range select wrong", "select all included filtered rows"],
-  "aliases": ["shift click", "range select", "multi select", "data table", "checkbox rows", "tanstack table", "bulk select"],
-  "flows": ["danger-zone", "forms"],
-  "fields": ["number"]
+  "mistakes": [
+    "shift click selected too many",
+    "selected hidden rows",
+    "range select wrong",
+    "select all included filtered rows"
+  ],
+  "aliases": [
+    "shift click",
+    "range select",
+    "multi select",
+    "data table",
+    "checkbox rows",
+    "tanstack table",
+    "bulk select"
+  ],
+  "flows": [
+    "danger-zone",
+    "forms"
+  ],
+  "fields": [
+    "number"
+  ]
 }

@@ -81,11 +81,15 @@ export interface FxSendReceiveProps extends Omit<React.ComponentProps<"div">, "d
   onValueChange?: (value: FxAmountValue, readback: FxReadback) => void
   /** Controlled SWIFT charge option. Leave all three charge props out to hide the switch. */
   charges?: FxCharges
+  /** Initial charge instruction when uncontrolled. */
   defaultCharges?: FxCharges
+  /** Called when the user picks OUR, SHA or BEN. */
   onChargesChange?: (charges: FxCharges) => void
   /** Offer a one-tap switch of the receiving currency when the expected amount is in another one. */
   onReceiveCurrencyChange?: (currency: string) => void
+  /** BCP 47 locale for number and currency formatting. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<FxSendReceiveMessages>
 }
 

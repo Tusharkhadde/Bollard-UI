@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "error-summary",
   "title": "Error Summary",
-  "description": "Prevents users from missing form errors with a GOV.UK-style summary that takes focus on submit, links each error to its field, and ticks items off live as they are fixed, plus a useFormErrors() hook.",
+  "description": "A summary that takes focus on submit, links each error to its field, and ticks items off live as they are fixed, plus a useFormErrors() hook.",
   "dependencies": [
     "@number-flow/react",
     "lucide-react",
@@ -37,7 +37,23 @@
       "forms",
       "signup-login"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "A GOV.UK-style error summary that takes focus on submit, links each error to its field and ticks errors off as they are fixed.",
+    "catches": [
+      "Errors missed on long forms, listed in one place on submit",
+      "Finding the field, by linking each error to it",
+      "Progress, by ticking off fixed errors live"
+    ],
+    "limits": [
+      "Lists the errors you pass; validation is up to you",
+      "Linking to a field needs the field's id to match the error item"
+    ],
+    "a11y": [
+      "Takes focus on submit (tabIndex=-1) and is labelled by its title",
+      "Each link moves focus to its field",
+      "Fixed items say \"Fixed:\" in text; progress changes are aria-live=\"polite\"",
+      "Motion respects prefers-reduced-motion"
+    ]
   },
   "categories": [
     "Forms and saving"

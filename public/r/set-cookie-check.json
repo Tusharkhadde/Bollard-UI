@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "set-cookie-check",
   "title": "Set-Cookie Check",
-  "description": "Stops cookies from being silently rejected or stolen by reading back what the browser will really do with each Set-Cookie (who gets it, over what, cross-site or not, and for how long after the 400-day cap) and flagging SameSite=None or Partitioned without Secure, broken __Host-/__Secure- prefixes, a Domain that shares a sign-in cookie with every subdomain, a missing HttpOnly, Expires and Max-Age that disagree and the 4096-byte limit, with one-tap fixes.",
+  "description": "Set-Cookie checker that reads back who gets each cookie, over what, cross-site or not and for how long (after the 400-day cap), flagging SameSite=None or Partitioned without Secure, broken __Host-/__Secure- prefixes, wide Domain, missing HttpOnly and size limits.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,7 +43,37 @@
     ],
     "fields": [
       "code"
-    ]
+    ],
+    "summary": "Reads back what the browser will really do with each Set-Cookie and flags attributes that get it rejected or exposed.",
+    "server": "Set cookie attributes in server code and test them in real browsers; this only lints the header text.",
+    "catches": [
+      "SameSite=None or Partitioned without Secure",
+      "__Host- and __Secure- prefix rule violations",
+      "A Domain that shares a session cookie with every subdomain",
+      "Missing HttpOnly on session-like cookies",
+      "Expires and Max-Age that disagree, and lifetimes past the 400-day cap",
+      "Name plus value over 4096 bytes"
+    ],
+    "limits": [
+      "Follows RFC 6265bis (a draft) and CHIPS; individual browsers may differ",
+      "Checks header text, not what your server actually sends",
+      "Session-cookie detection uses a name pattern (sessionPattern)"
+    ],
+    "a11y": [
+      "Visible <label> on the textarea; aria-invalid and a role=status issue count",
+      "Each cookie is a section with an aria-label",
+      "Fix buttons have aria-labels naming the action and cookie; focus moves to the next fix after one is applied"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "draft-ietf-httpbis-rfc6265bis (Cookies: HTTP State Management Mechanism)",
+          "url": "https://httpwg.org/http-extensions/draft-ietf-httpbis-rfc6265bis.html"
+        }
+      ],
+      "note": "Confirmed in the editor's draft: lifetime limit SHOULD NOT exceed 400 days, name+value over 4096 octets is ignored, and the __Host-/__Secure- prefix requirements. CHIPS (Partitioned) not re-checked. It is a draft; check for changes."
+    }
   },
   "categories": [
     "Reading without mistakes"

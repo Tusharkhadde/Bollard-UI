@@ -1,10 +1,52 @@
 {
   "title": "Recovery Check",
-  "description": "Prevents account lockouts by asking \"could you get back in if you lost your phone?\": it flags recovery email or phone nobody has confirmed in months, no backup method, a password-only account and one phone acting as both second factor and recovery, each with a one-tap fix.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows what would lock a user out if they lost their phone: stale recovery contacts, no backup method, or one phone holding both keys.",
+  "description": "Account-recovery checkup. Flags recovery email or phone not confirmed in months, no backup method, a password-only account, one phone acting as both second factor and recovery, and low backup codes, each with a fix callback.",
+  "catches": [
+    "Recovery email or phone not confirmed within staleAfterDays (default 180)",
+    "No backup second factor",
+    "Password-only account",
+    "The same phone used for SMS codes and recovery",
+    "Backup codes running low or all used"
+  ],
+  "limits": [
+    "Only as accurate as the RecoveryState you pass in",
+    "Does not verify that an email or phone still works; it reads the last-confirmed dates",
+    "Fixes run your onFix callback; nothing changes by itself"
+  ],
+  "a11y": [
+    "Section labelled by its title; open-issue summary in a polite live region",
+    "A failed fix shows role=alert text",
+    "After a fix, focus moves to the issue's \"Fixed\" marker",
+    "Severity is shown with an icon and text, not colour alone; icons are aria-hidden"
+  ],
+  "server": "checkRecovery is pure and can run on the server; the fixes themselves (adding factors, confirming contacts) must be verified server-side.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Lost phone meant lost account",
-  "mistakes": ["lost phone locked out", "no backup 2fa method", "recovery email outdated", "account recovery weak"],
-  "aliases": ["account recovery", "security checkup", "recovery email", "recovery phone", "2fa", "mobile number", "security settings", "+91"],
-  "flows": ["account-settings", "signup-login"],
-  "fields": ["email", "phone"]
+  "mistakes": [
+    "lost phone locked out",
+    "no backup 2fa method",
+    "recovery email outdated",
+    "account recovery weak"
+  ],
+  "aliases": [
+    "account recovery",
+    "security checkup",
+    "recovery email",
+    "recovery phone",
+    "2fa",
+    "mobile number",
+    "security settings",
+    "+91"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "email",
+    "phone"
+  ]
 }

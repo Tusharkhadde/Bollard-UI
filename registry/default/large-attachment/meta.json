@@ -1,7 +1,26 @@
 {
   "title": "Large Attachment",
-  "description": "Prevents the message that bounces for being too big by checking attachments against each service's real limit (counting email's ~37% Base64 encoding overhead), marking the fewest files that push it over, and showing the resulting size of sending them as a link or compressing, with an honest estimate for files that are already compressed.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks attachments against each service's real size limit, counting email's Base64 overhead, so a message doesn't bounce for being too big.",
+  "description": "Attachment size check against each service's limit, counting email's ~37% Base64 overhead, that marks the fewest files pushing it over and shows the size after sending them as a link or compressing, with an honest estimate for already-compressed files.",
+  "catches": [
+    "Total over the service limit once Base64 encoding is counted",
+    "The fewest (largest-first) files to remove so the rest fits",
+    "Size after sending culprits as a link",
+    "Compression that won't help already-compressed files"
+  ],
+  "limits": [
+    "Built-in limits (Gmail 25 MB, Outlook.com 20 MB, Discord free 10 MB) can change and differ for workplace accounts; pass your own",
+    "The recipient's server may have a lower limit than the sender's",
+    "Compression savings are estimates"
+  ],
+  "a11y": [
+    "Service picker is a labelled radiogroup with roving tabindex and arrow keys",
+    "Status is a polite live region",
+    "Attachment list is a labelled list; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Email bounced for a big attachment",
   "mistakes": [
     "attachment too large",

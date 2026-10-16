@@ -53,14 +53,23 @@ export interface TwoPersonApproveProps extends Omit<React.ComponentProps<"sectio
   onReject: (decision: { reason: string }) => void | Promise<void>
   /** Templates: `{requester}`, `{approvers}`, `{time}` are filled in. */
   selfText?: string
+  /** Shown when the current user isn't an approver. */
   notApproverText?: string
+  /** Shown when the plan changed since it was reviewed. */
   changedText?: string
+  /** Label of the reviewed-fingerprint chip. */
   reviewedLabel?: string
+  /** Shown once the request has expired. */
   expiredText?: string
+  /** Shown when rejecting without a reason. */
   reasonMissingText?: string
+  /** Shown after approving. */
   approvedText?: string
+  /** Shown after rejecting. */
   rejectedText?: string
+  /** Label of the Approve button. */
   approveLabel?: string
+  /** Label of the Reject button. */
   rejectLabel?: string
 }
 

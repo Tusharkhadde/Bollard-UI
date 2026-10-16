@@ -1,7 +1,38 @@
 {
   "title": "SMS Segments",
-  "description": "Prevents bulk SMS costing double by splitting the text into the parts carriers bill, naming the curly quote or emoji that forced UCS-2 ('this ’ makes it 3 messages instead of 2'), fixing it in one tap, and reading the total back per recipient count.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows how many billed SMS parts a text becomes and names the character (curly quote, emoji) that forced Unicode and raised the count.",
+  "description": "SMS composer that splits text into the parts carriers bill (160/153 GSM-7, 70/67 UCS-2), names the curly quote or emoji that forced UCS-2 (\"this ’ makes it 3 messages instead of 2\"), fixes it in one tap, and reads the total back per recipient count.",
+  "catches": [
+    "Characters outside GSM-7 that force UCS-2 (curly quotes, emoji, look-alikes)",
+    "Extension characters (€, [, ~) that use two septets",
+    "Part count and cost per recipient count",
+    "Never splits a 2-septet character or surrogate pair across parts",
+    "One-tap replace or remove of each culprit"
+  ],
+  "limits": [
+    "Assumes standard concatenation; some carriers or national shift tables differ",
+    "Cost uses the price you pass; carriers may bill differently",
+    "Replacing characters changes the text the recipient sees"
+  ],
+  "a11y": [
+    "Visible <label>; meter and warning linked via aria-describedby",
+    "Parts are buttons in a labelled group, each with an aria-label to select it",
+    "Warning renders in a polite live region; each fix has an aria-label",
+    "Highlight animation skipped under reduced motion"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "ETSI TS 123 038 (3GPP TS 23.038) V17.0.0 – Alphabets and language-specific information",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123000_123099/123038/17.00.00_60/ts_123038v170000p.pdf"
+      }
+    ],
+    "note": "Confirmed: 160 GSM 7-bit characters in 140 octets and the default alphabet extension table. The 153/67 per-part figures come from the concatenation header in 3GPP TS 23.040, not re-checked this round."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "One emoji doubled the SMS bill",
   "mistakes": [
     "sms costs double",

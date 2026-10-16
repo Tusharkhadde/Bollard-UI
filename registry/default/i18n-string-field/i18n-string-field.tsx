@@ -25,9 +25,11 @@ export interface I18nStringFieldProps
   value?: string
   /** Initial translation when uncontrolled. */
   defaultValue?: string
+  /** Called with the translation on every change. */
   onValueChange?: (value: string) => void
   /** Visible label. `{language}` is filled in. */
   label?: string
+  /** Label shown above the source string. */
   sourceLabel?: string
   /** Accessible label of the button that accepts a translation identical to the source. */
   keepSameLabel?: string

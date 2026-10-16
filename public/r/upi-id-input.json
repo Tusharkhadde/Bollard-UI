@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "upi-id-input",
   "title": "UPI ID Input",
-  "description": "Prevents UPI payments to a typo'd or wrong VPA by cleaning pasted upi://pay links, catching emails, typo'd handles (@okaxsi), app names typed as handles (@gpay), wrong-length or +91 phone IDs and the retired @paytm, then reading back the registered name from a pluggable check and flagging when it differs from the expected name or the name the link claimed, with every message overridable for translation.",
+  "description": "UPI ID field that cleans pasted upi://pay links and catches emails, typo'd handles (@okaxsi), app names as handles (@gpay), wrong-length or +91 phone IDs and older @paytm IDs, then reads back the registered name from your check and flags a mismatch.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,30 @@
     ],
     "fields": [
       "id-number"
+    ],
+    "summary": "Catches mistyped UPI IDs, cleans pasted upi://pay links and reads back the registered name, so money isn't sent to the wrong VPA.",
+    "server": "Resolve the payee name server-side through your PSP before payment, and show it from that response, not from the link.",
+    "catches": [
+      "Pasted upi://pay links, reduced to the pa address",
+      "Email addresses typed as UPI IDs",
+      "Typo'd handles, with one-tap corrections",
+      "App names typed as handles (@gpay → its real handles)",
+      "Phone-number IDs with the wrong length or a +91 prefix",
+      "Registered name that differs from the expected or link-claimed name"
+    ],
+    "limits": [
+      "Format looks valid ≠ exists: only your verify callback can confirm the ID and its registered name",
+      "Handle list is common handles, not NPCI's full list",
+      "Name matching is approximate"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and status via aria-describedby",
+      "Status and suggestions in a polite live region",
+      "Handle suggestions are buttons with aria-labels"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

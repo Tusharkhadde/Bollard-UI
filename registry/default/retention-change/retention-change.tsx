@@ -77,7 +77,9 @@ export interface RetentionChangeProps extends Omit<React.ComponentProps<"section
   current: number
   /** New retention in days. Controlled. */
   value?: number
+  /** Starting retention in days when uncontrolled. */
   defaultValue?: number
+  /** Called with the chosen retention in days. */
   onValueChange?: (days: number) => void
   /** Periods to offer, in days. */
   options?: number[]

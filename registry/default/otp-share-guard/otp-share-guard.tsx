@@ -76,6 +76,7 @@ export interface OtpShareGuardProps extends Omit<React.ComponentProps<"div">, "c
   onCodeCopy?: (code: string) => void
   /** "I didn't request this": block the code and alert your fraud team. May return a Promise. */
   onNotMe?: () => void | Promise<void>
+  /** BCP 47 locale for amounts and times. */
   locale?: string
   /** Any visible string. */
   messages?: MessageOverrides

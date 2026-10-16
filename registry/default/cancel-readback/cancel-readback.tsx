@@ -40,32 +40,49 @@ export interface CancelReadbackProps extends Omit<React.ComponentProps<"section"
   plan: string
   /** When paid access ends if they cancel now. */
   accessEndsAt: Date | number | string
+  /** What the user loses when access ends. */
   lose: string[]
+  /** What the user keeps after cancelling. */
   keep: string[]
   /** Refund wording, e.g. "₹1,240 back to your UPI within 5–7 days". `null` means no refund. */
   refund?: string | null
   /** Pause or downgrade options, offered once, below the cancel button. */
   alternatives?: CancelAlternative[]
+  /** Called with the id of a pause or downgrade option the user picks. */
   onAlternative?: (id: string) => void
   /** Cancels. Return a promise to show a pending state; a rejection keeps the form. */
   onConfirm: () => void | Promise<void>
   /** Undoes the cancellation while access is still active. */
   onResume?: () => void | Promise<void>
+  /** Called when the user decides to keep the plan. */
   onKeep?: () => void
   /** Controlled cancelled state. */
   cancelled?: boolean
+  /** Initial cancelled state when uncontrolled. */
   defaultCancelled?: boolean
+  /** Called when the plan is cancelled or resumed. */
   onCancelledChange?: (cancelled: boolean) => void
+  /** BCP 47 locale for the end date. */
   locale?: string
+  /** IANA time zone for the end date. Defaults to the visitor's. */
   timeZone?: string
+  /** Heading; receives the plan name. */
   title?: (plan: string) => React.ReactNode
+  /** Cancel button text; receives the plan and end date. */
   confirmLabel?: (plan: string, end: End) => string
+  /** Keep-plan button text. */
   keepLabel?: (plan: string) => string
+  /** Resume button text on the receipt. */
   resumeLabel?: string
+  /** Shown when there is no refund. */
   noRefundText?: (end: End) => string
+  /** Explains that access continues until the end date. */
   earlyText?: (plan: string, end: End) => string
+  /** Receipt text after cancelling. */
   doneText?: (plan: string, end: End) => string
+  /** Heading for pause and downgrade options. */
   alternativesLabel?: string
+  /** Text for hiding the alternatives. */
   hideLabel?: string
 }
 

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "leave-request-check",
   "title": "Leave Request Check",
-  "description": "Stops a time-off request costing more (or meaning something else) than the person thinks by reading it back day by day as calendar days, working days and the leave it really uses, and flagging weekends and holidays at the ends, a sandwich rule from your policy that charges the weekend in between, a half day with no half chosen or one that leaves a working gap, a balance going negative and teammates already away, with one-tap fixes and the date they're back at work.",
+  "description": "Leave request field that reads the range as calendar days, working days and leave really used, and flags weekend or holiday ends, a sandwich rule charging days between, half days with no half or a gap, a negative balance and teammates away, with fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,10 +44,44 @@
     ],
     "fields": [
       "datetime"
-    ]
+    ],
+    "summary": "Reads a time-off request back day by day, so it doesn't use more leave than the person thinks or leave a gap they didn't intend.",
+    "catches": [
+      "Weekends or holidays at either end of the range",
+      "Your policy's sandwich rule charging weekends or holidays in between",
+      "Half day with no half chosen, or one that leaves a working gap",
+      "Balance going negative",
+      "Too many teammates away at once",
+      "Start after end, and the actual back-at-work date"
+    ],
+    "limits": [
+      "Holidays, policy and balance come from your props; it doesn't know your HR system",
+      "The OSH Code note is shown for en-IN by default; whether it applies depends on the worker and establishment",
+      "Not legal advice"
+    ],
+    "a11y": [
+      "Start and end dates have visible labels; half-day selects have aria-labels",
+      "Date inputs get aria-invalid for an invalid or reversed range",
+      "Day-by-day readback is a labelled section with a labelled list",
+      "Focus moves to the first fix after a change"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "OSH Code 2020, s.32(1)(iv) (PRS Legislative Research copy of the Act)",
+          "url": "https://prsindia.org/files/bills_acts/bills_parliament/2020/Occupational%20Safety,%20Health%20And%20Working%20Conditions%20Code,%202020.pdf"
+        },
+        {
+          "label": "India Code: OSH Code 2020",
+          "url": "https://www.indiacode.nic.in/bitstream/123456789/22041/1/a2020-37.pdf"
+        }
+      ],
+      "note": "Informational, not legal advice. s.32(1)(iv) wording confirmed. The 21 Nov 2025 commencement (S.O. 5321(E)) was seen in secondary sources only, and the Maharashtra Shops & Establishments s.18(9) reference was not checked."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Readbacks and calculators"
   ],
   "type": "registry:ui"
 }

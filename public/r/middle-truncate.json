@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "middle-truncate",
   "title": "Middle Truncate",
-  "description": "Prevents picking the wrong file, wallet or ID by truncating in the middle to the real rendered width so the distinguishing end stays visible, while copy, title and screen readers always get the full value.",
+  "description": "Text that truncates in the middle to the real rendered width so the distinguishing end (a file extension, the last characters of an ID) stays visible, while copy, title and screen readers always get the full value. Never splits emoji or accents.",
   "files": [
     {
       "path": "registry/default/middle-truncate/middle-truncate.tsx",
@@ -35,6 +35,21 @@
     "fields": [
       "id-number",
       "file"
+    ],
+    "summary": "Truncates long names and IDs in the middle at the real rendered width, so the end that tells files or wallets apart stays visible.",
+    "catches": [
+      "Lookalike items that differ only at the end",
+      "File extensions cut off",
+      "Emoji or accented characters split in half"
+    ],
+    "limits": [
+      "Measures width in the browser after layout, so server-rendered HTML shows the full value until hydration",
+      "Very narrow containers may still show only a few characters"
+    ],
+    "a11y": [
+      "The full value is in the accessibility tree; the truncated display is aria-hidden",
+      "Full value is also in the title when truncated",
+      "Copy puts the full value on the clipboard, not the ellipsis"
     ]
   },
   "categories": [

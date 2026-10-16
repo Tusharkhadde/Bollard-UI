@@ -65,26 +65,39 @@ const choice =
 export interface MergeRecordsProps extends Omit<React.ComponentProps<"form">, "onSubmit" | "defaultValue"> {
   /** The two or three duplicates. Order sets the A/B/C letters. */
   records: MergeRecordItem[]
+  /** Fields to compare, in display order. */
   fields: MergeField[]
   /** Controlled picks. Defaults to the most recent non-empty value per field. */
   value?: MergePicks
+  /** Initial picks when uncontrolled. */
   defaultValue?: MergePicks
+  /** Called with the picks on every change. */
   onValueChange?: (picks: MergePicks) => void
   /** Record whose ID and links survive. Defaults to the one with the most links. */
   defaultSurvivor?: string
   /** Runs with the result. Return a promise to show a pending state; a rejection is caught. */
   onMerge: (result: { survivorId: string; removedIds: string[]; values: Record<string, string>; discarded: string[] }) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
+  /** Formats a record's updated date. */
   formatDate?: (date: Date) => string
+  /** Label for a field whose values really differ. */
   conflictLabel?: string
+  /** Label for the count of fields that agree. */
   agreeLabel?: (count: number) => string
+  /** Label for the survivor choice. */
   survivorLabel?: string
+  /** Label for the count of values discarded. */
   discardLabel?: (count: number) => string
+  /** Shown when nothing will be discarded. */
   nothingLostText?: string
   /** One honest line on reversibility. */
   irreversibleText?: string
+  /** Merge button text from the count and survivor ID. */
   mergeLabel?: (count: number, survivorId: string) => string
+  /** Merge button text while merging. */
   pendingLabel?: string
+  /** Cancel button text. */
   cancelLabel?: string
 }
 

@@ -4,16 +4,17 @@ import { container } from "./section-heading"
 
 /**
  * A row of true facts under the hero, in hairline cells (in place of a logo wall).
- * `total` comes from the registry at build time; nothing here is a guess.
+ * `total` comes from the registry at build time; nothing here is a guess, and the
+ * count is a footnote rather than the headline.
  * Four equal cells, each with the same inner padding; once the strip is narrower than
  * the viewport (72rem) it closes with side hairlines so it reads as one framed row.
  */
 export function Stats({ total, categories }: { total: number; categories: number }) {
   const stats = [
-    { value: total.toLocaleString("en-US"), label: "components", note: `across ${categories} categories` },
+    { value: "Copy-paste", label: "source", note: "lands in your project, yours to edit" },
     { value: "MIT", label: "licensed", note: "free for commercial use" },
-    { value: "shadcn", label: "CLI", note: "one command, no package" },
-    { value: "React 19", label: "+ Tailwind v4", note: "TypeScript, SSR-safe" },
+    { value: "shadcn", label: "CLI", note: `one command each, ${total.toLocaleString("en-US")} to pick from in ${categories} categories` },
+    { value: "React 19+", label: "+ Tailwind v4", note: "TypeScript, SSR-safe" },
   ]
   return (
     <section aria-label="At a glance" className="border-y">

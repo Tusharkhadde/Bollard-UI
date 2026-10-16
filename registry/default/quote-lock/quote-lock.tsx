@@ -53,7 +53,9 @@ export interface QuoteLockProps extends Omit<React.ComponentProps<"div">, "child
   minTimeToPay?: number
   /** Label above the amount, e.g. "You send". */
   label?: React.ReactNode
+  /** BCP 47 locale for amounts and times. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<QuoteLockMessages>
 }
 

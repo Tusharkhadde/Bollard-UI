@@ -5,6 +5,14 @@ All notable changes to Bollard UI are recorded here. The format follows [Keep a 
 ## [Unreleased]
 
 ### Added
+- Docs pages: Getting started, Start here, Quality, Security, License and Changelog.
+- Every component page now has a short summary, What it catches, a Props table, Accessibility notes, Limitations, a server-side note for security-adjacent components, and a Rules box with the date and sources for rule-bearing ones.
+- Per-component social images and canonical URLs.
+
+### Changed
+- Wording on security-adjacent components now says what the UI surfaces and what the server must still enforce.
+- Categories: "Inputs that catch typos" split into Validators, Readbacks and calculators, and Parsers and analyzers; non-destructive items moved to Submits and rate limits.
+- Registry homepage points to the docs site; displayed imports use `@/components/ui/...`.
 - Open-source project files: contributing guide, code of conduct, security policy, issue and pull request templates, CI and Dependabot.
 
 ## [0.1.0] - 2026-10-16

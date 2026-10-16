@@ -46,23 +46,33 @@ export interface ArchiveOrDeleteProps extends Omit<React.ComponentProps<"form">,
   items: RemovalItem[]
   /** Runs with the chosen option. Return a promise to show a pending state; a rejection is caught. */
   onConfirm: (choice: RemovalChoice) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Controlled choice. Defaults to "archive", the reversible one. */
   value?: RemovalChoice
+  /** Initially selected choice when uncontrolled. Defaults to archive. */
   defaultValue?: RemovalChoice
+  /** Called when the selected choice changes. */
   onValueChange?: (choice: RemovalChoice) => void
   /** Focus the reversible choice on mount, so Enter archives rather than deletes. */
   autoFocus?: boolean
+  /** Dialog title; receives the thing's name. */
   title?: (name: string) => React.ReactNode
+  /** Label of the Archive option. */
   archiveLabel?: string
   /** One line on how to undo an archive, e.g. "Unarchive anytime from Settings". */
   archiveSummary?: string
+  /** Label of the Delete option. */
   deleteLabel?: string
   /** One honest line on recovery, e.g. "Can't be undone" or "Recoverable for 30 days". */
   deleteSummary?: string
+  /** Confirm button text when Archive is chosen. */
   confirmArchiveLabel?: (name: string) => string
+  /** Confirm button text when Delete is chosen. */
   confirmDeleteLabel?: (name: string) => string
+  /** Confirm button text while onConfirm is running. */
   pendingLabel?: string
+  /** Cancel button text. */
   cancelLabel?: string
   /** Label above the items both choices treat the same way. */
   sameLabel?: string

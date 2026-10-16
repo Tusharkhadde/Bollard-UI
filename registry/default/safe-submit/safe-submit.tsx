@@ -99,7 +99,9 @@ const sizes = { default: "h-9 px-4", sm: "h-8 px-3" } as const
 export interface SafeSubmitProps extends Omit<React.ComponentProps<"button">, "onSubmit" | "onClick" | "type"> {
   /** Does the work. Send `idempotencyKey` as an `Idempotency-Key` header. `formData` is the enclosing form's data. */
   onSubmit: (submission: { idempotencyKey: string; formData?: FormData }) => Promise<unknown>
+  /** Visual style of the button. */
   variant?: keyof typeof variants
+  /** Size of the button. */
   size?: keyof typeof sizes
   /** Label while the request is in flight. */
   pendingLabel?: React.ReactNode

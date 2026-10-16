@@ -59,9 +59,13 @@ export interface MaintenanceWindowProps extends React.ComponentProps<"div"> {
   hasUnsavedChanges?: boolean
   /** Templates: `{window}`, `{countdown}`, `{start}`, `{end}` are filled in. */
   scheduledText?: string
+  /** Template shown when the window is close. */
   soonText?: string
+  /** Template shown during the window. */
   activeText?: string
+  /** Shown after the window ends. */
   overText?: string
+  /** Accessible label for the dismiss button. */
   dismissLabel?: string
 }
 

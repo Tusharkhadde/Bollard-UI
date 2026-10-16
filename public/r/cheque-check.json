@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "cheque-check",
   "title": "Cheque Check",
-  "description": "Stops a cheque being deposited after it expires, before its date or with a correction clearing will reject, by reading the date the way it's written in the CTS boxes (so 31 November is caught), showing the safe deposit window under RBI's 3-month rule and warning on the disputed last day, catching a January cheque still carrying last year's date and a two-digit year, and saying when Positive Pay is needed, with one-tap date fixes.",
+  "description": "Reads the date as written in the CTS boxes (so 31 November is caught), shows the safe deposit window under RBI's three-month rule with a warning on the disputed last day, catches stale January dates and two-digit years, and says when Positive Pay applies.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,42 @@
     "fields": [
       "datetime",
       "amount"
-    ]
+    ],
+    "summary": "Reads a cheque date as written and shows the safe deposit window, so a cheque isn't presented after it expires, before its date or with a rejected correction.",
+    "catches": [
+      "Impossible dates (31 November) and two-digit years",
+      "Cheques older than three months, or post-dated",
+      "A January cheque still carrying last year's date",
+      "Corrections other than to the date, which need a fresh cheque",
+      "Amounts where Positive Pay applies (₹50,000 and above)"
+    ],
+    "limits": [
+      "RBI doesn't define whether the three-month window ends on the same date or the day before; the earlier day is shown as safe",
+      "Your bank may make Positive Pay mandatory at a different amount",
+      "India rules by default; other countries need custom rules"
+    ],
+    "a11y": [
+      "Labelled date, amount and correction fields; aria-invalid and aria-describedby to the issues list",
+      "Focus moves to the first fix",
+      "Issues use icons plus text"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "RBI FAQs on Cheque Clearing (7 Jan 2026)",
+          "url": "https://www.rbi.org.in/commonman/Upload/English/FAQs/PDFs/CHEQUE07012026.pdf"
+        },
+        {
+          "label": "RBI notification: validity of cheques reduced to three months (4 Nov 2011)",
+          "url": "https://www.rbi.org.in/commonman/english/scripts/Notification.aspx?Id=961"
+        }
+      ],
+      "note": "Informational; check with your bank. Checked: three-month validity from the instrument's date; changes to payee or amount need a fresh cheque; Positive Pay enabled for ₹50,000 and above, banks may mandate it from ₹5,00,000."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

@@ -108,6 +108,7 @@ export interface RecipientCheckProps extends Omit<React.ComponentProps<"div">, "
   value?: Recipient[]
   /** Starting recipients when uncontrolled. */
   defaultValue?: Recipient[]
+  /** Called with the full recipient list after every change. */
   onValueChange?: (value: Recipient[]) => void
   /** Your organisation's domains. Everyone else is marked external. */
   internalDomains: string[]

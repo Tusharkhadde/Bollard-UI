@@ -83,8 +83,11 @@ export const OUT_OF_OFFICE_CHECK_MESSAGES = {
 export type OutOfOfficeCheckMessages = typeof OUT_OF_OFFICE_CHECK_MESSAGES
 
 export interface OutOfOfficeCheckProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onSubmit"> {
+  /** Controlled auto-reply settings. */
   value?: AutoReply
+  /** Initial auto-reply settings when uncontrolled. */
   defaultValue?: AutoReply
+  /** Called with the settings on every change. */
   onValueChange?: (reply: AutoReply) => void
   /** Gmail: dates, one reply. Outlook: dates and times, an inside and an outside reply. */
   platform?: AutoReplyPlatform
@@ -98,9 +101,11 @@ export interface OutOfOfficeCheckProps extends Omit<React.ComponentProps<"div">,
   fallbackContact?: string
   /** How to read 27/10 in the reply text. */
   dateOrder?: "dmy" | "mdy"
+  /** BCP 47 locale for dates. */
   locale?: string
   /** Saves the auto-reply. Return a promise for a pending state; a rejection keeps the form as it is. */
   onSave?: (reply: AutoReply) => void | Promise<void>
+  /** Override any visible string. */
   messages?: Partial<OutOfOfficeCheckMessages>
 }
 

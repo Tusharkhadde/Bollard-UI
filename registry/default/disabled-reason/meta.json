@@ -1,6 +1,22 @@
 {
   "title": "Disabled Reason",
-  "description": "Stops dead-end disabled buttons by keeping the control focusable with aria-disabled and explaining on hover, focus or tap exactly what blocks it, in a portalled panel no overflow-hidden toolbar can clip, with a one-tap jump to each fix, a shake when a blocked press lands and each cleared blocker sliding out of the list.",
+  "summary": "Keeps a blocked control focusable and explains exactly what blocks it, with a jump to each fix, so disabled buttons aren't dead ends.",
+  "description": "Keeps the control focusable with aria-disabled and explains on hover, focus or tap what blocks it, in a portalled panel no toolbar can clip, with a jump to each fix, a shake when a blocked press lands and cleared blockers sliding away.",
+  "catches": [
+    "Disabled buttons that give no reason",
+    "Every blocker at once, with a link to fix each",
+    "Presses on a blocked control, acknowledged with a shake"
+  ],
+  "limits": [
+    "Only lists the reasons you pass; it doesn't validate the form",
+    "Don't also set `disabled` on the child, or it can't receive focus"
+  ],
+  "a11y": [
+    "Sets aria-disabled on the child instead of disabled, so it stays focusable",
+    "Adds aria-describedby to the reasons while blocked",
+    "Opens on focus as well as hover and tap",
+    "The shake and list animations respect prefers-reduced-motion"
+  ],
   "dependencies": [
     "lucide-react",
     "@floating-ui/react",

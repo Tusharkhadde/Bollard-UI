@@ -57,8 +57,11 @@ export interface ShiftTimeInputProps extends Omit<React.ComponentProps<"fieldset
   breakRule?: BreakRule | null
   /** Read times back as 9:00 PM (true) or 21:00. */
   hour12?: boolean
+  /** Label of the start-time input. */
   startLabel?: string
+  /** Label of the end-time input. */
   endLabel?: string
+  /** Label of the break input. */
   breakLabel?: string
   /** Shown after the length when the shift crosses midnight. */
   nextDayLabel?: string

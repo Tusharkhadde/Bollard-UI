@@ -46,13 +46,21 @@ export interface VersionScrubberProps extends Omit<React.ComponentProps<"div">, 
   keptText?: string
   /** Other visible text and button labels. */
   heading?: string
+  /** Badge for the current version. */
   currentLabel?: string
+  /** Label of the back-to-current button. */
   backLabel?: string
+  /** Label of the Restore button. */
   restoreLabel?: string
+  /** Label of the confirm-restore button. */
   confirmLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Shown when the selected version is current. */
   isCurrentText?: string
+  /** Shown when the selected version matches the current one. */
   identicalText?: string
+  /** Shown when onRestore rejects. */
   errorText?: string
 }
 

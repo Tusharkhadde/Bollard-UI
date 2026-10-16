@@ -7,13 +7,12 @@ const asIs = (value: string) => value
 
 /**
  * The shadcn install line, styled as a terminal prompt. `registryBase` is the
- * site's /r/ URL, so the command a user copies is exactly what they would run.
+ * site's /r/ URL, so the command shown is exactly the command copied and run:
+ * the full https:// URL, never an abbreviation.
  *
- * It always reads from "$ npx" (never opened scrolled). The display shortens
- * gracefully instead: the full host shows when the box is wide enough (a
- * container query), otherwise it becomes "…/r/". If even that doesn't fit, the
- * line wraps between whole words ("npx shadcn@latest add" / the URL), never
- * mid-string. Copy always copies the full command.
+ * It always reads from "$ npx". When the box is narrow the line wraps between
+ * "npx shadcn@latest add" and the URL (hanging indent), and the URL itself may
+ * break after a "/" on very small screens. Copy copies the same full command.
  */
 export function InstallCommand({
   registryBase,
@@ -27,7 +26,6 @@ export function InstallCommand({
   tone?: "default" | "inverted"
 }) {
   const command = `npx shadcn@latest add ${registryBase}${name}.json`
-  const host = registryBase.replace(/^https?:\/\//, "")
   const dim = tone === "default" ? "text-muted-foreground" : "text-white/60"
   const dimmer = tone === "default" ? "text-muted-foreground/80" : "text-white/45"
 
@@ -41,17 +39,14 @@ export function InstallCommand({
       )}
     >
       {/* Hanging indent: if the line wraps, the URL lines up under "npx", not under the "$". */}
-      <div className="@container min-w-0 flex-1">
-        <code className="block overflow-x-auto pl-[2ch] [text-indent:-2ch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="min-w-0 flex-1">
+        <code className="block pl-[2ch] [text-indent:-2ch]">
           <span aria-hidden className="select-none text-amber-700 dark:text-amber-400">
             ${" "}
           </span>
           <span className={cn("whitespace-nowrap", dim)}>npx shadcn@latest add</span>{" "}
-          <span className="whitespace-nowrap">
-            <span className={dimmer}>
-              <span className="hidden @[32rem]:inline">{host}</span>
-              <span className="@[32rem]:hidden">…/r/</span>
-            </span>
+          <span className="[overflow-wrap:anywhere]">
+            <span className={dimmer}>{registryBase}</span>
             <span className="font-semibold">{name}</span>
             <span className={dimmer}>.json</span>
           </span>

@@ -29,9 +29,11 @@ export const NAMESAKE_SELECT_MESSAGES = {
 }
 
 export interface NamesakeSelectProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** People to choose from, each with a name and identifying details. */
   options: NamesakeOption[]
   /** Selected id (controlled). `null` means none. */
   value?: string | null
+  /** Initial selected id when uncontrolled. */
   defaultValue?: string | null
   /** Fires with the chosen id, or `null` when the text is edited away. With `verify="reenter"`, a name someone else shares only becomes the value once confirmed. */
   onValueChange?: (id: string | null) => void
@@ -41,6 +43,7 @@ export interface NamesakeSelectProps extends Omit<React.ComponentProps<"div">, "
   label: string
   /** How many identifying details to read back once chosen. Two, as patient-safety practice asks. */
   identifiers?: number
+  /** Override any visible string. */
   messages?: Partial<typeof NAMESAKE_SELECT_MESSAGES>
 }
 

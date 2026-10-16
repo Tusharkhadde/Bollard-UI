@@ -1,7 +1,51 @@
 {
   "title": "Bank Transfer Timing",
-  "description": "Prevents Indian bank transfers that get refused or land later than expected by reading back when the money arrives on the chosen rail (seconds on IMPS and UPI, the next half-hourly NEFT batch and its 2-hour credit window, RTGS within 30 minutes, branch hours and holidays), catching RTGS under ₹2 lakh, IMPS over ₹5 lakh, UPI over its category cap, the bank's own daily limit and a new payee's cooling period and first-day cap with the rail that works one tap away, and spelling the amount out in lakh and crore.",
-  "dependencies": ["lucide-react"],
+  "summary": "Says when an Indian bank transfer will actually arrive on IMPS, NEFT, RTGS or UPI, and catches amounts the chosen rail will refuse.",
+  "description": "Reads back when money arrives on the chosen rail (IMPS/UPI instantly, the next half-hourly NEFT batch plus up to 2 hours, RTGS within 30 minutes) and catches RTGS under ₹2 lakh, IMPS over ₹5 lakh, UPI over its category cap, bank limits and new-payee caps.",
+  "catches": [
+    "RTGS below the ₹2 lakh minimum and IMPS above ₹5 lakh per transaction",
+    "UPI amounts above the per-transaction or 24-hour cap for the category",
+    "Your bank's own daily limit, and a new payee's cooling period or first-day cap",
+    "Late arrival: the next NEFT batch, the last batch landing at 00:00, branch hours and holidays",
+    "Offers the rail that would work, and spells the amount in lakh and crore"
+  ],
+  "limits": [
+    "Rail limits are built in as of the verification date; banks may set lower caps, and NPCI/RBI can change them",
+    "Bank limits, new-payee rules and holidays come only from the props you pass",
+    "Arrival times are the regulator's expected timelines, not a guarantee for a specific transfer"
+  ],
+  "a11y": [
+    "Rails are a role=\"radiogroup\" of role=\"radio\" buttons with roving tabIndex and arrow-key navigation",
+    "The continue button uses aria-disabled rather than disabled while blocked",
+    "Status is announced in a role=\"status\" region",
+    "Issues use text and icons, not colour alone"
+  ],
+  "server": "The bank or payment provider enforces the real limits; validate the amount, rail and payee on the server and use idempotency for the transfer.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RBI FAQ: NEFT (updated 2 Sep 2024)",
+        "url": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=60"
+      },
+      {
+        "label": "RBI FAQ: RTGS (updated 14 Oct 2026)",
+        "url": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=65"
+      },
+      {
+        "label": "NPCI IMPS FAQ",
+        "url": "https://www.npci.org.in/faqs/imps"
+      },
+      {
+        "label": "NPCI UPI OC-185B (28 Aug 2025)",
+        "url": "https://www.npci.org.in/uploads/UPI_OC_No185_B_FY_2025_26_Addendum_to_OC_185_A_Implementation_of_higher_per_transaction_limit_for_specific_categories_in_UPI_ba517a0902.pdf"
+      }
+    ],
+    "note": "Informational; check the official source. NEFT (half-hourly batches, credit within 2 hours), RTGS (₹2 lakh minimum, credit within 30 minutes) and IMPS (₹5 lakh) were checked against RBI/NPCI pages. The UPI category caps were not re-checked: the NPCI circular is a scanned PDF with no readable text."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Transfer refused or credited a day late",
   "mistakes": [
     "neft not credited",

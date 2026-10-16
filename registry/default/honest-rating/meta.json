@@ -1,7 +1,27 @@
 {
   "title": "Honest Rating",
-  "description": "Stops shoppers trusting a bare \"4.8\" by showing how many reviews stand behind it and how they split, flagging tiny samples with the range the true score could be in, calling out love-it-or-hate-it splits, and sorting by a disclosed Bayesian score so a 5.0 from 3 reviews can't outrank a 4.6 from 900.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows how many reviews stand behind a star rating and how they split, so a 5.0 from three reviews doesn't look as solid as a 4.6 from 900.",
+  "description": "Rating summary showing review count and star breakdown, flagging small samples with a likely range for the true score, calling out love-it-or-hate-it splits, and exposing a disclosed Bayesian score for sorting so a 5.0 from 3 reviews can't outrank a 4.6 from 900.",
+  "catches": [
+    "Ratings backed by very few reviews, with a likely range for the true score",
+    "Polarised splits hidden by an average",
+    "Sorting by raw average: a Bayesian score (IMDb-style) is offered instead",
+    "Optional link to read the low reviews first"
+  ],
+  "limits": [
+    "Statistics assume reviews are genuine; it does not detect fake or incentivised reviews",
+    "The prior and weight you pass change the Bayesian score; defaults may not suit your catalogue",
+    "The likely range is an approximation (Dirichlet, 90%), not an exact interval"
+  ],
+  "a11y": [
+    "Breakdown is a labelled list with text labels for each star level",
+    "The likely-range bar is role=img with an aria-label stating the range",
+    "Warnings are in a polite live region with text, not only icons",
+    "Star filters are real buttons, disabled when a level has no reviews"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Trusted a 5.0 from three reviews",
   "mistakes": [
     "fake high rating",

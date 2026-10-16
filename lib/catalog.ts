@@ -4,18 +4,48 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import registry from "@/registry.json"
 import { ESSENTIALS, FIELD_IDS, FLOW_IDS, KITS } from "@/lib/kits"
-import { GITHUB_URL, SITE_URL } from "@/lib/site"
+import { REPO_URL, SITE_URL } from "@/lib/site"
 import type { SearchItem } from "@/lib/search"
 
 /** What the client gets per component: enough to search, filter and draw a card. */
 export type CatalogItem = SearchItem
 
-export interface CatalogEntry extends SearchItem {
+export interface RulesInfo {
+  /** ISO date the rules were last checked against a primary source, or null when not yet verified. */
+  verified: string | null
+  sources?: { label: string; url: string }[]
+  note?: string
+}
+
+/** The component-page standard (audit §8). Every field is optional; pages fall back gracefully. */
+export interface PageDocs {
+  summary?: string
+  catches?: string[]
+  limits?: string[]
+  a11y?: string[]
+  server?: string
+  rules?: RulesInfo
+}
+
+export interface CatalogEntry extends SearchItem, PageDocs {
   files: string[]
   dependencies: string[]
   registryDependencies: string[]
+}
+
+export interface PropDoc {
+  name: string
+  type: string
+  required: boolean
+  default?: string
+  description?: string
+}
+
+export interface PropsDoc {
+  component: string
+  props: PropDoc[]
+  extends?: string[]
 }
 
 interface RegistryItem {
@@ -26,7 +56,19 @@ interface RegistryItem {
   files: { path: string }[]
   dependencies?: string[]
   registryDependencies?: string[]
-  meta?: { stops?: unknown; mistakes?: unknown; aliases?: unknown; flows?: unknown; fields?: unknown }
+  meta?: {
+    stops?: unknown
+    mistakes?: unknown
+    aliases?: unknown
+    flows?: unknown
+    fields?: unknown
+    summary?: unknown
+    catches?: unknown
+    limits?: unknown
+    a11y?: unknown
+    server?: unknown
+    rules?: unknown
+  }
 }
 
 const list = (value: unknown) => (Array.isArray(value) ? value.filter((v): v is string => typeof v === "string" && v.length > 0) : undefined)
@@ -74,7 +116,38 @@ function discovery(item: RegistryItem) {
   }
 }
 
-export const catalog: CatalogEntry[] = (registry.items as RegistryItem[])
+const text = (value: unknown) => (typeof value === "string" && value.trim() ? value.trim() : undefined)
+
+function pageDocs(item: RegistryItem): PageDocs {
+  const meta = item.meta ?? {}
+  const out: PageDocs = {}
+  const summary = text(meta.summary)
+  if (summary) out.summary = summary
+  const server = text(meta.server)
+  if (server) out.server = server
+  for (const key of ["catches", "limits", "a11y"] as const) {
+    const values = list(meta[key])
+    if (values?.length) out[key] = values
+  }
+  const rules = meta.rules
+  if (rules && typeof rules === "object" && !Array.isArray(rules)) {
+    const r = rules as { verified?: unknown; sources?: unknown; note?: unknown }
+    out.rules = {
+      verified: text(r.verified) ?? null,
+      sources: Array.isArray(r.sources)
+        ? r.sources.filter((s): s is { label: string; url: string } => !!s && typeof s.url === "string" && typeof s.label === "string")
+        : undefined,
+      note: text(r.note),
+    }
+  }
+  return out
+}
+
+// Read with fs rather than imported: the registry is large, and a JSON import makes
+// TypeScript infer a type for every item (slow and memory-hungry) for no benefit.
+const registry = JSON.parse(fs.readFileSync(path.join(process.cwd(), "registry.json"), "utf8")) as { items: RegistryItem[] }
+
+export const catalog: CatalogEntry[] = registry.items
   .filter((item) => fs.existsSync(path.join(process.cwd(), "components", "demos", `${item.name}.tsx`)))
   .map((item) => ({
     name: item.name,
@@ -85,6 +158,7 @@ export const catalog: CatalogEntry[] = (registry.items as RegistryItem[])
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
     ...discovery(item),
+    ...pageDocs(item),
   }))
 
 /** The slim list the client needs for the sidebar, the finder and search. */
@@ -119,13 +193,26 @@ export function readSource(file: string) {
   return fs.readFileSync(path.join(process.cwd(), "registry", "default", name, base), "utf8")
 }
 
+let propsCache: Record<string, PropsDoc> | null = null
+/** Props extracted by scripts/props.mjs (lib/props.json), read on the server only so it never reaches a client bundle. */
+export function readProps(name: string): PropsDoc | null {
+  if (!propsCache) {
+    try {
+      propsCache = JSON.parse(fs.readFileSync(path.join(process.cwd(), "lib", "props.json"), "utf8")) as Record<string, PropsDoc>
+    } catch {
+      propsCache = {}
+    }
+  }
+  return propsCache[name] ?? null
+}
+
 /** Reads a demo file (components/demos/<name>.tsx), or null when there isn't one. */
 export function readDemo(name: string) {
   const file = path.join(process.cwd(), "components", "demos", `${name}.tsx`)
   return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : null
 }
 
-export { GITHUB_URL, SITE_URL }
+export { REPO_URL, SITE_URL }
 
 export const registryBase = `${SITE_URL}/r/`
 export const installCommand = (name: string) => `npx shadcn@latest add ${registryBase}${name}.json`

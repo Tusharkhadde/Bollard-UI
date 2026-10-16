@@ -1,6 +1,23 @@
 {
   "title": "YAML Field",
-  "description": "Catches YAML that loads without an error but means something else (NO, yes, on and off read as booleans, 1.10 read as 1.1, 0755 as octal, 22:22 as base-60, duplicate keys, tabs and misaligned indentation) by showing each one's line, column and what the parser will really read, with one-tap quoting and alignment fixes.",
+  "summary": "Catches YAML that parses but means something else, like NO read as false or 1.10 read as 1.1, and shows what the parser will read.",
+  "description": "YAML editor that flags values that load without error but change meaning (NO/yes/on/off as booleans, 1.10 as 1.1, 0755 as octal, 22:22 as base-60), duplicate keys, tabs and misaligned indentation, with line, column, the parsed value and one-tap fixes.",
+  "catches": [
+    "Plain scalars YAML 1.1 loaders turn into booleans (NO, yes, on, off)",
+    "Version-like numbers that lose digits (1.10 → 1.1)",
+    "Leading-zero octals and base-60 times",
+    "Duplicate keys, with the first occurrence",
+    "Tabs and misaligned indentation"
+  ],
+  "limits": [
+    "Targets YAML 1.1 behaviour (PyYAML, Psych, SnakeYAML, go-yaml v2); YAML 1.2 loaders differ",
+    "Not a full YAML parser; complex documents can produce misses"
+  ],
+  "a11y": [
+    "Visible <label>; status via aria-describedby in a polite live region",
+    "Each issue has a button labelled with its line and column",
+    "After a fix, focus returns to the textarea"
+  ],
   "dependencies": [
     "lucide-react"
   ],

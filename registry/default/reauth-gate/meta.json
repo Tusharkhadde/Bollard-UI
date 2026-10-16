@@ -1,7 +1,54 @@
-{"title": "Reauth Gate", "description": "Sudo mode for sensitive actions: it asks for a passkey, password or PIN through your own verify function, names the exact action and why it's asking, runs the queued action right after confirmation, and remembers it for a short window shown as a countdown chip you can end early.", "dependencies": ["lucide-react"],
-  "stops": "Sensitive action on unattended logged-in laptop",
-  "mistakes": ["no password confirm before delete", "sudo mode", "reauthenticate before change", "someone used my open laptop"],
-  "aliases": ["sudo mode", "re-authenticate", "confirm password", "passkey", "pin", "step-up auth", "verify identity", "mpin"],
-  "flows": ["account-settings", "signup-login", "danger-zone"],
-  "fields": ["secret"]
+{
+  "title": "Reauth Gate",
+  "summary": "Asks the user to re-confirm with a passkey, password or PIN before a sensitive action, so an unattended signed-in screen is harder to misuse.",
+  "description": "Step-up prompt for sensitive actions. Checks a passkey, password or PIN through your own verify function, names the action and why it asks, runs the queued action after confirmation, and remembers it for a short window shown as an endable countdown chip.",
+  "catches": [
+    "Sensitive action started without a recent re-confirmation",
+    "Names the exact action and the reason before asking",
+    "Runs the queued action right after a successful verify",
+    "Shows how long the unlock lasts, with a button to end it early",
+    "Wrong credential or a rejected verify shows an error and keeps the action queued"
+  ],
+  "limits": [
+    "The unlock window lives in component state only; a reload, another tab or a direct API call is not covered",
+    "Security depends entirely on your verify function and your server",
+    "No attempt limit or lockout; rate-limit verification on the server",
+    "Passkey mode calls verify with no secret; you run the WebAuthn ceremony inside verify"
+  ],
+  "a11y": [
+    "Prompt is a labelled region (role=region with aria-labelledby); focus moves to its first control when it opens",
+    "Escape cancels the prompt",
+    "Method switch uses aria-pressed buttons in a labelled group",
+    "Credential input has a sr-only label, aria-invalid on a wrong attempt, and a polite live message",
+    "Countdown chip is role=timer with an aria-label; its progress animation is skipped under reduced motion"
+  ],
+  "server": "Re-check the credential and a server-side recent-auth timestamp on every sensitive endpoint, and rate-limit verify; the client window is only a convenience.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent a sensitive action on an unattended signed-in screen",
+  "mistakes": [
+    "no password confirm before delete",
+    "sudo mode",
+    "reauthenticate before change",
+    "someone used my open laptop"
+  ],
+  "aliases": [
+    "sudo mode",
+    "re-authenticate",
+    "confirm password",
+    "passkey",
+    "pin",
+    "step-up auth",
+    "verify identity",
+    "mpin"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login",
+    "danger-zone"
+  ],
+  "fields": [
+    "secret"
+  ]
 }

@@ -1,10 +1,53 @@
 {
   "title": "Recovery Contact Cooldown",
-  "description": "Stops account takeovers that start by swapping the recovery email or phone by making the security hold visible: it says what the contact is changing to (masked), drains a countdown to when it takes effect, notes that codes still go to the old contact meanwhile, turns urgent in the last hour, and offers a one-tap cancel plus a \"this wasn't me\" path, announcing only the outcome, never the ticking.",
-  "dependencies": ["lucide-react"],
-  "stops": "Account hijacked via swapped recovery email",
-  "mistakes": ["attacker changed recovery email", "recovery phone changed without me", "account takeover recovery contact", "sim swap changed recovery number"],
-  "aliases": ["recovery email", "recovery phone", "security hold", "account recovery", "change email", "mobile number", "+91", "this wasn't me"],
-  "flows": ["account-settings", "signup-login"],
-  "fields": ["email", "phone"]
+  "summary": "Makes a pending recovery email or phone change visible during its hold, so the real owner can cancel a takeover attempt in time.",
+  "description": "Shows a pending recovery-contact change: the masked new contact, a countdown to when it applies, that codes still go to the old contact, an urgent state in the last hour, a cancel button and a \"this wasn't me\" path. Announces the outcome, not the ticking.",
+  "catches": [
+    "A recovery email or phone change that hasn't taken effect yet",
+    "Masked old and new contacts so the owner can recognise them",
+    "Time left, turning urgent in the final hour",
+    "One-tap cancel and a \"this wasn't me\" path",
+    "Says the old contact was notified only when previousNotified is true"
+  ],
+  "limits": [
+    "Displays the hold; it does not create or enforce it",
+    "Pending turns to applied on the client clock unless you pass now/status from the server",
+    "Masking is cosmetic; the full values still reach the browser"
+  ],
+  "a11y": [
+    "Section labelled by its title; countdown is role=timer and is not announced every second",
+    "Only the outcome (applied) is announced via a polite sr-only region",
+    "Cancel errors show role=alert text",
+    "After cancel or apply, focus moves to the result message",
+    "Urgency shown with text and colour"
+  ],
+  "server": "The backend must hold the change, keep the old contact working, notify it, and accept cancellation; this card only surfaces that state.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps the owner catch a swapped recovery contact before it takes effect",
+  "mistakes": [
+    "attacker changed recovery email",
+    "recovery phone changed without me",
+    "account takeover recovery contact",
+    "sim swap changed recovery number"
+  ],
+  "aliases": [
+    "recovery email",
+    "recovery phone",
+    "security hold",
+    "account recovery",
+    "change email",
+    "mobile number",
+    "+91",
+    "this wasn't me"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "email",
+    "phone"
+  ]
 }

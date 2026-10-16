@@ -1,7 +1,29 @@
 {
   "title": "BNPL Schedule Check",
-  "description": "Stops a buy-now-pay-later plan from quietly failing by drawing each payment on a calendar beside other running plans and paydays, flagging a card that expires before a payment, payments due just before payday and plans stacking in the same week, fixing them in one tap (pay from bank, move to payday, with the dots sliding across), showing the late fee and its cap in money, and asking for a second press to confirm while the card problem stands.",
-  "dependencies": ["lucide-react", "motion", "date-fns"],
+  "summary": "Lays out buy-now-pay-later payments on a calendar with paydays and other plans, so an instalment doesn't fail on an expired card or before payday.",
+  "description": "Draws each payment on a calendar beside other plans and paydays, flags a card that expires before a payment, payments just before payday and plans stacking in one week, offers one-tap fixes, shows the late fee in money and asks for a second press while the card problem stands.",
+  "catches": [
+    "A card that expires before a scheduled payment",
+    "Payments due shortly before payday (gap set by payGapDays)",
+    "Several plans charging in the same week",
+    "The late fee and its cap, shown in money"
+  ],
+  "limits": [
+    "Paydays, other plans, the card expiry and the late-fee rule all come from your props",
+    "Moving a payment only changes the proposed date; the provider must allow it"
+  ],
+  "a11y": [
+    "The card problem is announced with role=\"alert\"",
+    "Payment source is a role=\"radiogroup\" with arrow-key navigation",
+    "Confirm sets aria-busy while pending; status is announced in a role=\"status\" region",
+    "Issues use text and icons; motion respects prefers-reduced-motion"
+  ],
+  "server": "The provider's schedule, fees and card on file are the source of truth; re-check them on the server before confirming.",
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "date-fns"
+  ],
   "stops": "Instalment fails on an expired card",
   "mistakes": [
     "bnpl payment due before payday",

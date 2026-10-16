@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kyc-name-match",
   "title": "KYC Name Match",
-  "description": "Stops a KYC or PAN–Aadhaar submission failing on a name that doesn't match the documents, by comparing the typed name with each document word by word (order, initials, a missing middle name, transliterations like Laxmi and Lakshmi), checking the PAN's 4th and 5th letters against the holder type and surname, flagging a date of birth or gender that differs between documents (which UIDAI says must be identical), and offering each document's exact name in one tap.",
+  "description": "KYC name field that compares the typed name with each document word by word (order, initials, missing middle name, transliterations like Laxmi/Lakshmi), checks the PAN's 4th and 5th letters, flags differing date of birth or gender, and offers each exact name.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "KYC rejected for name mismatch",
+    "stops": "Helps prevent a KYC rejection for a name mismatch",
     "mistakes": [
       "pan aadhaar name mismatch",
       "kyc failed name not matching",
@@ -46,10 +46,39 @@
     "fields": [
       "name",
       "id-number"
-    ]
+    ],
+    "summary": "Compares the typed name with each KYC document word by word and checks the PAN letters, so a KYC or PAN–Aadhaar link doesn't fail on a name mismatch.",
+    "server": "Run the real name match and KYC verification through your provider on the server, and avoid storing full Aadhaar numbers.",
+    "catches": [
+      "Words in a different order, initials, or a missing middle name",
+      "Transliteration variants such as Laxmi and Lakshmi",
+      "PAN 4th letter that doesn't match the holder type (P for an individual)",
+      "PAN 5th letter that doesn't match the surname's first letter",
+      "Date of birth or gender that differs between documents"
+    ],
+    "limits": [
+      "Compares the document details you pass; it doesn't read or verify the documents",
+      "Transliteration matching covers common variants only",
+      "Whether a minor mismatch passes is decided by UIDAI or the KYC provider, not this check"
+    ],
+    "a11y": [
+      "Visible label; input has aria-invalid on a mismatch and is described by the hint and summary",
+      "Each document's use-exact-name button is described by that document's row",
+      "Status uses role=status; icons are aria-hidden"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Income Tax Department: How PAN is formed",
+          "url": "https://www.incometaxindia.gov.in/w/how-pan-is-formed-and-how-it-gets-its-unique-identity-"
+        }
+      ],
+      "note": "Informational; check the official source. Confirmed: 4th character is the holder status (P individual, C company, etc.), 5th is the first letter of an individual's surname. The UIDAI FAQ on PAN–Aadhaar name, gender and date-of-birth matching was not re-fetched this round."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

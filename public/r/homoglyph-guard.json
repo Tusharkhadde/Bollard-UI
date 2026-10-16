@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "homoglyph-guard",
   "title": "Homoglyph Guard",
-  "description": "Stops spoofed usernames and domains like pаypal.com (Cyrillic а) by detecting look-alike, mixed-script, styled and zero-width characters with UTS #39-style rules, naming each one's real script and code point, and offering the plain-ASCII version in one tap.",
+  "description": "Username and domain field that detects look-alike, mixed-script, styled (math bold, fullwidth) and zero-width characters following UTS #39 ideas, names each character's script and code point, flags imitations of protected names, and offers the plain-ASCII version in one tap.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Spoofed username with Cyrillic letters",
+    "stops": "Helps catch a spoofed username with Cyrillic letters",
     "mistakes": [
       "cyrillic lookalike domain",
       "homograph attack",
@@ -45,10 +45,28 @@
     "fields": [
       "text",
       "url"
+    ],
+    "summary": "Flags look-alike, mixed-script, styled and invisible characters in usernames and domains, such as pаypal.com with a Cyrillic а.",
+    "server": "Normalise and run confusable checks on the server at registration and before display; client-side checks are easy to bypass.",
+    "catches": [
+      "Cyrillic, Greek and other cross-script look-alikes mixed into Latin text",
+      "Styled Unicode letters that fold to ASCII (fullwidth, mathematical)",
+      "Zero-width and other invisible characters",
+      "Imitations of names you protect, such as paypa1 or rnicrosoft"
+    ],
+    "limits": [
+      "Uses a curated look-alike table, not the full Unicode confusables.txt; rarer confusables are missed",
+      "Legitimate non-Latin names can be flagged as mixed-script",
+      "Advisory only; it does not reserve or block names"
+    ],
+    "a11y": [
+      "Visible label tied to the input, described by the report",
+      "Report is a polite live region; flagged characters are <mark> elements with their Unicode name as title",
+      "Fix button's aria-label includes the ASCII value it will set"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

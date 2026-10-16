@@ -1,6 +1,28 @@
 {
   "title": "Passenger Name Input",
-  "description": "Prevents denied boarding and name-change fees by checking a flight or train passenger name against the ID, catching swapped names, a missing middle name, a title, suffix or nickname typed into the name, single-name passengers, accents the ticket can't print and names over the airline's limit, each with a one-tap fix, and reading it back as SURNAME/GIVEN TITLE the way it will print.",
+  "summary": "Checks a flight or train passenger name against the ID and reads it back as it will print, so a name mismatch doesn't cost a fee or a boarding.",
+  "description": "Passenger name field that checks against the ID and catches swapped names, a missing middle name, titles, suffixes or nicknames in the name, single-name passengers, accents the ticket can't print and names over the airline's limit, with fixes and a SURNAME/GIVEN TITLE readback.",
+  "catches": [
+    "Given name and surname swapped",
+    "Middle name on the ID missing from the booking",
+    "Title, suffix or nickname typed into a name field",
+    "Single-name passengers, ticketed as repeat (JONES/JONES) or FNU",
+    "Accents or characters the ticket can't print, and names over maxLength"
+  ],
+  "limits": [
+    "Airline rules differ; defaults follow the airlines named in the code and should be checked for yours",
+    "Comparison with the ID only works when you pass idName",
+    "Doesn't change a booking already made"
+  ],
+  "a11y": [
+    "Title and name inputs have visible labels and are described by the hint and issues",
+    "Fix buttons are disabled while the result is stale",
+    "Focus moves to the next fix or the given-name field after a fix"
+  ],
+  "rules": {
+    "verified": null,
+    "note": "Not verified this round: airline single-name conventions (IndiGo, Air India, IATA AIRIMP FNU) and length limits come from the code's comments. Check with the airline."
+  },
   "dependencies": [
     "lucide-react"
   ],

@@ -58,32 +58,53 @@ const segment =
   "flex h-8 flex-1 cursor-pointer items-center justify-center rounded-md px-2 text-xs font-medium whitespace-nowrap text-muted-foreground transition-colors has-[:checked]:bg-background has-[:checked]:text-foreground has-[:checked]:shadow-xs has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50"
 
 export interface ReplaceFileProps extends Omit<React.ComponentProps<"form">, "onSubmit" | "defaultValue" | "title"> {
+  /** Each name clash: the existing and incoming file. */
   conflicts: FileConflict[]
   /** Files in the same upload that don't clash; said out loud so "apply to all" never seems to touch them. */
   otherCount?: number
   /** Every name already in the folder, so "Keep both" never picks a taken name. */
   existingNames?: string[]
+  /** Chosen action per file name (controlled). */
   value?: ConflictChoices
+  /** Starting choices when uncontrolled. */
   defaultValue?: ConflictChoices
+  /** Called with every choice change. */
   onValueChange?: (choices: ConflictChoices) => void
   /** Runs with every decision. Return a promise to show a pending state; a rejection is caught. */
   onContinue: (result: { name: string; action: ConflictAction; savedAs?: string }[]) => void | Promise<void>
+  /** Formats file dates. */
   formatDate?: (date: Date) => string
+  /** Labels of the replace, keep-both and skip options. */
   labels?: { replace: string; "keep-both": string; skip: string }
+  /** Heading for the given number of clashes. */
   title?: (count: number) => string
+  /** Says how many non-clashing files upload as normal. */
   othersText?: (count: number) => string
+  /** Label of an apply-to-all button. */
   applyAllLabel?: (count: number) => string
+  /** Warning when an older file would replace a newer one. */
   olderText?: string
+  /** Label of the one-tap Keep both fix. */
   keepBothFix?: string
+  /** Warning when apply-to-all would put older files over newer ones. */
   bulkOlderText?: (count: number) => string
+  /** Label of the bulk Keep both fix. */
   bulkOlderFix?: (count: number) => string
+  /** Shown when both copies look identical. */
   identicalText?: string
+  /** Label of the one-tap Skip for identical copies. */
   skipFix?: string
+  /** Preview of the renamed copy's name. */
   savedAsText?: (name: string) => string
+  /** Label above the existing copy. */
   existingLabel?: string
+  /** Label above the incoming copy. */
   incomingLabel?: string
+  /** Label of the Continue button. */
   continueLabel?: string
+  /** Shown while clashes are undecided. */
   undecidedLabel?: (count: number) => string
+  /** Continue label while onContinue runs. */
   pendingLabel?: string
 }
 

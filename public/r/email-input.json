@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "email-input",
   "title": "Email Input",
-  "description": "Prevents bounced sign-ups from typo'd addresses by spotting misspelled domains like gmial.con or rediffmial.com with Damerau-Levenshtein matching and offering a one-tap, never automatic, fix, and offers matching providers while the domain is still being typed so the typo never happens.",
+  "description": "Spots misspelled domains like gmial.con or rediffmial.com with Damerau-Levenshtein matching and offers a one-tap, never automatic, fix; can suggest matching providers while the domain is being typed.",
   "dependencies": [
     "@floating-ui/react",
     "lucide-react",
@@ -46,10 +46,26 @@
     ],
     "fields": [
       "email"
+    ],
+    "summary": "Spots misspelled email domains like gmial.con and offers a one-tap fix, never an automatic one, so sign-ups don't bounce.",
+    "server": "Verify ownership with a confirmation email before relying on the address.",
+    "catches": [
+      "Misspelled common domains (gmial.con, rediffmial.com)",
+      "Swapped letters, via Damerau-Levenshtein distance",
+      "Typos avoided altogether, with provider completions while typing (completeDomains)"
+    ],
+    "limits": [
+      "Only knows the domains in its list; a typo of an unlisted domain isn't caught",
+      "It doesn't check that the mailbox exists"
+    ],
+    "a11y": [
+      "Visible <label>; hints via aria-describedby",
+      "With completions on: role=\"combobox\", a role=\"listbox\", aria-activedescendant and arrow, Enter/Tab and Escape keys",
+      "Fix returns focus to the input; motion respects prefers-reduced-motion"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

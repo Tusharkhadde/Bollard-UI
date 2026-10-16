@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stale-attachment-check",
   "title": "Stale Attachment Check",
-  "description": "Prevents sending an old copy by checking each attachment against the files beside it (a newer save of the same file, report_v3_final.pdf edited today next to the attached report_v2.pdf), names that say draft, old, copy or (1), Office lock files and a file dated before the subject's date, with a one-tap swap to the newer file and Undo.",
+  "description": "Attachment check against nearby files: a newer save of the same document, names saying draft, old, copy or (1), Office lock files and files dated before the subject's date, with a one-tap swap to the newer file and Undo.",
   "dependencies": [
     "lucide-react"
   ],
@@ -41,6 +41,24 @@
     ],
     "fields": [
       "file"
+    ],
+    "summary": "Flags an attachment that looks like an older copy, e.g. report_v2.pdf attached while report_v3_final.pdf was edited today.",
+    "catches": [
+      "A newer file of the same document nearby",
+      "Names containing draft, old, copy or (1)",
+      "Office lock files (~$…)",
+      "Files last modified before a date named in the subject",
+      "One-tap swap to the newer file, with Undo"
+    ],
+    "limits": [
+      "Only sees the nearby files you pass; it can't browse folders",
+      "Name matching ignores filler words, so different documents with similar names can be confused",
+      "Modified dates can be wrong after copying or syncing"
+    ],
+    "a11y": [
+      "Summary in a polite live region; status shown with icon and text",
+      "Focus moves to the next fix, Undo or Send as issues are resolved",
+      "Fix and Undo are labelled buttons"
     ]
   },
   "categories": [

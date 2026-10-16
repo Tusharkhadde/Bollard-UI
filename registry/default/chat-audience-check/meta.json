@@ -1,7 +1,29 @@
 {
   "title": "Chat Audience Check",
-  "description": "Stops a sensitive message landing in a group chat with someone who shouldn't be there (the slip that put a journalist, shown only as \"JG\", in US officials' Signal chat in 2025): before it sends it flags members whose name disagrees with what you saved them as, names nobody can identify, people who joined after your last message and people from outside your organisation, stays a quiet one-liner for ordinary messages, and when the text looks sensitive or an identity doesn't add up lists those people with Remove, View profile and \"I know them\" and needs a second, deliberate press to send.",
-  "dependencies": ["lucide-react"],
+  "summary": "Before a sensitive message goes to a group chat, flags members who don't seem to belong, so it doesn't reach the wrong person.",
+  "description": "Flags members whose name differs from how you saved them, unidentifiable names, people who joined after your last message and outsiders. Quiet for ordinary messages; for sensitive text it lists them with Remove, View profile and \"I know them\" and needs a second press.",
+  "catches": [
+    "Members whose display name disagrees with what you saved them as",
+    "Names nobody can identify (initials, blanks)",
+    "People who joined after your last message",
+    "People outside your organisation, or marked external by the platform",
+    "Messages with sensitive terms, which raise the check"
+  ],
+  "limits": [
+    "Only as good as the member, contact and organisation data you pass",
+    "Sensitive-term matching is a word list (replaceable)",
+    "Sending is still possible after a second press"
+  ],
+  "a11y": [
+    "Visible <label>; the textarea is described by the flagged-member list",
+    "Escape cancels the second-press state; Enter sends only when not composing (IME-safe)",
+    "Focus moves to the first action in the flagged list",
+    "Remove buttons set aria-busy; errors use role=\"alert\" and status a role=\"status\" region"
+  ],
+  "server": "Membership and access to the conversation must be enforced by the chat service; this is a pre-send review.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Secret message reached a stranger in group",
   "mistakes": [
     "wrong person in group chat",

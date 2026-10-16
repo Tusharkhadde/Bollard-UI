@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "package-name-check",
   "title": "Package Name Check",
-  "description": "Stops an npm or pip install pulling in a typosquat by reading the install command or requirements list package by package and catching lookalikes of popular packages (loadsh, crossenv, cross-env.js, jeIlyfish with a capital I, colourama), import names that aren't the package to install (sklearn, cv2, bs4, PIL), built-ins installed from the registry (fs, crypto, json), names npm or PyPI can't publish, and, through an optional registry lookup, names that don't exist yet (the AI-hallucination trap) or appeared days ago with almost no downloads, each with a one-tap switch to the real package.",
+  "description": "npm and pip install-command check that flags lookalikes of popular packages (loadsh, crossenv, jeIlyfish), import names that aren't the package (sklearn, cv2, bs4, PIL), built-ins from the registry, unpublishable names, and via lookup, missing or brand-new names.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Typosquatted package gets installed",
+    "stops": "Helps catch a typosquatted package before install",
     "mistakes": [
       "npm typosquat package",
       "ai hallucinated package name",
@@ -45,10 +45,43 @@
     "fields": [
       "code",
       "text"
-    ]
+    ],
+    "summary": "Reads an npm or pip install command package by package and flags typosquats, wrong import names and packages that don't exist yet.",
+    "server": "Pin dependencies with a lockfile and scan installs in CI; a client check is advisory.",
+    "catches": [
+      "Lookalikes of popular packages, including capital I for l",
+      "Import names used as install names (sklearn, cv2, bs4, PIL)",
+      "Node or Python built-ins installed from the registry (fs, crypto, json)",
+      "Names npm or PyPI can't publish",
+      "Names that don't exist (AI-hallucinated) or appeared days ago, through your lookup"
+    ],
+    "limits": [
+      "The popular-package list is a curated sample; pass your own",
+      "Existence and age checks need your registry lookup",
+      "Doesn't scan package code or check maintainers"
+    ],
+    "a11y": [
+      "Visible label; ecosystem picker is a labelled radiogroup",
+      "Textarea is described by the status (role=status)",
+      "Focus returns to a nearby control after a fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "npm: package.json name rules",
+          "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json"
+        },
+        {
+          "label": "PyPA: name normalization",
+          "url": "https://packaging.python.org/en/latest/specifications/name-normalization/"
+        }
+      ],
+      "note": "Informational. Confirmed npm's 214-character and no-uppercase rules and PyPI's normalization of runs of . - _ to a single -. The incident examples were not re-verified."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

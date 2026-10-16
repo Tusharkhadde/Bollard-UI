@@ -44,10 +44,15 @@ export function unusedScopes(selected: string[], used: string[]) {
 }
 
 export interface ScopePickerProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Visible label. */
   label?: string
+  /** Every scope your API offers, with plain-language descriptions. */
   scopes: ScopeDef[]
+  /** Selected scopes and expiry (controlled). */
   value?: ScopeSelection
+  /** Starting selection when uncontrolled. */
   defaultValue?: ScopeSelection
+  /** Called with the selection after every change. */
   onValueChange?: (value: ScopeSelection) => void
   /** Scope ids this key (or a similar one) actually used; enables the "Only what you've used" suggestion. */
   used?: string[]
@@ -55,23 +60,35 @@ export interface ScopePickerProps extends Omit<React.ComponentProps<"div">, "def
   expiryOptions?: (number | null)[]
   /** Suggested expiry when "no expiry" is picked. */
   suggestedExpiry?: number
+  /** Locale for expiry dates. */
   locale?: string
   /** "This key", "This app". */
   subject?: string
+  /** Period the usage data covers, e.g. "90 days". */
   usedWindow?: string
+  /** Warning for scopes not used in that period. */
   unusedText?: string
+  /** Label of the "Only what you've used" fix. */
   onlyUsedLabel?: string
+  /** Warning for a key that never expires. */
   noExpiryText?: string
+  /** Shown when the selection matches usage. */
   leastPrivilegeText?: string
+  /** Accessible label of the expiry options. */
   expiresLabel?: string
+  /** Label of the never-expires option. */
   neverLabel?: string
   /** `{days}` is filled in. */
   expiryFixLabel?: string
   /** `{date}` or `{days}` is filled in. */
   expiresOnText?: string
+  /** Expiry readback with a relative time. */
   expiresInText?: string
+  /** Readback for a key that never expires. */
   neverExpiresText?: string
+  /** Shown when no scope is selected. */
   emptyText?: string
+  /** Marks a scope granted by another one. */
   includedText?: string
 }
 

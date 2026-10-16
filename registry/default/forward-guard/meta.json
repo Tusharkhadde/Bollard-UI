@@ -1,7 +1,25 @@
 {
   "title": "Forward Guard",
-  "description": "Prevents oversharing when forwarding or sharing a thread by listing what the new recipients will see for the first time (earlier messages, internal notes, attachments, other people's addresses), skipping messages they were already on, trimming internal notes by default and letting each item be dropped before it goes.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lists what new recipients will see for the first time when a thread is forwarded, so internal notes and addresses aren't overshared.",
+  "description": "Lists what new recipients will see for the first time (earlier messages, internal notes, attachments, other people's addresses), skips messages they were already on, trims internal notes by default and lets each item be dropped before sending.",
+  "catches": [
+    "Earlier messages the new recipients haven't seen",
+    "Internal notes, trimmed by default",
+    "Attachments in the thread",
+    "Other people's email addresses, with an option to hide them"
+  ],
+  "limits": [
+    "Uses the thread and recipient data you pass",
+    "Forwarding runs your onForward; the mail system sends what it receives"
+  ],
+  "a11y": [
+    "Each item has a labelled checkbox (aria-label names it)",
+    "The summary is aria-live=\"polite\"",
+    "Forward sets aria-busy while sending"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Forwarded internal notes to a client",
   "mistakes": [
     "forwarded whole thread",

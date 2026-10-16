@@ -1,7 +1,26 @@
 {
   "title": "Partial Period",
-  "description": "Stops \"today so far vs all of yesterday\" from reading as a slump by comparing like for like (yesterday cut at the same minute) by default, warning with a one-tap fix when the full period is chosen, hatching the bucket still filling, dimming the part of yesterday not yet reached, and projecting the finish from yesterday's own curve, labelled as an estimate.",
-  "dependencies": ["lucide-react"],
+  "summary": "Compares today so far with yesterday at the same minute by default, so a still-filling period doesn't read as a slump.",
+  "description": "Period comparison that compares like for like (yesterday cut at the same minute) by default, warns when the full period is chosen, hatches the bucket still filling, dims the part of yesterday not yet reached, and projects the finish, labelled as an estimate.",
+  "catches": [
+    "Today-so-far compared against all of yesterday",
+    "The current bucket shown as if complete: hatched instead",
+    "Projection presented as fact: labelled as an estimate",
+    "Full-period mode chosen: warning with a one-tap switch back"
+  ],
+  "limits": [
+    "Projection assumes today follows yesterday's shape",
+    "Works with the buckets you pass; it doesn't fetch data",
+    "One previous period, not a seasonal baseline"
+  ],
+  "a11y": [
+    "Mode switch is a labelled radiogroup",
+    "Change and warnings are in polite live regions with text direction, not only arrows",
+    "The bar chart is aria-hidden; the numbers are given in text"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Today looks like a slump vs yesterday",
   "mistakes": [
     "today vs yesterday unfair",

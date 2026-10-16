@@ -73,6 +73,7 @@ export interface LargeAttachmentProps extends Omit<React.ComponentProps<"div">, 
   value?: string
   /** Initial service id when uncontrolled. */
   defaultValue?: string
+  /** Called with the id of the service the user picks. */
   onValueChange?: (id: string) => void
   /** Upload these files and send a link instead. */
   onSendAsLink?: (files: AttachmentFile[]) => void
@@ -82,14 +83,23 @@ export interface LargeAttachmentProps extends Omit<React.ComponentProps<"div">, 
   estimate?: (file: AttachmentFile) => number
   /** Templates: `{size}`, `{limit}`, `{over}`, `{raw}`, `{count}` are filled in. */
   overText?: string
+  /** Explains the Base64 overhead. */
   encodedText?: string
+  /** Shown when everything fits. */
   fitsText?: string
+  /** Label marking files that push it over. */
   culpritLabel?: string
+  /** Button text to send culprits as a link. */
   linkLabel?: string
+  /** Button text to compress. */
   compressLabel?: string
+  /** Shown when compressing won't help. */
   noGainText?: string
+  /** Badge for a service the message fits. */
   fitsLabel?: string
+  /** Badge for a service the message is too big for. */
   tooBigLabel?: string
+  /** Accessible label of the service picker. */
   groupLabel?: string
 }
 

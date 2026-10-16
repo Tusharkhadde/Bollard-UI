@@ -1,14 +1,49 @@
 {
   "title": "Undo Toast",
-  "description": "Prevents irreversible mistakes without an \"Are you sure?\": actions run optimistically and only commit after an undo window with a countdown ring that pauses on hover, focus or a hidden tab, Ctrl/⌘+Z, a commit when the page closes, and a rollback with a clear notice when the commit fails.",
+  "summary": "Runs actions optimistically and commits only after an undo window, so a mistake can be taken back without an \"Are you sure?\".",
+  "description": "Deferred actions with an undo window: actions apply optimistically and commit only after a countdown that pauses on hover, focus or a hidden tab, with Ctrl/⌘+Z, a commit on page close (pagehide), and a rollback notice if the commit fails.",
+  "catches": [
+    "Regretted actions, undone before onCommit runs",
+    "Countdown paused while hovered, focused or the tab is hidden",
+    "Leaving the page, which flushes pending commits",
+    "Failed commits, rolled back with a notice"
+  ],
+  "limits": [
+    "Commits on pagehide can't be awaited; use fetch keepalive or sendBeacon",
+    "If the tab crashes, a pending commit may never run",
+    "Other users may see the optimistic state only after commit"
+  ],
+  "a11y": [
+    "Toast region has an aria-label and polite live updates; failures use role=alert",
+    "Undo button has an aria-label with the message and aria-keyshortcuts",
+    "Ctrl/⌘+Z triggers undo when hotkey is on",
+    "Countdown ring respects reduced motion"
+  ],
   "dependencies": [
     "@number-flow/react",
     "lucide-react",
     "motion"
   ],
   "stops": "Deleted item gone with no undo",
-  "mistakes": ["deleted email no undo", "accidentally archived item", "undo delete toast", "action committed too fast"],
-  "aliases": ["undo", "snackbar", "toast", "sonner", "optimistic update", "ctrl+z", "gmail undo", "archive"],
-  "flows": ["danger-zone", "messaging"],
+  "mistakes": [
+    "deleted email no undo",
+    "accidentally archived item",
+    "undo delete toast",
+    "action committed too fast"
+  ],
+  "aliases": [
+    "undo",
+    "snackbar",
+    "toast",
+    "sonner",
+    "optimistic update",
+    "ctrl+z",
+    "gmail undo",
+    "archive"
+  ],
+  "flows": [
+    "danger-zone",
+    "messaging"
+  ],
   "fields": []
 }

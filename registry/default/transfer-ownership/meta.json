@@ -1,7 +1,47 @@
-{"title": "Transfer Ownership", "description": "Stops ownership landing on the wrong person or the wrong plan: it reads back what moves and what you keep, warns when the email is outside your org with a one-tap switch to the colleague you probably meant, blocks a recipient whose plan can't own it, and only transfers once they accept, showing the pending request and its expiry meanwhile.", "dependencies": ["lucide-react"],
-  "stops": "Ownership transferred to wrong email",
-  "mistakes": ["transferred to wrong person", "typo in transfer email", "transfer ownership outside org", "new owner plan cant own"],
-  "aliases": ["transfer ownership", "change owner", "workspace owner", "admin", "transfer repo", "invite", "handover"],
-  "flows": ["account-settings", "danger-zone"],
-  "fields": ["email"]
+{
+  "title": "Transfer Ownership",
+  "summary": "Reads back what an ownership transfer moves and keeps, warns about an outside email or a recipient whose plan can't own it, and waits for acceptance.",
+  "description": "Ownership transfer that reads back what moves and what you keep, warns when the email is outside your org with a one-tap switch to the colleague you probably meant, blocks a recipient whose plan can't own it, and transfers only once they accept, showing the pending request.",
+  "catches": [
+    "Recipient email outside your organisation, with a likely internal match to switch to",
+    "Recipient plan too low to own the resource",
+    "What moves to them and what stays with you",
+    "Pending request and its expiry, with withdraw"
+  ],
+  "limits": [
+    "Recipient and plan data come from your props",
+    "The accept-before-transfer flow must be implemented by your backend"
+  ],
+  "a11y": [
+    "Section labelled by its title; email input has a <label>, aria-invalid on plan issues and a polite hint",
+    "Blocking issues use role=alert",
+    "Withdraw sets aria-busy while pending; state changes in a polite live region"
+  ],
+  "server": "Authorize the transfer server-side, require the recipient's acceptance, enforce plan eligibility and expire stale requests.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Ownership transferred to the wrong email",
+  "mistakes": [
+    "transferred to wrong person",
+    "typo in transfer email",
+    "transfer ownership outside org",
+    "new owner plan cant own"
+  ],
+  "aliases": [
+    "transfer ownership",
+    "change owner",
+    "workspace owner",
+    "admin",
+    "transfer repo",
+    "invite",
+    "handover"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "email"
+  ]
 }

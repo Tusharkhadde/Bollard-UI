@@ -82,6 +82,7 @@ export interface DiffTableProps extends React.ComponentProps<"div"> {
   missingNote?: (columns: string) => string
   /** Screen reader text for `true` and `false`. */
   yesLabel?: string
+  /** Text read for a No cell. */
   noLabel?: string
   /** Line under a filtered table. Receives how many identical rows are hidden. */
   hiddenNote?: (count: number) => string

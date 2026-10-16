@@ -62,29 +62,41 @@ export interface TransferOwnershipProps extends Omit<React.ComponentProps<"secti
   keeps: string[]
   /** Controlled request. `null` means no transfer has been sent. */
   request?: TransferRequest | null
+  /** Starting pending request when uncontrolled. */
   defaultRequest?: TransferRequest | null
+  /** Called when a request is sent or withdrawn. */
   onRequestChange?: (request: TransferRequest | null) => void
   /** Sends the request. Return a promise to show a pending state; a rejection keeps the form. */
   onSend: (recipient: { email: string; name?: string }) => void | Promise<void>
   /** Controlled recipient email. */
   value?: string
+  /** Starting recipient email when uncontrolled. */
   defaultValue?: string
+  /** Called with the recipient email. */
   onValueChange?: (email: string) => void
   /** Withdraws a pending request. */
   onWithdraw?: () => void | Promise<void>
   /** How long the recipient has to accept. */
   expiresInDays?: number
+  /** Heading, given the resource name. */
   title?: (resource: string) => React.ReactNode
+  /** Label of the recipient email input. */
   label?: string
+  /** Label of the send-request button. */
   sendLabel?: string
+  /** Warning for an email outside the organisation. */
   externalText?: (domain: string) => string
+  /** Checkbox text to confirm an outside recipient. */
   externalAck?: (domain: string) => string
+  /** Warning when the recipient's plan is too low. */
   planText?: (name: string, plan: string, required: string) => string
   /** Status line once a request exists. `who` is their name or email. */
   statusText?: (status: TransferStatus, who: string, resource: string, daysLeft: number) => string
   /** Line under the readback before sending. */
   noteText?: (expiresInDays: number) => string
+  /** Label of the withdraw button. */
   withdrawLabel?: string
+  /** Label of the choose-someone-else button. */
   chooseAgainLabel?: string
 }
 

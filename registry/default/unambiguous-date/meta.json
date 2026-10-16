@@ -1,6 +1,22 @@
 {
   "title": "Unambiguous Date",
-  "description": "Prevents DD/MM vs MM/DD misreadings by showing dates as \"3 Oct 2026\" with the distance from today, flagging numeric inputs that read two ways with a one-tap choice, and letting one answer apply to a whole imported column.",
+  "summary": "Shows numeric dates as \"3 Oct 2026\" and asks when 03/10 could mean two dates, so DD/MM and MM/DD aren't mixed up.",
+  "description": "Date display that writes dates as \"3 Oct 2026\" with distance from today, flags numeric inputs that read two ways (DD/MM vs MM/DD) with a one-tap choice, and lets one answer apply to a whole imported column.",
+  "catches": [
+    "Numeric dates with two valid readings (03/10/2026)",
+    "Impossible dates like 31/02, rejected instead of rolled over",
+    "Year-first ISO dates, read unambiguously",
+    "One answer applied to every date in a column"
+  ],
+  "limits": [
+    "Numeric formats only; month names are not parsed here",
+    "Two-digit years may be ambiguous"
+  ],
+  "a11y": [
+    "Readback in a polite live region with a <time dateTime> element",
+    "Choice buttons are labelled; focus moves to the chosen reading",
+    "Icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

@@ -1,7 +1,25 @@
 {
   "title": "Stale Reply",
-  "description": "Prevents replying to a conversation that has moved on by warning \"This was 3 weeks ago and 14 newer messages followed\", surfacing the newest related messages (and any that already settled it, like \"fixed in 2.4.1\"), and offering to reply to the latest or quote the original for context.",
-  "dependencies": ["lucide-react"],
+  "summary": "Warns before replying to an old message in a thread that has moved on, and shows what was said since.",
+  "description": "Warns \"This was 3 weeks ago and 14 newer messages followed\" before you reply, surfaces the newest related messages (and any that already settled it, like \"fixed in 2.4.1\"), and offers to reply to the latest or quote the original.",
+  "catches": [
+    "Replies to messages older than staleAfter (default 7 days) with at least minNewer newer messages (default 10)",
+    "Newer related messages: direct replies, same author or shared keywords",
+    "Messages that look like they already resolved it",
+    "One-tap reply-to-latest or quote-original"
+  ],
+  "limits": [
+    "Relatedness is keyword-based and can miss or over-include",
+    "\"Resolved\" detection is a guess from wording"
+  ],
+  "a11y": [
+    "Notice is a region with an aria-label; summary in a polite live region",
+    "Newer messages expand with aria-expanded/aria-controls; collapsed content is inert",
+    "Dismiss has an aria-label"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Replied to a thread that moved on",
   "mistakes": [
     "replying to old message",

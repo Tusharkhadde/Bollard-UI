@@ -70,13 +70,21 @@ export interface ConflictBannerProps extends Omit<React.ComponentProps<"div">, "
   onUseTheirs: () => void
   /** Templates: `{editor}`, `{when}` and `{count}` ("3 words") are filled in. */
   message?: string
+  /** Shown when both versions are the same. */
   identicalText?: string
+  /** Overwrite confirmation text ({count} words are filled in). */
   confirmText?: string
+  /** Text for the compare toggle. */
   compareLabel?: string
+  /** Text for the use-theirs button. */
   useTheirsLabel?: string
+  /** Text for the keep-mine button. */
   keepMineLabel?: string
+  /** Text for the confirm-overwrite button. */
   overwriteLabel?: string
+  /** Text for the cancel button. */
   cancelLabel?: string
+  /** Text for the dismiss button. */
   dismissLabel?: string
   /** Locale for "4 min ago". Defaults to the browser's. */
   locale?: string

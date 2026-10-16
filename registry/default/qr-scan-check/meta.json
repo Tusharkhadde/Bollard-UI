@@ -1,8 +1,29 @@
 {
   "title": "QR Scan Check",
-  "description": "Prevents quishing by showing where a scanned QR code really goes before anything opens: the registrable domain in bold against what is printed beside the code (the sticker-over-the-real-code trick, with a one-tap \"Go to the printed site instead\"), lookalike and brand-borrowing domains, short links followed through a pluggable resolver, app downloads, and for UPI codes the payee, a pre-filled amount and \"scan to receive a refund\" scams.",
-  "dependencies": ["lucide-react"],
-  "stops": "Scanned a fake QR sticker",
+  "summary": "Shows where a scanned QR code really goes before anything opens, so a fake sticker over a real code doesn't send you somewhere else.",
+  "description": "Post-scan check showing the real domain against what's printed beside the code (with a go-to-printed-site option), flagging lookalike and brand-borrowing domains, short links (via your resolver), app downloads, and for UPI codes the payee, amount and refund scams.",
+  "catches": [
+    "Destination that differs from the printed site (sticker over a real code)",
+    "Lookalike and brand-borrowing domains",
+    "Short links, followed through your resolver",
+    "App downloads",
+    "UPI codes: payee, pre-filled amount and \"scan to receive a refund\" scams"
+  ],
+  "limits": [
+    "Doesn't scan the code itself; pass the decoded payload",
+    "Brand and shortener lists are defaults; pass trusted and shorteners",
+    "Can't tell whether a site you trust has been compromised"
+  ],
+  "a11y": [
+    "Result is a group labelled by its heading",
+    "Verdict is in a polite live region with text, icons aria-hidden",
+    "Open and cancel are buttons"
+  ],
+  "server": "Check URLs against a safe-browsing service and verify UPI payees on the server before payment.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps catch a fake QR sticker before it opens",
   "mistakes": [
     "qr code scam",
     "quishing",

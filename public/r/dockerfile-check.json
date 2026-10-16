@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dockerfile-check",
   "title": "Dockerfile Check",
-  "description": "Stops a Dockerfile shipping a root, leaky or slow image by reading it the way BuildKit does (escape directive, continuations, heredocs, stages) and flagging a final image that runs as root, secrets in ARG or ENV (Docker's own key rule), secret files baked in or carried over by COPY --from, COPY . before the dependency install, a missing .dockerignore, apt-get without -y, --no-install-recommends or list cleanup, ADD from a URL without --checksum, curl | sh and shell-form CMD or ENTRYPOINT that swallow SIGTERM, with one-tap fixes such as secret mounts, manifest-first installs and exec form.",
+  "description": "Parses like BuildKit (escape directive, continuations, heredocs, stages) and flags a final image running as root, secrets in ARG or ENV, secret files baked in or copied across stages, COPY . before installs, no .dockerignore, apt-get hygiene, unchecked ADD URLs, curl | sh.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,6 +43,24 @@
     "fields": [
       "code",
       "secret"
+    ],
+    "summary": "Reads a Dockerfile the way BuildKit does and flags images that run as root, bake in secrets or rebuild slowly.",
+    "server": "Run image scanning and policy checks in CI; this check doesn't see the built image.",
+    "catches": [
+      "A final stage that runs as root",
+      "Secrets in ARG or ENV, and secret files copied in or carried by COPY --from",
+      "COPY . before dependency install (slow rebuilds) and a missing .dockerignore",
+      "apt-get without -y, --no-install-recommends or list cleanup",
+      "ADD from a URL without --checksum, curl | sh and shell-form CMD"
+    ],
+    "limits": [
+      "Static reading of the file; it doesn't build the image or scan installed packages",
+      "Base-image vulnerabilities are out of scope"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to a role=\"status\" summary",
+      "Jumping to a finding focuses the textarea at that line",
+      "After a fix, focus moves to the next fix or back to the field"
     ]
   },
   "categories": [

@@ -37,17 +37,25 @@ export interface UploadWaitProps extends Omit<React.ComponentProps<"form">, "onS
   onSubmit: (data: FormData) => void | Promise<void>
   /** Retries a failed upload. */
   onRetry: (id: string) => void
+  /** Label of the submit button. */
   submitLabel?: string
   /** `{count}` is "2 uploads". */
   waitingLabel?: string
+  /** Label when an upload failed. */
   failedLabel?: string
+  /** Label while onSubmit runs. */
   submittingLabel?: string
+  /** Label after sending. */
   sentLabel?: string
+  /** Label of the cancel-queued-send button. */
   cancelLabel?: string
+  /** Label prefix of each retry button. */
   retryLabel?: string
   /** Hint while uploads run and nothing is queued. `{count}` and `{submit}` are filled in. */
   idleHint?: string
+  /** Hint while the send is queued. */
   queuedHint?: string
+  /** Hint when an upload failed. */
   failedHint?: string
 }
 

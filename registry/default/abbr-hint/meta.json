@@ -1,6 +1,23 @@
 {
   "title": "Abbr Hint",
-  "description": "Stops readers guessing at jargon (TAT, SLA, kWh) by making each term a dotted, tappable and keyboard-focusable hint instead of a hover-only <abbr title>, spelling it out inline on first use, reading the expansion to screen readers without opening anything, and flagging abbreviations the glossary doesn't cover, with a portalled hint that is never clipped by a scrolling card or table and flips to stay on screen.",
+  "summary": "Turns jargon like TAT or SLA into a tappable, focusable hint so readers on touch screens and keyboards can see what it means.",
+  "description": "Makes each abbreviation a dotted, tappable, keyboard-focusable hint instead of a hover-only <abbr title>, can spell it out on first use, exposes the expansion to screen readers, and flags terms missing from the glossary. The hint is portalled and flips to stay on screen.",
+  "catches": [
+    "Abbreviations whose only explanation is a hover-only title attribute",
+    "First use of a term in a block of text, which can be spelled out inline",
+    "Plurals of known terms (\"SLAs\", \"API's\")",
+    "Abbreviations in the text that the glossary does not cover"
+  ],
+  "limits": [
+    "Matches whole words case-sensitively, so a differently cased spelling is not linked",
+    "Only knows the terms you put in the glossary; it does not guess expansions"
+  ],
+  "a11y": [
+    "Each term is a <button> with aria-expanded, reachable by Tab",
+    "The expansion is linked with aria-describedby, so screen readers hear it without opening the hint",
+    "Escape closes an open hint",
+    "Animation respects prefers-reduced-motion (motion's useReducedMotion)"
+  ],
   "dependencies": [
     "@floating-ui/react",
     "motion"

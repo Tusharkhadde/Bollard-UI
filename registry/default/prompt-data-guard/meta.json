@@ -1,9 +1,34 @@
 {
   "title": "Prompt Data Guard",
-  "description": "Stops customer data, secrets and confidential documents going into an AI chat by saying before send exactly what goes where and for how long (\"248 customer rows and a CONFIDENTIAL doc will go to OpenAI, kept up to 30 days\"), counting table rows and every cell in a name column (and every other mention of those names) alongside checked emails, phones, cards, Aadhaar, PAN and API keys across the message and its attachments, then sending in one tap with consistent stand-ins (‹EMAIL_1›) whose mapping stays on the device so restoreStandIns() puts the real values back into the reply, with a second press needed to send the real data.",
-  "dependencies": ["lucide-react", "motion"],
-  "registryDependencies": ["pii-post-guard", "secret-paste-guard"],
-  "stops": "Customer list pasted into ChatGPT",
+  "summary": "Before a message goes to an AI chat, says exactly what personal data, secrets or confidential documents are in it and where they'll go.",
+  "description": "AI chat composer guard that says before send what goes where (\"248 customer rows and a CONFIDENTIAL doc will go to OpenAI\"), counting table rows, name columns, emails, phones, cards, Aadhaar, PAN and API keys in text and attachments, and can send with stand-ins.",
+  "catches": [
+    "Pasted tables with personal data, counted by row",
+    "Names in name columns and their other mentions",
+    "Emails, phones, card numbers, Aadhaar and PAN",
+    "API keys and other secrets (via detectSecrets)",
+    "CONFIDENTIAL markings in attachments"
+  ],
+  "limits": [
+    "Names in free text need your detectNames (an NER model or CRM list)",
+    "Destination and retention text come from your destination prop",
+    "Detection is pattern-based; it can miss data or flag harmless text"
+  ],
+  "a11y": [
+    "Visible label; textarea is described by the readback when risky",
+    "Remove-attachment buttons have aria-labels naming the file",
+    "Focus returns to the field after changes; animations are skipped under reduced motion"
+  ],
+  "server": "Apply DLP and redaction on the server or gateway before data reaches the model provider.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "registryDependencies": [
+    "pii-post-guard",
+    "secret-paste-guard"
+  ],
+  "stops": "Helps keep a customer list out of an AI chat",
   "mistakes": [
     "pasted customer data into chatgpt",
     "confidential document sent to ai",
@@ -23,6 +48,13 @@
     "csv export",
     "gdpr"
   ],
-  "flows": ["messaging", "devtools"],
-  "fields": ["text", "file", "email"]
+  "flows": [
+    "messaging",
+    "devtools"
+  ],
+  "fields": [
+    "text",
+    "file",
+    "email"
+  ]
 }

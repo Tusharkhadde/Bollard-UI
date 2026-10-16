@@ -1,7 +1,38 @@
 {
   "title": "Recurring Charge Readback",
-  "description": "Prevents trial-to-paid and intro-price surprises by reading back, next to the subscribe button, what's charged today, when the first real charge and any price step-up land, and the exact cancel-by time with zone, and by flagging a trial too short to cancel in time or a button whose words (\"free\", \"₹499/mo\" on yearly billing) disagree with the charge.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads back what a subscribe button really commits to: today's charge, first real charge, price step-ups and the cancel-by time.",
+  "description": "Readback beside a subscribe button: charged today, when the first real charge and any intro price step-up land, and the cancel-by time with zone. Flags trials too short to cancel in time and button text that disagrees with the charge.",
+  "catches": [
+    "Amount charged today, including small card checks",
+    "Date of the first real charge after a trial",
+    "Intro price ending and the step-up amount",
+    "Cancel-by time, with time zone, using cancelNoticeHours",
+    "Button wording (\"free\", a monthly price on yearly billing) that contradicts the charge",
+    "Optional India e-mandate notes (24-hour pre-debit alert, approval above a limit)"
+  ],
+  "limits": [
+    "Only reads back the plan you describe; it does not charge or schedule anything",
+    "Month arithmetic depends on billingTimeZone; pass the zone your biller renews in",
+    "The e-mandate notes describe RBI rules as of the verified date; they do not apply outside India"
+  ],
+  "a11y": [
+    "Renders as a polite live region; give your subscribe button aria-describedby pointing at its id",
+    "Warnings use an icon plus text; icons are aria-hidden"
+  ],
+  "server": "Charge the amounts and dates your billing system computes, not the client's; send the required pre-debit notices from the server or issuer.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RBI – Digital Payments – E-mandate Framework, 2026 (Apr 21, 2026)",
+        "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13374&Mode=0"
+      }
+    ],
+    "note": "Informational. Confirmed: issuer pre-transaction notice at least 24 hours before debit; recurring debits up to ₹15,000 without AFA (₹1,00,000 for insurance premiums, mutual fund subscriptions and credit card bills; the default mandateLimit covers only the general case). Check the official source."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Free trial quietly became a paid plan",
   "mistakes": [
     "free trial charged",

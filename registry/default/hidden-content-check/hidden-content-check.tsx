@@ -65,6 +65,7 @@ export interface HiddenContentCheckProps extends Omit<React.ComponentProps<"sect
   onRemove?: (finding: HiddenFinding, file: File | Blob) => Promise<File | Blob>
   /** Fires with each report, including after a removal. */
   onReportChange?: (report: HiddenReport) => void
+  /** Override any visible string, including per-kind finding text. */
   messages?: Partial<Omit<Messages, "kind">> & { kind?: Partial<Record<HiddenKind, string>> }
 }
 

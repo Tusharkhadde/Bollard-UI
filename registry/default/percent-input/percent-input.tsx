@@ -71,9 +71,13 @@ export interface PercentInputProps
   currency?: string
   /** BCP 47 locale for number formatting. */
   locale?: string
+  /** Message when a fraction was typed for a percent. */
   fractionMessage?: (typed: string, fix: string) => string
+  /** Message when a tiny basis-point value was typed. */
   tinyBpsMessage?: (typed: string, fix: string) => string
+  /** Message when the value is above max. */
   overMessage?: (max: string) => string
+  /** Message when the value is below min. */
   underMessage?: (min: string) => string
   /** Fix button text; receives the fixed value with its unit, e.g. "15%". */
   fixLabel?: (fix: string) => string

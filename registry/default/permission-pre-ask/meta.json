@@ -1,7 +1,26 @@
 {
   "title": "Permission Pre-Ask",
-  "description": "Prevents a wasted one-shot browser permission prompt by explaining why and what for in the page before calling the real API, telling a closed prompt from a block, and showing this browser's exact re-enable steps, then flipping to on by itself once the user allows it.",
-  "dependencies": ["lucide-react"],
+  "summary": "Explains why a permission is needed before the browser's one-shot prompt, and shows this browser's re-enable steps if it is blocked.",
+  "description": "In-page pre-ask for browser permissions that explains why before calling the real API, tells a closed prompt from a block, shows this browser's exact re-enable steps, and flips to on by itself once the user allows it.",
+  "catches": [
+    "Spending the browser prompt before the user knows why",
+    "Closed prompt vs permanent block",
+    "Browser-specific steps to turn a blocked permission back on (iOS uses Settings)",
+    "Permission granted later from settings: detected"
+  ],
+  "limits": [
+    "The Permissions API doesn't report every permission in every browser",
+    "Re-enable steps are written for major browsers and can drift as they change",
+    "Can't re-show the browser prompt once blocked"
+  ],
+  "a11y": [
+    "Container uses role=status; the blocked panel is a labelled region",
+    "Icons are aria-hidden",
+    "Allow and Not now are buttons"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Wasted the browser's one permission prompt",
   "mistakes": [
     "user blocked notifications",

@@ -45,13 +45,19 @@ export interface PermissionPreAskProps extends Omit<React.ComponentProps<"div">,
   request?: (permission: PermissionKind) => Promise<PermissionResult>
   /** Browser whose re-enable steps to show; detected when omitted. */
   browser?: BrowserName
+  /** Button text to ask the browser. */
   allowLabel?: string
+  /** Button text to decline for now. */
   laterLabel?: string
+  /** Shown while the browser prompt is open. */
   waitingText?: string
+  /** Shown when the prompt was closed without a choice. */
   dismissedText?: string
   /** `{noun}` and `{is}` (is/are) are filled in. */
   blockedTitle?: string
+  /** Button text to check again after changing settings. */
   recheckLabel?: string
+  /** Button text to ask again after a dismissal. */
   askAgainLabel?: string
 }
 

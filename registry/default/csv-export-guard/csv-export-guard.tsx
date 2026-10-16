@@ -34,10 +34,15 @@ export interface CsvExportGuardProps extends Omit<React.ComponentProps<"div">, "
   bom?: boolean
   /** Short phrase per issue kind: "{count} values {phrase}". */
   messages?: Partial<Record<CsvIssueKind, string>>
+  /** Heading above the column list. */
   title?: string
+  /** Text for a column's fix toggle. */
   fixLabel?: string
+  /** Text for a column's fix toggle when on. */
   fixedLabel?: string
+  /** Text for the fix-all button. */
   fixAllLabel?: string
+  /** Export button text. */
   exportLabel?: string
   /** `{count}` is filled in. */
   exportAnywayLabel?: string

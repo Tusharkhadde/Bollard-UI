@@ -1,10 +1,40 @@
 {
   "title": "Password Policy Input",
-  "description": "Stops admins shipping password rules that make accounts weaker by reading the policy back against NIST SP 800-63B-4: it flags banned composition rules, forced rotation, security questions and hints, minimums under 15 (8 with MFA), maximums under 64, blocked paste, no breached-password check and no failed-sign-in limit, shows what the rules do to real passwords (Password1! accepted, a long passphrase refused), and fixes each rule or applies NIST defaults in one tap.",
+  "summary": "Reads an admin's password rules back against NIST SP 800-63B-4 and shows what they do to real passwords, so the rules don't make accounts weaker.",
+  "description": "Password policy editor that checks rules against NIST SP 800-63B-4 (composition rules, forced rotation, security questions, hints, minimum under 15 or 8 with MFA, maximum under 64, blocked paste, no breach check or attempt limit), shows sample passwords and applies defaults.",
+  "catches": [
+    "Composition rules (mixtures of character types), which NIST says SHALL NOT be imposed",
+    "Forced periodic rotation",
+    "Security questions and password hints",
+    "Minimum under 15 (or 8 when only used with MFA), maximum under 64",
+    "Paste blocked, no breached-password check, no failed-attempt limit",
+    "What the rules accept and refuse, shown on sample passwords"
+  ],
+  "limits": [
+    "Covers the password sections of the standard, not the whole of SP 800-63B",
+    "Doesn't enforce anything; your auth system applies the policy",
+    "Informational; check the official source"
+  ],
+  "a11y": [
+    "Every policy input has a visible label, aria-invalid on SHALL findings and a description",
+    "Fix buttons are real buttons; focus moves to the summary after applying defaults",
+    "Icons are aria-hidden"
+  ],
+  "server": "Enforce length, blocklist and attempt limits in your authentication service.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "NIST SP 800-63B-4, Digital Identity Guidelines: Authentication and Authenticator Management",
+        "url": "https://pages.nist.gov/800-63-4/sp800-63b.html"
+      }
+    ],
+    "note": "Informational; check the official source. Confirmed: minimum 15 for single-factor, 8 when only used with MFA; SHOULD permit at least 64; SHALL NOT impose composition rules, periodic change, hints or KBA; SHOULD permit paste."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Password rules weaken every account",
+  "stops": "Helps catch password rules that weaken accounts",
   "mistakes": [
     "password complexity rules bad",
     "forced password rotation",

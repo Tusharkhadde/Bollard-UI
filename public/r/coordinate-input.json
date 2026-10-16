@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "coordinate-input",
   "title": "Coordinate Input",
-  "description": "Prevents pins on the wrong continent by reading decimal, DMS and pasted map links (taking Google's pin, not the map centre), catching swapped latitude and longitude, flipped west or south signs against an expected area and 0, 0 defaults, and reading every point back with an OpenStreetMap link.",
+  "description": "Reads decimal, DMS and pasted map links (taking Google's pin, not the map centre), catches swapped latitude and longitude, flipped west/south signs against an expected area and 0, 0 defaults, and reads each point back with an OpenStreetMap link.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,10 +44,28 @@
     "fields": [
       "address",
       "number"
+    ],
+    "summary": "Reads coordinates in any common format and catches swapped or sign-flipped values, so a pin doesn't land on the wrong continent.",
+    "catches": [
+      "Latitude and longitude swapped",
+      "West or south signs flipped, compared with the expected area",
+      "0, 0 left as a default",
+      "Map links pasted in, using the pin rather than the map centre",
+      "DMS and decimal formats, read back as one point"
+    ],
+    "limits": [
+      "Sign and swap checks need an expectedArea to compare against",
+      "Assumes WGS 84 latitude/longitude; projected coordinates are not supported",
+      "The OpenStreetMap link opens an external site"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to an aria-live=\"polite\" status",
+      "Fix buttons have visible text",
+      "Icons are aria-hidden; the point is read back in text"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

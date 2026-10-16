@@ -193,6 +193,7 @@ const keyframes =
   "@keyframes cui-step-invalidation-in{from{opacity:0;transform:translateY(-6px)}}@keyframes cui-step-invalidation-mark{0%{transform:scale(.4)}60%{transform:scale(1.25)}}"
 
 export interface StepInvalidationRailProps<T extends Values> extends Omit<React.ComponentProps<"ol">, "children"> {
+  /** The wizard state returned by the hook. */
   wizard: Wizard<T>
   /** Read after a step that needs another look. */
   staleHint?: string
@@ -232,16 +233,23 @@ export function StepInvalidationRail<T extends Values>({ wizard, staleHint = "ne
 }
 
 export interface StepInvalidationNoticeProps<T extends Values> extends Omit<React.ComponentProps<"div">, "children"> {
+  /** The wizard state returned by the hook. */
   wizard: Wizard<T>
   /** Formats an answer for the message. Defaults to the value, or the items joined. */
   formatValue?: (field: keyof T, value: unknown) => string
   /** Templates. `{field}`, `{from}`, `{to}`, `{impact}`, `{count}` ("2 steps"), `{position}`, `{total}` and `{step}` are filled in. */
   pendingText?: string
+  /** Says how many steps need a look. */
   staleText?: string
+  /** Shown while reviewing affected steps. */
   reviewText?: string
+  /** Label of the keep-current-answer button. */
   keepLabel?: string
+  /** Label of the apply-change button. */
   changeLabel?: string
+  /** Label of the start-review button. */
   reviewLabel?: string
+  /** Singular and plural word for "step". */
   stepWord?: [singular: string, plural: string]
 }
 
@@ -318,13 +326,19 @@ export function StepInvalidationNotice<T extends Values>({
 }
 
 export interface StepInvalidationNavProps<T extends Values> extends Omit<React.ComponentProps<"div">, "children" | "onSubmit"> {
+  /** The wizard state returned by the hook. */
   wizard: Wizard<T>
   /** Runs on the last step once nothing needs another look. */
   onFinish?: () => void
+  /** Label of the Back button. */
   backLabel?: string
+  /** Label of the Next button. */
   nextLabel?: string
+  /** Label of Next while reviewing. */
   reviewNextLabel?: string
+  /** Label when the review is complete. */
   reviewDoneLabel?: string
+  /** Label of the Finish button. */
   finishLabel?: string
   /** Shown beside a held finish button. */
   blockedHint?: string

@@ -139,11 +139,17 @@ export interface TabCollisionProps extends React.ComponentProps<"fieldset"> {
   dirty?: boolean
   /** Called whenever this tab gains or loses the right to edit. */
   onStatusChange?: (status: TabStatus) => void
+  /** Shown when another tab is editing. */
   message?: string
+  /** Shown when the other tab has unsaved changes. */
   dirtyMessage?: string
+  /** Confirmation before taking over. */
   confirmMessage?: string
+  /** Label of the Use-this-tab button. */
   takeOverLabel?: string
+  /** Label of the confirm-take-over button. */
   confirmLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
 }
 

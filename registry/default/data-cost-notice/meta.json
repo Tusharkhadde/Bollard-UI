@@ -1,7 +1,26 @@
 {
   "title": "Data Cost Notice",
-  "description": "Stops a big download, upload or autoplay eating a data plan or hanging on a slow line: on Data Saver, mobile data or a slow connection (Network Information API, or a Save-Data header passed in) it shows the size and an honest rough time (never calling a line at Chrome's 10 Mbps cap slow, uploads as \"over\"), offers the lighter version with what it saves, or waits for Wi-Fi and then starts by itself.",
-  "dependencies": ["lucide-react"],
+  "summary": "On mobile data, Data Saver or a slow line, shows a big download's size and rough time and offers a lighter version or waiting for Wi-Fi.",
+  "description": "On Data Saver, mobile data or a slow connection (Network Information API, or a Save-Data hint you pass) shows the size and an honest rough time, offers a lighter version with what it saves, or waits for Wi-Fi and then starts by itself.",
+  "catches": [
+    "Large downloads, uploads or autoplay on mobile data",
+    "Data Saver / Save-Data preference",
+    "Slow connections, with a rough time estimate",
+    "A lighter version and how much it saves"
+  ],
+  "limits": [
+    "The Network Information API is not available in every browser (notably Safari and Firefox); without it, pass connection details yourself",
+    "Chrome caps reported bandwidth at 10 Mbps, so times are rough and fast lines aren't called slow",
+    "\"Wait for Wi-Fi\" relies on the browser reporting the connection type"
+  ],
+  "a11y": [
+    "Notice content is a role=\"status\" region",
+    "Version choices are a labelled role=\"group\" of buttons",
+    "The waiting pulse only animates when motion is allowed"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Big download ate the mobile data pack",
   "mistakes": [
     "download used all mobile data",

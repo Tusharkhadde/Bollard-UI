@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "connection-string-input",
   "title": "Connection String Input",
-  "description": "Stops a database URL that fails to connect or connects insecurely by masking the password whenever it isn't being edited, reading back the user, host, database and TLS mode the driver will really use, and catching an unencoded @, #, / or % in the password (naming the host a strict parser would try instead), localhost in production, a missing, weak or misspelled sslmode, unknown libpq parameters, a port that belongs to another database, redis:// and MongoDB URLs without TLS (including mongodb+srv:// with tls=false), sslrootcert=system with a weaker sslmode, a colon in a MongoDB password, and quotes or KEY= pasted from a .env file, each with a one-tap fix and a copy-without-password button.",
+  "description": "Masks the password when not editing, reads back user, host, database and TLS mode, and catches unencoded @ # / % in passwords, localhost in production, missing or weak sslmode, unknown libpq parameters, wrong-database ports, Redis/MongoDB without TLS and .env quoting.",
   "dependencies": [
     "lucide-react"
   ],
@@ -46,10 +46,40 @@
     "fields": [
       "url",
       "secret"
-    ]
+    ],
+    "summary": "Masks a database URL's password and reads back the host, user and TLS mode the driver will actually use, so it doesn't fail or connect insecurely.",
+    "server": "Keep connection strings in a secrets manager and enforce TLS on the database server itself.",
+    "catches": [
+      "Unencoded @, #, / or % in the password, naming the host a strict parser would use",
+      "Missing, weak or misspelled sslmode, and sslrootcert=system with a weaker mode",
+      "localhost in production and a port that belongs to another database",
+      "redis:// and MongoDB URLs without TLS (including mongodb+srv with tls=false)",
+      "Quotes or KEY= pasted from a .env file"
+    ],
+    "limits": [
+      "Parses the URL text; it doesn't try to connect or check credentials",
+      "Covers PostgreSQL (libpq), MySQL, MongoDB and Redis URL forms; other drivers may parse differently",
+      "Masking is visual: the full password is still in the value you receive"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and aria-describedby to a role=\"status\" summary",
+      "Readback is a section labelled by its heading",
+      "Copy-masked button announces \"Copied\" in an aria-live=\"polite\" span",
+      "After a fix, focus moves to the next fix or back to the field"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "PostgreSQL libpq: connection strings and sslmode",
+          "url": "https://www.postgresql.org/docs/current/libpq-connect.html"
+        }
+      ],
+      "note": "Informational. Checked libpq sslmode values (prefer is the default) and that sslrootcert=system requires verify-full. MongoDB, MySQL and Redis conventions were not re-checked."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

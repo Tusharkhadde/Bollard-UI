@@ -1,4 +1,25 @@
-{"title": "Private Mode Notice", "description": "Warns before someone relies on drafts or “Remember me” in a browser that won't keep them (private window, blocked site data or a full quota), proving it with a real write test before guessing, offering to export unsaved work and guarding the tab from closing.", "dependencies": ["lucide-react"],
+{
+  "title": "Private Mode Notice",
+  "summary": "Warns before someone relies on drafts or \"Remember me\" in a browser that won't keep them, after testing that storage really works.",
+  "description": "Notice for private windows, blocked site data or a full quota, based on a real write test before any guess, that offers to export unsaved work and can warn before the tab closes.",
+  "catches": [
+    "Private window that erases saved data on close",
+    "Site data blocked, so nothing can be saved",
+    "Storage nearly full, so new saves may fail",
+    "Unsaved work at risk: export button"
+  ],
+  "limits": [
+    "Private-mode detection is sometimes inferred (\"likely\") when a write succeeds",
+    "Browsers change storage behaviour often",
+    "Export uses the data you pass in exportData"
+  ],
+  "a11y": [
+    "Notice is a labelled region inside a polite live region",
+    "Export and dismiss are buttons; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Drafts vanish in incognito",
   "mistakes": [
     "incognito lost my data",

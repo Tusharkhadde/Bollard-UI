@@ -1,6 +1,24 @@
 {
   "title": "Tip Picker",
-  "description": "Prevents overtipping by saying whether the percent is on the pre-tax or post-tax amount (with a switch), showing every preset in money that rolls to its new value when the base changes, flagging a service charge already on the bill, and holding back accidental huge tips (250 typed in the % field, 15 typed as money, 100% that doubles the bill), struck through in the summary, until they're fixed in one tap or confirmed.",
+  "summary": "Shows tips in money on a stated base and holds back accidental huge tips, like 250 typed in the % field.",
+  "description": "Tip picker that says whether the percent is on the pre- or post-tax amount (with a switch), shows each preset in money, flags a service charge already on the bill, and holds back accidental huge tips (250 in the % field, 15 as money, 100%) until fixed or confirmed.",
+  "catches": [
+    "An amount typed in the percent field (250%)",
+    "A percent typed in the money field (₹15 for 15%)",
+    "Tips at or above highPercent",
+    "A service charge already on the bill",
+    "Pre-tax vs post-tax base, stated and switchable"
+  ],
+  "limits": [
+    "Customs differ by country; presets and highPercent are yours to set",
+    "Rounds in the given currency; the payment system is the source of truth"
+  ],
+  "a11y": [
+    "Fieldset with a legend; base switch is a radiogroup",
+    "Presets are aria-pressed buttons showing money amounts",
+    "Custom input has a <label> and a hint via aria-describedby",
+    "Rolling figures respect reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "@number-flow/react",

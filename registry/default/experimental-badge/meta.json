@@ -1,4 +1,24 @@
-{"title": "Experimental Badge", "description": "Stops people trusting an unfinished feature blindly: the badge opens a plain list of concrete risks (work may be lost, things may change or disappear), a feedback link and a one-tap switch back to the stable version that says what happens to their work.", "dependencies": ["lucide-react"],
+{
+  "title": "Experimental Badge",
+  "summary": "A badge that opens the concrete risks of a beta feature and a one-tap way back to the stable version, so people don't trust it blindly.",
+  "description": "The badge opens a plain list of concrete risks (work may be lost, things may change or disappear), a feedback link and a one-tap switch back to the stable version that says what happens to their work.",
+  "catches": [
+    "Unclear risk of using an unfinished feature",
+    "No way back, by offering a switch to stable",
+    "What happens to work when switching back"
+  ],
+  "limits": [
+    "Lists the risks you write; it can't know them",
+    "Switching back runs your onSwitchBack"
+  ],
+  "a11y": [
+    "The badge is a button with aria-expanded and a descriptive aria-label",
+    "The panel is role=\"dialog\" with an aria-label",
+    "Switch-back errors use role=\"alert\""
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Trusted a beta feature and lost work",
   "mistakes": [
     "beta feature lost data",

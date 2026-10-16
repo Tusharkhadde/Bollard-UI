@@ -1,7 +1,46 @@
-{"title": "Drop Confirm", "description": "Stops accidental drag-and-drop moves: the target names exactly what will move and where, ignores a drop that lands before the pointer has rested on it, asks once before large moves or moves that change who can see the items, and offers Undo, with a Move here button for keyboard and touch.", "dependencies": ["lucide-react"],
+{
+  "title": "Drop Confirm",
+  "summary": "A drop target that names what will move and where, ignores flick drops and offers Undo, so files and folders don't land in the wrong place.",
+  "description": "The target names exactly what will move and where, ignores a drop before the pointer has rested on it, asks once before large moves or moves that change who can see the items, and offers Undo, with a Move here button for keyboard and touch.",
+  "catches": [
+    "Drops that land in passing, before the pointer settles (settleTime)",
+    "Large moves above a threshold (confirmAbove)",
+    "Moves into a different space that change who can see the items",
+    "Regret, with a timed Undo"
+  ],
+  "limits": [
+    "Item counts and spaces come from your drag data and props",
+    "Undo calls your onUndo; it can't reverse a move your backend already finalised"
+  ],
+  "a11y": [
+    "Each target is a role=\"group\" labelled with the destination and described by its status",
+    "A Move here button gives keyboard and touch users the same action, with a counted aria-label",
+    "The confirm step focuses Cancel; Escape closes it"
+  ],
+  "server": "Re-check permissions for the destination on the server, and support undo for moves that change sharing.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Folder dropped into wrong place",
-  "mistakes": ["drag and drop moved wrong folder", "accidental drag drop", "dropped file in shared folder", "drag changed permissions"],
-  "aliases": ["drag and drop", "dnd", "move to folder", "kanban", "file manager", "dnd-kit", "drop zone"],
-  "flows": ["danger-zone"],
-  "fields": ["file"]
+  "mistakes": [
+    "drag and drop moved wrong folder",
+    "accidental drag drop",
+    "dropped file in shared folder",
+    "drag changed permissions"
+  ],
+  "aliases": [
+    "drag and drop",
+    "dnd",
+    "move to folder",
+    "kanban",
+    "file manager",
+    "dnd-kit",
+    "drop zone"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
+  "fields": [
+    "file"
+  ]
 }

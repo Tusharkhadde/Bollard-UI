@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pincode-input",
   "title": "PIN Code Input",
-  "description": "Prevents parcels going to the wrong place by reading the state from an Indian PIN's first digits as you type (offline) and flagging a mismatch with the picked state, catching O typed for 0, wrong lengths, unused prefixes, Army Post codes and ZIP or UK postcodes typed for India, then reading the area back from a pluggable lookup and checking the city, with one-tap fixes.",
+  "description": "Indian PIN field that reads the state from the first digits offline and flags a mismatch with the picked state, catches O typed for 0, wrong lengths, unused prefixes, Army Post codes and ZIP or UK postcodes typed for India, then checks the area and city through your lookup.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,32 @@
     "fields": [
       "address",
       "number"
-    ]
+    ],
+    "summary": "Reads the state from an Indian PIN's first digits as you type and flags a mismatch with the chosen state, so a parcel doesn't go to the wrong place.",
+    "catches": [
+      "PIN prefix that doesn't match the chosen state",
+      "Letter O for 0, and digits from other scripts",
+      "Wrong length or unused prefixes",
+      "Army Post Office codes",
+      "US ZIP or UK postcodes typed for India, with a country switch"
+    ],
+    "limits": [
+      "Prefix-to-state is a table and can't tell every border case without the lookup",
+      "Format looks valid is not the same as deliverable",
+      "Area and city checks need your lookup"
+    ],
+    "a11y": [
+      "Visible label; input has aria-invalid when the lookup finds nothing and is described by a polite status",
+      "Fixes are buttons; focus returns to the input",
+      "Icons are aria-hidden"
+    ],
+    "rules": {
+      "verified": null,
+      "note": "Not verified this round: the prefix-to-state table is from India Post via Wikipedia (\"Postal Index Number\"), not a primary India Post source."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

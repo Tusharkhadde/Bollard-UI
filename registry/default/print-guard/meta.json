@@ -1,7 +1,27 @@
 {
   "title": "Print Guard",
-  "description": "Stops the printout that doesn't match the screen: before printing it finds light text on dark backgrounds the browser will drop, collapsed sections, tables wider than the page (measured at their narrowest), scroll boxes that print only what's in view and links without their address, offers print-only fixes that never change the screen, and since Ctrl+P can't be stopped, fixes those printouts automatically and offers a review.",
-  "dependencies": ["lucide-react"],
+  "summary": "Before printing, finds what the paper will lose (dropped backgrounds, collapsed sections, cut-off tables) and fixes it for print only.",
+  "description": "Pre-print check that finds light-on-dark text the browser drops, collapsed sections, tables wider than the page, scroll boxes that print only what's visible and links without addresses, with print-only fixes; since Ctrl+P can't be stopped, autoFix applies them too.",
+  "catches": [
+    "Light text on dark backgrounds the browser won't print",
+    "Collapsed sections that would print closed",
+    "Tables wider than the printable width",
+    "Scroll boxes that print only the visible part",
+    "Links printed without their address"
+  ],
+  "limits": [
+    "Default page width is A4 with 1 cm margins; set pageWidth for Letter or other sizes",
+    "Can't change the browser's own print settings (backgrounds, scale)",
+    "Checks the live DOM at print time; content loaded later is missed"
+  ],
+  "a11y": [
+    "Toggle uses aria-expanded; the panel is a labelled region, inert when closed",
+    "Status uses role=status; focus moves into the panel and back to Print",
+    "Highlight motion is skipped under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Printout doesn't match the screen",
   "mistakes": [
     "print preview broken",

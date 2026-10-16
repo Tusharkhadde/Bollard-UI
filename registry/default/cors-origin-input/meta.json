@@ -1,6 +1,25 @@
 {
   "title": "CORS Origin Input",
-  "description": "Prevents CORS allow-lists that silently never match or expose the API to every site by catching * with credentials, null, a trailing slash or path, a missing scheme, a default port and http or localhost in production, with one-tap fixes and a tester that names the near miss blocking an origin.",
+  "summary": "Checks a CORS allow-list for origins that never match or open the API to every site, and tests an origin against it.",
+  "description": "Catches * with credentials, null, trailing slashes or paths, missing schemes, default ports and http or localhost in production, with one-tap fixes and a tester that names the near miss blocking an origin.",
+  "catches": [
+    "* combined with credentials, and the null origin",
+    "Trailing slashes or paths, which never match an Origin header",
+    "Missing scheme and explicit default ports",
+    "http:// or localhost origins in production",
+    "Near misses when testing an origin against the list"
+  ],
+  "limits": [
+    "Checks the list text; your server's CORS middleware may normalise or match differently",
+    "CORS controls browsers only; it is not access control for the API"
+  ],
+  "a11y": [
+    "Labelled add field; origins are a labelled list with remove buttons named per origin",
+    "aria-invalid and aria-describedby to an aria-live=\"polite\" issues region",
+    "Severity is stated in text (\", error\" / \", warning\"), not just colour",
+    "Enter adds an origin; focus moves sensibly after removals and fixes"
+  ],
+  "server": "Enforce CORS in the server or gateway with exact origin matching, and authenticate API requests independently of CORS.",
   "dependencies": [
     "lucide-react"
   ],

@@ -68,16 +68,23 @@ export interface StaleReplyProps extends Omit<React.ComponentProps<"div">, "chil
   minNewer?: number
   /** How many newer messages to show. */
   show?: number
+  /** Called with the newest relevant message to reply to it instead. */
   onReplyToLatest?: (message: ThreadMessage) => void
   /** Reply here, quoting the original so readers have context. */
   onQuote?: (original: ThreadMessage) => void
+  /** Called when the notice is dismissed. */
   onDismiss?: () => void
   /** Templates: `{age}`, `{count}`, `{author}`, `{text}`, `{when}` are filled in. */
   message?: string
+  /** Marks a message that seems to have settled it. */
   resolvedText?: string
+  /** Label of the reply-to-latest button. */
   latestLabel?: string
+  /** Label of the quote-original button. */
   quoteLabel?: string
+  /** Label of the newer-messages toggle. */
   newestLabel?: string
+  /** Accessible label of the dismiss button. */
   dismissLabel?: string
 }
 

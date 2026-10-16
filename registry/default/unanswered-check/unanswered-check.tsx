@@ -50,6 +50,7 @@ const button =
   "inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-4 text-sm font-medium whitespace-nowrap outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-60"
 
 export interface UnansweredCheckProps extends Omit<React.ComponentProps<"section">, "children"> {
+  /** Every question with its answered, required, flagged and saving state. */
   questions: ExamQuestion[]
   /** `exam`: blanks are allowed but cost marks, so submitting with them takes a second click. `survey`: required questions must be answered. */
   mode?: "exam" | "survey"
@@ -65,22 +66,37 @@ export interface UnansweredCheckProps extends Omit<React.ComponentProps<"section
   onTimeUp?: () => void
   /** Final submit. Return a promise to show a pending state; a rejection keeps the answers and says so. */
   onSubmit: () => void | Promise<void>
+  /** Heading of the check. */
   heading?: string
+  /** Heading for unanswered required questions. */
   requiredLabel?: string
+  /** Heading for unanswered optional questions. */
   optionalLabel?: string
+  /** Heading for partly answered questions. */
   partialLabel?: string
+  /** Heading for questions flagged for review. */
   flaggedLabel?: string
+  /** Shown when everything is answered. */
   allDoneText?: string
   /** Templates: `{count}` and `{each}` are filled in. */
   autoSubmitText?: string
+  /** Time per open question. */
   paceText?: string
+  /** Warning in the last seconds. */
   lastSecondsText?: string
+  /** Label of the submit button. */
   submitLabel?: string
+  /** Label when blanks remain. */
   submitWithBlanksLabel?: string
+  /** Label of the second click to submit with blanks. */
   confirmLabel?: string
+  /** Label when required questions block submit. */
   needRequiredLabel?: string
+  /** Label while answers are saving. */
   savingLabel?: string
+  /** Label while onSubmit runs. */
   pendingLabel?: string
+  /** Shown when onSubmit rejects. */
   errorText?: string
 }
 

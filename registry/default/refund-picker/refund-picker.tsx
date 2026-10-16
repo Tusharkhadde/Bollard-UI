@@ -140,21 +140,31 @@ export function addRefundDays(from: Date, days: number, business = true) {
 }
 
 export interface RefundPickerProps extends Omit<React.ComponentProps<"section">, "defaultValue" | "onChange"> {
+  /** Items on the order, with quantity, price and refund rules. */
   items: RefundItem[]
+  /** Where the refund can go, with arrival windows and fees. */
   methods: RefundMethod[]
   /** Controlled units chosen per item id. */
   value?: Record<string, number>
+  /** Starting units per item id when uncontrolled. */
   defaultValue?: Record<string, number>
+  /** Called with units per item id after every change. */
   onValueChange?: (picked: Record<string, number>) => void
   /** Controlled refund method id. Defaults to the first method, which should be the original payment. */
   method?: string
+  /** Starting refund method id when uncontrolled. */
   defaultMethod?: string
+  /** Called with the chosen refund method id. */
   onMethodChange?: (id: string) => void
+  /** Original shipping charge, refunded when everything is returned. */
   shippingPaid?: number
+  /** Return-shipping fee deducted from the refund. */
   returnShippingFee?: number
   /** When the refund is issued, for the arrival dates. Pass it for deterministic rendering; otherwise the clock is read after mount. */
   now?: Date | string
+  /** ISO 4217 currency code. */
   currency?: string
+  /** Locale for money and date formatting. */
   locale?: string
   /** Issues the refund. Return a promise to show a pending state; a rejection keeps the form. */
   onConfirm?: (refund: { amount: number; method: string; picked: Record<string, number> }) => void | Promise<void>

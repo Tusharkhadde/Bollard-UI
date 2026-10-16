@@ -1,10 +1,44 @@
 {
   "title": "JWT Inspect",
-  "description": "Stops live tokens being pasted into online decoders by decoding on the page only, and flags alg none, HS-vs-RS key confusion, an expired token or a future nbf shown in the reader's own time zone, millisecond timestamps, a missing aud or iss, a very long lifetime and secrets or personal data readable in the payload.",
+  "summary": "Decodes a JWT on the page, without sending it anywhere, and flags alg none, key confusion, expiry and readable secrets.",
+  "description": "Local JWT decoder that never sends the token anywhere and flags alg none, HS vs RS key confusion, an expired token or future nbf (in the reader's zone), millisecond timestamps, a missing aud or iss, very long lifetimes, and secrets or personal data readable in the payload.",
+  "catches": [
+    "alg none, and algorithms outside your allow-list",
+    "HS/RS confusion (HMAC where an RSA key is expected)",
+    "Expired token or nbf in the future, shown in local time",
+    "Timestamps in milliseconds instead of seconds",
+    "Missing or wrong aud/iss, very long lifetime",
+    "Secrets or personal data readable in the payload"
+  ],
+  "limits": [
+    "Decodes only; the signature is never verified",
+    "Secret and PII detection is pattern-based",
+    "Doesn't make a token safe to use; your server must verify it"
+  ],
+  "a11y": [
+    "Visible label; input has aria-invalid and is described by the local-only note and the report",
+    "Report uses role=status; icons are aria-hidden",
+    "Clear button has an aria-label and returns focus to the field"
+  ],
+  "server": "Verify the signature, algorithm, issuer, audience and expiry on the server with a JWT library and a pinned key.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RFC 8725: JSON Web Token Best Current Practices",
+        "url": "https://www.rfc-editor.org/rfc/rfc8725"
+      },
+      {
+        "label": "RFC 7519: JSON Web Token",
+        "url": "https://www.rfc-editor.org/rfc/rfc7519"
+      }
+    ],
+    "note": "Informational. Checked RFC 8725's guidance on alg none and algorithm substitution; individual thresholds (lifetime, leeway) are product defaults, not standards."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Live token pasted into jwt.io",
+  "stops": "Helps keep live tokens out of online decoders",
   "mistakes": [
     "jwt decode online unsafe",
     "jwt expired token",

@@ -42,8 +42,11 @@ function segments(text: string, report: ReadabilityReport) {
 export interface ReadingLevelProps extends Omit<React.ComponentProps<"textarea">, "value" | "defaultValue" | "onChange"> {
   /** Visible label. */
   label?: string
+  /** Text (controlled). */
   value?: string
+  /** Starting text when uncontrolled. */
   defaultValue?: string
+  /** Called with the new text on every edit or swap. */
   onValueChange?: (value: string) => void
   /** US school grade to aim for. 8 suits most public writing. */
   targetGrade?: number
@@ -51,19 +54,25 @@ export interface ReadingLevelProps extends Omit<React.ComponentProps<"textarea">
   swaps?: Record<string, string>
   /** How many of the hardest sentences to list. */
   maxSentences?: number
+  /** Plain-English band labels per grade range. Override to translate. */
   bands?: typeof READING_BANDS
   /** `{grade}` is filled in. */
   gradeText?: string
   /** `{target}` is filled in. */
   targetText?: string
+  /** Heading above the list of hardest sentences. */
   hardTitle?: string
   /** `{words}` is filled in. */
   longText?: string
+  /** Reason shown for a sentence that is dense rather than just long. */
   denseText?: string
+  /** Heading above the plain-word swaps. */
   swapsTitle?: string
   /** Accessible label of a swap. `{word}` and `{plain}` are filled in. */
   swapLabel?: string
+  /** Announced when the grade is above the target. */
   aboveTargetText?: string
+  /** Announced when the grade is at or below the target. */
   onTargetText?: string
   /** Shown instead of a grade when the text isn't English (Hindi, Marathi, French...), where the formula means nothing. */
   unsupportedText?: string

@@ -106,11 +106,15 @@ export interface TimeConfirmProps
   skippedText?: string
   /** `{time}` is the time that happens twice; `{which}` is `firstLabel` or `secondLabel`. */
   repeatedText?: string
+  /** Label of the first occurrence of a repeated time. */
   firstLabel?: string
+  /** Label of the second occurrence of a repeated time. */
   secondLabel?: string
   /** Label of the fix that switches to the other occurrence or the real time; `{time}` is filled in. */
   useLabel?: string
+  /** Flag for a time on the next day in another zone. */
   nextDayLabel?: string
+  /** Flag for a time on the previous day in another zone. */
   previousDayLabel?: string
 }
 

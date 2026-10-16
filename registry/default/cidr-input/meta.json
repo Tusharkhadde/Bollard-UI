@@ -1,6 +1,24 @@
 {
   "title": "CIDR Input",
-  "description": "Prevents misconfigured firewall rules and subnets by reading an IPv4 or IPv6 CIDR back as its exact range and address count, catching host bits set (with both the network and single-host readings as one-tap fixes), and warning on 0.0.0.0/0 and on overlaps with existing ranges.",
+  "summary": "Reads a CIDR block back as its exact range and size, and warns before a firewall rule opens to the whole internet or overlaps an existing range.",
+  "description": "Reads an IPv4 or IPv6 CIDR back as its exact range and address count, catches host bits set (offering both the network and single-host readings), and warns on 0.0.0.0/0, a missing prefix, leading zeros and overlaps with existing ranges.",
+  "catches": [
+    "Host bits set in the address, with the network or /32 (/128) reading as fixes",
+    "0.0.0.0/0 or ::/0 (open to everyone)",
+    "Overlap with, or nesting inside, the existing ranges you pass, named",
+    "A missing prefix length and ambiguous leading zeros"
+  ],
+  "limits": [
+    "Only compares against the ranges you pass in `existing`",
+    "It doesn't know whether a wide range is intended for a public service"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid and aria-describedby to an aria-live=\"polite\" hint",
+    "Serious warnings use role=\"alert\"",
+    "Fix buttons have aria-labels (\"Use …\") and return focus to the input",
+    "The bit diagram is aria-hidden; the range is stated in text"
+  ],
+  "server": "Validate rules in your cloud or firewall API and review changes to public ranges there.",
   "dependencies": [
     "lucide-react"
   ],

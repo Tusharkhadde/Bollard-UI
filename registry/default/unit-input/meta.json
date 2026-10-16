@@ -1,6 +1,22 @@
 {
   "title": "Unit Input",
-  "description": "Prevents values stored in the wrong unit by noticing when a number is far more plausible in another one (70 cm is probably inches, 98.6 °C is °F) or is typed as 5'9\", and offering a one-tap conversion at the right precision or a unit switch.",
+  "summary": "Notices when a number makes far more sense in another unit (70 cm is likely inches) and offers a one-tap conversion.",
+  "description": "Measurement input that notices when a value is far more plausible in another unit (70 cm is probably inches, 98.6 °C is °F) or is typed as 5'9\", and offers a one-tap conversion at the right precision or a unit switch.",
+  "catches": [
+    "Values outside the usual range for the unit but inside another's",
+    "Feet-and-inches notation (5'9\", 5 ft 9 in, 5.9)",
+    "Body temperature in the wrong scale",
+    "Conversion rounded to the target unit's precision"
+  ],
+  "limits": [
+    "Plausibility ranges are presets you can override; unusual real values can be flagged",
+    "Converts between the units in the preset only"
+  ],
+  "a11y": [
+    "Visible <label>; unit picker has an aria-label",
+    "aria-invalid with suggestions in a polite live region via aria-describedby",
+    "Keep-as-typed dismiss has an aria-label"
+  ],
   "dependencies": [
     "lucide-react"
   ],

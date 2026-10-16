@@ -26,9 +26,13 @@ export interface SessionTimeoutProps extends Omit<React.ComponentProps<"dialog">
   announceAt?: number[]
   /** Pause tracking, e.g. while signed out. */
   disabled?: boolean
+  /** Dialog title. */
   title?: string
+  /** Dialog description. */
   description?: string
+  /** Label of the stay-signed-in button. */
   stayLabel?: string
+  /** Label of the sign-out button. */
   signOutLabel?: string
   /** Read to screen readers; `{seconds}` is filled in. */
   announcement?: string

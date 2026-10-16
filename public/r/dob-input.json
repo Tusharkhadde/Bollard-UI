@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dob-input",
   "title": "DOB Input",
-  "description": "Prevents wrong birth dates by reading the date and age back as you type and catching this year typed by habit (age 0), future dates, implausible ages, a day typed into the month box, pasted dates that read two ways and under-age sign-ups, with a one-tap fix and the date someone becomes eligible.",
+  "description": "Reads the date and age back as you type and catches this year typed by habit (age 0), future dates, implausible ages, a day typed into the month box, pasted dates that read two ways and under-age sign-ups, with a fix and the date someone becomes eligible.",
   "dependencies": [
     "lucide-react"
   ],
@@ -39,6 +39,24 @@
     ],
     "fields": [
       "datetime"
+    ],
+    "summary": "Reads a birth date and age back as it is typed and catches this year typed by habit, future dates and impossible ages, so birth dates aren't saved wrong.",
+    "server": "Re-check age eligibility on the server; a client-side date check can be bypassed.",
+    "catches": [
+      "This year typed as the birth year (age 0)",
+      "Future dates and implausible ages (minAge, maxAge)",
+      "A day typed into the month box",
+      "Pasted dates that could be read two ways",
+      "Under-age sign-ups, with the date the person becomes eligible"
+    ],
+    "limits": [
+      "Plausibility checks only; it can't verify a real birth date",
+      "Field order follows the `order` prop or locale; check it matches your users"
+    ],
+    "a11y": [
+      "Day, month and year each have a <label>, and are described by a shared status",
+      "aria-invalid on errors; Backspace in an empty part moves to the previous part",
+      "Focus moves between parts as each one is completed"
     ]
   },
   "categories": [

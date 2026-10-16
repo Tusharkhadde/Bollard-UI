@@ -38,10 +38,15 @@ export interface ReauthGateProps extends Omit<React.ComponentProps<"div">, "chil
   children: (protect: Protect, state: { unlocked: boolean }) => React.ReactNode
   /** Templates: `{action}`, `{time}` are filled in. */
   promptText?: string
+  /** Shown after confirming. `{time}` is how long the unlock lasts. */
   rememberText?: string
+  /** Shown when verify returns false or rejects. */
   wrongText?: string
+  /** Shown when the user cancels the prompt. */
   cancelledText?: string
+  /** Countdown chip text. `{time}` is filled in. */
   chipText?: string
+  /** Label of the button that ends the unlock early. */
   endLabel?: string
 }
 

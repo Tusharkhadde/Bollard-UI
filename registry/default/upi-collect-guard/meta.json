@@ -1,7 +1,39 @@
 {
   "title": "UPI Collect Guard",
-  "description": "Stops people \"entering their PIN to receive\" money by showing a collect request as the payment it is (You pay ₹4,999 to…), asking whether they expect money and turning a yes into a decline-only stop, and flagging refund, prize, OLX-buyer and KYC wording, person-to-person collects (switched off by NPCI on 1 Oct 2025), unknown requesters and small test amounts before the PIN screen.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows a UPI collect request as the payment it really is and asks whether the user expects money, since a UPI PIN only ever sends money.",
+  "description": "Collect-request screen that states \"You pay ₹4,999 to…\", asks whether the user expects to receive money (a yes becomes a decline-only stop), and flags refund, prize, OLX-buyer and KYC wording, person-to-person collects, unknown requesters and small test amounts before the PIN.",
+  "catches": [
+    "\"Enter PIN to receive money\" confusion, by asking what the user expects",
+    "Refund, prize, buyer and KYC scam wording",
+    "Person-to-person collect requests (no longer permitted on UPI)",
+    "Requesters not in contacts or not matching the expected name",
+    "Small test amounts used to build trust"
+  ],
+  "limits": [
+    "Heuristic wording and name checks; scams can avoid them",
+    "Does not block the UPI app's own PIN screen; it advises before it",
+    "Requester names come from what your PSP returns"
+  ],
+  "a11y": [
+    "Intent question is a roving-tabindex radiogroup with arrow keys",
+    "Risks linked via aria-describedby; status is role=status",
+    "Choosing \"I expect money\" moves focus to Decline",
+    "Pay uses aria-disabled while pending"
+  ],
+  "server": "PSPs and banks must enforce collect rules and fraud checks; treat this as user education before the PIN.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "NPCI – UPI Consolidated Circular v1.0 (18 Sep 2026), 2.16",
+        "url": "https://www.npci.org.in/uploads/UPI_Consolidated_Circular_f9c023a0ef.pdf"
+      }
+    ],
+    "note": "Confirmed: PSPs and UPI apps must ensure collect on person-to-person transactions is not permitted (consolidating OC-220 of 29 Jul 2025, effective 1 Oct 2025). Informational; check NPCI's current circulars."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Entered UPI PIN to receive money",
   "mistakes": [
     "upi pin to receive money scam",

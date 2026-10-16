@@ -1,8 +1,29 @@
 {
   "title": "Alt Text Check",
-  "description": "Prevents posting images screen readers can't use by checking each one's alt text for missing text, filenames (IMG_2041.jpg, PXL_…), \"image of…\" redundancy, copies of the caption and excess length, with per-image status chips, one-tap fixes, a decorative toggle, a words-in-the-image reminder for screenshots, and a post button that jumps to the first problem before posting anyway.",
-  "dependencies": ["lucide-react"],
-  "stops": "Posted images screen readers can't read",
+  "summary": "Checks each image's alt text before posting, so filenames, \"image of\" and empty alt text don't reach screen-reader users.",
+  "description": "Checks each image's alt text for missing text, filenames (IMG_2041.jpg, PXL_…), \"image of…\" redundancy, caption copies and excess length, with per-image status, one-tap fixes, a decorative toggle and a reminder when the image has words. Post jumps to the first problem.",
+  "catches": [
+    "Missing alt text",
+    "Filenames, camera names and hashes used as alt text",
+    "\"Image of\" / \"picture of\" redundancy",
+    "Alt text that repeats the caption, or runs past the length limit",
+    "Screenshots and images with text whose alt text may not include that text"
+  ],
+  "limits": [
+    "It checks wording patterns, not whether the description is accurate",
+    "Whether an image contains text comes from your data (OCR or uploader); screenshots are assumed to",
+    "Posting with problems is still possible after the first press"
+  ],
+  "a11y": [
+    "Each alt field has a <label> and aria-describedby pointing at its hint; aria-invalid when there is a problem",
+    "Per-image hints and the summary are aria-live=\"polite\"",
+    "Post moves focus to the first field with a problem",
+    "Status uses text and icons, not colour alone"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Unusable alt text gets posted",
   "mistakes": [
     "missing alt text",
     "img_2041.jpg as alt",

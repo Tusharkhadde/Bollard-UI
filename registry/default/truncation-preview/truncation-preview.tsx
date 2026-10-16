@@ -33,6 +33,7 @@ function Marked({ text, offset, keyRange, seen }: { text: string; offset: number
 }
 
 export interface TruncationPreviewProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Visible label of the text field. */
   label?: string
   /** Controlled text. */
   value?: string
@@ -42,7 +43,9 @@ export interface TruncationPreviewProps extends Omit<React.ComponentProps<"div">
   onValueChange?: (value: string) => void
   /** The phrase readers must see before "…more", e.g. the offer or the date. */
   keyPoint?: string
+  /** Starting key phrase when uncontrolled. */
   defaultKeyPoint?: string
+  /** Called with the key phrase. */
   onKeyPointChange?: (value: string) => void
   /** Where the text will appear: built-in ids or your own rules. */
   surfaces?: (SurfaceId | FoldRule)[]
@@ -50,13 +53,21 @@ export interface TruncationPreviewProps extends Omit<React.ComponentProps<"div">
   rows?: number
   /** Templates: `{phrase}`, `{where}`, `{mention}`, `{count}`. */
   keyPointLabel?: string
+  /** Warning when the key phrase is below the fold. */
   keyHiddenText?: string
+  /** Warning when a link is below the fold. */
   linkHiddenText?: string
+  /** Note about blank lines costing preview lines. */
   linesText?: string
+  /** Warning about a leading @mention. */
   mentionText?: string
+  /** Warning when the key phrase isn't in the text. */
   keyMissingText?: string
+  /** Label of the move-sentence-up fix. */
   moveLabel?: string
+  /** Label of the remove-blank-lines fix. */
   tightenLabel?: string
+  /** Label for text below the fold. */
   hiddenLabel?: string
 }
 

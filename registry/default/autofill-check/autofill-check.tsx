@@ -42,11 +42,17 @@ export interface AutofillCheckProps extends React.ComponentProps<"div"> {
   onAutofill?: (fields: string[]) => void
   /** Text. `{count}` is filled in; `{value}` and `{other}` in the reasons. */
   message?: string
+  /** Banner text when a filled value looks wrong. */
   suspectText?: string
+  /** Banner text when the first submit was held. */
   heldText?: string
+  /** Text for the button that marks all filled fields as reviewed. */
   reviewedLabel?: string
+  /** Text for the button that clears a suspect value. */
   clearLabel?: string
+  /** Text for the button that uses the account's value instead. */
   useLabel?: string
+  /** Override the explanation shown for each kind of issue. */
   reasons?: Partial<Record<FilledIssue["reason"], string>>
 }
 

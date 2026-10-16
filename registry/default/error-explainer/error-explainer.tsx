@@ -87,20 +87,31 @@ export interface ErrorExplainerProps extends Omit<React.ComponentProps<"div">, "
   maxRetries?: number
   /** Templates: `{seconds}` and `{count}` are filled in. */
   causeLabel?: string
+  /** Retry button text. */
   retryLabel?: string
+  /** Text for retrying despite an ambiguous outcome. */
   retryAnywayLabel?: string
+  /** Text shown while waiting for Retry-After. */
   waitLabel?: string
+  /** Text for the check-status button. */
   checkLabel?: string
+  /** Text for the contact-support button. */
   contactLabel?: string
+  /** Warning that the request may already have gone through. */
   ambiguousText?: string
+  /** Shown after repeated failures. */
   stillFailingText?: string
+  /** Label for the support reference. */
   referenceLabel?: string
+  /** Text for the copy-reference button. */
   copyLabel?: string
+  /** Shown after copying the reference. */
   copiedLabel?: string
   /** Visible text of the copy button (`copyLabel` is its accessible name). */
   copyText?: string
   /** Button text for a "fix" action without its own `actionLabel`. */
   fixLabel?: string
+  /** Text for the technical-details toggle. */
   detailsLabel?: string
 }
 

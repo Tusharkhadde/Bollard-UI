@@ -100,6 +100,7 @@ export function formatPercent(ratio: number, digits = 0, mode: "bound" | "expand
 export interface PreciseNumberProps extends Omit<React.ComponentProps<"span">, "children"> {
   /** The exact value. For `percent`, a ratio (0.996 = 99.6%). */
   value: number
+  /** Show a plain number or a percentage. */
   format?: "number" | "percent"
   /** ISO currency code, e.g. "INR" or "USD". */
   currency?: string

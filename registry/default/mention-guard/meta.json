@@ -1,7 +1,29 @@
 {
   "title": "Mention Guard",
-  "description": "Prevents accidental mass pings by saying, as you type, how many people @channel, @everyone or a group mention will notify and how many are in other time zones, flagging mentioned people who aren't in the conversation, offering one-tap fixes, and turning Send into an explicit \"Notify 1,240 people\" confirm that a double press can't trigger.",
-  "dependencies": ["lucide-react"],
+  "summary": "Says how many people @channel, @everyone or a group mention will notify as you type, and asks for an explicit confirm before a mass ping.",
+  "description": "Message box that says how many people @channel, @everyone or a group mention will notify and how many are in other time zones, flags mentioned people who aren't in the conversation, offers fixes, and turns Send into an explicit \"Notify 1,240 people\" confirm.",
+  "catches": [
+    "Broadcast mentions over a threshold, with the count",
+    "Recipients in other time zones",
+    "Mentioned people who aren't in the conversation or can't open it",
+    "Double press on Send: the confirm can't be triggered by it",
+    "Ignores emails (a@here.com) and code spans"
+  ],
+  "limits": [
+    "Audience sizes come from your context prop",
+    "Doesn't stop sending through other clients or the API",
+    "Mentions are parsed with simple rules; custom mention syntax needs adapting"
+  ],
+  "a11y": [
+    "Visible label; textarea is described by a polite notice region",
+    "Escape cancels the armed confirm; IME composition doesn't trigger send",
+    "Confirm pulse is skipped under reduced motion",
+    "Fixes are buttons; icons are aria-hidden"
+  ],
+  "server": "Rate-limit and permission-check broadcast mentions on the server.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "@channel pinged 1,240 people",
   "mistakes": [
     "accidental @everyone",

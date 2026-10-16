@@ -60,8 +60,11 @@ const fixClass =
   "inline-flex h-6 items-center gap-1 rounded-md border border-amber-500/40 px-2 font-medium text-amber-900 transition-colors outline-none hover:bg-amber-500/10 focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:text-amber-200"
 
 export interface ScheduledQueueProps extends Omit<React.ComponentProps<"ul">, "children"> {
+  /** Scheduled sends to list. */
   items: ScheduledItem[]
+  /** Cancels a send. May return a Promise; a rejection shows an error. */
   onCancel: (id: string) => void | Promise<void>
+  /** Moves a send to a new time. May return a Promise. */
   onReschedule: (id: string, at: Date) => void | Promise<void>
   /** Offered on items whose time has passed without sending. */
   onSendNow?: (id: string) => void
@@ -73,19 +76,31 @@ export interface ScheduledQueueProps extends Omit<React.ComponentProps<"ul">, "c
   quietHours?: { start: number; end: number }
   /** The hour the one-tap quiet-hours fix moves an item to. */
   fixHour?: number
+  /** Locale for times and countdowns. */
   locale?: string
   /** Templates: `{left}`, `{time}`, `{zone}`, `{ago}` are filled in. */
   lastChanceText?: string
+  /** Shown once a send can no longer be cancelled. */
   lockedText?: string
+  /** Shown while a send is going out. */
   sendingText?: string
+  /** Shown for a send that missed its time. */
   overdueText?: string
+  /** Warning for a send landing in quiet hours. */
   quietText?: string
+  /** Label of the move-to-a-sane-hour fix. */
   fixLabel?: string
+  /** Label of the Send now button. */
   sendNowLabel?: string
+  /** Label of the Reschedule button. */
   rescheduleLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Label of the save-new-time button. */
   saveLabel?: string
+  /** Shown when a new time is in the past. */
   pastWarning?: string
+  /** Shown when nothing is scheduled. */
   emptyText?: string
   /** Countdown chip; `{time}` is filled in ("in {time}"). */
   countdownText?: string
@@ -97,6 +112,7 @@ export interface ScheduledQueueProps extends Omit<React.ComponentProps<"ul">, "c
   newTimeLabel?: string
   /** Announced once when a row enters its last-chance window or locks; `{title}` is filled in. */
   lastChanceAnnouncement?: string
+  /** Announced when a send locks in. */
   lockedAnnouncement?: string
 }
 

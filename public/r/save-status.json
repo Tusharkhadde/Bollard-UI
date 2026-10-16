@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "save-status",
   "title": "Save Status",
-  "description": "Stops silent autosave failures by showing an aging 'Saved · 2 min ago', an honest offline state and a Retry on error, backed by a debounced hook that never saves stale data out of order.",
+  "description": "Autosave status with an aging \"Saved · 2 min ago\", an honest offline state and Retry on error, plus a debounced useAutosave hook that runs one save at a time and always saves the newest value last.",
   "dependencies": [
     "lucide-react"
   ],
@@ -36,6 +36,24 @@
     ],
     "fields": [
       "text"
+    ],
+    "summary": "Makes autosave honest: an aging \"Saved · 2 min ago\", a clear offline state and Retry on error, so failures aren't silent.",
+    "server": "Reject stale writes with a version or ETag check so an older save can't overwrite a newer one.",
+    "catches": [
+      "Saves that failed, shown with Retry",
+      "Being offline, instead of a misleading \"Saved\"",
+      "How long ago the last save landed",
+      "Out-of-order saves (one at a time, newest value goes next)",
+      "Leaving with unsynced changes (optional beforeunload warning)"
+    ],
+    "limits": [
+      "The offline draft is kept in localStorage on this device only, if you enable it",
+      "Concurrent edits from other tabs or users are not merged"
+    ],
+    "a11y": [
+      "Status text in a polite live region; errors announced with role=alert",
+      "Exact save time available in a title tooltip",
+      "Retry is a real button; icons are aria-hidden"
     ]
   },
   "categories": [

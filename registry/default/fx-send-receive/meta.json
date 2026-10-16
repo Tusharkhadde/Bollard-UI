@@ -1,8 +1,32 @@
 {
   "title": "FX Send Receive",
-  "description": "Stops an international payment arriving short by locking the side you typed (send or receive), measuring what actually arrives against the invoice, and catching the invoice figure typed into \"You send\", an invoice in another currency, SHA bank deductions on the way and overpaying, each fixed in one tap by sliding the lock to \"They receive\" at the exact amount or switching charges to OUR.",
-  "dependencies": ["lucide-react", "motion"],
-  "stops": "Invoice paid short after fees",
+  "summary": "Helps an international payment arrive in full: it measures what the recipient actually gets against the invoice, after fees and bank deductions.",
+  "description": "Send/receive pair for international transfers. Locks the side you typed, works out the other from rate and fees, compares what arrives with the invoice, and flags the invoice typed into \"You send\", a currency mismatch, SHA deductions and overpaying, with one-tap fixes.",
+  "catches": [
+    "Invoice amount typed into \"You send\" instead of \"They receive\"",
+    "Invoice in a different currency from the receiving side",
+    "SHA charges that intermediary banks may deduct on the way",
+    "Paying more than the invoice",
+    "Fixes: lock \"They receive\" at the exact amount, or switch charges to OUR"
+  ],
+  "limits": [
+    "Arithmetic on the quote you pass in; it does not fetch live rates or fees",
+    "Intermediary deductions are an estimate from your quote's maximum, not what banks will actually take",
+    "Does not check the recipient's account details or sanctions screening"
+  ],
+  "a11y": [
+    "Both amount fields have visible labels; the receive field gets aria-invalid when a warning applies",
+    "Charges choice is a radiogroup with roving tabindex and arrow-key navigation",
+    "Status line uses role=status; decorative icons are aria-hidden",
+    "Focus moves to the receive field after a fix that changes it",
+    "Animations are skipped under reduced motion"
+  ],
+  "server": "Re-quote the rate and fees on the server and charge against that server quote, with an idempotency key on the transfer.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Helps prevent an invoice being paid short after fees",
   "mistakes": [
     "typed amount in you send instead of they receive",
     "transfer arrived short",

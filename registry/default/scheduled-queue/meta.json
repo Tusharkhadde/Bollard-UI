@@ -1,10 +1,52 @@
 {
   "title": "Scheduled Queue",
-  "description": "Prevents scheduled sends going out wrong or unnoticed: each row counts down live, the last-chance window highlights and counts down to the real cancel cutoff (when the provider locks the send in), sends landing in quiet hours where the audience lives get a one-tap move to a sane hour, missed sends are flagged, and rescheduling refuses a time in the past.",
-  "dependencies": ["lucide-react"],
+  "summary": "Keeps scheduled sends visible: live countdowns, a last-chance window before the cancel cutoff, quiet-hour warnings and missed sends flagged.",
+  "description": "Queue of scheduled sends that counts down each row, highlights the last-chance window before the real cancel cutoff, offers a one-tap move for sends landing in quiet hours where the audience lives, flags missed sends, and refuses past reschedule times.",
+  "catches": [
+    "Time left before each send, and the last-chance window before cutoff",
+    "Sends locked in by the provider, with cancel disabled",
+    "Sends landing in quiet hours (default 22:00–07:00) in the audience's zone, with a move-to-9:00 fix",
+    "Missed or overdue sends, with Send now",
+    "Reschedule times in the past"
+  ],
+  "limits": [
+    "Quiet hours are judged in the zone you give each item; mixed audiences need splitting",
+    "Cutoff and lock state are as you configure them, not read from the provider",
+    "Countdowns use the device clock"
+  ],
+  "a11y": [
+    "Last-chance and locked changes announced in a polite live region, not every tick",
+    "Reschedule input has an aria-label, autoFocus, aria-invalid for past times, and Escape to cancel",
+    "Errors use role=alert; locked rows disable Cancel/Reschedule with a lock icon and text",
+    "Row highlight animation is skipped under reduced motion"
+  ],
+  "server": "Enforce the cancel cutoff and reject past send times on the server; the provider's lock is the source of truth.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Scheduled campaign sent at 3am",
-  "mistakes": ["scheduled send went out wrong time", "missed scheduled post", "cant cancel scheduled email", "sent during quiet hours"],
-  "aliases": ["schedule send", "scheduled posts", "campaign", "newsletter", "queue", "cron", "send later", "whatsapp broadcast", "timezone"],
-  "flows": ["scheduling", "messaging"],
-  "fields": ["datetime"]
+  "mistakes": [
+    "scheduled send went out wrong time",
+    "missed scheduled post",
+    "cant cancel scheduled email",
+    "sent during quiet hours"
+  ],
+  "aliases": [
+    "schedule send",
+    "scheduled posts",
+    "campaign",
+    "newsletter",
+    "queue",
+    "cron",
+    "send later",
+    "whatsapp broadcast",
+    "timezone"
+  ],
+  "flows": [
+    "scheduling",
+    "messaging"
+  ],
+  "fields": [
+    "datetime"
+  ]
 }

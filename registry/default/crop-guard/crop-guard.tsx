@@ -23,6 +23,7 @@ export interface CropGuardProps extends Omit<React.ComponentProps<"div">, "child
   src: string
   /** Its natural size in pixels. Crops and boxes use these pixels. */
   imageWidth: number
+  /** Natural height of the image in pixels. */
   imageHeight: number
   /** Accessible description of the image. */
   alt?: string
@@ -30,26 +31,35 @@ export interface CropGuardProps extends Omit<React.ComponentProps<"div">, "child
   boxes?: DetectedBox[]
   /** Finds faces and text once the image loads (the FaceDetector API, a model, a server call). Merged with `boxes`. */
   detect?: (image: HTMLImageElement) => Promise<DetectedBox[]>
+  /** Crop shapes and safe zones to offer. */
   presets?: CropPreset[]
   /** Controlled preset id. */
   preset?: string
+  /** Initially selected preset id when uncontrolled. */
   defaultPreset?: string
+  /** Called when the user picks another preset. */
   onPresetChange?: (id: string) => void
   /** Controlled crop in image pixels. */
   value?: Rect
   /** Initial crop when uncontrolled. Defaults to the largest centred crop. */
   defaultValue?: Rect
+  /** Called with the crop rectangle whenever it changes. */
   onValueChange?: (crop: Rect) => void
   /** Words used in the warnings. */
   nouns?: { face: string; faces: string; text: string; texts: string }
   /** Templates: `{what}`, `{ui}` and `{size}` are filled in. */
   cutText?: string
+  /** Message when a subject sits under platform UI. */
   coveredText?: string
+  /** Message when a subject is too small at preview size. */
   tinyText?: string
+  /** Message when no crop can fit every subject. */
   noFitText?: string
+  /** Text for the fit button. */
   fixLabel?: string
   /** Caption when the preview is at the real size, and when it's scaled down. */
   previewLabel?: string
+  /** Label for the scaled-down preview. */
   scaledLabel?: string
   /** Largest preview side, in px. */
   previewMax?: number
@@ -59,9 +69,11 @@ export interface CropGuardProps extends Omit<React.ComponentProps<"div">, "child
   uiLabel?: string
   /** Status when nothing is cut, and when there is nothing to check. */
   wholeText?: string
+  /** Message when there are no subjects to check. */
   nothingText?: string
   /** Screen reader names of the shape picker and the crop box. */
   shapesLabel?: string
+  /** Accessible label for the crop area. */
   cropAreaLabel?: string
 }
 

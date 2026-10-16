@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pii-post-guard",
   "title": "PII Post Guard",
-  "description": "Stops people posting their phone number, email, address, Aadhaar, PAN, card number or an OTP to a public feed, comment or review by saying who will see it, finding each detail with real checks (Verhoeff, Luhn, PAN holder type, OTP keywords) rather than loose digit runs, and masking one or all of them in one tap the way each format expects (XXXX XXXX 1234).",
+  "description": "Post composer guard that says who will see the post and finds phone numbers, emails, addresses, Aadhaar, PAN, card numbers and OTPs with real checks (Verhoeff, Luhn, PAN holder type, OTP keywords) rather than loose digit runs, masking one or all the way each format expects.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Aadhaar number posted in a public comment",
+    "stops": "Helps stop an Aadhaar number being posted in public",
     "mistakes": [
       "posted phone number publicly",
       "aadhaar in review",
@@ -47,6 +47,25 @@
       "id-number",
       "phone",
       "email"
+    ],
+    "summary": "Before a public post goes out, finds phone numbers, emails, Aadhaar, PAN, card numbers or OTPs in it and masks them in one tap.",
+    "server": "Scan and redact on the server before publishing, and never log the raw text.",
+    "catches": [
+      "Aadhaar numbers (Verhoeff check)",
+      "Card numbers (Luhn check)",
+      "PAN numbers, including holder type",
+      "Phone numbers, emails and street addresses",
+      "OTPs near words like code or OTP"
+    ],
+    "limits": [
+      "India-focused identifiers; other countries' IDs aren't detected",
+      "Addresses are detected heuristically",
+      "The post still goes out if the user chooses to; it masks, it doesn't block"
+    ],
+    "a11y": [
+      "Visible label; textarea is described by the audience line and findings",
+      "Announcements go to a polite live region",
+      "Focus moves to the next mask button, then back to the field"
     ]
   },
   "categories": [

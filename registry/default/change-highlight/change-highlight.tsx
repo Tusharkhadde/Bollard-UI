@@ -49,10 +49,15 @@ export interface ChangeHighlightProps extends Omit<React.ComponentProps<"span">,
   announce?: boolean
   /** Templates: `{value}` is filled in. */
   previousLabel?: string
+  /** Text introducing changes since the last visit. */
   sinceVisitLabel?: string
+  /** Accessible label for the dismiss button. */
   dismissLabel?: string
+  /** Word for an increase. */
   upLabel?: string
+  /** Word for a decrease. */
   downLabel?: string
+  /** Word for a non-numeric change. */
   changedLabel?: string
 }
 

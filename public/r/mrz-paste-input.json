@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "mrz-paste-input",
   "title": "MRZ Paste Input",
-  "description": "Stops misread passport details reaching a booking or KYC form by validating a pasted or typed passport MRZ (ICAO 9303 TD3) check digit by check digit, catching OCR slips like O for 0 and K for <, swapped lines, CRLF and stray spaces, proposing the likeliest fix for a wrong check digit (cross-checked against the composite digit) and flagging an expired or soon-expiring passport, then filling in name, number, nationality, dates and sex.",
+  "description": "Passport MRZ field (ICAO 9303 TD3) that validates each check digit and the composite, catches OCR slips like O for 0 and K for <, swapped lines, CRLF and stray spaces, proposes the likeliest fix for a bad digit, flags expired or soon-expiring passports, then fills the fields.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Passport details misread at booking",
+    "stops": "Helps catch misread passport details before booking",
     "mistakes": [
       "passport mrz check digit",
       "ocr passport wrong number",
@@ -46,10 +46,43 @@
       "id-number",
       "name",
       "datetime"
-    ]
+    ],
+    "summary": "Validates a passport MRZ (ICAO 9303 TD3) check digit by check digit and catches OCR slips before details reach a booking or KYC form.",
+    "server": "Re-validate the MRZ and verify identity through your KYC provider on the server; don't log full MRZ lines.",
+    "catches": [
+      "Wrong check digits for number, birth date, expiry, personal number and composite",
+      "OCR slips such as O for 0 and K for <",
+      "Swapped lines, CRLF and stray spaces",
+      "Likeliest fix for a wrong digit, cross-checked against the composite",
+      "Expired or soon-expiring passport"
+    ],
+    "limits": [
+      "Passports (TD3) only, not ID cards (TD1/TD2) or visas",
+      "Valid check digits don't prove the passport is genuine",
+      "Names in the MRZ are transliterated and may be truncated"
+    ],
+    "a11y": [
+      "Visible label; textarea has aria-invalid when invalid and is described by the result",
+      "Each check has an icon with role=img and an aria-label (checked, pending, failed)",
+      "Focus moves to the first fix after parsing"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "ICAO Doc 9303 Part 3 (check digits, weights 7-3-1, modulus 10)",
+          "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p3_cons_en.pdf"
+        },
+        {
+          "label": "ICAO Doc 9303 Part 4 (TD3 lower line and composite check digit)",
+          "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p4_cons_en.pdf"
+        }
+      ],
+      "note": "Informational. Confirmed the 7-3-1 weighting and the composite over positions 1–10, 14–20 and 22–43. The soon-expiring threshold is a product choice, not ICAO."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

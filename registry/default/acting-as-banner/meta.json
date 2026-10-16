@@ -1,6 +1,23 @@
 {
   "title": "Acting As Banner",
-  "description": "Prevents changing a customer's data while thinking it's your own with a sticky 'You're acting as…' bar and an org chip that makes every destructive button say where it acts.",
+  "summary": "A sticky bar that says whose account you are acting as, and labels destructive buttons with the org they act on, so support staff don't edit the wrong data.",
+  "description": "Shows a sticky \"You're acting as…\" bar with who is really signed in, a countdown to when impersonation ends and a switch-back action, plus an org chip that makes each destructive button say where it acts.",
+  "catches": [
+    "Forgetting you are impersonating a customer",
+    "Destructive buttons that don't say which org they act on (via the org chip)",
+    "Impersonation sessions that have expired",
+    "A failed switch back, shown as an error"
+  ],
+  "limits": [
+    "Shows the session you describe in props; it doesn't create or end impersonation",
+    "The org chip only appears where you add it"
+  ],
+  "a11y": [
+    "A role=\"region\" with an aria-label naming who you act as and the org",
+    "Switch-back errors use role=\"alert\"",
+    "The org colour is decorative; the org is always named in text"
+  ],
+  "server": "Scope impersonation sessions on the server, log every action with both the actor and the subject, and expire sessions server-side.",
   "dependencies": [
     "lucide-react"
   ],

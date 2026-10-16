@@ -77,16 +77,21 @@ export interface ReplacePreviewProps extends Omit<React.ComponentProps<"div">, "
   defaultReplace?: string
   /** Start with whole-word matching on. */
   defaultWholeWord?: boolean
+  /** Label of the find input. */
   findLabel?: string
+  /** Label of the replace input. */
   replaceLabel?: string
   /** Templates: `{count}` and `{words}` are filled in. */
   partialMessage?: string
+  /** Label of the one-tap whole-word fix. */
   wholeWordFixLabel?: string
+  /** Shown when nothing matches. */
   noMatchesText?: string
   /** `{count}` and `{total}` are filled in. */
   applyLabel?: string
   /** `{count}` is filled in. */
   doneText?: string
+  /** Label of the Undo button after replacing. */
   undoLabel?: string
 }
 

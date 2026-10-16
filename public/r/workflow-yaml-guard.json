@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "workflow-yaml-guard",
   "title": "Workflow YAML Guard",
-  "description": "Stops a GitHub Actions workflow handing your repo to anyone who opens a pull request by flagging pull_request_target or workflow_run jobs that check out the PR's code (pwn requests), untrusted ${{ github.event.* }} and head_ref pasted into run scripts, actions pinned to movable tags, missing or write-all token permissions, secrets echoed, dumped with toJSON or transformed past log masking, and self-hosted runners fork PRs can reach, following GitHub Security Lab and GitHub's secure-use docs, with one-tap fixes (env indirection, read-only permissions, pull_request, a hosted runner) and Pin SHA through your own lookup.",
+  "description": "GitHub Actions review: pull_request_target or workflow_run jobs that check out PR code, untrusted ${{ github.event.* }} in run scripts, actions on movable tags, missing or write-all permissions, echoed secrets and fork-reachable self-hosted runners, with one-tap fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Pull request stole repo secrets",
+    "stops": "Helps catch workflows that could leak repo secrets to a pull request",
     "mistakes": [
       "pull_request_target vulnerability",
       "github actions injection",
@@ -44,7 +44,37 @@
     "fields": [
       "code",
       "secret"
-    ]
+    ],
+    "summary": "Flags GitHub Actions workflow patterns that can expose secrets or the repo to pull requests, following GitHub's secure-use guidance.",
+    "server": "Also enforce branch protection, required reviews and restricted token permissions in repository settings.",
+    "catches": [
+      "pull_request_target / workflow_run jobs that check out the PR's code (pwn requests)",
+      "Untrusted event fields and head_ref interpolated into run scripts",
+      "Actions pinned to tags instead of a full commit SHA (pin via your resolveSha)",
+      "Missing or write-all token permissions",
+      "Secrets echoed, dumped with toJSON or transformed past log masking",
+      "Self-hosted runners reachable from fork PRs in public repos"
+    ],
+    "limits": [
+      "A lightweight, line-aware YAML reader: anchors, complex flow syntax and reusable workflows may be missed",
+      "Pattern-based review; it does not prove a workflow is safe",
+      "Composite actions and called workflows are not followed"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid and a role=status issue count",
+      "Each issue has a button that selects its line, with an aria-label",
+      "After a fix, focus moves to the next fix or back to the textarea"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "GitHub Docs – Secure use reference (Actions)",
+          "url": "https://docs.github.com/en/actions/reference/security/secure-use"
+        }
+      ],
+      "note": "Confirmed guidance on using an intermediate environment variable for untrusted input and pinning actions to a full-length commit SHA. GitHub Security Lab's pwn-request articles were not re-fetched this round."
+    }
   },
   "categories": [
     "Reading without mistakes"

@@ -1,10 +1,51 @@
 {
   "title": "Repeat Rows",
-  "description": "Prevents lost, doubled and junk entries in add-another forms (line items, guests) with min and max limits, Undo in place after a remove, duplicate rows flagged with a one-tap remove, blank rows called out before submit, Enter that adds a row instead of submitting, and focus that lands on the right field.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reduces lost, doubled and blank entries in add-another forms with undoable removes, duplicate flags and min/max limits.",
+  "description": "Add-another rows (line items, guests) with min and max limits, Undo after a remove, duplicate rows flagged with a one-tap remove, blank rows called out before submit, Enter that adds a row instead of submitting, and focus that lands on the right field.",
+  "catches": [
+    "Duplicate rows, compared case- and space-insensitively on uniqueBy keys",
+    "Blank rows, with a one-tap clean-up",
+    "Accidental removes, with Undo in place",
+    "Enter in the last row adding a row instead of submitting",
+    "Min and max row counts"
+  ],
+  "limits": [
+    "Duplicate check compares only the keys you list in uniqueBy",
+    "Undo is time-limited (undoMs) and in-memory",
+    "Validation of field contents is up to you"
+  ],
+  "a11y": [
+    "Each row is a group labelled \"Item n of m\"; inputs carry per-row aria-labels",
+    "Enter moves to the next row or adds one; focus moves to the new or next logical field after add/remove",
+    "Remove buttons have aria-labels and disable at the minimum",
+    "Duplicate and blank notices render in polite live regions"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Duplicate line items in add-another form",
-  "mistakes": ["duplicate rows in form", "removed row by mistake", "blank line items submitted", "enter key submitted form"],
-  "aliases": ["add another", "field array", "line items", "useFieldArray", "guests", "invoice items", "dynamic rows", "react hook form"],
-  "flows": ["forms", "checkout"],
-  "fields": ["text", "number"]
+  "mistakes": [
+    "duplicate rows in form",
+    "removed row by mistake",
+    "blank line items submitted",
+    "enter key submitted form"
+  ],
+  "aliases": [
+    "add another",
+    "field array",
+    "line items",
+    "useFieldArray",
+    "guests",
+    "invoice items",
+    "dynamic rows",
+    "react hook form"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "text",
+    "number"
+  ]
 }

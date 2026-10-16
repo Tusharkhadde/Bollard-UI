@@ -120,14 +120,23 @@ export interface DataCostNoticeProps extends Omit<React.ComponentProps<"div">, "
   slowSeconds?: number
   /** Templates: `{verb}`, `{label}`, `{size}`, `{time}`, `{type}` (e.g. "3G") are filled in; `savesText` takes `{saved}`. */
   saveDataTitle?: string
+  /** Title when on mobile data. */
   cellularTitle?: string
+  /** Title when the connection is slow. */
   slowTitle?: string
+  /** Line giving the size. */
   detailText?: string
+  /** Line giving the rough time. */
   timeText?: string
+  /** Text for how much the lighter version saves. */
   savesText?: string
+  /** Text for the wait-for-Wi-Fi button. */
   waitLabel?: string
+  /** Shown while waiting for Wi-Fi. */
   waitingText?: string
+  /** Text for choosing the full version. */
   fullLabel?: string
+  /** Text for cancelling the wait. */
   cancelLabel?: string
 }
 

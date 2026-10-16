@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "k8s-resource-input",
   "title": "K8s Resource Input",
-  "description": "Stops Kubernetes requests and limits that the API rejects or quietly misreads by reading each value back in plain units and catching CPU 500 meaning 500 cores, 400m of memory meaning 0.4 bytes, 512MB and other case-sensitive unit slips, a 1G limit sitting under a 1Gi request, CPU finer than 1m (rounded up) and requests bigger than any node, each with a one-tap fix, plus the pod's QoS class and a pasted resources: block filling all four fields.",
+  "description": "Requests/limits fields that read values in plain units and catch CPU 500 meaning 500 cores, 400m memory meaning 0.4 bytes, unit-case slips, a limit under its request, CPU finer than 1m and requests above any node, with fixes, the QoS class and resources: paste.",
   "dependencies": [
     "lucide-react"
   ],
@@ -45,10 +45,38 @@
     "fields": [
       "number",
       "code"
-    ]
+    ],
+    "summary": "Reads Kubernetes CPU and memory requests back in plain units, so 500 meaning 500 cores or 400m meaning 0.4 bytes is caught before deploy.",
+    "catches": [
+      "CPU 500 meaning 500 cores",
+      "Memory 400m meaning 0.4 bytes, and MB/Gb style unit slips",
+      "A limit below its request (1G vs 1Gi)",
+      "CPU finer than 1m, which the API rounds",
+      "Requests larger than your biggest node"
+    ],
+    "limits": [
+      "Node size comes from the node prop; it doesn't query the cluster",
+      "Doesn't check LimitRanges, ResourceQuotas or ephemeral storage",
+      "QoS class is computed for this container only, not the whole pod"
+    ],
+    "a11y": [
+      "Each field has a visible label and is described by its plain-units readback",
+      "aria-invalid on flagged fields; status uses role=status",
+      "Focus returns to a nearby control after a fix"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Kubernetes: Resource Management for Pods and Containers",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "note": "Informational. Confirmed the case-sensitive suffix warning (400m of memory is 0.4 bytes). Rounding and QoS rules were not re-checked this round."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

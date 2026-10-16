@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "passport-validity-check",
   "title": "Passport Validity Check",
-  "description": "Stops travellers booking a trip their passport can't make by checking it against the destination's rule (the 6-month rule, Schengen's 3 months after you leave and 10 years since issue, blank pages), naming the exact date it must last until and offering the latest return date that would pass, with sourced default rules you can replace.",
+  "description": "Passport check against the destination's rule (6 months, Schengen's 3 months after leaving and 10 years since issue, blank pages) that names the exact date it must last until and offers the latest return that would pass. Default rules carry sources and can be replaced.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,7 +43,38 @@
     "fields": [
       "id-number",
       "datetime"
-    ]
+    ],
+    "summary": "Checks a passport against the destination's validity rule and names the date it must last until, so a trip isn't booked that the passport can't make.",
+    "catches": [
+      "Validity shorter than the destination needs, from arrival or departure",
+      "Schengen: issued more than 10 years before arrival",
+      "Not enough blank or facing pages",
+      "Latest return date that would still pass"
+    ],
+    "limits": [
+      "Built-in rules cover a few destinations and can change; airlines may apply stricter rules",
+      "Doesn't check visas or transit rules",
+      "Informational; check the official source"
+    ],
+    "a11y": [
+      "Section labelled by its heading",
+      "Expiry, issue date and pages inputs have visible labels",
+      "Icons are aria-hidden"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "ICA Singapore: Entering Singapore (at least 6 months' validity)",
+          "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore"
+        },
+        {
+          "label": "Schengen Borders Code, Regulation (EU) 2016/399",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0399"
+        }
+      ],
+      "note": "Informational; check the official source. Only the Singapore rule was confirmed this round. EUR-Lex blocked automated fetches, so the Schengen 3-month/10-year rule and the South Africa rule (dha.gov.za) were not re-verified."
+    }
   },
   "categories": [
     "Forms and saving"

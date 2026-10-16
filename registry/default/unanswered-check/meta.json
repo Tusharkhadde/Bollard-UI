@@ -1,10 +1,47 @@
 {
   "title": "Unanswered Check",
-  "description": "Stops a test or survey being submitted with questions skipped by accident by listing, before the final submit, the required and optional questions still blank, partly answered ones and those flagged for review as numbered jump links, with time left and how much of it each open question gets, a deliberate second click for blanks, a hard stop for required survey questions and a submit that waits until every answer has saved.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lists blank, partial and flagged questions before a test or survey is submitted, with jump links and time left.",
+  "description": "Pre-submit check for tests and surveys: required and optional blanks, partly answered and flagged questions as numbered jump links, time left and per-question pace, a second click for blanks, a hard stop for required survey questions and a submit that waits for saves.",
+  "catches": [
+    "Required and optional questions left blank",
+    "Partly answered questions (\"1 of 2 chosen\")",
+    "Questions flagged for review",
+    "Answers not yet saved to the server",
+    "Time left and how much each open question gets"
+  ],
+  "limits": [
+    "Only knows the question states you pass",
+    "Time limits and auto-submit rely on your onTimeUp and server timing"
+  ],
+  "a11y": [
+    "Section labelled by its heading; countdown is role=timer with an aria-label",
+    "Jump links have aria-labels including notes",
+    "Status in a polite live region; errors use role=alert"
+  ],
+  "server": "Enforce required answers and the deadline on the server; accept submissions only once all answers are saved.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Test submitted with questions skipped",
-  "mistakes": ["submitted quiz with blanks", "missed questions in exam", "survey skipped required", "answers not saved on submit"],
-  "aliases": ["quiz", "exam", "test", "survey", "questionnaire", "mcq", "assessment", "google forms", "review answers"],
-  "flows": ["forms"],
+  "mistakes": [
+    "submitted quiz with blanks",
+    "missed questions in exam",
+    "survey skipped required",
+    "answers not saved on submit"
+  ],
+  "aliases": [
+    "quiz",
+    "exam",
+    "test",
+    "survey",
+    "questionnaire",
+    "mcq",
+    "assessment",
+    "google forms",
+    "review answers"
+  ],
+  "flows": [
+    "forms"
+  ],
   "fields": []
 }

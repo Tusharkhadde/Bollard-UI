@@ -1,10 +1,47 @@
 {
   "title": "Upload Wait",
-  "description": "Stops a form being sent before its attachments exist: pressing submit mid-upload validates and queues the send, the button fills with combined progress and reads \"Waiting for 2 uploads…\", it submits by itself when they finish, a failed upload pauses it until retried, and leaving mid-upload asks first.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lets people submit a form while attachments are still uploading: it queues the send, shows progress and submits when uploads finish.",
+  "description": "Submit button for forms with uploads: pressing submit mid-upload validates and queues the send, the button fills with combined progress (\"Waiting for 2 uploads…\"), it submits by itself when they finish, a failed upload pauses it until retried, and leaving asks first.",
+  "catches": [
+    "Submitting before attachments have uploaded (queued instead)",
+    "Failed uploads, which pause the send until retried",
+    "Leaving the page mid-upload",
+    "Cancelling the queued send"
+  ],
+  "limits": [
+    "Upload state comes from your uploads prop",
+    "The server must still reject submissions that reference missing files"
+  ],
+  "a11y": [
+    "Uploads list has an aria-label; retry buttons name the file",
+    "Status in a polite live region",
+    "Submit uses aria-busy while waiting or sending and aria-disabled once sent",
+    "Focus moves to Retry when an upload fails"
+  ],
+  "server": "Validate on the server that every referenced upload exists and finished before accepting the form.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Form submitted before upload finished",
-  "mistakes": ["submitted before upload done", "attachment missing after submit", "upload in progress submit", "left page mid upload"],
-  "aliases": ["upload progress", "file upload", "submit button", "waiting for upload", "s3 upload", "document upload", "kyc docs"],
-  "flows": ["forms"],
-  "fields": ["file"]
+  "mistakes": [
+    "submitted before upload done",
+    "attachment missing after submit",
+    "upload in progress submit",
+    "left page mid upload"
+  ],
+  "aliases": [
+    "upload progress",
+    "file upload",
+    "submit button",
+    "waiting for upload",
+    "s3 upload",
+    "document upload",
+    "kyc docs"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
 }

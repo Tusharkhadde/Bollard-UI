@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "amount-input",
   "title": "Amount Input",
-  "description": "Prevents paying ten times too much (or too little) by grouping digits live (lakh/crore aware), spelling the amount out like a cheque, and flagging an extra or missing zero against the usual amount with a one-tap fix.",
+  "description": "Groups digits live with Intl.NumberFormat (lakh/crore for en-IN), spells the amount cheque-style, and when you pass `typical` warns about an amount 10× or more above or below it, with a one-tap fix. Reports the value as a JavaScript number.",
   "dependencies": [
     "@number-flow/react",
     "lucide-react",
@@ -43,10 +43,31 @@
     ],
     "fields": [
       "amount"
+    ],
+    "summary": "A money field that groups digits as you type, spells the amount out and flags an amount about ten times off the usual one.",
+    "server": "Validate amount and currency on the server, derive payable amounts from trusted data and use idempotency keys; this warning is a review prompt, not a correctness check.",
+    "catches": [
+      "An extra or missing zero, when the amount is 10× or more off the `typical` value you pass",
+      "Hard-to-read long numbers, by grouping digits as you type (Indian grouping for en-IN)",
+      "Misread amounts, by spelling the amount out in words",
+      "Leading zeros and decimals beyond the currency's precision"
+    ],
+    "limits": [
+      "The warning needs a `typical` amount and only fires at a fixed 10× ratio; a 5× or 9× slip is not flagged, and the ratio shown is rounded down (15.9× shows as 15×)",
+      "onValueChange returns a JavaScript float, and up to 15 integer digits are kept, which is beyond safe float precision with decimals; extra digits are dropped silently",
+      "A paste in another locale's format is misread without warning (in en-IN, \"1.250,50\" becomes 1.25)",
+      "Words are hard-coded English (\"Rupees … only\", \"paise\"), and non-INR unit names use the plural form, so 1 USD reads \"One US Dollars\"",
+      "Defaults to en-IN and INR; set locale and currency for other markets"
+    ],
+    "a11y": [
+      "Visible <label> tied to the input",
+      "Warnings are in an aria-live=\"polite\" region and the fix button returns focus to the input",
+      "The animated read-back respects prefers-reduced-motion (motion's useReducedMotion)",
+      "Note: aria-describedby always references the words element, even when words are hidden"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

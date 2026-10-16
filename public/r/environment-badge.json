@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "environment-badge",
   "title": "Environment Badge",
-  "description": "Stops edits in the wrong environment by marking the page, tab title (kept through navigation) and favicon with PRODUCTION, STAGING or DEV (production hatched in red), reading names like \"eu-prod-2\" word by word and never calling an unknown environment safe, plus a hook that asks for confirmation only in production.",
+  "description": "Marks the page, tab title (kept through navigation) and favicon with PRODUCTION, STAGING or DEV (production hatched in red), reads names like \"eu-prod-2\" word by word, never calls an unknown environment safe, and includes a hook that asks for confirmation only in production.",
   "dependencies": [
     "lucide-react"
   ],
@@ -37,7 +37,24 @@
       "devtools",
       "danger-zone"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "Marks the page, tab title and favicon with the environment, so nobody edits production thinking it is staging.",
+    "server": "Separate credentials and permissions per environment on the server; a badge is a reminder, not access control.",
+    "catches": [
+      "Working in production by mistake, via page, tab title and favicon marks",
+      "Environment names like \"eu-prod-2\", recognised word by word",
+      "Unknown environments, which are never shown as safe",
+      "Production-only confirmation through the hook"
+    ],
+    "limits": [
+      "Only as accurate as the env value you pass",
+      "Marks the browser UI; it doesn't stop API calls made against production"
+    ],
+    "a11y": [
+      "The environment is written out in text; short codes are aria-hidden",
+      "The production confirmation is a native <dialog> labelled by its title, with the safe button focused",
+      "Production uses a hatch pattern as well as colour"
+    ]
   },
   "categories": [
     "Context and awareness"

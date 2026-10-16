@@ -54,6 +54,7 @@ export interface TripDateChainProps extends Omit<React.ComponentProps<"div">, "d
   value?: TripStay[]
   /** Initial stays when uncontrolled. */
   defaultValue?: TripStay[]
+  /** Called with the stays after a fix or undo. */
   onValueChange?: (stays: TripStay[]) => void
   /** Times before this hour belong to the previous night (landing 00:50 needs the room from the night before). Default 6. */
   earlyHours?: number
@@ -61,6 +62,7 @@ export interface TripDateChainProps extends Omit<React.ComponentProps<"div">, "d
   minConnectionMinutes?: number
   /** 12- or 24-hour clock follows the locale. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<TripDateChainMessages>
 }
 

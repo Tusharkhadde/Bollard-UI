@@ -173,6 +173,7 @@ export interface DependentResetNoticeProps<T extends Values> extends Omit<React.
   clearedSuffix?: string
   /** Button labels. */
   undoLabel?: string
+  /** Accessible label for the dismiss button. */
   dismissLabel?: string
 }
 

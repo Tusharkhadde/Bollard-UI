@@ -1,6 +1,35 @@
 {
   "title": "Webhook Test",
-  "description": "Stops a webhook from being saved to a URL the sender can't deliver to, by flagging localhost and private IPs, plain http, a missing path and tunnel URLs, then judging a pluggable test delivery the way the sender will: redirects fail (with a one-tap switch to the final URL), slow replies near the timeout and 200 login pages are caught.",
+  "summary": "Checks a webhook URL the way the sender will before it's saved: reachability, https, redirects, slow replies and login pages.",
+  "description": "Webhook URL field that flags localhost and private IPs, plain http, a missing path and tunnel URLs, then judges a test delivery like the sender: redirects fail (one-tap switch to the final URL), slow replies near the timeout and 200 login pages are caught.",
+  "catches": [
+    "localhost, private and link-local IPs the sender can't reach",
+    "Plain http",
+    "Missing path and temporary tunnel URLs",
+    "Redirects, with a switch to the final URL",
+    "Replies close to the sender's timeout (default 10 s)",
+    "200 responses that are really login pages"
+  ],
+  "limits": [
+    "Test delivery runs through your onSendTest; results depend on where it's sent from",
+    "Hostname checks don't resolve DNS, so names pointing at private IPs aren't caught"
+  ],
+  "a11y": [
+    "Visible <label>; status via aria-describedby in a polite live region",
+    "Danger notes use role=alert",
+    "Fix and send buttons have text labels"
+  ],
+  "server": "Validate webhook URLs server-side (resolve DNS, block private ranges) to prevent SSRF, and sign deliveries.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "GitHub Docs – Best practices for using webhooks",
+        "url": "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks"
+      }
+    ],
+    "note": "Confirmed GitHub asks receivers to respond within 10 seconds. Other senders use different timeouts; set timeout."
+  },
   "dependencies": [
     "lucide-react"
   ],

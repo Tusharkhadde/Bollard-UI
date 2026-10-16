@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "resume-marker",
   "title": "Resume Marker",
-  "description": "Stops readers losing their place in long feeds and docs by remembering the item they rested on, marking it \"You were here\" on return, and offering a jump there (and back) instead of moving the page on its own.",
+  "description": "Saves the item a reader rested on (after a short delay) to localStorage, marks it \"You were here\" on return, and offers a jump there and back instead of scrolling the page by itself.",
   "dependencies": [
     "lucide-react"
   ],
@@ -35,7 +35,24 @@
     "flows": [
       "messaging"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "Remembers where a reader stopped in a long feed or doc and offers a jump back, without moving the page on its own.",
+    "catches": [
+      "The item the reader rested on, saved only after saveDelay so a quick flick isn't stored",
+      "Their place on return, shown as a marker",
+      "A jump to it and a jump back, never an automatic scroll",
+      "Stale or malformed saved positions, ignored after maxAge"
+    ],
+    "limits": [
+      "Stored in localStorage per device and browser; it does not sync",
+      "Needs stable item keys; reordered or removed items lose the marker"
+    ],
+    "a11y": [
+      "Marker is a role=separator with an aria-label",
+      "Jump and back move focus to the target item (tabIndex=-1) without an extra scroll jump",
+      "Smooth scrolling is skipped under reduced motion",
+      "Jump pill sits in a polite live region; dismiss has an aria-label"
+    ]
   },
   "categories": [
     "Context and awareness"

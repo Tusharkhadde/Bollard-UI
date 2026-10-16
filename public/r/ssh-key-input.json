@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ssh-key-input",
   "title": "SSH Key Input",
-  "description": "Stops a private key being pasted where a public key belongs by saying so loudly, telling the user to rotate it and pulling out the public half in one tap, and catches DSA and short RSA keys, keys wrapped across lines or cut off, a missing or wrong type prefix, the SSH2 export format and a key already on the account, showing the SHA256 fingerprint and comment exactly as ssh-keygen prints them.",
+  "description": "Public-key field that flags a pasted private key loudly (rotate it; extract the public half in one tap), catches DSA and short RSA keys, wrapped or cut-off keys, wrong type prefixes, SSH2 export format and duplicates, and shows the SHA256 fingerprint as ssh-keygen does.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Private SSH key pasted publicly",
+    "stops": "Private SSH key pasted where a public key belongs",
     "mistakes": [
       "pasted private key instead of public",
       "ssh key invalid format",
@@ -45,10 +45,30 @@
     "fields": [
       "secret",
       "code"
+    ],
+    "summary": "Catches a private SSH key pasted where a public key belongs, plus weak, truncated or malformed public keys, before they're saved.",
+    "server": "Re-validate the key server-side, reject private keys and weak types, and never log submitted key material.",
+    "catches": [
+      "A private key pasted instead of a public one, with rotate advice and the public half extracted when possible",
+      "DSA keys and RSA keys under minRsaBits (default 2048; 3072 recommended)",
+      "Keys wrapped across lines or cut off",
+      "Missing or mismatched type prefix",
+      "RFC 4716 (SSH2) export format, converted",
+      "A key already on the account"
+    ],
+    "limits": [
+      "Checks key format and size, not who owns the key",
+      "A pasted private key has already been exposed to this page; advise rotation regardless",
+      "Certificate and hardware-key (sk-) variants may be reported generically"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid on blocking issues; hint and report via aria-describedby",
+      "Private-key warning uses role=alert; summary is role=status",
+      "After a fix, focus moves to the next fix or back to the field"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

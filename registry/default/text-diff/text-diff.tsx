@@ -182,14 +182,17 @@ export interface TextDiffProps extends React.ComponentProps<"div"> {
   afterLabel?: string
   /** Templates: `{count}` is filled in. */
   addedText?: string
+  /** Count label for removed words. */
   removedText?: string
   /** Lead-in before the changed numbers ("30 → 14, 4417 → 4471"). */
   numbersText?: (count: number) => string
+  /** Count label for invisible-character changes. */
   invisibleText?: (count: number) => string
   /** Shown instead of the stats when the two texts are the same. */
   identicalText?: string
   /** Read before each change by screen readers. */
   srAddedLabel?: string
+  /** Screen-reader prefix for removed text. */
   srRemovedLabel?: string
 }
 

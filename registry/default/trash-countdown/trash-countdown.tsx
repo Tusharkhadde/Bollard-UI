@@ -37,6 +37,7 @@ const outline = "border bg-background shadow-xs hover:bg-accent dark:border-inpu
 const destructive = "bg-destructive text-white shadow-xs hover:bg-destructive/90 dark:bg-destructive/60"
 
 export interface TrashCountdownProps extends Omit<React.ComponentProps<"section">, "children"> {
+  /** Trashed items with when they were trashed and where they restore to. */
   items: TrashItem[]
   /** Days an item stays in the trash before it's deleted forever. */
   retentionDays?: number
@@ -48,9 +49,13 @@ export interface TrashCountdownProps extends Omit<React.ComponentProps<"section"
   onRestore: (id: string) => void | Promise<void>
   /** Delete these items forever. */
   onEmpty: (ids: string[]) => void | Promise<void>
+  /** Heading of the list. */
   title?: string
+  /** Label of the empty-trash button. */
   emptyLabel?: string
+  /** Label of each restore button. */
   restoreLabel?: string
+  /** Shown when the trash is empty. */
   nothingText?: string
 }
 

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "public-env-guard",
   "title": "Public Env Guard",
-  "description": "Stops secrets shipping in the client bundle by reading a .env the way the bundler does, listing every NEXT_PUBLIC_, VITE_, REACT_APP_, EXPO_PUBLIC_ or PUBLIC_ variable that reaches the browser, flagging secret key shapes, Supabase service_role JWTs, passwords in URLs, secret names and high-entropy values (while letting publishable keys through), and renaming a key to server-only in one tap with a reminder to rotate it.",
+  "description": ".env check that lists every NEXT_PUBLIC_, VITE_, REACT_APP_, EXPO_PUBLIC_ or PUBLIC_ variable reaching the browser and flags secret key shapes, Supabase service_role JWTs, passwords in URLs, secret names and high-entropy values, with a server-only rename.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Secret key shipped in the bundle",
+    "stops": "Helps catch a secret key shipped in the client bundle",
     "mistakes": [
       "next_public secret exposed",
       "api key in frontend",
@@ -46,10 +46,29 @@
     "fields": [
       "secret",
       "code"
+    ],
+    "summary": "Reads a .env the way the bundler does and flags secrets in public variables, so a secret key isn't shipped in the client bundle.",
+    "server": "Scan built bundles in CI for secrets and keep secret keys only in server-side environment variables.",
+    "catches": [
+      "Public-prefixed variables that reach the browser, per framework",
+      "Secret key shapes (for example Stripe secret keys) in public variables",
+      "Supabase service_role JWTs",
+      "Passwords inside connection URLs",
+      "Secret-sounding names and high-entropy values, while letting publishable keys through"
+    ],
+    "limits": [
+      "Reads the .env text you paste; secrets set elsewhere (CI, hosting dashboard) aren't seen",
+      "High-entropy detection can flag harmless IDs",
+      "Renaming doesn't un-leak a key already shipped; rotate it"
+    ],
+    "a11y": [
+      "Visible label; textarea has aria-invalid when errors exist and is described by the status",
+      "Status uses role=status; icons are aria-hidden",
+      "Focus returns to a nearby control after a fix"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

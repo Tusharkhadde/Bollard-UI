@@ -1,7 +1,41 @@
 {
   "title": "Sunset Notice",
-  "description": "Stops an API shutdown arriving as a surprise outage: it reads the Sunset (RFC 8594) and Deprecation (RFC 9745) headers and their Link relations off a response, lists exactly what stops working, shows when in the reader's own zone (flagging when that falls on a different day than the header's UTC date), counts down while turning amber then red, and lets \"Remind me later\" snooze only until the next 30/7/1-day mark.",
-  "dependencies": ["lucide-react"],
+  "summary": "Turns Sunset and Deprecation response headers into a visible countdown, so an API shutdown isn't a surprise outage.",
+  "description": "Reads Sunset (RFC 8594) and Deprecation (RFC 9745) headers and their Link relations, lists what stops working, shows when in the reader's zone (flagging a different day than the UTC date), turns amber then red, and snoozes only until the next 30/7/1-day mark.",
+  "catches": [
+    "Sunset and Deprecation dates from response headers",
+    "Sunset earlier than deprecation, or already past",
+    "A local date that differs from the header's UTC date",
+    "Approaching deadlines (soonDays, finalDays)",
+    "Migration and policy links from Link rel=deprecation/sunset"
+  ],
+  "limits": [
+    "Sunset timestamps are hints; the API can stop earlier or later",
+    "Snooze state lives in localStorage on this device",
+    "Accepts legacy \"Deprecation: true\" with no date"
+  ],
+  "a11y": [
+    "Banner is a region with an aria-label; status is role=status, or role=alert once past",
+    "Snooze and migrate are labelled actions; icons are aria-hidden",
+    "Countdown bar is aria-hidden"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RFC 8594 – The Sunset HTTP Header Field",
+        "url": "https://www.rfc-editor.org/rfc/rfc8594.html"
+      },
+      {
+        "label": "RFC 9745 – The Deprecation HTTP Response Header Field",
+        "url": "https://www.rfc-editor.org/rfc/rfc9745.html"
+      }
+    ],
+    "note": "Confirmed: Sunset = HTTP-date with rel=\"sunset\" links; Deprecation is a Structured Field date (e.g. @1688169599)."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "API shutdown arrives as an outage",
   "mistakes": [
     "deprecated api stopped working",

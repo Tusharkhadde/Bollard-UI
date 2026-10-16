@@ -64,6 +64,7 @@ export interface RevisionBannerProps extends Omit<React.ComponentProps<"div">, "
   behind?: number
   /** Plain text of both revisions, to count the words a restore would change. */
   revisionText?: string
+  /** Text describing the latest version. */
   latestText?: string
   /** Open the latest revision. */
   onGoToLatest: () => void
@@ -71,18 +72,29 @@ export interface RevisionBannerProps extends Omit<React.ComponentProps<"div">, "
   onRestore: () => void | Promise<void>
   /** The old revision's content. Edits inside it are blocked. */
   children: React.ReactNode
+  /** Formats revision dates. */
   formatDate?: (date: Date) => string
   /** Templates: `{label}`, `{author}`, `{date}`, `{behind}`, `{latest}`, `{added}`, `{removed}` are filled in. */
   message?: string
+  /** Says how many versions behind this one is. */
   behindText?: string
+  /** Shown when someone tries to edit the old version. */
   editBlockedText?: string
+  /** Restore confirmation question. */
   confirmText?: string
+  /** Says how many words the restore changes. */
   impactText?: string
+  /** Says the latest version is kept in history. */
   keptText?: string
+  /** Label of the go-to-latest button. */
   goToLatestLabel?: string
+  /** Label of the restore button. */
   restoreLabel?: string
+  /** Label of the confirm-restore button. */
   confirmRestoreLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Shown when onRestore rejects. */
   errorText?: string
 }
 

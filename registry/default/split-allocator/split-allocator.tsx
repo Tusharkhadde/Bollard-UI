@@ -62,12 +62,19 @@ export interface SplitAllocatorProps extends Omit<React.ComponentProps<"div">, "
   onValueChange?: (value: Record<string, number>) => void
   /** Templates: `{amount}`, `{total}`, `{label}` and `{labels}` are filled in. */
   remainingText?: string
+  /** Shown when the parts exceed the total. */
   overText?: string
+  /** Shown when the parts add up exactly. */
   doneText?: string
+  /** Warning for a row left on zero. */
   zeroText?: string
+  /** Label of the give-the-rest fix. */
   giveRestLabel?: string
+  /** Label of the take-the-excess fix. */
   takeOverLabel?: string
+  /** Label of the scale-to-total fix. */
   scaleLabel?: string
+  /** Label of the split-evenly button. */
   evenLabel?: string
 }
 

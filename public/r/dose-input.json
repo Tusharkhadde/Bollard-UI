@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dose-input",
   "title": "Dose Input",
-  "description": "Prevents ten-fold medication errors by flagging the ISMP error-prone dose designations as they're typed (trailing zeros like 1.0 mg read as 10 mg, a missing leading zero, U and IU, µg, cc, a unit flush against the number, uncommaed big numbers), rewriting the dose safely in one tap, offering the likely meant value when a dose is 10× outside the drug's usual range (mg typed for mcg, a slipped decimal), and spelling it back in words.",
+  "description": "Flags ISMP error-prone dose designations as typed (trailing zeros, missing leading zero, U and IU, µg, cc, a unit flush against the number, uncommaed large numbers), rewrites the dose safely, offers the likely value when 10× outside the usual range and spells it back.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,39 @@
     ],
     "fields": [
       "number"
-    ]
+    ],
+    "summary": "Flags error-prone dose notation as it is typed and doses ten times outside the usual range, so a slipped decimal isn't read as a ten-fold dose.",
+    "server": "Validate doses against the prescribing system's drug database and require clinical review; this field is a typing aid.",
+    "catches": [
+      "Trailing zeros (1.0 mg) and missing leading zeros (.5 mg)",
+      "Error-prone abbreviations: U, IU, µg, cc",
+      "A unit typed flush against the number, and large numbers without separators",
+      "Doses 10× outside the range you pass (mg typed for mcg, a slipped decimal)",
+      "The dose spelled back in words"
+    ],
+    "limits": [
+      "Not a clinical decision tool: it does not know the patient, the drug or safe dosing",
+      "Range checks only work with the range you supply",
+      "Not a medical device; dosing must be checked by a qualified professional"
+    ],
+    "a11y": [
+      "Visible <label>; aria-describedby to an aria-live=\"polite\" hint",
+      "aria-invalid when the dose can't be read",
+      "Fixes and suggested values are buttons with visible text, returning focus to the input"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "ISMP List of Error-Prone Abbreviations, Symbols, and Dose Designations",
+          "url": "https://online.ecri.org/hubfs/ISMP/Resources/ISMP_ErrorProneAbbreviation_List.pdf"
+        }
+      ],
+      "note": "Informational, not medical advice. Checked that the ISMP list covers trailing and missing leading zeros, U, IU and µg. Not every flagged pattern was matched line by line."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Readbacks and calculators"
   ],
   "type": "registry:ui"
 }

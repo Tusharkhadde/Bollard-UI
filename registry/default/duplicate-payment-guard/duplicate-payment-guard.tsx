@@ -75,8 +75,11 @@ export type DuplicatePaymentGuardMessages = typeof DUPLICATE_PAYMENT_GUARD_MESSA
 export interface DuplicatePaymentGuardProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** Who is being paid; `name` is what the warning shows. */
   payee: { id: string; name: string }
+  /** Amount to pay, in major units. */
   amount: number
+  /** ISO 4217 currency code. */
   currency?: string
+  /** BCP 47 locale for money and times. */
   locale?: string
   /** Recent payments from your history, any payee, any order. Payments made here are remembered too. */
   payments?: PastPayment[]
@@ -98,6 +101,7 @@ export interface DuplicatePaymentGuardProps extends Omit<React.ComponentProps<"d
   maxChecks?: number
   /** Merged onto the pay button. */
   "aria-describedby"?: string
+  /** Override any visible string. */
   messages?: Partial<DuplicatePaymentGuardMessages>
 }
 

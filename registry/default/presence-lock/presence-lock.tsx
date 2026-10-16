@@ -65,6 +65,7 @@ export interface PresenceAvatarsProps extends Omit<React.ComponentProps<"div">, 
   max?: number
   /** Announced to screen readers. `{name}` is filled in. */
   joinedText?: string
+  /** Announcement template when someone leaves. */
   leftText?: string
 }
 
@@ -131,13 +132,21 @@ export interface PresenceLockProps extends Omit<React.ComponentProps<"div">, "ch
   onEditAnyway?: (field: string) => void
   /** Templates: `{names}`, `{label}` and `{when}` are filled in. */
   editingText?: string
+  /** Template when several people edit the field. */
   editingManyText?: string
+  /** Button text to edit a locked field. */
   editAnywayLabel?: string
+  /** Warning shown before editing anyway. */
   confirmText?: string
+  /** Cancel button text. */
   cancelLabel?: string
+  /** Template when you and one other are editing. */
   bothText?: string
+  /** Template when you and several others are editing. */
   bothManyText?: string
+  /** Template for people who went idle. */
   idleText?: string
+  /** Shown when the field is free. */
   freeText?: string
 }
 

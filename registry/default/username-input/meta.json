@@ -1,6 +1,24 @@
 {
   "title": "Username Input",
-  "description": "Prevents impersonation and lost handles by reading back the exact handle that gets registered, blocking reserved words even in disguise (adm1n) and case-only duplicates, flagging look-alikes of existing names with a UTS #39-style skeleton, and checking availability after a pause with free alternatives to tap.",
+  "summary": "Reads back the exact handle that will be registered and blocks reserved words, case-only duplicates and lookalikes of existing names.",
+  "description": "Username field that reads back the exact stored handle, blocks reserved words even in disguise (adm1n) and case-only duplicates, flags lookalikes of existing names with a UTS #39-style skeleton, and checks availability after a pause with free alternatives.",
+  "catches": [
+    "Reserved and staff words, including digit swaps (adm1n)",
+    "Case-only duplicates of existing handles",
+    "Lookalikes of existing names (Cyrillic/Greek homoglyphs, 0/o, 1/l)",
+    "Length outside minLength–maxLength",
+    "Taken handles, with free alternatives"
+  ],
+  "limits": [
+    "Skeleton folding covers common confusables, not the full UTS #39 data",
+    "Availability depends on your checkAvailability; race conditions remain until the server reserves the name"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid on blocking issues and status via aria-describedby",
+    "Status in a polite live region; blocking errors use role=alert",
+    "Suggestions are buttons"
+  ],
+  "server": "Enforce uniqueness on the normalised, skeleton form of the handle with a database constraint.",
   "dependencies": [
     "lucide-react"
   ],

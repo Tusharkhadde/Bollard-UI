@@ -33,15 +33,25 @@ const stepBtn = "grid size-7 shrink-0 place-items-center rounded-md border bg-ba
 const fixClass = "inline-flex h-6 items-center gap-1 rounded-md border border-amber-500/40 px-2 font-medium text-amber-900 transition-colors hover:bg-amber-500/10 dark:text-amber-200 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 interface CountProps {
+  /** Counter label. */
   label: string
+  /** Helper text under the label. */
   hint?: string
+  /** Current count. */
   value: number
+  /** Lowest allowed count. */
   min?: number
+  /** Highest allowed count. */
   max: number
+  /** Called with the new count. */
   onChange: (n: number) => void
+  /** Key used to return focus to this counter after a fix. */
   focusKey: string
+  /** Hide the label visually (kept for screen readers). */
   compact?: boolean
+  /** Accessible label for the minus button. */
   fewer: string
+  /** Accessible label for the plus button. */
   more: string
 }
 

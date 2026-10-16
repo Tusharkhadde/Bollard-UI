@@ -1,6 +1,23 @@
 {
   "title": "Dimension Input",
-  "description": "Prevents wrong sizes on listings, shipments and orders by labelling each side, filling all three from a pasted \"16 x 12 x 8 in\", and checking them against what is being measured to catch the wrong unit, a side with an extra digit and sides entered in the wrong order, then reading the size back in metric and imperial with volume and courier volumetric weight.",
+  "summary": "Labels each side of a size, fills all three from a pasted \"16 x 12 x 8 in\" and catches wrong units or an extra digit, so the wrong package size doesn't ship.",
+  "description": "Labels each side, fills all three from a pasted \"16 x 12 x 8 in\", checks them against what is being measured to catch the wrong unit, an extra digit and sides in the wrong order, and reads the size back in metric and imperial with volume and volumetric weight.",
+  "catches": [
+    "The wrong unit for the item category (cm entered as inches)",
+    "A side with an extra digit",
+    "Sides entered in an unexpected order",
+    "Pasted sizes like \"16 x 12 x 8 in\", split into fields",
+    "Courier volumetric weight, using your divisor"
+  ],
+  "limits": [
+    "Plausibility checks need a category; without one it only reads back",
+    "The default volumetric divisor may not match your courier"
+  ],
+  "a11y": [
+    "Each side and the unit have their own <label>",
+    "Fields are described by an aria-live=\"polite\" status",
+    "Highlight animation respects prefers-reduced-motion"
+  ],
   "dependencies": [
     "lucide-react"
   ],

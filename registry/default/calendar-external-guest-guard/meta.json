@@ -1,7 +1,28 @@
 {
   "title": "Calendar External Guest Guard",
-  "description": "Stops an internal meeting invite reaching outside guests with more than you meant to share: it names who is outside your domains (and a colleague's personal Gmail standing in for their work address, with the work address one tap away), then lists what those guests really get under Google Calendar's rules, such as an agenda line marked internal, a file name they can read even without access, an \"anyone with the link\" attachment, the guest list and invite or edit rights, each with a one-tap fix and Undo, and asks for a second, deliberate press before sending with serious items still open.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows what outside guests on an internal invite will actually see, so an agenda, file or guest list isn't shared beyond your domain by mistake.",
+  "description": "Names guests outside your domains (and a colleague's personal Gmail used for their work address), then lists what they get under Google Calendar defaults: internal agenda lines, file names, open-link files, the guest list, edit rights. Fixes, Undo, second press to send.",
+  "catches": [
+    "Guests outside your domains, and personal addresses standing in for a colleague's work address",
+    "Agenda lines that contain sensitive terms",
+    "Attachments whose names show, or that anyone with the link can open",
+    "Guest list, invite-others and modify-event rights given to outside guests",
+    "Recurring events, where outside guests get every future occurrence"
+  ],
+  "limits": [
+    "Models Google Calendar's sharing defaults; other calendar products behave differently",
+    "File access comes from what you pass (Drive link settings), not a live Drive check",
+    "Personal-address matching uses the directory you provide"
+  ],
+  "a11y": [
+    "Guest remove buttons have aria-labels with the address",
+    "Send sets aria-busy while sending and is described by the second-press hint",
+    "Escape disarms the second press and returns focus to Send",
+    "Failures use role=\"alert\"; status updates role=\"status\""
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Internal agenda shared with outside guests",
   "mistakes": [
     "invite sent to external guest",

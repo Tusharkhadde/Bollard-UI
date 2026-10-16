@@ -57,6 +57,7 @@ export interface BankTransferTimingProps extends Omit<React.ComponentProps<"div"
   rail?: Rail
   /** Initial rail when uncontrolled. Defaults to IMPS. */
   defaultRail?: Rail
+  /** Called when the user picks another rail. */
   onRailChange?: (rail: Rail) => void
   /** Rails your app offers, in display order. */
   rails?: Rail[]
@@ -64,7 +65,9 @@ export interface BankTransferTimingProps extends Omit<React.ComponentProps<"div"
   payee?: string
   /** "Now", for tests and server-rendered previews. Otherwise the clock is read after mount and every 30 s. */
   now?: Date
+  /** UPI merchant category, which sets the UPI cap. Defaults to P2P. */
   upiCategory?: UpiCategory
+  /** Override the built-in UPI caps. */
   upiLimits?: TransferInput["upiLimits"]
   /** Your bank's per-day limit for each rail, if lower than the network's. */
   bankLimits?: TransferInput["bankLimits"]
@@ -74,9 +77,11 @@ export interface BankTransferTimingProps extends Omit<React.ComponentProps<"div"
   holidays?: string[]
   /** `branch` NEFT and RTGS only leave in branch hours on working days. */
   channel?: "online" | "branch"
+  /** Branch opening hours, for transfers made at a branch. */
   branchHours?: TransferInput["branchHours"]
   /** Continue to authorisation. Not reachable while a limit would make the bank refuse. May return a Promise. */
   onContinue?: (transfer: { amount: number; rail: Rail }) => void | Promise<void>
+  /** BCP 47 locale for dates and numbers. Defaults to en-IN. */
   locale?: string
   /** Any visible string. */
   messages?: Partial<Omit<BankTransferMessages, "rails" | "issues" | "categories">> & {

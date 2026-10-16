@@ -1,6 +1,25 @@
 {
   "title": "Glob Input",
-  "description": "Prevents config globs that silently miss or swallow files by running the pattern live against the real file list, flagging no-match and match-everything patterns, the * vs ** mix-up that skips subfolders, ** glued to a name, ./ and backslashes, with one-tap fixes and a dependency-free matcher.",
+  "summary": "Runs a config glob live against your real file list, so a pattern that silently misses files, or matches everything, shows up while you type.",
+  "description": "Glob field that matches the pattern live against the files you pass, flags no-match and match-everything patterns, the * vs ** mix-up that skips subfolders, ** glued to a name, ./ and backslashes, with one-tap fixes. Dependency-free matcher with {a,b} expansion.",
+  "catches": [
+    "Pattern that matches no files",
+    "Pattern that matches every file",
+    "* used where ** was needed, skipping subfolders",
+    "** glued to a name (src/**.ts)",
+    "Leading ./ and Windows backslashes"
+  ],
+  "limits": [
+    "Its own matcher; tools such as webpack, tsconfig, git or picomatch differ on edge cases (negation, dotfiles, extglobs)",
+    "Only as accurate as the file list you pass in",
+    "Case-insensitive by default; set caseSensitive for Linux/git behaviour"
+  ],
+  "a11y": [
+    "Visible label tied to the input; input is described by the status",
+    "Status is a polite live region",
+    "Match list is a labelled list with icon labels (\"matches\"/\"no match\"), not colour alone",
+    "List animation is skipped under reduced motion"
+  ],
   "dependencies": [
     "lucide-react"
   ],

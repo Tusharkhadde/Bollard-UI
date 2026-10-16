@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card-expiry-input",
   "title": "Card Expiry Input",
-  "description": "Prevents declined payments from mistyped card expiries by masking MM/YY, reading the date back as valid through the month's last day, and catching month 13, the year typed first, a four-digit year, an expired card and one that runs out before the next renewal, with one-tap fixes.",
+  "description": "Masks MM/YY, reads the date back as valid through the month's last day, and catches month 13, the year typed first, a four-digit year, an expired card and one that runs out before the next renewal, with one-tap fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,27 @@
     ],
     "fields": [
       "datetime"
+    ],
+    "summary": "Masks a card expiry as MM/YY and reads it back as a date, catching month 13, a year typed first or a card that expires before the next renewal.",
+    "catches": [
+      "Impossible months (13, 00) and the year typed first",
+      "A four-digit year, and YYYY-MM autofill",
+      "An expired card",
+      "A card that expires before the next renewal date you pass",
+      "Expiries implausibly far in the future (maxYears)"
+    ],
+    "limits": [
+      "Checks the date only; the issuer decides whether the card is valid",
+      "\"Today\" is the visitor's clock unless you pass `today`"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid when invalid and aria-describedby to an aria-live=\"polite\" status",
+      "Errors use role=\"alert\"",
+      "Fix buttons have visible text"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

@@ -79,6 +79,7 @@ export interface BnplScheduleCheckProps extends Omit<React.ComponentProps<"div">
   value?: BnplValue
   /** Initial source and dates when uncontrolled. Defaults to the card (if any) and the plan's dates. */
   defaultValue?: BnplValue
+  /** Called when the payment source or a payment date changes. */
   onValueChange?: (value: BnplValue) => void
   /** Offer "Update card" next to the expiry warning. */
   onUpdateCard?: () => void
@@ -92,7 +93,9 @@ export interface BnplScheduleCheckProps extends Omit<React.ComponentProps<"div">
   firstPaidNow?: boolean
   /** First weekday of the calendar: 0 Sunday, 1 Monday. Default 1. */
   weekStartsOn?: 0 | 1
+  /** BCP 47 locale for dates and money. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<BnplScheduleCheckMessages>
 }
 

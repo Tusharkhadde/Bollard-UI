@@ -12,6 +12,16 @@ import { useSite } from "./site-shell"
 
 const COLLAPSE_KEY = "bollard-ui-sidebar-collapsed"
 
+/** The on-site doc pages: the first two lead "Get started", the rest sit in "Project" at the end. */
+const DOC_PAGES = [
+  { href: "/docs", label: "Getting started" },
+  { href: "/start-here", label: "Start here" },
+  { href: "/changelog", label: "Changelog" },
+  { href: "/quality", label: "Quality" },
+  { href: "/security", label: "Security" },
+  { href: "/license", label: "License" },
+]
+
 const groupLabel = "flex w-full items-center gap-1.5 px-2 pb-1.5 text-xs font-medium text-muted-foreground"
 const itemBase =
   "flex min-w-0 items-center gap-2 rounded-md px-2 py-[5px] text-[13px] text-muted-foreground outline-none transition-colors hover:bg-accent/70 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
@@ -19,7 +29,7 @@ const itemActive = "bg-accent font-medium text-foreground"
 
 /**
  * Docs sidebar, shadcn-style: a filter box (shares the /components query), a
- * "Get started" group with the flows, then one group per category with counts.
+ * "Get started" group (Getting started, Start here, All components), the flows, then one group per category with counts.
  * Categories collapse (remembered); the active page is highlighted and kept in view.
  */
 export function Sidebar({ className, autoFocusFilter = false }: { className?: string; autoFocusFilter?: boolean }) {
@@ -140,6 +150,13 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
           <div className="mb-6">
             <p className={groupLabel}>Get started</p>
             <ul className="space-y-px">
+              {DOC_PAGES.slice(0, 2).map((page) => (
+                <li key={page.href}>
+                  <Link href={page.href} aria-current={pathname === page.href ? "page" : undefined} className={cn(itemBase, pathname === page.href && itemActive)}>
+                    <span className="min-w-0 flex-1 truncate">{page.label}</span>
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link
                   href="/components"
@@ -147,11 +164,6 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
                   aria-current={onIndex && !finder.flow ? "page" : undefined} className={cn(itemBase, onIndex && !finder.flow && itemActive)}>
                   <span className="min-w-0 flex-1 truncate">All components</span>
                   <span className="text-[11px] tabular-nums text-muted-foreground">{items.length}</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className={itemBase}>
-                  <span className="min-w-0 flex-1 truncate">Introduction</span>
                 </Link>
               </li>
             </ul>
@@ -239,6 +251,21 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
             </div>
           )
         })}
+
+        {!filtering && (
+          <div className="mt-2 mb-5 border-t pt-5">
+            <p className={groupLabel}>Project</p>
+            <ul className="space-y-px">
+              {DOC_PAGES.slice(2).map((page) => (
+                <li key={page.href}>
+                  <Link href={page.href} aria-current={pathname === page.href ? "page" : undefined} className={cn(itemBase, pathname === page.href && itemActive)}>
+                    <span className="min-w-0 flex-1 truncate">{page.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </nav>
     </div>
   )

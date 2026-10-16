@@ -1,12 +1,47 @@
 {
   "title": "Preflight Checklist",
-  "description": "Prevents shipping something broken by locking the action until auto and manual checks pass, naming the blockers, resetting ticks when the revision changes and re-verifying right before it runs.",
+  "summary": "Locks a deploy or publish button until automatic and manual checks pass, and re-verifies right before it runs.",
+  "description": "Checklist that locks an action until auto and manual checks pass, names the blockers, resets manual ticks and re-runs checks when the revision changes, and re-verifies right before the action runs.",
+  "catches": [
+    "Action started with failing or pending checks",
+    "Manual ticks left over from an earlier revision",
+    "A check that started failing since it was ticked: re-verified on run",
+    "Auto-check that throws: counted as a failure"
+  ],
+  "limits": [
+    "The lock is in this UI; the same action through an API or CLI isn't gated",
+    "Checks are only as good as the functions you pass"
+  ],
+  "a11y": [
+    "Each check row is focusable and its state is read as text",
+    "Status is a polite live region linked to the action button",
+    "Locked action uses aria-disabled and stays focusable",
+    "Re-run button has a title and visually hidden text"
+  ],
+  "server": "Gate the real deploy in CI or the API with the same required checks.",
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Shipped with checks skipped",
-  "mistakes": ["deployed without checks", "release checklist", "publish before review", "checks reset on new version"],
-  "aliases": ["checklist", "pre-launch", "release checklist", "deploy", "publish", "gate", "ci checks", "go live"],
-  "flows": ["devtools", "forms"],
+  "mistakes": [
+    "deployed without checks",
+    "release checklist",
+    "publish before review",
+    "checks reset on new version"
+  ],
+  "aliases": [
+    "checklist",
+    "pre-launch",
+    "release checklist",
+    "deploy",
+    "publish",
+    "gate",
+    "ci checks",
+    "go live"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
   "fields": []
 }

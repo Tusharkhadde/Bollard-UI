@@ -1,12 +1,46 @@
 {
   "title": "Bulk Scope Confirm",
-  "description": "Prevents bulk actions from hitting more than intended by stating the exact count and risky subsets, defaulting to only this page, and locking Confirm if the match count changes while it is open.",
+  "summary": "States exactly how many records a bulk action will hit and defaults to this page only, so \"select all\" doesn't hit every record.",
+  "description": "States the exact count and risky subsets (\"including 12 you don't own\"), defaults to only the selected items on this page, and locks Confirm if the match count changes while the dialog is open.",
+  "catches": [
+    "\"All matching\" scope when only this page was meant (page is the default)",
+    "Risky subsets inside the selection, counted by category",
+    "The match count changing while the dialog is open, which locks Confirm until acknowledged"
+  ],
+  "limits": [
+    "Counts and categories come from your props; it does not query the data",
+    "Drift is only noticed when you pass updated counts while it is open"
+  ],
+  "a11y": [
+    "Scope choice is a fieldset with a legend and labelled radio options",
+    "The summary and the drift warning are aria-live=\"polite\"",
+    "Confirm uses aria-disabled while locked, aria-busy while pending and aria-describedby to the drift warning",
+    "Breakdown and sample lists have aria-labels"
+  ],
+  "server": "Resolve the scope on the server at execution time, check the count you confirmed, and authorise each record.",
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Bulk action hit every record",
-  "mistakes": ["select all deleted everything", "bulk delete more than expected", "applied to all pages not just this", "mass update wrong rows"],
-  "aliases": ["bulk delete", "select all", "bulk edit", "mass action", "data table", "admin panel", "batch update"],
-  "flows": ["danger-zone"],
-  "fields": ["number"]
+  "mistakes": [
+    "select all deleted everything",
+    "bulk delete more than expected",
+    "applied to all pages not just this",
+    "mass update wrong rows"
+  ],
+  "aliases": [
+    "bulk delete",
+    "select all",
+    "bulk edit",
+    "mass action",
+    "data table",
+    "admin panel",
+    "batch update"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
+  "fields": [
+    "number"
+  ]
 }

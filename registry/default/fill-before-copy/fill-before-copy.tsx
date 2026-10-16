@@ -62,11 +62,17 @@ export interface FillBeforeCopyProps extends Omit<React.ComponentProps<"div">, "
   onCopy?: (text: string) => void
   /** Templates: `{count}` and `{names}` are filled in. */
   fillLabel?: string
+  /** Status text counting placeholders left ({count} is filled in). */
   leftText?: string
+  /** Status text when every placeholder is filled. */
   readyText?: string
+  /** Copy button text. */
   copyLabel?: string
+  /** Shown after copying. */
   copiedLabel?: string
+  /** Text for copying with placeholders left. */
   copyAnywayLabel?: string
+  /** Shown when Copy is blocked. */
   blockedText?: string
 }
 

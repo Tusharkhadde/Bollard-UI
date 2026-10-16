@@ -45,6 +45,7 @@ export interface MixedValueFieldProps extends Omit<React.ComponentProps<"div">, 
   value?: BulkChange
   /** Initial change when uncontrolled. */
   defaultValue?: BulkChange
+  /** Called with the planned change: null keeps values, { set } writes one value. */
   onValueChange?: (change: BulkChange) => void
   /** Offer "Clear on all" so emptying the field is an explicit choice, never an accident. */
   allowClear?: boolean
@@ -52,14 +53,23 @@ export interface MixedValueFieldProps extends Omit<React.ComponentProps<"div">, 
   formatItems?: (count: number) => string
   /** Templates: `{count}`, `{field}`, `{value}`, `{changed}`, `{total}`, `{already}`, `{items}` are filled in. */
   mixedText?: string
+  /** Shown when every record has the same value. */
   uniformText?: string
+  /** Label for empty values. */
   emptyText?: string
+  /** Readback when nothing will change. */
   keepText?: string
+  /** Readback template for setting a value. */
   setText?: string
+  /** Readback for records that already hold the value. */
   alreadyText?: string
+  /** Readback template for clearing the field. */
   clearText?: string
+  /** Shown when the change alters no records. */
   noopText?: string
+  /** Clear button text. */
   clearLabel?: string
+  /** Revert button text. */
   revertLabel?: string
 }
 

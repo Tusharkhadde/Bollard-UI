@@ -1,8 +1,31 @@
 {
   "title": "Quote Lock",
-  "description": "Stops paying a re-quoted price you never saw: it shows a held FX, swap or fare quote draining, fetches a fresh one when the hold ends (skew-proof with validFor), rolls the amount from old to new with the difference called out, turns a worse-than-tolerance price into an explicit Accept step by morphing the Pay button in place, re-quotes a Pay pressed in the hold's last seconds, keeps the amount in the Pay label, and ignores stale responses and double presses.",
-  "dependencies": ["lucide-react", "@number-flow/react", "motion"],
-  "stops": "Paid a re-quoted price I never saw",
+  "summary": "Shows a held FX, swap or fare quote counting down and makes any worse re-quote an explicit Accept step, so nobody pays a price they never saw.",
+  "description": "Held-quote panel that drains as the hold ends, fetches a fresh quote (skew-safe with validFor), rolls old to new with the difference called out, turns a worse-than-tolerance price into an explicit Accept, re-quotes a late Pay, and ignores stale responses and double presses.",
+  "catches": [
+    "Paying after the hold expired",
+    "New price worse than tolerance: Pay becomes Accept first",
+    "Pay pressed in the last seconds: re-quoted",
+    "Out-of-order quote responses and double presses",
+    "Client clock skew, when validFor is used"
+  ],
+  "limits": [
+    "The server's quote and its expiry are the real truth",
+    "Tolerance and direction come from your props",
+    "Animated amounts need @number-flow/react and motion"
+  ],
+  "a11y": [
+    "The amount is always in the Pay label as text",
+    "Errors use role=alert; Pay uses aria-disabled outside the hold",
+    "Animations are skipped under reduced motion"
+  ],
+  "server": "Honour only server-side quote IDs within their validity and reject a confirm against an expired or replaced quote; make confirm idempotent.",
+  "dependencies": [
+    "lucide-react",
+    "@number-flow/react",
+    "motion"
+  ],
+  "stops": "Helps prevent paying a re-quoted price nobody saw",
   "mistakes": [
     "price changed at payment",
     "forex rate changed",

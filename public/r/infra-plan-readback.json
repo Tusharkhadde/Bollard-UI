@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "infra-plan-readback",
   "title": "Infra Plan Readback",
-  "description": "Stops a Terraform or OpenTofu apply from quietly destroying data by reading the `terraform show -json` plan back as create, update, replace and destroy counts, putting destroys and replacements of databases, buckets, volumes and keys first with the attribute that forces each replacement (before → after, sensitive values hidden), whether the old one goes before its replacement exists and what force_destroy or skip_final_snapshot will do, flagging production workspaces and a var.environment that says production when the workspace doesn't, and keeping Apply locked until each data loss is acknowledged and, in production, the workspace name is typed.",
+  "description": "Reads a `terraform show -json` plan as create, update, replace and destroy counts, lists stateful destroys and replacements first with the attribute forcing each, and keeps Apply locked until each loss is acknowledged (and, in production, the workspace typed).",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Production database destroyed by terraform apply",
+    "stops": "Helps prevent terraform apply destroying a production database",
     "mistakes": [
       "terraform destroyed my database",
       "apply replaced rds instance",
@@ -44,6 +44,26 @@
     "fields": [
       "code",
       "text"
+    ],
+    "summary": "Reads a Terraform or OpenTofu plan back with data-losing destroys and replacements first, so an apply doesn't quietly delete a production database.",
+    "server": "Protect production state with policy checks (OPA/Sentinel), prevent_destroy and deletion protection, and require reviewed plans in CI.",
+    "catches": [
+      "Destroys and replacements of databases, buckets, volumes and keys, listed first",
+      "The attribute that forces a replacement (before → after, sensitive values hidden)",
+      "Destroy-before-create replacements that leave a gap",
+      "force_destroy and skip_final_snapshot consequences",
+      "Production workspace, or var.environment saying production when the workspace doesn't"
+    ],
+    "limits": [
+      "Only as good as the plan JSON; a plan made against stale state or a different workspace isn't detected",
+      "Stateful detection uses a built-in type list plus your statefulTypes/isStateful",
+      "The lock is in this UI; terraform apply from a terminal or CI is not affected"
+    ],
+    "a11y": [
+      "Parse errors and unappliable plans use role=alert",
+      "Data-loss list is a labelled section with a checkbox label per item",
+      "Workspace confirmation input has a visible label",
+      "Status uses role=status; sign icons are aria-hidden with the action named in text"
     ]
   },
   "categories": [

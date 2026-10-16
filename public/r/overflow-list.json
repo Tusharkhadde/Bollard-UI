@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "overflow-list",
   "title": "Overflow List",
-  "description": "Stops a “+3 more” chip list or avatar stack from hiding the item that matters by always keeping failed items, the signed-in user and pinned items visible, and spelling out what the expand button hides (“+4 more, 1 skipped”) instead of a bare count.",
+  "description": "Chip list or avatar stack that collapses to \"+N more\" but always keeps failed items, the signed-in user and pinned items visible, and spells out what the expand button hides (\"+4 more, 1 skipped\") instead of a bare count.",
   "dependencies": [
     "lucide-react"
   ],
@@ -35,7 +35,23 @@
     "flows": [
       "forms"
     ],
-    "fields": []
+    "fields": [],
+    "summary": "A \"+3 more\" chip list or avatar stack that always keeps failed items, you and pinned items visible, and says what the overflow hides.",
+    "catches": [
+      "Failed or error items hidden behind \"+N more\"",
+      "The signed-in user folded into the overflow",
+      "Bare counts that hide what kind of items are folded",
+      "Pinned items: always shown"
+    ],
+    "limits": [
+      "max is a count, not measured width",
+      "Warning items can still fold; only errors are always kept"
+    ],
+    "a11y": [
+      "Labelled list; each item's text includes its status",
+      "Status is shown by icon and text, not colour alone",
+      "Avatar images have empty alt with the name in text; initials are aria-hidden"
+    ]
   },
   "categories": [
     "Reading without mistakes"

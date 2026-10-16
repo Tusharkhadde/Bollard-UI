@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+
 import { Bento } from "@/components/site/landing/bento"
 import { Cta } from "@/components/site/landing/cta"
 import { Faq } from "@/components/site/landing/faq"
@@ -5,8 +7,11 @@ import { Flows } from "@/components/site/landing/flows"
 import { Hero } from "@/components/site/landing/hero"
 import { HowItWorks } from "@/components/site/landing/how-it-works"
 import { Stats } from "@/components/site/landing/stats"
-import { catalog, categories, GITHUB_URL, registryBase } from "@/lib/catalog"
+import { WhyNot } from "@/components/site/landing/why-not"
+import { catalog, categories, registryBase } from "@/lib/catalog"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
+
+export const metadata: Metadata = { alternates: { canonical: "/" } }
 
 export default function Home() {
   const total = catalog.length
@@ -26,8 +31,9 @@ export default function Home() {
       <Bento items={bentoItems} total={total} />
       <Flows flows={flows} />
       <HowItWorks registryBase={registryBase} />
+      <WhyNot />
       <Faq />
-      <Cta registryBase={registryBase} githubUrl={GITHUB_URL} />
+      <Cta registryBase={registryBase} />
     </main>
   )
 }

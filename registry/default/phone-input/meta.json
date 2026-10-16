@@ -1,6 +1,25 @@
 {
   "title": "Phone Input",
-  "description": "Prevents saving unreachable numbers by cleaning pasted input (separators, a leading 0, a doubled +91 or 0091), switching country from the dial code and area code (+1 416 is Canada, +1 876 Jamaica), warning on the wrong digit count, checking the digits against Google's libphonenumber ranges and line types (a landline or premium-rate number in an OTP field), and reading back the exact E.164 value.",
+  "summary": "Cleans pasted phone numbers, picks the country from the dial code and checks the digits against libphonenumber ranges, so an unreachable number isn't saved.",
+  "description": "Phone field that cleans pasted input (separators, a leading 0, a doubled +91), picks the country from the dial and area code (+1 416 is Canada), warns on wrong digit counts, checks ranges and line types with libphonenumber, and reads back the E.164 value.",
+  "catches": [
+    "Separators, a leading trunk 0 and doubled country codes in pasted numbers",
+    "Country picked from the dial code and NANP area code",
+    "Too few or too many digits for the country",
+    "Line type that doesn't fit (landline or premium-rate where a mobile is expected)",
+    "E.164 readback of exactly what will be saved"
+  ],
+  "limits": [
+    "Format looks valid is not the same as reachable or owned; verify with an OTP",
+    "Numbering data comes from libphonenumber and needs updates as plans change",
+    "Country names are English unless you pass locale"
+  ],
+  "a11y": [
+    "Visible label; country picker has an aria-label",
+    "Input has aria-invalid on a warning and is described by a polite hint region",
+    "Flag and dial code visuals are aria-hidden",
+    "Animations are skipped under reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "libphonenumber-js",

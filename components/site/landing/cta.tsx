@@ -4,12 +4,13 @@ import { ArrowRight } from "lucide-react"
 import { buttonOutline, buttonPrimary } from "@/components/site/button-styles"
 import { GithubIcon } from "@/components/site/github-icon"
 import { InstallCommand } from "@/components/site/install-command"
+import { COMPAT, REPO_PUBLIC, REPO_URL } from "@/lib/site"
 
 import { Reveal } from "./reveal"
 import { container, sectionAnchor } from "./section-heading"
 
 /** The closing band: a framed panel on a masked grid with a faint amber glow, the install line and two actions. */
-export function Cta({ registryBase, githubUrl }: { registryBase: string; githubUrl: string }) {
+export function Cta({ registryBase }: { registryBase: string }) {
   return (
     <section id="get-started" aria-labelledby="cta-heading" className={`${sectionAnchor} border-t`}>
       <div className={`${container} py-20 sm:py-28`}>
@@ -24,13 +25,20 @@ export function Cta({ registryBase, githubUrl }: { registryBase: string; githubU
             Add one with the shadcn CLI. The source lands in your repo, MIT licensed, so every line is yours to change.
           </p>
           <InstallCommand registryBase={registryBase} name="type-to-confirm" className="mx-auto mt-8 w-full max-w-[40rem] min-w-0 bg-background" />
+          <p className="mt-2.5 font-mono text-[11.5px] text-muted-foreground">Needs {COMPAT}</p>
           <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/components" className={buttonPrimary}>
               Browse components <ArrowRight aria-hidden />
             </Link>
-            <a href={githubUrl} className={buttonOutline}>
-              <GithubIcon /> Star on GitHub
-            </a>
+            {REPO_PUBLIC ? (
+              <a href={REPO_URL} className={buttonOutline}>
+                <GithubIcon /> Star on GitHub
+              </a>
+            ) : (
+              <Link href="/docs" className={buttonOutline}>
+                Get started
+              </Link>
+            )}
           </div>
         </Reveal>
       </div>

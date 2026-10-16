@@ -62,13 +62,21 @@ export interface ChangeReadoutProps extends Omit<React.ComponentProps<"span">, "
   locale?: string
   /** Formats one magnitude (always called with a value ≥ 0 for the delta). */
   format?: (value: number) => string
+  /** Unit label for percentage points, e.g. "pts". */
   pointsLabel?: string
+  /** Explanation of percentage points, shown as the abbreviation's title. */
   pointsHint?: string
+  /** Shown instead of a percentage when the starting value is zero. */
   zeroBaseText?: string
+  /** Shown instead of a percentage when the value changes sign. */
   crossesZeroText?: string
+  /** Shown when the values are equal. */
   noChangeText?: string
+  /** Word for a change in the good direction. */
   betterLabel?: string
+  /** Word for a change in the bad direction. */
   worseLabel?: string
+  /** Word read between the two values. */
   toLabel?: string
 }
 

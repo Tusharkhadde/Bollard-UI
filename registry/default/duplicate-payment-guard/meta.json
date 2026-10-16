@@ -1,7 +1,26 @@
 {
   "title": "Duplicate Payment Guard",
-  "description": "Stops paying the same payee the same amount twice by telling a double tap (swallowed, charged once), a retry after a timeout (the first may still land, so it offers Check status before paying again) and a deliberate repeat (\"You paid Ravi ₹2,400 12 min ago\", needing a separate second press) apart.",
-  "dependencies": ["lucide-react"],
+  "summary": "Tells a double tap, a retry after a timeout and a deliberate repeat payment apart, so the same payee isn't paid twice by accident.",
+  "description": "Swallows a double tap (charged once), after a timeout offers Check status before paying again because the first may still land, and for a deliberate repeat says \"You paid Ravi ₹2,400 12 min ago\" and needs a separate second press.",
+  "catches": [
+    "Double taps on the pay button",
+    "Retries after a timeout while the first payment may still complete",
+    "Repeat payments to the same payee and amount within a window"
+  ],
+  "limits": [
+    "A disabled or held button reduces accidental repeats; it does not guarantee a payment happens once",
+    "Recent payments come from your `payments` prop; payments made elsewhere are unseen",
+    "Status checks depend on your onCheckStatus"
+  ],
+  "a11y": [
+    "The pay button stays focusable (aria-disabled), sets aria-busy while paying and is described by the hint",
+    "Escape disarms a second-press state; held Enter repeats are ignored",
+    "Focus returns to the button after each phase"
+  ],
+  "server": "Use idempotency keys and a unique constraint per payment intent on the server; that is what stops a double charge.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Paid twice after a timeout",
   "mistakes": [
     "double payment",

@@ -1,10 +1,49 @@
 {
   "title": "Reading Level",
-  "description": "Prevents writing that's too hard for its readers with a live Flesch-Kincaid grade against a target, the hardest sentences tinted in place (only when long and dense, so plain long sentences aren't nagged) with the reason and a jump to each, and one-tap plain-word swaps (\"utilize\" → \"use\", \"in the event that\" → \"if\").",
-  "dependencies": ["lucide-react"],
-  "stops": "Copy too hard for its readers",
-  "mistakes": ["text too complex", "readability score", "plain language check", "flesch kincaid"],
-  "aliases": ["readability", "plain language", "flesch-kincaid", "writing assistant", "content editor", "cms", "copywriting", "grammarly"],
-  "flows": ["forms"],
-  "fields": ["text"]
+  "summary": "Flags copy that reads above its audience's grade level and points at the sentences and wordy phrases that cause it.",
+  "description": "Live Flesch-Kincaid grade against a target. Tints the hardest sentences in place (only when long and dense), with the reason and a jump to each, and offers one-tap plain-word swaps (\"utilize\" → \"use\").",
+  "catches": [
+    "Grade above the target you set (default 8)",
+    "Sentences that are both long and dense, tinted in place",
+    "Wordy words and phrases with a plainer swap",
+    "Non-English text, where it shows a notice instead of a grade"
+  ],
+  "limits": [
+    "Syllables are estimated from vowel groups (roughly ±10%), so grades are approximate",
+    "Flesch-Kincaid is an English-only formula and ignores meaning, layout and audience",
+    "The swap list is a starter set; it will miss domain jargon"
+  ],
+  "a11y": [
+    "Visible <label> tied to the textarea, with the grade wired via aria-describedby",
+    "On/above-target status announced through a polite sr-only live region",
+    "Each swap button has an aria-label naming the word and its replacement",
+    "After a swap, focus moves to the next swap button (or back to the field)",
+    "The tinted backdrop is aria-hidden; sentence difficulty also shown as text"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Copy harder to read than its audience needs",
+  "mistakes": [
+    "text too complex",
+    "readability score",
+    "plain language check",
+    "flesch kincaid"
+  ],
+  "aliases": [
+    "readability",
+    "plain language",
+    "flesch-kincaid",
+    "writing assistant",
+    "content editor",
+    "cms",
+    "copywriting",
+    "grammarly"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
 }

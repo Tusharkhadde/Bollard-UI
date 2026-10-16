@@ -1,10 +1,42 @@
 {
   "title": "Photo Spec Check",
-  "description": "Stops exam, passport and visa photos being rejected after upload by checking them against the portal's rules (UPSC, SSC, NTA, NEET and US visa presets, or your own): the real file type behind the name, KB, pixels, shape, print size, over-compression, face size and centring when a face box is passed, a background that isn't white and black-and-white photos, with a one-tap canvas fix that crops around the face, resizes and re-encodes into the KB window.",
+  "summary": "Checks an exam, passport or visa photo against the portal's rules before upload and fixes size, crop and file weight in the browser.",
+  "description": "Photo upload check against portal presets (UPSC, SSC, NTA, NEET, US visa) or your spec: real file type, KB, pixels, shape, print size, over-compression, face size and centring, background and colour, with a canvas fix that crops, resizes and re-encodes.",
+  "catches": [
+    "File type that doesn't match its name",
+    "File size outside the KB window, and over-compression",
+    "Pixel size, aspect ratio or print size out of spec",
+    "Face too small or off-centre, when you pass a face box",
+    "Background that isn't white, or a black-and-white photo"
+  ],
+  "limits": [
+    "Presets reflect the sources below and change often; portals may also check things this can't (glasses, expression)",
+    "Face checks need a face box from your detector",
+    "The canvas fix re-encodes the photo"
+  ],
+  "a11y": [
+    "Choose button is described by the spec; the hidden file input is removed from tab order",
+    "Status lines have text; icons are aria-hidden",
+    "Focus moves to the fix or choose button after reading"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "US visa: Digital Image Requirements (travel.state.gov)",
+        "url": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos/digital-image-requirements.html"
+      },
+      {
+        "label": "UPSC: photo and signature upload instructions",
+        "url": "https://upsconline.nic.in/caf/assets/PDF/instruction-photo-signature-upload-upsc.pdf"
+      }
+    ],
+    "note": "Informational; check the official source. Confirmed: US visa JPEG, square 600–1200 px, ≤ 240 kB, compression ≤ 20:1; UPSC colour JPG named photo, 20–200 KB. SSC, NTA and NEET presets were not re-checked this round."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Exam photo rejected after upload",
+  "stops": "Helps prevent an exam photo being rejected after upload",
   "mistakes": [
     "photo size kb exam form",
     "passport photo rejected",

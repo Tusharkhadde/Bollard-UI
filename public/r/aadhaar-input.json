@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "aadhaar-input",
   "title": "Aadhaar Input",
-  "description": "Prevents rejected KYC and over-exposed Aadhaar numbers by masking the entry as XXXX XXXX 1234 while typing (reveal on demand), checking the Verhoeff digit and the never-0-or-1 first digit, offering a one-tap reveal when the check digit fails (instead of guessing a swap that is often wrong), recognising a VID, the 28-digit enrolment ID, a masked copy, a PAN or a mobile number (with or without +91) pasted by mistake, cleaning photocopy spaces and dashes, and saying that a VID or masked number is enough and how the number is stored.",
+  "description": "Masks Aadhaar entry as XXXX XXXX 1234 (reveal on demand), checks the Verhoeff check digit and the no-0-or-1 first digit, recognises a VID, enrolment ID, masked copy, PAN or mobile pasted by mistake, strips photocopy separators and says how the number is stored.",
   "dependencies": [
     "lucide-react"
   ],
@@ -19,7 +19,7 @@
     }
   ],
   "meta": {
-    "stops": "Full Aadhaar exposed or rejected",
+    "stops": "Aadhaar typos and over-exposure",
     "mistakes": [
       "aadhaar number validation",
       "verhoeff check aadhaar",
@@ -45,10 +45,41 @@
     ],
     "fields": [
       "id-number"
-    ]
+    ],
+    "summary": "An Aadhaar field that masks the number as it is typed and catches typos, pasted VIDs, PANs or mobile numbers before KYC rejects them.",
+    "server": "Verify the number through an authorised KYC/eKYC provider on the server, and avoid storing or logging full Aadhaar numbers unless you are permitted to.",
+    "catches": [
+      "Typos and swapped neighbouring digits, via the Verhoeff check digit",
+      "A first digit of 0 or 1, which Aadhaar numbers never use",
+      "A 16-digit VID, 28-digit enrolment ID, masked copy, PAN or mobile number pasted by mistake",
+      "Spaces, dashes and dots from a photocopy or PDF, and Indian-script or full-width digits",
+      "Letters typed for look-alike digits (O, I, l, S)"
+    ],
+    "limits": [
+      "Format and checksum only: it does not confirm the number exists or belongs to this person",
+      "On a failed check digit it offers to reveal the number rather than guessing which digit is wrong",
+      "Masking is visual; your form still receives the full number unless you handle it otherwise",
+      "The storage note only describes what you pass in `storage`; it does not store or encrypt anything"
+    ],
+    "a11y": [
+      "Visible <label> tied to the input; aria-invalid and aria-describedby point at the error and storage note",
+      "Show/hide is a real button with aria-pressed and an aria-label, and returns focus to the field",
+      "Status changes are announced through a role=\"status\" region",
+      "Icons are aria-hidden; errors carry text, not only colour"
+    ],
+    "rules": {
+      "verified": null,
+      "sources": [
+        {
+          "label": "UIDAI (official site)",
+          "url": "https://uidai.gov.in/"
+        }
+      ],
+      "note": "Not verified on 2026-10-17: the UIDAI site did not respond. The no-0-or-1 first digit, Verhoeff check digit, 16-digit VID and masked-Aadhaar conventions are unchecked here."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Validators"
   ],
   "type": "registry:ui"
 }

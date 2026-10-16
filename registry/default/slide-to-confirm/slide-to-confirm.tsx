@@ -30,8 +30,11 @@ export interface SlideToConfirmProps extends Omit<React.ComponentProps<"div">, "
   threshold?: number
   /** Milliseconds before resetting after confirm. 0 keeps it confirmed. */
   resetAfter?: number
+  /** Visual style. */
   variant?: keyof typeof variants
+  /** Size of the track. */
   size?: keyof typeof sizes
+  /** Disables the slider. */
   disabled?: boolean
 }
 

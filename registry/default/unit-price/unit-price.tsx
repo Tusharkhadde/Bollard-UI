@@ -70,23 +70,33 @@ const fixClass =
 const DIMENSION_LABEL: Record<Dimension, string> = { mass: "Sold by weight", volume: "Sold by volume", count: "Sold by piece" }
 
 export interface UnitPriceProps extends Omit<React.ComponentProps<"div">, "defaultValue"> {
+  /** Packs to compare, with price, size and unit. */
   options: PriceOption[]
   /** Controlled id of the chosen option. */
   value?: string
   /** Initial choice when uncontrolled. */
   defaultValue?: string
+  /** Called with the chosen option id. */
   onValueChange?: (id: string) => void
   /** Override the quantity each kind is priced per (e.g. per kg). */
   basis?: Record<Dimension, { quantity: number; label: string }>
+  /** ISO 4217 currency code. */
   currency?: string
+  /** Locale for money formatting. */
   locale?: string
+  /** Visible label of the options. */
   label?: string
   /** Templates. `{name}`, `{amount}`, `{size}`, `{pct}`, `{offer}` are filled in. */
   cheapestLabel?: string
+  /** Warning when a multi-buy costs more per unit. */
   dealWorseText?: string
+  /** Warning when a bigger pack costs more per unit. */
   bulkTrapText?: string
+  /** Warning when a pack shrank at the same price. */
   shrankText?: string
+  /** Readback of the picked option against the cheapest. */
   pickedText?: string
+  /** Label of the switch-to-cheapest fix. */
   switchLabel?: string
 }
 

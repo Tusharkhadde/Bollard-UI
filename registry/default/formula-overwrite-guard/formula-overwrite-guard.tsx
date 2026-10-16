@@ -48,16 +48,19 @@ const FATE: Record<CellFate, string> = {
 const small = "inline-flex h-8 items-center gap-1.5 rounded-md px-3 text-sm font-medium outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 export interface PasteReviewProps extends React.ComponentProps<"div"> {
+  /** The computed paste plan to preview. */
   plan: PastePlan
   /** The table, to name the headings the copy repeats. */
   grid: Grid
   /** Writes the paste. "safe" skips formulas, headings, locked and outside cells. */
   onApply: (mode: "all" | "safe") => void
+  /** Called when the user cancels the paste. */
   onCancel: () => void
   /** Offered when the copy repeats the headings: re-plan without its first row (or with it again). */
   onToggleHeader?: () => void
   /** Whether the pasted heading row is currently skipped. FormulaOverwriteGuard skips it by default when the copy repeats the headings. */
   headerSkipped?: boolean
+  /** Override any visible string. */
   messages?: Partial<FormulaGuardMessages>
 }
 

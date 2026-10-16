@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "env-paste",
   "title": "Env Paste",
-  "description": "Catches the .env slips loaders accept silently (stray or curly quotes, padded values, a ' #' that cuts a value short, duplicate keys, bad key names, empty values, test keys in production) by showing a parsed table of what the app will actually read, with one-tap fixes.",
+  "description": "Catches .env slips loaders accept silently (stray or curly quotes, padded values, a ' #' that cuts a value short, duplicate keys, bad key names, empty values, test keys in production) by showing a parsed table of what the app will read, with one-tap fixes.",
   "dependencies": [
     "lucide-react"
   ],
@@ -44,10 +44,27 @@
     "fields": [
       "secret",
       "code"
+    ],
+    "summary": "Shows a pasted .env file as the loader will read it, so stray quotes, a ' #' that cuts a value short or duplicate keys don't slip through.",
+    "server": "Validate required environment variables when the app starts, and keep production secrets out of shared pastes.",
+    "catches": [
+      "Stray or curly quotes and padded values",
+      "An unquoted ' #' that turns the rest of the value into a comment",
+      "Duplicate keys (which one wins) and invalid key names",
+      "Empty values, and test keys in production"
+    ],
+    "limits": [
+      "Follows common dotenv parsing; your loader may treat quotes and comments differently",
+      "Masking is visual; the pasted text still holds the secrets"
+    ],
+    "a11y": [
+      "Visible <label>; aria-invalid when there are errors",
+      "Summary is aria-live=\"polite\"",
+      "Parsed variables are a labelled list; each row can select its line in the field"
     ]
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

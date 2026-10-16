@@ -53,10 +53,13 @@ export function usePresenterMode() {
 export interface PresenterModeProviderProps {
   /** Controlled presenting state. */
   value?: boolean
+  /** Start in presenting mode when uncontrolled. */
   defaultValue?: boolean
+  /** Called when presenting mode turns on or off. */
   onValueChange?: (presenting: boolean) => void
   /** Offer presenter mode when this tab starts sharing via `getDisplayMedia`. */
   detectScreenShare?: boolean
+  /** Content to show; wrap values in <Sensitive>. */
   children: React.ReactNode
 }
 
@@ -187,11 +190,17 @@ export function Sensitive({ kind = "text", mask, peekDelay = 250, maskedLabel = 
 export interface PresentingBarProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** `{count}` is "4 values". */
   presentingText?: string
+  /** Hint shown in the presenting bar. */
   hintText?: string
+  /** Button text to stop presenting. */
   stopLabel?: string
+  /** Shown when a screen share starts in this tab. */
   suggestText?: string
+  /** Extra line under the suggestion. */
   suggestHint?: string
+  /** Button text to turn presenting mode on. */
   hideLabel?: string
+  /** Button text to dismiss the suggestion. */
   notNowLabel?: string
 }
 
@@ -252,6 +261,7 @@ export function PresentingBar({
 }
 
 export interface PresenterToggleProps extends Omit<React.ComponentProps<"button">, "onClick"> {
+  /** Toggle button text. */
   label?: string
 }
 

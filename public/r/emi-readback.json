@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "emi-readback",
   "title": "EMI Readback",
-  "description": "Stops a borrower signing for the wrong loan by reading back EMI, total interest, processing fee with GST, other upfront charges, what actually reaches the account and the real yearly cost (APR, computed the way RBI's Key Facts Statement does), catching tenure typed in months when years were meant (and the reverse), a monthly rate typed as yearly, a flat rate that hides a far higher reducing rate and fees that eat the loan, each with the EMI both ways and a one-tap fix, plus what a prepayment saves.",
+  "description": "Reads back EMI, total interest, processing fee with GST, other upfront charges, the amount that reaches the account and the APR computed as in RBI's Key Facts Statement, catching tenure in the wrong unit, monthly rates typed as yearly, flat rates and heavy fees.",
   "dependencies": [
     "lucide-react"
   ],
@@ -47,10 +47,38 @@
     "fields": [
       "amount",
       "number"
-    ]
+    ],
+    "summary": "Reads back a loan's EMI, total interest, fees and real yearly cost before signing, so a borrower doesn't agree to a costlier loan than they think.",
+    "catches": [
+      "Tenure typed in months when years were meant, or the reverse",
+      "A monthly rate typed as yearly",
+      "Flat rates that hide a much higher reducing rate",
+      "Fees and GST that cut what actually reaches the account",
+      "The APR, including upfront charges"
+    ],
+    "limits": [
+      "A reducing-balance estimate; lenders' day counts and rounding differ slightly",
+      "GST on the processing fee defaults to 18%",
+      "Not financial advice; the lender's KFS is the binding document"
+    ],
+    "a11y": [
+      "Each term has a <label>, aria-invalid and aria-describedby to its issues",
+      "Focus moves to the first fix",
+      "Issues use icons plus text"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "RBI circular: Key Facts Statement (KFS) for Loans & Advances (15 Apr 2024)",
+          "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12663&Mode=0"
+        }
+      ],
+      "note": "Informational; check the official source. Checked that APR must include all charges levied by the lender. The Annex B worked example (17.07%) was not re-checked: the annex PDF could not be fetched. GST rate on fees not checked."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Readbacks and calculators"
   ],
   "type": "registry:ui"
 }

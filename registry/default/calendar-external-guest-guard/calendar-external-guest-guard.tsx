@@ -73,6 +73,7 @@ export interface CalendarExternalGuestGuardProps extends Omit<React.ComponentPro
   sensitiveTerms?: string[]
   /** Sends the invite. Return a promise for a pending state; a rejection keeps everything as it was. */
   onSend: (event: GuardedEvent) => void | Promise<void>
+  /** Override any visible string. */
   messages?: Partial<CalendarExternalGuestGuardMessages>
 }
 

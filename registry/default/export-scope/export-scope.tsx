@@ -137,19 +137,25 @@ export interface ExportScopeProps extends Omit<React.ComponentProps<"div">, "def
   value?: ExportOptions
   /** Initial options when uncontrolled. Defaults to the current page, the way most "Export" buttons behave. */
   defaultValue?: ExportOptions
+  /** Called with the export options whenever they change. */
   onValueChange?: (value: ExportOptions) => void
   /** Called with the chosen options and the readback. May return a Promise. */
   onExport?: (options: ExportOptions, summary: ReturnType<typeof summarizeExport>) => void | Promise<void>
   /** Locale for dates and numbers. */
   locale?: string
+  /** Heading for the export panel. */
   title?: string
   /** Template: `{count}` rows. */
   downloadLabel?: string
   /** Templates: `{exporting}`, `{total}`, `{requested}`, `{columns}`. */
   pageOnlyText?: string
+  /** Warning when the export is capped. */
   truncatedText?: string
+  /** Warning when personal-data columns are included. */
   piiText?: string
+  /** Text for the export-all fix. */
   allRowsLabel?: string
+  /** Text for the mask fix. */
   maskLabel?: string
   /** Override any other string. */
   labels?: Partial<typeof EXPORT_SCOPE_LABELS>

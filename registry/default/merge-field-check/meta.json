@@ -1,7 +1,25 @@
 {
   "title": "Merge Field Check",
-  "description": "Prevents bulk emails and SMS going out as \"Hi ,\" or \"{{frist_name}}\" by rendering the template for each real recipient, flagging unknown fields, broken braces and recipients with no value (spaces count as empty) with one-tap fixes and fallbacks, and stepping straight to the recipients who would get a gap.",
-  "dependencies": ["lucide-react"],
+  "summary": "Renders a mail-merge template for each real recipient, so nothing goes out as \"Hi ,\" or \"{{frist_name}}\".",
+  "description": "Template editor for bulk email and SMS that renders the message per recipient and flags unknown fields (with typo suggestions), broken braces and recipients with no value (spaces count as empty), with one-tap fixes and fallbacks, and steps to the recipients who'd get a gap.",
+  "catches": [
+    "Unknown fields, with typo suggestions (frist_name → first_name)",
+    "Broken braces such as {first_name}} or {{first_name,",
+    "Recipients with an empty or whitespace-only value",
+    "Missing fallbacks: adds {{field | default: \"there\"}}"
+  ],
+  "limits": [
+    "Understands {{field}} and {{field | default: \"…\"}} only, not full Liquid or Handlebars",
+    "Checks the recipients you pass, not your whole list"
+  ],
+  "a11y": [
+    "Visible label; textarea has aria-invalid for template errors and is described by the issues list",
+    "Issues list is a polite live region",
+    "Fixes are buttons; focus returns to the textarea"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Email went out as Hi {{first_name}}",
   "mistakes": [
     "hi comma blank name",

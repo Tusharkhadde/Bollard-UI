@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "robots-txt-guard",
   "title": "Robots.txt Guard",
-  "description": "Stops a robots.txt from quietly de-indexing a site by flagging Disallow: / headed for production, staging leftovers, rules that block the CSS and JS Google renders with (tested against real asset paths), relative or wrong-host sitemaps, directive typos and rules Google ignores, with one-tap fixes and a URL tester that names the line deciding each crawl.",
+  "description": "robots.txt checker that flags Disallow: / for production, staging leftovers, rules blocking CSS/JS Google renders with, relative or wrong-host sitemaps, typos and fields Google ignores, with one-tap fixes and a URL tester naming the deciding line.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,10 +43,40 @@
     "fields": [
       "code",
       "url"
-    ]
+    ],
+    "summary": "Catches robots.txt rules that would quietly de-index a site, like Disallow: / in production or blocked CSS and JS.",
+    "catches": [
+      "Disallow: / and staging leftovers in a production file",
+      "Rules that block CSS and JS asset paths used for rendering",
+      "Relative or wrong-host Sitemap lines",
+      "Directive typos and missing colons",
+      "Fields Google doesn't support (crawl-delay, noindex)",
+      "Which line decides a crawl for a given URL and user agent"
+    ],
+    "limits": [
+      "Models Google's robots.txt rules; other crawlers interpret files differently",
+      "robots.txt controls crawling, not indexing; blocked URLs can still be indexed from links",
+      "Asset checks use the paths you pass"
+    ],
+    "a11y": [
+      "Visible <label> on the textarea; aria-invalid on errors and a role=status issue count",
+      "Each issue has a button to select its line, with an aria-label",
+      "After a fix, focus moves to the next fix or back to the textarea",
+      "URL tester inputs have labels; results use icon plus text"
+    ],
+    "rules": {
+      "verified": "2026-10-17",
+      "sources": [
+        {
+          "label": "Google Search Central – How Google interprets the robots.txt specification",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt"
+        }
+      ],
+      "note": "Confirmed: Google supports user-agent, allow, disallow and sitemap (crawl-delay isn't supported) and uses the most specific matching user-agent group. Check the source for changes."
+    }
   },
   "categories": [
-    "Inputs that catch typos"
+    "Parsers and analyzers"
   ],
   "type": "registry:ui"
 }

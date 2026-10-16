@@ -172,17 +172,23 @@ export interface HeadingOutlineProps extends Omit<React.ComponentProps<"nav">, "
   maxLength?: number
   /** Accessible name of the outline. */
   label?: string
+  /** Heading shown above the outline. */
   title?: string
   /** `{count}` is filled in. */
   summaryText?: string
+  /** Shown when no issues are found. */
   allGoodText?: string
+  /** Shown when there are no headings. */
   emptyText?: string
+  /** Row text for an empty heading. */
   emptyHeadingText?: string
   /** `{level}` is filled in. */
   skippedRowText?: string
   /** `{level}` is filled in. */
   fixLabel?: string
+  /** Label for the button that removes an empty heading. */
   removeLabel?: string
+  /** Override any issue message. */
   messages?: Partial<typeof HEADING_OUTLINE_MESSAGES>
 }
 

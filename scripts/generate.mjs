@@ -3,9 +3,17 @@
 import fs from "node:fs"
 import path from "node:path"
 
+import { extractProps } from "./props.mjs"
+
+const HOMEPAGE = "https://bollard-ui.vercel.app"
+
 const CATEGORIES = [
-  ["Destructive actions", ["agent-action-approve", "mcp-tool-review", "reset-hard-readback", "account-deletion-readback", "force-push-confirm", "infra-plan-readback", "recovery-contact-cooldown", "migration-preview", "feature-flag-rollout", "branch-target", "session-list", "sign-in-approve", "hold-to-confirm", "two-step-button", "slide-to-confirm", "type-to-confirm", "undo-toast", "impact-preview", "bulk-scope-confirm", "cooldown-button", "safe-submit", "drop-confirm", "danger-zone", "click-shield", "shortcut-confirm", "guarded-switch", "swipe-delete-row", "grace-send", "bulk-runner", "two-person-approve", "trash-countdown", "range-select-guard", "reauth-gate", "rollback-preview", "edit-lock", "spend-cap-button", "scheduled-queue", "archive-or-delete", "revoke-access-preview", "transfer-ownership", "cancel-readback", "merge-records", "move-readback", "reset-preview", "replace-file", "dns-record-guard", "key-rotate", "retention-change", "seat-reduce"]],
-  ["Inputs that catch typos", ["fx-send-receive", "leftover-text-check", "ai-citation-check", "commit-combobox", "relative-date-input", "namesake-select", "k8s-resource-input", "connection-string-input", "epoch-input", "package-name-check", "cheque-check", "kyc-name-match", "aadhaar-input", "cache-control-input", "password-policy-input", "mrz-paste-input", "notice-period-check", "tax-regime-compare", "curl-pipe-guard", "port-expose-guard", "passenger-name-input", "emi-readback", "leave-request-check", "photo-spec-check", "doc-upload-match", "ai-paste-guard", "ssh-key-input", "jwt-inspect", "cert-paste-check", "chmod-input", "email-change-guard", "redirect-uri-input", "csp-input", "public-env-guard", "robots-txt-guard", "image-tag-input", "invoice-number-check", "ctc-breakdown-input", "column-mapper", "guest-count-picker", "pin-drop-check", "boolean-query-input", "salary-input", "pincode-input", "password-hint-guard", "cors-origin-input", "webhook-url-input", "coupon-input", "size-fit-picker", "paste-target-guard", "email-input", "password-input", "match-field", "amount-input", "date-sanity-input", "clean-paste-input", "otp-paste-input", "url-input", "phone-input", "char-budget", "code-input", "unit-input", "time-confirm", "quantity-stepper", "inline-edit", "checksum-input", "name-input", "percent-input", "range-pair", "schedule-readback", "near-duplicate-input", "list-paste", "slug-input", "env-paste", "split-allocator", "homoglyph-guard", "json-field", "regex-field", "contrast-picker", "address-check", "tax-id-input", "duration-input", "filename-input", "coordinate-input", "cidr-input", "version-range-input", "zero-result-rescue", "mixed-value-field", "card-expiry-input", "username-input", "billing-period-input", "glob-input", "replace-preview", "i18n-string-field", "sql-guard", "ifsc-input", "upi-id-input", "shift-time-input", "dimension-input", "markdown-check", "yaml-field", "shortcut-recorder", "webhook-test", "hashtag-input", "tax-inclusive-input", "timezone-picker", "scope-picker", "brand-color-input", "version-bump", "dose-input", "wrong-layout-input", "utm-check"]],
+// Each component sits in exactly one category; the generator warns when one is missing or listed twice.
+  ["Destructive actions", ["agent-action-approve", "mcp-tool-review", "reset-hard-readback", "account-deletion-readback", "force-push-confirm", "infra-plan-readback", "recovery-contact-cooldown", "migration-preview", "feature-flag-rollout", "branch-target", "session-list", "sign-in-approve", "hold-to-confirm", "two-step-button", "slide-to-confirm", "type-to-confirm", "undo-toast", "impact-preview", "bulk-scope-confirm", "drop-confirm", "danger-zone", "click-shield", "shortcut-confirm", "guarded-switch", "swipe-delete-row", "grace-send", "two-person-approve", "trash-countdown", "range-select-guard", "reauth-gate", "rollback-preview", "edit-lock", "archive-or-delete", "revoke-access-preview", "transfer-ownership", "cancel-readback", "merge-records", "move-readback", "reset-preview", "replace-file", "dns-record-guard", "key-rotate", "retention-change", "seat-reduce"]],
+  ["Submits and rate limits", ["cooldown-button", "safe-submit", "bulk-runner", "spend-cap-button", "scheduled-queue"]],
+  ["Validators", ["commit-combobox", "relative-date-input", "namesake-select", "cheque-check", "kyc-name-match", "aadhaar-input", "password-policy-input", "passenger-name-input", "email-change-guard", "invoice-number-check", "pin-drop-check", "pincode-input", "password-hint-guard", "coupon-input", "paste-target-guard", "email-input", "password-input", "match-field", "amount-input", "date-sanity-input", "clean-paste-input", "otp-paste-input", "url-input", "phone-input", "char-budget", "code-input", "inline-edit", "checksum-input", "name-input", "near-duplicate-input", "slug-input", "homoglyph-guard", "contrast-picker", "address-check", "tax-id-input", "filename-input", "coordinate-input", "zero-result-rescue", "mixed-value-field", "card-expiry-input", "username-input", "ifsc-input", "upi-id-input", "shortcut-recorder", "hashtag-input", "timezone-picker", "scope-picker", "brand-color-input", "wrong-layout-input"]],
+  ["Readbacks and calculators", ["fx-send-receive", "epoch-input", "notice-period-check", "tax-regime-compare", "emi-readback", "leave-request-check", "ctc-breakdown-input", "guest-count-picker", "salary-input", "size-fit-picker", "unit-input", "time-confirm", "quantity-stepper", "percent-input", "range-pair", "schedule-readback", "split-allocator", "duration-input", "billing-period-input", "replace-preview", "shift-time-input", "dimension-input", "tax-inclusive-input", "version-bump", "dose-input"]],
+  ["Parsers and analyzers", ["leftover-text-check", "ai-citation-check", "k8s-resource-input", "connection-string-input", "package-name-check", "cache-control-input", "mrz-paste-input", "curl-pipe-guard", "port-expose-guard", "photo-spec-check", "doc-upload-match", "ai-paste-guard", "ssh-key-input", "jwt-inspect", "cert-paste-check", "chmod-input", "redirect-uri-input", "csp-input", "public-env-guard", "robots-txt-guard", "image-tag-input", "column-mapper", "boolean-query-input", "cors-origin-input", "webhook-url-input", "list-paste", "env-paste", "json-field", "regex-field", "cidr-input", "version-range-input", "glob-input", "i18n-string-field", "sql-guard", "markdown-check", "yaml-field", "webhook-test", "utm-check"]],
   ["Forms and saving", ["reorder-readback", "nominee-check", "passport-validity-check", "seat-gap-check", "formula-overwrite-guard", "passkey-name-prompt", "irreversible-diff-badge", "stale-attachment-check", "dependency-license-check", "heading-outline", "link-text-check", "reading-level", "backup-codes", "recovery-check", "unsaved-changes-bar", "save-status", "error-summary", "form-progress", "preflight-checklist", "attachment-nudge", "file-guard", "draft-restore", "tab-collision", "review-step", "dependent-reset", "version-scrubber", "autofill-check", "field-history", "terms-changes", "hidden-field-guard", "upload-wait", "consent-group", "dob-input", "recurrence-scope", "tree-select-readback", "repeat-rows", "step-invalidation", "import-preview", "crop-guard", "stay-length", "event-overlap", "unanswered-check", "cutoff-picker"]],
   ["Context and awareness", ["trip-date-chain", "meeting-time-spread", "bnpl-schedule-check", "transit-visa-check", "llm-cost-estimate", "kube-context-guard", "security-event-log", "dst-shift-notice", "environment-badge", "acting-as-banner", "offline-banner", "stale-data-notice", "conflict-banner", "session-timeout", "do-not-close", "timezone-mismatch", "update-available", "revision-banner", "filter-notice", "disabled-reason", "quota-forecast", "resume-marker", "new-content-pill", "presence-lock", "unsent-marker", "presenter-mode", "locale-notice", "progress-heartbeat", "account-switch-guard", "maintenance-window", "permission-pre-ask", "clock-skew", "private-mode-notice", "experimental-badge", "retry-after", "low-battery-guard", "data-cost-notice", "sunset-notice", "print-guard"]],
   ["Sharing, sending and paying", ["bcc-guard", "hidden-content-check", "prompt-data-guard", "bill-split-check", "callback-number-check", "quote-lock", "calendar-external-guest-guard", "chat-audience-check", "out-of-office-check", "retract-window", "card-bill-pay", "otp-share-guard", "bank-transfer-timing", "gift-card-scam-guard", "commit-secret-guard", "publish-preview", "upi-autopay-review", "upi-collect-guard", "tds-invoice-total", "link-access-check", "reply-all-guard", "duplicate-payment-guard", "bulk-send-guard", "pii-post-guard", "recurring-charge-readback", "gst-invoice-check", "role-preview", "visibility-picker", "recipient-check", "secret-paste-guard", "external-link", "charge-summary", "send-time-check", "fill-before-copy", "photo-location-guard", "currency-hint", "mention-guard", "share-link", "merge-field-check", "forward-guard", "payee-check", "csv-export-guard", "link-unfurl-check", "qr-share", "redact-image", "sms-segments", "export-scope", "invite-check", "large-attachment", "embed-code", "alt-text-check", "stale-reply", "tip-picker", "refund-picker", "plan-change-readback", "payment-reference", "truncation-preview"]],
@@ -15,6 +23,15 @@ const CATEGORIES = [
 const root = path.resolve(import.meta.dirname, "..")
 const dir = path.join(root, "registry/default")
 const names = fs.readdirSync(dir).filter((name) => fs.existsSync(path.join(dir, name, "meta.json"))).sort()
+
+const categoryWarnings = []
+{
+  const listed = CATEGORIES.flatMap(([, list]) => list)
+  const twice = [...new Set(listed.filter((n, i) => listed.indexOf(n) !== i))]
+  if (twice.length) categoryWarnings.push(`in more than one category: ${twice.join(", ")}`)
+  const none = names.filter((n) => !listed.includes(n))
+  if (none.length) categoryWarnings.push(`in no category (shown under "More"): ${none.join(", ")}`)
+}
 
 const categoryOf = (name) => CATEGORIES.find(([, list]) => list.includes(name))?.[0] ?? "More"
 const order = (name) => {
@@ -63,6 +80,39 @@ function discoveryOf(name, meta) {
   return out
 }
 
+/** Page-standard fields (summary, catches, limits, a11y, server, rules). All optional; bad values are dropped with a warning. */
+function docsOf(name, meta) {
+  const out = {}
+  const text = (key) => {
+    const v = meta[key]
+    if (v === undefined || v === null) return
+    if (typeof v !== "string") return void warnings.push(`${name}: "${key}" is not a string`)
+    if (v.trim()) out[key] = v.trim()
+  }
+  text("summary")
+  text("server")
+  for (const key of ["catches", "limits", "a11y"]) {
+    const list = strings(meta[key], name, key)
+    if (list?.length) out[key] = list
+  }
+  const r = meta.rules
+  if (r !== undefined && r !== null) {
+    if (typeof r !== "object" || Array.isArray(r)) warnings.push(`${name}: "rules" is not an object`)
+    else {
+      const rules = { verified: typeof r.verified === "string" && /^\d{4}-\d{2}-\d{2}$/.test(r.verified) ? r.verified : null }
+      const sources = Array.isArray(r.sources)
+        ? r.sources.filter((s) => s && typeof s.url === "string" && /^https?:\/\//.test(s.url)).map((s) => ({ label: typeof s.label === "string" && s.label.trim() ? s.label.trim() : s.url, url: s.url }))
+        : []
+      if (sources.length) rules.sources = sources
+      if (typeof r.note === "string" && r.note.trim()) rules.note = r.note.trim()
+      if (rules.verified && !sources.length) warnings.push(`${name}: rules.verified is set but there are no sources`)
+      out.rules = rules
+    }
+  }
+  return out
+}
+
+const props = {}
 const items = names.map((name) => {
   const meta = JSON.parse(fs.readFileSync(path.join(dir, name, "meta.json"), "utf8"))
   const files = fs
@@ -80,8 +130,15 @@ const items = names.map((name) => {
   if (meta.dependencies?.length) item.dependencies = meta.dependencies
   if (meta.registryDependencies?.length) item.registryDependencies = meta.registryDependencies
   // Discovery fields (shadcn's free-form `meta`). Every one is optional; bad values are dropped, never fatal.
-  const discovery = discoveryOf(name, meta)
+  const discovery = { ...discoveryOf(name, meta), ...docsOf(name, meta) }
   if (Object.keys(discovery).length) item.meta = discovery
+  // Props come from the source itself (scripts/props.mjs). Never fatal.
+  try {
+    const extracted = extractProps(path.join(dir, name, `${name}.tsx`), name)
+    if (extracted) props[name] = extracted
+  } catch (error) {
+    warnings.push(`${name}: props extraction failed (${error.message})`)
+  }
   return item
 })
 
@@ -91,12 +148,15 @@ fs.writeFileSync(
     {
       $schema: "https://ui.shadcn.com/schema/registry.json",
       name: "bollard-ui",
-      homepage: "https://github.com/Tusharkhadde/CraftedUI",
+      homepage: HOMEPAGE,
       items,
     }
     // minified: the GitHub contents API push caps one file's argument at ~128 KB
   ) + "\n"
 )
+
+// Props tables, read server-side by the component pages (never imported by client code).
+fs.writeFileSync(path.join(root, "lib/props.json"), JSON.stringify(props) + "\n")
 
 const withDemo = items.filter((item) => fs.existsSync(path.join(root, "components/demos", `${item.name}.tsx`)))
 const ident = (name) => name.replace(/-(\w)/g, (_, c) => c.toUpperCase()).replace(/^\w/, (c) => c.toUpperCase()) + "Demo"
@@ -123,6 +183,10 @@ fs.writeFileSync(path.join(root, "components/demo-index.tsx"), index)
 console.log(`registry.json: ${items.length} items, demos: ${withDemo.length}`)
 const tagged = (key) => items.filter((item) => item.meta?.[key] !== undefined).length
 console.log(`discovery fields: stops ${tagged("stops")}, mistakes ${tagged("mistakes")}, aliases ${tagged("aliases")}, flows ${tagged("flows")}, fields ${tagged("fields")} of ${items.length}`)
+console.log(
+  `page fields: summary ${tagged("summary")}, catches ${tagged("catches")}, limits ${tagged("limits")}, a11y ${tagged("a11y")}, server ${tagged("server")}, rules ${tagged("rules")}; props ${Object.keys(props).length}`,
+)
+if (categoryWarnings.length) console.log("category warnings:\n  " + categoryWarnings.join("\n  "))
 if (warnings.length) console.log("meta warnings:\n  " + warnings.join("\n  "))
 const missing = items.filter((item) => !withDemo.includes(item)).map((item) => item.name)
 if (missing.length) console.log("missing demos:", missing.join(", "))

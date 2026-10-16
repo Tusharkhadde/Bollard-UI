@@ -1,6 +1,25 @@
 {
   "title": "Version Range Input",
-  "description": "Prevents dependency ranges that don't mean what you think by reading npm-style semver ranges back in plain English, marking which published versions match and which one installs, and warning about ^0.x lock-in, a hyphen with no spaces, commas for AND and ranges that match nothing.",
+  "summary": "Reads npm semver ranges back in plain English and shows which published versions match and which one installs.",
+  "description": "npm-style semver range input that reads ranges back in plain English, marks which published versions match and which installs, and warns about ^0.x lock-in, a hyphen without spaces, commas used for AND and ranges that match nothing.",
+  "catches": [
+    "Ranges that match no published version",
+    "^0.x and ^0.0.x, which lock to a minor or patch",
+    "A hyphen range without spaces",
+    "Commas used where npm expects spaces (AND)",
+    "Latest version falling outside the range",
+    "Which version npm would install"
+  ],
+  "limits": [
+    "Implements node-semver default options; includePrerelease and loose modes are not modelled",
+    "Needs the published versions list you pass"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid with hint via aria-describedby",
+    "Hint in a polite live region; parse errors use role=alert",
+    "Versions list has an aria-label; each row states matches/does not match in text",
+    "Fix buttons have aria-labels"
+  ],
   "dependencies": [
     "lucide-react"
   ],

@@ -1,7 +1,45 @@
-{"title": "Shortcut Confirm", "description": "Stops a slipped finger from firing a destructive keyboard shortcut: the first press only shows \"Press ⌘⌫ again to delete 3 items\", and only a separate second press within the window confirms, never a held key, an extra modifier, a stray key in between or a keystroke meant for a text field.", "dependencies": ["lucide-react"],
+{
+  "title": "Shortcut Confirm",
+  "summary": "Makes a destructive keyboard shortcut need a deliberate second press, so a slipped finger only shows a prompt.",
+  "description": "Two-press guard for destructive shortcuts: the first press shows \"Press ⌘⌫ again to delete 3 items\", and only a separate second press within the window confirms. Held keys, extra modifiers, stray keys in between and keystrokes in text fields don't count.",
+  "catches": [
+    "A first press, which only arms and explains",
+    "Key auto-repeat from holding the shortcut",
+    "An extra modifier (a slipped Shift)",
+    "Any other key pressed between the two presses",
+    "Shortcuts typed inside inputs, unless allowInInputs",
+    "IME composition keystrokes"
+  ],
+  "limits": [
+    "Guards the keyboard path only; menu or button paths need their own confirm",
+    "Letters also match by physical key, so a layout remap could still trigger it"
+  ],
+  "a11y": [
+    "Armed and done prompts render in a polite live region",
+    "Shortcut shown as ⌘ on Apple platforms and Ctrl elsewhere",
+    "Icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Keyboard shortcut deleted items",
-  "mistakes": ["shortcut deleted by accident", "cmd backspace deleted all", "hotkey fired in text field", "press again to confirm"],
-  "aliases": ["keyboard shortcut", "hotkey", "cmd+backspace", "keybinding", "power user", "press again", "shortcuts"],
-  "flows": ["danger-zone"],
+  "mistakes": [
+    "shortcut deleted by accident",
+    "cmd backspace deleted all",
+    "hotkey fired in text field",
+    "press again to confirm"
+  ],
+  "aliases": [
+    "keyboard shortcut",
+    "hotkey",
+    "cmd+backspace",
+    "keybinding",
+    "power user",
+    "press again",
+    "shortcuts"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

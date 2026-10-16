@@ -1,6 +1,23 @@
 {
   "title": "Split Allocator",
-  "description": "Prevents splits that add up to 99%, 101% or leave someone on 0 by showing what's left as you type, giving the rest to any row in one tap, and rounding every automatic split with largest remainder so it sums to the total exactly.",
+  "summary": "Keeps splits adding up to exactly the total, showing what's left as you type and rounding automatic splits so nothing is off by one.",
+  "description": "Split editor that shows what's left as you type, gives the rest to any row in one tap, flags rows on 0, and rounds every automatic split with largest remainder so it sums to the total exactly (100 / 3 → 34, 33, 33).",
+  "catches": [
+    "Totals over or under (99%, 101%)",
+    "Rows left on 0",
+    "Remainder, assignable to any row in one tap",
+    "Automatic splits that would drift by rounding, fixed with largest-remainder"
+  ],
+  "limits": [
+    "Even and proportional splits only; custom rules are yours",
+    "Uses decimal precision you set; currency minor units must match"
+  ],
+  "a11y": [
+    "Group labelled by its label; each row input has a <label>",
+    "aria-invalid when over the total; status in a polite live region via aria-describedby",
+    "Give-rest/take-over buttons have aria-labels with the amount",
+    "Progress bar is aria-hidden; the numbers are in text"
+  ],
   "dependencies": [
     "lucide-react"
   ],

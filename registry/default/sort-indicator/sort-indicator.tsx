@@ -90,8 +90,11 @@ const nextSort = (column: SortColumn, sort: SortState | null | undefined): SortS
     : { column: column.id, direction: column.firstDirection ?? "asc" }
 
 export interface SortButtonProps extends Omit<React.ComponentProps<"button">, "onClick"> {
+  /** The column this header sorts. */
   column: SortColumn
+  /** Current sort state, or null when unsorted. */
   sort: SortState | null | undefined
+  /** Called with the next sort state. */
   onSortChange: (sort: SortState) => void
   /** Tooltip template: `{label}` and `{direction}` are filled in. */
   hintText?: string
@@ -122,10 +125,13 @@ export function SortButton({ column, sort, onSortChange, hintText = "Sort by {la
 }
 
 export interface SortIndicatorProps extends Omit<React.ComponentProps<"div">, "children" | "defaultValue"> {
+  /** All sortable columns, used for labels and the readback. */
   columns: SortColumn[]
   /** Controlled sort; `null` means unsorted. */
   value?: SortState | null
+  /** Starting sort when uncontrolled. */
   defaultValue?: SortState | null
+  /** Called with the new sort, or null when cleared. */
   onValueChange?: (sort: SortState | null) => void
   /** Rows with no value in the sort column (they sit at the end). `sortRows` returns it. */
   emptyCount?: number
@@ -135,12 +141,19 @@ export interface SortIndicatorProps extends Omit<React.ComponentProps<"div">, "c
   onRevealColumn?: (columnId: string) => void
   /** Templates: `{label}`, `{direction}`, `{count}`, `{rows}` are filled in. */
   sortedText?: string
+  /** Readback when nothing is sorted. */
   unsortedText?: string
+  /** Label of the reverse button. */
   reverseLabel?: string
+  /** Label of the clear-sort button. */
   clearLabel?: string
+  /** Warning when sorting by a hidden column. */
   hiddenText?: string
+  /** Label of the reveal-column button. */
   revealLabel?: string
+  /** Note about rows with empty values. */
   emptyText?: string
+  /** Note about pinned rows. */
   pinnedText?: string
   /** Singular and plural word for a row, e.g. ["task", "tasks"]. */
   rowWords?: [string, string]

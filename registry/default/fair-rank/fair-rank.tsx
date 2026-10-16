@@ -56,6 +56,7 @@ export const englishOrdinal = (n: number) => `${n}${["th", "st", "nd", "rd"][n %
 const fill = (t: string, v: Record<string, string | number>) => t.replace(/\{(\w+)\}/g, (m, key: string) => String(v[key] ?? m))
 
 export interface FairRankProps extends Omit<React.ComponentProps<"div">, "children">, RankOptions {
+  /** Rows to rank, with scores and optional previous rank. */
   entries: RankEntry[]
   /** Table caption, e.g. "CSAT, October". */
   caption?: string
@@ -65,7 +66,9 @@ export interface FairRankProps extends Omit<React.ComponentProps<"div">, "childr
   samplesLabel?: string
   /** Templates: `{min}`, `{has}`, `{samples}`, `{rank}`. */
   unrankedText?: string
+  /** Note explaining how ties are ranked. */
   tieNote?: string
+  /** Label for entries new this period. */
   newLabel?: string
   /** Turns a rank into words for screen readers and the unranked note: 3 → "3rd". */
   formatOrdinal?: (rank: number) => string
@@ -75,7 +78,9 @@ export interface FairRankProps extends Omit<React.ComponentProps<"div">, "childr
   tiedText?: string
   /** Screen reader text for movement. */
   noChangeLabel?: string
+  /** Text for moving up. */
   upLabel?: string
+  /** Text for moving down. */
   downLabel?: string
   /** Hidden column headers, read by screen readers. */
   columnLabels?: { rank?: string; name?: string; score?: string; change?: string }

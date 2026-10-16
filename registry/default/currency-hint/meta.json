@@ -1,7 +1,25 @@
 {
   "title": "Currency Hint",
-  "description": "Prevents budgeting on the wrong number when paying abroad by showing a foreign price with a clearly approximate, dated conversion (\"€49.00 ≈ ₹4,520\"), pricing a merchant's dynamic currency conversion against the reference rate with a one-tap switch back to the local currency, estimating card fees and flagging stale rates.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows an approximate, dated conversion of a foreign price and prices a merchant's currency conversion, so budgets abroad use the right number.",
+  "description": "Shows a foreign price with a clearly approximate, dated conversion (\"€49.00 ≈ ₹4,520\"), prices a merchant's dynamic currency conversion against the reference rate with a switch back to local currency, estimates card fees and flags stale rates.",
+  "catches": [
+    "Foreign prices read as home-currency prices",
+    "Dynamic currency conversion that costs more than the reference rate",
+    "Card foreign-transaction fees and tax on them, when you pass the percentages",
+    "Exchange rates older than staleAfterDays"
+  ],
+  "limits": [
+    "Rates come from your `rates` prop; the result is an estimate, not what the bank will charge",
+    "Card fee and fee tax default to 0% unless you pass them"
+  ],
+  "a11y": [
+    "Payment currency options use labels",
+    "Conversion and warnings are aria-live=\"polite\"",
+    "Animation respects prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Budgeted on the wrong currency abroad",
   "mistakes": [
     "dynamic currency conversion",

@@ -71,13 +71,17 @@ export interface ImpactPreviewProps extends Omit<React.ComponentProps<"section">
   load: (signal: AbortSignal) => Promise<ImpactGroup[]>
   /** Runs when the user confirms. Return a promise to show a pending state; a rejection is caught. */
   onConfirm: () => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Heading, given the parent's name. */
   title?: (name: string) => React.ReactNode
   /** Confirm label, given the parent's name and how many dependents get deleted with it. */
   confirmLabel?: (name: string, deletedCount: number) => React.ReactNode
+  /** Confirm button content while onConfirm is pending. */
   pendingLabel?: React.ReactNode
+  /** Cancel button content. */
   cancelLabel?: React.ReactNode
+  /** Retry button content after a load error. */
   retryLabel?: React.ReactNode
   /** Shown while dependents load. */
   loadingMessage?: (name: string) => React.ReactNode

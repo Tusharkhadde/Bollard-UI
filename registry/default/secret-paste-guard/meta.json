@@ -1,8 +1,28 @@
 {
   "title": "Secret Paste Guard",
-  "description": "Stops credentials leaking into chats and forms by spotting API keys, tokens, JWTs, private keys and high-entropy strings as they are pasted or typed, then offering one-tap Redact (keeping the last 4) or Keep.",
-  "dependencies": ["lucide-react"],
-  "stops": "API key pasted into chat",
+  "summary": "Spots API keys, tokens and private keys as they're pasted or typed into a field and offers one-tap Redact before they're sent.",
+  "description": "Wraps a text field and scans its value for known key formats (AWS, GitHub, Stripe, Slack, OpenAI, Anthropic, Google, JWTs, private keys) plus long high-entropy strings, offering Redact (keeps the last 4) or Keep.",
+  "catches": [
+    "Known formats: private key blocks, AWS access keys, GitHub tokens, Stripe live/restricted keys, Slack, OpenAI, Anthropic and Google API keys, JWTs",
+    "Long mixed-case-and-digit strings with high Shannon entropy (marked as a guess)",
+    "Typed and pasted text alike",
+    "URL paths are not mistaken for secrets, but tokens in query strings can be"
+  ],
+  "limits": [
+    "Pattern and entropy based: new or unusual formats are missed, and random IDs can be flagged",
+    "Scans in the browser only; it does not stop a submit, so a user can Keep and send",
+    "onDetect receives the matched text, so never log or send those matches as-is"
+  ],
+  "a11y": [
+    "Warning renders in a polite live region",
+    "Redact and Keep are labelled buttons",
+    "After either choice, focus returns to the wrapped field"
+  ],
+  "server": "Scan again server-side before storing or forwarding text, and redact secrets from logs, analytics and error reports.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps catch an API key pasted into a chat",
   "mistakes": [
     "users paste api keys",
     "secret leaked in message",

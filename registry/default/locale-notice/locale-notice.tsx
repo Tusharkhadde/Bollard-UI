@@ -83,7 +83,9 @@ export interface LocaleNoticeProps extends Omit<React.ComponentProps<"div">, "ch
   hereLabel?: string
   /** Templates: `{value}`, `{place}`, `{there}`, `{misread}`, `{safe}` are filled in. */
   misreadText?: string
+  /** Shown when both locales read the value the same way. */
   sameText?: string
+  /** Button text to use the unambiguous form. */
   safeLabel?: string
 }
 
@@ -172,8 +174,11 @@ export interface LocaleNumberFieldProps
   onValueChange?: (text: string, parsed: number | null) => void
   /** Templates: `{value}`, `{reads}`, `{meant}`, `{suggestion}` are filled in. */
   mismatchText?: string
+  /** Shown when the typed number is ambiguous. */
   ambiguousText?: string
+  /** Template for what the reader's locale reads. */
   readsAsText?: string
+  /** Button text to apply the suggested number. */
   fixLabel?: string
   /** Accessible label of the button that keeps the number as typed. */
   keepLabel?: string

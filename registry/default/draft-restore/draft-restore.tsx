@@ -88,11 +88,17 @@ export interface DraftRestoreProps extends Omit<React.ComponentProps<"div">, "ch
   ttl?: number
   /** Templates: `{when}` ("5 minutes ago") and `{count}` are filled in. */
   message?: string
+  /** Message when the server changed fields since the draft. */
   conflictMessage?: string
+  /** Text saying when the draft expires. */
   expiresText?: string
+  /** Text for the preview toggle. */
   previewLabel?: string
+  /** Restore button text. */
   restoreLabel?: string
+  /** Discard button text. */
   discardLabel?: string
+  /** Label for keeping the draft's value over the server's. */
   useMineLabel?: string
   /** Shown under a conflicting field. */
   conflictHint?: string

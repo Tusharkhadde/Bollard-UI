@@ -1,6 +1,24 @@
 {
   "title": "Cutoff Picker",
-  "description": "Stops orders landing on a different day than the shopper thinks by counting down to the store's cutoff in store time with the shopper's own time beside it, naming the holidays and closed days it skips, saying when the store's date isn't the shopper's, and never moving a chosen date silently: when the cutoff passes mid-choice it says the date is gone and offers the new earliest one in one tap.",
+  "summary": "Counts down to a store's order cutoff in store time with the shopper's time beside it, so an order doesn't land on a different day than expected.",
+  "description": "Counts down to the cutoff in store time with the shopper's time beside it, names skipped holidays and closed days, says when the store's date differs, and never moves a chosen date silently: a passed cutoff is announced with the new earliest date one tap away.",
+  "catches": [
+    "Store time zone differing from the shopper's (including a different calendar date)",
+    "Holidays and closed days the delivery date skips",
+    "A cutoff that passes while the shopper is still choosing",
+    "Time needed to finish checkout before the cutoff (checkoutMinutes)"
+  ],
+  "limits": [
+    "The cutoff, holidays and closed days come from your props",
+    "Uses the visitor's clock unless you pass `now`; a wrong device clock skews the countdown"
+  ],
+  "a11y": [
+    "Dates are keyboard-navigable with arrow keys",
+    "The countdown is a role=\"img\" with an aria-label; the animated digits are aria-hidden",
+    "Changes are announced in a role=\"status\" region",
+    "Motion respects prefers-reduced-motion"
+  ],
+  "server": "Re-check the cutoff on the server at order time and reject or reschedule dates that are no longer available.",
   "dependencies": [
     "@date-fns/tz",
     "@number-flow/react",
@@ -9,8 +27,29 @@
     "motion"
   ],
   "stops": "Order missed today's delivery cutoff",
-  "mistakes": ["missed same day delivery cutoff", "delivery date changed silently", "store timezone different", "order after cutoff"],
-  "aliases": ["delivery slot", "same day delivery", "cutoff time", "order by", "delivery date", "blinkit", "time slot", "store hours", "holidays"],
-  "flows": ["checkout", "scheduling", "india"],
-  "fields": ["datetime"]
+  "mistakes": [
+    "missed same day delivery cutoff",
+    "delivery date changed silently",
+    "store timezone different",
+    "order after cutoff"
+  ],
+  "aliases": [
+    "delivery slot",
+    "same day delivery",
+    "cutoff time",
+    "order by",
+    "delivery date",
+    "blinkit",
+    "time slot",
+    "store hours",
+    "holidays"
+  ],
+  "flows": [
+    "checkout",
+    "scheduling",
+    "india"
+  ],
+  "fields": [
+    "datetime"
+  ]
 }

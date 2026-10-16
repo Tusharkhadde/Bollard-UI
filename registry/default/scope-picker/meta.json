@@ -1,6 +1,25 @@
 {
   "title": "Scope Picker",
-  "description": "Stops over-privileged API keys by reading back in plain words what the key can do (destructive powers in red), flagging write, delete and admin scopes, offering 'Only what you've used' from real usage, and warning when the key never expires.",
+  "summary": "Reads back what an API key will be able to do in plain words, flags risky scopes and suggests trimming to what was actually used.",
+  "description": "API-key scope picker that reads back in plain words what the key can do (destructive powers in red), flags write, delete and admin scopes, offers \"Only what you've used\" from real usage, and warns when the key never expires.",
+  "catches": [
+    "Write, delete and admin scopes, called out",
+    "Scopes granted implicitly through implies chains",
+    "Scopes unused in the recent window, with a one-tap \"Only what you've used\"",
+    "Keys set to never expire, with a suggested expiry"
+  ],
+  "limits": [
+    "Only knows the scope definitions and usage you pass",
+    "Usage-based trimming can drop a scope needed by a rare job",
+    "Does not create the key; the server decides what it grants"
+  ],
+  "a11y": [
+    "Scope checkboxes use <label>s; scopes granted by a parent are marked",
+    "Expiry options are a radiogroup with an aria-label",
+    "Readback and warnings render in a polite live region; icons are aria-hidden",
+    "Highlight animation is skipped under reduced motion"
+  ],
+  "server": "Grant only the scopes the server validates, enforce expiry server-side, and check scopes on every API call.",
   "dependencies": [
     "lucide-react"
   ],

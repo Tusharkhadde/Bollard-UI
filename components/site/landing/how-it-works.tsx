@@ -1,6 +1,9 @@
 import { CodeBlock } from "@/components/site/code-block"
 import { InstallCommand } from "@/components/site/install-command"
+import Link from "next/link"
+
 import { highlight } from "@/lib/highlight"
+import { COMPAT } from "@/lib/site"
 
 import { Reveal } from "./reveal"
 import { Section, SectionHeading } from "./section-heading"
@@ -60,6 +63,15 @@ export function HowItWorks({ registryBase }: { registryBase: string }) {
       </Reveal>
       <Reveal delay={0.06} className="mt-3 grid min-w-0 gap-3">
         <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
+        <p className="px-1 text-[13px] leading-relaxed text-pretty text-muted-foreground">
+          Needs {COMPAT} (<code className="font-mono text-[12px] text-foreground">npx shadcn@latest init</code> once). It writes{" "}
+          <code className="font-mono text-[12px] text-foreground">components/ui/amount-input.tsx</code> and installs the packages it lists. Later
+          changes don&apos;t reach your copy automatically:{" "}
+          <Link href="/docs#updating" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
+            how to update
+          </Link>
+          .
+        </p>
         <CodeBlock files={[{ path: "rent-field.tsx", source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
       </Reveal>
     </Section>

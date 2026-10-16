@@ -26,6 +26,7 @@ export interface TwoStepButtonProps extends Omit<React.ComponentProps<"button">,
   guard?: number
   /** Visual intent of the idle button. The armed state is always destructive. */
   variant?: keyof typeof variants
+  /** Size of the button. */
   size?: keyof typeof sizes
   /** Label while armed. */
   armedLabel?: React.ReactNode

@@ -1,6 +1,24 @@
 {
   "title": "Quantity Stepper",
-  "description": "Prevents accidental bulk orders by clamping to min, max and stock with an explanation, holding big typed jumps for a \"Did you mean 10?\" confirmation, ignoring the scroll wheel and accelerating on long-press.",
+  "summary": "Holds suspicious quantity jumps for a \"Did you mean 10?\" check and clamps to stock with a reason, so an accidental bulk order isn't placed.",
+  "description": "Quantity stepper that clamps to min, max and stock with an explanation, rounds to pack sizes, holds big typed jumps for a \"Did you mean 10?\" confirmation, ignores the scroll wheel and accelerates on long-press.",
+  "catches": [
+    "Typed jumps far above the typical quantity (100 when people order 2)",
+    "Values over max or stock, clamped with a reason",
+    "Quantities that aren't a whole pack (step)",
+    "Scroll-wheel changes while scrolling the page"
+  ],
+  "limits": [
+    "\"Suspicious\" is relative to your typical prop",
+    "Stock shown is what you pass; it may be stale",
+    "Doesn't reserve stock"
+  ],
+  "a11y": [
+    "Visible label; the input is a spinbutton with min, max and now values, described by a hint",
+    "Enter commits a typed value",
+    "+/- buttons have aria-labels and aria-controls, and are skipped in tab order"
+  ],
+  "server": "Validate quantity against live stock and order limits on the server.",
   "dependencies": [
     "lucide-react"
   ],

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "redact-image",
   "title": "Redact Image",
-  "description": "Stops a “redacted” screenshot from leaking what it hides: solid boxes only (blur and pixelation can be reversed), padded and snapped to whole pixels, placeable by drag or keyboard, suggestions from a pluggable text detector with an amber nudge for anything sensitive left uncovered, and an export flattened to a fresh PNG that is re-read to prove every box is solid, with no metadata and no aCropalypse-style data after the image end.",
+  "description": "Screenshot redactor with solid boxes only (blur and pixelation can be reversed), padded and snapped to whole pixels, placed by drag or keyboard, with suggestions from a pluggable text detector and a flattened, metadata-free PNG export that is re-read to check every box.",
   "dependencies": [
     "lucide-react"
   ],
@@ -43,6 +43,26 @@
     ],
     "fields": [
       "file"
+    ],
+    "summary": "Helps a redacted screenshot stay redacted: solid boxes only, padded to whole pixels, flattened into a fresh PNG that is re-checked on export.",
+    "server": "If the image is uploaded, store only the exported PNG and strip metadata again server-side; never keep the original.",
+    "catches": [
+      "Blur or pixelation used as redaction (only solid fills are offered)",
+      "Box edges that leave half-covered pixels, by padding and snapping outward",
+      "Sensitive text your detector finds but no box covers",
+      "Metadata and trailing data after the image end (aCropalypse-style), by re-encoding to a fresh PNG",
+      "Boxes that are not solid in the exported file, by re-reading it"
+    ],
+    "limits": [
+      "Only as good as the detector you plug in; it does not run OCR by itself",
+      "Cannot catch information outside the boxes you or the detector mark (faces, reflections, context)",
+      "The original image stays in memory until you discard it; only the export is cleaned"
+    ],
+    "a11y": [
+      "Boxes can be moved with arrow keys and removed with Delete or Backspace",
+      "Each suggestion and remove button has an aria-label; hints wired with aria-describedby",
+      "Scan and export progress announced in polite live regions; export failures use role=alert",
+      "Undo and Add-box are regular buttons; icons are aria-hidden"
     ]
   },
   "categories": [

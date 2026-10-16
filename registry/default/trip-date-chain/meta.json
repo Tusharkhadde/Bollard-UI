@@ -1,7 +1,32 @@
 {
   "title": "Trip Date Chain",
-  "description": "Stops a hotel being booked for the wrong night by drawing each stay as a bar on a night-by-night strip under the flights, catching a 00:50 landing with the room booked from that date, nights paid before a +1 arrival, gap nights, double-booked nights and a room kept past a 00:35 departure, sliding the stay's bar to the right dates in one tap with Undo, and reading a small-hours departure back as the evening before.",
-  "dependencies": ["lucide-react", "motion", "date-fns", "@date-fns/tz"],
+  "summary": "Lines up hotel nights under the flights and catches a stay booked for the wrong night, like a room from the date of a 00:50 landing.",
+  "description": "Night-by-night strip of stays under flights that catches a small-hours landing with the room booked from that date, nights paid before a +1 arrival, gap nights, double-booked nights and a room kept past a small-hours departure, with one-tap fixes and Undo.",
+  "catches": [
+    "Room booked from the date of a small-hours arrival (needs the night before)",
+    "Nights paid before a +1-day arrival",
+    "Gap nights with no stay",
+    "Overlapping stays (double-booked nights)",
+    "Room kept past a small-hours departure",
+    "Tight connections below minConnectionMinutes"
+  ],
+  "limits": [
+    "Times are local wall-clock times as printed; add IANA zones for real durations",
+    "Reads only the legs and stays you pass",
+    "earlyHours defines \"small hours\" (configurable)"
+  ],
+  "a11y": [
+    "Visual strip is aria-hidden; every finding is also text",
+    "Fix and Undo are labelled buttons; outcome via role=status",
+    "Focus moves to the next fix after one is applied",
+    "Animations respect reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "date-fns",
+    "@date-fns/tz"
+  ],
   "stops": "Hotel booked for the wrong night",
   "mistakes": [
     "landed after midnight no hotel room",

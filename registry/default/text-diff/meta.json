@@ -1,6 +1,22 @@
 {
   "title": "Text Diff",
-  "description": "Prevents approving an edit you didn't see: a word-level diff that calls out changed numbers (30 → 14) and draws invisible changes like doubled spaces, line breaks and zero-width characters, in inline or split view, and stays fast on long documents with a one-word change.",
+  "summary": "Shows a word-level diff that makes changed numbers and invisible whitespace changes visible, so an edit can't slip through unseen.",
+  "description": "Word-level diff (Myers) that calls out changed numbers (30 → 14) and draws invisible changes like doubled spaces, line breaks and zero-width characters, in inline or split view, and stays fast on long documents with small changes.",
+  "catches": [
+    "Changed numbers, kept whole (1,250.50 is one token) and called out",
+    "Whitespace, line-break and zero-width character changes, drawn visibly",
+    "Identical texts, said plainly",
+    "Counts of words added and removed"
+  ],
+  "limits": [
+    "Word-level, not semantic: reworded sentences show as remove + add",
+    "Very large diffs fall back to a coarser result past the memory budget"
+  ],
+  "a11y": [
+    "Added and removed runs carry sr-only labels (srAddedLabel/srRemovedLabel)",
+    "Invisible characters have a title tooltip",
+    "Icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

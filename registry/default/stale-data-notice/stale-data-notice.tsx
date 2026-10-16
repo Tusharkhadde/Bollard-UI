@@ -94,8 +94,11 @@ export interface StaleDataNoticeProps extends DataAgeOptions, Omit<React.Compone
   message?: string
   /** What could be wrong now, e.g. "Prices may have changed." */
   consequence?: string
+  /** Label of the refresh button. */
   refreshLabel?: string
+  /** Label while refreshing. */
   refreshingLabel?: string
+  /** Accessible label of the dismiss button. */
   dismissLabel?: string
   /** Shown when `onRefresh` rejects. */
   errorText?: string
