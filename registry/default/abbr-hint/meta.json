@@ -1,0 +1,32 @@
+{
+  "title": "Abbr Hint",
+  "description": "Stops readers guessing at jargon (TAT, SLA, kWh) by making each term a dotted, tappable and keyboard-focusable hint instead of a hover-only <abbr title>, spelling it out inline on first use, reading the expansion to screen readers without opening anything, and flagging abbreviations the glossary doesn't cover, with a portalled hint that is never clipped by a scrolling card or table and flips to stay on screen.",
+  "dependencies": [
+    "@floating-ui/react",
+    "motion"
+  ],
+  "stops": "Readers guess at jargon like TAT",
+  "mistakes": [
+    "what does tat mean",
+    "abbreviation tooltip",
+    "abbr title not on mobile",
+    "jargon explanation",
+    "acronym glossary"
+  ],
+  "aliases": [
+    "abbreviation",
+    "acronym",
+    "glossary",
+    "tooltip",
+    "abbr",
+    "jargon",
+    "help text",
+    "definition"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

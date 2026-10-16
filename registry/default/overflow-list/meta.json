@@ -1,0 +1,27 @@
+{
+  "title": "Overflow List",
+  "description": "Stops a “+3 more” chip list or avatar stack from hiding the item that matters by always keeping failed items, the signed-in user and pinned items visible, and spelling out what the expand button hides (“+4 more, 1 skipped”) instead of a bare count.",
+  "dependencies": ["lucide-react"],
+  "stops": "Failed item hidden behind \"+3 more\"",
+  "mistakes": [
+    "+3 more hides error",
+    "avatar stack hides me",
+    "chip list overflow",
+    "show more hides failed",
+    "tags overflow"
+  ],
+  "aliases": [
+    "+n more",
+    "avatar group",
+    "chips",
+    "tags",
+    "overflow",
+    "facepile",
+    "assignees",
+    "badges"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

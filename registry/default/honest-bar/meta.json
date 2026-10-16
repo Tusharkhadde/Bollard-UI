@@ -1,0 +1,29 @@
+{
+  "title": "Honest Bar",
+  "description": "Stops a bar chart from exaggerating: when the axis doesn't start at zero it draws a broken-axis mark through the axis and bars, states the distortion (\"looks 3×, really 1.09×\") with a one-tap Start at 0, tears and labels values past the scale, and reads out exact values on hover and keyboard focus, in pure SVG.",
+  "dependencies": ["lucide-react"],
+  "stops": "Bar chart made 9% look like 3×",
+  "mistakes": [
+    "misleading bar chart",
+    "y axis not starting at zero",
+    "truncated axis",
+    "chart exaggerates",
+    "broken axis"
+  ],
+  "aliases": [
+    "bar chart",
+    "y axis",
+    "start at zero",
+    "broken axis",
+    "svg chart",
+    "data viz",
+    "dashboard",
+    "recharts"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number"
+  ]
+}

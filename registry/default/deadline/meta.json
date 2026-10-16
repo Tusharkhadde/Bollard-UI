@@ -1,0 +1,30 @@
+{
+  "title": "Deadline",
+  "description": "Prevents deadlines missed to a time-zone slip or a misread midnight by showing time left plus the exact moment in your zone and the owner's, writing midnight as the end of the day before, and turning amber when close and red when overdue.",
+  "dependencies": ["lucide-react"],
+  "stops": "Missed a deadline by a time zone",
+  "mistakes": [
+    "deadline wrong time zone",
+    "midnight deadline confusion",
+    "11:59 pm ist",
+    "hackathon submission deadline",
+    "due date countdown"
+  ],
+  "aliases": [
+    "deadline",
+    "due date",
+    "countdown",
+    "time zone",
+    "submission",
+    "hackathon",
+    "midnight",
+    "ist"
+  ],
+  "flows": [
+    "scheduling",
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

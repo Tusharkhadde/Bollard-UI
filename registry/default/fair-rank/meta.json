@@ -1,0 +1,29 @@
+{
+  "title": "Fair Rank",
+  "description": "Stops leaderboards misleading people by ranking ties the standard competition way (1, T-2, T-2, 4) at the precision shown so equal-looking scores always share a rank, showing movement since last period with rows sliding in from where they were, and setting aside entries below a minimum sample with the reason and the rank they would have had.",
+  "dependencies": ["lucide-react"],
+  "stops": "Tied players shown with different ranks",
+  "mistakes": [
+    "leaderboard tie ranking",
+    "same score different rank",
+    "ranking ties",
+    "min sample leaderboard",
+    "rank movement"
+  ],
+  "aliases": [
+    "leaderboard",
+    "ranking",
+    "ties",
+    "scores",
+    "hackathon results",
+    "gamification",
+    "standings",
+    "top players"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "number"
+  ]
+}

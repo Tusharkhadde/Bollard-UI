@@ -1,0 +1,35 @@
+{
+  "title": "Sum Check",
+  "description": "Stops a wrong total from being trusted by re-adding the rows in exact arithmetic, showing the off-by amount, pointing at the rows that would explain it (swapped digits, a slipped decimal, a flipped sign, a debit on the credit side) and saying honestly when the gap is only rounding, with figures that roll to their new values so a one-tap fix is seen landing (the gap counting down to zero) and focus handed to the status after the fix.",
+  "dependencies": [
+    "lucide-react",
+    "@number-flow/react",
+    "motion"
+  ],
+  "stops": "Total doesn't add up",
+  "mistakes": [
+    "total mismatch",
+    "sum is wrong",
+    "swapped digits total",
+    "rounding error totals",
+    "debit credit wrong side"
+  ],
+  "aliases": [
+    "total",
+    "sum",
+    "reconciliation",
+    "invoice",
+    "ledger",
+    "spreadsheet",
+    "accounting",
+    "tally"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

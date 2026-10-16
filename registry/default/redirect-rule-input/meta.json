@@ -1,0 +1,32 @@
+{
+  "title": "Redirect Rule Input",
+  "description": "Stops redirect lists from breaking links, SEO and security: it reads vercel.json, Netlify _redirects or nginx rewrite/return (auto-detected) the way each platform matches, then catches loops and 2+ hop chains with the hop path, rules shadowed by an earlier wildcard, open redirects whose domain comes from the URL, 301/308 on temporary moves, 301/302 turning a POST into a GET, dropped query strings, a ?query or #hash written into the source, missing leading slashes, placeholders the source never captures, trailing-slash traps and hops to http, with a GET/POST URL tester and one-tap fixes (collapse the chain, reorder, make temporary, keep args, match the query separately).",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Redirect loop broke the site",
+  "mistakes": [
+    "redirect loop",
+    "redirect chain seo",
+    "open redirect",
+    "301 vs 302",
+    "query string dropped"
+  ],
+  "aliases": [
+    "redirects",
+    "vercel.json",
+    "netlify _redirects",
+    "nginx",
+    "301",
+    "308",
+    "seo",
+    "rewrite rules"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "url",
+    "code"
+  ]
+}

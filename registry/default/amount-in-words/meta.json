@@ -1,0 +1,30 @@
+{
+  "title": "Amount in Words",
+  "description": "Stops ₹2,50,000 being written or read as ₹25,00,000 by naming every digit group (2 lakh · 50 thousand), spelling the amount cheque-style in lakh/crore or million with paise or cents, showing the other number system alongside, and checking typed words against the figure, since the bank pays what the words say.",
+  "dependencies": ["lucide-react"],
+  "stops": "Extra zero on a transfer",
+  "mistakes": [
+    "2 lakh vs 20 lakh",
+    "amount in words",
+    "cheque amount words",
+    "rupees in words",
+    "lakh crore confusion"
+  ],
+  "aliases": [
+    "amount in words",
+    "cheque",
+    "lakh",
+    "crore",
+    "rupees",
+    "number to words",
+    "neft",
+    "invoice"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

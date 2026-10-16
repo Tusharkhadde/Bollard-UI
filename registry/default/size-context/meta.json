@@ -1,0 +1,30 @@
+{
+  "title": "Size Context",
+  "description": "Prevents failed uploads and GB-vs-GiB confusion by showing a size with a relatable comparison, transfer time and the equivalent in the other unit system (including what Windows will display), and by checking a limit before upload, flagging the grey zone where a \"4 GB\" limit only fits if the service means GiB.",
+  "dependencies": ["lucide-react"],
+  "stops": "Upload fails on GB vs GiB",
+  "mistakes": [
+    "file too large upload",
+    "gb vs gib",
+    "windows shows smaller size",
+    "upload limit exceeded",
+    "how long to upload"
+  ],
+  "aliases": [
+    "file size",
+    "gb",
+    "gib",
+    "upload limit",
+    "bytes",
+    "storage",
+    "transfer time",
+    "mb"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "file",
+    "number"
+  ]
+}

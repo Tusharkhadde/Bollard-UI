@@ -1,0 +1,30 @@
+{
+  "title": "Copy Confirm",
+  "description": "Prevents pasting the wrong thing by showing exactly what was copied, refusing to copy an empty value, flagging stray whitespace and invisible characters with a one-tap clean copy, and copying formatted numbers as plain text.",
+  "dependencies": ["lucide-react"],
+  "stops": "Pasted the wrong thing from the clipboard",
+  "mistakes": [
+    "copy button copied nothing",
+    "invisible characters in copy",
+    "trailing space copied",
+    "number copied with commas",
+    "what did i copy"
+  ],
+  "aliases": [
+    "copy to clipboard",
+    "copy button",
+    "clipboard",
+    "whitespace",
+    "invisible characters",
+    "toast",
+    "copied",
+    "paste"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
+}

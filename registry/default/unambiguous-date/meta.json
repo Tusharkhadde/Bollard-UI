@@ -1,0 +1,32 @@
+{
+  "title": "Unambiguous Date",
+  "description": "Prevents DD/MM vs MM/DD misreadings by showing dates as \"3 Oct 2026\" with the distance from today, flagging numeric inputs that read two ways with a one-tap choice, and letting one answer apply to a whole imported column.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "03/04 read as March instead of April",
+  "mistakes": [
+    "dd mm vs mm dd",
+    "date format confusion",
+    "csv import date wrong",
+    "american date format",
+    "ambiguous date"
+  ],
+  "aliases": [
+    "date format",
+    "dd/mm/yyyy",
+    "mm/dd/yyyy",
+    "date picker",
+    "csv import",
+    "relative date",
+    "dob",
+    "locale"
+  ],
+  "flows": [
+    "forms",
+    "india"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

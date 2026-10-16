@@ -1,0 +1,29 @@
+{
+  "title": "Join Preview",
+  "description": "Stops a join from silently duplicating or losing rows by predicting the row count for every join type before it runs, naming the repeated keys that fan rows out, counting rows dropped for having no match or a blank key, and catching keys that never match because one side is a number and the other text, or they differ only by spaces, case or leading zeros, each with a one-tap fix that says how many rows it rescues.",
+  "dependencies": ["lucide-react"],
+  "stops": "SQL join duplicated every row",
+  "mistakes": [
+    "join duplicates rows",
+    "rows missing after join",
+    "left join fan out",
+    "join key type mismatch",
+    "leading zeros join"
+  ],
+  "aliases": [
+    "sql join",
+    "left join",
+    "inner join",
+    "merge",
+    "pandas merge",
+    "vlookup",
+    "data pipeline",
+    "etl"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "id-number"
+  ]
+}

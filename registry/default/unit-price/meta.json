@@ -1,0 +1,32 @@
+{
+  "title": "Unit Price",
+  "description": "Stops shoppers picking the pack that only looks cheaper by putting every option on a common unit price (₹ per 100 g, per litre or per piece), marking the true cheapest, and catching bigger packs that cost more per unit, multi-buys that cost more than singles and packs that shrank at the same price, with a one-tap switch.",
+  "dependencies": ["lucide-react"],
+  "stops": "Bigger pack costs more per kg",
+  "mistakes": [
+    "bigger pack costs more",
+    "price per kg",
+    "shrinkflation",
+    "multi buy more expensive",
+    "unit price comparison"
+  ],
+  "aliases": [
+    "unit price",
+    "price per 100g",
+    "grocery",
+    "blinkit",
+    "zepto",
+    "bigbasket",
+    "pack size",
+    "shrinkflation",
+    "₹ per kg"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

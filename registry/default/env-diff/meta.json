@@ -1,0 +1,30 @@
+{
+  "title": "Env Diff",
+  "description": "Prevents broken deploys from config drift by comparing two environments key by key, putting missing and empty keys first, flagging production values that still point at localhost, a test key or the staging host, and secrets reused across both, while masking every secret behind a short fingerprint so the diff is safe to share.",
+  "dependencies": ["lucide-react"],
+  "stops": "Prod still pointing at localhost",
+  "mistakes": [
+    "missing env variable in prod",
+    "staging url in production",
+    "test key in prod",
+    "env drift",
+    "compare env files"
+  ],
+  "aliases": [
+    ".env",
+    "environment variables",
+    "config",
+    "staging",
+    "production",
+    "vercel env",
+    "secrets",
+    "deploy"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "secret",
+    "url"
+  ]
+}

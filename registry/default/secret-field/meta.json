@@ -1,0 +1,32 @@
+{
+  "title": "Secret Field",
+  "description": "Stops masked API keys from leaking or being pasted as dots: keeps the sk_live_/sk_test_ prefix (flagged Live or Test), re-masks on a timer or when the tab is hidden, and copying the masked text puts the real key on the clipboard.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Masked API key pasted as dots",
+  "mistakes": [
+    "copied masked api key",
+    "api key visible on screen",
+    "live vs test key",
+    "secret field reveal",
+    "sk_live leaked"
+  ],
+  "aliases": [
+    "api key",
+    "secret input",
+    "reveal",
+    "copy key",
+    "stripe key",
+    "developer settings",
+    "password field",
+    "token"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings"
+  ],
+  "fields": [
+    "secret"
+  ]
+}

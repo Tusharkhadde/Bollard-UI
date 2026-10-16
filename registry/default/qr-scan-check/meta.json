@@ -1,0 +1,30 @@
+{
+  "title": "QR Scan Check",
+  "description": "Prevents quishing by showing where a scanned QR code really goes before anything opens: the registrable domain in bold against what is printed beside the code (the sticker-over-the-real-code trick, with a one-tap \"Go to the printed site instead\"), lookalike and brand-borrowing domains, short links followed through a pluggable resolver, app downloads, and for UPI codes the payee, a pre-filled amount and \"scan to receive a refund\" scams.",
+  "dependencies": ["lucide-react"],
+  "stops": "Scanned a fake QR sticker",
+  "mistakes": [
+    "qr code scam",
+    "quishing",
+    "fake parking qr",
+    "upi qr refund scam",
+    "scan qr to receive money"
+  ],
+  "aliases": [
+    "qr scanner",
+    "scan qr",
+    "quishing",
+    "upi qr",
+    "phishing",
+    "short link",
+    "parking meter",
+    "payment qr"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "url"
+  ]
+}

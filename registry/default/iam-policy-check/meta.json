@@ -1,0 +1,30 @@
+{
+  "title": "IAM Policy Check",
+  "description": "Stops an AWS IAM or S3 bucket policy granting far more than intended by reading each statement back in plain words (who can do what, on what, only if what) and flagging full-admin and service:* wildcards, Resource \"*\", Principal \"*\" that S3 Block Public Access would call public (naming conditions such as aws:SecureTransport or a /1 IP range that don't narrow it), public reads and writes, NotAction with Allow, NotPrincipal traps and iam:PassRole on every role, with scoped one-tap fixes: your account or organization, the actions it really uses, iam:PassedToService inferred from the policy, and a Deny rewritten with aws:PrincipalArn.",
+  "dependencies": ["lucide-react"],
+  "stops": "S3 bucket made public by policy",
+  "mistakes": [
+    "s3 bucket public",
+    "iam policy too broad",
+    "wildcard permissions aws",
+    "principal star",
+    "passrole all roles"
+  ],
+  "aliases": [
+    "aws iam",
+    "s3 bucket policy",
+    "iam policy",
+    "least privilege",
+    "principal",
+    "json policy",
+    "cloud security",
+    "devops"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
+}

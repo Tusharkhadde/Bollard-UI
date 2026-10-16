@@ -1,0 +1,31 @@
+{
+  "title": "Error Explainer",
+  "description": "Stops people stalling on (or double-submitting after) a raw error code by saying what happened, the likely cause and one next step, waiting out Retry-After, warning that an ambiguous timeout on a payment may already have gone through and offering Check status before Retry, with a support-ready copyable reference and the stack behind Technical details.",
+  "dependencies": ["lucide-react"],
+  "stops": "Paid twice after a payment timeout error",
+  "mistakes": [
+    "error code meaningless",
+    "something went wrong",
+    "payment timeout retry",
+    "double submit after error",
+    "error message help"
+  ],
+  "aliases": [
+    "error message",
+    "error state",
+    "500",
+    "timeout",
+    "retry",
+    "support reference",
+    "payment failed",
+    "error boundary"
+  ],
+  "flows": [
+    "checkout",
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "code"
+  ]
+}

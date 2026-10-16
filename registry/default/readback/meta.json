@@ -1,0 +1,30 @@
+{
+  "title": "Readback",
+  "description": "Prevents misread license keys, IBANs and Wi-Fi passwords by grouping characters, labelling every look-alike (zero vs letter O, one vs small L), copying the clean value and offering a large show-to-someone view.",
+  "dependencies": ["lucide-react"],
+  "stops": "Licence key misread, 0 vs O",
+  "mistakes": [
+    "zero vs o confusion",
+    "license key wrong",
+    "wifi password misread",
+    "iban typo",
+    "l vs 1 confusion"
+  ],
+  "aliases": [
+    "license key",
+    "product key",
+    "wifi password",
+    "iban",
+    "recovery code",
+    "readback",
+    "monospace",
+    "confusable characters"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "code",
+    "secret"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Gap-Aware Line",
+  "description": "Stops missing readings being read as a drop to zero or a smooth trend by breaking the line at nulls, shading and labelling each gap on hover and keyboard focus, keeping a lone reading between gaps visible as a dot, drawing estimated points hollow with dashed segments, and backing every reading with a data table, in pure SVG.",
+  "dependencies": ["lucide-react"],
+  "stops": "Missing readings drawn as zero",
+  "mistakes": [
+    "missing data shows zero",
+    "null values line chart",
+    "gap in chart",
+    "interpolated data",
+    "sensor data missing"
+  ],
+  "aliases": [
+    "line chart",
+    "missing data",
+    "null values",
+    "time series",
+    "gaps",
+    "svg chart",
+    "monitoring",
+    "iot"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number",
+    "datetime"
+  ]
+}

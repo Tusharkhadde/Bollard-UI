@@ -1,0 +1,27 @@
+{
+  "title": "Diff Table",
+  "description": "Stops people picking the wrong plan or product from a comparison table by marking the cells that actually differ (ignoring case, spacing and 10 GB vs 10GB), offering “Show only differences” that says how many identical rows it hid, and showing blank cells as “Not stated”, never a dash that reads as “No”, while keeping those rows visible.",
+  "dependencies": ["lucide-react"],
+  "stops": "Picked the wrong plan from a comparison",
+  "mistakes": [
+    "comparison table confusing",
+    "show only differences",
+    "dash means no",
+    "compare plans",
+    "compare products"
+  ],
+  "aliases": [
+    "comparison table",
+    "pricing table",
+    "compare plans",
+    "product compare",
+    "spec sheet",
+    "differences",
+    "feature matrix",
+    "pricing"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": []
+}

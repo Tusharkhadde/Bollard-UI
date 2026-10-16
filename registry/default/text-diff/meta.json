@@ -1,0 +1,32 @@
+{
+  "title": "Text Diff",
+  "description": "Prevents approving an edit you didn't see: a word-level diff that calls out changed numbers (30 → 14) and draws invisible changes like doubled spaces, line breaks and zero-width characters, in inline or split view, and stays fast on long documents with a one-word change.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Approved an edit I didn't see",
+  "mistakes": [
+    "hidden change in text",
+    "zero width characters",
+    "number changed in contract",
+    "compare two texts",
+    "diff checker"
+  ],
+  "aliases": [
+    "diff",
+    "text compare",
+    "track changes",
+    "review",
+    "contract",
+    "redline",
+    "word diff",
+    "diffchecker"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

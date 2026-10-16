@@ -1,0 +1,30 @@
+{
+  "title": "Change Readout",
+  "description": "Stops changes being misread by showing them both ways (₹1,200 → ₹1,500 · +₹300 · +25%), keeping percentage points apart from percent (4% → 6% is +2 pts, +50%), refusing a % from a zero base or across zero, dividing by |base| for negatives, adding 2.5× when a value doubles, and marking whether the move is good or bad.",
+  "dependencies": ["lucide-react"],
+  "stops": "Percentage points mistaken for percent",
+  "mistakes": [
+    "percent vs percentage points",
+    "growth from zero",
+    "percent change wrong",
+    "doubled shown as 100%",
+    "negative base percent"
+  ],
+  "aliases": [
+    "percent change",
+    "delta",
+    "kpi",
+    "growth",
+    "pts",
+    "dashboard",
+    "metric card",
+    "trend"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "number",
+    "amount"
+  ]
+}

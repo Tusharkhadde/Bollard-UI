@@ -1,0 +1,31 @@
+{
+  "title": "Dedupe Key Picker",
+  "description": "Stops a dedupe from merging nothing or merging too much by previewing, as you pick the columns that define a duplicate, how many rows would merge, naming the near-unique column (like a timestamp) that keeps duplicates apart with a one-tap \"leave it out\", flagging a key so broad one value swallows a quarter of the table, keeping blank keys separate and showing sample collisions with the values a merge would discard highlighted.",
+  "dependencies": ["lucide-react"],
+  "stops": "Dedupe merged the wrong rows",
+  "mistakes": [
+    "remove duplicates wrong",
+    "dedupe merged nothing",
+    "duplicate rows",
+    "merge contacts mistake",
+    "drop duplicates key"
+  ],
+  "aliases": [
+    "dedupe",
+    "remove duplicates",
+    "merge records",
+    "crm contacts",
+    "data cleaning",
+    "unique key",
+    "pandas",
+    "csv import"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "email",
+    "phone"
+  ]
+}

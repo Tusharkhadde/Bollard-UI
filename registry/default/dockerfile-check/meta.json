@@ -1,0 +1,30 @@
+{
+  "title": "Dockerfile Check",
+  "description": "Stops a Dockerfile shipping a root, leaky or slow image by reading it the way BuildKit does (escape directive, continuations, heredocs, stages) and flagging a final image that runs as root, secrets in ARG or ENV (Docker's own key rule), secret files baked in or carried over by COPY --from, COPY . before the dependency install, a missing .dockerignore, apt-get without -y, --no-install-recommends or list cleanup, ADD from a URL without --checksum, curl | sh and shell-form CMD or ENTRYPOINT that swallow SIGTERM, with one-tap fixes such as secret mounts, manifest-first installs and exec form.",
+  "dependencies": ["lucide-react"],
+  "stops": "Docker image runs as root with secrets",
+  "mistakes": [
+    "docker runs as root",
+    "secret in dockerfile env",
+    "slow docker build cache",
+    "missing dockerignore",
+    "curl pipe sh dockerfile"
+  ],
+  "aliases": [
+    "dockerfile",
+    "docker",
+    "buildkit",
+    "container",
+    "hadolint",
+    "multi-stage",
+    "devops",
+    "image"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "secret"
+  ]
+}

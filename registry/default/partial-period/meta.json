@@ -1,0 +1,30 @@
+{
+  "title": "Partial Period",
+  "description": "Stops \"today so far vs all of yesterday\" from reading as a slump by comparing like for like (yesterday cut at the same minute) by default, warning with a one-tap fix when the full period is chosen, hatching the bucket still filling, dimming the part of yesterday not yet reached, and projecting the finish from yesterday's own curve, labelled as an estimate.",
+  "dependencies": ["lucide-react"],
+  "stops": "Today looks like a slump vs yesterday",
+  "mistakes": [
+    "today vs yesterday unfair",
+    "partial day comparison",
+    "sales dropped today",
+    "incomplete period chart",
+    "month to date compare"
+  ],
+  "aliases": [
+    "analytics",
+    "dashboard",
+    "today vs yesterday",
+    "period comparison",
+    "kpi",
+    "mtd",
+    "chart",
+    "projection"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number",
+    "datetime"
+  ]
+}

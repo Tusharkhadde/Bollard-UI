@@ -1,0 +1,30 @@
+{
+  "title": "Set-Cookie Check",
+  "description": "Stops cookies from being silently rejected or stolen by reading back what the browser will really do with each Set-Cookie (who gets it, over what, cross-site or not, and for how long after the 400-day cap) and flagging SameSite=None or Partitioned without Secure, broken __Host-/__Secure- prefixes, a Domain that shares a sign-in cookie with every subdomain, a missing HttpOnly, Expires and Max-Age that disagree and the 4096-byte limit, with one-tap fixes.",
+  "dependencies": ["lucide-react"],
+  "stops": "Login cookie silently rejected",
+  "mistakes": [
+    "cookie not being set",
+    "samesite none without secure",
+    "cookie not sent cross site",
+    "missing httponly",
+    "__host prefix"
+  ],
+  "aliases": [
+    "set-cookie",
+    "cookies",
+    "samesite",
+    "httponly",
+    "secure",
+    "auth cookie",
+    "session cookie",
+    "cors"
+  ],
+  "flows": [
+    "devtools",
+    "signup-login"
+  ],
+  "fields": [
+    "code"
+  ]
+}

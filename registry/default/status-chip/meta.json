@@ -1,0 +1,27 @@
+{
+  "title": "Status Chip",
+  "description": "Stops statuses being misread by never relying on colour alone (a distinct icon shape and text per tone, a colour-blind-safe palette), keeping meanings consistent through one shared status map, and explaining on hover or focus what a status means and what to do next.",
+  "dependencies": ["lucide-react"],
+  "stops": "Status read wrong by colour-blind users",
+  "mistakes": [
+    "status color only",
+    "colour blind status",
+    "red green badge",
+    "what does this status mean",
+    "inconsistent status colors"
+  ],
+  "aliases": [
+    "status badge",
+    "chip",
+    "tag",
+    "pill",
+    "order status",
+    "colour blind",
+    "a11y",
+    "label"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

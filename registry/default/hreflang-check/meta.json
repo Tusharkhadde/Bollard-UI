@@ -1,0 +1,30 @@
+{
+  "title": "Hreflang Check",
+  "description": "Stops Google from silently ignoring hreflang by checking pasted <link> tags or a sitemap for one page or a whole set the way Search Central describes, with a who-links-to-whom grid, and flagging missing or near-miss return links, invalid codes like en-UK or es-419, relative URLs, a missing self-reference or x-default and a canonical that points at another language's page, each with a one-tap fix.",
+  "dependencies": ["lucide-react"],
+  "stops": "Google ignored the hreflang tags",
+  "mistakes": [
+    "hreflang not working",
+    "missing return links",
+    "en-uk invalid code",
+    "x-default missing",
+    "international seo"
+  ],
+  "aliases": [
+    "hreflang",
+    "seo",
+    "i18n",
+    "sitemap",
+    "canonical",
+    "multilingual",
+    "search console",
+    "x-default"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "url",
+    "code"
+  ]
+}

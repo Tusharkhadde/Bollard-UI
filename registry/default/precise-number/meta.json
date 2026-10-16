@@ -1,0 +1,35 @@
+{
+  "title": "Precise Number",
+  "description": "Prevents misread amounts by showing big numbers compactly (₹1.2 Cr, $1.2M) without ever rounding up, with the exact value in a tooltip that is never clipped by tables or scroll areas, spoken units, a lakh/crore toggle that visibly rolls the figure to its new units, and honest percentages.",
+  "dependencies": [
+    "lucide-react",
+    "@floating-ui/react",
+    "motion"
+  ],
+  "stops": "₹1.24 Cr rounded up to ₹1.3 Cr",
+  "mistakes": [
+    "number rounded up wrongly",
+    "compact number format",
+    "lakh crore format",
+    "1.2m vs exact",
+    "tooltip clipped in table"
+  ],
+  "aliases": [
+    "compact number",
+    "lakh",
+    "crore",
+    "number format",
+    "intl",
+    "tooltip",
+    "dashboard",
+    "₹"
+  ],
+  "flows": [
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "number",
+    "amount"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Gitignore Check",
+  "description": "Stops secrets and junk getting committed when a .gitignore only looks right: it runs Git's real matching rules against your files and names the line that decides each one, catching inline # comments, trailing tabs, leading spaces, backslashes and ./, ! lines that can't re-include a file inside an excluded folder or are overridden by a later line, / anchors that miss nested folders, .env, keys and node_modules left out, and already-committed files that .gitignore won't untrack (with the git rm --cached command), with one-tap fixes.",
+  "dependencies": ["lucide-react"],
+  "stops": "node_modules committed despite .gitignore",
+  "mistakes": [
+    "gitignore not working",
+    ".env still committed",
+    "gitignore pattern wrong",
+    "git rm cached",
+    "node_modules in repo"
+  ],
+  "aliases": [
+    ".gitignore",
+    "git",
+    "ignore file",
+    ".env",
+    "node_modules",
+    "git rm --cached",
+    "repo",
+    "commit"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "file"
+  ]
+}

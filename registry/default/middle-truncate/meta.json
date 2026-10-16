@@ -1,0 +1,30 @@
+{
+  "title": "Middle Truncate",
+  "description": "Prevents picking the wrong file, wallet or ID by truncating in the middle to the real rendered width so the distinguishing end stays visible, while copy, title and screen readers always get the full value.",
+  "dependencies": [],
+  "stops": "Picked the wrong file by prefix",
+  "mistakes": [
+    "truncated wallet address",
+    "file names cut off",
+    "ellipsis hides end",
+    "same prefix ids",
+    "text-overflow end"
+  ],
+  "aliases": [
+    "truncate",
+    "ellipsis",
+    "wallet address",
+    "file name",
+    "transaction id",
+    "hash",
+    "text overflow",
+    "web3"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "id-number",
+    "file"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Honest Rating",
+  "description": "Stops shoppers trusting a bare \"4.8\" by showing how many reviews stand behind it and how they split, flagging tiny samples with the range the true score could be in, calling out love-it-or-hate-it splits, and sorting by a disclosed Bayesian score so a 5.0 from 3 reviews can't outrank a 4.6 from 900.",
+  "dependencies": ["lucide-react"],
+  "stops": "Trusted a 5.0 from three reviews",
+  "mistakes": [
+    "fake high rating",
+    "few reviews high stars",
+    "rating count",
+    "bayesian rating",
+    "polarised reviews"
+  ],
+  "aliases": [
+    "star rating",
+    "reviews",
+    "ratings",
+    "bayesian average",
+    "product page",
+    "flipkart",
+    "amazon",
+    "sort by rating"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "number"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Spell Out",
+  "description": "Stops booking refs, wallet addresses and passwords being misread aloud or copied wrong by grouping the characters, naming look-alikes under the glyph (0 zero vs O oh, 1/l/I, 5/S), spelling it in the NATO alphabet with case when it matters, and flagging Cyrillic look-alike letters and invisible characters.",
+  "dependencies": ["lucide-react"],
+  "stops": "Booking ref misread over the phone",
+  "mistakes": [
+    "pnr misread",
+    "spell over phone",
+    "nato alphabet",
+    "wallet address wrong",
+    "cyrillic lookalike"
+  ],
+  "aliases": [
+    "nato alphabet",
+    "spell out",
+    "pnr",
+    "booking reference",
+    "wallet address",
+    "confusable",
+    "phonetic",
+    "support call"
+  ],
+  "flows": [
+    "forms",
+    "india"
+  ],
+  "fields": [
+    "code",
+    "id-number"
+  ]
+}

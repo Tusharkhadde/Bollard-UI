@@ -1,0 +1,31 @@
+{
+  "title": "Workflow YAML Guard",
+  "description": "Stops a GitHub Actions workflow handing your repo to anyone who opens a pull request by flagging pull_request_target or workflow_run jobs that check out the PR's code (pwn requests), untrusted ${{ github.event.* }} and head_ref pasted into run scripts, actions pinned to movable tags, missing or write-all token permissions, secrets echoed, dumped with toJSON or transformed past log masking, and self-hosted runners fork PRs can reach, following GitHub Security Lab and GitHub's secure-use docs, with one-tap fixes (env indirection, read-only permissions, pull_request, a hosted runner) and Pin SHA through your own lookup.",
+  "dependencies": ["lucide-react"],
+  "stops": "Pull request stole repo secrets",
+  "mistakes": [
+    "pull_request_target vulnerability",
+    "github actions injection",
+    "secrets leaked in ci",
+    "unpinned action",
+    "pwn request"
+  ],
+  "aliases": [
+    "github actions",
+    "workflow yaml",
+    "ci/cd",
+    "pull_request_target",
+    "secrets",
+    "permissions",
+    "pin sha",
+    "self-hosted runner"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code",
+    "secret"
+  ]
+}

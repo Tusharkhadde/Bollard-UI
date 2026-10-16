@@ -1,0 +1,30 @@
+{
+  "title": "Change Highlight",
+  "description": "Stops live updates to prices, counts and statuses going unnoticed by flashing the change once (never more than once a second, skipped under reduced motion), holding a ▲/▼ with good/bad colour and the previous value on hover, and telling returning visitors what changed since their last visit.",
+  "dependencies": ["lucide-react"],
+  "stops": "Price changed and nobody noticed",
+  "mistakes": [
+    "missed live price change",
+    "value updated silently",
+    "stock price flash",
+    "what changed since last visit",
+    "status changed unnoticed"
+  ],
+  "aliases": [
+    "live updates",
+    "flash",
+    "price change",
+    "ticker",
+    "dashboard",
+    "realtime",
+    "stock price",
+    "crypto"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "number",
+    "amount"
+  ]
+}

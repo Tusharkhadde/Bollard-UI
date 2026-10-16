@@ -1,0 +1,27 @@
+{
+  "title": "Palette Guard",
+  "description": "Stops chart series becoming indistinguishable for colour-blind readers by simulating protan, deutan and tritan vision (Machado 2009), flagging every pair under a CIEDE2000 threshold that passes Okabe–Ito, and offering the smallest lightness-only fix that clears all clashes, or patterns and direct labels when no colour change can.",
+  "dependencies": ["lucide-react"],
+  "stops": "Chart colours look identical to colour-blind readers",
+  "mistakes": [
+    "colour blind chart",
+    "red green chart",
+    "chart colors indistinguishable",
+    "deuteranopia palette",
+    "accessible chart colors"
+  ],
+  "aliases": [
+    "color palette",
+    "colour blind",
+    "chart colors",
+    "a11y",
+    "deuteranopia",
+    "okabe-ito",
+    "data viz",
+    "contrast"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": []
+}

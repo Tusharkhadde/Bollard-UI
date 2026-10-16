@@ -1,0 +1,27 @@
+{
+  "title": "Sort Indicator",
+  "description": "Stops people misreading a table's order by stating the sort in plain words (\"Sorted by Due date, oldest first\"), warning when the order comes from a hidden column, empty values or pinned rows, and animating rows to their new place (FLIP, reduced-motion aware) so a re-sort can be followed.",
+  "dependencies": ["lucide-react"],
+  "stops": "Misread the table's sort order",
+  "mistakes": [
+    "table sort unclear",
+    "which column is sorted",
+    "sorted by hidden column",
+    "empty values sort",
+    "pinned rows sort"
+  ],
+  "aliases": [
+    "table sort",
+    "sorting",
+    "data table",
+    "column header",
+    "asc desc",
+    "tanstack table",
+    "ag grid",
+    "sort arrow"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

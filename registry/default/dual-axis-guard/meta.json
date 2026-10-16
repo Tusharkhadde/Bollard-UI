@@ -1,0 +1,29 @@
+{
+  "title": "Dual Axis Guard",
+  "description": "Stops a dual-axis chart from showing a correlation that isn't there by catching zero baselines at different heights and independent ranges that make a +15% line and a +140% line climb in lockstep, saying how much each series really changed, and offering a one-tap \"index both to 100\" that puts them on one honest scale (with your own chart library through a render prop, or the built-in SVG).",
+  "dependencies": ["lucide-react"],
+  "stops": "Dual-axis chart faked a correlation",
+  "mistakes": [
+    "misleading dual axis chart",
+    "two y axes chart",
+    "fake correlation chart",
+    "index to 100",
+    "chart scale misleading"
+  ],
+  "aliases": [
+    "dual axis",
+    "chart",
+    "recharts",
+    "y axis",
+    "dashboard",
+    "analytics",
+    "line chart",
+    "data viz"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number"
+  ]
+}
