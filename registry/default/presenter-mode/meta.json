@@ -1,0 +1,33 @@
+{
+  "title": "Presenter Mode",
+  "description": "Stops emails, amounts and keys leaking on a screen share: values wrapped in <Sensitive> are removed from the page (not blurred) behind fixed-length masks while presenting, a visible Presenting bar shows the mode is on, a deliberate hold peeks one value, and starting getDisplayMedia in the tab suggests turning it on.",
+  "dependencies": ["lucide-react"],
+  "stops": "Leaked a key on a screen share",
+  "mistakes": [
+    "api key visible on zoom",
+    "screen share leaked email",
+    "customer data on screen share",
+    "hide sensitive data while presenting",
+    "demo leaked secrets"
+  ],
+  "aliases": [
+    "screen share",
+    "presenter mode",
+    "streamer mode",
+    "zoom",
+    "google meet",
+    "demo mode",
+    "mask",
+    "privacy",
+    "getDisplayMedia"
+  ],
+  "flows": [
+    "devtools",
+    "account-settings"
+  ],
+  "fields": [
+    "secret",
+    "email",
+    "amount"
+  ]
+}

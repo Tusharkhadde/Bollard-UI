@@ -1,0 +1,33 @@
+{
+  "title": "LLM Cost Estimate",
+  "description": "Stops a batch or long prompt running up a surprise API bill: before it runs it estimates input and output tokens and the cost from your own dated price table, shows the worst case when max_tokens is missing, catches a request over the context window, a run many times the last one and a premium model picked for a bulk job, and fixes each in one tap (set max_tokens, switch model), with a Run button that states the cost, and shows the Batch API saving on bulk jobs.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Surprise bill from an LLM batch",
+  "mistakes": [
+    "openai bill too high",
+    "forgot max_tokens",
+    "token cost estimate before run",
+    "prompt exceeds context window",
+    "expensive model for bulk job"
+  ],
+  "aliases": [
+    "token counter",
+    "openai cost",
+    "llm pricing",
+    "max_tokens",
+    "context window",
+    "batch api",
+    "prompt playground",
+    "anthropic api",
+    "ai cost calculator"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number",
+    "amount"
+  ]
+}

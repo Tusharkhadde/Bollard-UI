@@ -1,0 +1,33 @@
+{
+  "title": "BNPL Schedule Check",
+  "description": "Stops a buy-now-pay-later plan from quietly failing by drawing each payment on a calendar beside other running plans and paydays, flagging a card that expires before a payment, payments due just before payday and plans stacking in the same week, fixing them in one tap (pay from bank, move to payday, with the dots sliding across), showing the late fee and its cap in money, and asking for a second press to confirm while the card problem stands.",
+  "dependencies": ["lucide-react", "motion", "date-fns"],
+  "stops": "Instalment fails on an expired card",
+  "mistakes": [
+    "bnpl payment due before payday",
+    "card expires before last instalment",
+    "too many pay later plans at once",
+    "missed klarna payment late fee",
+    "pay in 4 schedule clash"
+  ],
+  "aliases": [
+    "buy now pay later",
+    "bnpl",
+    "pay in 4",
+    "klarna",
+    "afterpay",
+    "affirm",
+    "instalments",
+    "installment plan",
+    "payment schedule",
+    "checkout financing"
+  ],
+  "flows": [
+    "checkout",
+    "scheduling"
+  ],
+  "fields": [
+    "amount",
+    "datetime"
+  ]
+}

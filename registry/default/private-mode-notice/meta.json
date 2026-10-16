@@ -1,0 +1,25 @@
+{"title": "Private Mode Notice", "description": "Warns before someone relies on drafts or “Remember me” in a browser that won't keep them (private window, blocked site data or a full quota), proving it with a real write test before guessing, offering to export unsaved work and guarding the tab from closing.", "dependencies": ["lucide-react"],
+  "stops": "Drafts vanish in incognito",
+  "mistakes": [
+    "incognito lost my data",
+    "remember me not working",
+    "localstorage full",
+    "private window drafts gone",
+    "cookies blocked"
+  ],
+  "aliases": [
+    "incognito",
+    "private browsing",
+    "localstorage",
+    "remember me",
+    "storage quota",
+    "drafts",
+    "cookies blocked",
+    "safari private"
+  ],
+  "flows": [
+    "signup-login",
+    "forms"
+  ],
+  "fields": []
+}

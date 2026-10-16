@@ -1,0 +1,33 @@
+{
+  "title": "Security Event Log",
+  "description": "Stops an account takeover hiding among routine entries: risky changes from other devices are highlighted, and a burst of them (a new device, then 2-step verification off, then a new recovery email) is grouped and named as a likely takeover, every row has a \"This wasn't me\" path that lists each step it will take (sign the device out, turn 2-step back on, restore recovery details...) as a checkbox the user can untick before it acts, and days and times follow the account's time zone with relative time.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Account takeover buried in the activity log",
+  "mistakes": [
+    "account hacked unnoticed",
+    "2fa turned off by attacker",
+    "this wasn't me button",
+    "suspicious login activity",
+    "recovery email changed"
+  ],
+  "aliases": [
+    "security activity",
+    "login history",
+    "recent devices",
+    "account takeover",
+    "2fa",
+    "recovery email",
+    "audit log",
+    "this wasn't me",
+    "sessions"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

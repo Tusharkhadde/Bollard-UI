@@ -1,0 +1,27 @@
+{
+  "title": "Resume Marker",
+  "description": "Stops readers losing their place in long feeds and docs by remembering the item they rested on, marking it \"You were here\" on return, and offering a jump there (and back) instead of moving the page on its own.",
+  "dependencies": ["lucide-react"],
+  "stops": "Lost my place in a long feed",
+  "mistakes": [
+    "lost scroll position",
+    "where was i reading",
+    "feed jumped to top",
+    "continue reading",
+    "unread marker"
+  ],
+  "aliases": [
+    "you were here",
+    "continue reading",
+    "scroll position",
+    "unread",
+    "feed",
+    "docs",
+    "bookmark",
+    "last read"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": []
+}

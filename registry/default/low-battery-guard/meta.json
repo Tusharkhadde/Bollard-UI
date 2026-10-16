@@ -1,0 +1,29 @@
+{
+  "title": "Low Battery Guard",
+  "description": "Stops a long upload, export, call or exam dying halfway on a flat battery: before it starts it compares the battery's runway (to a safety reserve, from the Battery Status API or a measured drain rate) with the task's length, draws where the battery would cut it off, and offers \"Start when plugged in\", which starts the task the moment a charger connects, staying silent when the task will finish anyway.",
+  "dependencies": ["lucide-react"],
+  "stops": "Upload died on a flat battery",
+  "mistakes": [
+    "battery died during upload",
+    "exam stopped low battery",
+    "video call dropped battery",
+    "export failed phone died",
+    "battery status api"
+  ],
+  "aliases": [
+    "low battery",
+    "battery api",
+    "upload",
+    "online exam",
+    "export",
+    "plug in",
+    "charger",
+    "mobile"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

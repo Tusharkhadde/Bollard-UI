@@ -1,0 +1,31 @@
+{
+  "title": "Revision Banner",
+  "description": "Stops people mistaking an old revision for the current document or editing it by accident: the content is locked in a striped frame that explains blocked edits, and \"Restore this version\" confirms which latest version it replaces and how many words change.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Edited an old version by mistake",
+  "mistakes": [
+    "edited old revision",
+    "restored wrong version",
+    "version history confusion",
+    "viewing old version of doc",
+    "restore overwrote latest"
+  ],
+  "aliases": [
+    "version history",
+    "revision",
+    "restore version",
+    "document history",
+    "read only",
+    "docs",
+    "wiki",
+    "cms"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

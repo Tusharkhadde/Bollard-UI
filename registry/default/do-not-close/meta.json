@@ -1,0 +1,32 @@
+{
+  "title": "Do Not Close",
+  "description": "Stops people closing the tab mid-payment, upload or migration with a close warning, a marked tab title, a rolling-rate time-left estimate, a clear 'Safe to close' when done and a Retry when it fails.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Closed the tab mid-payment",
+  "mistakes": [
+    "closed tab during payment",
+    "upload cancelled by closing tab",
+    "do not refresh this page",
+    "payment processing do not press back",
+    "beforeunload warning"
+  ],
+  "aliases": [
+    "do not close",
+    "beforeunload",
+    "payment processing",
+    "upload progress",
+    "migration",
+    "do not refresh",
+    "do not press back",
+    "time left"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

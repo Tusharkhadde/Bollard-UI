@@ -1,0 +1,31 @@
+{
+  "title": "Meeting Time Spread",
+  "description": "Stops a recurring meeting always landing in the same person's night by setting the start on a slider with every attendee's own day underneath (night, before work, working, after work, weekend, a day ahead or behind, and DST weeks when the gap shifts, from the tz database), and suggesting the kindest slot: nobody at night first, then the fewest people out of hours, then rotating the pain away from whoever took the last ones (\"Spares Sam, who took the last 3\").",
+  "dependencies": ["lucide-react", "motion", "@date-fns/tz"],
+  "stops": "Same colleague always gets 3 AM calls",
+  "mistakes": [
+    "meeting at night for remote colleague",
+    "time zone meeting planner",
+    "unfair recurring meeting time",
+    "dst changed meeting time",
+    "find time across time zones"
+  ],
+  "aliases": [
+    "world clock",
+    "time zone",
+    "scheduler",
+    "meeting planner",
+    "calendar",
+    "remote team",
+    "standup",
+    "recurring meeting",
+    "working hours",
+    "slider"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

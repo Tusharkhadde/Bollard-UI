@@ -1,0 +1,30 @@
+{
+  "title": "New Content Pill",
+  "description": "Stops live feeds shifting posts under the reader's finger by holding new arrivals behind a \"5 new posts\" pill that inserts and scrolls up on tap, inserting directly only when the reader is at the top (or scrolls back up to it) and not mid-press; works in its own scroll box or on a page that scrolls as a whole (scrollTarget=\"window\").",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Feed jumped while I was tapping",
+  "mistakes": [
+    "feed shifted under finger",
+    "tapped wrong post",
+    "new posts pushed content",
+    "layout shift on new items",
+    "scroll jump in feed"
+  ],
+  "aliases": [
+    "new posts",
+    "feed",
+    "timeline",
+    "infinite scroll",
+    "live updates",
+    "chat",
+    "layout shift",
+    "pill",
+    "twitter feed"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": []
+}

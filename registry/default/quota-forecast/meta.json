@@ -1,0 +1,30 @@
+{
+  "title": "Quota Forecast",
+  "description": "Stops teams hitting a usage limit by surprise by projecting the current rate to the reset (\"At this pace you'll run out Thu 22 Oct\"), turning amber or red on that forecast, and saying what happens at the limit.",
+  "dependencies": ["lucide-react"],
+  "stops": "Hit the usage limit by surprise",
+  "mistakes": [
+    "ran out of api quota",
+    "usage limit reached suddenly",
+    "plan limit exceeded",
+    "credits finished early",
+    "rate of usage forecast"
+  ],
+  "aliases": [
+    "usage",
+    "quota",
+    "plan limit",
+    "credits",
+    "api limit",
+    "billing",
+    "storage",
+    "meter",
+    "forecast"
+  ],
+  "flows": [
+    "account-settings"
+  ],
+  "fields": [
+    "number"
+  ]
+}

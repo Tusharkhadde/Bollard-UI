@@ -1,0 +1,30 @@
+{
+  "title": "Sunset Notice",
+  "description": "Stops an API shutdown arriving as a surprise outage: it reads the Sunset (RFC 8594) and Deprecation (RFC 9745) headers and their Link relations off a response, lists exactly what stops working, shows when in the reader's own zone (flagging when that falls on a different day than the header's UTC date), counts down while turning amber then red, and lets \"Remind me later\" snooze only until the next 30/7/1-day mark.",
+  "dependencies": ["lucide-react"],
+  "stops": "API shutdown arrives as an outage",
+  "mistakes": [
+    "deprecated api stopped working",
+    "missed api sunset date",
+    "deprecation header",
+    "endpoint removed surprise",
+    "api version end of life"
+  ],
+  "aliases": [
+    "sunset header",
+    "deprecation",
+    "api versioning",
+    "end of life",
+    "breaking change",
+    "migration",
+    "rfc 8594",
+    "developer console"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "datetime",
+    "url"
+  ]
+}

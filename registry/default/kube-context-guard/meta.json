@@ -1,0 +1,32 @@
+{
+  "title": "Kube Context Guard",
+  "description": "Stops kubectl and helm commands landing on the wrong cluster or namespace by showing, before they run, the context, cluster (EKS ARNs and GKE names shortened) and namespace they will really use, a --context or --kube-context flag included, and flagging production (read word by word, so pre-prod and nonprod aren't), a deploy into the default namespace, a manifest namespace that disagrees with -n (which kubectl refuses but helm silently splits from the release) and a context switched since the last command, each with a one-tap fix such as a server dry run, and asking for the context name before a production change.",
+  "dependencies": ["lucide-react"],
+  "stops": "kubectl apply on the wrong cluster",
+  "mistakes": [
+    "deployed to prod by mistake",
+    "wrong kube context",
+    "kubectl wrong namespace",
+    "helm install wrong cluster",
+    "deleted pods in production"
+  ],
+  "aliases": [
+    "kubectl",
+    "helm",
+    "kube context",
+    "namespace",
+    "eks",
+    "gke",
+    "kubernetes",
+    "prod cluster",
+    "dry run",
+    "terminal"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
+}

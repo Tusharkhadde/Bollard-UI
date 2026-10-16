@@ -1,0 +1,29 @@
+{
+  "title": "Unsent Marker",
+  "description": "Stops people believing they replied when their text never left the box: a left-behind draft comes back as a dashed \"Not sent · Priya hasn't received it\" bubble in the thread, right where the reply would be, with Send, Edit and a two-tap Discard, plus a \"Not sent:\" preview for conversation lists.",
+  "dependencies": ["lucide-react"],
+  "stops": "Thought I replied but never sent it",
+  "mistakes": [
+    "forgot to hit send",
+    "draft never sent",
+    "message left in box",
+    "unsent reply",
+    "thought i replied"
+  ],
+  "aliases": [
+    "draft",
+    "unsent",
+    "chat",
+    "reply",
+    "message composer",
+    "whatsapp",
+    "inbox",
+    "conversation list"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

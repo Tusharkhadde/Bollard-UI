@@ -1,0 +1,27 @@
+{
+  "title": "Print Guard",
+  "description": "Stops the printout that doesn't match the screen: before printing it finds light text on dark backgrounds the browser will drop, collapsed sections, tables wider than the page (measured at their narrowest), scroll boxes that print only what's in view and links without their address, offers print-only fixes that never change the screen, and since Ctrl+P can't be stopped, fixes those printouts automatically and offers a review.",
+  "dependencies": ["lucide-react"],
+  "stops": "Printout doesn't match the screen",
+  "mistakes": [
+    "print preview broken",
+    "table cut off when printing",
+    "dark mode prints blank",
+    "print only visible part",
+    "links lost in print"
+  ],
+  "aliases": [
+    "print",
+    "ctrl+p",
+    "print css",
+    "invoice print",
+    "pdf",
+    "receipt",
+    "print preview",
+    "@media print"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

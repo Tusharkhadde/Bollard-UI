@@ -1,0 +1,32 @@
+{
+  "title": "Session Timeout",
+  "description": "Stops surprise logouts that lose unsaved work by warning before an idle session expires, with rolling countdown digits and a draining ring that turns red in the last 10 seconds, cross-tab activity sync and calm screen-reader announcements.",
+  "dependencies": [
+    "lucide-react",
+    "@number-flow/react",
+    "motion"
+  ],
+  "stops": "Logged out and lost unsaved work",
+  "mistakes": [
+    "session expired form lost",
+    "auto logout lost data",
+    "idle timeout warning",
+    "banking session expired",
+    "logged out while filling form"
+  ],
+  "aliases": [
+    "session timeout",
+    "idle timeout",
+    "auto logout",
+    "stay signed in",
+    "countdown",
+    "net banking",
+    "jwt expiry",
+    "keep me logged in"
+  ],
+  "flows": [
+    "signup-login",
+    "forms"
+  ],
+  "fields": []
+}

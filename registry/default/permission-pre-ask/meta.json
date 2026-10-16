@@ -1,0 +1,29 @@
+{
+  "title": "Permission Pre-Ask",
+  "description": "Prevents a wasted one-shot browser permission prompt by explaining why and what for in the page before calling the real API, telling a closed prompt from a block, and showing this browser's exact re-enable steps, then flipping to on by itself once the user allows it.",
+  "dependencies": ["lucide-react"],
+  "stops": "Wasted the browser's one permission prompt",
+  "mistakes": [
+    "user blocked notifications",
+    "camera permission denied",
+    "location permission blocked",
+    "how to re-enable permission",
+    "notification prompt ignored"
+  ],
+  "aliases": [
+    "permissions",
+    "notifications",
+    "camera",
+    "microphone",
+    "location",
+    "geolocation",
+    "push",
+    "priming",
+    "allow access"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": []
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Account Switch Guard",
+  "description": "Prevents acting as the wrong account when several are signed in by naming who the action runs as and who it is not ('Posting as Acme Corp, not Tushar'), and by catching a switch made in another tab so the button changes to name the page's account instead of silently acting as the new one.",
+  "dependencies": ["lucide-react"],
+  "stops": "Posted from the wrong account",
+  "mistakes": [
+    "posted from company account by mistake",
+    "wrong google account",
+    "multiple accounts logged in",
+    "switched account in other tab",
+    "acting as wrong user"
+  ],
+  "aliases": [
+    "account switcher",
+    "multiple accounts",
+    "posting as",
+    "brand account",
+    "google account",
+    "workspace",
+    "profile switch",
+    "multi-login"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "name",
+    "email"
+  ]
+}

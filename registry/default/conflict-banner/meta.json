@@ -1,0 +1,31 @@
+{
+  "title": "Conflict Banner",
+  "description": "Stops one person silently overwriting another's edit by naming who changed the record, showing a word diff, and confirming how many of their words 'Keep mine' would replace until you've compared.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Overwrote a teammate's edit",
+  "mistakes": [
+    "someone else edited this",
+    "last write wins overwrote changes",
+    "edit conflict",
+    "my changes overwrote theirs",
+    "concurrent edit lost"
+  ],
+  "aliases": [
+    "edit conflict",
+    "merge conflict",
+    "optimistic locking",
+    "keep mine",
+    "version mismatch",
+    "collaboration",
+    "cms",
+    "diff"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Offline Banner",
+  "description": "Stops people assuming their actions reached the server by counting queued changes while offline, staying up after reconnecting until the queue has actually synced, and offering Retry if the sync fails.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Edits made offline never reached the server",
+  "mistakes": [
+    "changes lost when offline",
+    "no internet but app said saved",
+    "sync failed silently",
+    "offline queue not synced",
+    "network down data lost"
+  ],
+  "aliases": [
+    "offline",
+    "no internet",
+    "network status",
+    "sync queue",
+    "pwa",
+    "reconnecting",
+    "retry",
+    "connection lost"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

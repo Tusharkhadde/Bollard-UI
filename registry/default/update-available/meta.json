@@ -1,0 +1,30 @@
+{
+  "title": "Update Available",
+  "description": "Gets people onto a new deploy without losing work: it polls a version endpoint (or takes a prop), explains what a refresh does, never refreshes while there are unsaved changes and offers \"Refresh after I save\" instead, and lets \"Later\" skip only that build.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Deploy refresh wiped unsaved work",
+  "mistakes": [
+    "new version available refresh",
+    "app refreshed and lost form",
+    "stale client after deploy",
+    "chunk load error after release",
+    "refresh banner"
+  ],
+  "aliases": [
+    "update available",
+    "new version",
+    "refresh",
+    "deploy",
+    "service worker",
+    "chunkloaderror",
+    "version polling",
+    "release banner"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": []
+}

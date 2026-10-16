@@ -1,0 +1,29 @@
+{
+  "title": "Maintenance Window",
+  "description": "Prevents work lost to planned downtime with a banner in the reader's own time zone whose countdown sharpens as it nears, a start button that warns when a long job would be cut off, and a read-only state during the window that keeps unsaved edits in place and guards against reloads.",
+  "dependencies": ["lucide-react"],
+  "stops": "Work lost to planned downtime",
+  "mistakes": [
+    "site down for maintenance lost work",
+    "maintenance started mid task",
+    "scheduled downtime banner",
+    "irctc maintenance",
+    "planned outage warning"
+  ],
+  "aliases": [
+    "maintenance",
+    "downtime",
+    "scheduled maintenance",
+    "banner",
+    "countdown",
+    "read only",
+    "status page",
+    "outage"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

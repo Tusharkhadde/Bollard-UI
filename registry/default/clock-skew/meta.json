@@ -1,0 +1,28 @@
+{"title": "Clock Skew", "description": "Catches a device clock that's off from server time (Date header or prop), says by how much and what breaks because of it (authenticator codes, \"expires in\" timers, secure sites), and corrects the countdowns inside it; the warning clears itself once the clock is fixed.", "dependencies": ["lucide-react"],
+  "stops": "Wrong phone clock breaks OTP codes",
+  "mistakes": [
+    "authenticator code not working",
+    "device time wrong",
+    "otp invalid wrong clock",
+    "timer shows wrong time",
+    "certificate error wrong date"
+  ],
+  "aliases": [
+    "clock skew",
+    "device time",
+    "totp",
+    "authenticator",
+    "otp",
+    "server time",
+    "date header",
+    "countdown"
+  ],
+  "flows": [
+    "signup-login",
+    "devtools"
+  ],
+  "fields": [
+    "datetime",
+    "code"
+  ]
+}

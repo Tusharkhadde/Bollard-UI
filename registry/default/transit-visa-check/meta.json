@@ -1,0 +1,33 @@
+{
+  "title": "Transit Visa Check",
+  "description": "Stops travellers booking a layover that needs a visa they don't have: checks the passport against sourced airport transit visa lists (UK, Germany, France, Netherlands; US has no airside transit) and the traps that force you through the border (self-transfer, onward Schengen flight, UK to Ireland, leaving the airport), applies the documents that exempt you, and links the official source and Timatic.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Stranded at a layover without a visa",
+  "mistakes": [
+    "layover needs transit visa",
+    "denied boarding on connection",
+    "self transfer visa problem",
+    "indian passport transit visa",
+    "schengen transit visa check"
+  ],
+  "aliases": [
+    "airport transit visa",
+    "layover",
+    "self-transfer",
+    "flight booking",
+    "passport",
+    "schengen",
+    "timatic",
+    "indian passport",
+    "connecting flight"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "text"
+  ]
+}

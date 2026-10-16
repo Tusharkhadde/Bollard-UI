@@ -1,0 +1,32 @@
+{
+  "title": "Disabled Reason",
+  "description": "Stops dead-end disabled buttons by keeping the control focusable with aria-disabled and explaining on hover, focus or tap exactly what blocks it, in a portalled panel no overflow-hidden toolbar can clip, with a one-tap jump to each fix, a shake when a blocked press lands and each cleared blocker sliding out of the list.",
+  "dependencies": [
+    "lucide-react",
+    "@floating-ui/react",
+    "motion"
+  ],
+  "stops": "Disabled button with no reason given",
+  "mistakes": [
+    "why is submit disabled",
+    "disabled button no explanation",
+    "can't click continue",
+    "greyed out button",
+    "aria-disabled tooltip"
+  ],
+  "aliases": [
+    "disabled button",
+    "aria-disabled",
+    "tooltip",
+    "submit button",
+    "form validation",
+    "continue button",
+    "requirements",
+    "checkout button"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": []
+}

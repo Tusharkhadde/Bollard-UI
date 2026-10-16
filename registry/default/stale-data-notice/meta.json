@@ -1,0 +1,32 @@
+{
+  "title": "Stale Data Notice",
+  "description": "Stops people acting on out-of-date numbers by noticing when a tab comes back after a while or the data passes its max age, and offering a one-tap refresh.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Acting on out-of-date numbers",
+  "mistakes": [
+    "dashboard showing old data",
+    "stale tab data",
+    "price changed since page load",
+    "data not refreshed",
+    "old numbers after coming back"
+  ],
+  "aliases": [
+    "stale data",
+    "refresh",
+    "last updated",
+    "dashboard",
+    "cache",
+    "max age",
+    "visibilitychange",
+    "swr",
+    "react query"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

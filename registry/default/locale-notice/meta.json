@@ -1,0 +1,30 @@
+{
+  "title": "Locale Notice",
+  "description": "Stops numbers and dates being misread across locales by showing the value as you write it and as the reader's locale writes it, saying exactly what they would take it to mean (\"In Germany, 1,000 reads as 1\"), offering a form neither side can flip, and catching numbers typed with the other convention's decimal mark (\"1,5\" becoming 15).",
+  "dependencies": ["lucide-react"],
+  "stops": "1,000 read as one in Germany",
+  "mistakes": [
+    "comma decimal confusion",
+    "number format different locale",
+    "1,5 became 15",
+    "date format misread abroad",
+    "intl number format"
+  ],
+  "aliases": [
+    "locale",
+    "number format",
+    "decimal separator",
+    "intl",
+    "i18n",
+    "date format",
+    "lakh format",
+    "international users"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "number",
+    "datetime"
+  ]
+}

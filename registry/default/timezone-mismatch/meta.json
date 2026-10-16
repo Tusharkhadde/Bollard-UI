@@ -1,0 +1,36 @@
+{
+  "title": "Timezone Mismatch",
+  "description": "Stops travellers misreading every time by hours: when the device's time zone differs from the account's, it shows both clocks ticking side by side, asks once whether to use the device zone, confirms the answer without losing focus and remembers it per pair of zones, comparing every real clock change from the tz database so zones that only drift apart for a few days (Jerusalem and Athens) still count as different.",
+  "dependencies": [
+    "lucide-react",
+    "@date-fns/tz",
+    "@number-flow/react",
+    "motion"
+  ],
+  "stops": "Misread every time by hours while travelling",
+  "mistakes": [
+    "wrong time zone while travelling",
+    "device timezone differs from account",
+    "times off by hours",
+    "ist vs local time confusion",
+    "booking time wrong zone"
+  ],
+  "aliases": [
+    "time zone",
+    "timezone",
+    "device time",
+    "account time zone",
+    "travel",
+    "ist",
+    "tz database",
+    "clock",
+    "settings"
+  ],
+  "flows": [
+    "scheduling",
+    "account-settings"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

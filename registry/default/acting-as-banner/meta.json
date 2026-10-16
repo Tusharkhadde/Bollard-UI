@@ -1,0 +1,32 @@
+{
+  "title": "Acting As Banner",
+  "description": "Prevents changing a customer's data while thinking it's your own with a sticky 'You're acting as…' bar and an org chip that makes every destructive button say where it acts.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Edited a customer's data as myself",
+  "mistakes": [
+    "impersonation mode mistake",
+    "support agent edited wrong account",
+    "forgot i was logged in as user",
+    "admin acting as customer",
+    "wrong org selected"
+  ],
+  "aliases": [
+    "impersonate",
+    "login as user",
+    "acting as",
+    "support mode",
+    "org switcher",
+    "admin panel",
+    "sudo mode",
+    "workspace switcher"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "name"
+  ]
+}

@@ -1,0 +1,24 @@
+{"title": "Experimental Badge", "description": "Stops people trusting an unfinished feature blindly: the badge opens a plain list of concrete risks (work may be lost, things may change or disappear), a feedback link and a one-tap switch back to the stable version that says what happens to their work.", "dependencies": ["lucide-react"],
+  "stops": "Trusted a beta feature and lost work",
+  "mistakes": [
+    "beta feature lost data",
+    "experimental feature risks",
+    "switch back to stable",
+    "labs feature broke",
+    "preview feature warning"
+  ],
+  "aliases": [
+    "beta",
+    "experimental",
+    "labs",
+    "preview",
+    "feature flag",
+    "early access",
+    "badge",
+    "opt out"
+  ],
+  "flows": [
+    "account-settings"
+  ],
+  "fields": []
+}

@@ -1,0 +1,25 @@
+{"title": "Retry After", "description": "Stops rate-limit spam from extending a lockout: on 429/503 it reads Retry-After (seconds or a server-dated time) and RateLimit headers, explains which limit was hit and when it resets, counts down, swallows impatient clicks and retries automatically with jitter while the user's input stays put.", "dependencies": ["lucide-react"],
+  "stops": "Spamming retry extends the lockout",
+  "mistakes": [
+    "too many requests error",
+    "429 rate limit",
+    "locked out for spamming",
+    "otp resend limit",
+    "retry after header"
+  ],
+  "aliases": [
+    "429",
+    "rate limit",
+    "retry-after",
+    "too many requests",
+    "throttling",
+    "resend otp",
+    "backoff",
+    "503"
+  ],
+  "flows": [
+    "signup-login",
+    "devtools"
+  ],
+  "fields": []
+}

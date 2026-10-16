@@ -1,0 +1,31 @@
+{
+  "title": "Progress Heartbeat",
+  "description": "Stops people waiting on a dead job or killing a live one by telling working from stalled (no heartbeat for N seconds → \"No progress for 40s\" with Retry), separating \"alive but not advancing\" from silence, showing a time-left range that widens instead of a jumpy countdown, and holding the bar at 99% until the job reports done.",
+  "dependencies": ["lucide-react"],
+  "stops": "Killed a job that was still running",
+  "mistakes": [
+    "progress bar stuck at 99",
+    "is it frozen or working",
+    "job stalled no progress",
+    "upload hanging",
+    "cancelled working job"
+  ],
+  "aliases": [
+    "progress bar",
+    "loading",
+    "job status",
+    "upload",
+    "export",
+    "stalled",
+    "heartbeat",
+    "eta",
+    "spinner"
+  ],
+  "flows": [
+    "devtools",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "DST Shift Notice",
+  "description": "Stops a recurring meeting silently moving by an hour for part of the team when daylight saving changes on different dates (the US and EU weeks apart, India never), listing each attendee's affected dates with the new local time, the clock change behind it and moves outside working hours, and offering to fix the series to the organiser's zone or UTC with a count of who moves under each.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Meeting moves an hour after daylight saving",
+  "mistakes": [
+    "meeting time changed after dst",
+    "daylight saving broke recurring meeting",
+    "us eu clock change gap",
+    "standup wrong time in india",
+    "recurring event shifted hour"
+  ],
+  "aliases": [
+    "daylight saving",
+    "dst",
+    "recurring meeting",
+    "time zone",
+    "standup",
+    "calendar",
+    "utc",
+    "ist",
+    "clock change"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

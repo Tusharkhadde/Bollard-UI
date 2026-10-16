@@ -1,0 +1,32 @@
+{
+  "title": "Trip Date Chain",
+  "description": "Stops a hotel being booked for the wrong night by drawing each stay as a bar on a night-by-night strip under the flights, catching a 00:50 landing with the room booked from that date, nights paid before a +1 arrival, gap nights, double-booked nights and a room kept past a 00:35 departure, sliding the stay's bar to the right dates in one tap with Undo, and reading a small-hours departure back as the evening before.",
+  "dependencies": ["lucide-react", "motion", "date-fns", "@date-fns/tz"],
+  "stops": "Hotel booked for the wrong night",
+  "mistakes": [
+    "landed after midnight no hotel room",
+    "hotel booked a day late after overnight flight",
+    "gap night between hotels",
+    "double booked hotel nights",
+    "red-eye flight wrong date"
+  ],
+  "aliases": [
+    "itinerary",
+    "hotel booking",
+    "check-in date",
+    "check-out date",
+    "red-eye",
+    "overnight flight",
+    "+1 day arrival",
+    "travel planner",
+    "airbnb",
+    "multi-city trip"
+  ],
+  "flows": [
+    "scheduling",
+    "checkout"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Presence Lock",
+  "description": "Stops two people silently overwriting each other's edit of the same field: it shows who is editing what (\"Priya is editing Price\"), softly locks that field in their colour with an \"Edit anyway\" that warns once, never locks someone already typing, and releases locks held by people who went idle; transport-agnostic, with animated join and leave.",
+  "dependencies": ["lucide-react"],
+  "stops": "Two people editing the same field",
+  "mistakes": [
+    "two users editing same field",
+    "collaborative edit overwrite",
+    "who is editing",
+    "field lock",
+    "multiplayer conflict"
+  ],
+  "aliases": [
+    "presence",
+    "collaboration",
+    "field lock",
+    "liveblocks",
+    "multiplayer",
+    "realtime",
+    "avatars",
+    "who's editing",
+    "google docs style"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
+}

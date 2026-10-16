@@ -1,0 +1,29 @@
+{
+  "title": "Filter Notice",
+  "description": "Stops people thinking data is missing or bulk-acting on a partial set: it says how many items active filters hide, shows each filter as a removable chip with how many items it hides on its own, and warns when selected items are hidden.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Thought data was missing behind a filter",
+  "mistakes": [
+    "filter hiding results",
+    "bulk delete on filtered list",
+    "selected rows hidden by filter",
+    "why are items missing",
+    "forgot filter applied"
+  ],
+  "aliases": [
+    "filters",
+    "filter chips",
+    "data table",
+    "bulk action",
+    "search results",
+    "clear filters",
+    "hidden rows",
+    "admin table"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": []
+}

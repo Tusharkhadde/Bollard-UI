@@ -1,0 +1,31 @@
+{
+  "title": "Environment Badge",
+  "description": "Stops edits in the wrong environment by marking the page, tab title (kept through navigation) and favicon with PRODUCTION, STAGING or DEV (production hatched in red), reading names like \"eu-prod-2\" word by word and never calling an unknown environment safe, plus a hook that asks for confirmation only in production.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Edited production thinking it was staging",
+  "mistakes": [
+    "changed prod instead of staging",
+    "which environment am i in",
+    "prod vs staging confusion",
+    "admin panel wrong env",
+    "deleted live data by mistake"
+  ],
+  "aliases": [
+    "environment banner",
+    "prod badge",
+    "staging",
+    "dev",
+    "favicon",
+    "tab title",
+    "admin panel",
+    "env indicator",
+    "production warning"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": []
+}
