@@ -1,0 +1,31 @@
+{
+  "title": "Alt Text Check",
+  "description": "Prevents posting images screen readers can't use by checking each one's alt text for missing text, filenames (IMG_2041.jpg, PXL_…), \"image of…\" redundancy, copies of the caption and excess length, with per-image status chips, one-tap fixes, a decorative toggle, a words-in-the-image reminder for screenshots, and a post button that jumps to the first problem before posting anyway.",
+  "dependencies": ["lucide-react"],
+  "stops": "Posted images screen readers can't read",
+  "mistakes": [
+    "missing alt text",
+    "img_2041.jpg as alt",
+    "image of redundancy",
+    "accessibility image description",
+    "screenshot without alt"
+  ],
+  "aliases": [
+    "alt text",
+    "accessibility",
+    "a11y",
+    "image upload",
+    "screen reader",
+    "wcag",
+    "post composer",
+    "cms"
+  ],
+  "flows": [
+    "forms",
+    "messaging"
+  ],
+  "fields": [
+    "text",
+    "file"
+  ]
+}

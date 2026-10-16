@@ -1,0 +1,32 @@
+{
+  "title": "TDS Invoice Total",
+  "description": "Stops Indian freelancers being short-paid by working out fee + GST − TDS = what lands in the bank, with the right rate and section for the invoice date (10% professional, 2% technical, 1%/2% contract; s.393 of the 2025 Act, was 194J/194C) and the yearly threshold, then flagging TDS taken on the GST, the wrong rate and the 20% rate without a PAN, with a one-tap fix and a ready note for the client.",
+  "dependencies": ["lucide-react"],
+  "stops": "Freelancer short-paid after TDS on GST",
+  "mistakes": [
+    "tds deducted on gst",
+    "wrong tds rate freelancer",
+    "194j tds calculation",
+    "invoice amount after tds",
+    "20 percent tds without pan"
+  ],
+  "aliases": [
+    "tds",
+    "gst",
+    "invoice",
+    "freelancer",
+    "194j",
+    "194c",
+    "pan",
+    "income tax",
+    "net payable"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "id-number"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Recipient Check",
+  "description": "Prevents misaddressed email by marking external recipients in amber, catching typo'd and lookalike domains with a one-tap fix, blocking duplicates, spotting a name paired with someone else's address, and warning when a message goes to too many people.",
+  "dependencies": ["lucide-react"],
+  "stops": "Email sent to the wrong address",
+  "mistakes": [
+    "typo in email domain",
+    "sent to wrong recipient",
+    "gmial.com typo",
+    "external recipient warning",
+    "wrong autocomplete contact"
+  ],
+  "aliases": [
+    "recipients",
+    "to field",
+    "email",
+    "autocomplete",
+    "external",
+    "typo domain",
+    "gmail",
+    "compose"
+  ],
+  "flows": [
+    "messaging",
+    "forms"
+  ],
+  "fields": [
+    "email"
+  ]
+}

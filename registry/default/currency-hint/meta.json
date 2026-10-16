@@ -1,0 +1,30 @@
+{
+  "title": "Currency Hint",
+  "description": "Prevents budgeting on the wrong number when paying abroad by showing a foreign price with a clearly approximate, dated conversion (\"€49.00 ≈ ₹4,520\"), pricing a merchant's dynamic currency conversion against the reference rate with a one-tap switch back to the local currency, estimating card fees and flagging stale rates.",
+  "dependencies": ["lucide-react"],
+  "stops": "Budgeted on the wrong currency abroad",
+  "mistakes": [
+    "dynamic currency conversion",
+    "foreign price in rupees",
+    "forex markup card",
+    "pay in local currency",
+    "exchange rate stale"
+  ],
+  "aliases": [
+    "currency converter",
+    "forex",
+    "dcc",
+    "exchange rate",
+    "inr",
+    "usd",
+    "international payment",
+    "card fees"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "External Link",
+  "description": "Prevents clicking through to a phishing or unexpected site by confirming off-site links with the real ASCII destination and its registrable domain in bold, and flagging punycode, lookalike domains, link text that disagrees with the href, buried brand names, raw IPs and plain http.",
+  "dependencies": ["lucide-react"],
+  "stops": "Clicked through to a phishing site",
+  "mistakes": [
+    "phishing link",
+    "lookalike domain",
+    "link text different from url",
+    "punycode domain",
+    "leaving site warning"
+  ],
+  "aliases": [
+    "external link",
+    "phishing",
+    "leaving site",
+    "punycode",
+    "url",
+    "link warning",
+    "safe browsing",
+    "redirect"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "url"
+  ]
+}

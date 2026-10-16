@@ -1,0 +1,31 @@
+{
+  "title": "SMS Segments",
+  "description": "Prevents bulk SMS costing double by splitting the text into the parts carriers bill, naming the curly quote or emoji that forced UCS-2 ('this ’ makes it 3 messages instead of 2'), fixing it in one tap, and reading the total back per recipient count.",
+  "dependencies": ["lucide-react"],
+  "stops": "One emoji doubled the SMS bill",
+  "mistakes": [
+    "sms costs double",
+    "emoji makes sms ucs-2",
+    "sms character limit",
+    "curly quote sms",
+    "message split into parts"
+  ],
+  "aliases": [
+    "sms",
+    "character count",
+    "gsm-7",
+    "ucs-2",
+    "segments",
+    "bulk sms",
+    "otp sms",
+    "twilio",
+    "msg91"
+  ],
+  "flows": [
+    "messaging",
+    "india"
+  ],
+  "fields": [
+    "text"
+  ]
+}

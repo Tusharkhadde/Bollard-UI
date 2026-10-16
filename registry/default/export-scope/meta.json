@@ -1,0 +1,29 @@
+{
+  "title": "Export Scope",
+  "description": "Stops an export quietly going out as page 1 of 250, silently capped, or full of personal data by reading back exactly what the file holds (rows and page, filters, the date range as real dates with a day count, hidden and personal-data columns) with toggles and a one-tap \"Export all\" or \"Mask it\" fix.",
+  "dependencies": ["lucide-react"],
+  "stops": "Export only had page 1 of 250",
+  "mistakes": [
+    "export only current page",
+    "csv missing rows",
+    "exported personal data",
+    "export date range wrong",
+    "export capped silently"
+  ],
+  "aliases": [
+    "export",
+    "csv",
+    "download",
+    "data table",
+    "filters",
+    "date range",
+    "pii",
+    "excel"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

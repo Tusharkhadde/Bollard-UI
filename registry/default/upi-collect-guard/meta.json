@@ -1,0 +1,31 @@
+{
+  "title": "UPI Collect Guard",
+  "description": "Stops people \"entering their PIN to receive\" money by showing a collect request as the payment it is (You pay ₹4,999 to…), asking whether they expect money and turning a yes into a decline-only stop, and flagging refund, prize, OLX-buyer and KYC wording, person-to-person collects (switched off by NPCI on 1 Oct 2025), unknown requesters and small test amounts before the PIN screen.",
+  "dependencies": ["lucide-react"],
+  "stops": "Entered UPI PIN to receive money",
+  "mistakes": [
+    "upi pin to receive money scam",
+    "collect request fraud",
+    "olx buyer scam",
+    "kyc refund upi request",
+    "upi request money fraud"
+  ],
+  "aliases": [
+    "upi collect",
+    "request money",
+    "upi pin",
+    "olx scam",
+    "phonepe",
+    "google pay",
+    "paytm",
+    "kyc fraud",
+    "npci"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

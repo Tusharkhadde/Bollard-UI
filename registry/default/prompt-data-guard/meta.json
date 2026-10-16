@@ -1,0 +1,28 @@
+{
+  "title": "Prompt Data Guard",
+  "description": "Stops customer data, secrets and confidential documents going into an AI chat by saying before send exactly what goes where and for how long (\"248 customer rows and a CONFIDENTIAL doc will go to OpenAI, kept up to 30 days\"), counting table rows and every cell in a name column (and every other mention of those names) alongside checked emails, phones, cards, Aadhaar, PAN and API keys across the message and its attachments, then sending in one tap with consistent stand-ins (‹EMAIL_1›) whose mapping stays on the device so restoreStandIns() puts the real values back into the reply, with a second press needed to send the real data.",
+  "dependencies": ["lucide-react", "motion"],
+  "registryDependencies": ["pii-post-guard", "secret-paste-guard"],
+  "stops": "Customer list pasted into ChatGPT",
+  "mistakes": [
+    "pasted customer data into chatgpt",
+    "confidential document sent to ai",
+    "pii in llm prompt",
+    "employees leaking data to ai",
+    "anonymize prompt before sending"
+  ],
+  "aliases": [
+    "ai chat",
+    "chat composer",
+    "prompt box",
+    "data loss prevention",
+    "dlp",
+    "pseudonymize",
+    "redact",
+    "openai",
+    "csv export",
+    "gdpr"
+  ],
+  "flows": ["messaging", "devtools"],
+  "fields": ["text", "file", "email"]
+}

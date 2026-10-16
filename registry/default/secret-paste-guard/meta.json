@@ -1,0 +1,30 @@
+{
+  "title": "Secret Paste Guard",
+  "description": "Stops credentials leaking into chats and forms by spotting API keys, tokens, JWTs, private keys and high-entropy strings as they are pasted or typed, then offering one-tap Redact (keeping the last 4) or Keep.",
+  "dependencies": ["lucide-react"],
+  "stops": "API key pasted into chat",
+  "mistakes": [
+    "users paste api keys",
+    "secret leaked in message",
+    "token pasted by mistake",
+    "jwt pasted in support chat",
+    "private key in form"
+  ],
+  "aliases": [
+    "api key",
+    "token",
+    "jwt",
+    "secret",
+    "redact",
+    "support chat",
+    "paste",
+    "credentials"
+  ],
+  "flows": [
+    "messaging",
+    "devtools"
+  ],
+  "fields": [
+    "secret"
+  ]
+}

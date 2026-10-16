@@ -1,0 +1,32 @@
+{
+  "title": "OTP Share Guard",
+  "description": "Stops people reading a one-time code out to a scammer by saying in one sentence what it really approves (\"This code approves a ₹24,999 payment to Croma\", \"This code logs in a new device\"), and, when the app knows a call or screen share is active or the code is for a different action than the user started, switching to a strong never-share warning with press-and-hold to see the code, a delayed Copy, a code that is never drawn while the screen is shared, and a one-tap \"I didn't request this\".",
+  "dependencies": ["lucide-react"],
+  "stops": "OTP read out to a scammer",
+  "mistakes": [
+    "shared otp with scammer",
+    "bank caller asked otp",
+    "otp during screen share",
+    "never share otp warning",
+    "didn't request this otp"
+  ],
+  "aliases": [
+    "otp",
+    "one time password",
+    "scam",
+    "fraud",
+    "screen share",
+    "vishing",
+    "i didn't request this",
+    "sms code",
+    "upi"
+  ],
+  "flows": [
+    "signup-login",
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "code"
+  ]
+}

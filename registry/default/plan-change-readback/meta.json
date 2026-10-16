@@ -1,0 +1,31 @@
+{
+  "title": "Plan Change Readback",
+  "description": "Prevents surprise charges and lost data on upgrades and downgrades by prorating by day (credit for unused time, charge today, next bill amount and date), saying plainly that a downgrade credit goes to future bills rather than the card, comparing switching now with switching at period end, listing features lost, and showing usage already over the new plan's limits with what happens to the excess, which must be acknowledged before a destructive change.",
+  "dependencies": ["lucide-react"],
+  "stops": "Downgrade deleted data over the limit",
+  "mistakes": [
+    "prorated charge confusion",
+    "downgrade lost features",
+    "upgrade charge today",
+    "plan change data loss",
+    "credit not refunded"
+  ],
+  "aliases": [
+    "upgrade",
+    "downgrade",
+    "proration",
+    "billing",
+    "plan",
+    "subscription",
+    "pricing",
+    "usage limits"
+  ],
+  "flows": [
+    "checkout",
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

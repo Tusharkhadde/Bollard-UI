@@ -1,0 +1,32 @@
+{
+  "title": "Redact Image",
+  "description": "Stops a “redacted” screenshot from leaking what it hides: solid boxes only (blur and pixelation can be reversed), padded and snapped to whole pixels, placeable by drag or keyboard, suggestions from a pluggable text detector with an amber nudge for anything sensitive left uncovered, and an export flattened to a fresh PNG that is re-read to prove every box is solid, with no metadata and no aCropalypse-style data after the image end.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Redacted screenshot still readable",
+  "mistakes": [
+    "blur can be reversed",
+    "redaction not secure",
+    "screenshot leaked info",
+    "acropalypse",
+    "hide text in image"
+  ],
+  "aliases": [
+    "redact",
+    "screenshot",
+    "blur",
+    "censor",
+    "image editor",
+    "privacy",
+    "bug report",
+    "black box"
+  ],
+  "flows": [
+    "messaging",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

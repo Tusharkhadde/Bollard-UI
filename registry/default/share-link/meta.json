@@ -1,0 +1,31 @@
+{
+  "title": "Share Link",
+  "description": "Prevents oversharing through links by reading every setting back as one sentence (\"Anyone with the link can edit until Fri 16 Oct, 5:00 PM\"), warning on public edit access and open-ended public links with one-tap fixes, showing a live expiry countdown, flagging when you widen a link you've already copied, and confirming before revoking.",
+  "dependencies": ["lucide-react"],
+  "stops": "Anyone with the link could edit",
+  "mistakes": [
+    "public edit link",
+    "share link never expires",
+    "anyone with link can edit",
+    "revoke shared link",
+    "link permission mistake"
+  ],
+  "aliases": [
+    "share link",
+    "anyone with the link",
+    "permissions",
+    "expiry",
+    "revoke",
+    "public link",
+    "google drive",
+    "copy link"
+  ],
+  "flows": [
+    "messaging",
+    "account-settings"
+  ],
+  "fields": [
+    "url",
+    "datetime"
+  ]
+}

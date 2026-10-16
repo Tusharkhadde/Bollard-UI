@@ -1,0 +1,34 @@
+{
+  "title": "GST Invoice Check",
+  "description": "Stops GST invoices going out under the wrong tax head by comparing the supplier GSTIN's state code with the place of supply to pick CGST + SGST/UTGST or IGST (SEZ and exports always IGST), then checking each rate against the slabs in force on the invoice date (including the 28% slab ending on 1 Feb 2026), zero-rated LUT exports, the CGST/SGST split, every amount and the total, with a one-tap fix.",
+  "dependencies": ["lucide-react"],
+  "stops": "GST invoice under the wrong tax head",
+  "mistakes": [
+    "igst vs cgst sgst wrong",
+    "wrong gst rate",
+    "place of supply mismatch",
+    "gstin state code",
+    "gst invoice total wrong"
+  ],
+  "aliases": [
+    "gst",
+    "gstin",
+    "igst",
+    "cgst",
+    "sgst",
+    "invoice",
+    "place of supply",
+    "hsn",
+    "tax invoice",
+    "lut export"
+  ],
+  "flows": [
+    "india",
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "id-number",
+    "amount"
+  ]
+}

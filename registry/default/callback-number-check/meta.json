@@ -1,0 +1,30 @@
+{
+  "title": "Callback Number Check",
+  "description": "Stops expensive and scam callbacks by saying what a number you're about to call back really is (country and line type, from libphonenumber) and flagging a Caribbean +1 876 number posing as a US area code, a one-ring missed call from abroad, premium-rate and shared-cost lines, toll-free numbers that are only free in their own country, unassigned ranges and a 'bank' number missing from the bank's published list, with risky calls needing a second press as the Call button morphs into 'Call anyway' in place.",
+  "dependencies": ["lucide-react", "libphonenumber-js", "motion"],
+  "stops": "Called back a premium-rate scam number",
+  "mistakes": [
+    "missed call from abroad scam",
+    "one ring scam",
+    "876 area code",
+    "premium rate number",
+    "fake bank number"
+  ],
+  "aliases": [
+    "phone number",
+    "callback",
+    "libphonenumber",
+    "+91",
+    "missed call",
+    "scam call",
+    "toll free",
+    "call button"
+  ],
+  "flows": [
+    "india",
+    "messaging"
+  ],
+  "fields": [
+    "phone"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Fill Before Copy",
+  "description": "Prevents pasting broken commands that still contain <YOUR_API_KEY> or {{project_id}} by turning each placeholder into an inline field and blocking Copy (or asking once) until all of them are filled.",
+  "dependencies": ["lucide-react"],
+  "stops": "Pasted a command with YOUR_API_KEY in it",
+  "mistakes": [
+    "copied placeholder api key",
+    "curl command with placeholder",
+    "forgot to replace your_api_key",
+    "docs code snippet placeholders",
+    "template variable not filled"
+  ],
+  "aliases": [
+    "code snippet",
+    "copy button",
+    "placeholder",
+    "docs",
+    "curl",
+    "api key",
+    "template",
+    "copy to clipboard"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "secret"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Quote Lock",
+  "description": "Stops paying a re-quoted price you never saw: it shows a held FX, swap or fare quote draining, fetches a fresh one when the hold ends (skew-proof with validFor), rolls the amount from old to new with the difference called out, turns a worse-than-tolerance price into an explicit Accept step by morphing the Pay button in place, re-quotes a Pay pressed in the hold's last seconds, keeps the amount in the Pay label, and ignores stale responses and double presses.",
+  "dependencies": ["lucide-react", "@number-flow/react", "motion"],
+  "stops": "Paid a re-quoted price I never saw",
+  "mistakes": [
+    "price changed at payment",
+    "forex rate changed",
+    "quote expired",
+    "fare changed at checkout",
+    "slippage"
+  ],
+  "aliases": [
+    "quote",
+    "fx rate",
+    "price lock",
+    "fare hold",
+    "swap",
+    "crypto",
+    "checkout",
+    "remittance",
+    "pay button"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

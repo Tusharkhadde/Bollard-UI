@@ -1,0 +1,31 @@
+{
+  "title": "Commit Secret Guard",
+  "description": "Stops a credential going into a commit by scanning only the lines a diff adds for provider keys, private keys, passwords in URLs, hard-coded secrets and high-entropy strings, flagging .env and key files, ignoring test fixtures by pattern (except live key formats), and offering per-finding fixes (move to an env variable, remove the line, or mark a false positive) with a rotate-now warning when the change is already pushed.",
+  "dependencies": ["lucide-react"],
+  "stops": "API key committed to git",
+  "mistakes": [
+    "committed .env file",
+    "aws key pushed to github",
+    "secret in git diff",
+    "hardcoded password commit",
+    "rotate leaked key"
+  ],
+  "aliases": [
+    "git",
+    "commit",
+    "secret scanning",
+    "pre-commit",
+    ".env",
+    "gitleaks",
+    "diff",
+    "api key",
+    "github"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "secret",
+    "code"
+  ]
+}

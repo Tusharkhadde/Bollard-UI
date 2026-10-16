@@ -1,0 +1,30 @@
+{
+  "title": "Refund Picker",
+  "description": "Prevents refund surprises and disputes by letting staff or customers pick units per item (or a set amount that can't exceed what the items allow), naming every restocking and return-shipping deduction, keeping non-refundable items visible with the reason, showing each refund method's own net amount and real arrival dates, and reading the whole refund back in one sentence before it's issued.",
+  "dependencies": ["lucide-react"],
+  "stops": "Refund smaller than the customer expected",
+  "mistakes": [
+    "refund amount wrong",
+    "restocking fee surprise",
+    "partial refund",
+    "refund to wallet vs card",
+    "refund arrival date"
+  ],
+  "aliases": [
+    "refund",
+    "return",
+    "partial refund",
+    "store credit",
+    "restocking fee",
+    "order details",
+    "admin",
+    "returns"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

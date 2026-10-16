@@ -1,0 +1,32 @@
+{
+  "title": "Hidden Content Check",
+  "description": "Stops a shared spreadsheet, document or deck leaking what isn't on screen by opening the .xlsx, .docx or .pptx in the browser before it goes out, with no dependencies, and listing hidden and very hidden sheets, hidden rows and columns, tracked deletions, hidden text, comments, speaker notes, hidden slides, embedded workbooks, links to internal drives and author details, opening on the worst one with the hidden tab's real first rows, letting each be kept or removed (the cleaned file is re-checked) and asking for a second press to share with items still open.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "Hidden tab leaked staff names",
+  "mistakes": [
+    "hidden sheet in shared spreadsheet",
+    "tracked changes left in document",
+    "speaker notes shared in deck",
+    "foi reply leaked personal data",
+    "excel very hidden sheet"
+  ],
+  "aliases": [
+    "xlsx",
+    "docx",
+    "pptx",
+    "excel",
+    "word",
+    "powerpoint",
+    "document inspector",
+    "metadata",
+    "file upload",
+    "share file"
+  ],
+  "flows": [
+    "messaging",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
+}

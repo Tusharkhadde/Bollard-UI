@@ -1,0 +1,34 @@
+{
+  "title": "PII Post Guard",
+  "description": "Stops people posting their phone number, email, address, Aadhaar, PAN, card number or an OTP to a public feed, comment or review by saying who will see it, finding each detail with real checks (Verhoeff, Luhn, PAN holder type, OTP keywords) rather than loose digit runs, and masking one or all of them in one tap the way each format expects (XXXX XXXX 1234).",
+  "dependencies": ["lucide-react"],
+  "stops": "Aadhaar number posted in a public comment",
+  "mistakes": [
+    "posted phone number publicly",
+    "aadhaar in review",
+    "pan card shared in comment",
+    "otp posted publicly",
+    "email in public post"
+  ],
+  "aliases": [
+    "pii",
+    "aadhaar",
+    "pan",
+    "phone number",
+    "comment box",
+    "review",
+    "mask",
+    "luhn",
+    "verhoeff"
+  ],
+  "flows": [
+    "messaging",
+    "india",
+    "forms"
+  ],
+  "fields": [
+    "id-number",
+    "phone",
+    "email"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Forward Guard",
+  "description": "Prevents oversharing when forwarding or sharing a thread by listing what the new recipients will see for the first time (earlier messages, internal notes, attachments, other people's addresses), skipping messages they were already on, trimming internal notes by default and letting each item be dropped before it goes.",
+  "dependencies": ["lucide-react"],
+  "stops": "Forwarded internal notes to a client",
+  "mistakes": [
+    "forwarded whole thread",
+    "internal notes sent to customer",
+    "forward revealed emails",
+    "old messages in forward",
+    "attachment forwarded by mistake"
+  ],
+  "aliases": [
+    "forward",
+    "email thread",
+    "internal notes",
+    "share thread",
+    "attachments",
+    "helpdesk",
+    "fwd",
+    "support ticket"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "email"
+  ]
+}

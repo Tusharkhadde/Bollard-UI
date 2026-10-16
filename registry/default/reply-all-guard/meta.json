@@ -1,0 +1,31 @@
+{
+  "title": "Reply All Guard",
+  "description": "Stops the reply all nobody wanted by stating how many people it really reaches (distribution lists expanded), naming everyone outside the organisation by domain, catching a BCC'd or forwarded-to recipient about to reveal themselves (without false alarms when the mail came through a list you're on) and a Reply-To that points elsewhere, with one tap to reply to the sender only or leave out external people, and Undo.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Reply all to the whole company",
+  "mistakes": [
+    "accidental reply all",
+    "replied to distribution list",
+    "bcc recipient revealed",
+    "external people in reply all",
+    "reply-to points elsewhere"
+  ],
+  "aliases": [
+    "reply all",
+    "email",
+    "distribution list",
+    "bcc",
+    "cc",
+    "outlook",
+    "gmail",
+    "reply-to"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "email"
+  ]
+}

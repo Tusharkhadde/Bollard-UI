@@ -1,0 +1,31 @@
+{
+  "title": "Out of Office Check",
+  "description": "Stops an auto-reply that says the wrong thing to the wrong people: it reads back exactly when replies go out (Gmail's end date runs to 11:59 PM) and who gets which text, compares the dates with the return date written in the message to catch replying all day on the day you're back, stopping days early, no end date and a date left over from last time, and flags outside replies that give strangers a phone number, a colleague's direct address, where you are or a health reason, or that answer every outside sender, each with a one-tap fix and Undo.",
+  "dependencies": ["lucide-react"],
+  "stops": "Auto-reply runs on the day I'm back",
+  "mistakes": [
+    "out of office wrong dates",
+    "vacation responder never ends",
+    "auto reply leaks phone number",
+    "ooo message old date",
+    "gmail vacation end date"
+  ],
+  "aliases": [
+    "out of office",
+    "ooo",
+    "auto reply",
+    "vacation responder",
+    "gmail",
+    "outlook",
+    "leave",
+    "away message"
+  ],
+  "flows": [
+    "messaging",
+    "scheduling"
+  ],
+  "fields": [
+    "datetime",
+    "text"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Calendar External Guest Guard",
+  "description": "Stops an internal meeting invite reaching outside guests with more than you meant to share: it names who is outside your domains (and a colleague's personal Gmail standing in for their work address, with the work address one tap away), then lists what those guests really get under Google Calendar's rules, such as an agenda line marked internal, a file name they can read even without access, an \"anyone with the link\" attachment, the guest list and invite or edit rights, each with a one-tap fix and Undo, and asks for a second, deliberate press before sending with serious items still open.",
+  "dependencies": ["lucide-react"],
+  "stops": "Internal agenda shared with outside guests",
+  "mistakes": [
+    "invite sent to external guest",
+    "internal doc in calendar invite",
+    "personal gmail on work meeting",
+    "guests can see guest list",
+    "anyone with link attachment"
+  ],
+  "aliases": [
+    "google calendar",
+    "invite",
+    "external guest",
+    "meeting",
+    "agenda",
+    "attachments",
+    "gmail",
+    "guest permissions",
+    "domain"
+  ],
+  "flows": [
+    "scheduling",
+    "messaging"
+  ],
+  "fields": [
+    "email"
+  ]
+}

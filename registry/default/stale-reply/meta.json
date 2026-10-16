@@ -1,0 +1,29 @@
+{
+  "title": "Stale Reply",
+  "description": "Prevents replying to a conversation that has moved on by warning \"This was 3 weeks ago and 14 newer messages followed\", surfacing the newest related messages (and any that already settled it, like \"fixed in 2.4.1\"), and offering to reply to the latest or quote the original for context.",
+  "dependencies": ["lucide-react"],
+  "stops": "Replied to a thread that moved on",
+  "mistakes": [
+    "replying to old message",
+    "thread already resolved",
+    "necro reply",
+    "outdated comment reply",
+    "reply weeks later"
+  ],
+  "aliases": [
+    "reply",
+    "thread",
+    "old message",
+    "forum",
+    "github issue",
+    "comments",
+    "slack",
+    "quote"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

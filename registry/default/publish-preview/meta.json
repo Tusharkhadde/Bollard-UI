@@ -1,0 +1,30 @@
+{
+  "title": "Publish Preview",
+  "description": "Stops an npm publish shipping the wrong files or failing for good by previewing the npm pack --dry-run --json tarball and flagging .env files and keys, source maps, tests, repo config, large files, entry points missing from the build (with the reason: .gitignore fallback, files list or no build), a version that's already published, private: true and a missing files allowlist, with one-tap fixes that wait for a fresh pack before they count.",
+  "dependencies": ["lucide-react"],
+  "stops": "npm publish shipped .env",
+  "mistakes": [
+    "npm published secrets",
+    "package missing dist",
+    "wrong files in npm package",
+    "version already published",
+    "npm pack dry run"
+  ],
+  "aliases": [
+    "npm publish",
+    "npm pack",
+    "package.json",
+    "files field",
+    ".npmignore",
+    "tarball",
+    "library",
+    "semver"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "file",
+    "secret"
+  ]
+}

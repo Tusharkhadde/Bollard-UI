@@ -1,0 +1,31 @@
+{
+  "title": "Embed Code",
+  "description": "Prevents pasting an embed that leaks or breaks by reading back what visitors will see and what it tracks, offering a privacy mode and allowed-site list, and catching drafts, private resources and secrets in the URL (token=, sig=) with a one-tap strip before a deliberate second click copies it.",
+  "dependencies": ["lucide-react"],
+  "stops": "Embed leaked a private token",
+  "mistakes": [
+    "iframe embed leaks token",
+    "embed tracks visitors",
+    "private video embedded",
+    "youtube privacy mode",
+    "embed code copy"
+  ],
+  "aliases": [
+    "embed",
+    "iframe",
+    "embed code",
+    "youtube",
+    "privacy-enhanced",
+    "widget",
+    "share",
+    "token in url"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "url",
+    "code",
+    "secret"
+  ]
+}

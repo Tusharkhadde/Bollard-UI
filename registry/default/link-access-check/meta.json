@@ -1,0 +1,33 @@
+{
+  "title": "Link Access Check",
+  "description": "Prevents \"I can't open the link\" and accidental public sharing by checking every Google Drive, OneDrive, Dropbox, Notion, Figma or Box link in a message against its recipients before it is sent, naming who can't open each one with one-tap fixes (give view access, open it to the company, or ask the owner when you can't share it), and warning when an anyone-with-the-link doc is going outside the organisation.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Shared a link they can't open",
+  "mistakes": [
+    "recipient can't open google drive link",
+    "request access email",
+    "doc shared publicly by mistake",
+    "anyone with link outside org",
+    "notion page not shared"
+  ],
+  "aliases": [
+    "google drive",
+    "share link",
+    "permissions",
+    "request access",
+    "notion",
+    "figma",
+    "dropbox",
+    "onedrive",
+    "email"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "url",
+    "email"
+  ]
+}

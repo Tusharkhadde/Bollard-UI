@@ -1,0 +1,31 @@
+{
+  "title": "Bcc Guard",
+  "description": "Stops a group email exposing everyone on it by showing the To line exactly as one recipient will see it, counting the names, private addresses and companies it gives away, flagging when being on the list is itself sensitive (\"HIV\", \"arrears\") and offering one email each, moving every outside recipient to Bcc in one tap with Undo, and asking for a second press to send while addresses still show.",
+  "dependencies": ["lucide-react", "motion", "@number-flow/react"],
+  "stops": "Patient list exposed in To field",
+  "mistakes": [
+    "forgot to use bcc",
+    "group email exposed addresses",
+    "newsletter sent with everyone in to",
+    "cc instead of bcc",
+    "email list data breach"
+  ],
+  "aliases": [
+    "bcc",
+    "cc",
+    "to field",
+    "recipients",
+    "newsletter",
+    "mailing list",
+    "compose",
+    "mail merge",
+    "gdpr",
+    "email client"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "email"
+  ]
+}

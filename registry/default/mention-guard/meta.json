@@ -1,0 +1,29 @@
+{
+  "title": "Mention Guard",
+  "description": "Prevents accidental mass pings by saying, as you type, how many people @channel, @everyone or a group mention will notify and how many are in other time zones, flagging mentioned people who aren't in the conversation, offering one-tap fixes, and turning Send into an explicit \"Notify 1,240 people\" confirm that a double press can't trigger.",
+  "dependencies": ["lucide-react"],
+  "stops": "@channel pinged 1,240 people",
+  "mistakes": [
+    "accidental @everyone",
+    "@channel at night",
+    "pinged whole workspace",
+    "mentioned person not in channel",
+    "mass notification"
+  ],
+  "aliases": [
+    "@channel",
+    "@everyone",
+    "@here",
+    "mentions",
+    "slack",
+    "discord",
+    "notify",
+    "group mention"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

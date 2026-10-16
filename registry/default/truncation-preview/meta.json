@@ -1,0 +1,29 @@
+{
+  "title": "Truncation Preview",
+  "description": "Stops the point of a post vanishing behind \"…more\" by showing exactly where LinkedIn, Instagram, X, iOS and Android push and Google (by pixel width) cut the text, warning when the key phrase, a link or an @mention X won't notify sits below the fold, and fixing it in one tap by moving that sentence up or removing the blank lines that each cost a whole preview line.",
+  "dependencies": ["lucide-react"],
+  "stops": "Hook hidden behind \"…more\"",
+  "mistakes": [
+    "linkedin see more cut",
+    "instagram caption truncated",
+    "meta description cut off",
+    "link hidden below fold",
+    "post preview truncation"
+  ],
+  "aliases": [
+    "linkedin post",
+    "instagram caption",
+    "tweet",
+    "see more",
+    "seo title",
+    "meta description",
+    "push notification",
+    "character limit"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

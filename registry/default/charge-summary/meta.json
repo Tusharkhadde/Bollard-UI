@@ -1,0 +1,33 @@
+{
+  "title": "Charge Summary",
+  "description": "Prevents surprise charges by showing today's amount, the first charge and renewal dates, taxes and one-time credits upfront, and a plain-language sentence of what you'll pay.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Surprise charge at checkout",
+  "mistakes": [
+    "hidden charges checkout",
+    "what will i be charged",
+    "renewal date unclear",
+    "tax added at end",
+    "total not clear"
+  ],
+  "aliases": [
+    "order summary",
+    "checkout",
+    "pricing",
+    "subscription",
+    "renewal",
+    "tax",
+    "gst",
+    "total",
+    "billing"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "datetime"
+  ]
+}

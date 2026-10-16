@@ -1,0 +1,29 @@
+{
+  "title": "Retract Window",
+  "description": "Stops people trusting an unsend or edit that won't work: under a sent message it shows how long Edit and Unsend really stay open on that platform (sourced iMessage, WhatsApp and Slack presets, or your own) with a draining bar that turns amber near the end, says who has already read it and whose app will keep the original anyway, keeps \"Delete for me\" apart and labelled as leaving everyone else's copy, reports who still has it after an unsend, and offers a correction once the windows close, announcing only a window closing, never the countdown.",
+  "dependencies": ["lucide-react"],
+  "stops": "Trusted an unsend that didn't work",
+  "mistakes": [
+    "unsend didn't work",
+    "delete for everyone failed",
+    "edit window expired",
+    "they already read it",
+    "delete for me vs everyone"
+  ],
+  "aliases": [
+    "unsend",
+    "delete for everyone",
+    "edit message",
+    "whatsapp",
+    "imessage",
+    "slack",
+    "recall",
+    "chat"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
+}

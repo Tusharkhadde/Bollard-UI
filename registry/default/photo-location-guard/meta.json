@@ -1,0 +1,31 @@
+{
+  "title": "Photo Location Guard",
+  "description": "Stops a photo from publicly revealing where and when it was taken by reading its EXIF and XMP before upload (GPS with its precision, capture time, camera serial, a hidden uncropped preview) and offering a one-tap \"Remove location\" that re-encodes the photo upright and re-checks the result.",
+  "dependencies": ["lucide-react"],
+  "stops": "Photo leaked my home location",
+  "mistakes": [
+    "photo gps location leaked",
+    "exif data in upload",
+    "remove location from photo",
+    "image metadata privacy",
+    "camera serial in photo"
+  ],
+  "aliases": [
+    "exif",
+    "gps",
+    "photo upload",
+    "image metadata",
+    "privacy",
+    "location",
+    "avatar upload",
+    "marketplace photos"
+  ],
+  "flows": [
+    "forms",
+    "messaging"
+  ],
+  "fields": [
+    "file",
+    "address"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Card Bill Pay",
+  "description": "Stops a credit card bill being paid in a way that quietly costs interest by reading back, before Pay, what the chosen amount really does: anything short of the total (even 40 paise, unless the statement forgives that shortfall) loses the interest-free days on the whole bill and on new purchases, the minimum is turned into years and rupees of interest, and below the minimum or past RBI's 3-day grace it shows the late fee and the credit-bureau report, with one tap to pay the total.",
+  "dependencies": ["lucide-react"],
+  "stops": "Minimum due paid, interest charged anyway",
+  "mistakes": [
+    "paid minimum due interest charged",
+    "credit card bill partial payment",
+    "lost interest free period",
+    "late fee credit card",
+    "cibil hit late payment"
+  ],
+  "aliases": [
+    "credit card bill",
+    "minimum due",
+    "total due",
+    "statement",
+    "interest free",
+    "late fee",
+    "cibil",
+    "cred",
+    "rbi"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

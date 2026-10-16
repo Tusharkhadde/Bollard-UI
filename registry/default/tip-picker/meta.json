@@ -1,0 +1,34 @@
+{
+  "title": "Tip Picker",
+  "description": "Prevents overtipping by saying whether the percent is on the pre-tax or post-tax amount (with a switch), showing every preset in money that rolls to its new value when the base changes, flagging a service charge already on the bill, and holding back accidental huge tips (250 typed in the % field, 15 typed as money, 100% that doubles the bill), struck through in the summary, until they're fixed in one tap or confirmed.",
+  "dependencies": [
+    "lucide-react",
+    "@number-flow/react",
+    "motion"
+  ],
+  "stops": "Tipped 250% by typo",
+  "mistakes": [
+    "overtipping",
+    "tip on tax amount",
+    "service charge already added",
+    "tip percentage mistake",
+    "huge tip by accident"
+  ],
+  "aliases": [
+    "tip",
+    "gratuity",
+    "service charge",
+    "checkout",
+    "food delivery",
+    "restaurant bill",
+    "percentage",
+    "zomato"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "number"
+  ]
+}

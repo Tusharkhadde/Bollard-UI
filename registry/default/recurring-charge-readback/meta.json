@@ -1,0 +1,30 @@
+{
+  "title": "Recurring Charge Readback",
+  "description": "Prevents trial-to-paid and intro-price surprises by reading back, next to the subscribe button, what's charged today, when the first real charge and any price step-up land, and the exact cancel-by time with zone, and by flagging a trial too short to cancel in time or a button whose words (\"free\", \"₹499/mo\" on yearly billing) disagree with the charge.",
+  "dependencies": ["lucide-react"],
+  "stops": "Free trial quietly became a paid plan",
+  "mistakes": [
+    "free trial charged",
+    "forgot to cancel trial",
+    "intro price increased",
+    "cancel by date",
+    "subscription surprise charge"
+  ],
+  "aliases": [
+    "free trial",
+    "subscription",
+    "recurring billing",
+    "cancel anytime",
+    "intro price",
+    "paywall",
+    "pricing",
+    "subscribe button"
+  ],
+  "flows": [
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "datetime"
+  ]
+}

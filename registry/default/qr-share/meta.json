@@ -1,0 +1,29 @@
+{
+  "title": "QR Share",
+  "description": "Stops a QR code going out that opens the wrong thing by reading the exact URL back under the code, re-decoding the code it drew to prove nothing was truncated, and warning about localhost, staging, http, invisible characters and links long enough to make a dense code, with one-tap fixes; ships its own dependency-free encoder (byte mode, ECC M).",
+  "dependencies": ["lucide-react"],
+  "stops": "QR code opens the wrong page",
+  "mistakes": [
+    "qr code wrong link",
+    "qr code localhost",
+    "qr truncated url",
+    "printed qr broken",
+    "dense qr code"
+  ],
+  "aliases": [
+    "qr code",
+    "qr generator",
+    "share",
+    "url",
+    "menu qr",
+    "poster",
+    "upi qr",
+    "print"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "url"
+  ]
+}

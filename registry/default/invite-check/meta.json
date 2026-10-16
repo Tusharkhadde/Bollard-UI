@@ -1,0 +1,30 @@
+{
+  "title": "Invite Check",
+  "description": "Stops a calendar invite landing at 3 AM, on a guest's weekend or holiday, at a typo'd company domain, with no video link or location, or twice, by showing the start in every guest's own zone, offering the nearest start that suits everyone in one tap, and catching duplicate guests hidden by +tags or Gmail dots and invites already sent.",
+  "dependencies": ["lucide-react"],
+  "stops": "Invite lands at 3 AM for guests",
+  "mistakes": [
+    "meeting invite wrong time zone",
+    "invite typo domain",
+    "no meet link in invite",
+    "duplicate guest",
+    "invite on weekend"
+  ],
+  "aliases": [
+    "calendar invite",
+    "meeting",
+    "time zone",
+    "guests",
+    "google meet",
+    "zoom link",
+    "scheduler",
+    "event"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "email",
+    "datetime"
+  ]
+}

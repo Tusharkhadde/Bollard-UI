@@ -1,0 +1,32 @@
+{
+  "title": "Bill Split Check",
+  "description": "Stops a bill split that quietly overcharges someone by checking an item-by-item split against the printed receipt, catching unclaimed items, tax counted twice, a tip on top of a service charge, a total that doesn't match and what an equal split costs the lightest eater, each with a one-tap fix and Undo, with shares rounded by largest remainder so they always add up and each row saying who owes the payer what.",
+  "dependencies": ["lucide-react", "motion", "@number-flow/react"],
+  "stops": "Tip added on top of service charge",
+  "mistakes": [
+    "split bill doesn't add up",
+    "tax added twice when splitting",
+    "tip and service charge both paid",
+    "item nobody claimed on the bill",
+    "equal split unfair to light eater"
+  ],
+  "aliases": [
+    "split the bill",
+    "splitwise",
+    "restaurant bill",
+    "receipt",
+    "gst",
+    "service charge",
+    "tip",
+    "settle up",
+    "group expense",
+    "upi"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

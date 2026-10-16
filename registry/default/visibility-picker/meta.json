@@ -1,0 +1,30 @@
+{
+  "title": "Visibility Picker",
+  "description": "Prevents accidental oversharing: narrowing is instant, but widening (a riskier level or simply more people) shows exactly who gains access and only goes through on an explicit confirm, so a double-click or arrow key can't publish anything; levels a policy blocks say why, and a failed save puts the old level back and says so.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Made a private doc public by accident",
+  "mistakes": [
+    "made it public by mistake",
+    "visibility changed accidentally",
+    "private to public",
+    "oversharing setting",
+    "repo made public"
+  ],
+  "aliases": [
+    "visibility",
+    "public",
+    "private",
+    "sharing",
+    "privacy settings",
+    "who can see",
+    "audience",
+    "repo visibility"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": []
+}

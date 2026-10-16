@@ -1,0 +1,30 @@
+{
+  "title": "Role Preview",
+  "description": "Prevents over-granting access by showing exactly what the chosen role can and can't do, diffing it against the current role, and suggesting a smaller role when the pick adds dangerous permissions.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Gave a teammate admin by mistake",
+  "mistakes": [
+    "gave too many permissions",
+    "admin role by mistake",
+    "what can this role do",
+    "over-granted access",
+    "rbac role change"
+  ],
+  "aliases": [
+    "roles",
+    "permissions",
+    "rbac",
+    "team members",
+    "invite",
+    "admin",
+    "access control",
+    "member settings"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": []
+}

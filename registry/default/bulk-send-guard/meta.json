@@ -1,0 +1,32 @@
+{
+  "title": "Bulk Send Guard",
+  "description": "Stops an SMS, WhatsApp or email blast going out wrong by stating before send how many it reaches, how many opted out and are left out, who is in quiet hours in their own time zone (held until morning by default), the cost and a jump over the last send, then requiring an explicit confirm that a double click can't trigger, with the count typed when the jump is big.",
+  "dependencies": ["lucide-react"],
+  "stops": "Bulk blast sent at 2 AM",
+  "mistakes": [
+    "bulk sms sent at night",
+    "whatsapp broadcast wrong list",
+    "email blast to unsubscribed",
+    "campaign sent twice",
+    "mass message mistake"
+  ],
+  "aliases": [
+    "bulk sms",
+    "whatsapp broadcast",
+    "email campaign",
+    "newsletter",
+    "dnd",
+    "opt out",
+    "quiet hours",
+    "marketing",
+    "send confirmation"
+  ],
+  "flows": [
+    "messaging",
+    "danger-zone"
+  ],
+  "fields": [
+    "phone",
+    "email"
+  ]
+}

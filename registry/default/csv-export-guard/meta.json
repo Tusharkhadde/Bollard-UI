@@ -1,0 +1,32 @@
+{
+  "title": "CSV Export Guard",
+  "description": "Stops spreadsheets silently corrupting an export by previewing what each column opens as (phone numbers and PIN codes losing leading zeros or their +, long IDs becoming 1.23457E+15, \"3-4\" turning into a date, cells starting with = + - @ running as formulas) and offering a per-column fix that forces text or neutralises the formula.",
+  "dependencies": ["lucide-react"],
+  "stops": "Excel ate the leading zeros",
+  "mistakes": [
+    "excel removes leading zeros",
+    "phone number lost +91",
+    "long id becomes 1.23e+15",
+    "csv injection",
+    "excel converts to date"
+  ],
+  "aliases": [
+    "csv export",
+    "excel",
+    "leading zeros",
+    "csv injection",
+    "pin code",
+    "+91",
+    "google sheets",
+    "download csv"
+  ],
+  "flows": [
+    "devtools",
+    "india"
+  ],
+  "fields": [
+    "phone",
+    "id-number",
+    "number"
+  ]
+}

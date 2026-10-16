@@ -1,0 +1,30 @@
+{
+  "title": "Link Unfurl Check",
+  "description": "Shows how a link will unfurl before you post it (title, description and image from a pluggable Open Graph fetch) and catches localhost and staging URLs with a swap to the live site, tracking parameters with a one-tap strip, redirects (flagged hard when they land on a sign-in page), and missing or undersized preview images.",
+  "dependencies": ["lucide-react"],
+  "stops": "Posted a localhost link preview",
+  "mistakes": [
+    "shared localhost link",
+    "staging url posted",
+    "link preview missing image",
+    "og image not showing",
+    "utm parameters in link"
+  ],
+  "aliases": [
+    "link preview",
+    "unfurl",
+    "open graph",
+    "og image",
+    "utm",
+    "localhost",
+    "slack preview",
+    "twitter card"
+  ],
+  "flows": [
+    "messaging",
+    "devtools"
+  ],
+  "fields": [
+    "url"
+  ]
+}

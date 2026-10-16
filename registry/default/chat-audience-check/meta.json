@@ -1,0 +1,30 @@
+{
+  "title": "Chat Audience Check",
+  "description": "Stops a sensitive message landing in a group chat with someone who shouldn't be there (the slip that put a journalist, shown only as \"JG\", in US officials' Signal chat in 2025): before it sends it flags members whose name disagrees with what you saved them as, names nobody can identify, people who joined after your last message and people from outside your organisation, stays a quiet one-liner for ordinary messages, and when the text looks sensitive or an identity doesn't add up lists those people with Remove, View profile and \"I know them\" and needs a second, deliberate press to send.",
+  "dependencies": ["lucide-react"],
+  "stops": "Secret message reached a stranger in group",
+  "mistakes": [
+    "wrong person in group chat",
+    "journalist added to signal chat",
+    "unknown member in group",
+    "sent secret to whole group",
+    "external member in channel"
+  ],
+  "aliases": [
+    "group chat",
+    "members",
+    "signal",
+    "whatsapp group",
+    "slack channel",
+    "audience",
+    "external member",
+    "send confirmation"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "name",
+    "phone"
+  ]
+}

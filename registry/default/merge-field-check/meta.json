@@ -1,0 +1,30 @@
+{
+  "title": "Merge Field Check",
+  "description": "Prevents bulk emails and SMS going out as \"Hi ,\" or \"{{frist_name}}\" by rendering the template for each real recipient, flagging unknown fields, broken braces and recipients with no value (spaces count as empty) with one-tap fixes and fallbacks, and stepping straight to the recipients who would get a gap.",
+  "dependencies": ["lucide-react"],
+  "stops": "Email went out as Hi {{first_name}}",
+  "mistakes": [
+    "hi comma blank name",
+    "merge tag not replaced",
+    "first name missing in email",
+    "template variable broken",
+    "mail merge error"
+  ],
+  "aliases": [
+    "mail merge",
+    "merge tags",
+    "template",
+    "personalization",
+    "email campaign",
+    "sms template",
+    "handlebars",
+    "first name"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "name",
+    "text"
+  ]
+}

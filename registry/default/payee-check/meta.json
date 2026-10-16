@@ -1,0 +1,32 @@
+{
+  "title": "Payee Check",
+  "description": "Prevents paying the wrong account by asking the bank who holds it (a pluggable async lookup) and comparing that with the typed name like Confirmation of Payee: match, close match with the real name one tap away, or no match with the name kept hidden and an explicit pay-anyway, plus callouts for first-time payees and large first payments.",
+  "dependencies": ["lucide-react"],
+  "stops": "Money sent to the wrong account",
+  "mistakes": [
+    "wrong account number transfer",
+    "beneficiary name mismatch",
+    "confirmation of payee",
+    "new payee first payment",
+    "paid wrong person"
+  ],
+  "aliases": [
+    "payee",
+    "beneficiary",
+    "confirmation of payee",
+    "account number",
+    "ifsc",
+    "name match",
+    "bank transfer",
+    "upi id",
+    "penny drop"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "name",
+    "id-number"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Payment Reference",
+  "description": "Prevents bank transfers that can't be matched to an invoice by requiring the invoice number in the expected format (with one-tap fixes for a missing, mistyped or different invoice), checking the reference against each rail's length limit and character set (UPI and IMPS drop symbols, many NEFT remark boxes stop at 30, Faster Payments keeps 18), moving a cut-off invoice number to the front, and previewing the payee's statement line with the cut part struck through.",
+  "dependencies": ["lucide-react"],
+  "stops": "Transfer couldn't be matched to the invoice",
+  "mistakes": [
+    "missing invoice number in transfer",
+    "neft remark cut off",
+    "payment reference too long",
+    "upi remark symbols removed",
+    "unmatched payment"
+  ],
+  "aliases": [
+    "payment reference",
+    "remarks",
+    "invoice number",
+    "neft",
+    "upi",
+    "imps",
+    "narration",
+    "bank statement"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "id-number",
+    "text"
+  ]
+}

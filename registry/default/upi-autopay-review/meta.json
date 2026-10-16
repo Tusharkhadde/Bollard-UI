@@ -1,0 +1,31 @@
+{
+  "title": "UPI AutoPay Review",
+  "description": "Stops a ₹199 plan being approved as a ₹9,999 \"as presented\" mandate that never ends by reading the cap, schedule, validity and merchant back against the plan before the PIN, flagging a cap far above the price, no fixed schedule, no end date, the wrong merchant and debits above the RBI PIN-free limit, with one-tap fixes to cap it at the plan price or end it in a year.",
+  "dependencies": ["lucide-react"],
+  "stops": "₹199 plan approved as ₹9,999 mandate",
+  "mistakes": [
+    "upi autopay mandate too high",
+    "autopay never ends",
+    "recurring mandate wrong amount",
+    "e-mandate as presented",
+    "subscription upi mandate"
+  ],
+  "aliases": [
+    "upi autopay",
+    "e-mandate",
+    "subscription",
+    "recurring payment",
+    "npci",
+    "upi pin",
+    "mandate",
+    "paytm",
+    "phonepe"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

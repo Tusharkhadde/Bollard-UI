@@ -1,0 +1,33 @@
+{
+  "title": "Bank Transfer Timing",
+  "description": "Prevents Indian bank transfers that get refused or land later than expected by reading back when the money arrives on the chosen rail (seconds on IMPS and UPI, the next half-hourly NEFT batch and its 2-hour credit window, RTGS within 30 minutes, branch hours and holidays), catching RTGS under ₹2 lakh, IMPS over ₹5 lakh, UPI over its category cap, the bank's own daily limit and a new payee's cooling period and first-day cap with the rail that works one tap away, and spelling the amount out in lakh and crore.",
+  "dependencies": ["lucide-react"],
+  "stops": "Transfer refused or credited a day late",
+  "mistakes": [
+    "neft not credited",
+    "rtgs minimum 2 lakh",
+    "imps limit exceeded",
+    "new payee cooling period",
+    "upi limit exceeded"
+  ],
+  "aliases": [
+    "neft",
+    "rtgs",
+    "imps",
+    "upi",
+    "bank transfer",
+    "fund transfer",
+    "payee",
+    "cooling period",
+    "net banking",
+    "lakh"
+  ],
+  "flows": [
+    "india",
+    "checkout"
+  ],
+  "fields": [
+    "amount",
+    "datetime"
+  ]
+}

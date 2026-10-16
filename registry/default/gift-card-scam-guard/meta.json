@@ -1,0 +1,32 @@
+{
+  "title": "Gift Card Scam Guard",
+  "description": "Stops someone paying a scammer with gift cards: at checkout it spots the classic patterns (a large total, several cards, a note about a boss, tax, police, a refund or tech support, sending the codes, a first gift card order), says plainly that no real company or agency takes payment in gift cards, and won't continue until the user answers one question, with \"someone asked me to\" ending at a stop screen instead of payment. Size limits follow the order's currency, and scam phrases include common Hinglish and Hindi ones such as \"sir ne bola\".",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Paid a scammer in gift cards",
+  "mistakes": [
+    "boss asked for gift cards",
+    "gift card scam",
+    "tax paid with gift cards",
+    "send gift card codes",
+    "sir ne bola gift card"
+  ],
+  "aliases": [
+    "gift card",
+    "scam",
+    "fraud",
+    "checkout",
+    "amazon pay gift card",
+    "google play card",
+    "hinglish",
+    "tech support scam"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount"
+  ]
+}

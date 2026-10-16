@@ -1,0 +1,35 @@
+{
+  "title": "Send Time Check",
+  "description": "Prevents messages landing at 2 AM, on the recipient's weekend (including Friday–Saturday weekends) or on a holiday by showing their local time next to Send on a strip of their day (night, working hours, now), and offering a one-tap schedule for the start of their next working day that glides the marker to the slot it picks.",
+  "dependencies": [
+    "lucide-react",
+    "@date-fns/tz",
+    "date-fns",
+    "motion"
+  ],
+  "stops": "Message landed at 2 AM their time",
+  "mistakes": [
+    "messaged client at night",
+    "sent on their weekend",
+    "recipient time zone",
+    "schedule send",
+    "holiday message"
+  ],
+  "aliases": [
+    "schedule send",
+    "time zone",
+    "local time",
+    "working hours",
+    "slack",
+    "email",
+    "weekend",
+    "send later"
+  ],
+  "flows": [
+    "messaging",
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Large Attachment",
+  "description": "Prevents the message that bounces for being too big by checking attachments against each service's real limit (counting email's ~37% Base64 encoding overhead), marking the fewest files that push it over, and showing the resulting size of sending them as a link or compressing, with an honest estimate for files that are already compressed.",
+  "dependencies": ["lucide-react"],
+  "stops": "Email bounced for a big attachment",
+  "mistakes": [
+    "attachment too large",
+    "gmail 25mb limit",
+    "email bounced size",
+    "whatsapp file limit",
+    "send as link instead"
+  ],
+  "aliases": [
+    "attachments",
+    "file size limit",
+    "gmail",
+    "upload",
+    "compress",
+    "drive link",
+    "base64",
+    "email"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "file"
+  ]
+}
