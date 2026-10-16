@@ -1,0 +1,10 @@
+{
+  "title": "Field History",
+  "description": "Stops people overwriting or misreading a field someone just changed: a trigger beside the label flags a recent change by someone else, opens \"Was ₹500 until Priya changed it yesterday\" with a one-tap revert of that field alone, says what the revert replaces (including your unsaved edit) and lets you undo it.",
+  "dependencies": ["lucide-react"],
+  "stops": "Overwrote teammate's change unknowingly",
+  "mistakes": ["someone changed the price", "who changed this field", "revert field change", "overwrote colleague edit"],
+  "aliases": ["field history", "audit log", "change history", "revert", "who changed", "activity", "collaboration", "price change"],
+  "flows": ["forms"],
+  "fields": ["amount", "text"]
+}

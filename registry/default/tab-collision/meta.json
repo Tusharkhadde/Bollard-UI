@@ -1,0 +1,12 @@
+{
+  "title": "Tab Collision",
+  "description": "Stops the same record being edited in two tabs, where the last save silently erases the other, by letting only one tab edit (BroadcastChannel with a storage-event fallback) and making the rest read-only until you choose 'Use this tab'.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Second tab save erased edits",
+  "mistakes": ["edited in two tabs", "last save overwrote changes", "multiple tabs conflict", "broadcastchannel"],
+  "aliases": ["multiple tabs", "broadcastchannel", "concurrent edit", "conflict", "read only", "edit lock", "cross-tab"],
+  "flows": ["forms"],
+  "fields": []
+}

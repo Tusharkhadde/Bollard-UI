@@ -1,0 +1,10 @@
+{
+  "title": "Recovery Check",
+  "description": "Prevents account lockouts by asking \"could you get back in if you lost your phone?\": it flags recovery email or phone nobody has confirmed in months, no backup method, a password-only account and one phone acting as both second factor and recovery, each with a one-tap fix.",
+  "dependencies": ["lucide-react"],
+  "stops": "Lost phone meant lost account",
+  "mistakes": ["lost phone locked out", "no backup 2fa method", "recovery email outdated", "account recovery weak"],
+  "aliases": ["account recovery", "security checkup", "recovery email", "recovery phone", "2fa", "mobile number", "security settings", "+91"],
+  "flows": ["account-settings", "signup-login"],
+  "fields": ["email", "phone"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Event Overlap",
+  "description": "Stops a calendar event being created or moved onto a clash by listing what it runs into (overlaps, back-to-back with no break, too little travel time between places, busy all-day events, other-zone events read in their own time) on a small timeline, and moving it to the nearest slot that keeps your buffer and travel time in one tap, with Undo.",
+  "dependencies": ["lucide-react"],
+  "stops": "Meeting booked on top of another",
+  "mistakes": ["double booked meeting", "calendar conflict", "no buffer between meetings", "timezone meeting clash"],
+  "aliases": ["calendar", "double booking", "conflict", "meeting scheduler", "calendly", "buffer time", "travel time", "time zone"],
+  "flows": ["scheduling"],
+  "fields": ["datetime"]
+}

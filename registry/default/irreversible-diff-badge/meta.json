@@ -1,0 +1,10 @@
+{
+  "title": "Irreversible Diff Badge",
+  "description": "Stops people saving a change they can't take back by marking permanent fields with a chip that turns amber once edited and, before save, listing only the permanent fields that actually changed as a from → to readback with consequences and one-tap Revert, behind a confirmation that resets whenever that list changes.",
+  "dependencies": ["lucide-react"],
+  "stops": "Permanent field changed without warning",
+  "mistakes": ["changed username cant undo", "permanent field edited", "slug change broke links", "cant change back"],
+  "aliases": ["username", "slug", "handle", "permanent", "readonly after save", "profile settings", "subdomain", "diff"],
+  "flows": ["account-settings", "forms"],
+  "fields": ["text"]
+}

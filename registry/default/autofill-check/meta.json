@@ -1,0 +1,10 @@
+{
+  "title": "Autofill Check",
+  "description": "Catches browser and password-manager autofill putting the wrong value in the wrong field by detecting fills (the :autofill animationstart hook plus a no-typing batch heuristic), outlining and listing them for review, flagging an email in Name or an address that differs from the account with a one-tap fix, and holding the first submit.",
+  "dependencies": ["lucide-react"],
+  "stops": "Autofill put email in name field",
+  "mistakes": ["autofill wrong field", "password manager filled wrong", "chrome autofill address wrong", "autofill submitted wrong data"],
+  "aliases": ["autofill", "autocomplete", "password manager", "chrome autofill", "address form", "checkout form", "1password"],
+  "flows": ["forms", "checkout"],
+  "fields": ["email", "name", "address"]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Save Status",
+  "description": "Stops silent autosave failures by showing an aging 'Saved · 2 min ago', an honest offline state and a Retry on error, backed by a debounced hook that never saves stale data out of order.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Autosave failed silently while offline",
+  "mistakes": ["autosave not working", "lost work offline", "saved status wrong", "save out of order"],
+  "aliases": ["autosave", "saved indicator", "offline", "saving...", "google docs", "debounce", "sync status", "retry"],
+  "flows": ["forms"],
+  "fields": ["text"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Backup Codes",
+  "description": "Stops users locking themselves out with recovery codes they never kept: Continue unlocks only after the codes are downloaded, printed or copied (or all three with require=\"all\"), then one code must be typed back (paste refused, look-alike characters forgiven) to prove the saved copy is readable.",
+  "dependencies": ["lucide-react"],
+  "stops": "Locked out with unsaved backup codes",
+  "mistakes": ["user never saved recovery codes", "lost 2fa backup codes", "backup codes not downloaded", "2fa lockout"],
+  "aliases": ["backup codes", "recovery codes", "2fa setup", "mfa", "totp", "download codes", "authenticator setup"],
+  "flows": ["signup-login", "account-settings"],
+  "fields": ["code", "secret"]
+}

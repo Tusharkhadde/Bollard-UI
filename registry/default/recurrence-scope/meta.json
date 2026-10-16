@@ -1,0 +1,10 @@
+{
+  "title": "Recurrence Scope",
+  "description": "Prevents editing more of a recurring series than intended by reading back exactly which dates a This one / This and following / All choice changes, with the count and past ones called out, and warning by date and field before it overwrites occurrences that were edited on their own.",
+  "dependencies": ["lucide-react"],
+  "stops": "Edited whole series instead of one",
+  "mistakes": ["edited all events by mistake", "this and following events", "recurring meeting edit", "overwrote edited occurrence"],
+  "aliases": ["recurring event", "repeat", "rrule", "calendar", "this event only", "all events", "google calendar", "series"],
+  "flows": ["scheduling"],
+  "fields": ["datetime"]
+}

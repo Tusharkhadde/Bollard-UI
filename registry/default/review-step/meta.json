@@ -1,0 +1,12 @@
+{
+  "title": "Review Step",
+  "description": "Catches wrong or forgotten answers before a multi-step form is sent by listing every answer by step with named Edit links, flagging empty optional fields and values changed since last time, and taking one deliberate submit that ignores carried-over clicks and can't fire twice.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Wrong answer submitted in wizard",
+  "mistakes": ["submitted wrong details", "no review before submit", "multi step form review", "double submit on final step"],
+  "aliases": ["review page", "summary step", "confirm details", "wizard", "stepper", "multi-step form", "checkout review", "application review"],
+  "flows": ["forms", "checkout"],
+  "fields": []
+}

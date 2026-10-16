@@ -1,0 +1,10 @@
+{
+  "title": "Step Invalidation",
+  "description": "Stops an earlier wizard answer from silently breaking later steps: before the change applies it says exactly what goes (\"Changing plan to Basic clears Region on step 3 and removes SSO and Audit log on step 4\"), then marks those steps, walks back through only them and holds Finish until they're checked, and changing the answer back restores what it removed.",
+  "dependencies": ["lucide-react"],
+  "stops": "Earlier wizard change broke later steps",
+  "mistakes": ["changed step 1 broke step 3", "wizard answers cleared", "multi step form invalidated", "plan change removed options"],
+  "aliases": ["wizard", "stepper", "multi-step form", "onboarding", "plan selection", "dependent steps", "configurator"],
+  "flows": ["forms", "signup-login"],
+  "fields": []
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Stale Attachment Check",
+  "description": "Prevents sending an old copy by checking each attachment against the files beside it (a newer save of the same file, report_v3_final.pdf edited today next to the attached report_v2.pdf), names that say draft, old, copy or (1), Office lock files and a file dated before the subject's date, with a one-tap swap to the newer file and Undo.",
+  "dependencies": ["lucide-react"],
+  "stops": "Old draft attached instead of final",
+  "mistakes": ["attached old version", "sent draft not final", "wrong file attached", "report_v2 instead of v3"],
+  "aliases": ["attachment", "file version", "final_final", "email attach", "upload", "compose", "proposal", "invoice pdf"],
+  "flows": ["messaging"],
+  "fields": ["file"]
+}

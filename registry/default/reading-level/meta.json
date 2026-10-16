@@ -1,0 +1,10 @@
+{
+  "title": "Reading Level",
+  "description": "Prevents writing that's too hard for its readers with a live Flesch-Kincaid grade against a target, the hardest sentences tinted in place (only when long and dense, so plain long sentences aren't nagged) with the reason and a jump to each, and one-tap plain-word swaps (\"utilize\" → \"use\", \"in the event that\" → \"if\").",
+  "dependencies": ["lucide-react"],
+  "stops": "Copy too hard for its readers",
+  "mistakes": ["text too complex", "readability score", "plain language check", "flesch kincaid"],
+  "aliases": ["readability", "plain language", "flesch-kincaid", "writing assistant", "content editor", "cms", "copywriting", "grammarly"],
+  "flows": ["forms"],
+  "fields": ["text"]
+}

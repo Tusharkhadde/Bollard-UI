@@ -1,0 +1,10 @@
+{
+  "title": "File Guard",
+  "description": "Stops bad uploads before they start by checking size, type, count, empty files and duplicates, and by reading each file's first bytes to catch a renamed extension, with a one-tap rename fix.",
+  "dependencies": ["lucide-react"],
+  "stops": "Wrong file type uploaded",
+  "mistakes": ["file too large upload", "renamed exe as pdf", "empty file uploaded", "duplicate file upload"],
+  "aliases": ["file upload", "dropzone", "mime type", "file size limit", "magic bytes", "react-dropzone", "pdf upload", "aadhaar upload", "document upload"],
+  "flows": ["forms", "india"],
+  "fields": ["file"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Attachment Nudge",
+  "description": "Prevents the \"see attached\" message with nothing attached by spotting attachment phrases (English, Hindi and Hinglish, ignoring quoted replies, negations and shared cloud links) and asking inline to Attach or Send anyway.",
+  "dependencies": ["lucide-react"],
+  "stops": "\"See attached\" sent without attachment",
+  "mistakes": ["forgot attachment", "pfa without file", "attached but nothing attached", "email sent without attachment"],
+  "aliases": ["attachment reminder", "forgot attachment", "pfa", "please find attached", "hinglish", "compose email", "gmail", "chat"],
+  "flows": ["messaging", "india"],
+  "fields": ["file", "text"]
+}

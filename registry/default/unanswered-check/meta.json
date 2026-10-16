@@ -1,0 +1,10 @@
+{
+  "title": "Unanswered Check",
+  "description": "Stops a test or survey being submitted with questions skipped by accident by listing, before the final submit, the required and optional questions still blank, partly answered ones and those flagged for review as numbered jump links, with time left and how much of it each open question gets, a deliberate second click for blanks, a hard stop for required survey questions and a submit that waits until every answer has saved.",
+  "dependencies": ["lucide-react"],
+  "stops": "Test submitted with questions skipped",
+  "mistakes": ["submitted quiz with blanks", "missed questions in exam", "survey skipped required", "answers not saved on submit"],
+  "aliases": ["quiz", "exam", "test", "survey", "questionnaire", "mcq", "assessment", "google forms", "review answers"],
+  "flows": ["forms"],
+  "fields": []
+}

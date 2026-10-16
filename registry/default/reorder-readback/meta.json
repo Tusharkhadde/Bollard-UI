@@ -1,0 +1,10 @@
+{
+  "title": "Reorder Readback",
+  "description": "Stops a slipped drag from silently reordering priorities, fallbacks or steps by reading every drop back with its consequence (\"Moved Razorpay from 3rd to 1st. It's now tried first.\") with Undo, dragging only from the grip so touch scrolling never reorders, refusing to push pinned rows aside with a reason, marking rows moved since the last save, and meeting WCAG 2.2 2.5.7 with click-and-arrow moves plus Space/arrow/Escape keyboard moves with debounced announcements.",
+  "dependencies": ["lucide-react", "motion"],
+  "stops": "Slipped drag reordered payment fallbacks",
+  "mistakes": ["drag reordered list by mistake", "priority order changed accidentally", "touch scroll reordered items", "sortable list undo"],
+  "aliases": ["drag to reorder", "sortable", "dnd-kit", "priority list", "reorder", "payment gateway order", "razorpay", "drag handle"],
+  "flows": ["forms", "devtools"],
+  "fields": []
+}

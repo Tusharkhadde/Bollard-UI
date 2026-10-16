@@ -1,0 +1,7 @@
+{"title": "Form Progress", "description": "Prevents the \"why won't it submit?\" hunt by counting the required fields still empty or invalid and jumping focus to the next one with a Next missing button.", "dependencies": ["lucide-react"],
+  "stops": "Form won't submit, field unknown",
+  "mistakes": ["why wont form submit", "required field missing", "find empty required field", "submit disabled no reason"],
+  "aliases": ["required fields", "form progress", "progress bar", "validation", "next missing", "kyc form", "application form", "react hook form"],
+  "flows": ["forms"],
+  "fields": []
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Consent Group",
+  "description": "Prevents invalid or bundled consent: boxes are never pre-ticked, required terms sit apart from optional purposes, Accept all spells out what it will tick before it does, one plain sentence reads back the choice, and each change yields a record with time, method, text version and a fingerprint of the wording shown.",
+  "dependencies": ["lucide-react"],
+  "stops": "Pre-ticked consent bundled with terms",
+  "mistakes": ["pre ticked checkbox consent", "bundled marketing consent", "gdpr consent checkbox", "accept all unclear"],
+  "aliases": ["consent", "checkbox", "gdpr", "dpdp", "marketing emails", "newsletter opt-in", "cookie consent", "terms checkbox", "signup"],
+  "flows": ["signup-login", "forms"],
+  "fields": []
+}

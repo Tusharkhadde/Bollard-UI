@@ -1,0 +1,10 @@
+{
+  "title": "Terms Changes",
+  "description": "Stops people re-accepting updated terms without seeing what changed: it shows a summary and the exact word diff since the version they accepted, calls out changed numbers, keeps Accept locked until every change has stayed on screen long enough to read (an early tap jumps to the next unread one), and hands back a consent record with both versions and a timestamp.",
+  "dependencies": ["lucide-react"],
+  "stops": "Terms accepted without seeing changes",
+  "mistakes": ["updated terms no diff", "accept terms blindly", "privacy policy changed", "consent record terms"],
+  "aliases": ["terms of service", "privacy policy", "tos update", "accept terms", "diff", "consent", "legal", "dpdp"],
+  "flows": ["signup-login", "account-settings"],
+  "fields": ["text"]
+}

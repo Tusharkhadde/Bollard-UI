@@ -1,0 +1,10 @@
+{
+  "title": "Passport Validity Check",
+  "description": "Stops travellers booking a trip their passport can't make by checking it against the destination's rule (the 6-month rule, Schengen's 3 months after you leave and 10 years since issue, blank pages), naming the exact date it must last until and offering the latest return date that would pass, with sourced default rules you can replace.",
+  "dependencies": ["lucide-react"],
+  "stops": "Passport expires before trip allows",
+  "mistakes": ["passport 6 month rule", "schengen passport validity", "denied boarding passport expiry", "passport expiring soon travel"],
+  "aliases": ["passport", "passport expiry", "visa", "schengen", "flight booking", "travel docs", "6 month rule", "traveller details"],
+  "flows": ["checkout", "forms"],
+  "fields": ["id-number", "datetime"]
+}

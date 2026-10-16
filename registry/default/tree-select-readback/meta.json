@@ -1,0 +1,10 @@
+{
+  "title": "Tree Select Readback",
+  "description": "Prevents selecting more or less than intended in a nested checkbox tree by reading the choice back in plain words (\"All of Marketing except Paid ads; 3 of 12 in Sales\"), telling a whole-group tick apart from ticking every item, and warning that a whole-group tick also selects items added later, with a one-tap pin to today's items.",
+  "dependencies": ["lucide-react"],
+  "stops": "Whole group ticked, future items included",
+  "mistakes": ["tree checkbox selected too much", "select parent selects all", "nested checkbox confusion", "indeterminate checkbox"],
+  "aliases": ["tree select", "nested checkbox", "indeterminate", "permissions tree", "category filter", "multi select", "folder picker"],
+  "flows": ["forms"],
+  "fields": []
+}

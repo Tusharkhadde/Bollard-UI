@@ -1,0 +1,12 @@
+{
+  "title": "Draft Restore",
+  "description": "Stops lost form work and stale-draft overwrites by autosaving to localStorage and, on reopen, offering the draft with a field-by-field preview that keeps any value the server changed since, unless you tick it.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Lost form after accidental refresh",
+  "mistakes": ["lost form data on refresh", "restore draft", "localstorage form save", "old draft overwrote new data"],
+  "aliases": ["draft", "autosave", "localstorage", "restore", "form persistence", "resume application", "refresh lost data"],
+  "flows": ["forms"],
+  "fields": []
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Dependency License Check",
+  "description": "Prevents adding a dependency your project isn't allowed to use by reading each SPDX expression against your policy (GPL or AGPL in closed-source code, no or unrecognised license, source-available terms in a hosted product, deny lists) and catching relicenses between versions with a one-tap \"Stay on\" the last version under the old license, while dual licenses and dev-only copyleft pass quietly.",
+  "dependencies": ["lucide-react"],
+  "stops": "GPL dependency shipped in closed source",
+  "mistakes": ["gpl package in commercial app", "license changed in new version", "npm license check", "agpl dependency"],
+  "aliases": ["license", "spdx", "npm install", "dependencies", "open source compliance", "gpl", "mit", "package.json", "sbom"],
+  "flows": ["devtools"],
+  "fields": ["code"]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Formula Overwrite Guard",
+  "description": "Stops a spreadsheet paste from silently wiping formulas, locked cells or the heading row, or spilling data past the table edge, by previewing in place which cells would change and how, leaving out a heading row the copy dragged along, and offering to paste values only into the empty and non-formula cells, while safe pastes go straight in with Undo.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Paste wiped spreadsheet formulas",
+  "mistakes": ["paste overwrote formulas", "paste values only", "pasted over header row", "spreadsheet paste spilled"],
+  "aliases": ["spreadsheet", "data grid", "paste", "excel", "google sheets", "formulas", "paste special", "ag grid"],
+  "flows": ["forms"],
+  "fields": ["number"]
+}

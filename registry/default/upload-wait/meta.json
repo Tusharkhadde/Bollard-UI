@@ -1,0 +1,10 @@
+{
+  "title": "Upload Wait",
+  "description": "Stops a form being sent before its attachments exist: pressing submit mid-upload validates and queues the send, the button fills with combined progress and reads \"Waiting for 2 uploads…\", it submits by itself when they finish, a failed upload pauses it until retried, and leaving mid-upload asks first.",
+  "dependencies": ["lucide-react"],
+  "stops": "Form submitted before upload finished",
+  "mistakes": ["submitted before upload done", "attachment missing after submit", "upload in progress submit", "left page mid upload"],
+  "aliases": ["upload progress", "file upload", "submit button", "waiting for upload", "s3 upload", "document upload", "kyc docs"],
+  "flows": ["forms"],
+  "fields": ["file"]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Unsaved Changes Bar",
+  "description": "Stops people leaving with edits they think were saved by naming every dirty field, guarding the tab close, saving on Ctrl/⌘+S and asking twice before Discard.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Left page with unsaved edits",
+  "mistakes": ["lost changes on navigate", "unsaved changes warning", "beforeunload prompt", "forgot to save settings"],
+  "aliases": ["unsaved changes", "dirty form", "beforeunload", "save bar", "ctrl+s", "settings form", "react hook form", "discard changes"],
+  "flows": ["forms", "account-settings"],
+  "fields": []
+}

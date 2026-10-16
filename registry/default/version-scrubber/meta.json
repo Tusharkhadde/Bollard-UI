@@ -1,0 +1,10 @@
+{
+  "title": "Version Scrubber",
+  "description": "Prevents restoring the wrong version by letting you scrub a timeline with the current version pinned, previewing a word diff of exactly what a restore would change, and requiring a second step that counts the words lost and gained and names changed numbers.",
+  "dependencies": ["lucide-react"],
+  "stops": "Restored wrong version of document",
+  "mistakes": ["restored wrong version", "version history lost words", "rollback document", "compare versions"],
+  "aliases": ["version history", "restore version", "diff", "timeline", "google docs history", "revisions", "time travel"],
+  "flows": ["forms"],
+  "fields": ["text"]
+}

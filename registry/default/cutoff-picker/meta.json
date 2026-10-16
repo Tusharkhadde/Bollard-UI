@@ -1,0 +1,16 @@
+{
+  "title": "Cutoff Picker",
+  "description": "Stops orders landing on a different day than the shopper thinks by counting down to the store's cutoff in store time with the shopper's own time beside it, naming the holidays and closed days it skips, saying when the store's date isn't the shopper's, and never moving a chosen date silently: when the cutoff passes mid-choice it says the date is gone and offers the new earliest one in one tap.",
+  "dependencies": [
+    "@date-fns/tz",
+    "@number-flow/react",
+    "date-fns",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Order missed today's delivery cutoff",
+  "mistakes": ["missed same day delivery cutoff", "delivery date changed silently", "store timezone different", "order after cutoff"],
+  "aliases": ["delivery slot", "same day delivery", "cutoff time", "order by", "delivery date", "blinkit", "time slot", "store hours", "holidays"],
+  "flows": ["checkout", "scheduling", "india"],
+  "fields": ["datetime"]
+}

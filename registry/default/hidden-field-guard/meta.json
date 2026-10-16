@@ -1,0 +1,10 @@
+{
+  "title": "Hidden Field Guard",
+  "description": "Catches values that ride along unseen: when a conditional section is hidden it names the fields that are still filled and whether they'll be submitted or dropped, with Keep, Clear (through real input events, so React state follows) and Undo.",
+  "dependencies": ["lucide-react"],
+  "stops": "Hidden field still submitted old value",
+  "mistakes": ["hidden field submitted", "conditional field kept value", "toggled section still sent", "ghost values in form"],
+  "aliases": ["conditional fields", "hidden fields", "show hide", "react hook form", "shouldUnregister", "form state", "toggle section"],
+  "flows": ["forms"],
+  "fields": []
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Error Summary",
+  "description": "Prevents users from missing form errors with a GOV.UK-style summary that takes focus on submit, links each error to its field, and ticks items off live as they are fixed, plus a useFormErrors() hook.",
+  "dependencies": [
+    "@number-flow/react",
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Users miss errors on long forms",
+  "mistakes": ["form errors not visible", "cant find which field invalid", "validation errors scroll", "error summary accessibility"],
+  "aliases": ["form validation", "error summary", "gov.uk", "react hook form", "zod", "a11y", "inline errors", "useFormErrors"],
+  "flows": ["forms", "signup-login"],
+  "fields": []
+}

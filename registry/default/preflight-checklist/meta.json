@@ -1,0 +1,12 @@
+{
+  "title": "Preflight Checklist",
+  "description": "Prevents shipping something broken by locking the action until auto and manual checks pass, naming the blockers, resetting ticks when the revision changes and re-verifying right before it runs.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Shipped with checks skipped",
+  "mistakes": ["deployed without checks", "release checklist", "publish before review", "checks reset on new version"],
+  "aliases": ["checklist", "pre-launch", "release checklist", "deploy", "publish", "gate", "ci checks", "go live"],
+  "flows": ["devtools", "forms"],
+  "fields": []
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Nominee Check",
+  "description": "Stops a bank, locker or demat nomination that won't do what the holder thinks, by checking it against the 2025 bank nomination rules and SEBI's 2026 limits: shares that don't add to 100%, a fifth bank nominee (or fourth demat one) that won't count, a split on a locker that can only go in order, a demat nominee with no relationship or a minor with no date of birth, a minor with no adult to receive, the same person twice and no nominee at all, then reading back in plain words who gets what, with one-tap fixes.",
+  "dependencies": ["lucide-react"],
+  "stops": "Nominee shares don't add to 100%",
+  "mistakes": ["nominee percentage wrong", "minor nominee no guardian", "bank nomination invalid", "demat nominee rules"],
+  "aliases": ["nominee", "nomination", "demat", "sebi", "bank account", "locker", "kyc", "guardian", "zerodha", "rbi"],
+  "flows": ["india", "forms"],
+  "fields": ["name", "number"]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Repeat Rows",
+  "description": "Prevents lost, doubled and junk entries in add-another forms (line items, guests) with min and max limits, Undo in place after a remove, duplicate rows flagged with a one-tap remove, blank rows called out before submit, Enter that adds a row instead of submitting, and focus that lands on the right field.",
+  "dependencies": ["lucide-react"],
+  "stops": "Duplicate line items in add-another form",
+  "mistakes": ["duplicate rows in form", "removed row by mistake", "blank line items submitted", "enter key submitted form"],
+  "aliases": ["add another", "field array", "line items", "useFieldArray", "guests", "invoice items", "dynamic rows", "react hook form"],
+  "flows": ["forms", "checkout"],
+  "fields": ["text", "number"]
+}

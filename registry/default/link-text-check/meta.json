@@ -1,0 +1,10 @@
+{
+  "title": "Link Text Check",
+  "description": "Prevents links that fail screen reader users browsing a links list by flagging \"click here\" and \"read more\", URLs as link text, empty links and the same text pointing to different places, with a one-tap rewrite that lifts the sentence's own words into the link (\"To see the venue map, click here\" → \"See the venue map\") and a view of the links list as it will be read out.",
+  "dependencies": ["lucide-react"],
+  "stops": "Click here links fail screen readers",
+  "mistakes": ["click here link text", "read more links accessibility", "url as link text", "empty link"],
+  "aliases": ["link text", "a11y", "accessibility", "wcag", "anchor text", "screen reader", "cms", "rich text editor"],
+  "flows": ["forms", "devtools"],
+  "fields": ["url", "text"]
+}
