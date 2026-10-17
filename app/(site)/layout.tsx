@@ -3,8 +3,8 @@ import { SiteFooter } from "@/components/site/site-footer"
 import { TopBar } from "@/components/site/top-bar"
 import { catalogItems, categories } from "@/lib/catalog"
 
-// Marks preview deployments and local builds; production shows nothing.
-const env = process.env.VERCEL_ENV === "production" ? undefined : process.env.VERCEL_ENV === "preview" ? "preview" : process.env.VERCEL ? undefined : "development"
+// Mark preview deployments without adding a local development badge.
+const env = process.env.VERCEL_ENV === "preview" ? "preview" : undefined
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (

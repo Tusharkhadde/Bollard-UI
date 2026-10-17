@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ScanSearch, ShieldCheck, TimerReset } from "lucide-react"
 import { motion, MotionConfig, useReducedMotion, type Variants } from "motion/react"
 
 import { buttonPrimary } from "@/components/site/button-styles"
@@ -16,6 +16,79 @@ const group: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.0
 const item: Variants = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+}
+
+/**
+ * Quiet proof points that sit around the product window. They make the landing
+ * screen feel alive without competing with the interactive preview, and stay
+ * hidden on small screens where the product needs all the room it can get.
+ */
+function FloatingSignals() {
+  const reduced = !!useReducedMotion()
+  const signals = [
+    {
+      label: "Amount checked",
+      detail: "One extra zero caught",
+      icon: ScanSearch,
+      className: "-left-4 top-[17%] xl:-left-16",
+      delay: 0.9,
+      drift: -7,
+    },
+    {
+      label: "Safe to retry",
+      detail: "Duplicate payment blocked",
+      icon: TimerReset,
+      className: "-right-4 top-[39%] xl:-right-16",
+      delay: 1.05,
+      drift: 8,
+    },
+    {
+      label: "Action reviewed",
+      detail: "Scope made visible",
+      icon: ShieldCheck,
+      className: "-left-4 bottom-[11%] xl:-left-16",
+      delay: 1.2,
+      drift: 5,
+    },
+  ] as const
+
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
+      {signals.map(({ label, detail, icon: Icon, className, delay, drift }) => (
+        <motion.div
+          key={label}
+          initial={{ opacity: 0, scale: 0.96, y: 10 }}
+          animate={
+            reduced
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 1, scale: 1, x: [10, -10, 10], y: [0, drift, 0] }
+          }
+          transition={
+            reduced
+              ? { duration: 0.2, delay }
+              : {
+                  opacity: { duration: 0.45, delay },
+                  scale: { duration: 0.45, delay },
+                  x: { duration: 6, delay: delay + 0.2, repeat: Infinity, ease: "easeInOut" },
+                  y: { duration: 4.4, delay: delay + 0.2, repeat: Infinity, ease: "easeInOut" },
+                }
+          }
+          className={cn(
+            "absolute z-10 flex w-40 items-center gap-2 rounded-lg border border-border-strong/80 bg-background/90 px-2.5 py-2 shadow-[0_16px_35px_-22px_rgb(0_0_0/0.55)] backdrop-blur-md lg:w-48 lg:gap-2.5 lg:px-3 lg:py-2.5 dark:bg-card/90",
+            className,
+          )}
+        >
+          <span className="grid size-7 shrink-0 place-items-center rounded-md bg-brand text-brand-foreground">
+            <Icon className="size-3.5" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-xs font-medium tracking-tight text-foreground">{label}</span>
+            <span className="mt-0.5 block truncate text-[11px] text-muted-foreground">{detail}</span>
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  )
 }
 
 /**
@@ -64,6 +137,7 @@ export function Hero({ registryBase }: { registryBase: string }) {
 
           <div className="relative mt-14 sm:mt-20">
             <div aria-hidden className="glow-brand pointer-events-none absolute -top-24 left-1/2 -z-10 h-64 w-[min(56rem,100%)] -translate-x-1/2 opacity-60 blur-2xl dark:opacity-40" />
+            <FloatingSignals />
             <motion.div
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
