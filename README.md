@@ -1,19 +1,165 @@
 # Bollard UI
 
+<div align="center">
+
 [![CI](https://github.com/Tusharkhadde/Bollard-UI/actions/workflows/ci.yml/badge.svg)](https://github.com/Tusharkhadde/Bollard-UI/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![shadcn registry](https://img.shields.io/badge/shadcn-registry-black)](https://bollard-ui.vercel.app/components)
+[![React 19](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8.svg)](https://tailwindcss.com)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**[Docs and live demos →](https://bollard-ui.vercel.app)**
+**340+ React components that stop users from making mistakes.**  
+Typo'd emails, an extra zero on a payment, double charges, deleting in production, pasted API keys, lost work.  
+Copy-paste components built with React, TypeScript, and Tailwind CSS, installable with the shadcn CLI. You own the code.
 
-**340 React components that stop users from making mistakes.** Typo'd emails, an extra zero on a payment, a double charge, deleting in production, a pasted API key, lost work. Copy-paste components built with React, TypeScript and Tailwind CSS, installable with the shadcn CLI. You own the code.
+**[Documentation & Live Demos →](https://bollard-ui.vercel.app)** · **[Full Component Catalog →](docs/COMPONENTS.md)** · **[Contributing →](CONTRIBUTING.md)**
 
-Most UI libraries make interfaces look good. Bollard UI makes them hard to get wrong. Every component targets one specific, costly mistake and catches it with a helpful nudge and, where possible, a one-tap fix. They're accessible, SSR-safe, typed, dependency-light (most need only React and lucide-react; see [Dependencies](#dependencies)) and themed with the standard shadcn CSS variables, so they drop straight into an existing shadcn project.
+</div>
 
-## Components
+---
 
-### Destructive actions
+<a id="at-a-glance"></a>
+## ⚡ At a Glance
+
+Most UI libraries make interfaces look good. **Bollard UI makes them hard to get wrong.**
+
+Every component targets one specific, costly mistake and catches it with a helpful nudge and, where possible, a one-tap fix.
+
+- 🛡️ **Mistake-first design**: Focused on guardrails—destructive actions, typo-catching inputs, data safety, and awareness.
+- 📦 **Zero lock-in**: Directly add components into your codebase using `npx shadcn@latest add`. You own and control the code.
+- 🎨 **Shadcn native**: Styled with standard CSS variables. Works out of the box with light/dark mode and your existing theme.
+- ♿ **Accessible & SSR-safe**: Built with strict ARIA patterns, keyboard navigation, and zero SSR hydration mismatches.
+- 🪶 **Dependency-light**: Most components require only React and `lucide-react`. Optional packages are auto-installed by shadcn.
+
+---
+
+<a id="table-of-contents"></a>
+## 📑 Table of Contents
+
+- [🚀 Quick Start](#quick-start)
+- [💡 Usage Examples](#usage-examples)
+- [🧩 Component Categories (340+)](#component-categories)
+  - [🛑 Destructive Actions (51)](#destructive-actions)
+  - [⌨️ Inputs That Catch Typos (114)](#inputs-that-catch-typos)
+  - [💾 Forms and Saving (45)](#forms-and-saving)
+  - [👁️ Context and Awareness (41)](#context-and-awareness)
+  - [💳 Sharing, Sending and Paying (59)](#sharing-sending-and-paying)
+  - [📊 Reading Without Mistakes (42)](#reading-without-mistakes)
+- [📦 Dependencies](#dependencies)
+- [🛠️ Run the Docs Locally](#run-locally)
+- [📁 Project Structure](#project-structure)
+- [🤝 Contributing](#contributing)
+- [📄 License](#license)
+
+---
+
+<a id="quick-start"></a>
+## 🚀 Quick Start
+
+### 1. Requirements
+Ensure your project has [Tailwind CSS v4](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com) set up:
+
+```bash
+npx shadcn@latest init
+```
+
+### 2. Install any component
+Run the shadcn CLI with the component's registry URL:
+
+```bash
+npx shadcn@latest add https://bollard-ui.vercel.app/r/email-input.json
+```
+
+Replace `email-input` with any component name from the catalog. The component file will be placed in your `components/ui/` folder, fully editable.
+
+---
+
+<a id="usage-examples"></a>
+## 💡 Usage Examples
+
+### 1. Prevent Double Charges (`SafeSubmit`)
+Collapses repeated clicks, Enter spam, and double-taps into a single request. The idempotency key is reused on retry so a flaky network won't charge twice:
+
+```tsx
+import { SafeSubmit } from "@/components/ui/safe-submit"
+
+export function CheckoutButton() {
+  return (
+    <SafeSubmit
+      onSubmit={({ idempotencyKey }) =>
+        fetch("/api/pay", {
+          method: "POST",
+          headers: { "Idempotency-Key": idempotencyKey }
+        })
+      }
+    >
+      Pay ₹499
+    </SafeSubmit>
+  )
+}
+```
+
+### 2. Irreversible Action with Undo Window (`UndoToaster`)
+Eliminates annoying confirmation dialogs. Runs actions optimistically and commits only after an undo countdown ring completes:
+
+```tsx
+import { UndoToaster, undoable } from "@/components/ui/undo-toast"
+
+// Add once in your root layout:
+// <UndoToaster />
+
+function handleDelete(id: string) {
+  removeRowFromUI(id)
+
+  undoable({
+    message: "Invoice deleted",
+    onUndo: () => restoreRow(id),
+    onCommit: () => api.deleteInvoice(id), // Runs only if user does not click Undo
+  })
+}
+```
+
+### 3. Server-side Logic Utilities
+Many components export their core logic as standalone, zero-dependency functions you can run on the server or in API routes:
+
+```ts
+import { suggestEmail } from "@/components/ui/email-input"
+import { detectSecrets } from "@/components/ui/public-env-guard"
+import { cleanText } from "@/components/ui/clean-paste-input"
+
+// Fix typo'd domains: 'user@gmial.con' -> 'user@gmail.com'
+const suggestion = suggestEmail("user@gmial.con")
+
+// Detect accidentally pasted private keys or tokens
+const leaks = detectSecrets(environmentString)
+```
+
+---
+
+<a id="component-categories"></a>
+## 🧩 Component Categories
+
+All 340+ components are grouped into 6 practical categories. Click any category below to expand its full component table, or view the **[Full Component Catalog](docs/COMPONENTS.md)**.
+
+| Category | Count | Primary Focus |
+| :--- | :---: | :--- |
+| **[🛑 Destructive actions](#destructive-actions)** | 51 | AI agent actions, Git resets, account deletion, unvetted SQL migrations, accidental clicks |
+| **[⌨️ Inputs that catch typos](#inputs-that-catch-typos)** | 114 | Typo'd domains, currency amounts, relative dates, SSH/JWT leaks, bad regex, K8s units |
+| **[💾 Forms and saving](#forms-and-saving)** | 45 | Dirty form leaves, tab collisions, stale autosaves, dependent field resets, unread terms |
+| **[👁️ Context and awareness](#context-and-awareness)** | 41 | Production vs staging indicators, time zone drift, offline sync, session expirations |
+| **[💳 Sharing, sending and paying](#sharing-sending-and-paying)** | 59 | Accidental public Bcc, prompt data leakage, duplicate charges, overtipping |
+| **[📊 Reading without mistakes](#reading-without-mistakes)** | 42 | Misleading chart intervals, Dockerfile security, broken .gitignore, IAM policy risks |
+
+<br/>
+
+<a id="destructive-actions"></a>
+### 🛑 Destructive Actions
+
+Stops irreversible operations: accidental deletion, destructive AI agent calls, unvetted SQL migrations, and Git resets.
+
+<details>
+<summary><b>View all 51 components in Destructive actions</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -67,7 +213,17 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `retention-change` | Stops a shorter data-retention period from destroying data by surprise by saying exactly what goes and when (“Lowering to 30 days deletes 14,210 events older than 13 Sep, tonight at 02:00”), shading the doomed days on a chart, counting down to the purge while changing it back still loses nothing, and naming the confirm button “Delete without export” until an export-first is done. |
 | `seat-reduce` | Stops a lower seat count from cutting people off silently by making you choose who goes, suggesting unaccepted invites first and then the least active members (never the owner or admins), calling out an admin or someone active today if you pick them, and showing the new bill, when it starts and what happens to each person's work before you confirm. |
 
-### Inputs that catch typos
+</details>
+
+---
+
+<a id="inputs-that-catch-typos"></a>
+### ⌨️ Inputs That Catch Typos
+
+Stops typos before submit: mistyped domains, mismatched currency units, invalid date inputs, and leaked credentials.
+
+<details>
+<summary><b>View all 114 components in Inputs that catch typos</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -184,7 +340,17 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `wrong-layout-input` | Catches text typed with the wrong keyboard layout ("ghbdtn" meant "привет", "руддщ" meant "hello", plus Hebrew, Greek and Hindi InScript) by scoring it against letter-pair models of each language and spellings no real word has, then offers the retyped text as a one-tap fix with undo, leaving names, acronyms, links and code alone. |
 | `utm-check` | Stops campaign links that fragment analytics by catching, as the URL is built or pasted, mixed case and spaces (Facebook vs facebook, "Diwali Sale" vs diwali_sale, or a value your reports already spell differently), source and medium swapped, a medium GA4's default channel rules file as organic or Unassigned, misspelled keys, a second "?", tags after "#" and tags on links back to your own site, reading back the GA4 channel and fixing each in one tap or all at once. |
 
-### Forms and saving
+</details>
+
+---
+
+<a id="forms-and-saving"></a>
+### 💾 Forms and Saving
+
+Stops data loss and collisions: dirty form exits, concurrent tab conflicts, stale autosaves, and missed required fields.
+
+<details>
+<summary><b>View all 45 components in Forms and saving</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -232,7 +398,17 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `unanswered-check` | Stops a test or survey being submitted with questions skipped by accident by listing, before the final submit, the required and optional questions still blank, partly answered ones and those flagged for review as numbered jump links, with time left and how much of it each open question gets, a deliberate second click for blanks, a hard stop for required survey questions and a submit that waits until every answer has saved. |
 | `cutoff-picker` | Stops orders landing on a different day than the shopper thinks by counting down to the store's cutoff in store time with the shopper's own time beside it, naming the holidays and closed days it skips, saying when the store's date isn't the shopper's, and never moving a chosen date silently: when the cutoff passes mid-choice it says the date is gone and offers the new earliest one in one tap. |
 
-### Context and awareness
+</details>
+
+---
+
+<a id="context-and-awareness"></a>
+### 👁️ Context and Awareness
+
+Stops environment and timing mistakes: production vs staging slips, time zone drift, and expired sessions.
+
+<details>
+<summary><b>View all 41 components in Context and awareness</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -276,7 +452,17 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `sunset-notice` | Stops an API shutdown arriving as a surprise outage: it reads the Sunset (RFC 8594) and Deprecation (RFC 9745) headers and their Link relations off a response, lists exactly what stops working, shows when in the reader's own zone (flagging when that falls on a different day than the header's UTC date), counts down while turning amber then red, and lets "Remind me later" snooze only until the next 30/7/1-day mark. |
 | `print-guard` | Stops the printout that doesn't match the screen: before printing it finds light text on dark backgrounds the browser will drop, collapsed sections, tables wider than the page (measured at their narrowest), scroll boxes that print only what's in view and links without their address, offers print-only fixes that never change the screen, and since Ctrl+P can't be stopped, fixes those printouts automatically and offers a review. |
 
-### Sharing, sending and paying
+</details>
+
+---
+
+<a id="sharing-sending-and-paying"></a>
+### 💳 Sharing, Sending and Paying
+
+Stops leaks and costly payouts: accidental public Bcc, prompt data leakage, duplicate charges, and overtipping.
+
+<details>
+<summary><b>View all 59 components in Sharing, sending and paying</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -338,7 +524,17 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `payment-reference` | Prevents bank transfers that can't be matched to an invoice by requiring the invoice number in the expected format (with one-tap fixes for a missing, mistyped or different invoice), checking the reference against each rail's length limit and character set (UPI and IMPS drop symbols, many NEFT remark boxes stop at 30, Faster Payments keeps 18), moving a cut-off invoice number to the front, and previewing the payee's statement line with the cut part struck through. |
 | `truncation-preview` | Stops the point of a post vanishing behind "…more" by showing exactly where LinkedIn, Instagram, X, iOS and Android push and Google (by pixel width) cut the text, warning when the key phrase, a link or an @mention X won't notify sits below the fold, and fixing it in one tap by moving that sentence up or removing the blank lines that each cost a whole preview line. |
 
-### Reading without mistakes
+</details>
+
+---
+
+<a id="reading-without-mistakes"></a>
+### 📊 Reading Without Mistakes
+
+Stops misread charts and insecure configs: misleading axes, partial periods, broken .gitignore, and risky IAM policies.
+
+<details>
+<summary><b>View all 42 components in Reading without mistakes</b> (Click to expand)</summary>
 
 | Component | What it does |
 | --- | --- |
@@ -383,93 +579,108 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 | `eta-range` | Stops false-precision delivery promises by quoting the range that covers 90% of deliveries with a most likely day only when one really stands out ("Thu 15 – Sat 17 Oct, most likely Fri 16"), counting the shipper's business days, holidays and cutoff in its own time zone, previewing the range you get after the cutoff, naming no-delivery days inside it, and explaining when the estimate widened. |
 | `palette-guard` | Stops chart series becoming indistinguishable for colour-blind readers by simulating protan, deutan and tritan vision (Machado 2009), flagging every pair under a CIEDE2000 threshold that passes Okabe–Ito, and offering the smallest lightness-only fix that clears all clashes, or patterns and direct labels when no colour change can. |
 
-## Install a component
+</details>
 
-Your project needs Tailwind CSS v4 and shadcn set up first (`npx shadcn@latest init`). Then:
+---
 
-```bash
-npx shadcn@latest add https://bollard-ui.vercel.app/r/email-input.json
-```
+<a id="dependencies"></a>
+## 📦 Dependencies
 
-Replace `email-input` with any component name above. The file lands in your components folder, and you're free to edit it.
-
-### Dependencies
-
-Most components need only React and `lucide-react`. Some also use one or more of these packages:
+Most components need only **React** and **lucide-react**. Some specialized components use one or more of these lightweight packages:
 
 | Package | Used for |
-| --- | --- |
-| `motion` | animations and transitions (29 components) |
-| `@number-flow/react` | animated numbers and countdowns (12 components) |
-| `@floating-ui/react` | positioned popovers and menus (7 components) |
-| `@date-fns/tz` | time-zone-aware dates (7 components) |
-| `date-fns` | date parsing and formatting (5 components) |
-| `libphonenumber-js` | phone number parsing and validation (2 components) |
+| :--- | :--- |
+| `motion` | Fluid animations and state transitions (29 components) |
+| `@number-flow/react` | Animated numbers, currency counters, and countdown rings (12 components) |
+| `@floating-ui/react` | Accessible positioned popovers and dropdown menus (7 components) |
+| `@date-fns/tz` | Time-zone-aware calculations and schedule checks (7 components) |
+| `date-fns` | Reliable date parsing and relative date formatting (5 components) |
+| `libphonenumber-js` | International phone number parsing and validation (2 components) |
 
-You don't install these by hand: each component's registry entry lists its own dependencies, and `npx shadcn@latest add` installs them automatically. Every component page on the docs site shows exactly what it needs.
+> **Note:** You do not need to install these manually. When you run `npx shadcn@latest add`, the CLI automatically resolves and installs any required dependencies for that specific component.
 
-## Usage examples
+---
 
-```tsx
-import { SafeSubmit } from "@/components/ui/safe-submit"
+<a id="run-locally"></a>
+## 🛠️ Run the Docs Locally
 
-// The same idempotency key is reused on retry, so a flaky network can't charge twice.
-<SafeSubmit
-  onSubmit={({ idempotencyKey }) =>
-    fetch("/api/pay", { method: "POST", headers: { "Idempotency-Key": idempotencyKey } })
-  }
->
-  Pay ₹499
-</SafeSubmit>
-```
-
-```tsx
-import { UndoToaster, undoable } from "@/components/ui/undo-toast"
-
-<UndoToaster /> // once, in your root layout
-
-removeRowFromUI(id)
-undoable({
-  message: "Invoice deleted",
-  onUndo: () => restoreRow(id),
-  onCommit: () => api.deleteInvoice(id), // runs only if they don't undo
-})
-```
-
-Many components also export their logic as plain functions you can use on the server, for example `suggestEmail()`, `detectSecrets()`, `cleanText()`, `extractCode()`, `numberToWords()`, `parseAmbiguousDate()` and `mentionsAttachment()`.
-
-## Run the docs locally
+Run the local Next.js documentation site and test components in the interactive playground:
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/Tusharkhadde/Bollard-UI.git
+cd Bollard-UI
+
+# 2. Install dependencies
 npm install
-npm run dev              # live demos at http://localhost:3000
-npm run registry:build   # regenerates registry.json and public/r/*.json
+
+# 3. Start local development server
+npm run dev
 ```
 
-Deploy to Vercel, and the registry is served from `https://<your-domain>/r/<name>.json`. The install commands on the demo site use the site's own address automatically.
+Open [http://localhost:3000](http://localhost:3000) to view live component demos.
 
-## Project structure
+### Development Scripts
 
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Starts the Next.js development server at `http://localhost:3000` |
+| `npm run generate` | Rebuilds `registry.json` and `components/demo-index.tsx` from component metadata |
+| `npm run registry:build` | Runs `generate` + `shadcn build` to compile `public/r/*.json` |
+| `npm run registry:validate` | Validates component metadata, dependencies, and file integrity |
+| `npm run typecheck` | Runs strict TypeScript verification across all components (`tsc --noEmit`) |
+| `npm run build` | Compiles the production build of the docs site |
+
+---
+
+<a id="project-structure"></a>
+## 📁 Project Structure
+
+```text
+Bollard-UI/
+├── app/                  # Next.js docs application & interactive playground
+├── components/
+│   ├── demos/            # Live interactive demo for every component
+│   └── ui/               # Shared base UI primitives
+├── docs/
+│   ├── AUTHORING.md      # Rules, conventions, and guidelines for authoring components
+│   └── COMPONENTS.md     # Comprehensive 340+ component catalog
+├── registry/
+│   └── default/          # Component source files (what users install)
+│       └── <name>/
+│           ├── <name>.tsx    # Standalone, copy-pasteable component source
+│           └── meta.json     # Title, description, dependencies & search tags
+├── scripts/              # Build, validation, and registry compilation scripts
+└── public/r/             # Built shadcn registry JSON files
 ```
-registry/default/<name>/<name>.tsx   component source (what users install)
-registry/default/<name>/meta.json    title, description and dependencies
-components/demos/<name>.tsx          live demo for each component
-scripts/generate.mjs                 builds registry.json and the demo index
-public/r/                            built registry files (shadcn build)
-app/                                 Next.js docs site
-docs/AUTHORING.md                    rules for writing a new component
-```
 
-## Contributing
+---
 
-New component ideas, fixes and docs improvements are welcome. The bar: it prevents a real, specific user mistake, it's original (not a copy of something that already exists), accessible, and dependency-light.
+<a id="contributing"></a>
+## 🤝 Contributing
 
-- Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, scripts and the pull request checklist, and [docs/AUTHORING.md](docs/AUTHORING.md) for the component rules.
-- Open a [component request](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=component_request.yml) before building something new.
-- Report bugs with the [bug report form](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=bug_report.yml) and security issues privately via [SECURITY.md](SECURITY.md).
+We welcome new component ideas, bug fixes, and documentation improvements!
 
-Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+### The Component Bar
+Every component in Bollard UI must satisfy these principles:
+1. **Stops a real, specific mistake**: e.g., *'an extra zero on a payment'*, not just *'a nicer input'*.
+2. **Original**: Solves a unique interaction problem that standard UI libraries do not address.
+3. **Accessible**: Full keyboard navigation, proper ARIA labels, `aria-live` announcements, and reduced-motion support.
+4. **SSR-Safe & Typed**: Strict TypeScript, JSDoc props, no browser-only global references during SSR.
+5. **Lean**: Minimal dependencies; relies on React, Tailwind CSS, and standard shadcn CSS variables.
 
-## License
+### Workflow
+1. Read **[CONTRIBUTING.md](CONTRIBUTING.md)** and **[docs/AUTHORING.md](docs/AUTHORING.md)**.
+2. Open a **[Component Request](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=component_request.yml)** to discuss the mistake before building.
+3. Report issues via the **[Bug Report Form](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=bug_report.yml)**.
+4. Report security vulnerabilities privately following **[SECURITY.md](SECURITY.md)**.
 
-[MIT](LICENSE) © Tushar Khadde
+Everyone participating in this project is expected to follow our **[Code of Conduct](CODE_OF_CONDUCT.md)**.
+
+---
+
+<a id="license"></a>
+## 📄 License
+
+Distributed under the [MIT License](LICENSE).  
+Copyright © 2026 [Tushar Khadde](https://devtushar.tech).
