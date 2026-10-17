@@ -1,10 +1,39 @@
 {
   "title": "Invoice Number Check",
-  "description": "Keeps GST invoice numbers legal under CGST Rule 46(b) by counting to 16, naming the character that isn't a letter, digit, - or /, catching a number already used this financial year even in different capitals (as GST portals compare them), a stale year token, a skipped or reused counter and gaps in the series, and offering the next number with a fresh series from 1 April.",
+  "summary": "Checks a GST invoice number against CGST Rule 46(b): 16 characters at most, only letters, digits, - and /, and unique in the financial year.",
+  "description": "GST invoice number field that counts to 16, names characters other than letters, digits, - or /, catches a number already used this financial year (case-insensitively), a stale year token, skipped or reused counters and gaps, and offers the next number.",
+  "catches": [
+    "More than 16 characters",
+    "Characters other than letters, digits, hyphen and slash",
+    "Number already used this financial year, including case-only differences and cancelled numbers",
+    "Financial-year token that doesn't match the invoice date",
+    "Skipped or reused counter and gaps in the series"
+  ],
+  "limits": [
+    "Only checks against the issued list you pass; numbers issued elsewhere are unknown",
+    "Case-insensitive duplicate matching mirrors portal behaviour as the authors understood it, not a rule text",
+    "Doesn't validate the rest of the invoice (GSTIN, HSN, tax)"
+  ],
+  "a11y": [
+    "Visible label; input has aria-invalid on errors and is described by the hint",
+    "Problems are announced in a polite live region; icons are aria-hidden",
+    "Fix and next-number buttons are real buttons; focus returns to the input after applying"
+  ],
+  "server": "Allocate invoice numbers on the server with a unique constraint per GSTIN and financial year.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "CGST Rules, Rule 46(b) (CBIC tax information portal)",
+        "url": "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule46_v1.00.html"
+      }
+    ],
+    "note": "Informational; check the official source. Confirmed: consecutive serial number not exceeding sixteen characters, letters, numerals, - and /, one or multiple series, unique for a financial year. The case-insensitive portal comparison and e-invoice specifics are not from the rule text and were not verified."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "GST invoice number rejected",
+  "stops": "Helps catch a GST invoice number the rules don't allow",
   "mistakes": [
     "gst invoice number format",
     "invoice number 16 characters",

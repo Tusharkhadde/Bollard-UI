@@ -1,3 +1,5 @@
+// Bollard UI — phone-input · MIT licence · https://bollard-ui.vercel.app/components/phone-input
+
 /**
  * Built-in phone numbering data for 245 countries and territories, derived from Google's
  * libphonenumber metadata (mobile and fixed-line lengths only, so a toll-free length can't make a

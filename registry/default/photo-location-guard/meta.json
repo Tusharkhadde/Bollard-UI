@@ -1,7 +1,28 @@
 {
   "title": "Photo Location Guard",
-  "description": "Stops a photo from publicly revealing where and when it was taken by reading its EXIF and XMP before upload (GPS with its precision, capture time, camera serial, a hidden uncropped preview) and offering a one-tap \"Remove location\" that re-encodes the photo upright and re-checks the result.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads a photo's EXIF and XMP before upload and offers one-tap location removal, so a picture doesn't reveal where and when it was taken.",
+  "description": "Pre-upload photo check that reads EXIF and XMP (GPS with its precision, capture time, camera serial, owner name, a hidden uncropped preview) and offers \"Remove location\", which re-encodes the photo upright in the browser and re-checks the result.",
+  "catches": [
+    "GPS coordinates, with how precise they are",
+    "Capture time and time zone",
+    "Camera serial number and owner name",
+    "Embedded preview that can show the uncropped original",
+    "XMP location fields"
+  ],
+  "limits": [
+    "Reads JPEG metadata; other formats show an unsupported notice",
+    "Re-encoding drops all metadata and slightly changes image quality",
+    "Can't remove location visible in the picture itself (street signs, landmarks)"
+  ],
+  "a11y": [
+    "File input has a visible label and buttons to choose or change",
+    "Findings are in a polite live region; the details list is labelled",
+    "Remove shows aria-busy while working; errors use role=alert"
+  ],
+  "server": "Strip metadata on the server too before publishing uploads; a client-side strip can be skipped.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Photo leaked my home location",
   "mistakes": [
     "photo gps location leaked",

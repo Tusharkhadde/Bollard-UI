@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sms-segments · MIT licence · https://bollard-ui.vercel.app/components/sms-segments
+
 import * as React from "react"
 import { TriangleAlert, WandSparkles } from "lucide-react"
 
@@ -104,25 +106,33 @@ export interface SmsSegmentsProps extends Omit<React.ComponentProps<"textarea">,
   fixAllLabel?: string
   /** Accessible names of the one-tap fixes; `{name}` and `{to}` are filled in. */
   replaceLabel?: string
+  /** Accessible label of a remove-character fix. `{name}` is filled in. */
   removeLabel?: string
   /** Shown in a fix chip when the character is simply dropped. */
   removeText?: string
   /** Message counts: `{n}` is filled in. */
   messageText?: string
+  /** Count label for several messages. */
   messagesText?: string
   /** Accessible name of the part meter, and its captions. `{capacity}` and `{left}` are filled in. */
   partsLabel?: string
+  /** Per-part capacity text. */
   perPartText?: string
+  /** Shown when the text fits one part. */
   onePartText?: string
+  /** Characters left in the current part. */
   leftText?: string
   /** Cost readback: `{messages}`, `{recipients}`, `{sms}` and `{price}` are filled in. */
   costText?: string
+  /** Total cost line when a price is set. */
   pricedCostText?: string
   /** Saving after the fix: `{sms}` and `{saving}` are filled in. */
   fixedText?: string
+  /** Cost after fixing, when a price is set. */
   pricedFixedText?: string
   /** Recipient counts: `{n}` is filled in. */
   recipientText?: string
+  /** Recipient count label for several recipients. */
   recipientsText?: string
 }
 

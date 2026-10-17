@@ -1,7 +1,28 @@
 {
   "title": "Publish Preview",
-  "description": "Stops an npm publish shipping the wrong files or failing for good by previewing the npm pack --dry-run --json tarball and flagging .env files and keys, source maps, tests, repo config, large files, entry points missing from the build (with the reason: .gitignore fallback, files list or no build), a version that's already published, private: true and a missing files allowlist, with one-tap fixes that wait for a fresh pack before they count.",
-  "dependencies": ["lucide-react"],
+  "summary": "Previews what npm publish will ship from npm pack --dry-run and flags .env files, source maps, tests and missing build output before it goes out.",
+  "description": "npm publish preview from `npm pack --dry-run --json` that flags .env files and keys, source maps, tests, repo config, large files, entry points missing from the build, an already-published version, private: true and no files allowlist, with fixes.",
+  "catches": [
+    ".env files and keys in the tarball",
+    "Source maps, tests and repo config shipped by accident",
+    "Entry points missing from the build, with the reason (.gitignore fallback, files list, no build)",
+    "Version already published, with a next version",
+    "private: true, or no files allowlist"
+  ],
+  "limits": [
+    "Needs the pack output and package.json you pass; it doesn't run npm",
+    "A fix only counts after a fresh pack",
+    "Doesn't check the package's runtime behaviour"
+  ],
+  "a11y": [
+    "File list is a labelled section; the issue list is focusable",
+    "Fix buttons are real buttons; waiting state has text",
+    "Icons are aria-hidden"
+  ],
+  "server": "Run npm pack checks in CI with a files allowlist and provenance before publishing.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "npm publish shipped .env",
   "mistakes": [
     "npm published secrets",

@@ -1,3 +1,5 @@
+// Bollard UI — card-bill-pay · MIT licence · https://bollard-ui.vercel.app/components/card-bill-pay
+
 /**
  * Pure credit card bill rules. Sources (RBI Master Direction – Credit Card and Debit Card – Issuance and Conduct
  * Directions, 2022, as updated, and its FAQ):

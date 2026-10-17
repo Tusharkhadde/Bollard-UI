@@ -1,10 +1,30 @@
 {
   "title": "Gift Card Scam Guard",
-  "description": "Stops someone paying a scammer with gift cards: at checkout it spots the classic patterns (a large total, several cards, a note about a boss, tax, police, a refund or tech support, sending the codes, a first gift card order), says plainly that no real company or agency takes payment in gift cards, and won't continue until the user answers one question, with \"someone asked me to\" ending at a stop screen instead of payment. Size limits follow the order's currency, and scam phrases include common Hinglish and Hindi ones such as \"sir ne bola\".",
+  "summary": "Interrupts a gift card checkout that looks like a scam payment and asks one question before the order goes through.",
+  "description": "Gift card checkout check. Spots scam patterns (large total, several cards, notes about a boss, tax, police, refunds or tech support, sending codes, a first order), says no real company takes gift-card payment, and asks one question; \"someone asked me to\" ends at a stop screen.",
+  "catches": [
+    "Large total or several cards in one order, scaled to the order currency",
+    "Notes that mention a boss, tax, police, refunds, tech support or sharing codes",
+    "Common Hinglish and Hindi scam phrases such as \"sir ne bola\"",
+    "First-ever gift card purchase",
+    "Someone else asking the buyer to pay: routes to a stop screen instead of checkout"
+  ],
+  "limits": [
+    "Keyword and threshold heuristics; a scam with an innocent note and small total is not flagged",
+    "Genuine gifts that match the patterns are asked the question too",
+    "The buyer can still choose to continue; it does not block payment on its own"
+  ],
+  "a11y": [
+    "Question section is labelled by its heading; the stop screen is role=alert",
+    "A polite live region announces changes; focus moves to the relevant control after each step",
+    "Continue button is described by its waiting reason when disabled",
+    "Decorative icons are aria-hidden"
+  ],
+  "server": "Apply your own fraud and velocity rules on gift card orders server-side; the client prompt is advisory.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Paid a scammer in gift cards",
+  "stops": "Helps stop a buyer paying a scammer in gift cards",
   "mistakes": [
     "boss asked for gift cards",
     "gift card scam",

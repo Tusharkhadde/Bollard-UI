@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — acting-as-banner · MIT licence · https://bollard-ui.vercel.app/components/acting-as-banner
+
 import * as React from "react"
 import { Clock, LoaderCircle, Undo2, UserCog } from "lucide-react"
 
@@ -89,11 +91,15 @@ export interface ActingAsBannerProps extends Omit<React.ComponentProps<"div">, "
   sticky?: boolean
   /** Templates: `{name}` and `{minutes}` are filled in. */
   actingLabel?: string
+  /** Text naming who is really signed in. */
   signedInLabel?: string
+  /** Text before the time left in the session. */
   endsInLabel?: string
+  /** Text shown when the session has expired. */
   expiredLabel?: string
   /** Defaults to "Switch back to {actor's first name}". */
   switchBackLabel?: string
+  /** Shown when switching back fails. */
   switchBackErrorText?: string
 }
 

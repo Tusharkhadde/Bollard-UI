@@ -1,3 +1,5 @@
+// Bollard UI — chat-audience-check · MIT licence · https://bollard-ui.vercel.app/components/chat-audience-check
+
 export interface ChatMember {
   id: string
   /** The name the chat shows for them (their own profile name). */

@@ -1,7 +1,29 @@
 {
   "title": "Meeting Time Spread",
-  "description": "Stops a recurring meeting always landing in the same person's night by setting the start on a slider with every attendee's own day underneath (night, before work, working, after work, weekend, a day ahead or behind, and DST weeks when the gap shifts, from the tz database), and suggesting the kindest slot: nobody at night first, then the fewest people out of hours, then rotating the pain away from whoever took the last ones (\"Spares Sam, who took the last 3\").",
-  "dependencies": ["lucide-react", "motion", "@date-fns/tz"],
+  "summary": "Shows every attendee's local day under a meeting-time slider and suggests the kindest slot, so the same person doesn't always take the 3 AM call.",
+  "description": "Meeting time slider with each attendee's day underneath (night, before or after work, weekend, day ahead or behind, DST weeks via the tz database) that suggests the kindest slot: nobody at night, then fewest out of hours, then rotating away from recent sufferers.",
+  "catches": [
+    "Slots in someone's night or outside their working hours",
+    "Weekend or a different calendar day for some attendees",
+    "DST weeks when the time gap shifts",
+    "The same person repeatedly taking bad slots (from history)"
+  ],
+  "limits": [
+    "Working hours default to 9–17.5 local and weekends to Sat/Sun; pass real ones",
+    "History-based fairness only knows the past meetings you pass",
+    "Plans one day at a time"
+  ],
+  "a11y": [
+    "Slider has a visible label and aria-valuetext describing who is at night",
+    "Status uses role=status; icons are aria-hidden",
+    "Focus returns to the slider after applying a suggestion",
+    "Animations are reduced under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "@date-fns/tz"
+  ],
   "stops": "Same colleague always gets 3 AM calls",
   "mistakes": [
     "meeting at night for remote colleague",

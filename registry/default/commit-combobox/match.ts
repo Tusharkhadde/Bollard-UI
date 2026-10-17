@@ -1,3 +1,5 @@
+// Bollard UI — commit-combobox · MIT licence · https://bollard-ui.vercel.app/components/commit-combobox
+
 /**
  * Pure, server-safe matching for CommitCombobox: how typed text relates to a fixed list of options.
  */

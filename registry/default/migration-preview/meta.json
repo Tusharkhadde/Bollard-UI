@@ -1,10 +1,51 @@
 {
   "title": "Migration Preview",
-  "description": "Stops migrations that take production down or lose data by reading Postgres SQL back step by step (strings, dollar quotes and comments handled), showing what each step locks and whether it touches every row of a big table, marking dropped tables and columns as impossible to undo, and catching NOT NULL columns that will fail, renames that break code mid-deploy, CONCURRENTLY inside a transaction and a missing lock_timeout, with a one-tap safer sequence and undo.",
-  "dependencies": ["lucide-react"],
-  "stops": "Migration locks production table for hours",
-  "mistakes": ["migration took down production", "alter table locked table", "not null column failed migration", "dropped column lost data"],
-  "aliases": ["db migration", "postgres", "alter table", "lock_timeout", "create index concurrently", "prisma migrate", "drizzle", "sql preview", "schema change"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["code"]
+  "summary": "Reads a Postgres migration back step by step with what each step locks and what can't be undone, so it doesn't take production down or lose data.",
+  "description": "Postgres migration reader (strings, dollar quotes, comments handled) showing what each step locks, which rewrite big tables and which drops can't be undone, and catching failing NOT NULL adds, mid-deploy renames, CONCURRENTLY in a transaction and no lock_timeout.",
+  "catches": [
+    "Locks each step takes and what other sessions can't do meanwhile",
+    "Steps that rewrite or scan every row of a large table (from tableSizes)",
+    "Dropped tables and columns that can't be undone",
+    "NOT NULL without a default on existing rows, and renames that break running code",
+    "CREATE INDEX CONCURRENTLY inside a transaction, and missing lock_timeout"
+  ],
+  "limits": [
+    "Postgres only, and lock behaviour can differ between versions",
+    "A static read: it doesn't run the SQL or know current load",
+    "Row counts only if you pass tableSizes"
+  ],
+  "a11y": [
+    "Section labelled by its title; summary uses role=status",
+    "Each step is labelled with its number; icons are aria-hidden",
+    "Fix and undo are buttons, and focus moves to Undo after a fix"
+  ],
+  "server": "Run migrations with lock_timeout and statement_timeout, test on a production-sized copy, and keep a rollback plan.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent a migration locking a production table for hours",
+  "mistakes": [
+    "migration took down production",
+    "alter table locked table",
+    "not null column failed migration",
+    "dropped column lost data"
+  ],
+  "aliases": [
+    "db migration",
+    "postgres",
+    "alter table",
+    "lock_timeout",
+    "create index concurrently",
+    "prisma migrate",
+    "drizzle",
+    "sql preview",
+    "schema change"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
 }

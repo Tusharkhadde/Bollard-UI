@@ -1,6 +1,23 @@
 {
   "title": "Shortcut Recorder",
-  "description": "Stops users saving a keyboard shortcut that will never fire or will clobber something, by checking what they press against browser and OS reserved keys on every platform (Ctrl+W, ⌘Q, Ctrl+T), the app's own bindings and layouts where the key needs AltGr, then reading it back as ⌘ on Mac and Ctrl on Windows/Linux.",
+  "summary": "Checks a newly recorded keyboard shortcut against browser and OS reserved keys and the app's own bindings before it's saved.",
+  "description": "Shortcut recorder that checks the combo against browser and OS reserved keys on every platform (Ctrl+W, ⌘Q, Ctrl+T), the app's own bindings and keys that need AltGr on some layouts, then reads it back as ⌘ on Mac and Ctrl on Windows/Linux.",
+  "catches": [
+    "Combos the browser or OS keeps for itself, blocked from saving",
+    "Clashes with the app's existing bindings, naming the action",
+    "Keys that need AltGr on some keyboard layouts",
+    "Read-back for both Mac and Windows/Linux"
+  ],
+  "limits": [
+    "The reserved list covers common browsers and OSes; extensions and custom OS shortcuts are unknown",
+    "Layout warnings are heuristic"
+  ],
+  "a11y": [
+    "Recorder is a button with aria-pressed while recording, labelled and described by its status",
+    "Tab or Escape (with no modifiers) stops recording; Backspace/Delete clears",
+    "Status in a polite live region; blocking issues use role=alert",
+    "Clear button has an aria-label"
+  ],
   "dependencies": [
     "lucide-react"
   ],

@@ -1,6 +1,47 @@
 {
   "title": "Transit Visa Check",
-  "description": "Stops travellers booking a layover that needs a visa they don't have: checks the passport against sourced airport transit visa lists (UK, Germany, France, Netherlands; US has no airside transit) and the traps that force you through the border (self-transfer, onward Schengen flight, UK to Ireland, leaving the airport), applies the documents that exempt you, and links the official source and Timatic.",
+  "summary": "Flags layovers that may need a transit visa for the traveller's passport, and the itinerary traps that force them through the border.",
+  "description": "Layover check against starter airport transit visa lists (UK, Germany, France, Netherlands; US has no airside transit) and border-entry traps (self-transfer, onward Schengen flight, UK to Ireland, leaving the airport), with exempting documents and official links.",
+  "catches": [
+    "Nationalities on a country's airport transit visa list",
+    "Documents that commonly exempt (e.g. valid US/CA/UK visas, EEA residence)",
+    "Self-transfers and separate tickets that mean collecting bags and entering",
+    "An onward flight to another Schengen country, which means entering here",
+    "UK to Ireland and leaving the airport during the layover",
+    "Airports with no airside transit (US)"
+  ],
+  "limits": [
+    "Starter rules for a few countries only; it is not a visa determination",
+    "Visa lists and exemptions change; each rule carries its own checked date",
+    "Airlines decide boarding: confirm with Timatic, the airline or the official source"
+  ],
+  "a11y": [
+    "Section labelled by its heading; every input and document checkbox has a <label>",
+    "Verdict in a polite live region with icon and text",
+    "Official and Timatic links have visible text"
+  ],
+  "rules": {
+    "verified": null,
+    "sources": [
+      {
+        "label": "UK – Immigration (Passenger Transit Visa) Order 2014",
+        "url": "https://www.legislation.gov.uk/uksi/2014/2702/article/4"
+      },
+      {
+        "label": "Germany – Airport transit visa",
+        "url": "https://www.germany.info/us-en/service/visa/airport-transit-visa-924624"
+      },
+      {
+        "label": "France-Visas – Airport transit visa",
+        "url": "https://france-visas.gouv.fr/en/web/france-visas/visa-de-transit-aeroportuaire"
+      },
+      {
+        "label": "US – Transit visas",
+        "url": "https://travel.state.gov/content/travel/en/us-visas/other-visa-categories/transit.html"
+      }
+    ],
+    "note": "Nationality lists carry a checked date of 2026-10-14 from a previous round but were not re-verified this round (official pages blocked automated fetches). GOV.UK confirms the DATV/Visitor in Transit split and the visitor-visa exemption. Informational; always confirm with Timatic or the official source."
+  },
   "dependencies": [
     "lucide-react"
   ],

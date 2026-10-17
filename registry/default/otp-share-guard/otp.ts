@@ -1,3 +1,5 @@
+// Bollard UI — otp-share-guard · MIT licence · https://bollard-ui.vercel.app/components/otp-share-guard
+
 /** What a one-time code approves. `other` uses `label` as the action ("This code {label}"). */
 export type OtpActionKind = "payment" | "transfer" | "login" | "add-payee" | "change-contact" | "reset-password" | "other"
 

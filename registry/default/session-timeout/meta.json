@@ -1,6 +1,25 @@
 {
   "title": "Session Timeout",
-  "description": "Stops surprise logouts that lose unsaved work by warning before an idle session expires, with rolling countdown digits and a draining ring that turns red in the last 10 seconds, cross-tab activity sync and calm screen-reader announcements.",
+  "summary": "Warns before an idle session expires and lets the user stay signed in, so a timeout doesn't silently lose unsaved work.",
+  "description": "Idle-timeout warning dialog with a countdown and a draining ring that turns red in the last 10 seconds, a Stay signed in action that extends the session through your callback, cross-tab activity sync and calm screen-reader announcements.",
+  "catches": [
+    "Idle time approaching the timeout (warns warnBefore ms ahead)",
+    "Activity in another tab, which resets the timer (BroadcastChannel)",
+    "Sign-out in another tab, followed here",
+    "Keep-alive failures, shown while the warning stays open"
+  ],
+  "limits": [
+    "The client timer is advisory; the server session can still expire on its own clock",
+    "Cross-tab sync needs BroadcastChannel",
+    "Does not save work; pair with autosave"
+  ],
+  "a11y": [
+    "Native <dialog> with role=alertdialog, labelled and described",
+    "Stay signed in receives focus (autoFocus)",
+    "Countdown is spoken only from announceAt seconds, assertively; errors use role=alert",
+    "Ring and digit animation respect reduced motion"
+  ],
+  "server": "Expire sessions on the server and extend them only through an authenticated keep-alive.",
   "dependencies": [
     "lucide-react",
     "@number-flow/react",

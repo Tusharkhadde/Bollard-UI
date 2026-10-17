@@ -1,3 +1,5 @@
+// Bollard UI — permission-pre-ask · MIT licence · https://bollard-ui.vercel.app/components/permission-pre-ask
+
 export type PermissionKind = "notifications" | "geolocation" | "camera" | "microphone"
 /** "prompt" means the browser would still ask; "dismissed" means it asked and the user closed it. */
 export type PermissionResult = "granted" | "denied" | "prompt" | "dismissed" | "unsupported" | "needs-install"

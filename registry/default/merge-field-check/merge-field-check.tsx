@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — merge-field-check · MIT licence · https://bollard-ui.vercel.app/components/merge-field-check
+
 import * as React from "react"
 import { Braces, ChevronLeft, ChevronRight, CircleAlert, CircleCheck, SkipForward, TriangleAlert } from "lucide-react"
 
@@ -24,8 +26,11 @@ export interface MergeFieldCheckProps extends Omit<React.ComponentProps<"div">, 
   fallbacks?: Record<string, string>
   /** How a recipient is named in the stepper. Defaults to email, phone or name. */
   getRecipientLabel?: (recipient: MergeRecipient, index: number) => string
+  /** Visible label. */
   label?: string
+  /** Label above the per-recipient preview. */
   previewLabel?: string
+  /** Button text to step to the next recipient with a gap. */
   nextProblemLabel?: string
   /** Shown when nothing needs fixing. `{count}` is the audience size. */
   cleanText?: string

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — revoke-access-preview · MIT licence · https://bollard-ui.vercel.app/components/revoke-access-preview
+
 import * as React from "react"
 import { KeyRound, LoaderCircle, Monitor, Plug, TriangleAlert, Unplug, UserMinus } from "lucide-react"
 
@@ -80,27 +82,39 @@ export interface RevokeAccessPreviewProps extends Omit<React.ComponentProps<"sec
   owned?: OwnedItem[]
   /** People who can take over owned items. */
   assignees?: Assignee[]
+  /** Sessions that end when access is revoked. */
   sessions?: ActiveSession[]
+  /** Integrations affected by the removal. */
   integrations?: AffectedIntegration[]
   /** Controlled reassignment. */
   value?: Reassignment
+  /** Starting reassignments when uncontrolled. */
   defaultValue?: Reassignment
+  /** Called with the reassignment after every change. */
   onValueChange?: (value: Reassignment) => void
   /** Sessions active more recently than this (ms) are flagged as in use. */
   liveWithin?: number
   /** Runs with the final reassignment. Return a promise to show a pending state; a rejection is caught. */
   onConfirm: (reassign: Reassignment) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Who "Give all to" offers, e.g. their manager. Defaults to the first assignee. */
   suggestedAssigneeId?: string
   /** Override headings and other small strings (see `REVOKE_MESSAGES`). */
   messages?: Partial<RevokeMessages>
+  /** Heading, given the person's name. */
   title?: (name: string) => React.ReactNode
+  /** Confirm label, given the name and how many items stay unowned. */
   confirmLabel?: (name: string, orphaned: number) => string
+  /** Confirm label while onConfirm runs. */
   pendingLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Picker option for leaving an item unowned. */
   unownedLabel?: string
+  /** Warning for the number of unowned items. */
   orphanText?: (count: number) => string
+  /** Label of the reassign-all fix, given the assignee. */
   reassignAllLabel?: (assignee: string) => string
 }
 

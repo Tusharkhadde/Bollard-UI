@@ -1,6 +1,29 @@
 {
   "title": "Amount Input",
-  "description": "Prevents paying ten times too much (or too little) by grouping digits live (lakh/crore aware), spelling the amount out like a cheque, and flagging an extra or missing zero against the usual amount with a one-tap fix.",
+  "summary": "A money field that groups digits as you type, spells the amount out and flags an amount about ten times off the usual one.",
+  "description": "Groups digits live with Intl.NumberFormat (lakh/crore for en-IN), spells the amount cheque-style, and when you pass `typical` warns about an amount `threshold`× (default 10×) above or below it, with a one-tap fix for a zero slip. Reports a number plus the exact decimal and minor-unit strings.",
+  "catches": [
+    "An extra or missing zero, when the amount is `threshold`× (default 10) or more off the `typical` value you pass, with a one-tap fix that moves the zeros exactly",
+    "A paste in another locale's format (\"1.250,50\", \"1.250.000\", \"12,5\" in an en-IN field), by asking which reading you meant",
+    "Hard-to-read long numbers, by grouping digits as you type (Indian grouping for en-IN)",
+    "Misread amounts, by spelling the amount out in words",
+    "Leading zeros, and digits beyond `maxDigits` or the currency's precision, with a visible hint when digits are dropped"
+  ],
+  "limits": [
+    "The warning needs a `typical` amount; there is no fallback to a balance, limit or last amount",
+    "The number passed to onValueChange is a JavaScript float; use the second argument's `decimal` or `minor` string (or the hidden input's decimal string) for exact money maths",
+    "The paste check runs only when the paste replaces the whole field, and only for '.' and ',' separators",
+    "Default words are English (\"Rupees … only\", \"paise\", English unit names); pass `wordsFormatter` for other languages",
+    "No negative amounts",
+    "Defaults to en-IN and INR; set locale and currency for other markets"
+  ],
+  "a11y": [
+    "Visible <label> tied to the input",
+    "aria-describedby lists only the words and notice elements that are currently rendered, plus any id you pass",
+    "Warnings, the truncation hint and the paste question are in an aria-live=\"polite\" region; the fix and paste buttons return focus to the input",
+    "The animated read-back respects prefers-reduced-motion (motion's useReducedMotion)"
+  ],
+  "server": "Validate amount and currency on the server, derive payable amounts from trusted data and use idempotency keys; this warning is a review prompt, not a correctness check.",
   "dependencies": [
     "@number-flow/react",
     "lucide-react",

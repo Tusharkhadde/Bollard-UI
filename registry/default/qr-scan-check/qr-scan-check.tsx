@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — qr-scan-check · MIT licence · https://bollard-ui.vercel.app/components/qr-scan-check
+
 import * as React from "react"
 import { CircleCheck, Globe, IndianRupee, Loader2, Mail, MessageSquare, Phone, QrCode, ShieldAlert, TriangleAlert, Type, Wifi } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — meeting-time-spread · MIT licence · https://bollard-ui.vercel.app/components/meeting-time-spread
+
 import * as React from "react"
 import { tzOffset } from "@date-fns/tz"
 import { Clock, HeartHandshake, Moon } from "lucide-react"
@@ -46,11 +48,13 @@ export interface MeetingTimeSpreadProps extends Omit<React.ComponentProps<"div">
   value?: number
   /** Initial start instant when uncontrolled. Defaults to 09:00 in `timeZone`. */
   defaultValue?: number
+  /** Called with the chosen start instant (epoch ms). */
   onValueChange?: (start: number) => void
   /** Earlier meetings of this series; out-of-hours turns are rotated away from whoever took the last ones. */
   history?: PastMeeting[]
   /** BCP 47 locale for times and dates. Default "en-GB". */
   locale?: string
+  /** Override any visible string, including day-part names. */
   messages?: Partial<Omit<Messages, "parts">> & { parts?: Partial<Record<DayPart, string>> }
 }
 

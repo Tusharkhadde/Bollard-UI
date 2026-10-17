@@ -1,3 +1,5 @@
+// Bollard UI — force-push-confirm · MIT licence · https://bollard-ui.vercel.app/components/force-push-confirm
+
 /** A commit that is on the remote branch but not in the history you are about to push. */
 export interface RemoteCommit {
   /** Full or short SHA. */

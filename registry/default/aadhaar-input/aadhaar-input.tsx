@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — aadhaar-input · MIT licence · https://bollard-ui.vercel.app/components/aadhaar-input
+
 import * as React from "react"
 import { CircleCheck, Eye, EyeOff, IdCard, Info, Lock, TriangleAlert } from "lucide-react"
 

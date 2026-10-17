@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-send-guard · MIT licence · https://bollard-ui.vercel.app/components/bulk-send-guard
+
 import * as React from "react"
 import { Check, CircleAlert, LoaderCircle, Moon, Send, TrendingUp, UserX, Wallet } from "lucide-react"
 
@@ -109,16 +111,21 @@ export interface BulkSendPlan {
 }
 
 export interface BulkSendGuardProps extends Omit<React.ComponentProps<"section">, "children"> {
+  /** Which channel the blast goes out on; sets the default quiet hours. */
   channel: BulkChannel
+  /** Who is on the list, who is excluded, and their time zones. */
   audience: BulkAudience
   /** Cost of one message (one part, for SMS). Leave out to hide the estimate. */
   costPerMessage?: number
   /** SMS parts per message. */
   segments?: number
+  /** ISO 4217 code for the cost. Defaults to INR. */
   currency?: string
+  /** BCP 47 locale for numbers and money. Defaults to en-IN. */
   locale?: string
   /** Quiet hours in each recipient's local time. Defaults to 21 → 10 for SMS and WhatsApp (TRAI's default for promotional SMS), none for email. Pass `null` for transactional or service messages, which TRAI allows at any hour. */
   quietHours?: QuietHours | null
+  /** IANA time zone for recipients with no known zone. Defaults to UTC. */
   fallbackTimeZone?: string
   /** The previous blast, for the jump check. */
   lastSend?: { count: number; at: Date | number | string }
@@ -128,6 +135,7 @@ export interface BulkSendGuardProps extends Omit<React.ComponentProps<"section">
   now?: Date
   /** Sends it. Return a promise for a pending state; a rejection returns to the confirm step. */
   onSend: (plan: BulkSendPlan) => void | Promise<void>
+  /** Override any visible string. */
   messages?: Partial<BulkSendGuardMessages>
 }
 

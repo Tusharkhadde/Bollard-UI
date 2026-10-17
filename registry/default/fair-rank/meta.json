@@ -1,7 +1,24 @@
 {
   "title": "Fair Rank",
-  "description": "Stops leaderboards misleading people by ranking ties the standard competition way (1, T-2, T-2, 4) at the precision shown so equal-looking scores always share a rank, showing movement since last period with rows sliding in from where they were, and setting aside entries below a minimum sample with the reason and the rank they would have had.",
-  "dependencies": ["lucide-react"],
+  "summary": "Ranks ties fairly at the precision shown and sets aside entries with too few samples, so leaderboards don't mislead.",
+  "description": "Ranks ties the standard competition way (1, T-2, T-2, 4) at the precision shown so equal-looking scores share a rank, shows movement since last period, and sets aside entries below a minimum sample with the reason and the rank they would have had.",
+  "catches": [
+    "Equal-looking scores given different ranks",
+    "Movement since the last period",
+    "Entries with too few samples, set aside with the reason"
+  ],
+  "limits": [
+    "Ties are judged at the displayed precision; finer differences are ignored on purpose",
+    "Uses standard competition ranking only"
+  ],
+  "a11y": [
+    "A real table with a header row",
+    "Ties and movement are stated in text (\"tied\", up/down labels), not only colour or arrows",
+    "Row animations are skipped with prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Tied players shown with different ranks",
   "mistakes": [
     "leaderboard tie ranking",

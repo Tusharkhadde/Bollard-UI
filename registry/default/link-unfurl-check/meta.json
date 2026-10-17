@@ -1,7 +1,26 @@
 {
   "title": "Link Unfurl Check",
-  "description": "Shows how a link will unfurl before you post it (title, description and image from a pluggable Open Graph fetch) and catches localhost and staging URLs with a swap to the live site, tracking parameters with a one-tap strip, redirects (flagged hard when they land on a sign-in page), and missing or undersized preview images.",
-  "dependencies": ["lucide-react"],
+  "summary": "Previews how a link will unfurl before you post it and catches localhost or staging links, tracking parameters and broken preview images.",
+  "description": "Link field that previews the unfurl (title, description, image from your Open Graph fetch) and catches localhost and staging URLs, tracking parameters, redirects (hard when they land on a sign-in page) and missing or undersized images, with fixes.",
+  "catches": [
+    "localhost and staging URLs, with a swap to publicOrigin",
+    "Tracking parameters such as utm_*",
+    "Redirects, especially to a sign-in page",
+    "Missing or undersized preview images"
+  ],
+  "limits": [
+    "Needs your server-side fetchPreview; browsers can't fetch most pages cross-origin",
+    "Each platform renders previews a little differently and caches them",
+    "Doesn't check the page content itself"
+  ],
+  "a11y": [
+    "Visible label; input is described by the issues list",
+    "Issues are a polite live region with text, icons aria-hidden",
+    "Preview is a labelled section with aria-busy while loading"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Posted a localhost link preview",
   "mistakes": [
     "shared localhost link",

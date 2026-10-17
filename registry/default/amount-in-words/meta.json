@@ -1,7 +1,27 @@
 {
   "title": "Amount in Words",
-  "description": "Stops ₹2,50,000 being written or read as ₹25,00,000 by naming every digit group (2 lakh · 50 thousand), spelling the amount cheque-style in lakh/crore or million with paise or cents, showing the other number system alongside, and checking typed words against the figure, since the bank pays what the words say.",
-  "dependencies": ["lucide-react"],
+  "summary": "Spells an amount in words and names each digit group, so ₹2,50,000 isn't written or read as ₹25,00,000.",
+  "description": "Names every digit group (2 lakh · 50 thousand), spells the amount cheque-style in lakh/crore or million with paise or cents, can show the other number system alongside, and checks typed words against the figure.",
+  "catches": [
+    "An extra or missing zero, by naming each digit group",
+    "Typed words that do not match the figure, with a one-tap correction",
+    "Confusion between lakh/crore and million/billion, via the other system shown alongside",
+    "Mismatches that are a power of ten apart (\"10× more\")"
+  ],
+  "limits": [
+    "Words are English only, with cheque wording built in for INR, USD, EUR, GBP, AED and SGD",
+    "Takes the amount as a JavaScript number in major units, so very large values lose precision",
+    "Word matching is a text comparison; unusual spellings may be reported as a mismatch"
+  ],
+  "a11y": [
+    "The grouped figure has an aria-label with the full amount; the visual group labels are aria-hidden",
+    "Words input has a <label>, aria-invalid on mismatch and aria-describedby to its status",
+    "Match status is aria-live=\"polite\"; a mismatch uses role=\"alert\"",
+    "Copy button has an aria-label that changes to \"Copied\""
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Extra zero on a transfer",
   "mistakes": [
     "2 lakh vs 20 lakh",

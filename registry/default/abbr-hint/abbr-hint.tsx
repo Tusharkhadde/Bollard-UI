@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — abbr-hint · MIT licence · https://bollard-ui.vercel.app/components/abbr-hint
+
 import * as React from "react"
 import { FloatingArrow, FloatingPortal, arrow, autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"

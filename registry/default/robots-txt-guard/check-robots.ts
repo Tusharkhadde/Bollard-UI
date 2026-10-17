@@ -1,3 +1,5 @@
+// Bollard UI — robots-txt-guard · MIT licence · https://bollard-ui.vercel.app/components/robots-txt-guard
+
 export type RobotsIssueKind =
   | "block-all" | "staging-rule" | "blocks-assets" | "sitemap-relative" | "sitemap-host" | "sitemap-http" | "sitemap-invalid"
   | "typo" | "no-colon" | "unknown-field" | "noindex" | "crawl-delay" | "no-group" | "path-no-slash" | "full-url-path"

@@ -1,7 +1,26 @@
 {
   "title": "Account Switch Guard",
-  "description": "Prevents acting as the wrong account when several are signed in by naming who the action runs as and who it is not ('Posting as Acme Corp, not Tushar'), and by catching a switch made in another tab so the button changes to name the page's account instead of silently acting as the new one.",
-  "dependencies": ["lucide-react"],
+  "summary": "Names which account an action runs as, and notices when another tab switched accounts, so nobody posts from the wrong one.",
+  "description": "When several accounts are signed in, names who the action runs as and who it is not (\"Posting as Acme Corp, not Tushar\"), and catches a switch made in another tab so the button names the page's account instead of silently acting as the new one.",
+  "catches": [
+    "An account switch made in another tab of the same browser (BroadcastChannel, with a storage-event fallback)",
+    "The page's account differing from the most recently active account",
+    "Ambiguous action buttons, by naming the acting account on the button"
+  ],
+  "limits": [
+    "Only sees switches reported through its own channel; switches made elsewhere (another browser, device or app) are invisible",
+    "It does not change which session the request is sent with; your onAction decides that"
+  ],
+  "a11y": [
+    "Mismatch notice sits in an aria-live=\"polite\" region",
+    "The action button is described by the identity line via aria-describedby",
+    "The highlight animation is skipped when prefers-reduced-motion is set",
+    "Avatar colour is decorative (aria-hidden); the account is always named in text"
+  ],
+  "server": "The server must act as the account the session actually authenticates, and reject requests whose stated account differs from it.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Posted from the wrong account",
   "mistakes": [
     "posted from company account by mistake",
@@ -27,5 +46,8 @@
   "fields": [
     "name",
     "email"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/acting-as-banner.json"
   ]
 }

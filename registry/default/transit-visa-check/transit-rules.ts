@@ -1,3 +1,5 @@
+// Bollard UI — transit-visa-check · MIT licence · https://bollard-ui.vercel.app/components/transit-visa-check
+
 /** Transit visa rules and the pure check. Countries are ISO 3166-1 alpha-2 codes ("IN", "GB"). */
 
 /** Documents that commonly exempt a traveller from an airport transit visa. */

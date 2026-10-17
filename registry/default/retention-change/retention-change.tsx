@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retention-change · MIT licence · https://bollard-ui.vercel.app/components/retention-change
+
 import * as React from "react"
 import { CircleCheck, Download, History, LoaderCircle, Trash2, Undo2 } from "lucide-react"
 
@@ -77,7 +79,9 @@ export interface RetentionChangeProps extends Omit<React.ComponentProps<"section
   current: number
   /** New retention in days. Controlled. */
   value?: number
+  /** Starting retention in days when uncontrolled. */
   defaultValue?: number
+  /** Called with the chosen retention in days. */
   onValueChange?: (days: number) => void
   /** Periods to offer, in days. */
   options?: number[]

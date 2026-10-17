@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cutoff-picker · MIT licence · https://bollard-ui.vercel.app/components/cutoff-picker
+
 import * as React from "react"
 import NumberFlow, { NumberFlowGroup } from "@number-flow/react"
 import { TZDate } from "@date-fns/tz"
@@ -142,6 +144,7 @@ export interface CutoffPickerProps extends CutoffOptions, Omit<React.ComponentPr
   value?: string
   /** Initial date when uncontrolled. */
   defaultValue?: string
+  /** Called with the chosen delivery date. */
   onValueChange?: (date: string) => void
   /** Shopper's zone. Defaults to the browser's. */
   userTimeZone?: string
@@ -149,16 +152,25 @@ export interface CutoffPickerProps extends CutoffOptions, Omit<React.ComponentPr
   now?: Date | number
   /** Warn when less than this many minutes are left, since checkout itself takes time. */
   checkoutMinutes?: number
+  /** Visible label for the date picker. */
   label?: string
   /** Templates: `{time}`, `{day}`, `{date}`, `{reason}` and `{yours}` are filled in. */
   countdownText?: string
+  /** Text describing the cutoff time. */
   cutoffText?: string
+  /** Text naming skipped holidays and closed days. */
   closedText?: string
+  /** Text shown when the cutoff is close. */
   hurryText?: string
+  /** Text shown when the store's date differs from the shopper's. */
   storeDateText?: string
+  /** Text shown when the chosen date is no longer available. */
   rolledText?: string
+  /** Text for a date that can't be chosen. */
   unavailableText?: string
+  /** Text for switching to the new earliest date. */
   switchLabel?: string
+  /** Word used for today. */
   todayLabel?: string
 }
 

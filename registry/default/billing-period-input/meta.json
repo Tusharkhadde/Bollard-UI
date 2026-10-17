@@ -1,6 +1,23 @@
 {
   "title": "Billing Period Input",
-  "description": "Prevents mispriced plans by reading a recurring price back in every period (₹499/month = ₹5,988/year) and, against a reference price, catching a yearly price typed into the monthly field, a team total entered per seat and other implausible jumps, each with a one-tap fix.",
+  "summary": "Reads a recurring price back in every billing period and catches a yearly price typed into the monthly field.",
+  "description": "Reads a recurring price back per period (₹499/month = ₹5,988/year) and, against a reference price, catches a yearly price in the monthly field, a team total entered per seat and other implausible jumps, each with a one-tap fix.",
+  "catches": [
+    "A yearly price entered as monthly, or the reverse",
+    "A team total entered as a per-seat price",
+    "Large jumps from the reference price (current plan, plan below or last year's)",
+    "Misreading the rate, by showing it in every period"
+  ],
+  "limits": [
+    "The mix-up checks need a reference price; without one it only reads back",
+    "Weeks are converted as 12/52 of a month, so readbacks are approximate for weekly plans"
+  ],
+  "a11y": [
+    "Visible <label> tied to the input, described by an aria-live=\"polite\" status",
+    "Price basis is a role=\"radiogroup\" of role=\"radio\" buttons",
+    "The period selector has an aria-label",
+    "Warnings use an icon plus text"
+  ],
   "dependencies": [
     "lucide-react"
   ],

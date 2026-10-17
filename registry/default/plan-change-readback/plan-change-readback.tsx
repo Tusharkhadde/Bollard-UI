@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — plan-change-readback · MIT licence · https://bollard-ui.vercel.app/components/plan-change-readback
+
 import * as React from "react"
 import { ArrowRight, CalendarClock, Check, LoaderCircle, TriangleAlert, X } from "lucide-react"
 
@@ -85,10 +87,13 @@ export function prorate(current: PlanInfo, next: PlanInfo, periodStart: Date, pe
 }
 
 export interface PlanChangeReadbackProps extends Omit<React.ComponentProps<"section">, "title"> {
+  /** The plan the account is on now. */
   current: PlanInfo
+  /** The plan being switched to. */
   next: PlanInfo
   /** The current billing period. */
   periodStart: Date | string
+  /** End of the current billing period. */
   periodEnd: Date | string
   /** The moment of the change. Pass it for deterministic rendering; otherwise the clock is read after mount. */
   now?: Date | string
@@ -96,6 +101,7 @@ export interface PlanChangeReadbackProps extends Omit<React.ComponentProps<"sect
   timing?: PlanChangeTiming
   /** Initial timing. Defaults to now for upgrades and period end for downgrades, so paid-for features aren't cut short. */
   defaultTiming?: PlanChangeTiming
+  /** Called when the user picks now or at period end. */
   onTimingChange?: (timing: PlanChangeTiming) => void
   /** Offer the now / period-end choice. */
   allowTimingChoice?: boolean
@@ -105,12 +111,17 @@ export interface PlanChangeReadbackProps extends Omit<React.ComponentProps<"sect
   gain?: string[]
   /** Limits the account already exceeds on the new plan. */
   limits?: PlanLimit[]
+  /** ISO 4217 currency of the prices. */
   currency?: string
+  /** BCP 47 locale for money and dates. */
   locale?: string
+  /** IANA zone for dates shown. */
   timeZone?: string
   /** Makes the change. Return a promise to show a pending state; a rejection keeps the form. */
   onConfirm?: (timing: PlanChangeTiming) => void | Promise<void>
+  /** Text for credit carried to future bills. */
   carryText?: (amount: string, date: string) => string
+  /** Checkbox text acknowledging lost excess usage. */
   acknowledgeText?: (limit: PlanLimit, over: string) => string
   /** Override any other user-visible string (see `PLAN_CHANGE_MESSAGES`). */
   messages?: Partial<PlanChangeMessages>

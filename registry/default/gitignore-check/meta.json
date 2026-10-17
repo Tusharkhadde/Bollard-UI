@@ -1,7 +1,27 @@
 {
   "title": "Gitignore Check",
-  "description": "Stops secrets and junk getting committed when a .gitignore only looks right: it runs Git's real matching rules against your files and names the line that decides each one, catching inline # comments, trailing tabs, leading spaces, backslashes and ./, ! lines that can't re-include a file inside an excluded folder or are overridden by a later line, / anchors that miss nested folders, .env, keys and node_modules left out, and already-committed files that .gitignore won't untrack (with the git rm --cached command), with one-tap fixes.",
-  "dependencies": ["lucide-react"],
+  "summary": "Runs Git's real ignore rules against your files so a .gitignore that only looks right doesn't let secrets or node_modules into a commit.",
+  "description": "Dependency-free .gitignore checker that applies Git's matching rules to your file list, names the line deciding each file, and flags syntax traps, ineffective ! lines, anchors that miss nested folders, missing .env/key/node_modules entries and already-tracked files.",
+  "catches": [
+    "Inline # comments, trailing tabs, leading spaces, backslashes and ./ that change a pattern",
+    "! lines that can't re-include a file under an excluded folder, or are overridden later",
+    "Leading / anchors that miss nested folders",
+    ".env, private keys or node_modules not ignored",
+    "Already-committed files .gitignore won't untrack, with the git rm --cached command"
+  ],
+  "limits": [
+    "Checks only the one .gitignore and file list you paste; nested .gitignore, .git/info/exclude and global excludes are not read",
+    "Reimplements Git's rules in JS; edge cases may differ from your Git version",
+    "Does not scan file contents for secrets"
+  ],
+  "a11y": [
+    "Text areas have labels; the editor has aria-invalid when errors exist and is described by the status",
+    "Result summary uses role=status; icons are aria-hidden",
+    "Each issue has a button to select its line, and focus returns to a sensible control after a fix"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "node_modules committed despite .gitignore",
   "mistakes": [
     "gitignore not working",

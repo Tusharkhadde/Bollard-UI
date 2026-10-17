@@ -1,12 +1,50 @@
 {
   "title": "Safe Submit",
-  "description": "Stops double charges and duplicate records by collapsing repeated clicks, Enter spam and double-taps into one request, with an idempotency key that is reused on retry after a network error.",
+  "summary": "Collapses repeated clicks, Enter spam and double-taps into one request and reuses an idempotency key on retry, so your server can dedupe.",
+  "description": "Submit button that runs one request at a time, ignores repeat clicks, Enter spam and double-taps, and hands your onSubmit an idempotency key that is reused on retry after a network error or 408/429/5xx so the server can dedupe.",
+  "catches": [
+    "Repeat clicks and Enter presses while a request is in flight (synchronous guard)",
+    "Double-taps right after a request settles (cooldown, default 400 ms)",
+    "Ambiguous failures (network, timeout, 408/429/5xx), retried with the same key",
+    "Definite failures, which mint a fresh key for the next attempt"
+  ],
+  "limits": [
+    "Does not guarantee a single charge or record; that requires the server to honour the idempotency key",
+    "The key lives in memory: a reload, remount or second tab gets a new key",
+    "Classifies retryable errors with a default rule; pass isRetryable for your API"
+  ],
+  "a11y": [
+    "Uses aria-busy instead of disabled while pending, so the button keeps focus",
+    "Pending, success and retry states have visible text labels; icons are aria-hidden",
+    "Errors render with role=alert and are linked via aria-describedby"
+  ],
+  "server": "Store the idempotency key with the result and return the stored result for repeats; add a unique constraint so duplicate writes fail.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Paid twice after a timeout",
-  "mistakes": ["double charge on double click", "duplicate order submitted", "form submitted twice", "enter key submitted twice"],
-  "aliases": ["submit button", "idempotency key", "double submit", "pay now", "place order", "loading button", "debounce", "razorpay", "react hook form"],
-  "flows": ["checkout", "forms"],
-  "fields": ["amount"]
+  "stops": "Helps prevent paying twice after a timeout",
+  "mistakes": [
+    "double charge on double click",
+    "duplicate order submitted",
+    "form submitted twice",
+    "enter key submitted twice"
+  ],
+  "aliases": [
+    "submit button",
+    "idempotency key",
+    "double submit",
+    "pay now",
+    "place order",
+    "loading button",
+    "debounce",
+    "razorpay",
+    "react hook form"
+  ],
+  "flows": [
+    "checkout",
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
 }

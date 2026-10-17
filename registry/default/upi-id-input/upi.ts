@@ -1,3 +1,5 @@
+// Bollard UI — upi-id-input · MIT licence · https://bollard-ui.vercel.app/components/upi-id-input
+
 /** Who issued a UPI handle. The handle names the app and its sponsor bank, not where the payee banks. */
 export interface UpiHandleInfo {
   app: string

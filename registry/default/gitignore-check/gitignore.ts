@@ -1,3 +1,5 @@
+// Bollard UI — gitignore-check · MIT licence · https://bollard-ui.vercel.app/components/gitignore-check
+
 /**
  * A dependency-free .gitignore engine that follows git's rules (git-scm.com/docs/gitignore and dir.c):
  * BOM and CR are dropped, unescaped trailing spaces are trimmed (tabs are not), `#` is only a comment at the

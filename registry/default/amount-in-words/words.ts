@@ -1,3 +1,5 @@
+// Bollard UI — amount-in-words · MIT licence · https://bollard-ui.vercel.app/components/amount-in-words
+
 /** Number systems: lakh/crore (`indian`) or thousand/million/billion (`international`). */
 export type NumberSystem = "indian" | "international"
 

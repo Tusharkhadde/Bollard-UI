@@ -1,6 +1,25 @@
 {
   "title": "i18n String Field",
-  "description": "Stops broken translations shipping by checking each one against its source as it is typed: dropped or renamed placeholders ({count}, %s, {{name}}, <b>…</b>), unclosed tags, ICU plural forms the target language needs per CLDR, rendered length against the UI budget and source text pasted back untranslated, with one-tap fixes.",
+  "summary": "Checks each translation against its source as it is typed, so dropped placeholders, broken tags or missing plural forms don't ship.",
+  "description": "Translation field that compares the text with its source: dropped or renamed placeholders ({count}, %s, {{name}}, <b>…</b>), unclosed tags, ICU plural forms the target language needs per CLDR, rendered length against a UI budget, and untranslated pastes. One-tap fixes.",
+  "catches": [
+    "Placeholders dropped or renamed ({count}, %s, %1$s, {{name}})",
+    "Markup tags missing or left unclosed",
+    "ICU plural branches the target language needs (via Intl.PluralRules)",
+    "Translation longer than the UI budget",
+    "Source text pasted back untranslated"
+  ],
+  "limits": [
+    "Plural rules come from the browser's Intl.PluralRules data, which can lag CLDR",
+    "Rendered length is a character estimate, not measured pixel width",
+    "Doesn't judge translation quality or meaning"
+  ],
+  "a11y": [
+    "Visible label tied to the field, described by the issues list",
+    "Issues list is a polite live region",
+    "Placeholder chips have aria-labels saying present or missing",
+    "Keep-same button has an aria-label and title"
+  ],
   "dependencies": [
     "lucide-react"
   ],

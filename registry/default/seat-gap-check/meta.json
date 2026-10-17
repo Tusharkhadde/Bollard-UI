@@ -1,10 +1,45 @@
 {
   "title": "Seat Gap Check",
-  "description": "Stops groups checking out with seats they'll regret by catching a party split across the row, a single empty seat left behind (which many cinemas and theatres refuse) and a child seated away from every adult, marking the problem seats and moving everyone to the nearest block that fits, children beside adults, in one tap.",
-  "dependencies": ["lucide-react"],
+  "summary": "Catches group seat picks that split the party, leave a single empty seat or seat a child away from every adult.",
+  "description": "Seat-map check for group bookings: a party split across the row, a single empty seat left behind (which many venues refuse) and a child seated away from every adult, with problem seats marked and a one-tap move to the nearest block that fits.",
+  "catches": [
+    "Party split across a row or aisle",
+    "A single orphan seat left between taken seats (orphanRule)",
+    "A child with no adult beside them",
+    "One-tap move to the nearest contiguous block, children beside adults"
+  ],
+  "limits": [
+    "Venue rules differ; set orphanRule to match yours",
+    "Works on the seat map you pass; prices and accessibility seats are not considered"
+  ],
+  "a11y": [
+    "Seat map is a role=grid with rowheaders; one tab stop with arrow-key, Home and End navigation",
+    "Each seat button has an aria-label with its status and aria-pressed when chosen",
+    "Issue icons are aria-hidden with text alongside"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Group split across row at booking",
-  "mistakes": ["family seats split", "single seat gap left", "child seated alone", "movie seats not together"],
-  "aliases": ["seat selection", "seat map", "movie tickets", "bookmyshow", "cinema seats", "flight seats", "seats together", "bus seats"],
-  "flows": ["checkout", "india"],
+  "mistakes": [
+    "family seats split",
+    "single seat gap left",
+    "child seated alone",
+    "movie seats not together"
+  ],
+  "aliases": [
+    "seat selection",
+    "seat map",
+    "movie tickets",
+    "bookmyshow",
+    "cinema seats",
+    "flight seats",
+    "seats together",
+    "bus seats"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
   "fields": []
 }

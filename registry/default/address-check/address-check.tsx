@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — address-check · MIT licence · https://bollard-ui.vercel.app/components/address-check
+
 import * as React from "react"
 import { LoaderCircle, MapPinOff, PackageX, Tag } from "lucide-react"
 
@@ -38,19 +40,31 @@ export interface AddressCheckProps extends Omit<React.ComponentProps<"fieldset">
   countries?: string[]
   /** Labels and placeholders. */
   line1Label?: string
+  /** Placeholder for the first address line. */
   line1Placeholder?: string
+  /** Label for the second address line. */
   line2Label?: string
+  /** Placeholder for the second address line. */
   line2Placeholder?: string
+  /** Label for the city field. */
   cityLabel?: string
+  /** Heading above the printed-label readback. */
   labelHeading?: string
   /** Messages. `{city}`, `{typed}`, `{postcode}`, `{label}`, `{example}`, `{country}` are filled in. */
   noNumberMessage?: string
+  /** Text for dismissing the missing-number warning. */
   noNumberDismissLabel?: string
+  /** Warning for PO box addresses. */
   poBoxMessage?: string
+  /** Message offering the corrected postcode. */
   postcodeFixMessage?: string
+  /** Message when the postcode fits another country. */
   otherCountryMessage?: string
+  /** Message when the postcode doesn't fit the country. */
   invalidPostcodeMessage?: string
+  /** Message when the city doesn't match the postcode. */
   cityMismatchMessage?: string
+  /** Message when the city is empty but the postcode is known. */
   cityMissingMessage?: string
 }
 

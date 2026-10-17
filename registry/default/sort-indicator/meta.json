@@ -1,7 +1,26 @@
 {
   "title": "Sort Indicator",
-  "description": "Stops people misreading a table's order by stating the sort in plain words (\"Sorted by Due date, oldest first\"), warning when the order comes from a hidden column, empty values or pinned rows, and animating rows to their new place (FLIP, reduced-motion aware) so a re-sort can be followed.",
-  "dependencies": ["lucide-react"],
+  "summary": "States a table's sort in plain words and warns when hidden columns, empty values or pinned rows make the order look wrong.",
+  "description": "Sortable header plus a readback that states the sort in plain words (\"Sorted by Due date, oldest first\"), warns when the order comes from a hidden column, empty values or pinned rows, and animates rows to their new place so a re-sort can be followed.",
+  "catches": [
+    "Sort by a column that isn't on screen, with a reveal action",
+    "Empty values, kept last in both directions and counted",
+    "Pinned rows that stay first regardless of sort",
+    "Direction in words that fit the column (A to Z, oldest first)"
+  ],
+  "limits": [
+    "Sorting helper uses natural numeric comparison; locale-specific collation may differ",
+    "You place aria-sort on your <th> (ariaSort helper provided)"
+  ],
+  "a11y": [
+    "Header button with a descriptive title; use the ariaSort helper for aria-sort on <th>",
+    "Sort readback and warnings render in polite live regions",
+    "Row animation (FLIP) is skipped under reduced motion",
+    "Reverse and clear are labelled buttons"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Misread the table's sort order",
   "mistakes": [
     "table sort unclear",

@@ -1,7 +1,24 @@
 {
   "title": "Copy Confirm",
-  "description": "Prevents pasting the wrong thing by showing exactly what was copied, refusing to copy an empty value, flagging stray whitespace and invisible characters with a one-tap clean copy, and copying formatted numbers as plain text.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows exactly what was copied and flags stray spaces or hidden characters, so the wrong thing isn't pasted somewhere important.",
+  "description": "Shows exactly what was copied, refuses to copy an empty value, flags stray whitespace and invisible characters with a one-tap clean copy, and can copy formatted numbers as plain text.",
+  "catches": [
+    "Copying an empty value",
+    "Leading or trailing whitespace and invisible characters, with a clean copy",
+    "Formatted numbers (grouping, currency) copied when plain digits were needed"
+  ],
+  "limits": [
+    "Can't see what the user pastes afterwards or where",
+    "Clipboard access can fail or be blocked by the browser; the failure is shown"
+  ],
+  "a11y": [
+    "Icon-only button gets an aria-label; it is described by the feedback while open",
+    "Feedback is aria-live=\"polite\"; Escape closes it",
+    "Icons are aria-hidden; the copied text is shown in a <code> element"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Pasted the wrong thing from the clipboard",
   "mistakes": [
     "copy button copied nothing",

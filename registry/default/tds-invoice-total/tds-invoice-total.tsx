@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tds-invoice-total · MIT licence · https://bollard-ui.vercel.app/components/tds-invoice-total
+
 import * as React from "react"
 import { Check, Copy, ReceiptIndianRupee, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — card-bill-pay · MIT licence · https://bollard-ui.vercel.app/components/card-bill-pay
+
 import * as React from "react"
 import { CircleCheck, CreditCard, Loader2, TriangleAlert } from "lucide-react"
 

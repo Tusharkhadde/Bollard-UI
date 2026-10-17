@@ -1,3 +1,5 @@
+// Bollard UI — ifsc-input · MIT licence · https://bollard-ui.vercel.app/components/ifsc-input
+
 /** Branch details, shaped after the free Razorpay IFSC API (https://ifsc.razorpay.com/<IFSC>). */
 export interface IfscDetails {
   bank: string

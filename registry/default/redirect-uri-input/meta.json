@@ -1,6 +1,36 @@
 {
   "title": "Redirect URI Input",
-  "description": "Prevents redirect_uri_mismatch sign-in failures and leaked authorization codes by checking a redirect URI the way an OAuth server does, exact string match, so it catches a trailing slash, http versus https, letter case, www or a port that differs from the registered list (with the differing characters highlighted side by side and a one-tap swap), plus localhost in production, wildcards, a default :443 port or empty ?, a #fragment, stray whitespace and short custom schemes.",
+  "summary": "Catches OAuth redirect URIs that are close to but not exactly the registered one, plus unsafe ones like localhost in production or wildcards.",
+  "description": "Checks a redirect URI the way an OAuth server does (exact string match), highlighting a differing trailing slash, scheme, case, www or port against the registered list with a one-tap swap, plus localhost in production, wildcards, fragments and stray whitespace.",
+  "catches": [
+    "Near-misses against registered URIs: trailing slash, http vs https, case, www, port",
+    "Side-by-side highlight of the differing characters, with a one-tap swap",
+    "localhost or loopback in a production client",
+    "Wildcards, a #fragment, default :443 port, empty ? and stray whitespace",
+    "Short custom schemes for native apps"
+  ],
+  "limits": [
+    "Checks the string only; it cannot see what your provider actually has registered unless you pass it",
+    "Providers differ (some allow loopback port variation for native apps); follow your provider's rules",
+    "Not a substitute for server-side exact matching"
+  ],
+  "a11y": [
+    "Visible <label> tied to the input; aria-invalid on errors",
+    "Status summary in a polite live region linked by aria-describedby",
+    "After a one-tap fix, focus returns to the input",
+    "Match state shown with icon and text"
+  ],
+  "server": "The authorization server must compare redirect_uri by exact string match against the registered list.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RFC 9700 – OAuth 2.0 Security Best Current Practice",
+        "url": "https://www.rfc-editor.org/rfc/rfc9700.html"
+      }
+    ],
+    "note": "Confirmed: RFC 9700 requires exact string matching of redirect URIs, except variable port numbers for localhost redirect URIs of native apps."
+  },
   "dependencies": [
     "lucide-react"
   ],

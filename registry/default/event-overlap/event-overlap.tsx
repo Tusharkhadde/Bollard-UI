@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — event-overlap · MIT licence · https://bollard-ui.vercel.app/components/event-overlap
+
 import * as React from "react"
 import { CalendarCheck2, CalendarClock, CalendarOff, Car, Coffee, Globe, Undo2 } from "lucide-react"
 
@@ -47,10 +49,15 @@ export interface EventOverlapProps extends OverlapOptions, Omit<React.ComponentP
   reasons?: Partial<Record<ConflictKind, string>>
   /** Templates: `{count}` and `{time}` are filled in. */
   conflictText?: string
+  /** Shown when there are no clashes. */
   clearText?: string
+  /** Text for the move-to-free-slot button. */
   moveLabel?: string
+  /** Text for the Undo button. */
   undoLabel?: string
+  /** Shown when no free slot is found. */
   noSlotText?: string
+  /** Text giving another zone's local time. */
   localTimeText?: string
   /** Locale for times and dates. */
   locale?: string

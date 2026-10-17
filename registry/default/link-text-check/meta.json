@@ -1,10 +1,50 @@
 {
   "title": "Link Text Check",
-  "description": "Prevents links that fail screen reader users browsing a links list by flagging \"click here\" and \"read more\", URLs as link text, empty links and the same text pointing to different places, with a one-tap rewrite that lifts the sentence's own words into the link (\"To see the venue map, click here\" → \"See the venue map\") and a view of the links list as it will be read out.",
-  "dependencies": ["lucide-react"],
+  "summary": "Flags \"click here\", bare URLs and empty links that make no sense to screen reader users browsing a list of links, and suggests better text.",
+  "description": "Link text check for Markdown or a live DOM region that flags \"click here\" and \"read more\", URLs as link text, empty links and the same text pointing to different places, with a rewrite that lifts the sentence's own words into the link and a view of the links list as read out.",
+  "catches": [
+    "Generic text such as \"click here\" and \"read more\"",
+    "Raw URLs used as link text",
+    "Empty links, including linked images with no alt",
+    "The same text pointing to different destinations",
+    "Rewrite suggestion from the surrounding sentence"
+  ],
+  "limits": [
+    "English generic phrases by default; pass genericText to translate",
+    "Suggested rewrites need a human check",
+    "Doesn't check link targets or contrast"
+  ],
+  "a11y": [
+    "Section is labelled; summary is a polite live region",
+    "Rows focus the link in live mode; smooth scroll is skipped under reduced motion",
+    "Focus returns to a nearby fix after applying one"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Click here links fail screen readers",
-  "mistakes": ["click here link text", "read more links accessibility", "url as link text", "empty link"],
-  "aliases": ["link text", "a11y", "accessibility", "wcag", "anchor text", "screen reader", "cms", "rich text editor"],
-  "flows": ["forms", "devtools"],
-  "fields": ["url", "text"]
+  "mistakes": [
+    "click here link text",
+    "read more links accessibility",
+    "url as link text",
+    "empty link"
+  ],
+  "aliases": [
+    "link text",
+    "a11y",
+    "accessibility",
+    "wcag",
+    "anchor text",
+    "screen reader",
+    "cms",
+    "rich text editor"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "url",
+    "text"
+  ]
 }

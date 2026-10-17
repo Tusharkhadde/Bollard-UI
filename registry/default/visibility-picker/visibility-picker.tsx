@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — visibility-picker · MIT licence · https://bollard-ui.vercel.app/components/visibility-picker
+
 import * as React from "react"
 import { Globe, Link, LoaderCircle, Lock, TriangleAlert, Users } from "lucide-react"
 

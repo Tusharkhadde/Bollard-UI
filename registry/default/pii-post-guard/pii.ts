@@ -1,3 +1,5 @@
+// Bollard UI — pii-post-guard · MIT licence · https://bollard-ui.vercel.app/components/pii-post-guard
+
 /** The kinds of personal detail the guard looks for. */
 export type PiiKind = "otp" | "card" | "aadhaar" | "pan" | "email" | "address" | "phone"
 

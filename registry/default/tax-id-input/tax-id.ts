@@ -1,3 +1,5 @@
+// Bollard UI — tax-id-input · MIT licence · https://bollard-ui.vercel.app/components/tax-id-input
+
 /** Which tax number a TaxIdInput holds. */
 export type TaxIdKind = "gstin" | "pan" | "vat"
 

@@ -1,3 +1,5 @@
+// Bollard UI — schedule-readback · MIT licence · https://bollard-ui.vercel.app/components/schedule-readback
+
 /** A 5-field cron expression (minute hour day-of-month month day-of-week), Vixie/POSIX semantics. */
 export interface CronSchedule {
   /** The five fields as written (macros like @daily are expanded). */

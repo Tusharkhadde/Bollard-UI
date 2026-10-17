@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quantity-stepper · MIT licence · https://bollard-ui.vercel.app/components/quantity-stepper
+
 import * as React from "react"
 import { Minus, Plus, TriangleAlert } from "lucide-react"
 
@@ -62,7 +64,9 @@ export interface QuantityStepperProps
   defaultValue?: number
   /** Called with every committed quantity. Suspicious typed jumps wait for confirmation first. */
   onValueChange?: (value: number) => void
+  /** Lowest allowed quantity. */
   min?: number
+  /** Highest allowed quantity. */
   max?: number
   /** Units available; the effective maximum is the lower of `max` and `stock`. */
   stock?: number
@@ -74,6 +78,7 @@ export interface QuantityStepperProps
   soldOutMessage?: string
   /** Accessible labels of the − and + buttons. */
   decreaseLabel?: string
+  /** Accessible label for the plus button. */
   increaseLabel?: string
   /** Override any other user-visible string (see `QUANTITY_MESSAGES`). */
   messages?: Partial<QuantityMessages>

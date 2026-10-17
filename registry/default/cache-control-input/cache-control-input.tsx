@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cache-control-input · MIT licence · https://bollard-ui.vercel.app/components/cache-control-input
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Globe, Info, Monitor, Server, TriangleAlert, WandSparkles } from "lucide-react"
 

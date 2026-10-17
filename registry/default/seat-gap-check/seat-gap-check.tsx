@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — seat-gap-check · MIT licence · https://bollard-ui.vercel.app/components/seat-gap-check
+
 import * as React from "react"
 import { Baby, MoveRight, TriangleAlert, Users } from "lucide-react"
 

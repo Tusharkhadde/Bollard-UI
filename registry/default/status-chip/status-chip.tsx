@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — status-chip · MIT licence · https://bollard-ui.vercel.app/components/status-chip
+
 import * as React from "react"
 import { CircleCheck, CircleDashed, CircleDotDashed, CircleHelp, Info, OctagonX, TriangleAlert, type LucideIcon } from "lucide-react"
 
@@ -68,6 +70,7 @@ export interface StatusChipProps<K extends string = DefaultStatus> extends Omit<
   statuses?: Record<K, StatusDefinition>
   /** Details about this instance, shown first in the explanation, e.g. "Card ending 4242 was declined." */
   detail?: string
+  /** Chip size. */
   size?: "sm" | "default"
   /** Heading before `next` in the explanation. */
   nextLabel?: string

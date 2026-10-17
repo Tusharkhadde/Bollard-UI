@@ -1,6 +1,23 @@
 {
   "title": "Timezone Picker",
-  "description": "Prevents scheduling in the wrong zone: search by city, country or abbreviation, with ambiguous ones like IST or PST listing every meaning instead of guessing, each result showing local time and UTC offset, plus warnings for a clock change in the coming weeks and a zone that differs from the device's.",
+  "summary": "Finds time zones by city, country or abbreviation and lists every meaning of ambiguous ones like IST or CST instead of guessing.",
+  "description": "Time zone search by city, country or abbreviation, listing every meaning of ambiguous abbreviations (IST, CST) instead of guessing, with local time and UTC offset per result, warnings for an upcoming clock change and a zone that differs from the device's.",
+  "catches": [
+    "Ambiguous abbreviations, with all their meanings",
+    "A clock change within dstWarningDays",
+    "A pick that differs from the device's zone, with use-device option",
+    "Local time and UTC offset for each result"
+  ],
+  "limits": [
+    "Search covers popular zones and aliases; obscure zones may need the IANA name",
+    "Offsets come from the runtime's tz database"
+  ],
+  "a11y": [
+    "Visible <label>; input is a combobox with aria-expanded, aria-controls and aria-activedescendant",
+    "Arrow keys move, Enter picks, Escape clears",
+    "Results are a listbox of options with aria-selected; status is role=status",
+    "Animations respect reduced motion"
+  ],
   "dependencies": [
     "@date-fns/tz",
     "@floating-ui/react",
@@ -8,7 +25,7 @@
     "motion"
   ],
   "registryDependencies": [
-    "timezone-mismatch"
+    "https://bollard-ui.vercel.app/r/timezone-mismatch.json"
   ],
   "stops": "Meeting scheduled in the wrong zone",
   "mistakes": [

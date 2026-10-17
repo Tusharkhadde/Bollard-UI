@@ -1,7 +1,29 @@
 {
   "title": "Leftover Text Check",
-  "description": "Stops text being published with the parts nobody meant to keep: chatbot chatter and refusals (\"I cannot fulfill that request\"), unfilled placeholders ([product], [task 1], XX%), TK and TODO markers and a paragraph pasted twice, with no false alarms on [1], [sic] or Markdown links, flagging them the moment they are pasted, deleting a chatter sentence in one tap, filling every copy of a placeholder at once, and asking for a second press to publish with leftovers.",
-  "dependencies": ["lucide-react", "motion"],
+  "summary": "Catches chatbot chatter, refusals, unfilled placeholders and TODOs left in text before it is published.",
+  "description": "Text check that flags chatbot chatter and refusals, unfilled placeholders ([product], XX%), TK and TODO markers and paragraphs pasted twice, without false alarms on [1], [sic] or Markdown links, and asks twice before publishing with leftovers.",
+  "catches": [
+    "Chatbot chatter and refusals (\"Certainly! Here's…\", \"I cannot fulfill that request\")",
+    "Unfilled placeholders such as [product], [task 1], XX%",
+    "TK and TODO markers",
+    "A paragraph pasted twice",
+    "Publishing with leftovers: asks for a second press"
+  ],
+  "limits": [
+    "Phrase lists are English-first; extend them with the phrases prop",
+    "Can't tell intentional brackets or repetition in every case",
+    "Doesn't check facts or tone"
+  ],
+  "a11y": [
+    "Textarea gets aria-invalid when leftovers are found and is described by the summary",
+    "Each finding has text and an icon that is aria-hidden",
+    "Focus moves to the next finding or back to the field after a fix",
+    "Animations are skipped under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
   "stops": "Chatbot reply published as listing",
   "mistakes": [
     "chatgpt text left in post",

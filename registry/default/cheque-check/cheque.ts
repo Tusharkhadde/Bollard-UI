@@ -1,3 +1,5 @@
+// Bollard UI — cheque-check · MIT licence · https://bollard-ui.vercel.app/components/cheque-check
+
 /**
  * Pure cheque-date rules (India first, configurable elsewhere). Sources:
  * - RBI DBOD.AML.BC.No.47/14.01.001/2011-12 (4 Nov 2011): from 1 Apr 2012 banks don't pay cheques, drafts,

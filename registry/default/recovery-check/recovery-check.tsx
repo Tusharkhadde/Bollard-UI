@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recovery-check · MIT licence · https://bollard-ui.vercel.app/components/recovery-check
+
 import * as React from "react"
 import { CircleCheck, KeyRound, LoaderCircle, Mail, Phone, ShieldAlert, ShieldCheck, Smartphone } from "lucide-react"
 
@@ -78,6 +80,7 @@ const ORDER = Object.keys(COPY) as IssueId[]
 type FixState = "pending" | "done" | "failed"
 
 export interface RecoveryCheckProps extends React.ComponentProps<"section"> {
+  /** Recovery methods on the account and when each was last confirmed. */
   state: RecoveryState
   /** Runs the one-tap fix for an issue. Resolve to mark it fixed; reject to show `failedText`. */
   onFix: (issue: IssueId) => void | Promise<void>
@@ -89,11 +92,17 @@ export interface RecoveryCheckProps extends React.ComponentProps<"section"> {
   issueText?: Partial<Record<IssueId, Partial<(typeof COPY)[IssueId]>>>
   /** Templates: `{count}` is the number of open issues. */
   title?: string
+  /** Summary line. `{count}` is the number of open issues. */
   summaryText?: string
+  /** Shown when nothing is at risk. */
   allClearText?: string
+  /** Shown in place of the fix button once fixed. */
   fixedLabel?: string
+  /** Label of the optional Change button for a stale contact. */
   changeLabel?: string
+  /** Shown when onFix rejects. */
   failedText?: string
+  /** Locale for relative ages ("8 months ago"). */
   locale?: string
 }
 

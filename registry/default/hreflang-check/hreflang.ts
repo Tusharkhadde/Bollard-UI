@@ -1,3 +1,5 @@
+// Bollard UI — hreflang-check · MIT licence · https://bollard-ui.vercel.app/components/hreflang-check
+
 /**
  * hreflang logic for HreflangCheck. Pure functions, safe on the server.
  * Rules follow Google Search Central, "Tell Google about localized versions of

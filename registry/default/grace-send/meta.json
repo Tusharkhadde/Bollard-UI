@@ -1,12 +1,49 @@
 {
   "title": "Grace Send",
-  "description": "Catches the regretted send: pressing Send starts a short countdown with a draining ring before the irreversible action fires, so Cancel, Escape or a leave-page warning can stop it, while Send now skips the wait.",
+  "summary": "Gives a short change-of-mind window after pressing Send, so a regretted message or action can be cancelled before it actually goes.",
+  "description": "Send button with a grace window: pressing it starts a countdown ring before your onSend runs, so Cancel, Escape or a leave-page warning can stop it; Send now skips the wait. Shows pending, sent, cancelled and failed states.",
+  "catches": [
+    "Send pressed too early or by mistake",
+    "Leaving the page during the countdown (beforeunload warning)",
+    "Held Enter auto-repeating the press",
+    "Failed send surfaced with an alert"
+  ],
+  "limits": [
+    "The delay lives in the open tab; closing the tab or a crash during the window cancels nothing on the server because nothing has been sent",
+    "Not undo: once onSend runs, the action is out",
+    "Does not de-duplicate sends on the server"
+  ],
+  "a11y": [
+    "Countdown is a labelled group with the seconds in its name; status text in a polite live region and failures in role=alert",
+    "Escape cancels during the countdown; focus moves to Cancel when it starts and back to Send after",
+    "Pending button has aria-busy; icons are aria-hidden",
+    "Ring animation is dropped under reduced motion"
+  ],
+  "server": "Make the send idempotent on the server; the grace window is client-side only.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Message sent before second thoughts",
-  "mistakes": ["sent message to wrong person", "undo send email", "regret sending", "send too fast"],
-  "aliases": ["undo send", "unsend", "send delay", "gmail undo send", "chat", "whatsapp", "compose", "send button"],
-  "flows": ["messaging"],
-  "fields": ["text"]
+  "stops": "Helps catch a send before second thoughts",
+  "mistakes": [
+    "sent message to wrong person",
+    "undo send email",
+    "regret sending",
+    "send too fast"
+  ],
+  "aliases": [
+    "undo send",
+    "unsend",
+    "send delay",
+    "gmail undo send",
+    "chat",
+    "whatsapp",
+    "compose",
+    "send button"
+  ],
+  "flows": [
+    "messaging"
+  ],
+  "fields": [
+    "text"
+  ]
 }

@@ -1,10 +1,45 @@
 {
   "title": "Dependent Reset",
-  "description": "Prevents dependent fields from vanishing silently when a parent changes: a hook clears only what the change made invalid (pruning just the add-ons a new plan lacks), and a notice names each lost value, highlights those fields and offers Undo.",
-  "dependencies": ["lucide-react"],
+  "summary": "When a parent field changes, clears only the dependent values it made invalid and names each one with Undo, so fields don't vanish silently.",
+  "description": "A hook clears only what a parent change made invalid (pruning just the add-ons a new plan lacks), and a notice names each lost value, highlights those fields and offers Undo.",
+  "catches": [
+    "Dependent values that became invalid after a parent change",
+    "Partial loss (some options pruned) versus a field cleared entirely",
+    "Silent data loss, by naming each value and offering Undo"
+  ],
+  "limits": [
+    "You define which values are valid for each parent value",
+    "Undo restores the previous values in the form; it doesn't undo anything already saved"
+  ],
+  "a11y": [
+    "The notice is role=\"status\" with aria-live=\"polite\"",
+    "Each lost field is described in text (e.g. \"cleared\" or \"removed\")",
+    "Dismiss has an aria-label"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Dependent fields cleared without notice",
-  "mistakes": ["changing country cleared state", "plan change removed add-ons", "dependent dropdown reset", "cascading select lost value"],
-  "aliases": ["dependent fields", "cascading select", "country state city", "conditional fields", "add-ons", "plan picker", "react hook form"],
-  "flows": ["forms", "checkout"],
-  "fields": ["address"]
+  "mistakes": [
+    "changing country cleared state",
+    "plan change removed add-ons",
+    "dependent dropdown reset",
+    "cascading select lost value"
+  ],
+  "aliases": [
+    "dependent fields",
+    "cascading select",
+    "country state city",
+    "conditional fields",
+    "add-ons",
+    "plan picker",
+    "react hook form"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
+  "fields": [
+    "address"
+  ]
 }

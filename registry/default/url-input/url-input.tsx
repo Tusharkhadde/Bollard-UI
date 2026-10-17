@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — url-input · MIT licence · https://bollard-ui.vercel.app/components/url-input
+
 import * as React from "react"
 import { Lock, LockOpen, Scissors, ShieldAlert, TriangleAlert } from "lucide-react"
 

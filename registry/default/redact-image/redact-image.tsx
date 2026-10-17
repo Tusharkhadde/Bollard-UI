@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — redact-image · MIT licence · https://bollard-ui.vercel.app/components/redact-image
+
 import * as React from "react"
 import { CircleAlert, Download, LoaderCircle, ScanText, ShieldCheck, SquarePlus, TriangleAlert, Undo2, X } from "lucide-react"
 

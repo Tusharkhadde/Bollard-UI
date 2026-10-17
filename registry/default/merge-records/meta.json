@@ -1,7 +1,50 @@
-{"title": "Merge Records", "description": "Stops a duplicate merge from silently throwing data away: each field defaults to the most recent non-empty value, real conflicts are marked (ignoring case and spacing), and a live readback names every value that will be discarded, which record keeps its ID, and which links move to it.", "dependencies": ["lucide-react"],
+{
+  "title": "Merge Records",
+  "summary": "Before merging duplicate records, names every value that will be discarded, so a merge doesn't silently throw data away.",
+  "description": "Duplicate merge panel where each field defaults to the most recent non-empty value, real conflicts are marked (ignoring case and spacing), and a live readback names every value that will be discarded, which record keeps its ID and which links move to it.",
+  "catches": [
+    "Values that the merge will discard, listed by name",
+    "Real conflicts vs case/spacing differences",
+    "Which record keeps its ID",
+    "Links (deals, tickets, integrations) that move to the survivor"
+  ],
+  "limits": [
+    "Defaults by last-updated time, which isn't always the right value",
+    "Moves and deletes are done by your onMerge",
+    "One value per field; it can't combine lists"
+  ],
+  "a11y": [
+    "Per-field choices and the survivor are native radio inputs in labelled groups",
+    "Readback highlight animation is skipped under reduced motion",
+    "Icons are aria-hidden"
+  ],
+  "server": "Run the merge in one transaction on the server and keep an audit record of discarded values.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Duplicate merge discarded customer data",
-  "mistakes": ["merge duplicates lost data", "which contact id kept", "merge overwrote phone number", "crm merge wrong values"],
-  "aliases": ["merge duplicates", "dedupe", "crm", "contacts", "customer records", "merge contacts", "duplicate leads"],
-  "flows": ["forms", "danger-zone"],
-  "fields": ["name", "email", "phone"]
+  "mistakes": [
+    "merge duplicates lost data",
+    "which contact id kept",
+    "merge overwrote phone number",
+    "crm merge wrong values"
+  ],
+  "aliases": [
+    "merge duplicates",
+    "dedupe",
+    "crm",
+    "contacts",
+    "customer records",
+    "merge contacts",
+    "duplicate leads"
+  ],
+  "flows": [
+    "forms",
+    "danger-zone"
+  ],
+  "fields": [
+    "name",
+    "email",
+    "phone"
+  ]
 }

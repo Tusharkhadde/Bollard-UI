@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Docs and live demos
+    url: https://bollard-ui.vercel.app
+    about: Search components by the mistake they stop, with install and usage for each.
+  - name: Report a security vulnerability
+    url: https://github.com/Tusharkhadde/Bollard-UI/security/advisories/new
+    about: Please report security problems privately, not as a public issue.

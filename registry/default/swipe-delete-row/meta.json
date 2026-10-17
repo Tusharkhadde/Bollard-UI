@@ -1,13 +1,46 @@
 {
   "title": "Swipe Delete Row",
-  "description": "Prevents accidental swipe-deletes: the row only deletes when dragged past a visible line (not by a fast flick or a vertical scroll), resists like a rubber band, springs back if released early, has a trash button for keyboard users, and keeps an Undo before the delete commits.",
+  "summary": "Makes swipe-to-delete deliberate: the row deletes only past a visible line, never on a flick or scroll, and keeps an Undo.",
+  "description": "Swipe-to-delete row that deletes only when dragged past a visible line (not on a fast flick or vertical scroll), resists like a rubber band, springs back if released early, has a trash button for keyboard users and keeps an Undo before the delete commits.",
+  "catches": [
+    "Swipes that don't cross the threshold",
+    "Fast flicks that cross it too quickly (minSwipeMs)",
+    "Vertical scrolls mistaken for swipes",
+    "Deletes regretted within undoFor"
+  ],
+  "limits": [
+    "onDelete runs after the undo window, so the item stays in your data until then",
+    "Undo is in-memory; a navigation commits the delete"
+  ],
+  "a11y": [
+    "Trash button with an aria-label naming the item, for keyboard and switch users",
+    "After a keyboard delete, focus moves to Undo; after undo, back to the trash button",
+    "Status uses role=status and a polite live region",
+    "Spring motion respects reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "motion"
   ],
   "stops": "Swipe while scrolling deleted row",
-  "mistakes": ["swipe deleted by accident", "flick deleted list item", "scroll triggered delete", "swipe to delete undo"],
-  "aliases": ["swipe to delete", "swipe actions", "list row", "mobile list", "inbox", "gesture", "ios style"],
-  "flows": ["danger-zone", "messaging"],
+  "mistakes": [
+    "swipe deleted by accident",
+    "flick deleted list item",
+    "scroll triggered delete",
+    "swipe to delete undo"
+  ],
+  "aliases": [
+    "swipe to delete",
+    "swipe actions",
+    "list row",
+    "mobile list",
+    "inbox",
+    "gesture",
+    "ios style"
+  ],
+  "flows": [
+    "danger-zone",
+    "messaging"
+  ],
   "fields": []
 }

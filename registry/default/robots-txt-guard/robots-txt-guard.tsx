@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — robots-txt-guard · MIT licence · https://bollard-ui.vercel.app/components/robots-txt-guard
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, CircleX, Info, TriangleAlert, WandSparkles } from "lucide-react"
 

@@ -1,3 +1,5 @@
+// Bollard UI — fx-send-receive · MIT licence · https://bollard-ui.vercel.app/components/fx-send-receive
+
 /** Which box the user typed in. The other side is worked out from the rate and fees. */
 export type FxSide = "send" | "receive"
 /** SWIFT charge instruction. OUR: sender pays every bank. SHA: banks along the way may deduct. BEN: recipient pays all. */

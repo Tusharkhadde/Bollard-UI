@@ -1,6 +1,24 @@
 {
   "title": "OTP Paste Input",
-  "description": "Prevents failed verifications by pulling the right one-time code out of a whole pasted SMS or email while ignoring phone numbers, amounts and order numbers, and accepting digits typed or pasted in any script (full-width, Devanagari, Arabic-Indic).",
+  "summary": "Pulls the right one-time code out of a whole pasted SMS or email, ignoring phone numbers and amounts, and accepts digits in any script.",
+  "description": "One-time-code field that extracts the code from a pasted SMS or email, skipping phone numbers, amounts, account endings and order numbers (a run near \"code\" or \"OTP\" wins), and accepts digits typed or pasted in any script (full-width, Devanagari, Arabic-Indic).",
+  "catches": [
+    "Whole SMS or email pasted instead of just the code",
+    "Phone numbers, amounts, account endings and order numbers mistaken for the code",
+    "Full-width, Devanagari or Arabic-Indic digits from other keyboards",
+    "Runs of the wrong length"
+  ],
+  "limits": [
+    "Picks the likeliest code; unusual message formats can still confuse it",
+    "Fixed code length (length prop)",
+    "Doesn't verify the code; your server does"
+  ],
+  "a11y": [
+    "Visible label; input is described by a polite notice region",
+    "Digit boxes are a visual layer marked aria-hidden over one real input",
+    "Notice icons are aria-hidden"
+  ],
+  "server": "Verify the code server-side with expiry, attempt limits and rate limiting.",
   "dependencies": [
     "lucide-react"
   ],

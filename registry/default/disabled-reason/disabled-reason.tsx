@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — disabled-reason · MIT licence · https://bollard-ui.vercel.app/components/disabled-reason
+
 import * as React from "react"
 import { FloatingPortal, autoUpdate, flip, offset, shift, size, useFloating, type Placement } from "@floating-ui/react"
 import { ArrowRight, Lock } from "lucide-react"

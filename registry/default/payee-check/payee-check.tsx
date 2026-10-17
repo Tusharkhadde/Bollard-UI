@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — payee-check · MIT licence · https://bollard-ui.vercel.app/components/payee-check
+
 import * as React from "react"
 import { BadgeCheck, CircleAlert, LoaderCircle, RotateCw, TriangleAlert, UserPlus } from "lucide-react"
 
@@ -53,12 +55,15 @@ type Check = { key: string; state: "checking" } | { key: string; state: "done"; 
 export interface PayeeCheckProps extends Omit<React.ComponentProps<"div">, "defaultValue"> {
   /** Payee details (controlled). */
   value?: PayeeDetails
+  /** Initial payee details when uncontrolled. */
   defaultValue?: PayeeDetails
+  /** Called with the details on every change. */
   onValueChange?: (value: PayeeDetails) => void
   /** Asks the payee's bank who holds the account. Called again only when the account or code changes. */
   lookup: (details: Pick<PayeeDetails, "account" | "code">, signal: AbortSignal) => Promise<PayeeLookupResult>
   /** Whether the account details are complete enough to look up. */
   isComplete?: (details: PayeeDetails) => boolean
+  /** Payment amount, for the large-payment callout. */
   amount?: number
   /** Formats `amount`, e.g. with Intl.NumberFormat. */
   formatAmount?: (amount: number) => string
@@ -70,10 +75,15 @@ export interface PayeeCheckProps extends Omit<React.ComponentProps<"div">, "defa
   onPay?: (details: PayeeDetails, verdict: PayeeVerdict | "unchecked") => void | Promise<void>
   /** Offers a small test payment for a large first payment. */
   onTestPayment?: (details: PayeeDetails) => void
+  /** Button text for a small test payment. */
   testPaymentLabel?: string
+  /** Label for the payee name. */
   nameLabel?: string
+  /** Label for the account number. */
   accountLabel?: string
+  /** Label for the bank code (IFSC, sort code, routing). */
   codeLabel?: string
+  /** Checkbox text to pay despite no match. */
   acknowledgeLabel?: string
   /** The account type the user said they're paying. A different type from the bank is a close match, as Confirmation of Payee requires. */
   expectedAccountType?: "personal" | "business"

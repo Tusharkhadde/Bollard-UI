@@ -1,7 +1,31 @@
 {
   "title": "Payment Reference",
-  "description": "Prevents bank transfers that can't be matched to an invoice by requiring the invoice number in the expected format (with one-tap fixes for a missing, mistyped or different invoice), checking the reference against each rail's length limit and character set (UPI and IMPS drop symbols, many NEFT remark boxes stop at 30, Faster Payments keeps 18), moving a cut-off invoice number to the front, and previewing the payee's statement line with the cut part struck through.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks a bank transfer reference against each rail's length and character limits, so the invoice number reaches the payee intact.",
+  "description": "Reference field that requires the invoice number in the expected format, checks each rail's length and character set (UPI, IMPS, NEFT, Faster Payments), moves a cut-off invoice number to the front, and previews the payee's statement line.",
+  "catches": [
+    "Missing, mistyped or different invoice number",
+    "Reference longer than the rail keeps, with the cut part struck through",
+    "Symbols the rail strips",
+    "Invoice number moved to the front when it would be cut off",
+    "Upper-casing on rails that do it"
+  ],
+  "limits": [
+    "Rail limits are sensible defaults, not guarantees; banks differ",
+    "Doesn't send the payment or reconcile it",
+    "Pattern for invoice numbers comes from your pattern prop"
+  ],
+  "a11y": [
+    "Visible label; input is described by a polite hint region",
+    "Rail picker is a labelled radiogroup",
+    "Icons are aria-hidden"
+  ],
+  "rules": {
+    "verified": null,
+    "note": "Not verified this round: rail limits (UPI ~50 characters, NEFT remark boxes ~30, Faster Payments 18) are defaults from the code. Check your bank's own limits."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Transfer couldn't be matched to the invoice",
   "mistakes": [
     "missing invoice number in transfer",

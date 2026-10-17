@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — char-budget · MIT licence · https://bollard-ui.vercel.app/components/char-budget
+
 import * as React from "react"
 import { TriangleAlert, WandSparkles } from "lucide-react"
 

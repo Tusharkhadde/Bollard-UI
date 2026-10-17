@@ -1,7 +1,27 @@
 {
   "title": "Gap-Aware Line",
-  "description": "Stops missing readings being read as a drop to zero or a smooth trend by breaking the line at nulls, shading and labelling each gap on hover and keyboard focus, keeping a lone reading between gaps visible as a dot, drawing estimated points hollow with dashed segments, and backing every reading with a data table, in pure SVG.",
-  "dependencies": ["lucide-react"],
+  "summary": "A line chart that shows missing readings as gaps instead of drawing them as zero or smoothing over them.",
+  "description": "Pure-SVG line chart that breaks the line at null readings, shades and labels each gap, keeps a lone reading between gaps as a dot, draws estimated points hollow with dashed segments, and backs every reading with a data table.",
+  "catches": [
+    "Missing readings drawn as a drop to zero",
+    "Gaps smoothed over into a false trend",
+    "A single reading between two gaps disappearing",
+    "Estimated or modelled values passed off as measured"
+  ],
+  "limits": [
+    "Only null means missing; a real 0 is drawn as 0, so your data must distinguish them",
+    "Does not detect gaps in timestamps; pass a null for each missing slot",
+    "Not a general charting library: one series, no zoom"
+  ],
+  "a11y": [
+    "Chart is role=img with an aria-label that includes a text summary",
+    "Points are reachable by keyboard (Arrow keys, Home, End) and the active point is read out in a polite live region",
+    "A toggle (aria-pressed) swaps the chart for a captioned data table; the table stays available to screen readers when hidden",
+    "Estimated points differ by shape (hollow, dashed), not only colour"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Missing readings drawn as zero",
   "mistakes": [
     "missing data shows zero",

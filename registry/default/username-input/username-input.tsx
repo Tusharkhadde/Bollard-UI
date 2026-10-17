@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — username-input · MIT licence · https://bollard-ui.vercel.app/components/username-input
+
 import * as React from "react"
 import { AtSign, CircleCheck, CircleX, LoaderCircle, TriangleAlert } from "lucide-react"
 

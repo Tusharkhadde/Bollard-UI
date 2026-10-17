@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — calendar-external-guest-guard · MIT licence · https://bollard-ui.vercel.app/components/calendar-external-guest-guard
+
 import * as React from "react"
 import { Contact, Eye, FileText, Globe, LoaderCircle, Pencil, Repeat, Send, ShieldAlert, Undo2, UserPlus, Users, X } from "lucide-react"
 
@@ -73,6 +75,7 @@ export interface CalendarExternalGuestGuardProps extends Omit<React.ComponentPro
   sensitiveTerms?: string[]
   /** Sends the invite. Return a promise for a pending state; a rejection keeps everything as it was. */
   onSend: (event: GuardedEvent) => void | Promise<void>
+  /** Override any visible string. */
   messages?: Partial<CalendarExternalGuestGuardMessages>
 }
 

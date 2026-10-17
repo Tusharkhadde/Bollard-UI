@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tree-select-readback · MIT licence · https://bollard-ui.vercel.app/components/tree-select-readback
+
 import * as React from "react"
 import { ChevronRight, ListTree, TriangleAlert } from "lucide-react"
 
@@ -108,6 +110,7 @@ export interface TreeSelectReadbackProps extends Omit<React.ComponentProps<"fiel
   emptyText?: string
   /** Templates: `{groups}` and `{count}` are filled in. */
   futureText?: string
+  /** Label of the pin-to-today's-items fix. */
   pinLabel?: string
   /** Badge next to a group ticked as a whole. */
   newBadge?: string

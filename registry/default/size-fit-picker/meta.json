@@ -1,6 +1,27 @@
 {
   "title": "Size Fit Picker",
-  "description": "Prevents wrong-size orders by converting UK, US, EU and IN sizes live without losing the pick, reading back the shopper's usual size adjusted for brands that run small or large, and catching their usual number clicked in the wrong system (US 8 is a UK 7) with a one-tap fix.",
+  "summary": "Converts UK, US, EU and IN sizes live and catches a usual size clicked in the wrong system, like US 8 picked as UK 8.",
+  "description": "Size picker that converts UK, US, EU and IN sizes live without losing the pick, reads back the shopper's usual size adjusted for brands that run small or large, and catches their usual number clicked in the wrong system with a one-tap fix.",
+  "catches": [
+    "The usual size number picked in the wrong system",
+    "Brand fit offsets (runs small or large)",
+    "Switching display systems without changing the pick",
+    "Sizes without an equivalent in a system"
+  ],
+  "limits": [
+    "Ships with typical men's shoe, women's shoe and women's clothing charts; brands vary",
+    "Fit offsets come from your data"
+  ],
+  "a11y": [
+    "Fieldset labelled by its legend",
+    "System and size pickers are radiogroups with arrow, Home and End keys",
+    "Suggestion is a labelled button"
+  ],
+  "rules": {
+    "verified": null,
+    "sources": [],
+    "note": "Built-in size charts are general conversions, not an official standard; not verified against a primary source. Use your brand's own chart."
+  },
   "dependencies": [
     "lucide-react"
   ],

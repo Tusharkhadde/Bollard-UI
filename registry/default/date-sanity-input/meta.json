@@ -1,6 +1,23 @@
 {
   "title": "Date Sanity Input",
-  "description": "Prevents wrong-date bookings by reading the weekday back and catching year typos, past or future dates on the wrong side of today, and weekends, each with a one-tap fix.",
+  "summary": "Reads a date back with its weekday and catches year typos, dates on the wrong side of today and weekends, so bookings aren't made for the wrong day.",
+  "description": "Reads the weekday back and catches year typos, past or future dates on the wrong side of today (per `expect`), dates implausibly far away and weekends, each with a one-tap fix.",
+  "catches": [
+    "Year typos (2062 for 2026)",
+    "A past date where a future one is expected, or the reverse",
+    "Dates more than maxYearsAway from today",
+    "Weekends, when warnWeekends is on",
+    "The weekday, read back so the user can spot a wrong day"
+  ],
+  "limits": [
+    "Doesn't know holidays or business-specific closed days",
+    "\"Today\" is the visitor's clock unless you pass `today`"
+  ],
+  "a11y": [
+    "Visible <label>; aria-describedby to an aria-live=\"polite\" status",
+    "Fix returns focus to the input",
+    "Motion respects prefers-reduced-motion"
+  ],
   "dependencies": [
     "lucide-react",
     "motion"

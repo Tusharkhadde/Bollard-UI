@@ -1,12 +1,48 @@
 {
   "title": "Review Step",
-  "description": "Catches wrong or forgotten answers before a multi-step form is sent by listing every answer by step with named Edit links, flagging empty optional fields and values changed since last time, and taking one deliberate submit that ignores carried-over clicks and can't fire twice.",
+  "summary": "Lists every answer of a multi-step form by step with Edit links before submit, flagging empty, missing and changed answers.",
+  "description": "Review page for wizards: every answer by step with named Edit links, empty optional fields and values changed since last time flagged, missing required answers blocking submit, and one deliberate submit that ignores carried-over clicks and disables while pending.",
+  "catches": [
+    "Missing required answers, blocking submit",
+    "Empty optional fields, shown as \"Not provided\"",
+    "Values changed since the previous submission",
+    "A click carried over from the previous step's button (guard window)",
+    "Repeat clicks while the submit is pending"
+  ],
+  "limits": [
+    "Duplicate protection is client-side only",
+    "Display formatting is yours (pass format for money or masking)"
+  ],
+  "a11y": [
+    "Each step is a section labelled by its title",
+    "Edit/Add buttons have aria-labels naming the step or field",
+    "Submit is described by the missing-answers note; errors use role=alert",
+    "Changed values have a sr-only \"Previously:\" prefix"
+  ],
+  "server": "Validate every answer again and make the final submit idempotent on the server.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Wrong answer submitted in wizard",
-  "mistakes": ["submitted wrong details", "no review before submit", "multi step form review", "double submit on final step"],
-  "aliases": ["review page", "summary step", "confirm details", "wizard", "stepper", "multi-step form", "checkout review", "application review"],
-  "flows": ["forms", "checkout"],
+  "stops": "Wrong answer submitted in a wizard",
+  "mistakes": [
+    "submitted wrong details",
+    "no review before submit",
+    "multi step form review",
+    "double submit on final step"
+  ],
+  "aliases": [
+    "review page",
+    "summary step",
+    "confirm details",
+    "wizard",
+    "stepper",
+    "multi-step form",
+    "checkout review",
+    "application review"
+  ],
+  "flows": [
+    "forms",
+    "checkout"
+  ],
   "fields": []
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — copy-confirm · MIT licence · https://bollard-ui.vercel.app/components/copy-confirm
+
 import * as React from "react"
 import { Check, CircleAlert, Copy, Eraser, TriangleAlert } from "lucide-react"
 

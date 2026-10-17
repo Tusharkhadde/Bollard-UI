@@ -1,3 +1,5 @@
+// Bollard UI — zero-result-rescue · MIT licence · https://bollard-ui.vercel.app/components/zero-result-rescue
+
 /** Pure logic for zero-result recovery: query repairs, and the smallest change that brings results back. */
 
 export interface SearchAttempt {

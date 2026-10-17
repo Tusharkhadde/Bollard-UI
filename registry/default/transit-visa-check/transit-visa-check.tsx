@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — transit-visa-check · MIT licence · https://bollard-ui.vercel.app/components/transit-visa-check
+
 import * as React from "react"
 import { CircleCheck, CircleHelp, CircleX, ExternalLink, Luggage, PlaneLanding, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — leave-request-check · MIT licence · https://bollard-ui.vercel.app/components/leave-request-check
+
 import * as React from "react"
 import { CalendarDays, CircleCheck, Loader2, Scale, TriangleAlert, Users } from "lucide-react"
 

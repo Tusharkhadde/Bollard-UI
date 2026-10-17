@@ -1,7 +1,47 @@
-{"title": "Move Readback", "description": "Stops a move from quietly changing who can see something: it reads back the destination path with the folder that sets access highlighted, says how many people gain or lose access (\"Moving into Public makes it visible to 40 people\"), counts path links that will break with a one-tap redirect, lists inherited settings that change, and relabels the button when the move widens the audience.", "dependencies": ["lucide-react"],
-  "stops": "Private doc moved into public folder",
-  "mistakes": ["moved file made it public", "move broke links", "permissions changed after move", "shared folder exposed file"],
-  "aliases": ["move to", "folder", "permissions", "sharing", "google drive", "notion", "breadcrumbs", "access"],
-  "flows": ["danger-zone"],
-  "fields": ["file"]
+{
+  "title": "Move Readback",
+  "summary": "Before moving an item, reads back who gains or loses access, which links break and which settings change, so a private doc doesn't land in a public folder.",
+  "description": "Move confirmation that reads back the destination path with the folder setting access highlighted, how many people gain or lose access, path links that break (with a redirect option) and inherited settings that change, and relabels the button when access widens.",
+  "catches": [
+    "Moves that make an item visible to more people",
+    "Moves that remove access for people who had it",
+    "Path links that will break, with a keep-redirect option",
+    "Inherited settings (retention, sharing) that change at the destination"
+  ],
+  "limits": [
+    "Viewer counts and settings come from your props; it doesn't query permissions",
+    "Direct shares on the item are only as accurate as your data"
+  ],
+  "a11y": [
+    "Form labelled by its title; paths are labelled ordered lists",
+    "Impact list is a polite live region; the arrow between states has an accessible name",
+    "Highlight animation is skipped under reduced motion"
+  ],
+  "server": "Re-check permissions and apply the move server-side; recompute access after it.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent a private doc being moved into a public folder",
+  "mistakes": [
+    "moved file made it public",
+    "move broke links",
+    "permissions changed after move",
+    "shared folder exposed file"
+  ],
+  "aliases": [
+    "move to",
+    "folder",
+    "permissions",
+    "sharing",
+    "google drive",
+    "notion",
+    "breadcrumbs",
+    "access"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
+  "fields": [
+    "file"
+  ]
 }

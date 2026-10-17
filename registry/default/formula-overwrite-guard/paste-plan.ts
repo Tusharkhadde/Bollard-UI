@@ -1,3 +1,5 @@
+// Bollard UI — formula-overwrite-guard · MIT licence · https://bollard-ui.vercel.app/components/formula-overwrite-guard
+
 export interface GridCell {
   /** What the cell shows. */
   value: string

@@ -1,7 +1,49 @@
-{"title": "Two-Person Approve", "description": "Enforces the two-person rule for high-risk actions: the requester can't approve their own request, approval is bound to a fingerprint of exactly what will run so an edited plan has to be re-reviewed, rejections need a reason, and expired requests can't be approved.", "dependencies": ["lucide-react"],
-  "stops": "Requester approved their own risky change",
-  "mistakes": ["self approval of request", "four eyes principle", "plan changed after approval", "maker checker"],
-  "aliases": ["maker checker", "four eyes", "approval flow", "two person rule", "approve request", "change management", "bank approval", "access request"],
-  "flows": ["devtools", "danger-zone"],
+{
+  "title": "Two-Person Approve",
+  "summary": "Review screen for the two-person rule: it shows the exact plan, hides Approve from the requester, and flags edits made after review.",
+  "description": "Approval UI for high-risk actions that surfaces the two-person rule: the requester can't approve their own request here, approval is tied to a fingerprint of the exact plan so edits need re-review, rejections need a reason, and expired requests can't be approved.",
+  "catches": [
+    "The requester trying to approve their own request",
+    "Someone not on the approver list",
+    "A plan edited after review (fingerprint changed), with changed lines marked",
+    "Rejections without a reason",
+    "Expired requests"
+  ],
+  "limits": [
+    "UI only: who may approve and whether the plan changed must be checked by your server",
+    "The fingerprint is FNV-1a (8 hex digits), a change detector, not a cryptographic hash",
+    "Expiry uses the client clock unless you pass now"
+  ],
+  "a11y": [
+    "Section labelled by its title; plan <pre> is described by the changed-plan notice",
+    "Changed lines have a sr-only \"Changed:\" prefix",
+    "Outcome and expiry use role=status; changed-plan notice is a polite live region",
+    "Reason textarea has a <label>, aria-invalid when missing, and receives focus on reject"
+  ],
+  "server": "Enforce it on the server: reject approvals from the requester or non-approvers, bind the approval to a server-side hash of the exact plan, and refuse expired requests.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent a requester approving their own risky change",
+  "mistakes": [
+    "self approval of request",
+    "four eyes principle",
+    "plan changed after approval",
+    "maker checker"
+  ],
+  "aliases": [
+    "maker checker",
+    "four eyes",
+    "approval flow",
+    "two person rule",
+    "approve request",
+    "change management",
+    "bank approval",
+    "access request"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
   "fields": []
 }

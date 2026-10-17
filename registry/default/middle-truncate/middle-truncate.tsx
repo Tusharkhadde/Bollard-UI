@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — middle-truncate · MIT licence · https://bollard-ui.vercel.app/components/middle-truncate
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

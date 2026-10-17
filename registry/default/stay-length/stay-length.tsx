@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — stay-length · MIT licence · https://bollard-ui.vercel.app/components/stay-length
+
 import * as React from "react"
 import { ArrowLeftRight, CalendarRange, MoonStar, PartyPopper } from "lucide-react"
 
@@ -79,6 +81,7 @@ export interface StayLengthProps extends Omit<React.ComponentProps<"div">, "defa
   value?: DateRange
   /** Initial range when uncontrolled. */
   defaultValue?: DateRange
+  /** Called with the date range after every change. */
   onValueChange?: (range: DateRange) => void
   /** The length the person asked for elsewhere ("7 nights" in search), to catch an off-by-one. */
   expected?: number
@@ -86,8 +89,11 @@ export interface StayLengthProps extends Omit<React.ComponentProps<"div">, "defa
   weekend?: number[]
   /** Public holidays, from your calendar source. */
   holidays?: Holiday[]
+  /** Locale for date formatting. */
   locale?: string
+  /** Label of the start date. */
   startLabel?: string
+  /** Label of the end date. */
   endLabel?: string
   /** Overrides any of the sentences in `STAY_LENGTH_MESSAGES`, e.g. to translate them. */
   messages?: Partial<StayLengthMessages>

@@ -1,7 +1,27 @@
 {
   "title": "Size Context",
-  "description": "Prevents failed uploads and GB-vs-GiB confusion by showing a size with a relatable comparison, transfer time and the equivalent in the other unit system (including what Windows will display), and by checking a limit before upload, flagging the grey zone where a \"4 GB\" limit only fits if the service means GiB.",
-  "dependencies": ["lucide-react"],
+  "summary": "Explains a file size with a comparison, transfer time and the GB/GiB equivalent, and checks it against an upload limit.",
+  "description": "File size readback with a relatable comparison, transfer time and the equivalent in the other unit system (including what Windows shows), plus a limit check that flags the grey zone where a \"4 GB\" limit fits only if the service means GiB.",
+  "catches": [
+    "Files over the limit",
+    "The ambiguous zone where a decimal-GB limit fits only if it means GiB",
+    "What Windows will display (1,024-based units labelled GB)",
+    "Estimated transfer time at a given speed",
+    "A relatable comparison for the size"
+  ],
+  "limits": [
+    "Transfer time is an estimate from bitsPerSecond",
+    "Cannot know which unit a third-party service really uses"
+  ],
+  "a11y": [
+    "Exact byte count in a title tooltip",
+    "Explain toggle uses aria-expanded and aria-controls",
+    "Fit status in a polite live region; over-limit uses role=alert",
+    "Bar visual is aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Upload fails on GB vs GiB",
   "mistakes": [
     "file too large upload",

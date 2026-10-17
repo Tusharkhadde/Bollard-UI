@@ -1,10 +1,52 @@
 {
   "title": "Retention Change",
-  "description": "Stops a shorter data-retention period from destroying data by surprise by saying exactly what goes and when (“Lowering to 30 days deletes 14,210 events older than 13 Sep, tonight at 02:00”), shading the doomed days on a chart, counting down to the purge while changing it back still loses nothing, and naming the confirm button “Delete without export” until an export-first is done.",
-  "dependencies": ["lucide-react"],
+  "summary": "Says exactly what a shorter data-retention period will delete and when, and suggests an export before it purges.",
+  "description": "Retention picker that states what a shorter period deletes and when (\"deletes 14,210 events older than 13 Sep, tonight at 02:00\"), shades the doomed days on a chart, counts down while undoing is still free, and labels confirm \"Delete without export\" until exported.",
+  "catches": [
+    "Record count and cutoff date a shorter period would delete",
+    "When the next purge runs",
+    "Roughly how many more records go each night after",
+    "Window in which raising it back still loses nothing",
+    "Confirming without an export, named on the button"
+  ],
+  "limits": [
+    "Counts come from the daily history you pass; days are UTC calendar days",
+    "The chart is a summary (bars group days) and is hidden from screen readers; the text states the numbers",
+    "Does not delete or export anything itself"
+  ],
+  "a11y": [
+    "Options are native radios in a group labelled by the title",
+    "Deletion summary in a polite live region",
+    "Chart is aria-hidden; the same facts are in text",
+    "Export and save buttons set aria-busy while pending; icons are aria-hidden"
+  ],
+  "server": "Apply the new retention server-side with its own grace period, and make the purge job re-check the setting before deleting.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Shorter retention purged months of data",
-  "mistakes": ["lowered retention deleted data", "data retention change", "logs purged after setting change", "export before retention"],
-  "aliases": ["data retention", "retention period", "logs", "purge", "analytics events", "compliance", "export", "ttl"],
-  "flows": ["account-settings", "danger-zone", "devtools"],
-  "fields": ["number"]
+  "mistakes": [
+    "lowered retention deleted data",
+    "data retention change",
+    "logs purged after setting change",
+    "export before retention"
+  ],
+  "aliases": [
+    "data retention",
+    "retention period",
+    "logs",
+    "purge",
+    "analytics events",
+    "compliance",
+    "export",
+    "ttl"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone",
+    "devtools"
+  ],
+  "fields": [
+    "number"
+  ]
 }

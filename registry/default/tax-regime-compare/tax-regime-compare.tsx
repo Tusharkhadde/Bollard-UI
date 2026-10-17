@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tax-regime-compare · MIT licence · https://bollard-ui.vercel.app/components/tax-regime-compare
+
 import * as React from "react"
 import { ExternalLink, IndianRupee, Scale, TriangleAlert } from "lucide-react"
 

@@ -1,10 +1,50 @@
 {
   "title": "Import Preview",
-  "description": "Catches a bad spreadsheet import before it lands by finding the real heading row (skipping title lines, flagging headings about to be imported as a record), matching columns by heading and by their values with a confidence, holding the import while a required field is unmapped, and listing every skipped line by its spreadsheet line number and reason (duplicates in the file and against existing records, repeated headings, bad values) before a plain \"Import 412 · skip 7\".",
-  "dependencies": ["lucide-react"],
+  "summary": "Previews a CSV or spreadsheet import, finds the real heading row and maps columns, so a bad file doesn't create junk records.",
+  "description": "Import preview that finds the real heading row, maps columns by heading and by values with a confidence, holds the import while a required field is unmapped, and lists every skipped line with its line number and reason before a plain \"Import 412 · skip 7\".",
+  "catches": [
+    "Title lines above the real headings, and headings about to be imported as a record",
+    "Columns matched by heading or by their values, with a confidence",
+    "Required fields left unmapped: import is held",
+    "Duplicates in the file and against existing records",
+    "Repeated headings and cells that fail a field's check"
+  ],
+  "limits": [
+    "Needs rows already parsed; it doesn't read CSV or XLSX itself",
+    "Value-based matching is a guess; check low-confidence columns",
+    "Duplicate check uses one key field, trimmed and case-insensitive"
+  ],
+  "a11y": [
+    "Each column mapping select has a label in a labelled list",
+    "Status and counts are in polite live regions; unmapped required fields use role=alert",
+    "Skipped-line groups expand with aria-expanded"
+  ],
+  "server": "Validate rows and enforce uniqueness constraints on the server during the import.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Bad CSV import created junk records",
-  "mistakes": ["csv import wrong columns", "header row imported as data", "duplicate rows imported", "excel import errors"],
-  "aliases": ["csv import", "excel upload", "bulk upload", "column mapping", "import contacts", "xlsx", "papaparse", "data import"],
-  "flows": ["forms", "devtools"],
-  "fields": ["file"]
+  "mistakes": [
+    "csv import wrong columns",
+    "header row imported as data",
+    "duplicate rows imported",
+    "excel import errors"
+  ],
+  "aliases": [
+    "csv import",
+    "excel upload",
+    "bulk upload",
+    "column mapping",
+    "import contacts",
+    "xlsx",
+    "papaparse",
+    "data import"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "file"
+  ]
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — cert-paste-check · MIT licence · https://bollard-ui.vercel.app/components/cert-paste-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, FileBadge, FileQuestion, Info, KeyRound, ShieldAlert, TriangleAlert } from "lucide-react"
 

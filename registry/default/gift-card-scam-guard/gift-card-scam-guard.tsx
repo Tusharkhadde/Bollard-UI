@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — gift-card-scam-guard · MIT licence · https://bollard-ui.vercel.app/components/gift-card-scam-guard
+
 import * as React from "react"
 import { Gift, Loader2, OctagonX, PhoneOff, ShieldAlert } from "lucide-react"
 
@@ -56,6 +58,7 @@ export interface GiftCardScamGuardProps extends Omit<React.ComponentProps<"div">
   firstPurchase?: boolean
   /** ISO 4217 code for amounts. */
   currency?: string
+  /** BCP 47 locale for formatting the total. */
   locale?: string
   /** Total at or above which the order counts as large: a number, or one per currency. Defaults to about US$500 in `currency` (e.g. ₹20,000). */
   largeTotal?: ScamOptions["largeTotal"]

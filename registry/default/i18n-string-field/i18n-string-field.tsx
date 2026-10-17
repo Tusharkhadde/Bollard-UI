@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — i18n-string-field · MIT licence · https://bollard-ui.vercel.app/components/i18n-string-field
+
 import * as React from "react"
 import { Languages, TriangleAlert, X } from "lucide-react"
 
@@ -25,9 +27,11 @@ export interface I18nStringFieldProps
   value?: string
   /** Initial translation when uncontrolled. */
   defaultValue?: string
+  /** Called with the translation on every change. */
   onValueChange?: (value: string) => void
   /** Visible label. `{language}` is filled in. */
   label?: string
+  /** Label shown above the source string. */
   sourceLabel?: string
   /** Accessible label of the button that accepts a translation identical to the source. */
   keepSameLabel?: string

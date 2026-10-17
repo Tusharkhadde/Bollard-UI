@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — glob-input · MIT licence · https://bollard-ui.vercel.app/components/glob-input
+
 import * as React from "react"
 import { Check, Minus, TriangleAlert } from "lucide-react"
 

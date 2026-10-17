@@ -1,6 +1,24 @@
 {
   "title": "Replace Preview",
-  "description": "Stops replace-all from mangling text (\"cat\" → \"dog\" turning \"category\" into \"dogegory\") by previewing every match in context with a count, naming the matches that sit inside longer words with a one-tap whole-word fix, preserving case, letting you skip single matches and undo the replace.",
+  "summary": "Previews every find-and-replace match in context before applying, so \"cat\" → \"dog\" doesn't turn \"category\" into \"dogegory\".",
+  "description": "Find-and-replace that previews every match in context with a count, names matches inside longer words with a one-tap whole-word fix, preserves case, lets you skip single matches, and undoes the replace.",
+  "catches": [
+    "Matches that sit inside longer words, with a whole-word fix",
+    "Total match count before applying",
+    "Individual matches you want to skip",
+    "Case of each match, preserved in the replacement (CAT → DOG)"
+  ],
+  "limits": [
+    "Plain-text matching, not regex",
+    "Word boundaries follow simple letter rules and may differ for some scripts",
+    "Undo covers the last replace only"
+  ],
+  "a11y": [
+    "Find and replace inputs have labels",
+    "Match-case, whole-word and preserve-case are aria-pressed toggles in a labelled group",
+    "Match list has an aria-label with the count; each include/skip control has its own label",
+    "Warnings and the result render in polite live regions"
+  ],
   "dependencies": [
     "lucide-react"
   ],

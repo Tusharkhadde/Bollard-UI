@@ -1,3 +1,5 @@
+// Bollard UI — commit-secret-guard · MIT licence · https://bollard-ui.vercel.app/components/commit-secret-guard
+
 // Pure unified-diff parsing and secret scanning of added lines only. Safe on the server.
 
 export interface DiffFile {

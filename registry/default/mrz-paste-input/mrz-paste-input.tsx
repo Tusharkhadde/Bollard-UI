@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mrz-paste-input · MIT licence · https://bollard-ui.vercel.app/components/mrz-paste-input
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, CircleX, ScanLine, TriangleAlert } from "lucide-react"
 

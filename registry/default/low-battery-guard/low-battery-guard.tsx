@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — low-battery-guard · MIT licence · https://bollard-ui.vercel.app/components/low-battery-guard
+
 import * as React from "react"
 import { BatteryCharging, BatteryLow, BatteryWarning, PlugZap } from "lucide-react"
 
@@ -142,17 +144,29 @@ export interface LowBatteryGuardProps extends Omit<React.ComponentProps<"div">, 
   hideAfter?: number
   /** Templates: `{task}` (lower case reads best, e.g. "the export"), `{level}`, `{runway}`, `{duration}` are filled in. */
   shortTitle?: string
+  /** Title when the runway is close to the task's length. */
   tightTitle?: string
+  /** Title when the battery won't last. */
   lowTitle?: string
+  /** Title while charging. */
   chargingTitle?: string
+  /** Title after the task starts on plug-in. */
   startedTitle?: string
+  /** Title while waiting for a charger. */
   armedTitle?: string
+  /** Detail line under the title. */
   detailText?: string
+  /** Detail line when the battery won't last. */
   lowDetailText?: string
+  /** Label for the battery runway. */
   runwayLabel?: string
+  /** Label for the task's length. */
   durationLabel?: string
+  /** Button text to start once plugged in. */
   startWhenPluggedLabel?: string
+  /** Button text to start now. */
   startAnywayLabel?: string
+  /** Button text to stop waiting. */
   cancelLabel?: string
 }
 

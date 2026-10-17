@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — photo-location-guard · MIT licence · https://bollard-ui.vercel.app/components/photo-location-guard
+
 import * as React from "react"
 import { Camera, CircleCheck, Clock, ImageUp, Images, LoaderCircle, MapPin, UserRound } from "lucide-react"
 
@@ -55,19 +57,29 @@ export interface PhotoLocationGuardProps extends Omit<React.ComponentProps<"div"
   locale?: string
   /** JPEG quality of the cleaned copy, 0–1. */
   quality?: number
+  /** Visible label. */
   label?: string
+  /** Button text to choose a photo. */
   chooseLabel?: string
+  /** Button text to pick a different photo. */
   changeLabel?: string
   /** Heading over the findings when the photo has a location. */
   title?: string
   /** Heading when there's no location but other details. */
   detailsTitle?: string
+  /** Button text to remove location data. */
   removeLabel?: string
+  /** Explains what removing does. */
   removeHint?: string
+  /** Button text while removing. */
   removingLabel?: string
+  /** Shown after location is removed. */
   removedText?: string
+  /** Shown when nothing revealing is found. */
   cleanText?: string
+  /** Shown when the file can't be read. */
   errorText?: string
+  /** Shown for a file type it can't read. */
   unsupportedText?: string
   /** Row names and small texts in the findings list. */
   labels?: Partial<typeof DEFAULT_LABELS>

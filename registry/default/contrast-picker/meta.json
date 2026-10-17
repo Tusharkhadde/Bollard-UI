@@ -1,6 +1,33 @@
 {
   "title": "Contrast Picker",
-  "description": "Stops unreadable text colours from shipping by showing the WCAG 2 contrast ratio truncated, never rounded up (#777 on white is 4.47:1 and fails), with AA/AAA marks for normal and large text and a one-tap nearest passing colour that moves only lightness so the hue stays on brand.",
+  "summary": "Shows the WCAG contrast ratio of a text and background pair, never rounded up, and offers the nearest passing colour, so unreadable text doesn't ship.",
+  "description": "Shows the WCAG 2 contrast ratio truncated, never rounded up (#777 on white is 4.47:1 and fails), with AA/AAA marks for normal and large text, and a one-tap nearest passing colour that changes only lightness so the hue stays on brand.",
+  "catches": [
+    "Ratios just under a threshold that rounding would hide (4.499 shown as 4.49, a fail)",
+    "Failures for normal text versus large text, at AA and AAA",
+    "A nearest passing colour that keeps the hue"
+  ],
+  "limits": [
+    "Uses the WCAG 2 formula; it is not an APCA (WCAG 3 draft) checker",
+    "Checks solid colours only, not text over images, gradients or transparency",
+    "Readability also depends on font weight and size, which it does not measure"
+  ],
+  "a11y": [
+    "Labelled colour fields with aria-invalid on unreadable values; swatches have aria-labels",
+    "The ratio has an aria-label (\"Contrast ratio 4.47 to 1\")",
+    "Pass/fail is written in words (\"fails, needs 4.5:1\") plus icons",
+    "Warnings are aria-live=\"polite\""
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "WCAG 2.2: 1.4.3 Contrast (Minimum) and 1.4.6 Contrast (Enhanced)",
+        "url": "https://www.w3.org/TR/WCAG22/"
+      }
+    ],
+    "note": "Informational. Checked thresholds: AA 4.5:1 normal / 3:1 large; AAA 7:1 normal / 4.5:1 large."
+  },
   "dependencies": [
     "lucide-react"
   ],

@@ -1,6 +1,25 @@
 {
   "title": "Namesake Select",
-  "description": "Stops “right name, wrong person” picks (the second Ravi Kumar one row down, a patient or customer with a twin) by flagging options that share a name regardless of case, accents or word order with only the details that tell them apart, asking for one identifier among the namesakes before a shared name becomes the value (the ID re-entry that cut wrong-patient orders most in a randomized trial), offering a one-tap switch when the answer belongs to the other person, reading the choice back with two identifiers and calling out identical records as likely duplicates, in a list that flips and shrinks instead of clipping.",
+  "summary": "Flags options that share a name and asks for one identifier before a shared name is picked, so the right name doesn't go to the wrong person.",
+  "description": "Person picker that flags options sharing a name (ignoring case, accents and word order) with only the details that tell them apart, asks for one identifier before a shared name becomes the value, offers a switch when the answer fits the other person, and reads the choice back.",
+  "catches": [
+    "Two or more people with the same name, however it is typed",
+    "The details that tell namesakes apart, shown inline",
+    "Picking a shared name: re-entry of one identifier is required (default verify=\"reenter\")",
+    "Identifier that matches a different namesake: one-tap switch",
+    "Identical records that can't be told apart"
+  ],
+  "limits": [
+    "Only as good as the identifiers you pass (date of birth, city, phone)",
+    "Name matching ignores case, accents, punctuation and word order, but not nicknames or transliteration variants",
+    "Re-entry adds a step for every shared name, by design"
+  ],
+  "a11y": [
+    "Combobox with a visible label, aria-expanded and arrow-key/Enter navigation",
+    "Focus moves into the verification card and back to the input",
+    "Animations are skipped under reduced motion"
+  ],
+  "server": "Re-check the selected record ID on the server before acting on it (orders, payments, records).",
   "dependencies": [
     "@floating-ui/react",
     "lucide-react",

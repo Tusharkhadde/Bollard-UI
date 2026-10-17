@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — agent-action-approve · MIT licence · https://bollard-ui.vercel.app/components/agent-action-approve
+
 import * as React from "react"
 import { AlertTriangle, Ban, Check, Loader2, ShieldAlert, ShieldCheck, Terminal, X } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -54,6 +56,7 @@ export interface AgentActionApproveProps extends Omit<React.ComponentProps<"div"
   holdMs?: number
   /** Called with the decision. May return a Promise: buttons show a pending state and can't fire twice. */
   onDecision?: (decision: AgentDecision) => void | Promise<void>
+  /** Override any visible string. */
   messages?: Partial<Omit<Messages, "risk" | "scope" | "undoLabel" | "refused">> & {
     risk?: Partial<Messages["risk"]>
     scope?: Partial<Messages["scope"]>

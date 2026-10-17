@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — secret-field · MIT licence · https://bollard-ui.vercel.app/components/secret-field
+
 import * as React from "react"
 import { Check, Copy, Eye, EyeOff } from "lucide-react"
 
@@ -45,14 +47,19 @@ export interface SecretFieldProps extends Omit<React.ComponentProps<"div">, "chi
   visibleTail?: number
   /** Accessible names for the buttons and feedback. */
   revealLabel?: string
+  /** Accessible label of the hide button. */
   hideLabel?: string
+  /** Accessible label of the copy button. */
   copyLabel?: string
+  /** Announced after a successful copy. */
   copiedLabel?: string
+  /** Announced when copying fails. */
   copyFailedLabel?: string
   /** Shown when someone copies the masked dots by hand and gets the real key instead. */
   copiedMaskedLabel?: string
   /** Pill text for live and test keys. */
   liveLabel?: string
+  /** Badge for a test-mode key. */
   testLabel?: string
 }
 

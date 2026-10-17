@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quote-lock · MIT licence · https://bollard-ui.vercel.app/components/quote-lock
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { ArrowDownRight, ArrowUpRight, Check, LoaderCircle, Lock, RefreshCw } from "lucide-react"
@@ -53,7 +55,9 @@ export interface QuoteLockProps extends Omit<React.ComponentProps<"div">, "child
   minTimeToPay?: number
   /** Label above the amount, e.g. "You send". */
   label?: React.ReactNode
+  /** BCP 47 locale for amounts and times. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<QuoteLockMessages>
 }
 

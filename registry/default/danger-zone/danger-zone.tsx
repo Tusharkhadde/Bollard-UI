@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — danger-zone · MIT licence · https://bollard-ui.vercel.app/components/danger-zone
+
 import * as React from "react"
 import { LoaderCircle, Lock, LockOpen } from "lucide-react"
 
@@ -29,9 +31,13 @@ export interface DangerZoneProps extends Omit<React.ComponentProps<"section">, "
   lockAfterAction?: boolean
   /** Controlled lock state. */
   unlocked?: boolean
+  /** Initial unlocked state when uncontrolled. */
   defaultUnlocked?: boolean
+  /** Called when the section locks or unlocks. */
   onUnlockedChange?: (unlocked: boolean) => void
+  /** Text for the unlock button. */
   unlockLabel?: string
+  /** Text for the lock button. */
   lockLabel?: string
   /** Shown while locked. `{count}` is the number of actions inside. */
   lockedText?: string
@@ -200,6 +206,7 @@ export interface DangerZoneActionProps extends Omit<React.ComponentProps<"li">, 
   actionLabel: string
   /** Runs the action. Return a promise to show a pending state. */
   onAction: () => void | Promise<void>
+  /** Action button text while it runs. */
   pendingLabel?: string
 }
 

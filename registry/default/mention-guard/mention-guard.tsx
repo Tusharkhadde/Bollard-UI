@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mention-guard · MIT licence · https://bollard-ui.vercel.app/components/mention-guard
+
 import * as React from "react"
 import { BellRing, LoaderCircle, SendHorizontal, UserX } from "lucide-react"
 
@@ -65,6 +67,7 @@ export interface MentionGuardProps extends Omit<React.ComponentProps<"div">, "de
   value?: string
   /** Initial text when uncontrolled. */
   defaultValue?: string
+  /** Called with the text on every change. */
   onValueChange?: (value: string) => void
   /** Sends the message. Return a promise to show a pending state; the text clears when it resolves. */
   onSend: (text: string) => void | Promise<void>
@@ -80,21 +83,35 @@ export interface MentionGuardProps extends Omit<React.ComponentProps<"div">, "de
   softerHandle?: string
   /** Enter sends and Shift+Enter adds a line. Off: only Ctrl/⌘+Enter sends. */
   sendOnEnter?: boolean
+  /** Visible label. */
   label?: string
+  /** Textarea placeholder. */
   placeholder?: string
   /** Templates. `{handle}`, `{count}`, `{zones}`, `{name}` and `{conversation}` are filled in. */
   broadcastText?: string
+  /** Template for how many are in other time zones. */
   zonesText?: string
+  /** Shown for a mentioned person not in the conversation. */
   outsiderText?: string
+  /** Shown when a mentioned person can't open the conversation. */
   noAccessText?: string
+  /** Button text to swap for the softer handle. */
   softerLabel?: string
+  /** Button text to mention without notifying. */
   silenceLabel?: string
+  /** Button text to invite a mentioned person. */
   inviteLabel?: string
+  /** Button text to remove a mention. */
   removeLabel?: string
+  /** Send button text. */
   sendLabel?: string
+  /** Confirm button template for a broadcast. */
   confirmLabel?: string
+  /** Confirm button text when outsiders are mentioned. */
   confirmOutsiderLabel?: string
+  /** Cancel button text while armed. */
   cancelLabel?: string
+  /** Button text while sending. */
   sendingLabel?: string
   /** Read to screen readers when Send asks for a second press. */
   armedHint?: string

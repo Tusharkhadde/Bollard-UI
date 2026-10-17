@@ -1,6 +1,23 @@
 {
   "title": "Address Check",
-  "description": "Prevents returned parcels by catching a missing flat or house number, a postcode that doesn't fit the country (or fits another one), a city the postcode lookup places elsewhere, and PO boxes couriers can't reach, with one-tap fixes and a live readback of the printed label.",
+  "summary": "Checks a shipping address for a missing house number, a postcode that doesn't fit the country or city, and PO boxes, so parcels aren't returned.",
+  "description": "Catches a missing flat or house number, a postcode that doesn't fit the country (or fits another one), a city the postcode lookup places elsewhere and PO boxes couriers can't reach, with one-tap fixes and a live readback of the printed label.",
+  "catches": [
+    "No flat or house number in the street line",
+    "Postcodes in the wrong shape for the country, or that fit another country",
+    "A city that differs from where your postcode lookup places it",
+    "PO boxes that couriers can't deliver to",
+    "Postcode formatting fixed to the canonical shape (e.g. SW1A 1AA)"
+  ],
+  "limits": [
+    "Postcode formats are built in per country; it doesn't confirm the address exists",
+    "The city check needs a lookupPostcode function from you"
+  ],
+  "a11y": [
+    "Each field has a hint in an aria-live=\"polite\" region",
+    "Fixes and dismissals are buttons with visible text",
+    "The highlight animation respects prefers-reduced-motion"
+  ],
   "dependencies": [
     "lucide-react"
   ],

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — csp-input · MIT licence · https://bollard-ui.vercel.app/components/csp-input
+
 import * as React from "react"
 import { CircleCheck, Info, ShieldAlert, TriangleAlert, WandSparkles } from "lucide-react"
 

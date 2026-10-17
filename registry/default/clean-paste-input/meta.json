@@ -1,6 +1,22 @@
 {
   "title": "Clean Paste Input",
-  "description": "Prevents 'identical' codes and IDs from failing by stripping invisible zero-width, BOM, soft-hyphen and bidi characters on paste with an undo, and flagging any that arrive another way with a one-tap fix.",
+  "summary": "Strips invisible characters from pasted codes and IDs, so values that look identical don't fail for hidden reasons.",
+  "description": "Strips zero-width, BOM, soft-hyphen and bidi control characters on paste, says what was removed with an undo, and flags any that arrive by typing or autofill with a one-tap fix.",
+  "catches": [
+    "Zero-width spaces and joiners, and byte-order marks",
+    "Soft hyphens",
+    "Bidirectional control characters",
+    "Hidden characters arriving by other routes than paste, with a fix"
+  ],
+  "limits": [
+    "Doesn't change visible look-alike characters (Cyrillic а for Latin a)",
+    "Removing joiners can change text in scripts or emoji that need them; use undo where that matters"
+  ],
+  "a11y": [
+    "Visible <label>; the field is described by an aria-live=\"polite\" notice",
+    "Undo and dismiss are buttons; dismiss has an aria-label",
+    "Actions return focus to the field"
+  ],
   "dependencies": [
     "lucide-react"
   ],

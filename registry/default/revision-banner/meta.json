@@ -1,6 +1,23 @@
 {
   "title": "Revision Banner",
-  "description": "Stops people mistaking an old revision for the current document or editing it by accident: the content is locked in a striped frame that explains blocked edits, and \"Restore this version\" confirms which latest version it replaces and how many words change.",
+  "summary": "Makes an old revision unmistakable and read-only, and confirms what \"Restore this version\" replaces before it does.",
+  "description": "Banner for viewing an old revision: the content sits in a read-only striped frame that explains blocked edits, and \"Restore this version\" confirms which latest version it replaces and how many words change.",
+  "catches": [
+    "Viewing an old revision, said up front with how far behind it is",
+    "Edit attempts on the old version, explained instead of silently ignored",
+    "Restore impact: which version it replaces and words changed",
+    "Restore errors, with the latest kept"
+  ],
+  "limits": [
+    "Read-only framing is visual and ARIA; it does not disable editors you render inside",
+    "Word-change count comes from what you pass"
+  ],
+  "a11y": [
+    "Banner is a region with an aria-label naming the version",
+    "Content frame is role=group with aria-readonly and an aria-label",
+    "Restore confirmation focuses Cancel first; Escape closes it",
+    "Blocked-edit note in a polite live region; errors use role=alert"
+  ],
   "dependencies": [
     "lucide-react"
   ],
@@ -27,5 +44,8 @@
   ],
   "fields": [
     "text"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/text-diff.json"
   ]
 }

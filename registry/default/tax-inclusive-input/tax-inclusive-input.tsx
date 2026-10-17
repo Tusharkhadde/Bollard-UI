@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tax-inclusive-input · MIT licence · https://bollard-ui.vercel.app/components/tax-inclusive-input
+
 import * as React from "react"
 import { TriangleAlert, Undo2 } from "lucide-react"
 
@@ -52,12 +54,17 @@ export function looksTaxInclusive(amount: number, rate: number, step = 50) {
 }
 
 export interface TaxInclusiveInputProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Visible label of the amount field. */
   label?: string
+  /** Amount, rate and includes-tax flag (controlled). */
   value?: TaxPrice
+  /** Starting price when uncontrolled. */
   defaultValue?: TaxPrice
+  /** Called with the price after every change. */
   onValueChange?: (value: TaxPrice) => void
   /** ISO currency code. */
   currency?: string
+  /** Locale for money formatting. */
   locale?: string
   /** "GST", "VAT", "sales tax". */
   taxName?: string
@@ -65,13 +72,21 @@ export interface TaxInclusiveInputProps extends Omit<React.ComponentProps<"div">
   rates?: number[]
   /** Templates: {net}, {tax}, {gross}, {rate}, {taxName} and {amount} are filled in. */
   inclusiveReadback?: string
+  /** Readback when the amount excludes tax. */
   exclusiveReadback?: string
+  /** Label of the includes-tax option. */
   includesLabel?: string
+  /** Label of the excludes-tax option. */
   excludesLabel?: string
+  /** Warning when an excludes-tax amount looks already taxed. */
   alreadyTaxedText?: string
+  /** Warning when switching mode changed the total. */
   switchedText?: string
+  /** Label of the keep-the-total fix. */
   keepTotalLabel?: string
+  /** Label of the use-likely-rate fix. */
   useRateLabel?: string
+  /** Label of the treat-as-inclusive fix. */
   alreadyTaxedFixLabel?: string
 }
 

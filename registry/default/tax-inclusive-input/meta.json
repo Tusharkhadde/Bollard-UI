@@ -1,6 +1,34 @@
 {
   "title": "Tax-Inclusive Input",
-  "description": "Stops tax being added twice by making 'includes / excludes GST' an explicit toggle, reading back net + tax = gross, and flagging an 'excludes' price that divides back to a round number, a mode switch that silently changed the total, or a typo'd rate like 0.18 or 180.",
+  "summary": "Makes \"includes / excludes GST\" an explicit choice and reads back net + tax = gross, so tax isn't added twice.",
+  "description": "Price field with an explicit includes/excludes-tax toggle, a net + tax = gross readback, and flags for an \"excludes\" price that divides back to a round number, a mode switch that silently changed the total, and a typo'd rate like 0.18 or 180.",
+  "catches": [
+    "An \"excludes tax\" price that looks already taxed (divides back to a round number)",
+    "Switching mode that changed the total, with keep-the-total fix",
+    "Rates typed as a fraction (0.18), multiplier (1.18) or slipped digit (180)",
+    "Rates above 50%"
+  ],
+  "limits": [
+    "Default rate list is India's main GST slabs (0, 5, 18, 40); special rates (e.g. 3% on gold, 0.25%) and tobacco still on old rates are not included",
+    "Rounds to the currency's minor unit; invoice rounding rules may differ",
+    "Does not decide which rate applies to an item"
+  ],
+  "a11y": [
+    "Visible <label> on the amount; readback via aria-describedby",
+    "Rate input has an aria-label; includes/excludes is a radiogroup",
+    "Warnings and fixes in a polite live region",
+    "Total highlight respects reduced motion"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "PIB – GST rate rationalisation (56th GST Council), effective 22 Sep 2025",
+        "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2164586"
+      }
+    ],
+    "note": "Re-checked 2026-10-17 against PIB release 2164586 (8 Sep 2025): the 56th GST Council moved GST from four slabs (5/12/18/28%) to two main rates, 5% (merit) and 18% (standard), plus a 40% special rate for sin/luxury goods, effective 22 Sep 2025. The default list [0, 5, 18, 40] (0 = nil-rated) matches; special rates such as 3% on gold and 0.25% on rough diamonds, and tobacco items still on 28% plus cess, are not in it. Informational; check CBIC rate notifications for an item's rate."
+  },
   "dependencies": [
     "lucide-react"
   ],

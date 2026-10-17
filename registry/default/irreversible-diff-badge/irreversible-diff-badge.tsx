@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — irreversible-diff-badge · MIT licence · https://bollard-ui.vercel.app/components/irreversible-diff-badge
+
 import * as React from "react"
 import { ArrowRight, LoaderCircle, Lock, Undo2 } from "lucide-react"
 

@@ -1,7 +1,28 @@
 {
   "title": "Share Link",
-  "description": "Prevents oversharing through links by reading every setting back as one sentence (\"Anyone with the link can edit until Fri 16 Oct, 5:00 PM\"), warning on public edit access and open-ended public links with one-tap fixes, showing a live expiry countdown, flagging when you widen a link you've already copied, and confirming before revoking.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads every share-link setting back as one sentence and warns about public edit access, links that never expire and widening an already-copied link.",
+  "description": "Share-link settings read back as one sentence (\"Anyone with the link can edit until Fri 16 Oct, 5:00 PM\"), with warnings and fixes for public edit access and open-ended public links, a live expiry countdown, a flag when you widen a copied link, and confirm before revoke.",
+  "catches": [
+    "Anyone-with-the-link edit access, with a one-tap view-only fix",
+    "Public links with no expiry, with a suggested expiry",
+    "Widening access after the link was already copied",
+    "Time left before the link expires",
+    "Revoking, confirmed first with Cancel focused"
+  ],
+  "limits": [
+    "Settings take effect only when your server applies them",
+    "Cannot recall copies of the link already shared"
+  ],
+  "a11y": [
+    "Link field has a <label>; settings are a labelled group of labelled selects",
+    "Readback in a polite live region; copy result via role=status",
+    "Revoke confirmation focuses Cancel first",
+    "Countdown highlight respects reduced motion"
+  ],
+  "server": "Enforce access level and expiry on every request to the link, and make revoke invalidate the token server-side.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Anyone with the link could edit",
   "mistakes": [
     "public edit link",

@@ -1,10 +1,28 @@
 {
   "title": "Paste Target Guard",
-  "description": "Prevents payments to a clipboard-hijacked IBAN, UPI ID or wallet address by comparing what lands in the field with what was copied on the page or entered earlier, and flagging look-alikes of saved recipients, then showing both side by side in groups (start and end first, differing characters marked, \"ends match\" called out because modern clippers copy them) with the original one tap away.",
+  "summary": "Compares a pasted IBAN, UPI ID or wallet address with what was copied or expected, so a clipboard hijacker's swapped address is caught before paying.",
+  "description": "Payment-target field that compares what lands in it with what was copied on the page or entered earlier, flags look-alikes of saved recipients, and shows both side by side in groups (ends first, differing characters marked) with the original one tap away.",
+  "catches": [
+    "Pasted address that differs from what was copied on the page",
+    "Address that differs from the expected one",
+    "Look-alikes of saved recipients",
+    "Matching start and end with a different middle (the clipper trick)"
+  ],
+  "limits": [
+    "Only sees copies made on this page (watchCopy) or the expected value you pass",
+    "Malware that also changes what the page shows can't be detected",
+    "Doesn't verify the payee; use Payee Check or your provider"
+  ],
+  "a11y": [
+    "Visible label; input has aria-invalid on mismatch and is described by the check",
+    "Mismatches use role=alert; a match is announced politely",
+    "Show-all and keep buttons have aria-labels"
+  ],
+  "server": "Confirm the payee with your provider and require step-up confirmation for new or changed recipients on the server.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Clipboard hijacker swaps payee address",
+  "stops": "Helps catch a clipboard hijacker swapping the payee address",
   "mistakes": [
     "clipboard hijack upi",
     "crypto address changed on paste",

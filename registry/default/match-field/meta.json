@@ -1,6 +1,22 @@
 {
   "title": "Match Field",
-  "description": "Prevents mistyped passwords and bank account numbers by showing exactly which character the confirmation stops matching at, without revealing either value, and by refusing a paste into the confirm box only when it is a copy of the first entry, so password managers keep working.",
+  "summary": "Shows which character a confirmation stops matching at, without revealing either value, so a mistyped password or account number is caught.",
+  "description": "Enter-twice field for passwords and account numbers that shows the position where the confirmation stops matching without revealing either value, and refuses a paste into the confirm box only when it is a copy of the first entry, so password managers keep working.",
+  "catches": [
+    "Confirmation that differs from the first entry, with the mismatch position",
+    "Paste into the confirm box copied from the first box",
+    "Match state reported through onMatchChange"
+  ],
+  "limits": [
+    "Only compares the two entries; it can't know the first one is what the user meant",
+    "Doesn't validate password strength or account-number checksums"
+  ],
+  "a11y": [
+    "Both inputs have visible labels; the confirm box has aria-invalid on mismatch and is described by the status",
+    "Match status and paste notices are polite live regions",
+    "The position marker is aria-hidden; the status text says where it differs"
+  ],
+  "server": "Validate the account number or password again on the server; the match check is client-side only.",
   "dependencies": [
     "lucide-react"
   ],

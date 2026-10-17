@@ -1,6 +1,24 @@
 {
   "title": "Brand Color Input",
-  "description": "Stops near-miss brand colours from shipping by naming the closest palette token with a perceptual (OKLab) distance and offering a one-tap snap when a value is a hair off (#1e40ae vs #1e40af), and by catching pasted junk, the letter O for zero, a digit too many or few, alpha hidden in 4- and 8-digit hex, and Android #AARRGGBB order that CSS renders as a different colour.",
+  "summary": "A colour field that names the nearest brand token and offers a snap when a value is a hair off, so near-miss brand colours don't ship.",
+  "description": "Names the closest palette token with a perceptual (OKLab) distance and offers a one-tap snap when a value is slightly off (#1e40ae vs #1e40af); catches pasted junk, O for 0, wrong digit counts, alpha in 4/8-digit hex and Android #AARRGGBB order.",
+  "catches": [
+    "Values a hair away from a palette token, with a snap to the token",
+    "The letter O typed for zero, and stray characters from a paste",
+    "A digit too many or too few",
+    "Alpha hidden in 4- and 8-digit hex",
+    "Android #AARRGGBB order, which CSS reads as a different colour"
+  ],
+  "limits": [
+    "Only knows the palette you pass; with no palette it checks syntax only",
+    "\"Close\" is a perceptual distance threshold, so an intentional near-shade can be flagged"
+  ],
+  "a11y": [
+    "Visible <label>; the hint is linked with aria-describedby and is aria-live=\"polite\"",
+    "aria-invalid when the value can't be read",
+    "Fix buttons have aria-labels naming the token and value; the swatch is aria-hidden",
+    "The flash on fix is skipped with prefers-reduced-motion"
+  ],
   "dependencies": [
     "lucide-react"
   ],

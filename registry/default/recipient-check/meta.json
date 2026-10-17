@@ -1,7 +1,29 @@
 {
   "title": "Recipient Check",
-  "description": "Prevents misaddressed email by marking external recipients in amber, catching typo'd and lookalike domains with a one-tap fix, blocking duplicates, spotting a name paired with someone else's address, and warning when a message goes to too many people.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reduces misaddressed email by flagging external recipients, lookalike or typo'd domains, duplicates and names paired with the wrong address.",
+  "description": "Recipient field that marks external addresses in amber, catches typo'd and lookalike domains with a one-tap fix, blocks duplicates, spots a known name paired with someone else's address, and warns when a message goes to too many people.",
+  "catches": [
+    "Recipients outside your internal domains",
+    "Typo'd consumer domains (gmial.com → gmail.com) with a one-tap fix",
+    "Duplicate addresses",
+    "A known contact's name paired with a different address",
+    "More recipients than warnAt, with a one-tap remove-externals"
+  ],
+  "limits": [
+    "Typo detection uses edit distance against a built-in list and your domains; unusual domains can be missed or wrongly flagged",
+    "Does not check that a mailbox exists",
+    "Name/address mismatch only works for people in contacts"
+  ],
+  "a11y": [
+    "Visible <label> tied to the input; aria-invalid when any recipient has an error",
+    "Enter, comma, semicolon or Tab commits an address; Backspace on an empty field arms then removes the last chip",
+    "Chip issues are spoken through sr-only text; each remove button has an aria-label",
+    "Warnings and fixes render in a polite live region; icons are aria-hidden",
+    "Undo after a bulk remove"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Email sent to the wrong address",
   "mistakes": [
     "typo in email domain",

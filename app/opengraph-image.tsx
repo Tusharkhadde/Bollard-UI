@@ -2,9 +2,8 @@ import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
-import registry from "@/registry.json"
 
-export const alt = "Bollard UI: build interfaces your users can't break. Copy-paste React components for shadcn/ui."
+export const alt = "Bollard UI: build interfaces your users can't break by accident. Copy-paste React components for shadcn/ui."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -52,7 +51,6 @@ function Warn() {
 }
 
 export default async function OpengraphImage() {
-  const total = registry.items.length
   const dir = join(process.cwd(), "assets/og")
   const [regular, semibold, bold, mono] = await Promise.all([
     readFile(join(dir, "Geist-Regular.ttf")),
@@ -85,16 +83,16 @@ export default async function OpengraphImage() {
               <span style={{ fontSize: 32, fontWeight: 600, letterSpacing: -0.5 }}>Bollard UI</span>
               <span style={{ marginLeft: 6, fontSize: 18, color: MUTED, border: `1px solid ${LINE}`, borderRadius: 999, padding: "5px 14px" }}>for shadcn/ui</span>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", marginTop: 44, fontSize: 70, lineHeight: 1.02, fontWeight: 700, letterSpacing: -2.6 }}>
+            <div style={{ display: "flex", flexDirection: "column", marginTop: 40, fontSize: 58, lineHeight: 1.05, fontWeight: 700, letterSpacing: -2.6 }}>
               <span>Build interfaces</span>
-              <span>your users</span>
-              <span style={{ color: AMBER }}>can&apos;t break.</span>
+              <span>your users can&apos;t</span>
+              <span style={{ color: AMBER }}>break by accident.</span>
             </div>
             <div style={{ display: "flex", marginTop: 26, fontSize: 25, color: MUTED, lineHeight: 1.38 }}>
-              {`${total} React components that catch wrong amounts, leaked secrets and accidental deletes.`}
+              {"Copy-paste React components that catch wrong amounts, leaked secrets and accidental deletes."}
             </div>
             <div style={{ display: "flex", gap: 10, marginTop: "auto" }}>
-              {["Open source", "MIT", "React 19", "Tailwind v4"].map((t) => (
+              {["MIT licensed", "Copy-paste", "React 19", "Tailwind v4"].map((t) => (
                 <span key={t} style={{ fontSize: 18, color: MUTED, background: CARD, border: `1px solid ${LINE}`, borderRadius: 999, padding: "7px 16px" }}>
                   {t}
                 </span>

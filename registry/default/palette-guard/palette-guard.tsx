@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — palette-guard · MIT licence · https://bollard-ui.vercel.app/components/palette-guard
+
 import * as React from "react"
 import { CircleCheck, TriangleAlert, WandSparkles } from "lucide-react"
 
@@ -83,9 +85,13 @@ export interface PaletteGuardProps extends Omit<React.ComponentProps<"div">, "de
   visionLabels?: Record<Vision, string>
   /** Templates: `{a}`, `{b}`, `{vision}`, `{delta}`, `{name}`, `{direction}`. */
   clashText?: string
+  /** Shown when a pair is too close in normal vision. */
   normalClashText?: string
+  /** Fix button template. */
   fixText?: string
+  /** Shown when no lightness change can clear every clash. */
   noFixText?: string
+  /** Shown when every pair is distinguishable. */
   passText?: string
 }
 

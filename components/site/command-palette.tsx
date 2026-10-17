@@ -63,6 +63,12 @@ export function CommandPalette({ initialQuery, onClose }: { initialQuery: string
             entries: [
               { kind: "page", id: "components", title: "All components", hint: `${items.length} components, search and filters`, href: "/components" },
               { kind: "page", id: "home", title: "Home", hint: "Bollard UI overview", href: "/" },
+              { kind: "page", id: "docs", title: "Getting started", hint: "Setup, CLI, manual install, updating", href: "/docs" },
+              { kind: "page", id: "start-here", title: "Start here", hint: "The essential components", href: "/start-here" },
+              { kind: "page", id: "changelog", title: "Changelog", hint: "What changed", href: "/changelog" },
+              { kind: "page", id: "quality", title: "Quality", hint: "Versions, checks and what isn't verified", href: "/quality" },
+              { kind: "page", id: "security", title: "Security", hint: "Report a vulnerability privately", href: "/security" },
+              { kind: "page", id: "license", title: "License", hint: "MIT", href: "/license" },
             ],
           },
         ] as Group[],

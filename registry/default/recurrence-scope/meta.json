@@ -1,10 +1,48 @@
 {
   "title": "Recurrence Scope",
-  "description": "Prevents editing more of a recurring series than intended by reading back exactly which dates a This one / This and following / All choice changes, with the count and past ones called out, and warning by date and field before it overwrites occurrences that were edited on their own.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reduces edits that hit more of a recurring series than intended by listing exactly which dates each scope choice changes.",
+  "description": "This one / This and following / All picker for recurring events that reads back the dates each choice changes, with counts and past dates called out, and warns by date and field before overwriting occurrences that were edited on their own.",
+  "catches": [
+    "Exactly which occurrences each scope touches, with a count",
+    "Past occurrences included in the change",
+    "Occurrences with their own edits that would be overwritten, by date and field",
+    "A repeat-rule change, which regenerates (and overwrites) the whole affected range",
+    "Option to keep individually edited occurrences"
+  ],
+  "limits": [
+    "Works on the occurrences you pass in; it does not expand RRULEs itself",
+    "Does not save anything; onConfirm receives the choice"
+  ],
+  "a11y": [
+    "Scope options are a radiogroup labelled by the title, built from labelled radio inputs",
+    "Changed dates list has an aria-label; changed/kept/unchanged state shown as text, not colour alone",
+    "Count and overwrite warning render in polite live regions",
+    "Save disables while pending, with an aria-hidden spinner"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Edited whole series instead of one",
-  "mistakes": ["edited all events by mistake", "this and following events", "recurring meeting edit", "overwrote edited occurrence"],
-  "aliases": ["recurring event", "repeat", "rrule", "calendar", "this event only", "all events", "google calendar", "series"],
-  "flows": ["scheduling"],
-  "fields": ["datetime"]
+  "mistakes": [
+    "edited all events by mistake",
+    "this and following events",
+    "recurring meeting edit",
+    "overwrote edited occurrence"
+  ],
+  "aliases": [
+    "recurring event",
+    "repeat",
+    "rrule",
+    "calendar",
+    "this event only",
+    "all events",
+    "google calendar",
+    "series"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
 }

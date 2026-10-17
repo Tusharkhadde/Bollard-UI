@@ -1,7 +1,39 @@
 {
   "title": "Bulk Send Guard",
-  "description": "Stops an SMS, WhatsApp or email blast going out wrong by stating before send how many it reaches, how many opted out and are left out, who is in quiet hours in their own time zone (held until morning by default), the cost and a jump over the last send, then requiring an explicit confirm that a double click can't trigger, with the count typed when the jump is big.",
-  "dependencies": ["lucide-react"],
+  "summary": "States who an SMS, WhatsApp or email blast will reach, who is excluded and who is in quiet hours, before an explicit confirm sends it.",
+  "description": "Before a blast, states how many it reaches, how many opted out and are excluded, who is in quiet hours in their own time zone (held by default), the cost and any jump over the last send, then needs an explicit confirm, with the count typed when the jump is big.",
+  "catches": [
+    "Opted-out, STOP and unreachable recipients, counted and left out",
+    "Recipients in quiet hours in their own IANA time zone (default 21:00–10:00 for SMS and WhatsApp)",
+    "The cost of the send",
+    "A send much bigger than the last one, which requires typing the count",
+    "Accidental double-click sends, via a separate confirm step"
+  ],
+  "limits": [
+    "Audience counts, exclusions and time zones come from your props",
+    "The default quiet hours follow TRAI's default for promotional SMS in India; other countries and channels have different rules",
+    "It does not send, schedule or hold messages; onSend does"
+  ],
+  "a11y": [
+    "Section labelled by the reach summary; quiet-hours options are a labelled fieldset",
+    "Focus moves to the confirm step and back to Review; Escape goes back",
+    "Errors use role=\"alert\" and status updates role=\"status\"",
+    "Icons are aria-hidden; every number is written in text"
+  ],
+  "server": "Enforce opt-outs, DND registries, quiet hours and send limits in the sending service, with idempotency so one blast can't go out twice.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "TRAI TCCCPR 2018 (Schedule: time bands default OFF)",
+        "url": "https://trai.gov.in/sites/default/files/2025-01/RegulationUcc19072018.pdf"
+      }
+    ],
+    "note": "Informational; check the official source. TCCCPR 2018 sets time bands 00:00–10:00 and 21:00–24:00 default OFF for promotional communication, matching the 21:00–10:00 default. Later TRAI amendments (2025) were not reviewed for changes to this default."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Bulk blast sent at 2 AM",
   "mistakes": [
     "bulk sms sent at night",

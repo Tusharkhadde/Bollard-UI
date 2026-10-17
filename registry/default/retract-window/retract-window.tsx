@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retract-window · MIT licence · https://bollard-ui.vercel.app/components/retract-window
+
 import * as React from "react"
 import { Eye, Info, LoaderCircle, MessageSquareX, Pencil, Smartphone, Trash2, Undo2 } from "lucide-react"
 
@@ -36,6 +38,7 @@ export type RetractWindowMessages = typeof RETRACT_WINDOW_MESSAGES
 export interface RetractWindowProps extends Omit<React.ComponentProps<"div">, "children"> {
   /** The sent message, rendered as a bubble. */
   children?: React.ReactNode
+  /** When the message was sent. */
   sentAt: Date | string | number
   /** A preset ("imessage", "whatsapp", "slack") or your own rules. */
   policy?: RetractPlatform | RetractPolicy
@@ -45,7 +48,9 @@ export interface RetractWindowProps extends Omit<React.ComponentProps<"div">, "c
   editsUsed?: number
   /** Pass for a deterministic start; the countdown then runs from it. Otherwise the clock is read after mount. */
   now?: Date
+  /** IANA zone for displayed times. */
   timeZone?: string
+  /** Locale for displayed times. */
   locale?: string
   /** Opens the editor. Without it there's no Edit row. */
   onEdit?: () => void
@@ -55,6 +60,7 @@ export interface RetractWindowProps extends Omit<React.ComponentProps<"div">, "c
   onDeleteForMe?: () => void
   /** Offered once the windows have closed or an unsend fails. */
   onSendCorrection?: () => void
+  /** Override any visible string. */
   messages?: Partial<RetractWindowMessages>
 }
 

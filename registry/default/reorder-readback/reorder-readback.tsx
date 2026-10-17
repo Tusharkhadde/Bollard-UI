@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reorder-readback · MIT licence · https://bollard-ui.vercel.app/components/reorder-readback
+
 import * as React from "react"
 import { ArrowDown, ArrowUp, Check, GripVertical, Lock, Undo2 } from "lucide-react"
 import { AnimatePresence, MotionConfig, Reorder, animate, motion, useDragControls, useReducedMotion } from "motion/react"
@@ -40,6 +42,7 @@ export interface ReorderItem {
 }
 
 export interface ReorderReadbackProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Rows to order, each with an id and a name. */
   items: ReorderItem[]
   /** Order as a list of ids (controlled). */
   value?: string[]
@@ -280,21 +283,37 @@ export function ReorderReadback({
 }
 
 interface RowProps {
+  /** Row id. */
   id: string
+  /** The row being rendered. */
   item: ReorderItem
+  /** Current position, 0-based. */
   index: number
+  /** Number of rows. */
   total: number
+  /** True while picked up with the keyboard. */
   picked: boolean
+  /** Offset from the saved baseline, when moved. */
   shift?: number
+  /** Resolved messages. */
   m: typeof REORDER_READBACK_MESSAGES
+  /** Turns a 0-based index into "1st", "2nd"… */
   formatPosition: (index: number) => string
+  /** Id of the keyboard instructions element. */
   instructionsId: string
+  /** Registers the row element for focus management. */
   rowRef: (node: HTMLElement | null) => void
+  /** Called when a grip drag starts. */
   onDragStart: () => void
+  /** Called when a grip drag ends. */
   onDragEnd: () => void
+  /** Picks up or drops the row. */
   onPick: () => void
+  /** Moves the picked row by this many places. */
   onStep: (by: number) => void
+  /** Cancels a keyboard move. */
   onCancel: () => void
+  /** Drops the row at its current place. */
   onDrop: () => void
 }
 

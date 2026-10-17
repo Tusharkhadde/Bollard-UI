@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — link-access-check · MIT licence · https://bollard-ui.vercel.app/components/link-access-check
+
 import * as React from "react"
 import { Building2, CircleCheck, FileText, Globe, LoaderCircle, Lock, ShieldAlert, UserX } from "lucide-react"
 

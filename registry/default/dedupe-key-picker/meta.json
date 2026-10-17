@@ -1,7 +1,26 @@
 {
   "title": "Dedupe Key Picker",
-  "description": "Stops a dedupe from merging nothing or merging too much by previewing, as you pick the columns that define a duplicate, how many rows would merge, naming the near-unique column (like a timestamp) that keeps duplicates apart with a one-tap \"leave it out\", flagging a key so broad one value swallows a quarter of the table, keeping blank keys separate and showing sample collisions with the values a merge would discard highlighted.",
-  "dependencies": ["lucide-react"],
+  "summary": "Previews how many rows a dedupe would merge as you pick key columns, so it doesn't merge nothing or merge too much.",
+  "description": "As you pick key columns, previews how many rows merge, names a near-unique column (like a timestamp) that keeps duplicates apart, flags a key so broad one value swallows many rows, keeps blank keys separate and highlights values a merge would discard.",
+  "catches": [
+    "Near-unique columns (timestamps, ids) that prevent any merge, with \"leave it out\"",
+    "Keys so broad that one value covers a large share of rows (coarseShare)",
+    "Blank keys, kept separate instead of merged together",
+    "Values a merge would discard, shown in sample collisions"
+  ],
+  "limits": [
+    "Works on the rows you pass; on a sample, counts are estimates for the full table",
+    "Normalisation (case, spaces) is optional and simple"
+  ],
+  "a11y": [
+    "Column toggles are buttons with aria-pressed and their uniqueness share in text",
+    "The preview is aria-live=\"polite\"",
+    "Apply sets aria-busy while running; errors use role=\"alert\""
+  ],
+  "server": "Run the merge in a transaction on the server with a backup or undo path; the preview is computed from the rows you pass.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Dedupe merged the wrong rows",
   "mistakes": [
     "remove duplicates wrong",

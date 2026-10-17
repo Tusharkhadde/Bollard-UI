@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — size-context · MIT licence · https://bollard-ui.vercel.app/components/size-context
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert } from "lucide-react"
 
@@ -77,14 +79,21 @@ export interface SizeContextProps extends Omit<React.ComponentProps<"div">, "chi
   bitsPerSecond?: number
   /** Override platform detection, which decides whether to say what Windows Explorer will show. */
   platform?: "windows" | "other"
+  /** Typical item sizes used for the comparison. */
   comparisons?: SizeComparison[]
+  /** Locale for number formatting. */
   locale?: string
   /** Templates: `{size}`, `{alt}`, `{limit}`, `{over}`, `{left}`, `{time}`, `{speed}`, `{binary}`, `{limitBinary}`, `{exact}` are filled in. */
   transferText?: string
+  /** Says what Windows will show. */
   windowsText?: string
+  /** Explanation of GB versus GiB. */
   explainText?: string
+  /** Shown when the file is over the limit. */
   overText?: string
+  /** Shown when it fits only if the limit means GiB. */
   ambiguousText?: string
+  /** Shown when the file fits. */
   fitsText?: string
 }
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — package-name-check · MIT licence · https://bollard-ui.vercel.app/components/package-name-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, LoaderCircle, Package, TriangleAlert } from "lucide-react"
 

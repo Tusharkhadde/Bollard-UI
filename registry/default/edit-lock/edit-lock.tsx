@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — edit-lock · MIT licence · https://bollard-ui.vercel.app/components/edit-lock
+
 import * as React from "react"
 import { Lock, LockOpen, TriangleAlert } from "lucide-react"
 
@@ -35,6 +37,7 @@ export interface EditLockProps extends Omit<React.ComponentProps<"div">, "defaul
   locked?: boolean
   /** Initial lock state when uncontrolled. */
   defaultLocked?: boolean
+  /** Called when the record locks or unlocks. */
   onLockedChange?: (locked: boolean) => void
   /** Called once, on the first change made after unlocking: the moment the approval stops being valid. */
   onEdit?: () => void
@@ -42,16 +45,25 @@ export interface EditLockProps extends Omit<React.ComponentProps<"div">, "defaul
   relockAfter?: number
   /** Templates: `{name}`, `{reason}` and `{time}` are filled in. */
   lockedText?: string
+  /** Text for the unlock button. */
   unlockLabel?: string
+  /** Explains what unlocking means (e.g. re-approval). */
   consequenceText?: string
+  /** Text for confirming the unlock. */
   confirmUnlockLabel?: string
+  /** Text for cancelling the unlock. */
   cancelLabel?: string
+  /** Shown while the record is unlocked. */
   unlockedText?: string
+  /** Shown once a change has voided the approval. */
   editedText?: string
+  /** Shown when the record changed elsewhere. */
   staleText?: string
+  /** Text for the lock-now button. */
   lockNowLabel?: string
   /** Read to screen readers instead of the ticking visible text, which would be announced every second. */
   unlockedAnnouncement?: string
+  /** Announced to screen readers when an edit voids the approval. */
   editedAnnouncement?: string
   /** Announced once when the idle relock is this close: `{time}` is filled in. */
   relockSoonText?: string

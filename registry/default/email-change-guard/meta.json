@@ -1,6 +1,23 @@
 {
   "title": "Email Change Guard",
-  "description": "Stops people locking themselves out by changing their account email to a typo: it catches misspelled providers (gmial.con) with a one-tap fix, shows exactly where the confirmation stops matching, spots the same inbox (Gmail dots, +tags), says what moves with the address (sign-in, receipts, 2FA codes), and keeps the old address active until the new one is verified, with resend, edit and cancel while it waits.",
+  "summary": "Catches typos in a new account email and keeps the old address active until the new one is verified, so nobody locks themselves out.",
+  "description": "Catches misspelled providers (gmial.con) with a one-tap fix, shows where the confirmation stops matching, spots the same inbox (Gmail dots, +tags), says what moves with the address, and keeps the old address active until the new one is verified, with resend, edit and cancel.",
+  "catches": [
+    "Misspelled email providers, with a one-tap fix",
+    "The exact point where the confirmation stops matching",
+    "A \"new\" address that is the same inbox (Gmail dots, +tags)",
+    "What moves with the address: sign-in, receipts and 2FA codes"
+  ],
+  "limits": [
+    "Domain typo detection uses a list of known providers; custom domains aren't checked",
+    "Keeping the old address active depends on your backend honouring the pending state"
+  ],
+  "a11y": [
+    "Focus moves to the confirmation field, the fix, or the pending notice as the flow advances",
+    "Fields are described by their hints via aria-describedby",
+    "The pending state has a focusable heading"
+  ],
+  "server": "Keep the old address active until the new one is verified, notify the old address of the change, and rate-limit resends on the server.",
   "dependencies": [
     "lucide-react"
   ],
@@ -28,5 +45,8 @@
   ],
   "fields": [
     "email"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/email-input.json"
   ]
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — port-expose-guard · MIT licence · https://bollard-ui.vercel.app/components/port-expose-guard
+
 import * as React from "react"
 import { ArrowRight, Globe, Info, Loader2, Lock, ShieldAlert, TriangleAlert } from "lucide-react"
 

@@ -1,10 +1,49 @@
 {
   "title": "Irreversible Diff Badge",
-  "description": "Stops people saving a change they can't take back by marking permanent fields with a chip that turns amber once edited and, before save, listing only the permanent fields that actually changed as a from → to readback with consequences and one-tap Revert, behind a confirmation that resets whenever that list changes.",
-  "dependencies": ["lucide-react"],
+  "summary": "Marks fields that can't be changed back and, before save, lists only the permanent fields that actually changed, from → to.",
+  "description": "Chip for permanent fields that turns amber once edited, plus a pre-save readback listing only the permanent fields that changed (from → to) with consequences and one-tap Revert, behind a confirmation that resets whenever that list changes.",
+  "catches": [
+    "Permanent or rarely changeable fields edited without notice",
+    "Readback of only the hard-to-undo fields that changed, with consequences",
+    "Confirmation given for one set of changes reused for another: it resets",
+    "One-tap Revert per field"
+  ],
+  "limits": [
+    "You decide which fields are permanent; it can't know",
+    "Comparison uses your equals or a strict/JSON comparison"
+  ],
+  "a11y": [
+    "Readback is a labelled group described by the change list",
+    "Changes are announced in a polite live region; from/to are read as text, with del/ins visuals aria-hidden",
+    "Revert buttons have aria-labels naming the field and old value; focus moves after a revert",
+    "Save errors use role=alert"
+  ],
+  "server": "Enforce which fields are immutable on the server and audit-log changes to them.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Permanent field changed without warning",
-  "mistakes": ["changed username cant undo", "permanent field edited", "slug change broke links", "cant change back"],
-  "aliases": ["username", "slug", "handle", "permanent", "readonly after save", "profile settings", "subdomain", "diff"],
-  "flows": ["account-settings", "forms"],
-  "fields": ["text"]
+  "mistakes": [
+    "changed username cant undo",
+    "permanent field edited",
+    "slug change broke links",
+    "cant change back"
+  ],
+  "aliases": [
+    "username",
+    "slug",
+    "handle",
+    "permanent",
+    "readonly after save",
+    "profile settings",
+    "subdomain",
+    "diff"
+  ],
+  "flows": [
+    "account-settings",
+    "forms"
+  ],
+  "fields": [
+    "text"
+  ]
 }

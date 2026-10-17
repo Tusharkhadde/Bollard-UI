@@ -1,7 +1,38 @@
 {
   "title": "Card Bill Pay",
-  "description": "Stops a credit card bill being paid in a way that quietly costs interest by reading back, before Pay, what the chosen amount really does: anything short of the total (even 40 paise, unless the statement forgives that shortfall) loses the interest-free days on the whole bill and on new purchases, the minimum is turned into years and rupees of interest, and below the minimum or past RBI's 3-day grace it shows the late fee and the credit-bureau report, with one tap to pay the total.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads back what a credit card payment amount really costs before Pay, so paying the minimum or a little short doesn't quietly trigger interest.",
+  "description": "Before Pay, explains what the amount does: anything short of the total loses the interest-free period on the whole bill and on new spends, the minimum is turned into years and interest, and below the minimum or past the 3-day grace it shows the late fee and credit-bureau report.",
+  "catches": [
+    "Paying less than the total due, which loses the interest-free period",
+    "Paying only the minimum, shown as time and interest to clear the balance",
+    "Paying below the minimum or more than three days late (late fee and bureau reporting)",
+    "One-tap switch to paying the total"
+  ],
+  "limits": [
+    "Uses the statement figures and fee schedule you pass; issuers' terms differ",
+    "Interest projections are estimates and assume no new spending",
+    "Rules follow RBI's credit card directions for India only"
+  ],
+  "a11y": [
+    "Amount choices are labelled options; the custom amount has a <label>",
+    "The amount field is described by the warning lines",
+    "Pay uses aria-disabled while pending or at zero; focus moves to the first fix",
+    "Status is announced in a role=\"status\" region"
+  ],
+  "server": "Take the amount due, minimum and due date from the issuer's records, and make the payment idempotent.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RBI Master Direction: Credit Card and Debit Card – Issuance and Conduct Directions, 2022 (updated 7 Mar 2024)",
+        "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12300"
+      }
+    ],
+    "note": "Informational; check the official source and your card's terms. Checked: interest-free period needs the entire outstanding paid by the due date and is suspended while the previous bill is outstanding; late charges and bureau reporting only after more than three days past due."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Minimum due paid, interest charged anyway",
   "mistakes": [
     "paid minimum due interest charged",

@@ -1,7 +1,50 @@
 {
   "title": "Retract Window",
-  "description": "Stops people trusting an unsend or edit that won't work: under a sent message it shows how long Edit and Unsend really stay open on that platform (sourced iMessage, WhatsApp and Slack presets, or your own) with a draining bar that turns amber near the end, says who has already read it and whose app will keep the original anyway, keeps \"Delete for me\" apart and labelled as leaving everyone else's copy, reports who still has it after an unsend, and offers a correction once the windows close, announcing only a window closing, never the countdown.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows how long Edit and Unsend really stay open for a sent message, and who will keep the original anyway.",
+  "description": "Under a sent message: how long Edit and Unsend stay open on that platform (iMessage, WhatsApp, Slack presets or your own), a draining bar, who already read it and whose app keeps the original, Delete for me kept apart, and a correction once windows close.",
+  "catches": [
+    "Time left to edit and to unsend, per the platform's rules",
+    "Edits used against a limit (iMessage: 5)",
+    "Recipients who already read it or whose app keeps the original",
+    "\"Delete for me\" labelled as leaving everyone else's copy",
+    "Who still has it after an unsend, and a correction once windows close"
+  ],
+  "limits": [
+    "Presets reflect the platforms' help pages as of the verified date and change without notice",
+    "Slack windows depend on each workspace's admin settings; pass the real limits",
+    "Does not edit or unsend; your callbacks do, and a failed unsend shows an error"
+  ],
+  "a11y": [
+    "Edit/Unsend buttons are described by their window text (aria-describedby)",
+    "Only a window closing is announced (role=status), never the countdown",
+    "Failures use role=alert; after unsend, focus moves to the result",
+    "The draining bar is aria-hidden; time left is also text"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Apple – Unsend and edit messages on iPhone",
+        "url": "https://support.apple.com/guide/iphone/unsend-and-edit-messages-iphe67195653/ios"
+      },
+      {
+        "label": "Apple – How to edit messages (105083)",
+        "url": "https://support.apple.com/en-us/105083"
+      },
+      {
+        "label": "WhatsApp – How to delete messages",
+        "url": "https://faq.whatsapp.com/1370476507114859"
+      },
+      {
+        "label": "Slack – Manage permissions for message editing and deletion",
+        "url": "https://slack.com/help/articles/115004868646"
+      }
+    ],
+    "note": "Confirmed: iMessage unsend 2 min, edit up to 5 times within 15 min; WhatsApp edit 15 min, Delete for everyone within two days; Slack members can edit/delete any time by default, admins can limit. Check the platforms' current help pages."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Trusted an unsend that didn't work",
   "mistakes": [
     "unsend didn't work",

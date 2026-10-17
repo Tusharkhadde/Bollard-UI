@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — reply-all-guard · MIT licence · https://bollard-ui.vercel.app/components/reply-all-guard
+
 import * as React from "react"
 import { CircleCheck, EyeOff, Globe, Reply, Undo2, Users } from "lucide-react"
 

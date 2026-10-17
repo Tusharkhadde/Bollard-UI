@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — account-deletion-readback · MIT licence · https://bollard-ui.vercel.app/components/account-deletion-readback
+
 import * as React from "react"
 import { CalendarClock, CircleCheck, Download, ExternalLink, Loader2, Trash2, TriangleAlert, Users } from "lucide-react"
 
@@ -102,7 +104,9 @@ export interface AccountDeletionReadbackProps extends React.ComponentProps<"sect
   email: string
   /** What is deleted: data, files, projects. */
   items?: DeletionItem[]
+  /** Teams or workspaces the user belongs to; sole-owner ones get a transfer prompt. */
   teams?: DeletionTeam[]
+  /** Paid plans tied to the account, including app store plans. */
   subscriptions?: DeletionSubscription[]
   /** What the law makes you keep, e.g. "Invoices, for 8 years (tax law)". */
   retained?: string[]
@@ -110,6 +114,7 @@ export interface AccountDeletionReadbackProps extends React.ComponentProps<"sect
   graceDays?: number
   /** "Now" in epoch ms, for deterministic rendering. Read from the clock after mount when omitted. */
   now?: number
+  /** BCP 47 locale used for dates. Defaults to the browser locale. */
   locale?: string
   /** What must be typed to confirm. Defaults to the email, matched without case. */
   confirmPhrase?: string

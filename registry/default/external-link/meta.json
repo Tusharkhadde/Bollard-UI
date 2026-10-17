@@ -1,7 +1,26 @@
 {
   "title": "External Link",
-  "description": "Prevents clicking through to a phishing or unexpected site by confirming off-site links with the real ASCII destination and its registrable domain in bold, and flagging punycode, lookalike domains, link text that disagrees with the href, buried brand names, raw IPs and plain http.",
-  "dependencies": ["lucide-react"],
+  "summary": "Confirms off-site links with the real destination and flags lookalike, punycode or mismatched links, so people don't click through to a phishing site.",
+  "description": "Confirms off-site links with the real ASCII destination and its registrable domain in bold, and flags punycode, lookalike domains, link text that disagrees with the href, buried brand names, raw IPs and plain http.",
+  "catches": [
+    "Punycode and lookalike domains",
+    "Link text that names a different site than the href",
+    "Brand names buried in subdomains (paypal.com.example.net)",
+    "Raw IP addresses and plain http://"
+  ],
+  "limits": [
+    "Heuristics only: a well-made phishing domain with no lookalike signals passes",
+    "Registrable-domain detection uses a built-in suffix list that may miss newer suffixes",
+    "Trusted domains are whatever you pass"
+  ],
+  "a11y": [
+    "Links that confirm expose aria-haspopup=\"dialog\" and aria-expanded",
+    "The confirmation is role=\"dialog\" labelled by its title; Escape closes it and returns focus to the link",
+    "Warnings are written in text"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Clicked through to a phishing site",
   "mistakes": [
     "phishing link",

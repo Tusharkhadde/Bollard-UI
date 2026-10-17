@@ -1,7 +1,50 @@
-{"title": "Cooldown Button", "description": "Prevents resend spam and double charges by enforcing escalating cooldowns per attempt (30s, 60s, 120s) with a visible countdown and reason, persisted in sessionStorage so a refresh can't bypass it.", "dependencies": ["lucide-react"],
-  "stops": "Resend OTP spammed until blocked",
-  "mistakes": ["resend otp spam", "user keeps clicking resend", "sms bill from resend", "refresh bypasses cooldown"],
-  "aliases": ["resend otp", "resend code", "otp", "rate limit", "countdown timer", "sms", "magic link", "throttle"],
-  "flows": ["signup-login", "india"],
-  "fields": ["code", "phone"]
+{
+  "title": "Cooldown Button",
+  "summary": "A button that waits longer after each attempt and shows why, so \"Resend code\" and retries aren't tapped repeatedly by accident.",
+  "description": "Escalating cooldowns per attempt (30s, 60s, 120s) with a visible countdown and reason, and a lock once attempts run out. The deadline is kept in sessionStorage, so a refresh in the same tab keeps it; a new tab or cleared storage does not.",
+  "catches": [
+    "Repeated taps on resend or retry, with a growing wait",
+    "Unclear waiting, by showing a countdown and the reason",
+    "Running out of attempts, with a clear locked message",
+    "Clicks before hydration, by staying inert until the saved state is restored"
+  ],
+  "limits": [
+    "UI only: a new tab, another device or cleared storage bypasses the cooldown",
+    "It reduces accidental repeats; it does not rate-limit or prevent double charges on its own"
+  ],
+  "a11y": [
+    "Stays focusable while waiting (aria-disabled instead of disabled)",
+    "aria-busy while pending and aria-describedby to the reason",
+    "Becoming ready is announced in an aria-live=\"polite\" region",
+    "Errors and the exhausted message use role=\"alert\""
+  ],
+  "server": "Enforce rate limits and attempt counts on the server (per account and IP), and make paid actions idempotent.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Resend tapped again and again",
+  "mistakes": [
+    "resend otp spam",
+    "user keeps clicking resend",
+    "sms bill from resend",
+    "refresh bypasses cooldown"
+  ],
+  "aliases": [
+    "resend otp",
+    "resend code",
+    "otp",
+    "rate limit",
+    "countdown timer",
+    "sms",
+    "magic link",
+    "throttle"
+  ],
+  "flows": [
+    "signup-login",
+    "india"
+  ],
+  "fields": [
+    "code",
+    "phone"
+  ]
 }

@@ -1,3 +1,5 @@
+// Bollard UI — autofill-check · MIT licence · https://bollard-ui.vercel.app/components/autofill-check
+
 export type FieldKind = "name" | "email" | "tel" | "postal-code" | "address" | "other"
 
 /** A field the browser filled, as the checks see it. */

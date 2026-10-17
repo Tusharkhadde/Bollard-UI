@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — rollback-preview · MIT licence · https://bollard-ui.vercel.app/components/rollback-preview
+
 import * as React from "react"
 import { Database, History, LoaderCircle, TriangleAlert, Undo2 } from "lucide-react"
 
@@ -55,18 +57,25 @@ export interface RollbackPreviewProps extends Omit<React.ComponentProps<"div">, 
   written?: RollbackWritten[]
   /** Runs the rollback. Return a promise to show a pending state; a rejection re-enables the button. */
   onConfirm: () => void | Promise<void>
+  /** Heading of the preview. */
   title?: string
   /** `{age}` and `{count}` (skipped versions) are filled in. */
   targetMeta?: string
+  /** Says which newer versions the rollback skips. */
   skippedText?: string
+  /** Heading of the list of changes that revert. */
   revertsLabel?: string
+  /** Heading of the list of things that won't undo. */
   staysLabel?: string
+  /** Says what data was written since the target went out. */
   writtenLabel?: string
   /** `{target}` is filled in. */
   confirmLabel?: string
+  /** Label of the type-the-name input. */
   inputLabel?: string
   /** Shown when the typed id is another version, `{typed}` and `{target}` filled in. */
   wrongVersionText?: string
+  /** Confirm label while onConfirm runs. */
   pendingLabel?: string
 }
 

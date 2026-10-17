@@ -1,6 +1,23 @@
 {
   "title": "Visibility Picker",
-  "description": "Prevents accidental oversharing: narrowing is instant, but widening (a riskier level or simply more people) shows exactly who gains access and only goes through on an explicit confirm, so a double-click or arrow key can't publish anything; levels a policy blocks say why, and a failed save puts the old level back and says so.",
+  "summary": "Makes widening who can see something an explicit step that shows who gains access; narrowing stays instant.",
+  "description": "Sharing-level picker where narrowing is instant but widening (a riskier level or more people) shows who gains access and needs an explicit confirm, so a double-click or arrow key can't publish; policy-blocked levels say why, and a failed save restores the old level.",
+  "catches": [
+    "Widening to a riskier level or a larger audience, held for confirmation",
+    "Who gains access, in plain words and counts",
+    "Levels blocked by policy, with the reason",
+    "Failed saves, reverted with a notice"
+  ],
+  "limits": [
+    "Audience counts come from your options",
+    "The confirm is a UX step; access must be enforced server-side"
+  ],
+  "a11y": [
+    "Levels are a roving-tabindex radiogroup; arrow keys move focus without applying a widening",
+    "Risk level stated as sr-only text; blocked levels use aria-disabled",
+    "Widening warning linked via aria-describedby in a polite live region; Escape cancels it"
+  ],
+  "server": "Enforce sharing level and admin policy on the server for every access check.",
   "dependencies": [
     "lucide-react"
   ],

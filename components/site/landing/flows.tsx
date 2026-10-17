@@ -27,7 +27,7 @@ export function Flows({ flows }: { flows: FlowCard[] }) {
   return (
     <Section id="flows" labelledBy="flows-heading">
       <SectionHeading id="flows-heading" eyebrow="Browse by flow" title="Start from the screen you're building.">
-        Checkout, sign-up, settings, the danger zone. Every component is filed under the places its mistake happens.
+        Checkout, sign-up, settings, the danger zone. Every component is filed under the places its mistake happens, so one component can appear in several flows.
       </SectionHeading>
       <Reveal className="mt-12">
         <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-2 lg:grid-cols-3">

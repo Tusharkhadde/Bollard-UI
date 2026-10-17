@@ -1,3 +1,5 @@
+// Bollard UI — photo-spec-check · MIT licence · https://bollard-ui.vercel.app/components/photo-spec-check
+
 /** What a portal accepts for a photo upload. Every field is optional; only the ones set are checked. */
 export interface PhotoSpec {
   label: string

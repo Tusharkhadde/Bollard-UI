@@ -1,7 +1,27 @@
 {
   "title": "Presence Lock",
-  "description": "Stops two people silently overwriting each other's edit of the same field: it shows who is editing what (\"Priya is editing Price\"), softly locks that field in their colour with an \"Edit anyway\" that warns once, never locks someone already typing, and releases locks held by people who went idle; transport-agnostic, with animated join and leave.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows who is editing which field and softly locks it in their colour, so two people don't silently overwrite each other's edit.",
+  "description": "Presence UI that shows who is editing what (\"Priya is editing Price\"), softly locks that field in their colour with an \"Edit anyway\" that warns once, never locks someone already typing, and releases locks held by idle people. Transport-agnostic.",
+  "catches": [
+    "Two people editing the same field",
+    "Edit anyway: warns once before overriding",
+    "Locks held by people who went idle are released",
+    "Someone already typing is never locked out"
+  ],
+  "limits": [
+    "Soft lock only; your backend must handle conflicting saves",
+    "Presence comes from your transport; latency can show stale state",
+    "Idle detection depends on your heartbeats"
+  ],
+  "a11y": [
+    "Avatars are a labelled group; images have empty alt with names in titles",
+    "Joins and leaves are announced in a polite live region",
+    "A locked field is inert until Edit anyway"
+  ],
+  "server": "Use versioning or merge rules on save so a late write can't silently overwrite another.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Two people editing the same field",
   "mistakes": [
     "two users editing same field",

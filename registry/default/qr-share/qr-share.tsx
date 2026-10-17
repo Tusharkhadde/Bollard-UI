@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — qr-share · MIT licence · https://bollard-ui.vercel.app/components/qr-share
+
 import * as React from "react"
 import { CircleCheck, OctagonAlert, TriangleAlert } from "lucide-react"
 
@@ -147,6 +149,7 @@ export interface QrShareProps extends Omit<React.ComponentProps<"div">, "childre
   messages?: Partial<typeof QR_MESSAGES>
   /** Templates: `{count}` (characters), `{modules}` and `{print}` are filled in. */
   verifiedText?: string
+  /** Shown when the drawn code doesn't decode back to the URL. */
   mismatchText?: string
 }
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — role-preview · MIT licence · https://bollard-ui.vercel.app/components/role-preview
+
 import * as React from "react"
 import { Check, Minus, Plus, Sparkles, TriangleAlert, X } from "lucide-react"
 

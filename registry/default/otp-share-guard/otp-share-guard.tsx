@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — otp-share-guard · MIT licence · https://bollard-ui.vercel.app/components/otp-share-guard
+
 import * as React from "react"
 import { Check, Copy, Hand, Loader2, MonitorUp, PhoneCall, ShieldAlert, ShieldCheck, Shuffle } from "lucide-react"
 
@@ -76,6 +78,7 @@ export interface OtpShareGuardProps extends Omit<React.ComponentProps<"div">, "c
   onCodeCopy?: (code: string) => void
   /** "I didn't request this": block the code and alert your fraud team. May return a Promise. */
   onNotMe?: () => void | Promise<void>
+  /** BCP 47 locale for amounts and times. */
   locale?: string
   /** Any visible string. */
   messages?: MessageOverrides

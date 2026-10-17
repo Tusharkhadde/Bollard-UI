@@ -1,13 +1,13 @@
 // Visual + runtime check for one or more demos in a real browser.
 // Usage: node scripts/check.mjs <port> <name> [name...]
-// Needs a running server (npx next dev -p <port>). Writes screenshots to .checks/<name>-{light,dark}.png
+// Needs a running server (npx next dev -p <port>). Set CHROMIUM_PATH to use a system browser. Writes screenshots to .checks/<name>-{light,dark}.png
 // and prints console errors, page errors and horizontal overflow per demo.
 import fs from "node:fs"
 import { chromium } from "playwright"
 
 const [port, ...names] = process.argv.slice(2)
 fs.mkdirSync(".checks", { recursive: true })
-const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", args: ["--no-sandbox"] })
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: ["--no-sandbox"] })
 for (const name of names) {
   for (const theme of ["light", "dark"]) {
     const page = await browser.newPage({ viewport: { width: Number(process.env.WIDTH || 900), height: 900 } })

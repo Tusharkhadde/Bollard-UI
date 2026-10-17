@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Package, Puzzle } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Package, Puzzle, ServerCog } from "lucide-react"
 
 import { CodeBlock } from "@/components/site/code-block"
 import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
 import { Toc } from "@/components/site/toc"
-import { catalog, categories, readDemo, readSource, registryBase, type CatalogEntry } from "@/lib/catalog"
+import { catalog, categories, readDemo, readProps, readSource, registryBase, SITE_URL, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
 import { highlight } from "@/lib/highlight"
 import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
@@ -25,20 +25,52 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const item = catalog.find((entry) => entry.name === name)
   if (!item) return {}
   const description = pageDescription(item)
+  const title = `${item.title} · Bollard UI`
+  const path = `/components/${name}`
   return {
     title: item.title,
     description,
-    openGraph: { title: `${item.title} · Bollard UI`, description },
-    twitter: { card: "summary_large_image", title: `${item.title} · Bollard UI`, description },
+    alternates: { canonical: path },
+    openGraph: { type: "article", title, description, url: `${SITE_URL}${path}` },
+    twitter: { card: "summary_large_image", title, description },
   }
 }
 
-/** "Stops: extra zero on a transfer. Amount input for React…" kept under ~160 characters. */
+const MAX_DESCRIPTION = 160
+
+/** "Teammates' commits" → "teammates' commits", but "KYC rejected" stays as is. */
+const lowerFirst = (text: string) => (/^[A-Z][a-z]/.test(text) ? text.charAt(0).toLowerCase() + text.slice(1) : text)
+
+/** Whole sentences that fit in `max`, or "" when even the first one is too long. */
+function sentencesWithin(text: string, max: number) {
+  let out = ""
+  for (const sentence of text.replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s+(?=[A-Z0-9"“(])/)) {
+    const next = out ? `${out} ${sentence}` : sentence
+    if (next.length > max) break
+    out = next
+  }
+  return out
+}
+
+/**
+ * Meta description, at most 160 characters and never cut mid-sentence: the summary
+ * (or the description) in whole sentences, else the "Stops" line plus the title,
+ * and only as a last resort a word-boundary cut.
+ */
 function pageDescription(item: CatalogEntry) {
-  const lead = item.stops ? `Stops ${item.stops.charAt(0).toLowerCase()}${item.stops.slice(1)}.` : `${item.headline}.`
-  const tail = `${item.title}, a copy-paste React component for shadcn/ui.`
-  const full = `${lead} ${tail} ${item.description}`
-  return full.length > 160 ? full.slice(0, 157).replace(/\s+\S*$/, "") + "…" : full
+  const source = item.summary ?? item.description
+  const whole = sentencesWithin(source, MAX_DESCRIPTION)
+  if (whole) return whole
+  const stops = item.stops ? `Stops ${lowerFirst(item.stops).replace(/\.$/, "")}.` : `${(item.headline ?? item.title).replace(/\.$/, "")}.`
+  const withTitle = `${stops} ${item.title}, a copy-paste React component for shadcn/ui.`
+  if (withTitle.length <= MAX_DESCRIPTION) return withTitle
+  if (stops.length <= MAX_DESCRIPTION) return stops
+  return source.slice(0, MAX_DESCRIPTION - 1).replace(/\s+\S*$/, "").replace(/[,;:]$/, "") + "…"
+}
+
+/** Imports as the shadcn CLI writes them: @/registry/default/<dir>/<file> → @/components/ui/<file>. */
+function asInstalled(source: string) {
+  return source.replace(/@\/registry\/default\/[\w-]+\/([\w.-]+)/g, "@/components/ui/$1")
 }
 
 /** Four components to show next: same kit first, then shared flows, then same category. */
@@ -107,6 +139,131 @@ function Steps({ steps }: { steps: { title: React.ReactNode; body?: React.ReactN
   )
 }
 
+/** A plain bullet list in a hairline card, used by "What it catches", "Accessibility" and "Limitations". */
+function BulletCard({ items, tone = "default" }: { items: string[]; tone?: "default" | "muted" }) {
+  return (
+    <ul className="divide-y overflow-hidden rounded-xl border">
+      {items.map((text) => (
+        <li key={text} className={cn("flex items-start gap-3 px-4 py-3 text-[14.5px] leading-6 sm:px-5", tone === "muted" && "text-foreground/85")}>
+          <span aria-hidden className={cn("mt-[11px] h-px w-3 shrink-0", tone === "default" ? "bg-brand" : "bg-muted-foreground/50")} />
+          <span className="min-w-0 text-pretty">{text}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/** "This is a UX guard rail. Enforce on the server: …" */
+function ServerCallout({ text }: { text: string }) {
+  return (
+    <div role="note" className="flex gap-3 rounded-xl border border-brand/40 bg-brand/[0.06] px-4 py-3.5 sm:px-5" data-server-note>
+      <ServerCog aria-hidden className="mt-0.5 size-4 shrink-0 text-amber-700 dark:text-amber-400" />
+      <p className="text-[14.5px] leading-6 text-pretty">
+        <span className="font-medium">This is a UX guard rail. Enforce on the server: </span>
+        <span className="text-foreground/85">{text}</span>
+      </p>
+    </div>
+  )
+}
+
+function formatDate(iso: string) {
+  const date = new Date(`${iso}T00:00:00Z`)
+  return Number.isNaN(date.getTime()) ? iso : date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+}
+
+/** Rule-bearing components: when the rules were last checked, against what, and a reminder to check the source. */
+function RulesBox({ rules }: { rules: RulesInfo }) {
+  return (
+    <div className="space-y-3 rounded-xl border bg-surface px-4 py-4 sm:px-5" data-rules>
+      <p className="text-[14.5px] leading-6">
+        {rules.verified ? (
+          <>
+            <span className="font-medium">Rules last verified:</span> <time dateTime={rules.verified}>{formatDate(rules.verified)}</time>
+          </>
+        ) : (
+          <span className="font-medium">Rules not yet verified against an official source.</span>
+        )}
+      </p>
+      {rules.sources && rules.sources.length > 0 && (
+        <ul className="space-y-1.5">
+          {rules.sources.map((source) => (
+            <li key={source.url} className="text-sm">
+              <a
+                href={source.url}
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-1.5 rounded-sm text-foreground underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              >
+                <ExternalLink aria-hidden className="mt-1 size-3.5 shrink-0 text-muted-foreground" />
+                {source.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="text-[13px] leading-relaxed text-pretty text-muted-foreground">
+        {rules.note ?? "Informational only; check the official source or a professional before relying on it."} Copied components don&apos;t update
+        themselves, so re-check after rule changes (see{" "}
+        <Link href="/docs#updating" className="underline underline-offset-4 hover:text-foreground">
+          updating a component
+        </Link>
+        ).
+      </p>
+    </div>
+  )
+}
+
+/** Name, type, default and description per prop, from scripts/props.mjs. */
+function PropsTable({ doc }: { doc: PropsDoc }) {
+  const nativeOf = (doc.extends ?? []).map((e) => e.match(/ComponentProps<\s*"(\w+)"\s*>/)?.[1] ?? e.match(/HTMLAttributes<\s*HTML(\w+?)Element/)?.[1]?.toLowerCase()).filter(Boolean)
+  return (
+    <div className="space-y-3">
+      <div className="overflow-x-auto rounded-xl border">
+        <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+          <caption className="sr-only">{doc.component} props</caption>
+          <thead className="bg-surface text-xs text-muted-foreground">
+            <tr className="border-b">
+              <th scope="col" className="px-4 py-2.5 font-medium">Prop</th>
+              <th scope="col" className="px-4 py-2.5 font-medium">Type</th>
+              <th scope="col" className="px-4 py-2.5 font-medium">Default</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y">
+            {doc.props.map((prop) => (
+              <tr key={prop.name} className="align-top">
+                <th scope="row" className="px-4 py-3 text-left font-normal">
+                  <code className="font-mono text-[12.5px] font-medium text-foreground">
+                    {prop.name}
+                    {prop.required && (
+                      <span className="text-amber-700 dark:text-amber-400" title="Required">
+                        *<span className="sr-only"> (required)</span>
+                      </span>
+                    )}
+                  </code>
+                  {prop.description && <p className="mt-1 max-w-[34ch] text-[13px] leading-5 text-pretty text-muted-foreground">{prop.description}</p>}
+                </th>
+                <td className="px-4 py-3">
+                  <code className="font-mono text-[12px] break-words text-foreground/85">{prop.type}</code>
+                </td>
+                <td className="px-4 py-3">
+                  {prop.default ? <code className="font-mono text-[12px] text-foreground/85">{prop.default}</code> : <span className="text-muted-foreground">—</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-[13px] text-muted-foreground">
+        <span className="text-amber-700 dark:text-amber-400">*</span> required.{" "}
+        {nativeOf.length > 0
+          ? `Also accepts the native props of <${nativeOf.join(">, <")}> (className, aria-*, data-*…), passed through to it.`
+          : doc.extends?.length
+            ? `Also accepts ${doc.extends.join(", ")}.`
+            : null}
+      </p>
+    </div>
+  )
+}
+
 export default async function ComponentPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params
   const index = catalog.findIndex((entry) => entry.name === name)
@@ -119,7 +276,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
   const files = [...item.files]
     .sort((a, b) => Number(b === main) - Number(a === main))
     .map((path) => {
-      const source = readSource(path)
+      const source = asInstalled(readSource(path))
       return { path, source, lines: source.replace(/\n$/, "").split("\n").length, code: highlight(source.replace(/\n$/, "")) }
     })
   const url = `${registryBase}${name}.json`
@@ -131,16 +288,27 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
   const hasStops = !!item.stops || mistakes.length > 0
   const deps = item.dependencies
   const regDeps = item.registryDependencies
+  const propsDoc = readProps(name)
+  const hasProps = !!propsDoc && propsDoc.props.length > 0
+  const catches = item.catches ?? []
+  const a11y = item.a11y ?? []
+  const limits = item.limits ?? []
+  const hasLimits = limits.length > 0 || !!item.server
 
   const sections = [
     { id: "installation", label: "Installation" },
     usage && { id: "usage", label: "Usage" },
+    catches.length > 0 && { id: "catches", label: "What it catches" },
+    hasProps && { id: "props", label: "Props" },
+    a11y.length > 0 && { id: "accessibility", label: "Accessibility" },
+    hasLimits && { id: "limitations", label: "Limitations" },
+    item.rules && { id: "rules", label: "Rules" },
     hasStops && { id: "stops", label: "What it stops" },
     { id: "dependencies", label: "Dependencies" },
     pairs.length > 0 && { id: "pairs", label: "Pairs well with" },
   ].filter((s): s is { id: string; label: string } => !!s)
 
-  const demoCode = demo ? demo.replace(/\n$/, "") : null
+  const demoCode = demo ? asInstalled(demo.replace(/\n$/, "")) : null
   const codeTab = demoCode ? (
     <CodeBlock
       collapsible
@@ -240,7 +408,9 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
               ) : null}
             </div>
           </div>
-          <p className="max-w-[65ch] text-base leading-relaxed text-pretty text-muted-foreground">{item.description}</p>
+          <p className="max-w-[65ch] text-base leading-relaxed text-pretty text-muted-foreground" data-summary>
+            {item.summary ?? item.description}
+          </p>
           {item.stops && (
             <p className="flex items-start gap-2.5 text-[15px] leading-6 text-foreground" data-stops>
               <span className="mt-[3px] inline-flex shrink-0 items-center gap-1.5 rounded-md border border-brand/40 bg-brand/10 px-1.5 py-0.5 font-mono text-[10.5px] font-medium tracking-[0.12em] text-amber-800 uppercase dark:text-amber-300">
@@ -290,6 +460,38 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         {usage && (
           <DocSection id="usage" title="Usage">
             <CodeBlock lineNumbers={false} files={[{ path: `${name}-usage.tsx`, source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
+          </DocSection>
+        )}
+
+        {catches.length > 0 && (
+          <DocSection id="catches" title="What it catches">
+            <BulletCard items={catches} />
+          </DocSection>
+        )}
+
+        {hasProps && propsDoc && (
+          <DocSection id="props" title="Props">
+            <PropsTable doc={propsDoc} />
+          </DocSection>
+        )}
+
+        {a11y.length > 0 && (
+          <DocSection id="accessibility" title="Accessibility">
+            <BulletCard items={a11y} tone="muted" />
+            <p className="text-[13px] text-muted-foreground">Only what the source does. Test with your own screen reader and content before shipping.</p>
+          </DocSection>
+        )}
+
+        {hasLimits && (
+          <DocSection id="limitations" title="Limitations">
+            {item.server && <ServerCallout text={item.server} />}
+            {limits.length > 0 && <BulletCard items={limits} tone="muted" />}
+          </DocSection>
+        )}
+
+        {item.rules && (
+          <DocSection id="rules" title="Rules">
+            <RulesBox rules={item.rules} />
           </DocSection>
         )}
 

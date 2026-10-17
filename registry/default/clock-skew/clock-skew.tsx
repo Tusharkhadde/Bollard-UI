@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — clock-skew · MIT licence · https://bollard-ui.vercel.app/components/clock-skew
+
 import * as React from "react"
 import { ChevronDown, ClockAlert, LoaderCircle } from "lucide-react"
 
@@ -129,15 +131,25 @@ export interface ClockSkewProps extends React.ComponentProps<"div"> {
   onOffsetChange?: (estimate: ClockOffset | null) => void
   /** Templates: `{skew}` ("4 min 12 s") and `{direction}` ("behind"/"ahead"). */
   title?: string
+  /** Explains the effect on authenticator codes. */
   otpText?: string
+  /** Explains timers when the device is behind. */
   timersBehindText?: string
+  /** Explains timers when the device is ahead. */
   timersAheadText?: string
+  /** Explains the effect on secure sites. */
   secureSitesText?: string
+  /** Steps for fixing the device clock. */
   fixText?: string
+  /** Label for the device's time. */
   deviceLabel?: string
+  /** Label for the actual time. */
   actualLabel?: string
+  /** Text for the how-to-fix toggle. */
   howToFixLabel?: string
+  /** Text for the check-again button. */
   checkAgainLabel?: string
+  /** Text for the dismiss button. */
   dismissLabel?: string
 }
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — shortcut-confirm · MIT licence · https://bollard-ui.vercel.app/components/shortcut-confirm
+
 import * as React from "react"
 import { Check, Keyboard, TriangleAlert } from "lucide-react"
 
@@ -69,7 +71,9 @@ export interface ShortcutConfirmProps extends Omit<React.ComponentProps<"div">, 
   action: string
   /** Templates: `{keys}` and `{action}` are filled in. */
   idleText?: string
+  /** Prompt after the first press. `{shortcut}` and `{action}` are filled in. */
   armedText?: string
+  /** Shown after the action is confirmed. */
   doneText?: string
 }
 

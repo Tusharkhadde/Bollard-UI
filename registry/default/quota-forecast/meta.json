@@ -1,7 +1,25 @@
 {
   "title": "Quota Forecast",
-  "description": "Stops teams hitting a usage limit by surprise by projecting the current rate to the reset (\"At this pace you'll run out Thu 22 Oct\"), turning amber or red on that forecast, and saying what happens at the limit.",
-  "dependencies": ["lucide-react"],
+  "summary": "Projects current usage to the reset date and warns when you'll run out first, so a usage limit isn't hit by surprise.",
+  "description": "Usage meter that projects the current rate to the reset (\"At this pace you'll run out Thu 22 Oct\"), turns amber or red on that forecast rather than on raw usage, marks the even-pace point, and says what happens at the limit.",
+  "catches": [
+    "Running out before the reset at the current pace, with the date",
+    "Usage ahead of an even pace",
+    "Too early in the period to trust a rate: says so",
+    "What happens at the limit (atLimit)"
+  ],
+  "limits": [
+    "Assumes the average rate so far continues; spikes and seasonality aren't modelled",
+    "Numbers are what you pass; it doesn't meter usage"
+  ],
+  "a11y": [
+    "role=meter with min, max, now and aria-valuetext including the forecast",
+    "Forecast text is a polite live region",
+    "The even-pace marker is aria-hidden; the message says it in words"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Hit the usage limit by surprise",
   "mistakes": [
     "ran out of api quota",

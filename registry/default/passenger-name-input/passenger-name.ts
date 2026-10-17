@@ -1,3 +1,5 @@
+// Bollard UI — passenger-name-input · MIT licence · https://bollard-ui.vercel.app/components/passenger-name-input
+
 import { looksSwapped } from "@/registry/default/name-input/name-case"
 
 /** A passenger name as entered on a booking form. */

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hashtag-input · MIT licence · https://bollard-ui.vercel.app/components/hashtag-input
+
 import * as React from "react"
 import { Hash, TriangleAlert, X } from "lucide-react"
 
@@ -62,11 +64,13 @@ export function findHashtagIssues(tags: string[], { banned = [], words = [] }: {
 }
 
 export interface HashtagInputProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onChange"> {
+  /** Visible label. */
   label?: string
   /** Controlled tags, without the #. */
   value?: string[]
   /** Initial tags when uncontrolled. */
   defaultValue?: string[]
+  /** Called with the current list of tags. */
   onValueChange?: (tags: string[]) => void
   /** Per-platform limits shown as counts. */
   platforms?: HashtagPlatform[]
@@ -74,11 +78,13 @@ export interface HashtagInputProps extends Omit<React.ComponentProps<"div">, "de
   banned?: string[]
   /** Extra words (brand names, jargon) used to suggest CamelCase. */
   words?: string[]
+  /** Input placeholder. */
   placeholder?: string
   /** Messages; `{tag}`, `{at}`, `{posts}`, `{of}` and `{fix}` are filled in. */
   messages?: Partial<Record<HashtagIssue["kind"], string>>
   /** `{name}`, `{count}` ("1 tag") and `{tags}` are filled in. */
   overLimitText?: string
+  /** Accessible label for each tag's remove button; {tag} is filled in. */
   removeLabel?: string
 }
 

@@ -1,7 +1,46 @@
-{"title": "Trash Countdown", "description": "Stops things vanishing for good by surprise: trashed items show how long until they're deleted forever, soon-to-purge items are highlighted, restore is one tap, and emptying the trash needs the typed item count, which resets if new items arrive mid-confirmation.", "dependencies": ["lucide-react"],
+{
+  "title": "Trash Countdown",
+  "summary": "Shows how long each trashed item has before it's deleted forever, and makes emptying the trash need the typed item count.",
+  "description": "Trash list showing time left before each item is purged, highlighting soon-to-go items, with one-tap restore, and an empty-trash confirm that needs the typed item count and resets if new items arrive mid-confirmation.",
+  "catches": [
+    "Items close to permanent deletion (within soonDays)",
+    "Time left per item, as text and a bar",
+    "Recently trashed items, called out before emptying",
+    "New items arriving during the empty confirmation, which resets it"
+  ],
+  "limits": [
+    "Purge timing comes from retentionDays you pass; the server's purge job decides",
+    "Typing the count proves attention, not authorization"
+  ],
+  "a11y": [
+    "Section labelled by its title; empty toggle uses aria-expanded/aria-controls",
+    "Confirm area is inert until opened; focus moves to the count input; Escape cancels",
+    "Count input has a <label> and is described by the grew-meanwhile note",
+    "Countdown bars respect reduced motion"
+  ],
+  "server": "Run purges server-side on the stated schedule and authorize empty-trash requests; keep restore possible until the purge.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Trash purged before anyone restored",
-  "mistakes": ["trash emptied by mistake", "items deleted forever surprise", "restore from trash", "auto delete after 30 days"],
-  "aliases": ["trash", "recycle bin", "bin", "restore", "soft delete", "empty trash", "deleted items", "30 days"],
-  "flows": ["danger-zone"],
+  "mistakes": [
+    "trash emptied by mistake",
+    "items deleted forever surprise",
+    "restore from trash",
+    "auto delete after 30 days"
+  ],
+  "aliases": [
+    "trash",
+    "recycle bin",
+    "bin",
+    "restore",
+    "soft delete",
+    "empty trash",
+    "deleted items",
+    "30 days"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

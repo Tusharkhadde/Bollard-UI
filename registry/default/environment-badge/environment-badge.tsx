@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — environment-badge · MIT licence · https://bollard-ui.vercel.app/components/environment-badge
+
 import * as React from "react"
 import { Code, FlaskConical, ShieldAlert } from "lucide-react"
 

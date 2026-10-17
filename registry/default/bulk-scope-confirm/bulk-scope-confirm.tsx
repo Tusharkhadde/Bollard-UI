@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-scope-confirm · MIT licence · https://bollard-ui.vercel.app/components/bulk-scope-confirm
+
 import * as React from "react"
 import { LoaderCircle, RotateCw, TriangleAlert } from "lucide-react"
 
@@ -46,18 +48,27 @@ export interface BulkScopeConfirmProps extends React.ComponentProps<"section"> {
   scope?: BulkScope
   /** Initial scope when uncontrolled. Defaults to the safer "page". */
   defaultScope?: BulkScope
+  /** Called when the user switches between this page and all matching. */
   onScopeChange?: (scope: BulkScope) => void
   /** Called with the scope the user confirmed. Return a promise to show a pending state; a rejection is caught. */
   onConfirm: (scope: BulkScope) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
+  /** Visual style of the confirm button. */
   variant?: keyof typeof variants
+  /** Label for the this-page option. */
   pageLabel?: string
+  /** Label for the all-matching option. */
   allLabel?: string
+  /** Confirm button content while onConfirm runs. */
   pendingLabel?: React.ReactNode
+  /** Cancel button content. */
   cancelLabel?: React.ReactNode
+  /** Button that accepts a changed count and unlocks Confirm. */
   acknowledgeLabel?: React.ReactNode
   /** Warning shown when the "all" count changes while this is open. */
   driftMessage?: (from: string, to: string) => React.ReactNode
+  /** BCP 47 locale for numbers. */
   locale?: string
 }
 

@@ -1,3 +1,5 @@
+// Bollard UI — port-expose-guard · MIT licence · https://bollard-ui.vercel.app/components/port-expose-guard
+
 /** Where a mapping came from. */
 export type PortSource = "docker" | "compose" | "k8s"
 export type ServiceType = "ClusterIP" | "NodePort" | "LoadBalancer" | "ExternalName"

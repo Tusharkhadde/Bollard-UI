@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — undo-toast · MIT licence · https://bollard-ui.vercel.app/components/undo-toast
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleAlert, Undo2, X } from "lucide-react"
@@ -113,10 +115,15 @@ const RADIUS = 9
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 interface ItemProps {
+  /** The pending action. */
   item: UndoItem
+  /** Label of the Undo button. */
   undoLabel: string
+  /** Whether Ctrl/⌘+Z undoes the newest action. */
   hotkey: boolean
+  /** Shown when a commit fails and is rolled back. */
   failedText: React.ReactNode
+  /** Accessible label of the dismiss button. */
   dismissLabel: string
 }
 

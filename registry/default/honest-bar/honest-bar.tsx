@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — honest-bar · MIT licence · https://bollard-ui.vercel.app/components/honest-bar
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 
@@ -61,9 +63,13 @@ export interface HonestBarProps extends Omit<React.ComponentProps<"figure">, "ch
   exactFormat?: (value: number) => string
   /** Templates: `{min}`, `{drawn}`, `{real}` and `{count}` are filled in. */
   truncatedText?: string
+  /** Label for a bar that runs past the scale. */
   cutOffText?: string
+  /** Message when bars are clipped at max. */
   clippedText?: string
+  /** Button text that resets the axis to start at 0. */
   fixLabel?: string
+  /** Button text that restores the original axis. */
   undoLabel?: string
 }
 

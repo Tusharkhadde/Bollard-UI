@@ -1,7 +1,24 @@
 {
   "title": "Deadline",
-  "description": "Prevents deadlines missed to a time-zone slip or a misread midnight by showing time left plus the exact moment in your zone and the owner's, writing midnight as the end of the day before, and turning amber when close and red when overdue.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows time left and the exact moment in both your time zone and the owner's, so a deadline isn't missed to a time-zone slip or a misread midnight.",
+  "description": "Shows time left plus the exact moment in your zone and the owner's, writes midnight as the end of the day before, and turns amber when close and red when overdue.",
+  "catches": [
+    "Deadlines in another time zone, shown in both zones",
+    "Midnight deadlines misread as the following day",
+    "Deadlines that are close (urgentWithin) or already overdue"
+  ],
+  "limits": [
+    "Time left uses the visitor's clock unless you pass `now`",
+    "The deadline's zone is whatever you pass in ownerTimeZone"
+  ],
+  "a11y": [
+    "An overdue deadline is announced with role=\"alert\"",
+    "Urgency is stated in words as well as colour",
+    "Decorative separators are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Missed a deadline by a time zone",
   "mistakes": [
     "deadline wrong time zone",

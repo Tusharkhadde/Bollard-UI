@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — currency-hint · MIT licence · https://bollard-ui.vercel.app/components/currency-hint
+
 import * as React from "react"
 import { ArrowRightLeft, CreditCard, TriangleAlert } from "lucide-react"
 
@@ -69,15 +71,21 @@ export interface CurrencyHintProps extends Omit<React.ComponentProps<"div">, "de
   source?: string
   /** Templates. `{rate}`, `{date}`, `{source}`, `{extra}`, `{percent}`, `{fee}`, `{days}` and `{currency}` are filled in. */
   approxText?: string
+  /** Warning when the rate is older than staleAfterDays. */
   staleText?: string
+  /** Message comparing the merchant's conversion with the reference rate. */
   dccText?: string
+  /** Message when the merchant's converted amount is unknown. */
   dccUnknownText?: string
+  /** Message estimating card fees. */
   feeText?: string
+  /** Label for the pay-in currency choice. */
   payInLabel?: string
   /** Small text under the local-currency option. */
   localHint?: string
   /** Small text under the converted option. */
   merchantHint?: string
+  /** Text for switching back to local currency. */
   fixLabel?: string
 }
 

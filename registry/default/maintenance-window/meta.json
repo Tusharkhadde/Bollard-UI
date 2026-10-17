@@ -1,7 +1,27 @@
 {
   "title": "Maintenance Window",
-  "description": "Prevents work lost to planned downtime with a banner in the reader's own time zone whose countdown sharpens as it nears, a start button that warns when a long job would be cut off, and a read-only state during the window that keeps unsaved edits in place and guards against reloads.",
-  "dependencies": ["lucide-react"],
+  "summary": "A maintenance banner in the reader's own time zone, with a countdown and a warning before starting a job that would be cut off.",
+  "description": "Banner for planned downtime in the reader's time zone with a countdown that sharpens as it nears, a start button that warns when a long job would run into the window, and, during the window, a notice to keep unsaved edits plus a reload warning.",
+  "catches": [
+    "Downtime shown in the wrong time zone: converted to the reader's",
+    "Starting a long job that maintenance would cut off",
+    "Reloading with unsaved changes during the window (beforeunload warning)",
+    "Window crossing midnight"
+  ],
+  "limits": [
+    "Disables only the fields it wraps (a disabled fieldset) in this tab; it doesn't make your app or API read-only, so block writes on the server during the window",
+    "Times come from your start and end props",
+    "The reload warning depends on the browser showing beforeunload prompts"
+  ],
+  "a11y": [
+    "Banner is role=status",
+    "Cut-off hint is a polite live region linked to the start button",
+    "Dismiss is a button; icons are aria-hidden"
+  ],
+  "server": "Reject writes during maintenance on the server with a clear error so clients can retry later.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Work lost to planned downtime",
   "mistakes": [
     "site down for maintenance lost work",

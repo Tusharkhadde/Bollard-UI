@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dst-shift-notice · MIT licence · https://bollard-ui.vercel.app/components/dst-shift-notice
+
 import * as React from "react"
 import { CalendarClock, CircleCheck, LoaderCircle, MoonStar } from "lucide-react"
 

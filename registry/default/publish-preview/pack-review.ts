@@ -1,3 +1,5 @@
+// Bollard UI — publish-preview · MIT licence · https://bollard-ui.vercel.app/components/publish-preview
+
 // Pure review of `npm pack --dry-run --json` output against package.json. Safe on the server.
 
 export interface PackFile {

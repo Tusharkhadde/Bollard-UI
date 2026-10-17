@@ -1,3 +1,5 @@
+// Bollard UI — aadhaar-input · MIT licence · https://bollard-ui.vercel.app/components/aadhaar-input
+
 // Verhoeff tables (dihedral group D5), as used for the Aadhaar and VID check digit.
 const D = [
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 0, 6, 7, 8, 9, 5], [2, 3, 4, 0, 1, 7, 8, 9, 5, 6], [3, 4, 0, 1, 2, 8, 9, 5, 6, 7], [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],

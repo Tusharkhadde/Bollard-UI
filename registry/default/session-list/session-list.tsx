@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — session-list · MIT licence · https://bollard-ui.vercel.app/components/session-list
+
 import * as React from "react"
 import { LoaderCircle, LogOut, MapPin, Monitor, Smartphone, Tablet, TriangleAlert } from "lucide-react"
 
@@ -47,6 +49,7 @@ const fill = (template: string, values: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (match, key: string) => String(values[key] ?? match))
 
 export interface SessionListProps extends React.ComponentProps<"section"> {
+  /** Signed-in sessions; mark the current one with current: true. */
   sessions: Session[]
   /** Ends one session. Return a promise to show a pending state; a rejection keeps the row. */
   onRevoke: (id: string) => void | Promise<void>
@@ -56,17 +59,29 @@ export interface SessionListProps extends React.ComponentProps<"section"> {
   locale?: string
   /** Templates: `{count}` is filled in. */
   title?: string
+  /** Badge on the current device. */
   thisDeviceLabel?: string
+  /** Shown for sessions active right now. */
   activeNowLabel?: string
+  /** Label of each sign-out button. */
   revokeLabel?: string
+  /** Label of the sign-out button on this device. */
   signOutHereLabel?: string
+  /** Label of the sign-out-all-others button. */
   revokeOthersLabel?: string
+  /** Inline warning before signing out this device. */
   currentWarning?: string
+  /** Label of the confirm button for this device. */
   confirmCurrentLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Flags a session from another country. */
   awayText?: string
+  /** Note that locations are approximate. */
   approximateText?: string
+  /** Shown when this is the only session. */
   noOthersText?: string
+  /** Announced after sessions are signed out. */
   revokedText?: string
 }
 

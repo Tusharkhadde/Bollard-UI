@@ -1,7 +1,26 @@
 {
   "title": "Honest Bar",
-  "description": "Stops a bar chart from exaggerating: when the axis doesn't start at zero it draws a broken-axis mark through the axis and bars, states the distortion (\"looks 3×, really 1.09×\") with a one-tap Start at 0, tears and labels values past the scale, and reads out exact values on hover and keyboard focus, in pure SVG.",
-  "dependencies": ["lucide-react"],
+  "summary": "A bar chart that admits when its axis doesn't start at zero and says how much that exaggerates, like \"looks 3×, really 1.09×\".",
+  "description": "Pure-SVG bar chart that, when the axis doesn't start at zero, draws a broken-axis mark, states the distortion (lie factor) with a one-tap Start at 0, tears and labels values past the scale, and reads exact values on hover and keyboard focus.",
+  "catches": [
+    "Truncated value axis that makes small differences look large",
+    "Values clipped past the scale: torn and labelled",
+    "Exaggeration stated as drawn ratio vs real ratio"
+  ],
+  "limits": [
+    "One series of bars; not a general charting library",
+    "The lie factor compares longest and shortest bars only",
+    "Ignores other distortions such as 3D, dual axes or log scales"
+  ],
+  "a11y": [
+    "Chart is a labelled list; each bar is a focusable listitem with an aria-label holding the exact value",
+    "Arrow keys, Home and End move between bars",
+    "Status about truncation is in a polite live region",
+    "The broken-axis warning has text, not only a visual mark"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Bar chart made 9% look like 3×",
   "mistakes": [
     "misleading bar chart",

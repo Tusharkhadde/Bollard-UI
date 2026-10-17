@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — leftover-text-check · MIT licence · https://bollard-ui.vercel.app/components/leftover-text-check
+
 import * as React from "react"
 import { Bot, Check, CopyX, Loader2, PenLine, Trash2, Undo2 } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -45,6 +47,7 @@ export interface LeftoverTextCheckProps extends Omit<React.ComponentProps<"texta
   value?: string
   /** Initial text when uncontrolled. */
   defaultValue?: string
+  /** Called with the text on every change. */
   onValueChange?: (value: string) => void
   /** Publishes the text. May return a Promise; the button shows a pending state and can't fire twice. */
   onPublish?: (value: string) => void | Promise<void>
@@ -56,7 +59,9 @@ export interface LeftoverTextCheckProps extends Omit<React.ComponentProps<"texta
   duplicates?: boolean
   /** Class for the wrapper; `textareaClassName` styles the field itself. */
   className?: string
+  /** Extra classes for the textarea. */
   textareaClassName?: string
+  /** Override any visible string, including per-kind finding text. */
   messages?: Partial<Omit<Messages, "kind">> & { kind?: Partial<Record<LeftoverKind, string>> }
 }
 

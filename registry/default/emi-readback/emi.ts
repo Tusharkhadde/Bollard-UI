@@ -1,3 +1,5 @@
+// Bollard UI — emi-readback · MIT licence · https://bollard-ui.vercel.app/components/emi-readback
+
 /** Loan terms as the borrower typed them. Every number may be null (empty) or NaN (garbage). */
 export interface LoanTerms {
   /** Loan amount in rupees. */

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — force-push-confirm · MIT licence · https://bollard-ui.vercel.app/components/force-push-confirm
+
 import * as React from "react"
 import { Check, Copy, GitBranch, Loader2, Lock, TriangleAlert } from "lucide-react"
 

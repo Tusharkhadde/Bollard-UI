@@ -1,3 +1,5 @@
+// Bollard UI — coupon-input · MIT licence · https://bollard-ui.vercel.app/components/coupon-input
+
 /** Why a code did or didn't apply. Return one of these from `onApply`. */
 export type CouponResult =
   | {

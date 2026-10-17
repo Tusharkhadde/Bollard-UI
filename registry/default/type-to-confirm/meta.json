@@ -1,12 +1,49 @@
 {
   "title": "Type to Confirm",
-  "description": "Prevents deleting the wrong thing on reflex: a GitHub-style dialog that unlocks only after the exact phrase is typed, highlighting the matched characters and flagging a typo as it happens.",
+  "summary": "Confirmation dialog that unlocks a destructive action only after the exact name is typed, flagging a typo as it happens.",
+  "description": "GitHub-style confirm dialog (native <dialog>) that unlocks only after the exact phrase is typed, highlighting matched characters and flagging a typo the moment it happens; errors keep the dialog open.",
+  "catches": [
+    "Confirming before the exact phrase is typed",
+    "A typo, flagged at the first mismatching character",
+    "Failed confirms, which keep the dialog open with the error",
+    "Repeat confirms while pending"
+  ],
+  "limits": [
+    "Case-sensitive exact match after trimming leading and trailing spaces",
+    "Typing a name proves attention, not authorization",
+    "Make the phrase the real target (repo, env, account) so it names what's at stake"
+  ],
+  "a11y": [
+    "Native <dialog> labelled and described by its title and description",
+    "Input has a <label>, autoFocus, aria-invalid and a polite hint",
+    "Confirm uses aria-disabled (stays discoverable) and aria-busy while pending",
+    "Errors use role=alert"
+  ],
+  "server": "Authorize the destructive action server-side and confirm the target id there; the typed phrase is a UX guard only.",
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Wrong repo deleted on reflex",
-  "mistakes": ["deleted wrong project", "type name to delete", "github delete repo confirm", "confirm by typing name"],
-  "aliases": ["type to confirm", "delete repository", "delete project", "github style", "confirmation dialog", "modal", "danger zone"],
-  "flows": ["danger-zone", "account-settings"],
-  "fields": ["text"]
+  "mistakes": [
+    "deleted wrong project",
+    "type name to delete",
+    "github delete repo confirm",
+    "confirm by typing name"
+  ],
+  "aliases": [
+    "type to confirm",
+    "delete repository",
+    "delete project",
+    "github style",
+    "confirmation dialog",
+    "modal",
+    "danger zone"
+  ],
+  "flows": [
+    "danger-zone",
+    "account-settings"
+  ],
+  "fields": [
+    "text"
+  ]
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — send-time-check · MIT licence · https://bollard-ui.vercel.app/components/send-time-check
+
 import * as React from "react"
 import { TZDate, tzOffset } from "@date-fns/tz"
 import { addDays, format, startOfDay } from "date-fns"
@@ -87,9 +89,13 @@ export interface SendTimeCheckProps extends SendTimeOptions, Omit<React.Componen
   children?: React.ReactNode
   /** Templates: `{name}`, `{place}`, `{time}`, `{day}` and `{holiday}` are filled in. */
   okText?: string
+  /** Shown when it's night where the recipient is. */
   nightText?: string
+  /** Shown outside their working hours. */
   afterHoursText?: string
+  /** Shown on their weekend. */
   weekendText?: string
+  /** Shown on a holiday you passed. */
   holidayText?: string
   /** Template for the fix button: `{when}`. */
   scheduleLabel?: string

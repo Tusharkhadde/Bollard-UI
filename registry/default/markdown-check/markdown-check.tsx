@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — markdown-check · MIT licence · https://bollard-ui.vercel.app/components/markdown-check
+
 import * as React from "react"
 import { CircleCheck, TriangleAlert } from "lucide-react"
 

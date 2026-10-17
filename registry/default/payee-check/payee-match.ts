@@ -1,3 +1,5 @@
+// Bollard UI — payee-check · MIT licence · https://bollard-ui.vercel.app/components/payee-check
+
 export type PayeeVerdict = "match" | "close" | "no-match"
 
 /** Titles that never decide who an account belongs to. */

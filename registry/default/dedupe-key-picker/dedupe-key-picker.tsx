@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dedupe-key-picker · MIT licence · https://bollard-ui.vercel.app/components/dedupe-key-picker
+
 import * as React from "react"
 import { LoaderCircle, TriangleAlert } from "lucide-react"
 
@@ -83,11 +85,13 @@ export interface DedupeKeyPickerProps extends Omit<React.ComponentProps<"fieldse
   value?: string[]
   /** Initial key columns when uncontrolled. */
   defaultValue?: string[]
+  /** Called with the chosen key columns. */
   onValueChange?: (keys: string[]) => void
   /** Controlled "ignore case and spaces". */
   normalize?: boolean
   /** Initial "ignore case and spaces" when uncontrolled. */
   defaultNormalize?: boolean
+  /** Called when normalisation is turned on or off. */
   onNormalizeChange?: (normalize: boolean) => void
   /** Runs the merge. May return a Promise; the button shows a pending state. */
   onApply?: (plan: { keys: string[]; normalize: boolean }) => void | Promise<unknown>
@@ -95,6 +99,7 @@ export interface DedupeKeyPickerProps extends Omit<React.ComponentProps<"fieldse
   samples?: number
   /** Share of rows one key may absorb before it is called too broad. */
   coarseShare?: number
+  /** BCP 47 locale for numbers. */
   locale?: string
   /** Every visible string, with `{placeholders}`. */
   messages?: Partial<DedupeKeyPickerMessages>

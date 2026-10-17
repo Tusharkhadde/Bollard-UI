@@ -1,3 +1,5 @@
+// Bollard UI — name-input · MIT licence · https://bollard-ui.vercel.app/components/name-input
+
 /** Name particles that stay lower case between other words: Maria de la Cruz, Anna van der Berg. */
 const PARTICLES = new Set(["van", "von", "der", "den", "de", "del", "della", "di", "da", "das", "dos", "du", "la", "le", "ten", "ter", "bin", "bint", "ibn", "al", "el", "zu"])
 /** "Mac" names that take a second capital. Others (Mack, Macon, Machado) don't, so this is a list, not a rule. */

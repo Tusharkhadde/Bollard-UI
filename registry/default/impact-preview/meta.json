@@ -1,12 +1,46 @@
 {
   "title": "Impact Preview",
-  "description": "Prevents surprise cascade deletes by loading and listing everything that goes with a parent object, grouped by type with counts and samples and marked deleted, detached or kept, and keeps Confirm locked until the list loads.",
+  "summary": "Before a delete, loads and lists everything that goes with the parent object, so a cascade doesn't wipe child records nobody saw.",
+  "description": "Delete confirmation that loads every dependent of a parent object, grouped by type with counts and samples and marked deleted, detached or kept, and keeps Confirm locked until the list has loaded.",
+  "catches": [
+    "Child records a cascade will delete",
+    "Records that will be detached rather than deleted",
+    "Confirming before the impact has loaded: Confirm stays locked",
+    "Load failures, with a retry"
+  ],
+  "limits": [
+    "Accurate only if your load function mirrors the real cascade rules",
+    "The list can be stale if data changes between preview and delete",
+    "Not authorization; it doesn't decide who may delete"
+  ],
+  "a11y": [
+    "Dialog content labelled by its title and aria-busy while loading",
+    "Loading text in a polite live region; errors use role=alert",
+    "Groups expand with aria-expanded and aria-controls",
+    "Locked Confirm uses aria-disabled so it stays focusable"
+  ],
+  "server": "Run the delete in a transaction with the same cascade rules and authorization on the server.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Cascade delete wiped child records",
-  "mistakes": ["deleted project lost all tasks", "cascade delete surprise", "what else gets deleted", "on delete cascade"],
-  "aliases": ["cascade delete", "delete preview", "related records", "dependencies", "foreign key", "delete folder", "delete workspace"],
-  "flows": ["danger-zone"],
+  "stops": "Helps prevent a cascade delete wiping child records",
+  "mistakes": [
+    "deleted project lost all tasks",
+    "cascade delete surprise",
+    "what else gets deleted",
+    "on delete cascade"
+  ],
+  "aliases": [
+    "cascade delete",
+    "delete preview",
+    "related records",
+    "dependencies",
+    "foreign key",
+    "delete folder",
+    "delete workspace"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

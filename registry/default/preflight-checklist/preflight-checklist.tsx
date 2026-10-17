@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — preflight-checklist · MIT licence · https://bollard-ui.vercel.app/components/preflight-checklist
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, CircleDashed, CircleX, LoaderCircle, Lock, RotateCw, Rocket } from "lucide-react"
 
@@ -20,6 +22,7 @@ export interface PreflightCheck {
 }
 
 export interface PreflightChecklistProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "children"> {
+  /** The checks to run, in order; omit run for a manual tick. */
   checks: PreflightCheck[]
   /** Label of the gated action, e.g. "Deploy to production". */
   actionLabel: string

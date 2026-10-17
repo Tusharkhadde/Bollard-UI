@@ -1,6 +1,24 @@
 {
   "title": "Near-Duplicate Input",
-  "description": "Prevents a second \"Marketing\" tag by spotting near-duplicates as you type (capitals, spacing, punctuation, plurals, one-letter typos, but never different numbers like Q3 vs Q4) and offering Use existing, which is also what Enter does.",
+  "summary": "Spots near-duplicates of existing names as you type, so a second \"Marketing\" tag or folder isn't created by accident.",
+  "description": "Create field that spots near-duplicates as you type (capitals, spacing, punctuation, plurals, one-letter typos, never different numbers like Q3 vs Q4) and offers Use existing, which is also what Enter does.",
+  "catches": [
+    "Same name in different capitals or spacing",
+    "Punctuation differences",
+    "Plural vs singular (Bugs vs bug)",
+    "One-letter typos and swapped letters",
+    "Leaves different numbers alone (Q3 vs Q4)"
+  ],
+  "limits": [
+    "Compares against the items you pass; it doesn't search your database",
+    "Synonyms (Sales vs Revenue) aren't detected",
+    "English plural rules only"
+  ],
+  "a11y": [
+    "Visible label; input is described by a polite hint region",
+    "Enter picks the existing item when a near-duplicate is shown",
+    "Use existing button's aria-label names the item; create shows aria-busy while pending"
+  ],
   "dependencies": [
     "lucide-react"
   ],

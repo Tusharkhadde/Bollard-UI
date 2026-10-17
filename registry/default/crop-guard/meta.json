@@ -1,10 +1,48 @@
 {
   "title": "Crop Guard",
-  "description": "Stops a crop that slices a face or headline, or hides it under a platform's UI, by checking pluggable face and text boxes against the crop, the profile circle and Story safe zones, offering a one-tap fit that moves the crop as little as possible, and previewing it at the small size people will actually see.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks a crop against faces, headlines and platform overlays, so a profile photo or Story doesn't cut off a face or hide text under the UI.",
+  "description": "Checks pluggable face and text boxes against the crop, the profile circle and Story safe zones, offers a one-tap fit that moves the crop as little as possible, and previews it at the small size people actually see.",
+  "catches": [
+    "Faces or text boxes cut by the crop edge",
+    "Content hidden by a circle mask or a platform's Story UI",
+    "Subjects too small to recognise at thumbnail size",
+    "A nearest fit that keeps everything in, moving the crop as little as possible"
+  ],
+  "limits": [
+    "Needs face and text boxes from you or a detect function; it has no built-in detector",
+    "Safe zones are presets and may not match a platform's latest layout",
+    "Sometimes no crop can fit everything; it says so"
+  ],
+  "a11y": [
+    "The crop area is keyboard-operable: arrow keys move it, + and - resize",
+    "Shape presets are a role=\"radiogroup\" with arrow-key navigation",
+    "The image takes alt text; problems are described in text"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Profile crop cut off face",
-  "mistakes": ["crop cut head off", "text hidden under story ui", "avatar crop bad", "image crop safe zone"],
-  "aliases": ["image crop", "avatar upload", "profile photo", "instagram story", "safe zone", "cropper", "thumbnail", "dp"],
-  "flows": ["account-settings", "forms"],
-  "fields": ["file"]
+  "mistakes": [
+    "crop cut head off",
+    "text hidden under story ui",
+    "avatar crop bad",
+    "image crop safe zone"
+  ],
+  "aliases": [
+    "image crop",
+    "avatar upload",
+    "profile photo",
+    "instagram story",
+    "safe zone",
+    "cropper",
+    "thumbnail",
+    "dp"
+  ],
+  "flows": [
+    "account-settings",
+    "forms"
+  ],
+  "fields": [
+    "file"
+  ]
 }

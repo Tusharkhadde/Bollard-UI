@@ -1,10 +1,48 @@
 {
   "title": "Edit Lock",
-  "description": "Prevents accidental edits to finished or approved records by locking the form in a disabled fieldset (\"Locked by Priya after approval\"), stating before unlocking that any change needs re-approval, voiding the approval only when something actually changes, and relocking itself after a stretch of idleness, never mid-typing.",
-  "dependencies": ["lucide-react"],
+  "summary": "Locks a finished or approved record and states that edits need re-approval before unlocking, so approved invoices aren't changed by mistake.",
+  "description": "Locks the form in a disabled fieldset (\"Locked by Priya after approval\"), says before unlocking that any change needs re-approval, voids the approval only when something actually changes, and relocks after idleness, never mid-typing.",
+  "catches": [
+    "Accidental edits to approved records",
+    "Unlocking without knowing the consequence, via a confirmation step",
+    "Approvals voided by an unlock with no real change (only real edits void them)",
+    "Records left unlocked, by relocking after idleness"
+  ],
+  "limits": [
+    "A UI lock: the record can still be changed through your API",
+    "Re-approval is signalled through onEdit; your workflow must act on it"
+  ],
+  "a11y": [
+    "Locks with a native disabled <fieldset>",
+    "Lock state and edits are announced in an aria-live=\"polite\" region",
+    "The unlock confirmation focuses its confirm button; Escape cancels and returns focus",
+    "After unlocking, focus moves to the first field"
+  ],
+  "server": "Enforce the lock on the server: reject edits to approved records unless the approval is voided and logged.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Approved invoice edited by mistake",
-  "mistakes": ["edited approved record", "changed invoice after approval", "locked form", "re-approval needed"],
-  "aliases": ["read only", "locked form", "approval", "invoice", "purchase order", "fieldset disabled", "edit mode", "po"],
-  "flows": ["forms"],
-  "fields": ["amount"]
+  "mistakes": [
+    "edited approved record",
+    "changed invoice after approval",
+    "locked form",
+    "re-approval needed"
+  ],
+  "aliases": [
+    "read only",
+    "locked form",
+    "approval",
+    "invoice",
+    "purchase order",
+    "fieldset disabled",
+    "edit mode",
+    "po"
+  ],
+  "flows": [
+    "forms"
+  ],
+  "fields": [
+    "amount"
+  ]
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — env-paste · MIT licence · https://bollard-ui.vercel.app/components/env-paste
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, TriangleAlert, WandSparkles } from "lucide-react"
 

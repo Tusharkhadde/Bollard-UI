@@ -1,10 +1,52 @@
 {
   "title": "Sign-in Approve",
-  "description": "Stops MFA-fatigue approvals: there is no one-tap Approve, the user must type the number from the sign-in screen, and the prompt shows location and device, warns about request bursts and numbers sent by \"support\", refuses after wrong guesses and ends every denial on a secure-my-account step.",
-  "dependencies": ["lucide-react"],
-  "stops": "Attacker's login approved through push fatigue",
-  "mistakes": ["mfa fatigue attack", "user approved fake login", "push notification spam approve", "number matching 2fa"],
-  "aliases": ["mfa", "2fa", "push approval", "number matching", "login approval", "authenticator", "is this you", "sign-in request"],
-  "flows": ["signup-login", "account-settings"],
-  "fields": ["code"]
+  "summary": "Replaces one-tap sign-in approval with typing the number shown on the sign-in screen, to make MFA-fatigue approvals harder.",
+  "description": "Sign-in approval prompt with no one-tap Approve: the user types the number from the sign-in screen, sees location and device, is warned about request bursts and \"support\" asking for codes, and every denial ends on a secure-my-account step.",
+  "catches": [
+    "Approvals without seeing the sign-in screen (number matching)",
+    "Unusual locations far from normal sign-ins",
+    "Bursts of requests in the last 15 minutes",
+    "Someone claiming to be support asking for the number",
+    "Wrong numbers, stopping after maxAttempts",
+    "Expired requests"
+  ],
+  "limits": [
+    "Number checking and attempt limits run through your onApprove; the server must enforce them",
+    "Location is approximate and IP-based",
+    "Does not send or create the request"
+  ],
+  "a11y": [
+    "Section labelled by its title; details in a <dl>",
+    "Focus moves to the number input on open and to the result (role=status) when finished",
+    "Unusual location shown with an icon and text",
+    "Secure-my-account is a labelled button"
+  ],
+  "server": "Verify the number, enforce attempts and expiry, and rate-limit push requests on the server; deny means kill the pending session.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent approving an attacker's sign-in through push fatigue",
+  "mistakes": [
+    "mfa fatigue attack",
+    "user approved fake login",
+    "push notification spam approve",
+    "number matching 2fa"
+  ],
+  "aliases": [
+    "mfa",
+    "2fa",
+    "push approval",
+    "number matching",
+    "login approval",
+    "authenticator",
+    "is this you",
+    "sign-in request"
+  ],
+  "flows": [
+    "signup-login",
+    "account-settings"
+  ],
+  "fields": [
+    "code"
+  ]
 }

@@ -1,8 +1,31 @@
 {
   "title": "MCP Tool Review",
-  "description": "Stops an MCP rug pull, where a server changes its tools after you approved them, by fingerprinting each tool definition, diffing the new description word by word against the approved one, marking the poisoned phrases inside the added text (<IMPORTANT> blocks, \"do not tell the user\", ~/.ssh and mcp.json, instructions about another server's send_email), flagging new free-text parameters that could carry data out, invisible characters and read-only labels that flipped, and letting the person keep the approved version, turn the tool off or accept the change, with a second press for anything suspicious and a one-tap accept for the safe ones.",
-  "dependencies": ["lucide-react", "motion"],
-  "stops": "MCP server swaps in poisoned tools",
+  "summary": "When an MCP server changes a tool you approved, shows the word-by-word diff and highlights poisoned instructions before the agent uses it.",
+  "description": "Review card for MCP tool changes after approval: fingerprints each definition, diffs the description word by word, marks injected instructions (<IMPORTANT> blocks, \"do not tell the user\", ~/.ssh, other servers' tools), new free-text parameters and flipped read-only hints.",
+  "catches": [
+    "Tool definitions changed since approval (fingerprint mismatch)",
+    "Injected instructions such as <IMPORTANT> blocks or \"do not tell the user\"",
+    "References to secrets or config such as ~/.ssh and mcp.json, or to another server's tools",
+    "New free-text parameters that could carry data out",
+    "Invisible characters and read-only annotations that flipped"
+  ],
+  "limits": [
+    "Phrase-based detection; a reworded injection can slip through",
+    "Only sees definitions the host passes in; it doesn't talk to MCP servers",
+    "Keep, disable or accept is passed to onResolve; enforcing it is the host's job"
+  ],
+  "a11y": [
+    "Each tool card expands with aria-expanded and aria-controls",
+    "Focus moves to the open card's first action",
+    "Risk is shown in text with icons aria-hidden",
+    "Animations are skipped under reduced motion"
+  ],
+  "server": "Pin approved tool definitions in the MCP host and refuse calls to tools whose fingerprint changed until re-approved.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Helps catch an MCP server swapping in poisoned tools",
   "mistakes": [
     "mcp tool poisoning",
     "mcp rug pull",
@@ -22,6 +45,11 @@
     "diff",
     "ai safety"
   ],
-  "flows": ["devtools"],
-  "fields": ["code", "text"]
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "code",
+    "text"
+  ]
 }

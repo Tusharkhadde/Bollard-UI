@@ -1,3 +1,5 @@
+// Bollard UI — clock-skew · MIT licence · https://bollard-ui.vercel.app/components/clock-skew
+
 /** A clock offset estimate: add `offset` to the device's Date.now() to get server time. */
 export interface ClockOffset {
   /** Server time minus device time, in ms. Positive means the device is behind. */

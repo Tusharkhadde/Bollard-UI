@@ -1,7 +1,44 @@
-{"title": "Archive or Delete", "description": "Stops someone from permanently deleting what they only meant to put away: Archive and Delete sit side by side with each affected thing's honest fate under both, the reversible choice starts selected and focused so Enter archives, and picking Delete flashes what is lost and relabels the button \"Delete forever\".", "dependencies": ["lucide-react"],
+{
+  "title": "Archive or Delete",
+  "summary": "Puts Archive and Delete side by side with what happens to each thing under both, so people don't delete what they only meant to put away.",
+  "description": "Shows Archive and Delete together with each affected thing's fate under both. The reversible choice starts selected and focused so Enter archives; choosing Delete highlights what is lost and relabels the button \"Delete forever\".",
+  "catches": [
+    "Choosing permanent deletion when archiving would do",
+    "Hidden differences between the two choices, by listing only the items whose fate differs first",
+    "Ambiguous confirm buttons, by naming the choice and the thing (\"Delete forever\")"
+  ],
+  "limits": [
+    "Only describes the fates you pass in; it does not know what your backend really deletes",
+    "It does not archive or delete anything; onConfirm does"
+  ],
+  "a11y": [
+    "Choices are a role=\"radiogroup\" labelled by the title, each option described by its summary",
+    "Archive is focused on open (autoFocus, default true)",
+    "The confirm button sets aria-busy while pending",
+    "The Delete highlight animation is skipped with prefers-reduced-motion; fates are written in text, not just colour"
+  ],
+  "server": "Authorise the delete on the server and, where possible, keep a recovery window; the dialog does not make deletion reversible.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Deleted forever instead of archived",
-  "mistakes": ["clicked delete instead of archive", "meant to archive", "permanent delete by mistake", "archive vs delete"],
-  "aliases": ["archive", "delete forever", "soft delete", "inbox", "project archive", "hide", "remove"],
-  "flows": ["danger-zone"],
+  "mistakes": [
+    "clicked delete instead of archive",
+    "meant to archive",
+    "permanent delete by mistake",
+    "archive vs delete"
+  ],
+  "aliases": [
+    "archive",
+    "delete forever",
+    "soft delete",
+    "inbox",
+    "project archive",
+    "hide",
+    "remove"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — repeat-rows · MIT licence · https://bollard-ui.vercel.app/components/repeat-rows
+
 import * as React from "react"
 import { Eraser, Plus, TriangleAlert, Undo2, X } from "lucide-react"
 
@@ -59,13 +61,19 @@ export interface RepeatRowsProps extends Omit<React.ComponentProps<"fieldset">, 
   itemLabel?: string
   /** How long Undo stays after a remove, in ms. */
   undoMs?: number
+  /** Label of the add-row button. */
   addLabel?: string
+  /** Label of the Undo button after a remove. */
   undoLabel?: string
   /** Templates: `{item}`, `{n}`, `{max}` and `{count}` are filled in. */
   duplicateText?: string
+  /** Label of the one-tap remove on a duplicate row. */
   removeDuplicateLabel?: string
+  /** Shown when blank rows would be submitted. */
   emptyText?: string
+  /** Label of the button that removes blank rows. */
   cleanLabel?: string
+  /** Shown when the maximum number of rows is reached. */
   maxText?: string
 }
 

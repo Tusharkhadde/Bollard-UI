@@ -1,7 +1,25 @@
 {
   "title": "Embed Code",
-  "description": "Prevents pasting an embed that leaks or breaks by reading back what visitors will see and what it tracks, offering a privacy mode and allowed-site list, and catching drafts, private resources and secrets in the URL (token=, sig=) with a one-tap strip before a deliberate second click copies it.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads back what an embed will show and track, and strips tokens from its URL, so an embed doesn't leak a private link or secret.",
+  "description": "Reads back what visitors will see and what the embed tracks, offers a privacy mode and allowed-site list, and catches drafts, private resources and secrets in the URL (token=, sig=) with a one-tap strip before a deliberate second click copies it.",
+  "catches": [
+    "Secrets in the embed URL (token=, sig= and similar)",
+    "Draft or private resources about to be embedded",
+    "Tracking the embed adds, with a privacy-mode option",
+    "Allowed-site entries that aren't valid domains"
+  ],
+  "limits": [
+    "Exposure and tracking come from the resource description you pass",
+    "Stripping a token may break an embed that genuinely needs it"
+  ],
+  "a11y": [
+    "Labelled options and allowed-domain field with aria-invalid and aria-describedby",
+    "Readback rows use icons plus text"
+  ],
+  "server": "Scope embed tokens to read-only, short-lived access on the server, and enforce allowed origins with frame-ancestors.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Embed leaked a private token",
   "mistakes": [
     "iframe embed leaks token",

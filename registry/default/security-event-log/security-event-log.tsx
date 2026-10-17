@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — security-event-log · MIT licence · https://bollard-ui.vercel.app/components/security-event-log
+
 import * as React from "react"
 import { Fingerprint, KeyRound, KeySquare, LifeBuoy, LoaderCircle, LogIn, Mail, MonitorSmartphone, ShieldAlert, ShieldCheck, ShieldOff, type LucideIcon } from "lucide-react"
 

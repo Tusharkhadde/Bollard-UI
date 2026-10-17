@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recurrence-scope · MIT licence · https://bollard-ui.vercel.app/components/recurrence-scope
+
 import * as React from "react"
 import { LoaderCircle, Repeat, TriangleAlert } from "lucide-react"
 
@@ -90,7 +92,9 @@ export interface RecurrenceScopeProps extends Omit<React.ComponentProps<"div">, 
   scopeLabels?: Record<RecurrenceScopeValue, string>
   /** Templates: `{dates}` and `{fields}` are filled in. */
   overwriteText?: string
+  /** Label of the button that keeps individually edited occurrences. */
   keepLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
   /** Save button: `{count}` is filled in. */
   saveLabel?: string

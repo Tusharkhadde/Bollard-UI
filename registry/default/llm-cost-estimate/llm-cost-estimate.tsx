@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — llm-cost-estimate · MIT licence · https://bollard-ui.vercel.app/components/llm-cost-estimate
+
 import * as React from "react"
 import { Coins, Info, Loader2, PiggyBank, TriangleAlert } from "lucide-react"
 
@@ -63,16 +65,19 @@ export interface LlmCostEstimateProps extends Omit<React.ComponentProps<"div">, 
   model?: string
   /** Initial model id when uncontrolled. Defaults to the first row. */
   defaultModel?: string
+  /** Called with the chosen model id. */
   onModelChange?: (id: string) => void
   /** Controlled max_tokens; `null` means not set. */
   maxTokens?: number | null
   /** Initial max_tokens when uncontrolled. */
   defaultMaxTokens?: number | null
+  /** Called with the new max_tokens, or null when cleared. */
   onMaxTokensChange?: (value: number | null) => void
   /** Controlled: send through the Batch API (needs `batchDiscount` on the model). */
   batch?: boolean
   /** Initial batch choice when uncontrolled. */
   defaultBatch?: boolean
+  /** Called when the Batch API toggle changes. */
   onBatchChange?: (batch: boolean) => void
   /** Requests in the run. */
   items?: number
@@ -90,9 +95,11 @@ export interface LlmCostEstimateProps extends Omit<React.ComponentProps<"div">, 
   bulkItems?: number
   /** How many times pricier than the cheapest fitting model counts as costly. */
   costlyFactor?: number
+  /** Days after pricesAsOf before the price table is called stale. */
   staleAfterDays?: number
   /** ISO 4217 code for the table's prices. */
   currency?: string
+  /** BCP 47 locale for numbers and currency. */
   locale?: string
   /** "Now" in epoch ms, for deterministic rendering. Read from the clock after mount when omitted. */
   now?: number

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dual-axis-guard · MIT licence · https://bollard-ui.vercel.app/components/dual-axis-guard
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 
@@ -115,12 +117,15 @@ export interface DualAxisGuardProps extends Omit<React.ComponentProps<"figure">,
   label: string
   /** X-axis labels, one per value. */
   labels: string[]
+  /** The series on the left axis. */
   left: DualAxisSeries
+  /** The series on the right axis. */
   right: DualAxisSeries
   /** Controlled view. */
   value?: DualAxisMode
   /** Initial view when uncontrolled. */
   defaultValue?: DualAxisMode
+  /** Called when the view switches between dual-axis and indexed. */
   onValueChange?: (mode: DualAxisMode) => void
   /** Which point becomes 100 when indexed, and where change is measured from. */
   indexAt?: number
@@ -130,6 +135,7 @@ export interface DualAxisGuardProps extends Omit<React.ComponentProps<"figure">,
   height?: number
   /** Draw with your own chart library instead of the built-in SVG; the warnings still apply. */
   children?: (view: DualAxisView) => React.ReactNode
+  /** Override any visible string. */
   messages?: Partial<DualAxisGuardMessages>
 }
 

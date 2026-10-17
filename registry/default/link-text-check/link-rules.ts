@@ -1,3 +1,5 @@
+// Bollard UI — link-text-check · MIT licence · https://bollard-ui.vercel.app/components/link-text-check
+
 export interface LinkItem {
   /** The link's accessible name: its text, aria-label or image alt. */
   text: string

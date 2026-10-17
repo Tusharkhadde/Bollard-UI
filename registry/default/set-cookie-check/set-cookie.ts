@@ -1,3 +1,5 @@
+// Bollard UI — set-cookie-check · MIT licence · https://bollard-ui.vercel.app/components/set-cookie-check
+
 /**
  * Set-Cookie logic for SetCookieCheck. Pure functions, safe on the server.
  * Parsing and limits follow RFC 6265bis (draft-ietf-httpbis-rfc6265bis);

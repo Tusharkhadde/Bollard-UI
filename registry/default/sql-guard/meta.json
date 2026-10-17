@@ -1,10 +1,32 @@
 {
   "title": "SQL Guard",
-  "description": "Stops a forgotten WHERE from wiping a table: a small tokenizer (comments and strings don't count) flags UPDATE/DELETE without WHERE, a WHERE hidden in a comment, always-true conditions like WHERE 1=1, DROP and TRUNCATE as you type, asks before any write on production, shows estimated affected rows from a pluggable function, and requires typing the table name before a destructive run.",
+  "summary": "Warns before running SQL that touches every row or drops data, like UPDATE/DELETE without WHERE, and asks for the table name first.",
+  "description": "SQL box with a small tokenizer (comments and strings ignored) that flags UPDATE/DELETE without WHERE, a commented-out WHERE, always-true conditions, DROP and TRUNCATE, asks before writes on production, shows estimated rows and requires typing the table name.",
+  "catches": [
+    "UPDATE or DELETE with no top-level WHERE",
+    "A WHERE that is only inside a -- or /* */ comment, with a one-tap uncomment",
+    "Simple always-true conditions after WHERE or OR (1=1, TRUE, id = id, 'a'='a')",
+    "DROP TABLE/DATABASE/SCHEMA and TRUNCATE",
+    "Any write when env is in productionEnvs",
+    "Estimated affected rows from your estimateRows"
+  ],
+  "limits": [
+    "Pattern checks only: it does not parse full SQL or prevent SQL injection, and a query with a WHERE can still be destructive",
+    "Tokenizer understands --, # (MySQL) and /* */ comments, '…' and $$…$$ strings, and \"…\", `…` and […] identifiers; \"#>\" and \"#-\" are read as Postgres operators, but a bare Postgres \"#\" (bitwise XOR) is read as a comment",
+    "Always-true checks look at a single term right after WHERE or OR (\"WHERE 1=1\", \"OR 1=1\", \"OR id = id\"); a term followed by AND (\"WHERE 1=1 AND …\", the query-builder pattern) is not flagged, and tautologies inside parentheses or longer expressions are missed",
+    "Not dialect-aware beyond that; CTEs are judged by their writing verb"
+  ],
+  "a11y": [
+    "Visible <label>; Cmd/Ctrl+Enter runs; hints in a polite live region via aria-describedby",
+    "Confirmation is a labelled group; focus moves into it, Escape closes",
+    "Type-the-table input has a <label>; Enter runs only when it matches",
+    "Environment shown as text with a colour dot"
+  ],
+  "server": "Run with least-privilege credentials, prefer transactions and read-only connections, and enforce production write approval on the server.",
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "DELETE without WHERE wipes table",
+  "stops": "Helps catch a DELETE without WHERE before it runs",
   "mistakes": [
     "delete without where",
     "update all rows mistake",

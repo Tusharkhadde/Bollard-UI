@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — json-field · MIT licence · https://bollard-ui.vercel.app/components/json-field
+
 import * as React from "react"
 import { Braces, CircleCheck, TriangleAlert } from "lucide-react"
 

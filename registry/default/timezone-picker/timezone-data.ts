@@ -1,3 +1,5 @@
+// Bollard UI — timezone-picker · MIT licence · https://bollard-ui.vercel.app/components/timezone-picker
+
 /** Country (ISO 3166 region) of popular zones, so "Japan" or "Brazil" finds them. */
 export const ZONE_COUNTRY: Record<string, string> = {
   "Asia/Kolkata": "IN", "Asia/Dubai": "AE", "Asia/Riyadh": "SA", "Asia/Karachi": "PK", "Asia/Dhaka": "BD",

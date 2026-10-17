@@ -1,3 +1,5 @@
+// Bollard UI — redirect-rule-input · MIT licence · https://bollard-ui.vercel.app/components/redirect-rule-input
+
 /**
  * Redirect rule logic for RedirectRuleInput. Pure functions, safe on the server.
  *

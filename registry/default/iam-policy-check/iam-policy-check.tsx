@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — iam-policy-check · MIT licence · https://bollard-ui.vercel.app/components/iam-policy-check
+
 import * as React from "react"
 import { Ban, CircleAlert, CircleCheck, Info, KeyRound, TriangleAlert, WandSparkles } from "lucide-react"
 

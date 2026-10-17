@@ -7,9 +7,9 @@ import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
 
-const title = "Bollard UI: build interfaces your users can't break"
+const title = "Bollard UI: build interfaces your users can't break by accident"
 const description =
-  "Copy-paste React components that catch wrong amounts, leaked secrets, typo'd emails and accidental deletes. Built for shadcn/ui. Open source."
+  "Copy-paste React components that catch wrong amounts, leaked secrets, typo'd emails and accidental deletes. Built for shadcn/ui. MIT licensed. Source copied into your project."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

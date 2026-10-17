@@ -1,3 +1,5 @@
+// Bollard UI — salary-input · MIT licence · https://bollard-ui.vercel.app/components/salary-input
+
 /** Pure parsing and sanity checks for salary amounts. No React. */
 
 export type SalaryPeriod = "month" | "year"

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — size-fit-picker · MIT licence · https://bollard-ui.vercel.app/components/size-fit-picker
+
 import * as React from "react"
 import { Ruler, TriangleAlert } from "lucide-react"
 
@@ -31,6 +33,7 @@ export interface SizeFitPickerProps extends Omit<React.ComponentProps<"fieldset"
   chart?: SizeChart
   /** The selected size, written in `valueSystem` (what your stock uses). */
   value?: string | null
+  /** Starting size when uncontrolled, in valueSystem. */
   defaultValue?: string | null
   /** Called with the size in `valueSystem` and its full row. */
   onValueChange?: (size: string, row: SizeRow) => void
@@ -40,6 +43,7 @@ export interface SizeFitPickerProps extends Omit<React.ComponentProps<"fieldset"
   system?: SizeSystem
   /** Initial shown system. Defaults to the shopper's usual system, then `valueSystem`. */
   defaultSystem?: SizeSystem
+  /** Called when the shown size system changes. */
   onSystemChange?: (system: SizeSystem) => void
   /** Systems offered as tabs. */
   systems?: SizeSystem[]

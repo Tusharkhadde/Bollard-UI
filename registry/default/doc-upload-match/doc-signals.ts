@@ -1,3 +1,5 @@
+// Bollard UI — doc-upload-match · MIT licence · https://bollard-ui.vercel.app/components/doc-upload-match
+
 export type DocKind = "aadhaar-front" | "aadhaar-back" | "aadhaar" | "pan" | "passport" | "photo" | "statement" | "other"
 export type DocFormat = "pdf" | "jpeg" | "png" | "webp" | "heic" | "avif" | "unknown"
 

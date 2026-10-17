@@ -1,13 +1,50 @@
 {
   "title": "Slide to Confirm",
-  "description": "Prevents accidental taps and pocket presses from sending payments or ending sessions: the thumb must travel the whole track, a held arrow key stops short, and an async confirm shows a pending state.",
+  "summary": "Requires the thumb to travel the whole track before confirming, so accidental taps and pocket presses don't send payments.",
+  "description": "Slide-to-confirm control where the thumb must travel the whole track (threshold), a held arrow key stops short of the end, an async confirm shows a pending state, and a rejection slides it back.",
+  "catches": [
+    "Taps and short drags that don't reach the threshold",
+    "Held arrow keys (auto-repeat) that would otherwise complete it",
+    "Repeat confirms while an async confirm is pending",
+    "Failed confirms, which slide back"
+  ],
+  "limits": [
+    "An accidental full slide still confirms",
+    "A UX guard, not authorization"
+  ],
+  "a11y": [
+    "role=slider with aria-valuenow/valuetext and an aria-label from label",
+    "Keyboard operable; holding a key won't complete the slide",
+    "Phase text in a polite live region; aria-disabled while locked",
+    "Spring animation respects reduced motion"
+  ],
+  "server": "For payments, keep server-side idempotency and authorization; this only reduces accidental triggers.",
   "dependencies": [
     "lucide-react",
     "motion"
   ],
   "stops": "Pocket tap sent a payment",
-  "mistakes": ["accidental tap sent payment", "pocket press ended session", "swipe to pay", "slide to unlock confirm"],
-  "aliases": ["swipe to pay", "slide to confirm", "swipe button", "upi pay", "slider", "mobile checkout", "end ride", "pay now"],
-  "flows": ["checkout", "india"],
-  "fields": ["amount"]
+  "mistakes": [
+    "accidental tap sent payment",
+    "pocket press ended session",
+    "swipe to pay",
+    "slide to unlock confirm"
+  ],
+  "aliases": [
+    "swipe to pay",
+    "slide to confirm",
+    "swipe button",
+    "upi pay",
+    "slider",
+    "mobile checkout",
+    "end ride",
+    "pay now"
+  ],
+  "flows": [
+    "checkout",
+    "india"
+  ],
+  "fields": [
+    "amount"
+  ]
 }

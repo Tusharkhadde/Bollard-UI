@@ -1,7 +1,29 @@
 {
   "title": "Bill Split Check",
-  "description": "Stops a bill split that quietly overcharges someone by checking an item-by-item split against the printed receipt, catching unclaimed items, tax counted twice, a tip on top of a service charge, a total that doesn't match and what an equal split costs the lightest eater, each with a one-tap fix and Undo, with shares rounded by largest remainder so they always add up and each row saying who owes the payer what.",
-  "dependencies": ["lucide-react", "motion", "@number-flow/react"],
+  "summary": "Checks a bill split against the printed receipt so nobody is quietly overcharged by double-counted tax, a tip on a service charge or a missed item.",
+  "description": "Checks an item-by-item split against the receipt and catches unclaimed items, tax counted twice, a tip on top of a service charge, a total that doesn't match and what an equal split costs the lightest eater, each with a fix and Undo. Shares are rounded so they always add up.",
+  "catches": [
+    "Items nobody claimed",
+    "Tax counted twice, or a tip added on top of a service charge",
+    "A split total that does not match the printed total (allowing for a round-off line)",
+    "How much an equal split costs the person who ordered least",
+    "Rounding drift, by largest-remainder rounding so shares add up exactly"
+  ],
+  "limits": [
+    "Works from the receipt lines you pass in; it does not read receipts",
+    "The tax-twice and wrong-total checks need the printed total"
+  ],
+  "a11y": [
+    "Per-person item toggles are buttons with aria-pressed and an aria-label naming person and item",
+    "Split mode is a role=\"radiogroup\" with arrow-key navigation",
+    "The tip field has a <label> and aria-invalid when it duplicates a service charge",
+    "Status is announced in a role=\"status\" region; motion respects prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion",
+    "@number-flow/react"
+  ],
   "stops": "Tip added on top of service charge",
   "mistakes": [
     "split bill doesn't add up",

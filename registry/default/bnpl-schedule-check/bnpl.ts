@@ -1,3 +1,5 @@
+// Bollard UI — bnpl-schedule-check · MIT licence · https://bollard-ui.vercel.app/components/bnpl-schedule-check
+
 import { addDays, differenceInCalendarDays, format, isValid, lastDayOfMonth, parseISO } from "date-fns"
 
 /** One payment of a plan. `date` is a calendar day, "YYYY-MM-DD". */

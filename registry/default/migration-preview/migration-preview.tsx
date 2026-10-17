@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — migration-preview · MIT licence · https://bollard-ui.vercel.app/components/migration-preview
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, Lock, TriangleAlert, Undo2, WandSparkles } from "lucide-react"
 

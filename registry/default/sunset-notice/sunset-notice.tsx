@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sunset-notice · MIT licence · https://bollard-ui.vercel.app/components/sunset-notice
+
 import * as React from "react"
 import { ArrowUpRight, BellOff, Sunset } from "lucide-react"
 
@@ -77,6 +79,7 @@ export interface SunsetNoticeProps extends Omit<React.ComponentProps<"div">, "ch
   migrateHref?: string
   /** Time zone for dates; defaults to the reader's own. */
   timeZone?: string
+  /** Locale for dates. */
   locale?: string
   /** Remembers "Remind me later" per subject and sunset date. A changed date shows the notice again. */
   storageKey?: string
@@ -84,19 +87,31 @@ export interface SunsetNoticeProps extends Omit<React.ComponentProps<"div">, "ch
   onSnooze?: (days: number) => void
   /** Turns amber this many days before sunset, red at `finalDays`. */
   soonDays?: number
+  /** Days before sunset when the notice turns red. */
   finalDays?: number
   /** Templates: `{subject}`, `{left}`, `{date}`, `{utc}`, `{days}` are filled in. */
   announcedText?: string
+  /** Text once deprecated. */
   deprecatedText?: string
+  /** Text with the sunset date. */
   sunsetText?: string
+  /** Text once the sunset has passed. */
   pastText?: string
+  /** Text when deprecated with no date. */
   noDateText?: string
+  /** Note when the local day differs from the UTC date. */
   shiftedText?: string
+  /** Detail after the sunset passed. */
   pastDetailText?: string
+  /** Heading of what stops working. */
   stopsLabel?: string
+  /** Label of the migration link. */
   migrateLabel?: string
+  /** Label of the remind-me-later button. */
   remindLabel?: string
+  /** Label of the deprecation date. */
   deprecatedLabel?: string
+  /** Label of the sunset date. */
   sunsetLabel?: string
 }
 

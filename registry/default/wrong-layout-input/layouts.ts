@@ -1,3 +1,5 @@
+// Bollard UI — wrong-layout-input · MIT licence · https://bollard-ui.vercel.app/components/wrong-layout-input
+
 // Keyboard layouts and the wrong-layout detector behind WrongLayoutInput.
 // Pure functions, safe on the server.
 

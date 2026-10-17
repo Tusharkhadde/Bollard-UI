@@ -1,3 +1,5 @@
+// Bollard UI — public-env-guard · MIT licence · https://bollard-ui.vercel.app/components/public-env-guard
+
 /** Frameworks that send prefixed env vars to the browser: inlined at build time, or (Nuxt) sent in the page payload for declared public runtime config. */
 export type EnvFramework = "next" | "vite" | "cra" | "expo" | "sveltekit" | "astro" | "nuxt" | "auto"
 

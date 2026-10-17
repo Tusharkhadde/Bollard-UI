@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — payment-reference · MIT licence · https://bollard-ui.vercel.app/components/payment-reference
+
 import * as React from "react"
 import { Check, Scissors, TriangleAlert } from "lucide-react"
 
@@ -60,10 +62,13 @@ export function checkReference(text: string, rail: PaymentRail, pattern: RegExp,
 }
 
 export interface PaymentReferenceProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "pattern"> {
+  /** Visible label. */
   label?: string
   /** Controlled value. */
   value?: string
+  /** Initial reference when uncontrolled. */
   defaultValue?: string
+  /** Called with the reference on every change. */
   onValueChange?: (value: string) => void
   /** The invoice or order number format the payee matches on. */
   pattern?: RegExp
@@ -71,13 +76,17 @@ export interface PaymentReferenceProps extends Omit<React.ComponentProps<"input"
   formatHint?: string
   /** The invoice this payment is for, when known. Enables one-tap fixes. */
   expected?: string
+  /** Payment rails to offer, with their limits. */
   rails?: PaymentRail[]
   /** Controlled rail id. */
   rail?: string
+  /** Initial rail id when uncontrolled. */
   defaultRail?: string
+  /** Called with the chosen rail id. */
   onRailChange?: (id: string) => void
   /** Payer name as banks print it, for the statement preview. */
   payerName?: string
+  /** Override any issue message. */
   messages?: Partial<Record<ReferenceIssue, (id: string, rail: string) => string>>
 }
 

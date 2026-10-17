@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — inline-edit · MIT licence · https://bollard-ui.vercel.app/components/inline-edit
+
 import * as React from "react"
 import { LoaderCircle, Pencil, TriangleAlert, Undo2 } from "lucide-react"
 

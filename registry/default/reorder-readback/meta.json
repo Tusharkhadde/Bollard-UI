@@ -1,10 +1,48 @@
 {
   "title": "Reorder Readback",
-  "description": "Stops a slipped drag from silently reordering priorities, fallbacks or steps by reading every drop back with its consequence (\"Moved Razorpay from 3rd to 1st. It's now tried first.\") with Undo, dragging only from the grip so touch scrolling never reorders, refusing to push pinned rows aside with a reason, marking rows moved since the last save, and meeting WCAG 2.2 2.5.7 with click-and-arrow moves plus Space/arrow/Escape keyboard moves with debounced announcements.",
-  "dependencies": ["lucide-react", "motion"],
+  "summary": "Reads back every reorder with its consequence and an Undo, so a slipped drag doesn't silently change priorities, fallbacks or steps.",
+  "description": "Sortable list that announces each move with its meaning (\"Moved Razorpay from 3rd to 1st. It's now tried first.\") and Undo. Drags only from the grip, refuses to displace pinned rows, marks rows moved since save, and offers click, arrow and keyboard moves.",
+  "catches": [
+    "Every move, read back with what the new position means",
+    "Moves that would push a pinned row aside, refused with a reason",
+    "Rows moved since the last saved baseline",
+    "Touch scrolling that would start a drag (drag only from the grip)"
+  ],
+  "limits": [
+    "Consequence text comes from your describePosition; without it only positions are read back",
+    "Does not save; persist the order yourself (normalizeOrder in reorder.ts can run on the server)"
+  ],
+  "a11y": [
+    "Space picks up, arrow keys move, Space drops and Escape cancels; instructions linked via aria-describedby",
+    "Move-up/down buttons on every row give a non-drag alternative (WCAG 2.2 SC 2.5.7)",
+    "One role=status region with debounced announcements",
+    "Grip has an aria-label and aria-pressed; pinned rows use aria-disabled with a lock icon",
+    "Animations respect reduced motion; focus returns to the grip after moves and undo"
+  ],
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
   "stops": "Slipped drag reordered payment fallbacks",
-  "mistakes": ["drag reordered list by mistake", "priority order changed accidentally", "touch scroll reordered items", "sortable list undo"],
-  "aliases": ["drag to reorder", "sortable", "dnd-kit", "priority list", "reorder", "payment gateway order", "razorpay", "drag handle"],
-  "flows": ["forms", "devtools"],
+  "mistakes": [
+    "drag reordered list by mistake",
+    "priority order changed accidentally",
+    "touch scroll reordered items",
+    "sortable list undo"
+  ],
+  "aliases": [
+    "drag to reorder",
+    "sortable",
+    "dnd-kit",
+    "priority list",
+    "reorder",
+    "payment gateway order",
+    "razorpay",
+    "drag handle"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
   "fields": []
 }

@@ -1,3 +1,5 @@
+// Bollard UI — checksum-input · MIT licence · https://bollard-ui.vercel.app/components/checksum-input
+
 /** Which kind of number a ChecksumInput holds. */
 export type ChecksumKind = "iban" | "card" | "isbn" | "ifsc"
 

@@ -1,3 +1,5 @@
+// Bollard UI — tax-regime-compare · MIT licence · https://bollard-ui.vercel.app/components/tax-regime-compare
+
 /**
  * India income tax, old vs new regime, for tax year 2026-27 (FY 2026-27), resident individuals with salary.
  * Slabs: Memorandum to the Finance Bill 2026 (no change for tax year 2026-27; new regime = s.202 of the

@@ -1,3 +1,5 @@
+// Bollard UI — dose-input · MIT licence · https://bollard-ui.vercel.app/components/dose-input
+
 // Dose parsing, ISMP error-prone designation checks and read-back, behind DoseInput. Pure functions, safe on the server.
 // Rules follow the ISMP List of Error-Prone Abbreviations, Symbols, and Dose Designations (2024).
 

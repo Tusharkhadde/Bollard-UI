@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — feature-flag-rollout · MIT licence · https://bollard-ui.vercel.app/components/feature-flag-rollout
+
 import * as React from "react"
 import { ArrowRight, Check, TriangleAlert, Undo2 } from "lucide-react"
 
@@ -106,7 +108,9 @@ export interface FeatureFlagRolloutProps extends Omit<React.ComponentProps<"div"
   fixLabels?: Partial<Record<"jump" | "ahead", string>>
   /** Shown once the save button is armed. */
   armedText?: string
+  /** Save button text. */
   saveLabel?: string
+  /** Shown after saving. */
   savedLabel?: string
   /** Save label while onValueChange is pending. */
   savingLabel?: string
@@ -114,10 +118,13 @@ export interface FeatureFlagRolloutProps extends Omit<React.ComponentProps<"div"
   productionLabel?: string
   /** Save label when there are warnings. `{count}` is filled in. */
   confirmLabel?: string
+  /** Text for discarding changes. */
   discardLabel?: string
   /** Readback templates. `{who}`, `{count}` and `{total}` are filled in. */
   reachText?: string
+  /** Readback when nobody gets the flag. */
   nobodyText?: string
+  /** Readback when everyone gets the flag. */
   everyoneText?: string
   /** Joins segments and the percentage in the readback, e.g. "{segments} + {percent}% of everyone else". */
   restText?: string

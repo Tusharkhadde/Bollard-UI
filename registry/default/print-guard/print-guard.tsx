@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — print-guard · MIT licence · https://bollard-ui.vercel.app/components/print-guard
+
 import * as React from "react"
 import { ChevronsDownUp, Link2Off, Moon, Printer, Scissors, Table, TriangleAlert } from "lucide-react"
 
@@ -40,14 +42,21 @@ export interface PrintGuardProps extends Omit<React.ComponentProps<"div">, "chil
   checkOnMount?: boolean
   /** Wording per issue; return `problem` and `fix`. */
   describeIssue?: (issue: PrintIssue) => { problem: string; fix: string }
+  /** Print button content. */
   printLabel?: React.ReactNode
+  /** Panel heading. */
   title?: string
+  /** Button text to show an affected element. */
   showLabel?: string
+  /** Button text to print with fixes. */
   printFixedLabel?: string
+  /** Button text to print without fixes. */
   printAsIsLabel?: string
+  /** Cancel button text. */
   cancelLabel?: string
   /** `{count}` is filled in. */
   autoFixedText?: string
+  /** Button text to review an auto-fixed printout. */
   reviewLabel?: string
 }
 

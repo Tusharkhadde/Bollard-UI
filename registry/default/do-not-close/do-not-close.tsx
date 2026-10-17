@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — do-not-close · MIT licence · https://bollard-ui.vercel.app/components/do-not-close
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Hourglass, RotateCcw } from "lucide-react"
 
@@ -106,10 +108,15 @@ export interface DoNotCloseProps extends Omit<React.ComponentProps<"div">, "chil
   onRetry?: () => void
   /** Headlines per state; `{label}` is filled in. */
   activeTitle?: string
+  /** Heading shown when it is safe to close. */
   doneTitle?: string
+  /** Heading shown when the work failed. */
   errorTitle?: string
+  /** Retry button text. */
   retryLabel?: string
+  /** Shown when progress has stalled. */
   stalledText?: string
+  /** Shown while the time left is being estimated. */
   estimatingText?: string
   /** Prefix added to the tab title while active. */
   titlePrefix?: string

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unambiguous-date · MIT licence · https://bollard-ui.vercel.app/components/unambiguous-date
+
 import * as React from "react"
 import { TriangleAlert } from "lucide-react"
 
@@ -111,6 +113,7 @@ export interface UnambiguousDateProps extends Omit<React.ComponentProps<"span">,
   invalidMessage?: string
   /** `{order}` is a reading name. */
   readAsText?: string
+  /** Label of the change-reading button. */
   changeLabel?: string
   /** `{input}` and `{date}` are filled in. */
   alsoText?: string

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — zero-result-rescue · MIT licence · https://bollard-ui.vercel.app/components/zero-result-rescue
+
 import * as React from "react"
 import { ArrowRight, LoaderCircle, SearchX } from "lucide-react"
 
@@ -47,17 +49,27 @@ export interface ZeroResultRescueProps extends Omit<React.ComponentProps<"div">,
   limit?: number
   /** Templates: `{query}`, `{scope}`, `{filters}`, `{count}`, `{filter}`, `{layout}`, `{from}`, `{to}` are filled in. */
   titleText?: string
+  /** Text naming the current category scope. */
   scopeText?: string
+  /** Label prefix of a search-instead fix. */
   searchLabel?: string
+  /** Label prefix of a remove-filter fix. */
   withoutLabel?: string
+  /** Label of the search-all-categories fix. */
   allCategoriesLabel?: string
+  /** Reason shown for a spelling fix. */
   spellingReason?: string
+  /** Reason shown for a keyboard-layout fix. */
   layoutReason?: string
+  /** Reason shown for a Caps Lock fix. */
   capsReason?: string
+  /** Reason shown for a filter fix. */
   filterReason?: string
+  /** Reason shown for a category fix. */
   scopeReason?: string
   /** Shown when no single change brings results back. */
   fallbackText?: string
+  /** Formats a result count. */
   formatCount?: (count: number) => string
   /** "1 filter" / "2 filters" under the title. */
   filtersText?: (count: number) => string

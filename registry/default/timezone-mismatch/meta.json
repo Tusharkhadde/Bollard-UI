@@ -1,6 +1,22 @@
 {
   "title": "Timezone Mismatch",
-  "description": "Stops travellers misreading every time by hours: when the device's time zone differs from the account's, it shows both clocks ticking side by side, asks once whether to use the device zone, confirms the answer without losing focus and remembers it per pair of zones, comparing every real clock change from the tz database so zones that only drift apart for a few days (Jerusalem and Athens) still count as different.",
+  "summary": "When the device's time zone differs from the account's, shows both clocks and asks once which to use, so times aren't misread while travelling.",
+  "description": "Banner shown when the device zone differs from the account zone: both clocks side by side, a one-time choice to use the device zone, a confirmation that keeps focus, remembered per pair of zones, comparing real clock changes so briefly drifting zones still count.",
+  "catches": [
+    "Device and account zones that differ now or at any clock change in the coming year",
+    "Zones that drift apart only for a few days (e.g. Jerusalem and Athens)",
+    "Unknown zones the runtime can't resolve",
+    "The user's choice, remembered per pair of zones"
+  ],
+  "limits": [
+    "Choice is stored in localStorage on this device",
+    "Device zone comes from the browser and can be wrong behind some VPNs or settings"
+  ],
+  "a11y": [
+    "Banner is a region with an aria-label; result is role=status and receives focus",
+    "Message in a polite live region",
+    "Animations respect reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "@date-fns/tz",

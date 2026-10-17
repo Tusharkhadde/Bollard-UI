@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recipient-check · MIT licence · https://bollard-ui.vercel.app/components/recipient-check
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert, Undo2, X } from "lucide-react"
 
@@ -108,6 +110,7 @@ export interface RecipientCheckProps extends Omit<React.ComponentProps<"div">, "
   value?: Recipient[]
   /** Starting recipients when uncontrolled. */
   defaultValue?: Recipient[]
+  /** Called with the full recipient list after every change. */
   onValueChange?: (value: Recipient[]) => void
   /** Your organisation's domains. Everyone else is marked external. */
   internalDomains: string[]

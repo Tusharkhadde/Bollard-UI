@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — notice-period-check · MIT licence · https://bollard-ui.vercel.app/components/notice-period-check
+
 import * as React from "react"
 import { CalendarClock, Check, Copy, Globe, LogOut, TriangleAlert } from "lucide-react"
 

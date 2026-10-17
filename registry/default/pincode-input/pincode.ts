@@ -1,3 +1,5 @@
+// Bollard UI — pincode-input · MIT licence · https://bollard-ui.vercel.app/components/pincode-input
+
 /** Pure Indian PIN and postcode checks. No React. Prefix table from India Post via Wikipedia "Postal Index Number". */
 
 /** First digits of a PIN → state or UT. Longer prefixes win (403 is Goa inside Maharashtra's 40–44). */

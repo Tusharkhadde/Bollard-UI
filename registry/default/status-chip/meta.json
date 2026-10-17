@@ -1,7 +1,26 @@
 {
   "title": "Status Chip",
-  "description": "Stops statuses being misread by never relying on colour alone (a distinct icon shape and text per tone, a colour-blind-safe palette), keeping meanings consistent through one shared status map, and explaining on hover or focus what a status means and what to do next.",
-  "dependencies": ["lucide-react"],
+  "summary": "Status chips that never rely on colour alone, with one shared status map and a tooltip explaining what each status means.",
+  "description": "Status chip with a distinct icon shape and text per tone, a colour-blind-safe (Okabe-Ito) palette, one shared status map so meanings stay consistent, and a hover/focus tooltip explaining what the status means and what to do next.",
+  "catches": [
+    "Statuses that differ only by colour (each tone has its own icon)",
+    "Inconsistent meanings across screens (one shared map)",
+    "Unknown statuses, shown with a fallback meaning",
+    "What to do next, explained on hover or focus"
+  ],
+  "limits": [
+    "Meanings are only as clear as the copy you write",
+    "Tooltip content is not reachable on touch without focus"
+  ],
+  "a11y": [
+    "Chip is a button described by its tooltip (aria-describedby, role=tooltip)",
+    "Escape closes the tooltip",
+    "Icon shape plus text per tone; danger is the only solid chip",
+    "Tooltip motion skipped under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Status read wrong by colour-blind users",
   "mistakes": [
     "status color only",

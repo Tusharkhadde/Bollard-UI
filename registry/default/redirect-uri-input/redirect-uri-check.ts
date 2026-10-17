@@ -1,3 +1,5 @@
+// Bollard UI — redirect-uri-input · MIT licence · https://bollard-ui.vercel.app/components/redirect-uri-input
+
 // Pure redirect_uri checks. Authorization servers compare redirect URIs with simple
 // string comparison (RFC 6749 §3.1.2.3, RFC 9700 §2.1), so "close" is a failure.
 

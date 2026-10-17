@@ -1,10 +1,48 @@
 {
   "title": "Passkey Name Prompt",
-  "description": "Prevents a security page full of identical \"Passkey\" rows nobody can tell apart (or safely delete) by prefilling a distinct name right after creation, from the AAGUID for syncing managers like iCloud Keychain or 1Password and from the device for the rest (\"Mac · Chrome\", or a phone or security key when it was made off this device), numbering it when taken, blocking empty and duplicate names with a one-tap fix, nudging away from generic ones, and saying whether the passkey syncs or lives on this device only.",
-  "dependencies": ["lucide-react"],
+  "summary": "Prefills a distinct name right after a passkey is created, so the security page isn't a list of identical \"Passkey\" rows nobody can tell apart.",
+  "description": "Post-creation passkey naming prompt that prefills a distinct name from the AAGUID (iCloud Keychain, 1Password) or the device (\"Mac · Chrome\", phone, security key), numbers it when taken, blocks empty and duplicate names, nudges away from generic ones, and says whether it syncs.",
+  "catches": [
+    "Identical generic names (\"Passkey\")",
+    "Empty or duplicate names, with a one-tap fix",
+    "Provider from the AAGUID, or device from the user agent",
+    "Whether the passkey syncs (manager) or stays on this device"
+  ],
+  "limits": [
+    "Display only, never a trust decision; AAGUIDs can be zeroed or spoofed",
+    "Built-in AAGUID table is small; pass providers for others",
+    "User-agent device names are best-effort"
+  ],
+  "a11y": [
+    "Visible label; input has aria-invalid when blocked and is described by a polite status",
+    "Blocking errors use role=alert",
+    "Icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Identical passkeys nobody can tell apart",
-  "mistakes": ["all passkeys named passkey", "cant tell which passkey to delete", "name passkey", "passkey list confusing"],
-  "aliases": ["passkey", "webauthn", "security keys", "aaguid", "icloud keychain", "1password", "security settings", "biometrics"],
-  "flows": ["account-settings", "signup-login"],
-  "fields": ["text"]
+  "mistakes": [
+    "all passkeys named passkey",
+    "cant tell which passkey to delete",
+    "name passkey",
+    "passkey list confusing"
+  ],
+  "aliases": [
+    "passkey",
+    "webauthn",
+    "security keys",
+    "aaguid",
+    "icloud keychain",
+    "1password",
+    "security settings",
+    "biometrics"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
+  "fields": [
+    "text"
+  ]
 }

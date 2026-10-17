@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — stale-reply · MIT licence · https://bollard-ui.vercel.app/components/stale-reply
+
 import * as React from "react"
 import { ChevronDown, CircleCheck, History, Quote, Reply, X } from "lucide-react"
 
@@ -68,17 +70,26 @@ export interface StaleReplyProps extends Omit<React.ComponentProps<"div">, "chil
   minNewer?: number
   /** How many newer messages to show. */
   show?: number
+  /** Called with the newest relevant message to reply to it instead. */
   onReplyToLatest?: (message: ThreadMessage) => void
   /** Reply here, quoting the original so readers have context. */
   onQuote?: (original: ThreadMessage) => void
+  /** Called when the notice is dismissed. */
   onDismiss?: () => void
   /** Templates: `{age}`, `{count}`, `{author}`, `{text}`, `{when}` are filled in. */
   message?: string
+  /** Marks a message that seems to have settled it. */
   resolvedText?: string
+  /** Label of the reply-to-latest button. */
   latestLabel?: string
+  /** Label of the quote-original button. */
   quoteLabel?: string
+  /** Label of the newer-messages toggle. */
   newestLabel?: string
+  /** Accessible label of the dismiss button. */
   dismissLabel?: string
+  /** Accessible name of the banner. */
+  regionLabel?: string
 }
 
 /**
@@ -102,6 +113,7 @@ export function StaleReply({
   quoteLabel = "Quote & reply",
   newestLabel = "Newest related",
   dismissLabel = "Reply here anyway",
+  regionLabel = "Old message",
   className,
   ...props
 }: StaleReplyProps) {
@@ -124,7 +136,7 @@ export function StaleReply({
     <div
       data-slot="stale-reply"
       role="region"
-      aria-label="Old message"
+      aria-label={regionLabel}
       className={cn("overflow-hidden rounded-lg border border-amber-500/30 bg-background bg-linear-to-r from-amber-500/10 to-amber-500/10 text-sm text-amber-950 dark:text-amber-50", className)}
       {...props}
     >

@@ -1,6 +1,22 @@
 {
   "title": "Percent Input",
-  "description": "Prevents 100× rate mistakes by catching 0.15 typed for 15%, 0.25 basis points for 25, and 150% where 100% is the cap, reading the result back in plain money (15% of ₹2,000 = ₹300) and offering a one-tap fix.",
+  "summary": "Catches 0.15 typed for 15%, basis-point slips and rates over the cap, and reads the result back in money, so a rate isn't 100 times off.",
+  "description": "Percent field that catches 0.15 typed for 15%, 0.25 basis points meant as 25, and values outside the allowed range (150% where 100% is the cap), reads the result back in money (15% of ₹2,000 = ₹300) and offers a one-tap fix.",
+  "catches": [
+    "Fraction typed instead of percent (0.15 for 15%)",
+    "Tiny basis-point values (0.25 bps for 25)",
+    "Over max or under min, with a dropped-zero fix (150 → 15)",
+    "Money readback against a base amount"
+  ],
+  "limits": [
+    "\"Likely\" ranges are heuristics; set likelyMin, min and max for your domain",
+    "Locale defaults to en-IN; pass locale and currency for other markets"
+  ],
+  "a11y": [
+    "Visible label; input has aria-invalid on error and is described by a polite status",
+    "Errors use role=alert",
+    "Unit switch is a labelled group of aria-pressed buttons"
+  ],
   "dependencies": [
     "lucide-react"
   ],

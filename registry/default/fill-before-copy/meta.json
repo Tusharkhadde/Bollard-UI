@@ -1,7 +1,24 @@
 {
   "title": "Fill Before Copy",
-  "description": "Prevents pasting broken commands that still contain <YOUR_API_KEY> or {{project_id}} by turning each placeholder into an inline field and blocking Copy (or asking once) until all of them are filled.",
-  "dependencies": ["lucide-react"],
+  "summary": "Turns placeholders like <YOUR_API_KEY> in a code sample into fields and holds Copy until they're filled, so broken commands aren't pasted.",
+  "description": "Turns each placeholder (<YOUR_API_KEY>, {{project_id}}) into an inline field and blocks Copy, or asks once, until all of them are filled.",
+  "catches": [
+    "Placeholders left in a command or config snippet",
+    "Which placeholder is still empty, by moving focus to it",
+    "Custom placeholder syntaxes via `pattern`"
+  ],
+  "limits": [
+    "Only finds placeholders matching the pattern",
+    "Values typed into the fields are in the page; avoid pre-filling real secrets in shared docs"
+  ],
+  "a11y": [
+    "Each placeholder field has an aria-label from its name, with aria-invalid when asked to fill it",
+    "Copy is described by an aria-live=\"polite\" status; blocked copy moves focus to the first empty field",
+    "Errors use role=\"alert\""
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Pasted a command with YOUR_API_KEY in it",
   "mistakes": [
     "copied placeholder api key",

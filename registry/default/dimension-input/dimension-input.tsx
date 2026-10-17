@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dimension-input · MIT licence · https://bollard-ui.vercel.app/components/dimension-input
+
 import * as React from "react"
 import { ArrowLeftRight, Box, TriangleAlert } from "lucide-react"
 

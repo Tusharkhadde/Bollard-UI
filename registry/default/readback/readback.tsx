@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — readback · MIT licence · https://bollard-ui.vercel.app/components/readback
+
 import * as React from "react"
 import { Check, Copy, Maximize2, X } from "lucide-react"
 

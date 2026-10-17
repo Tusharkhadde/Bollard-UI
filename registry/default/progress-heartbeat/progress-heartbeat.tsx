@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — progress-heartbeat · MIT licence · https://bollard-ui.vercel.app/components/progress-heartbeat
+
 import * as React from "react"
 import { CircleCheck, RotateCcw, TriangleAlert } from "lucide-react"
 
@@ -85,11 +87,17 @@ export interface ProgressHeartbeatProps extends Omit<React.ComponentProps<"div">
   onCancel?: () => void
   /** Templates: `{since}` and `{eta}` are filled in. */
   stalledText?: string
+  /** Shown when the job is alive but not advancing. */
   slowText?: string
+  /** Shown while there's too little data for a time-left range. */
   estimatingText?: string
+  /** Shown while holding at 99%. */
   finishingText?: string
+  /** Shown when the job reports done. */
   doneText?: string
+  /** Retry button text. */
   retryLabel?: string
+  /** Cancel button text. */
   cancelLabel?: string
 }
 

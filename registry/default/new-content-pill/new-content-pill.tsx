@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — new-content-pill · MIT licence · https://bollard-ui.vercel.app/components/new-content-pill
+
 import * as React from "react"
 import { ArrowUp } from "lucide-react"
 

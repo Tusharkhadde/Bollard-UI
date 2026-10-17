@@ -1,7 +1,26 @@
 {
   "title": "Error Explainer",
-  "description": "Stops people stalling on (or double-submitting after) a raw error code by saying what happened, the likely cause and one next step, waiting out Retry-After, warning that an ambiguous timeout on a payment may already have gone through and offering Check status before Retry, with a support-ready copyable reference and the stack behind Technical details.",
-  "dependencies": ["lucide-react"],
+  "summary": "Turns a raw error code into what happened, the likely cause and one next step, and warns when a timed-out payment may already have gone through.",
+  "description": "Says what happened, the likely cause and one next step, waits out Retry-After, warns that an ambiguous timeout on a payment may already have gone through with Check status before Retry, and gives a copyable support reference with technical details tucked away.",
+  "catches": [
+    "Raw codes with no explanation, mapped through your catalog",
+    "Retrying before Retry-After allows",
+    "Retrying a non-idempotent request after an ambiguous timeout (offers Check status first)",
+    "Errors that keep failing, with a contact option after maxRetries"
+  ],
+  "limits": [
+    "Explanations come from the catalog or explanation you pass",
+    "Whether a retry is safe depends on the `idempotent` flag you set"
+  ],
+  "a11y": [
+    "The error is announced with role=\"alert\"",
+    "Waiting and status changes are aria-live=\"polite\"",
+    "Actions are buttons with visible text; icons are aria-hidden"
+  ],
+  "server": "Make retried operations idempotent on the server and expose a status endpoint for ambiguous outcomes.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Paid twice after a payment timeout error",
   "mistakes": [
     "error code meaningless",

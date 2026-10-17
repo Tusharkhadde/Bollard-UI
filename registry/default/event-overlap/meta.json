@@ -1,10 +1,47 @@
 {
   "title": "Event Overlap",
-  "description": "Stops a calendar event being created or moved onto a clash by listing what it runs into (overlaps, back-to-back with no break, too little travel time between places, busy all-day events, other-zone events read in their own time) on a small timeline, and moving it to the nearest slot that keeps your buffer and travel time in one tap, with Undo.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lists what a new or moved calendar event runs into and moves it to the nearest free slot, so meetings aren't booked on top of each other.",
+  "description": "Lists clashes (overlaps, back-to-back with no break, too little travel time between places, busy all-day events, other-zone events in their own time) on a small timeline, and moves the event to the nearest slot that keeps your buffer and travel time, with Undo.",
+  "catches": [
+    "Overlapping events and busy all-day events",
+    "Back-to-back events with no break",
+    "Too little travel time between places",
+    "Events in other time zones, shown in their own local time",
+    "The nearest free slot within work hours, with Undo"
+  ],
+  "limits": [
+    "Only knows the events you pass; other calendars are unseen",
+    "Travel times come from your data"
+  ],
+  "a11y": [
+    "The timeline is aria-hidden; clashes are listed in text",
+    "Results are aria-live=\"polite\"",
+    "Move and Undo are buttons with visible text"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Meeting booked on top of another",
-  "mistakes": ["double booked meeting", "calendar conflict", "no buffer between meetings", "timezone meeting clash"],
-  "aliases": ["calendar", "double booking", "conflict", "meeting scheduler", "calendly", "buffer time", "travel time", "time zone"],
-  "flows": ["scheduling"],
-  "fields": ["datetime"]
+  "mistakes": [
+    "double booked meeting",
+    "calendar conflict",
+    "no buffer between meetings",
+    "timezone meeting clash"
+  ],
+  "aliases": [
+    "calendar",
+    "double booking",
+    "conflict",
+    "meeting scheduler",
+    "calendly",
+    "buffer time",
+    "travel time",
+    "time zone"
+  ],
+  "flows": [
+    "scheduling"
+  ],
+  "fields": [
+    "datetime"
+  ]
 }

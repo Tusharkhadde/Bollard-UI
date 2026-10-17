@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — image-tag-input · MIT licence · https://bollard-ui.vercel.app/components/image-tag-input
+
 import * as React from "react"
 import { CircleAlert, Info, LoaderCircle, Pin, TriangleAlert } from "lucide-react"
 

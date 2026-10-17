@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — seat-reduce · MIT licence · https://bollard-ui.vercel.app/components/seat-reduce
+
 import * as React from "react"
 import { LoaderCircle, Mail, Minus, Plus, TriangleAlert, Users } from "lucide-react"
 
@@ -102,14 +104,19 @@ export interface SeatReduceProps extends Omit<React.ComponentProps<"section">, "
   seats: number
   /** New seat count. Controlled. */
   value?: number
+  /** Starting seat count when uncontrolled. */
   defaultValue?: number
+  /** Called with the new seat count. */
   onValueChange?: (seats: number) => void
+  /** Current members, with role, last activity and work summary. */
   members: SeatMember[]
   /** Unaccepted invites; they hold seats too. */
   invites?: PendingInvite[]
+  /** Price per seat per period. */
   pricePerSeat: number
   /** ISO 4217 code. */
   currency?: string
+  /** Locale for money and dates. */
   locale?: string
   /** e.g. "month". */
   period?: string
@@ -119,6 +126,7 @@ export interface SeatReduceProps extends Omit<React.ComponentProps<"section">, "
   workFate?: (work: string) => string
   /** A returned promise shows a pending state; a rejection is caught. */
   onConfirm: (reduction: SeatReduction) => void | Promise<void>
+  /** Called when the user cancels. */
   onCancel?: () => void
   /** Overrides any of the sentences in `SEAT_REDUCE_MESSAGES`, e.g. to translate them. */
   messages?: Partial<SeatReduceMessages>

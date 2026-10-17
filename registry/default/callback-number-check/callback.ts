@@ -1,3 +1,5 @@
+// Bollard UI — callback-number-check · MIT licence · https://bollard-ui.vercel.app/components/callback-number-check
+
 /** Pure helpers for CallbackNumberCheck. Line types and ranges come from Google's libphonenumber ("max" metadata). */
 import { isSupportedCountry, parsePhoneNumberFromString, type CountryCode, type NumberType } from "libphonenumber-js/max"
 

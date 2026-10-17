@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — backup-codes · MIT licence · https://bollard-ui.vercel.app/components/backup-codes
+
 import * as React from "react"
 import { Check, Copy, Download, KeyRound, LoaderCircle, Printer } from "lucide-react"
 
@@ -59,21 +61,35 @@ export interface BackupCodesProps extends Omit<React.ComponentProps<"section">, 
   fileName?: string
   /** Templates: `{n}` is the 1-based code number, `{count}` the number of codes, `{left}` the saves still to do. */
   title?: string
+  /** Text under the title. */
   description?: string
+  /** Note written into the downloaded file. */
   fileNote?: string
+  /** Download button text. */
   downloadLabel?: string
+  /** Print button text. */
   printLabel?: string
+  /** Copy button text. */
   copyLabel?: string
+  /** Shown when copying to the clipboard fails. */
   copyFailedText?: string
+  /** Shown while more save methods are needed ({left} is filled in). */
   saveFirstText?: string
+  /** Shown before any save method was used. */
   saveAnyText?: string
   /** Announced once the check unlocks, so screen reader users know the next step appeared. */
   unlockedText?: string
+  /** Label of the type-back field ({n} is the code's number). */
   checkLabel?: string
+  /** Hint under the type-back field. */
   checkHint?: string
+  /** Shown when a paste into the check field is refused. */
   pasteBlockedText?: string
+  /** Shown when the typed code does not match. */
   mismatchText?: string
+  /** Shown when the typed code matches. */
   matchText?: string
+  /** Continue button text. */
   continueLabel?: string
 }
 

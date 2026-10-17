@@ -1,10 +1,40 @@
 {
   "title": "Hashtag Input",
-  "description": "Catches hashtags that quietly fail (a space or apostrophe that cuts the tag short, case-only duplicates, all-digit or banned tags, posts over a platform's limit) and suggests CamelCase like #OpenSource so screen readers say the words, each with a one-tap fix.",
+  "summary": "Catches hashtags that quietly break, such as #don't posting as #don, and posts over a platform's tag limit.",
+  "description": "Hashtag field that flags characters ending a tag early (spaces, apostrophes), all-digit tags that never link, case-only duplicates, banned tags and posts over a platform's limit, and suggests CamelCase (#OpenSource) so screen readers say the words. One-tap fixes.",
+  "catches": [
+    "Space, apostrophe or punctuation that cuts a tag short",
+    "All-digit tags that don't link",
+    "Duplicates that differ only by case",
+    "Tags on your banned list",
+    "More tags than a platform allows or recommends (Instagram: 5 per post or Reel)",
+    "All-lowercase multi-word tags, with a CamelCase suggestion"
+  ],
+  "limits": [
+    "CamelCase split uses a small built-in word list; extend it with the words prop",
+    "Platform limits are baked in and change; pass your own platforms",
+    "Does not check whether a tag is shadow-banned or trending"
+  ],
+  "a11y": [
+    "Visible label tied to the input; Enter or comma adds a tag, Backspace on an empty field removes the last",
+    "Each remove button has an aria-label naming the tag",
+    "Issues are in a polite live region; icons are aria-hidden",
+    "Animation is skipped under reduced motion"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Instagram @creators: up to 5 hashtags per reel or post (18 Dec 2025)",
+        "url": "https://www.instagram.com/p/DSalTolEbvf/"
+      }
+    ],
+    "note": "Informational; platform limits change. Only the Instagram limit was checked; LinkedIn and X counts are recommendations and were not re-verified."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Hashtag cut short by a space",
+  "stops": "Helps catch a hashtag cut short by a space",
   "mistakes": [
     "hashtag apostrophe breaks",
     "too many hashtags",

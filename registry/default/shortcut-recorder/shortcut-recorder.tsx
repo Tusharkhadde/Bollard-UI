@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — shortcut-recorder · MIT licence · https://bollard-ui.vercel.app/components/shortcut-recorder
+
 import * as React from "react"
 import { CircleX, TriangleAlert, X } from "lucide-react"
 
@@ -40,10 +42,13 @@ export interface ShortcutRecorderProps
   recordingHint?: string
   /** Saves a shortcut that only has warnings. */
   useAnywayLabel?: string
+  /** Label of the try-again button after a blocked combo. */
   tryAgainLabel?: string
+  /** Accessible label of the clear button. */
   clearLabel?: string
   /** Platform names in the readback. */
   macLabel?: string
+  /** Label for the Windows/Linux read-back. */
   pcLabel?: string
   /** Rewrites an issue's text, e.g. to translate it. `issue.problem` says which check fired; `keys` is the canonical shortcut. */
   formatIssue?: (issue: ShortcutIssue, keys: string) => string

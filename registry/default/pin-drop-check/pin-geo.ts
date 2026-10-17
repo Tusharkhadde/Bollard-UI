@@ -1,3 +1,5 @@
+// Bollard UI — pin-drop-check · MIT licence · https://bollard-ui.vercel.app/components/pin-drop-check
+
 export interface LatLng {
   lat: number
   lng: number

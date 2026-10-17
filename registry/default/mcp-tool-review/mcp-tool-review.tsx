@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — mcp-tool-review · MIT licence · https://bollard-ui.vercel.app/components/mcp-tool-review
+
 import * as React from "react"
 import { AlertTriangle, Check, ChevronDown, Fingerprint, Loader2, Power, ShieldCheck, Undo2, Wrench } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -44,6 +46,7 @@ export interface McpToolReviewProps extends Omit<React.ComponentProps<"div">, "c
   otherTools?: { server: string; name: string }[]
   /** Called per tool. May return a Promise; the card shows a pending state and can't fire twice. */
   onResolve?: (name: string, resolution: ToolResolution) => void | Promise<void>
+  /** Override any visible string, including change, risk and resolved texts. */
   messages?: Partial<Omit<Messages, "change" | "risk" | "resolved">> & { change?: Partial<Messages["change"]>; risk?: Partial<Messages["risk"]>; resolved?: Partial<Messages["resolved"]> }
 }
 

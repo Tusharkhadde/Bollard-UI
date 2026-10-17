@@ -1,7 +1,26 @@
 {
   "title": "Presenter Mode",
-  "description": "Stops emails, amounts and keys leaking on a screen share: values wrapped in <Sensitive> are removed from the page (not blurred) behind fixed-length masks while presenting, a visible Presenting bar shows the mode is on, a deliberate hold peeks one value, and starting getDisplayMedia in the tab suggests turning it on.",
-  "dependencies": ["lucide-react"],
+  "summary": "Removes marked emails, amounts and keys from the page while presenting, so they don't leak on a screen share.",
+  "description": "Presenting mode where values wrapped in <Sensitive> are removed from the page (not blurred) behind fixed-length masks, a visible bar shows the mode is on, a deliberate hold peeks one value, and starting a screen share in this tab suggests turning it on.",
+  "catches": [
+    "Sensitive values visible during a screen share",
+    "Blur that can be reversed or read: values are removed, not blurred",
+    "Value length given away: masks are fixed-length",
+    "Screen share started in this tab: suggests presenting mode"
+  ],
+  "limits": [
+    "Only hides values you wrap in <Sensitive>",
+    "Can detect only screen shares started from this tab with getDisplayMedia, not ones started in another app",
+    "Peeking shows the value to the audience too"
+  ],
+  "a11y": [
+    "Masked values are focusable buttons with an aria-label naming the kind of value",
+    "Peek works by holding Space or Enter",
+    "Presenting bar uses role=status; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Leaked a key on a screen share",
   "mistakes": [
     "api key visible on zoom",

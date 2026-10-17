@@ -1,6 +1,22 @@
 {
   "title": "New Content Pill",
-  "description": "Stops live feeds shifting posts under the reader's finger by holding new arrivals behind a \"5 new posts\" pill that inserts and scrolls up on tap, inserting directly only when the reader is at the top (or scrolls back up to it) and not mid-press; works in its own scroll box or on a page that scrolls as a whole (scrollTarget=\"window\").",
+  "summary": "Holds new feed items behind a \"5 new posts\" pill, so the feed doesn't jump under the reader's finger while they read or tap.",
+  "description": "Live feed wrapper that holds new arrivals behind a \"5 new posts\" pill that inserts and scrolls up on tap, inserting directly only when the reader is at the top and not mid-press. Works in its own scroll box or with scrollTarget=\"window\".",
+  "catches": [
+    "Posts shifting under a tap when new items arrive",
+    "Reader losing their place mid-feed",
+    "Inserts directly when the reader is already at the top"
+  ],
+  "limits": [
+    "Assumes a newest-first list where new items arrive at the start",
+    "Needs a stable key per item (getKey)",
+    "Doesn't virtualise long lists"
+  ],
+  "a11y": [
+    "Pill is a button; the count is announced via role=status",
+    "After tapping, focus moves to the first feed item without scrolling past it",
+    "Smooth scroll and the pill animation are skipped under reduced motion"
+  ],
   "dependencies": [
     "lucide-react"
   ],

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — tab-collision · MIT licence · https://bollard-ui.vercel.app/components/tab-collision
+
 import * as React from "react"
 import { AppWindow, TriangleAlert } from "lucide-react"
 
@@ -139,12 +141,20 @@ export interface TabCollisionProps extends React.ComponentProps<"fieldset"> {
   dirty?: boolean
   /** Called whenever this tab gains or loses the right to edit. */
   onStatusChange?: (status: TabStatus) => void
+  /** Shown when another tab is editing. */
   message?: string
+  /** Shown when the other tab has unsaved changes. */
   dirtyMessage?: string
+  /** Confirmation before taking over. */
   confirmMessage?: string
+  /** Label of the Use-this-tab button. */
   takeOverLabel?: string
+  /** Label of the confirm-take-over button. */
   confirmLabel?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Accessible name of the notice. */
+  regionLabel?: string
 }
 
 /**
@@ -164,6 +174,7 @@ export function TabCollision({
   takeOverLabel = "Use this tab",
   confirmLabel = "Take over anyway",
   cancelLabel = "Cancel",
+  regionLabel = "Open in another tab",
   className,
   children,
   ...props
@@ -184,7 +195,7 @@ export function TabCollision({
       {readOnly && (
         <div
           role="region"
-          aria-label="Open in another tab"
+          aria-label={regionLabel}
           className="flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1.5 rounded-lg border border-amber-500/30 bg-background bg-linear-to-r from-amber-500/10 to-amber-500/10 px-3 py-1.5 text-sm text-amber-950 dark:text-amber-50"
         >
           <div className="flex min-w-0 flex-1 basis-56 items-center gap-3">

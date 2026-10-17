@@ -1,3 +1,5 @@
+// Bollard UI — username-input · MIT licence · https://bollard-ui.vercel.app/components/username-input
+
 /** Handles no user should get: staff and system words that make phishing easy, and route names. */
 export const RESERVED_USERNAMES = [
   "admin", "administrator", "root", "support", "help", "helpdesk", "staff", "team", "official", "security",

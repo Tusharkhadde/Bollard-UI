@@ -1,6 +1,23 @@
 {
   "title": "Precise Number",
-  "description": "Prevents misread amounts by showing big numbers compactly (₹1.2 Cr, $1.2M) without ever rounding up, with the exact value in a tooltip that is never clipped by tables or scroll areas, spoken units, a lakh/crore toggle that visibly rolls the figure to its new units, and honest percentages.",
+  "summary": "Shows big numbers compactly (₹1.2 Cr, $1.2M) without ever rounding up, with the exact value one hover or focus away.",
+  "description": "Compact number display (₹1.2 Cr, $1.2M) that cuts instead of rounding up, puts the exact value in a tooltip that isn't clipped by tables or scroll areas, gives spoken units, offers a lakh/crore toggle that rolls the figure to its new units, and keeps percentages honest.",
+  "catches": [
+    "₹99,99,999 shown as ₹1 Cr: it reads ₹99.9 L instead",
+    "Exact value hidden: tooltip on hover or focus",
+    "Lakh/crore vs million confusion, with a toggle",
+    "Rounded percentages that overstate"
+  ],
+  "limits": [
+    "Display only; it doesn't parse input",
+    "Cutting means the compact figure can be slightly low; the tooltip is the exact value"
+  ],
+  "a11y": [
+    "Approximate values are focusable and described by the exact-value tooltip",
+    "Spoken units are given as text for screen readers",
+    "Toggle has an aria-label naming the system it switches to",
+    "Roll animation is skipped under reduced motion"
+  ],
   "dependencies": [
     "lucide-react",
     "@floating-ui/react",

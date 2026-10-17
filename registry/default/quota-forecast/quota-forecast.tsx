@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — quota-forecast · MIT licence · https://bollard-ui.vercel.app/components/quota-forecast
+
 import * as React from "react"
 import { ArrowRight, Gauge, OctagonAlert, TrendingUp } from "lucide-react"
 
@@ -111,8 +113,11 @@ export interface QuotaForecastProps extends Omit<React.ComponentProps<"div">, "c
   dangerAt?: number
   /** Templates. `{date}`, `{reset}`, `{days}` and `{percent}` are filled in. */
   runsOutText?: string
+  /** Shown when usage is on track to fit. */
   onTrackText?: string
+  /** Shown while it's too early to forecast. */
   earlyText?: string
+  /** Shown when the limit is already reached. */
   outText?: string
 }
 

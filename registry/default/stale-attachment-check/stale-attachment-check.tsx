@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — stale-attachment-check · MIT licence · https://bollard-ui.vercel.app/components/stale-attachment-check
+
 import * as React from "react"
 import { CircleCheck, FileClock, FileText, Loader2, Undo2 } from "lucide-react"
 

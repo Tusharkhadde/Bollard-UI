@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — spend-cap-button · MIT licence · https://bollard-ui.vercel.app/components/spend-cap-button
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { Ban, Check, LoaderCircle, Repeat } from "lucide-react"
@@ -54,6 +56,7 @@ export interface SpendCapButtonProps extends Omit<React.ComponentProps<"div">, "
   amount: number
   /** ISO currency code. */
   currency?: string
+  /** Locale for money and times. */
   locale?: string
   /** Identifies what is being bought, for duplicate detection. */
   itemId: string
@@ -69,14 +72,21 @@ export interface SpendCapButtonProps extends Omit<React.ComponentProps<"div">, "
   onViewOrder?: (orderId: string) => void
   /** Templates: `{amount}`, `{when}`, `{cap}`, `{over}`, `{reset}`, `{left}` and `{after}` are filled in. */
   label?: string
+  /** Shown when the item was bought recently. `{ago}` is filled in. */
   duplicateText?: string
+  /** Button label asking for the second click. */
   againLabel?: string
+  /** Shown when a cap would be broken. */
   blockedText?: string
+  /** Accessible label of a cap meter. */
   capText?: string
   /** Cap line when this purchase doesn't fit. */
   capOverText?: string
+  /** Label of the view-order link. */
   viewOrderLabel?: string
+  /** Button label while onPurchase runs. */
   pendingLabel?: string
+  /** Button label after a purchase. */
   doneLabel?: string
 }
 

@@ -1,6 +1,29 @@
 {
   "title": "Send Time Check",
-  "description": "Prevents messages landing at 2 AM, on the recipient's weekend (including Friday–Saturday weekends) or on a holiday by showing their local time next to Send on a strip of their day (night, working hours, now), and offering a one-tap schedule for the start of their next working day that glides the marker to the slot it picks.",
+  "summary": "Shows the recipient's local time next to Send and offers to schedule for their next working morning when it's night, weekend or a holiday there.",
+  "description": "Send-time check that shows the recipient's local time on a strip of their day, flags night, after-hours, weekend (including Friday–Saturday weekends) and holidays you pass, and offers a one-tap schedule for the start of their next working day.",
+  "catches": [
+    "Night hours in the recipient's zone (default 22:00–07:00)",
+    "Outside working hours (default 9–18)",
+    "Their weekend, by zone (Friday–Saturday in Riyadh, Saturday in Kathmandu, otherwise Saturday–Sunday)",
+    "Holidays you supply",
+    "Next working-day start, DST-safe, as a one-tap schedule"
+  ],
+  "limits": [
+    "Weekend table is built in and coarse (by IANA zone, not by person or employer)",
+    "Holidays are not built in; pass them",
+    "Needs the recipient's real time zone; guessing it from a country can be wrong"
+  ],
+  "a11y": [
+    "Status message in a polite live region; the day strip is aria-hidden",
+    "Marker glide respects reduced motion (useReducedMotion)",
+    "Schedule is a labelled button; icons are aria-hidden"
+  ],
+  "rules": {
+    "verified": null,
+    "sources": [],
+    "note": "Weekend-by-zone table (Fri–Sat in much of the Gulf, Sat-only in Nepal, Fri–Sun in Brunei) not re-verified against official sources this round. Check local rules before relying on it."
+  },
   "dependencies": [
     "lucide-react",
     "@date-fns/tz",

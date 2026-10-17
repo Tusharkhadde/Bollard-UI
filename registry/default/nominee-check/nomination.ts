@@ -1,3 +1,5 @@
+// Bollard UI — nominee-check · MIT licence · https://bollard-ui.vercel.app/components/nominee-check
+
 /**
  * Pure nomination rules for Indian bank deposits, lockers and demat/mutual fund holdings. Sources:
  * - Banking Laws (Amendment) Act, 2025 and Banking Companies (Nomination) Rules, 2025 (in force 1 Nov 2025):

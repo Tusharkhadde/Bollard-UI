@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — session-timeout · MIT licence · https://bollard-ui.vercel.app/components/session-timeout
+
 import * as React from "react"
 import NumberFlow, { NumberFlowGroup } from "@number-flow/react"
 import { LoaderCircle, LogOut, Timer } from "lucide-react"
@@ -26,9 +28,13 @@ export interface SessionTimeoutProps extends Omit<React.ComponentProps<"dialog">
   announceAt?: number[]
   /** Pause tracking, e.g. while signed out. */
   disabled?: boolean
+  /** Dialog title. */
   title?: string
+  /** Dialog description. */
   description?: string
+  /** Label of the stay-signed-in button. */
   stayLabel?: string
+  /** Label of the sign-out button. */
   signOutLabel?: string
   /** Read to screen readers; `{seconds}` is filled in. */
   announcement?: string

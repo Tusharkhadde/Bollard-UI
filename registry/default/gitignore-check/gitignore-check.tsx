@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — gitignore-check · MIT licence · https://bollard-ui.vercel.app/components/gitignore-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Copy, EyeOff, FileWarning, Info, TriangleAlert, WandSparkles } from "lucide-react"
 

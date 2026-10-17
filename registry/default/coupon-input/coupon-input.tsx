@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — coupon-input · MIT licence · https://bollard-ui.vercel.app/components/coupon-input
+
 import * as React from "react"
 import { CircleAlert, Loader2, TicketPercent, X } from "lucide-react"
 
@@ -58,7 +60,9 @@ export interface CouponInputProps extends Omit<React.ComponentProps<"div">, "def
   caseSensitive?: boolean
   /** Ask before replacing an applied code with one that saves less. Turn off when codes stack. */
   guardDowngrade?: boolean
+  /** ISO 4217 code for savings and minimums. */
   currency?: string
+  /** BCP 47 locale for money and dates. */
   locale?: string
   /** Time zone for expiry dates. */
   timeZone?: string

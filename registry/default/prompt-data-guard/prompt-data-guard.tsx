@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — prompt-data-guard · MIT licence · https://bollard-ui.vercel.app/components/prompt-data-guard
+
 import * as React from "react"
 import { ArrowUp, Eye, EyeOff, FileText, Loader2, ShieldAlert, ShieldCheck, X } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -64,11 +66,15 @@ export interface PromptSendPayload {
 }
 
 export interface PromptDataGuardProps extends Omit<React.ComponentProps<"textarea">, "value" | "defaultValue" | "onChange"> {
+  /** Controlled message text. */
   value?: string
+  /** Initial message text when uncontrolled. */
   defaultValue?: string
+  /** Called with the text on every change. */
   onValueChange?: (value: string) => void
   /** Files attached to the message. */
   attachments?: PromptAttachment[]
+  /** Called with an attachment's id to remove it. */
   onRemoveAttachment?: (id: string) => void
   /** Who receives the message and for how long they keep it, e.g. { name: "OpenAI", retention: "30 days" }. */
   destination?: { name: string; retention?: string; training?: boolean }
@@ -78,8 +84,11 @@ export interface PromptDataGuardProps extends Omit<React.ComponentProps<"textare
   detectSecrets?: SecretDetector | false
   /** Optional name finder for free text (an NER model, your CRM's contact list). Names in table name columns are always caught. */
   detectNames?: NameDetector
+  /** Extra classes for the root. */
   className?: string
+  /** Extra classes for the textarea. */
   textareaClassName?: string
+  /** Override any visible string, including per-kind and chip texts. */
   messages?: Partial<Omit<Messages, "kind" | "chip">> & { kind?: Partial<Record<DataKind, string>>; chip?: Partial<Record<DataKind, string>> }
 }
 

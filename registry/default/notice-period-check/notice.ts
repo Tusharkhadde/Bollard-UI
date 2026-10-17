@@ -1,3 +1,5 @@
+// Bollard UI — notice-period-check · MIT licence · https://bollard-ui.vercel.app/components/notice-period-check
+
 /** Pure date logic for notice periods. Dates are "YYYY-MM-DD" strings; days are counted in UTC so time zones never shift them. */
 
 export interface Holiday { date: string; name: string }

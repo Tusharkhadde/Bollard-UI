@@ -1,7 +1,25 @@
 {
   "title": "Change Readout",
-  "description": "Stops changes being misread by showing them both ways (₹1,200 → ₹1,500 · +₹300 · +25%), keeping percentage points apart from percent (4% → 6% is +2 pts, +50%), refusing a % from a zero base or across zero, dividing by |base| for negatives, adding 2.5× when a value doubles, and marking whether the move is good or bad.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows a change both as an amount and a percentage, keeping percentage points apart from percent, so changes aren't misread.",
+  "description": "Shows a change both ways (₹1,200 → ₹1,500 · +₹300 · +25%), keeps percentage points apart from percent (4% → 6% is +2 pts, +50%), gives no % from a zero base or across zero, divides by |base| for negatives, adds 2.5× when a value at least doubles and marks good or bad.",
+  "catches": [
+    "Percentage points confused with percent",
+    "Meaningless percentages from a zero base or a sign change",
+    "Misleading signs when the base is negative",
+    "\"+150%\" misread as 1.5×, by adding the multiple"
+  ],
+  "limits": [
+    "Formats and labels only; it doesn't know whether the underlying numbers are right",
+    "Good/bad depends on the goodDirection you set"
+  ],
+  "a11y": [
+    "Arrows and separators are aria-hidden; a text label reads \"to\" between values",
+    "Good or bad is stated in words, not only colour",
+    "\"pts\" is an <abbr> with an explanatory title"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Percentage points mistaken for percent",
   "mistakes": [
     "percent vs percentage points",

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — passkey-name-prompt · MIT licence · https://bollard-ui.vercel.app/components/passkey-name-prompt
+
 import * as React from "react"
 import { CircleCheck, Cloud, KeyRound, LoaderCircle, ShieldAlert, Smartphone, TriangleAlert } from "lucide-react"
 
@@ -62,6 +64,7 @@ export interface PasskeyNamePromptProps extends Omit<React.ComponentProps<"input
   value?: string
   /** Initial name when uncontrolled. Defaults to the suggestion. */
   defaultValue?: string
+  /** Called with the name on every change. */
   onValueChange?: (value: string) => void
   /** Saves the name. May return a Promise; the button shows a pending state and a rejection shows an error. */
   onSave?: (name: string) => void | Promise<void>

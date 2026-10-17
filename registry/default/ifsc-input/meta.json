@@ -1,10 +1,40 @@
 {
   "title": "IFSC Input",
-  "description": "Prevents bank transfers to the wrong branch by catching the letter O typed for the IFSC's fixed zero, a missing 0, digits in the bank code and guessed prefixes like AXIS for UTIB, then reading the branch back from a pluggable lookup (Razorpay IFSC API shape) and warning when it belongs to a different bank than the one picked.",
+  "summary": "Catches IFSC typos like the letter O for the fixed zero, then reads the branch back so a transfer doesn't go to the wrong bank or branch.",
+  "description": "IFSC field that catches the letter O typed for the fixed zero, a missing 0, digits in the bank code and guessed prefixes (AXIS for UTIB), then reads the branch back from your lookup (Razorpay IFSC API shape) and warns when it belongs to a different bank than the one picked.",
+  "catches": [
+    "Letter O typed for the fifth character, which is always 0",
+    "Missing 0, wrong length, or digits in the 4-letter bank code",
+    "Prefixes guessed from the bank name (AXIS instead of UTIB)",
+    "Branch from the lookup belonging to a different bank than the one chosen",
+    "Branch that doesn't support a required rail (requiredRail)"
+  ],
+  "limits": [
+    "Format looks valid is not the same as verified; only your lookup confirms the branch exists",
+    "Built-in bank prefix list is partial",
+    "Doesn't check the account number or the payee name"
+  ],
+  "a11y": [
+    "Visible label tied to the input, described by a polite status region",
+    "aria-invalid when the lookup finds no branch",
+    "Lookup failures use role=alert with a retry button",
+    "Icons are aria-hidden; warnings are text"
+  ],
+  "server": "Re-validate the IFSC and run payee name verification on the server before initiating the transfer.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RBI NEFT FAQ: IFSC is 11 characters, first 4 alpha bank code, 5th is 0, last 6 the branch",
+        "url": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=60"
+      }
+    ],
+    "note": "Informational; check the official source. Format rule confirmed. The guessed-prefix list and the Razorpay API shape were not re-verified."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Transfer sent to the wrong branch",
+  "stops": "Helps prevent a transfer to the wrong branch",
   "mistakes": [
     "ifsc code validation",
     "ifsc letter o vs zero",

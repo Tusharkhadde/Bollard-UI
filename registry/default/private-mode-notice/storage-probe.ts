@@ -1,3 +1,5 @@
+// Bollard UI — private-mode-notice · MIT licence · https://bollard-ui.vercel.app/components/private-mode-notice
+
 /**
  * What will happen to anything this site saves in the browser.
  * - `private`: kept for now, erased when the private window closes.

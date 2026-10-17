@@ -1,7 +1,27 @@
 {
   "title": "CSV Export Guard",
-  "description": "Stops spreadsheets silently corrupting an export by previewing what each column opens as (phone numbers and PIN codes losing leading zeros or their +, long IDs becoming 1.23457E+15, \"3-4\" turning into a date, cells starting with = + - @ running as formulas) and offering a per-column fix that forces text or neutralises the formula.",
-  "dependencies": ["lucide-react"],
+  "summary": "Previews what each column turns into when the CSV opens in a spreadsheet, so leading zeros, long IDs and dates aren't silently corrupted.",
+  "description": "Previews how each column opens in a spreadsheet (phone numbers and PIN codes losing leading zeros or +, long IDs becoming 1.23457E+15, \"3-4\" turning into a date, cells starting with = + - @ running as formulas) and offers per-column fixes.",
+  "catches": [
+    "Leading zeros and + signs dropped from phone numbers and codes",
+    "Long numeric IDs turned into scientific notation",
+    "Values like \"3-4\" turned into dates",
+    "Cells starting with = + - @ that run as formulas (CSV injection)"
+  ],
+  "limits": [
+    "Predicts typical Excel/Sheets behaviour; locale settings and other apps may differ",
+    "Forcing text or prefixing formulas changes the raw CSV, which other importers may not expect",
+    "Checks the rows you pass, not a whole export streamed from the server"
+  ],
+  "a11y": [
+    "Columns are a labelled list; fix toggles use aria-pressed",
+    "The \"no problems\" icon has an aria-label; arrows are aria-hidden",
+    "Summary is aria-live=\"polite\""
+  ],
+  "server": "Neutralise formula-leading cells when generating CSV on the server as well, since exports can be produced without this component.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Excel ate the leading zeros",
   "mistakes": [
     "excel removes leading zeros",

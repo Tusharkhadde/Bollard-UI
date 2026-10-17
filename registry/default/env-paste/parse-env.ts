@@ -1,3 +1,5 @@
+// Bollard UI — env-paste · MIT licence · https://bollard-ui.vercel.app/components/env-paste
+
 /** The environment a pasted .env is meant for. */
 export type EnvTarget = "production" | "staging" | "development" | "test"
 

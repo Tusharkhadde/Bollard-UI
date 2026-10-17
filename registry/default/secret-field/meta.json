@@ -1,6 +1,24 @@
 {
   "title": "Secret Field",
-  "description": "Stops masked API keys from leaking or being pasted as dots: keeps the sk_live_/sk_test_ prefix (flagged Live or Test), re-masks on a timer or when the tab is hidden, and copying the masked text puts the real key on the clipboard.",
+  "summary": "Shows an API key masked but recognisable, re-hides it on a timer or when the tab is hidden, and copies the real value instead of dots.",
+  "description": "Read-only secret display that keeps the readable prefix (sk_live_, ghp_) and last characters, flags Live or Test keys, re-masks on a timer or when the tab is hidden, and makes copying the masked text put the real key on the clipboard.",
+  "catches": [
+    "Live versus test keys from the prefix (sk_live_, pk_test_…)",
+    "Masked text copied by hand, replaced with the real value on the clipboard",
+    "Revealed keys left on screen, re-masked after autoHide (default 10 s)",
+    "Tab switches while revealed, re-masked on visibilitychange"
+  ],
+  "limits": [
+    "The full secret is still in the page's JavaScript and React props; masking is visual",
+    "Clipboard contents are outside its control once copied (clipboard managers, sync)",
+    "Prefix detection covers common formats only"
+  ],
+  "a11y": [
+    "Visible <label> on a read-only input; masked state exposed via aria-description \"Hidden\"",
+    "Reveal is an aria-pressed toggle with aria-controls and a changing aria-label",
+    "Copy button has an aria-label; copy result announced in a polite live region"
+  ],
+  "server": "Show full secrets only once at creation if you can, and support rotation and revocation server-side.",
   "dependencies": [
     "lucide-react"
   ],

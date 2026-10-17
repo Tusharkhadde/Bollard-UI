@@ -1,3 +1,5 @@
+// Bollard UI — spell-out · MIT licence · https://bollard-ui.vercel.app/components/spell-out
+
 /** ICAO/NATO spelling alphabet (ICAO spells Alfa and Juliett this way on purpose). */
 export const NATO: Record<string, string> = {
   A: "Alfa", B: "Bravo", C: "Charlie", D: "Delta", E: "Echo", F: "Foxtrot", G: "Golf", H: "Hotel", I: "India",

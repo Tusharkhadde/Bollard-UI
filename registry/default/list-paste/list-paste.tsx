@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — list-paste · MIT licence · https://bollard-ui.vercel.app/components/list-paste
+
 import * as React from "react"
 import { CircleCheck, CircleX, CopyX, Undo2 } from "lucide-react"
 

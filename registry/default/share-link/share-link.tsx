@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — share-link · MIT licence · https://bollard-ui.vercel.app/components/share-link
+
 import * as React from "react"
 import { Building2, Check, Copy, Globe, Link2Off, LoaderCircle, Lock, Timer, TriangleAlert } from "lucide-react"
 
@@ -62,6 +64,7 @@ export interface ShareLinkProps extends Omit<React.ComponentProps<"div">, "defau
   value?: ShareSettings
   /** Initial settings when uncontrolled. */
   defaultValue?: ShareSettings
+  /** Called with the settings after every change. */
   onValueChange?: (settings: ShareSettings) => void
   /** Kills the link. Return a promise to show a pending state. */
   onRevoke: () => void | Promise<void>
@@ -73,8 +76,11 @@ export interface ShareLinkProps extends Omit<React.ComponentProps<"div">, "defau
   expiryDays?: number[]
   /** Days the one-tap "add an expiry" fix sets on a public link. */
   suggestedExpiryDays?: number
+  /** Locale for dates and countdowns. */
   locale?: string
+  /** IANA zone for the expiry readback. */
   timeZone?: string
+  /** Visible label of the link field. */
   label?: string
   /** Who the link reaches, used in the readback. `{organization}` is filled in. */
   whoText?: Partial<Record<ShareAccess, string>>
@@ -86,33 +92,53 @@ export interface ShareLinkProps extends Omit<React.ComponentProps<"div">, "defau
   verbText?: Partial<Record<ShareRole, string>>
   /** Accessible names of the settings group and its three menus. */
   settingsLabel?: string
+  /** Accessible label of the who-can-access select. */
   accessLabel?: string
+  /** Accessible label of the role select. */
   roleLabel?: string
+  /** Accessible label of the expiry select. */
   expiryLabel?: string
   /** Expiry preset options. `{days}` is filled in; `expiryOptionOneText` is used for 1 day. */
   expiryOptionText?: string
+  /** Expiry option text for one day. */
   expiryOptionOneText?: string
   /** Formats the time left in `expiresInText`. Defaults to `formatCountdown` in `locale`. */
   formatRemaining?: (ms: number) => string
   /** Templates: `{who}`, `{verb}` and `{until}` are filled in. */
   readbackText?: string
+  /** Readback suffix with the expiry time. */
   untilText?: string
+  /** Readback suffix for a link that never expires. */
   noExpiryText?: string
   /** The "never expires" option of the expiry menu. */
   noExpiryOptionText?: string
+  /** Countdown text. */
   expiresInText?: string
+  /** Shown once the link has expired. */
   expiredText?: string
+  /** Warning for public edit access. */
   publicEditText?: string
+  /** Label of the switch-to-view-only fix. */
   viewOnlyLabel?: string
+  /** Warning for a public link with no expiry. */
   noExpiryHint?: string
+  /** Label of the add-expiry fix. */
   addExpiryLabel?: string
+  /** Warning after widening an already-copied link. */
   widenedText?: string
+  /** Label of the copy button. */
   copyLabel?: string
+  /** Announced after copying. */
   copiedLabel?: string
+  /** Label of the revoke button. */
   revokeLabel?: string
+  /** Revoke confirmation question. */
   revokeConfirmText?: string
+  /** Label of the Cancel button. */
   cancelLabel?: string
+  /** Shown after the link is revoked. */
   revokedText?: string
+  /** Label of the create-new-link button. */
   createLabel?: string
 }
 

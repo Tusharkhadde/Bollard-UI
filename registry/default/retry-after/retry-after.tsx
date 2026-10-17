@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — retry-after · MIT licence · https://bollard-ui.vercel.app/components/retry-after
+
 import * as React from "react"
 import { Hourglass, LoaderCircle, TrafficCone } from "lucide-react"
 
@@ -52,17 +54,29 @@ export interface RetryAfterProps extends Omit<React.ComponentProps<"button">, "o
   onRateLimit?: (info: RateLimitInfo) => void
   /** Templates. `{time}` is the countdown, `{at}` when it will send, `{reset}` when the server's limit resets, `{limit}`, `{noun}`, `{per}` describe the limit. */
   waitingLabel?: string
+  /** Button label while the request runs. */
   pendingLabel?: string
+  /** Explains a 429 (too many requests). */
   tooManyText?: string
+  /** Explains a 503 (service busy). */
   busyText?: string
+  /** Names the limit that was hit, when headers say. */
   limitText?: string
+  /** Reassures that the user's input was kept. */
   keptText?: string
+  /** Says an automatic retry is scheduled. */
   autoText?: string
+  /** Announced when the wait is over. */
   readyText?: string
+  /** Shown when automatic retries are used up. */
   exhaustedText?: string
+  /** Shown when the user keeps clicking during the wait. */
   spamText?: string
+  /** Says when the retry will be sent. */
   sendingAtText?: string
+  /** Label of the button that cancels the automatic retry. */
   cancelAutoLabel?: string
+  /** Shown when the request fails for another reason. */
   errorText?: string
   /** Class for the wrapper holding the button and its explanation. */
   className?: string

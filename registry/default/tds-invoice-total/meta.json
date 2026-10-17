@@ -1,7 +1,39 @@
 {
   "title": "TDS Invoice Total",
-  "description": "Stops Indian freelancers being short-paid by working out fee + GST − TDS = what lands in the bank, with the right rate and section for the invoice date (10% professional, 2% technical, 1%/2% contract; s.393 of the 2025 Act, was 194J/194C) and the yearly threshold, then flagging TDS taken on the GST, the wrong rate and the 20% rate without a PAN, with a one-tap fix and a ready note for the client.",
-  "dependencies": ["lucide-react"],
+  "summary": "Works out what an Indian freelancer's invoice actually lands as after GST and TDS, and flags TDS taken on GST or at the wrong rate.",
+  "description": "Invoice calculator for Indian freelancers: fee + GST − TDS = what reaches the bank, using the rate and section for the invoice date (s.393 of the 2025 Act; was 194J/194C) and yearly thresholds, flagging TDS on GST, the wrong rate and the no-PAN rate, with a note for the client.",
+  "catches": [
+    "TDS deducted on the GST portion",
+    "Wrong rate for the kind of work (professional 10%, technical 2%, contract 1%/2%)",
+    "Thresholds (₹50,000 a year for professional/technical; ₹30,000 a sum or ₹1 lakh a year for contracts) and catch-up on crossing",
+    "Payers who don't deduct (person paying for personal use, client abroad)",
+    "Higher rate when no PAN is shared",
+    "Ready-to-send note for the client"
+  ],
+  "limits": [
+    "Informational; not tax advice",
+    "Invoice date is used as a proxy; the Act that applies depends on the earlier of credit or payment",
+    "Does not handle lower-deduction certificates, non-resident payees or GST reverse charge"
+  ],
+  "a11y": [
+    "Every field has a <label>; aria-invalid and descriptions via aria-describedby",
+    "Result status is role=status",
+    "After a fix, focus moves to the next fix or the fee field",
+    "Copy-note button shows a copied state"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Income-tax Act, 2025 – Section 393 (TDS)",
+        "url": "https://www.incometaxindia.gov.in/w/section-393-5"
+      }
+    ],
+    "note": "Confirmed in s.393(1) Table Sl. 6: contracts 1% (individual/HUF) or 2%, thresholds ₹30,000 per sum / ₹1,00,000 aggregate; professional fees 10%, technical services 2%, threshold ₹50,000; s.393(4) Sl. 8–9 personal-purpose exemption. Not re-checked: the 20% no-PAN rate (s.397) and the GST exclusion (CBDT Circular 23/2017). Informational; verify with the official source or a professional."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Freelancer short-paid after TDS on GST",
   "mistakes": [
     "tds deducted on gst",

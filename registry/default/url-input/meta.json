@@ -1,6 +1,26 @@
 {
   "title": "URL Input",
-  "description": "Prevents broken, insecure and disguised links by adding a missing https://, flagging http, Cyrillic or Greek lookalike hostnames and a “paypal.com@” login prefix that hides the real site, fixing typo'd endings like .con, cleaning the words and full stop a copied sentence leaves behind, and stripping tracking parameters in one tap.",
+  "summary": "Catches broken, insecure and disguised links: missing https, lookalike hostnames, user@host tricks, typo'd endings and tracking clutter.",
+  "description": "URL field that adds a missing https://, flags http, Cyrillic or Greek lookalike hostnames (decoding punycode) and a \"paypal.com@\" prefix that hides the real site, fixes typo'd endings like .con, trims sentence leftovers and strips tracking parameters in one tap.",
+  "catches": [
+    "Missing scheme, with https:// added",
+    "http links, with a switch to https",
+    "Lookalike (homoglyph) hostnames, shown decoded from xn-- punycode",
+    "A user@host prefix that disguises the real site",
+    "Typo'd top-level domains (.con, .cmo)",
+    "Tracking parameters (utm_*, fbclid…), stripped in one tap"
+  ],
+  "limits": [
+    "Does not fetch the URL or check that it resolves or is safe",
+    "Lookalike detection covers common Cyrillic/Greek confusables",
+    "The tracking list is a starter set you can extend"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid and hints via aria-describedby",
+    "Hints and fixes in a polite live region",
+    "Fix buttons have text labels"
+  ],
+  "server": "Validate and normalise URLs server-side, and check them against allowlists or safe-browsing services where it matters.",
   "dependencies": [
     "lucide-react"
   ],

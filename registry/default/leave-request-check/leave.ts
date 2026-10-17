@@ -1,3 +1,5 @@
+// Bollard UI — leave-request-check · MIT licence · https://bollard-ui.vercel.app/components/leave-request-check
+
 /** Which part of a day is taken. "half" is a half day with no half chosen yet. */
 export type DayPart = "full" | "morning" | "afternoon" | "half"
 

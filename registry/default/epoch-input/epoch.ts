@@ -1,3 +1,5 @@
+// Bollard UI — epoch-input · MIT licence · https://bollard-ui.vercel.app/components/epoch-input
+
 /**
  * Unix timestamps and date strings, read the way code reads them. Sources:
  * ECMAScript date-time string format (date-only = UTC, date-time without an

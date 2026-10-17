@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — filter-notice · MIT licence · https://bollard-ui.vercel.app/components/filter-notice
+
 import * as React from "react"
 import { ListFilter, SearchX, X } from "lucide-react"
 
@@ -66,10 +68,13 @@ export interface FilterNoticeProps extends Omit<React.ComponentProps<"div">, "ch
   formatCount?: (count: number) => string
   /** Templates: `{hidden}`, `{shown}`, `{total}` (formatted counts) and `{filters}` ("2 filters") are filled in. */
   message?: string
+  /** Shown when filters hide every item. */
   emptyText?: string
   /** `{count}` is the number of hidden selected items. */
   hiddenSelectedText?: string
+  /** Text for the clear-all button. */
   clearAllLabel?: string
+  /** Accessible label prefix for remove buttons. */
   removeLabel?: string
 }
 

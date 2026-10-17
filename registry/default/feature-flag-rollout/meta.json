@@ -1,10 +1,48 @@
 {
   "title": "Feature Flag Rollout",
-  "description": "Prevents a risky flag release by reading back exactly who gets it (segments plus a percentage of everyone else, in users), asking for a second click before production skips ramp steps or gets ahead of staging, and warning how many users lose the feature on a pullback.",
-  "dependencies": ["lucide-react"],
+  "summary": "Reads back exactly who gets a feature flag and asks again before production skips ramp steps, so a flag isn't released to everyone early.",
+  "description": "Reads back who gets the flag (segments plus a percentage of everyone else, in users), asks for a second click before production skips ramp steps or gets ahead of staging, and warns how many users lose the feature on a pullback.",
+  "catches": [
+    "Production rollouts that skip ramp steps",
+    "Production ahead of staging",
+    "Who actually gets the flag, counted in users",
+    "How many users lose the feature on a pullback"
+  ],
+  "limits": [
+    "User counts come from the segment sizes you pass",
+    "Saving runs your callback; the flag service decides real exposure"
+  ],
+  "a11y": [
+    "Each environment is a fieldset with a legend; the slider has a <label> and an aria-valuetext readback",
+    "Segments are a labelled group of aria-pressed toggles",
+    "Warnings are aria-live=\"polite\"; save status uses role=\"status\""
+  ],
+  "server": "Enforce rollout rules and approvals in the flag service, and keep an audit log of changes.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Feature flag released to everyone early",
-  "mistakes": ["flag rolled out to 100 percent", "skipped staging rollout", "rollback removed feature from users", "wrong segment got feature"],
-  "aliases": ["feature flag", "rollout", "percentage rollout", "canary", "launchdarkly", "kill switch", "ramp", "segments", "a/b test"],
-  "flows": ["devtools"],
-  "fields": ["number"]
+  "mistakes": [
+    "flag rolled out to 100 percent",
+    "skipped staging rollout",
+    "rollback removed feature from users",
+    "wrong segment got feature"
+  ],
+  "aliases": [
+    "feature flag",
+    "rollout",
+    "percentage rollout",
+    "canary",
+    "launchdarkly",
+    "kill switch",
+    "ramp",
+    "segments",
+    "a/b test"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "number"
+  ]
 }

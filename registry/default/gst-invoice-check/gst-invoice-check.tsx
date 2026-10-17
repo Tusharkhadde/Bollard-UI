@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — gst-invoice-check · MIT licence · https://bollard-ui.vercel.app/components/gst-invoice-check
+
 import * as React from "react"
 import { ArrowRight, CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-react"
 

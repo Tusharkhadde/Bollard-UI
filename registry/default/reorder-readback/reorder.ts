@@ -1,3 +1,5 @@
+// Bollard UI — reorder-readback · MIT licence · https://bollard-ui.vercel.app/components/reorder-readback
+
 /** Pure ordering helpers for <ReorderReadback>. They run anywhere, including on the server before saving. */
 
 /**

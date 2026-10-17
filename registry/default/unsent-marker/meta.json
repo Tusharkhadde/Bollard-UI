@@ -1,7 +1,25 @@
 {
   "title": "Unsent Marker",
-  "description": "Stops people believing they replied when their text never left the box: a left-behind draft comes back as a dashed \"Not sent · Priya hasn't received it\" bubble in the thread, right where the reply would be, with Send, Edit and a two-tap Discard, plus a \"Not sent:\" preview for conversation lists.",
-  "dependencies": ["lucide-react"],
+  "summary": "Brings a typed-but-never-sent message back as a clear \"Not sent\" bubble, so people don't think they replied.",
+  "description": "Left-behind draft shown as a dashed \"Not sent · Priya hasn't received it\" bubble in the thread where the reply would be, with Send, Edit and a two-tap Discard, plus a \"Not sent:\" preview for conversation lists.",
+  "catches": [
+    "Text left in the composer and never sent",
+    "Who hasn't received it",
+    "Accidental discard (two taps)",
+    "Send failures, with an error"
+  ],
+  "limits": [
+    "Drafts are kept where your useUnsentDraft storage keeps them (per device)",
+    "Doesn't know about sends from other devices unless you clear the draft"
+  ],
+  "a11y": [
+    "Bubble is a labelled group including the text",
+    "Send failures use role=alert",
+    "Buttons have text labels; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Thought I replied but never sent it",
   "mistakes": [
     "forgot to hit send",

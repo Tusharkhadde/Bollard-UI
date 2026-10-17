@@ -1,5 +1,40 @@
-{"title": "Retry After", "description": "Stops rate-limit spam from extending a lockout: on 429/503 it reads Retry-After (seconds or a server-dated time) and RateLimit headers, explains which limit was hit and when it resets, counts down, swallows impatient clicks and retries automatically with jitter while the user's input stays put.", "dependencies": ["lucide-react"],
-  "stops": "Spamming retry extends the lockout",
+{
+  "title": "Retry After",
+  "summary": "Turns a 429/503 into a clear wait: which limit was hit, when it resets, a countdown, and one automatic retry instead of impatient re-clicks.",
+  "description": "Action button that, on 429/503, reads Retry-After (seconds or HTTP-date) and RateLimit headers, explains which limit was hit and when it resets, counts down, ignores impatient clicks and retries automatically with jitter while the user's input stays put.",
+  "catches": [
+    "Retry-After as delay-seconds or an HTTP-date",
+    "IETF RateLimit / RateLimit-Policy fields and common X-RateLimit headers",
+    "Repeated clicks during the wait, swallowed with a gentle note",
+    "Automatic retry with jitter, capped by maxAutoRetries",
+    "Fallback backoff when the server gives no hint"
+  ],
+  "limits": [
+    "Client-side wait only; another tab or a direct request is not held back",
+    "RateLimit fields follow an IETF draft and vendor variants; unusual headers fall back to backoff",
+    "The countdown uses performance.now(), so it survives clock changes but not a page reload"
+  ],
+  "a11y": [
+    "While waiting the button stays focusable with aria-disabled (not disabled) and is described by the reason",
+    "aria-busy while the request is pending",
+    "Wait reason in a polite live region; the spam note is assertive; errors use role=alert",
+    "Label transition animation is skipped under reduced motion"
+  ],
+  "server": "Enforce the rate limit server-side and send Retry-After; the client wait only reduces wasted requests.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RFC 9110 §10.2.3 Retry-After",
+        "url": "https://www.rfc-editor.org/rfc/rfc9110.html#name-retry-after"
+      }
+    ],
+    "note": "Retry-After (HTTP-date or delay-seconds) confirmed in RFC 9110. RateLimit/RateLimit-Policy parsing follows an IETF draft and was not re-verified this round."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Retry spam extends the lockout",
   "mistakes": [
     "too many requests error",
     "429 rate limit",

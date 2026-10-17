@@ -1,3 +1,5 @@
+// Bollard UI — seat-gap-check · MIT licence · https://bollard-ui.vercel.app/components/seat-gap-check
+
 export type SeatStatus = "free" | "taken" | "blocked"
 
 export interface Seat {

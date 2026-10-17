@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — commit-combobox · MIT licence · https://bollard-ui.vercel.app/components/commit-combobox
+
 import * as React from "react"
 import { autoUpdate, flip, offset, shift, size, useFloating } from "@floating-ui/react"
 import { CircleCheck, CircleDashed, Loader2, Undo2 } from "lucide-react"

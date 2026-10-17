@@ -1,6 +1,24 @@
 {
   "title": "Guest Count Picker",
-  "description": "Prevents bookings a hotel will bounce by asking each child's age and catching a child over the age limit (or young enough to be a free infant), infants with no adult, rooms over capacity or out of cots, and a room split that doesn't add up to the party, each with a one-tap fix.",
+  "summary": "Asks each child's age and checks the room split, so a hotel booking isn't bounced for an over-age child, a lone infant or an over-full room.",
+  "description": "Guest picker for adults, children and infants that asks each child's age, then flags a child over the age limit (or young enough to be a free infant), infants with no adult, rooms over capacity or out of cots, and a room split that doesn't match the party, with one-tap fixes.",
+  "catches": [
+    "Child older than the hotel's child age limit",
+    "Child young enough to count as a free infant",
+    "Infant or child in a room with no adult",
+    "Room over capacity or more infants than cots",
+    "Room split that doesn't add up to the party"
+  ],
+  "limits": [
+    "Defaults (child to 17, infant under 2, 4 per room, 1 cot) are typical, not any hotel's policy; pass your property's limits",
+    "Does not check live availability or pricing"
+  ],
+  "a11y": [
+    "Each counter is a spinbutton with min, max and now values, labelled, and works with arrow keys",
+    "The +/- buttons have aria-labels and are skipped in tab order (keyboard uses the spinbutton)",
+    "Age selects are labelled, with aria-invalid until chosen",
+    "Room split uses table roles with row and column headers"
+  ],
   "dependencies": [
     "lucide-react"
   ],

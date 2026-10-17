@@ -6,6 +6,7 @@ import { motion, MotionConfig, useReducedMotion, type Variants } from "motion/re
 
 import { buttonPrimary } from "@/components/site/button-styles"
 import { InstallCommand } from "@/components/site/install-command"
+import { COMPAT, TAGLINE } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 import { HeroPreview } from "./hero-preview"
@@ -116,9 +117,9 @@ export function Hero({ registryBase }: { registryBase: string }) {
             <motion.h1
               variants={item}
               id="hero-heading"
-              className="mt-6 text-[2.5rem] leading-[1.04] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[4.5rem]"
+              className="mt-6 text-[2.5rem] leading-[1.04] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[4.25rem]"
             >
-              Build interfaces your users can&apos;t break.
+              {TAGLINE}
             </motion.h1>
             <motion.p variants={item} className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
               Copy-paste React components that catch wrong amounts, leaked secrets, typo&apos;d emails and accidental deletes, before they ship.
@@ -130,9 +131,15 @@ export function Hero({ registryBase }: { registryBase: string }) {
               <InstallCommand
                 registryBase={registryBase}
                 name="amount-input"
-                className="min-h-10 w-full min-w-0 rounded-lg py-1 sm:w-[30rem] [&_button]:h-7 [&_button]:rounded-md"
+                className="min-h-10 w-full min-w-0 rounded-lg py-1 sm:w-[34rem] [&_button]:h-7 [&_button]:rounded-md"
               />
             </motion.div>
+            <motion.p variants={item} className="mt-3 font-mono text-[11.5px] text-muted-foreground">
+              Needs {COMPAT}.{" "}
+              <Link href="/docs" className="underline decoration-border underline-offset-4 outline-none hover:text-foreground hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
+                Setup guide
+              </Link>
+            </motion.p>
           </motion.div>
 
           <div className="relative mt-14 sm:mt-20">

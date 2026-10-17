@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — paste-target-guard · MIT licence · https://bollard-ui.vercel.app/components/paste-target-guard
+
 import * as React from "react"
 import { CircleCheck, ShieldAlert } from "lucide-react"
 
@@ -70,9 +72,13 @@ function Pair({ a, b, diff, tone }: { a: string; b: string; diff?: boolean; tone
 const buttonClass = "inline-flex h-8 items-center rounded-md px-3 text-sm font-medium outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 export interface PasteTargetGuardProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange"> {
+  /** Visible label. */
   label?: string
+  /** Controlled value. */
   value?: string
+  /** Initial value when uncontrolled. */
   defaultValue?: string
+  /** Called with the value on every change. */
   onValueChange?: (value: string) => void
   /** Force the kind instead of detecting it. */
   kind?: PasteTargetKind
@@ -88,28 +94,41 @@ export interface PasteTargetGuardProps extends Omit<React.ComponentProps<"input"
   edgeGroups?: number
   /** Called when a mismatch is shown. */
   onMismatch?: (detail: { value: string; reference: string; source: "copied" | "expected" | "known" }) => void
+  /** Title when the paste differs from what was copied. */
   copiedTitle?: string
+  /** Title when the value differs from the expected one. */
   expectedTitle?: string
   /** `{label}` is filled in. */
   lookalikeTitle?: string
+  /** Explains the copied-vs-pasted mismatch. */
   copiedText?: string
   /** Title and text when the page lost focus after the copy, so the user may have copied something else since. */
   staleCopiedTitle?: string
+  /** Explains a mismatch with an older copy. */
   staleCopiedText?: string
+  /** Explains the expected-vs-entered mismatch. */
   expectedText?: string
   /** Screen reader summary of the comparison. `{count}` and `{total}` are filled in. */
   differText?: string
+  /** Warns that the ends match but the middle differs. */
   endsMatchText?: string
+  /** Row label for what was copied. */
   copiedLabel?: string
+  /** Row label for the expected value. */
   expectedLabel?: string
+  /** Row label for the saved recipient. */
   knownLabel?: string
+  /** Row label for what was pasted. */
   pastedLabel?: string
   /** `{count}` is filled in. */
   middleLabel?: string
+  /** Accessible label to show every group. */
   showAllLabel?: string
   /** `{label}` is filled in for saved recipients. */
   useLabel?: string
+  /** Button text to keep the pasted value. */
   keepLabel?: string
+  /** Shown when the paste matches what was copied. */
   matchText?: string
 }
 

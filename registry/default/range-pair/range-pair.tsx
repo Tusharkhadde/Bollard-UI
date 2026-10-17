@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — range-pair · MIT licence · https://bollard-ui.vercel.app/components/range-pair
+
 import * as React from "react"
 import { ArrowLeftRight, ArrowRight, TriangleAlert } from "lucide-react"
 
@@ -87,6 +89,7 @@ export interface RangePairProps extends Omit<React.ComponentProps<"fieldset">, "
   label?: string
   /** Labels of the two ends. Default "Min"/"Max" for numbers, "From"/"To" for dates. */
   fromLabel?: string
+  /** Label for the end of the range. */
   toLabel?: string
   /** Controlled ends. */
   value?: RangeValue
@@ -102,10 +105,13 @@ export interface RangePairProps extends Omit<React.ComponentProps<"fieldset">, "
   locale?: string
   /** Pause in ms before checking while typing. */
   delay?: number
+  /** Shown when the ends are reversed. */
   reversedMessage?: string
+  /** Shown when an exclusive range is empty. */
   emptyMessage?: string
   /** Receives the formatted span, e.g. "1 year 31 days" or "49,500". */
   hugeMessage?: (span: string) => string
+  /** Button text to swap the ends. */
   swapLabel?: string
   /** Fix button text; receives which end changes and its formatted new value. */
   fixLabel?: (side: "from" | "to", value: string) => string

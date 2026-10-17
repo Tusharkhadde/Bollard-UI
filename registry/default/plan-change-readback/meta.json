@@ -1,7 +1,28 @@
 {
   "title": "Plan Change Readback",
-  "description": "Prevents surprise charges and lost data on upgrades and downgrades by prorating by day (credit for unused time, charge today, next bill amount and date), saying plainly that a downgrade credit goes to future bills rather than the card, comparing switching now with switching at period end, listing features lost, and showing usage already over the new plan's limits with what happens to the excess, which must be acknowledged before a destructive change.",
-  "dependencies": ["lucide-react"],
+  "summary": "Before an upgrade or downgrade, reads back today's charge, credits, the next bill and any usage over the new plan's limits, so nobody is surprised by a charge or lost data.",
+  "description": "Plan change readback that prorates by day (credit, charge today, next bill and date), says a downgrade credit goes to future bills not the card, compares now vs period end, lists lost features, and shows usage over new limits, acknowledged if destructive.",
+  "catches": [
+    "Charge today and credit for unused time, prorated by day",
+    "Downgrade credit going to future bills rather than the card",
+    "Switching now vs at period end, side by side",
+    "Features lost on the new plan",
+    "Usage over the new plan's limits, with an acknowledgement when excess is removed"
+  ],
+  "limits": [
+    "Day-based proration is an estimate; your billing provider's numbers are the real ones",
+    "Taxes are not included (prices before tax)",
+    "Doesn't change the plan itself; onConfirm does"
+  ],
+  "a11y": [
+    "Section labelled by its title; timing choice is a labelled radiogroup",
+    "Gained and lost features are marked with text as well as icons",
+    "The arrow between plans has an accessible label"
+  ],
+  "server": "Get the real proration preview from your billing provider and apply limits on the server; require the acknowledgement server-side for destructive downgrades.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Downgrade deleted data over the limit",
   "mistakes": [
     "prorated charge confusion",

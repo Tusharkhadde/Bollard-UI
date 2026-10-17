@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — link-unfurl-check · MIT licence · https://bollard-ui.vercel.app/components/link-unfurl-check
+
 import * as React from "react"
 import { ImageOff, Link2, LoaderCircle, OctagonAlert, TriangleAlert } from "lucide-react"
 

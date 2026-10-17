@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — type-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/type-to-confirm
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, TriangleAlert } from "lucide-react"
 
@@ -17,10 +19,13 @@ export interface TypeToConfirmProps extends Omit<React.ComponentProps<"dialog">,
   open?: boolean
   /** Initial open state when uncontrolled. */
   defaultOpen?: boolean
+  /** Called when the dialog opens or closes. */
   onOpenChange?: (open: boolean) => void
   /** The exact phrase the user has to type, e.g. the repository name. */
   phrase: string
+  /** Dialog title. */
   title?: React.ReactNode
+  /** Dialog description: what will be deleted and what can't be undone. */
   description?: React.ReactNode
   /** Runs when the user confirms. Return a promise to show a pending state; a rejection keeps the dialog open with its message. */
   onConfirm: () => void | Promise<void>
@@ -28,8 +33,11 @@ export interface TypeToConfirmProps extends Omit<React.ComponentProps<"dialog">,
   instruction?: (phrase: React.ReactNode) => React.ReactNode
   /** Shown under the input once the typing stops matching. */
   mismatchHint?: string
+  /** Label of the confirm button. */
   confirmLabel?: React.ReactNode
+  /** Confirm label while onConfirm runs. */
   pendingLabel?: React.ReactNode
+  /** Label of the Cancel button. */
   cancelLabel?: React.ReactNode
   /** Fallback when `onConfirm` rejects without an Error message. */
   errorMessage?: string

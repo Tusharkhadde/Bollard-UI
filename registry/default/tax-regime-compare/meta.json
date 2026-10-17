@@ -1,6 +1,43 @@
 {
   "title": "Tax Regime Compare",
-  "description": "Stops salaried people in India picking the tax regime that costs them more by working out tax year 2026-27 tax under the old and new regimes from salary, HRA (with the 8 cities at 50% under rule 279), 80C, 80D, NPS and home-loan interest, showing the break-even deductions, and flagging a choice that costs more, deductions that don't count under the new regime and claims over their limit, each with a one-tap fix.",
+  "summary": "Compares India's old and new income-tax regimes for a salaried person and flags a choice that costs more or deductions that don't count.",
+  "description": "Old vs new regime tax for salaried residents in India, tax year 2026-27, from salary, HRA (50% cities per rule 279), 80C, 80D, NPS and home-loan interest. Shows break-even deductions and flags a costlier choice, deductions the new regime ignores and over-limit claims.",
+  "catches": [
+    "The regime that costs more for these inputs",
+    "Break-even deductions where the old regime starts to win",
+    "Deductions that don't count under the new regime",
+    "Claims above their limits (80C ₹1.5 lakh, 80D, 80CCD(1B) ₹50,000, home loan)",
+    "HRA at 50% of salary in the eight listed cities, 40% elsewhere"
+  ],
+  "limits": [
+    "Informational estimate for resident salaried individuals; not tax advice",
+    "Covers common deductions only: capital gains, business income, surcharge edge cases and marginal-relief nuances may be missing",
+    "Rules change every Budget; check the verified date and source"
+  ],
+  "a11y": [
+    "Section labelled by its heading; every input has a <label>",
+    "Result status in a polite live region",
+    "After a fix, focus moves to the next fix",
+    "External verify link has visible text"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "Memorandum to the Finance Bill, 2026 (rates for tax year 2026-27)",
+        "url": "https://www.indiabudget.gov.in/doc/memo.pdf"
+      },
+      {
+        "label": "Income-tax Rules, 2026 – Rule 279 (HRA)",
+        "url": "https://www.incometaxindia.gov.in/w/rule-279-1"
+      },
+      {
+        "label": "Income Tax Department – Salaried individuals (slabs, 87A rebate, 80C/80D/80CCD(1B))",
+        "url": "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
+      }
+    ],
+    "note": "Confirmed: no change in s.202 rates for tax year 2026-27; new-regime slabs 0–4L nil … above 24L 30%; rebate ₹60,000 up to ₹12 lakh (new) and ₹12,500 up to ₹5 lakh (old); 80C ₹1.5 lakh, 80D ₹25,000/₹50,000, 80CCD(1B) ₹50,000; HRA 50% for Mumbai, Kolkata, Delhi, Chennai, Hyderabad, Pune, Ahmedabad, Bengaluru. Standard deduction (₹75,000/₹50,000) and the ₹2 lakh home-loan limit were not re-checked on a primary page. Informational; verify with the official source or a professional."
+  },
   "dependencies": [
     "lucide-react"
   ],

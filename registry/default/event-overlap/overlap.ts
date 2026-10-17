@@ -1,3 +1,5 @@
+// Bollard UI — event-overlap · MIT licence · https://bollard-ui.vercel.app/components/event-overlap
+
 /** Conflict detection and free-slot search for event-overlap. Pure, so it runs on the server too. */
 
 /** An event already on the calendar. */

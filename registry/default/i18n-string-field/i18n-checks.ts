@@ -1,3 +1,5 @@
+// Bollard UI — i18n-string-field · MIT licence · https://bollard-ui.vercel.app/components/i18n-string-field
+
 /** Pure checks behind I18nStringField. Safe to run on the server or in CI. */
 
 export interface PluralBlock {

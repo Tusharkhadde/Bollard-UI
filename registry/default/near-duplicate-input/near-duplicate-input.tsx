@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — near-duplicate-input · MIT licence · https://bollard-ui.vercel.app/components/near-duplicate-input
+
 import * as React from "react"
 import { CopyX, LoaderCircle, Plus } from "lucide-react"
 

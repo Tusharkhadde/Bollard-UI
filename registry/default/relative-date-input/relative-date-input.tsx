@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — relative-date-input · MIT licence · https://bollard-ui.vercel.app/components/relative-date-input
+
 import * as React from "react"
 import { differenceInCalendarDays } from "date-fns"
 import { CalendarCheck, CalendarSearch, PencilLine } from "lucide-react"

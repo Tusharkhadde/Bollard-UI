@@ -43,7 +43,10 @@ function useManager() {
   return [manager, set] as const
 }
 
-function commandFor(manager: Manager, kind: "add" | "install", args: string) {
+function commandFor(manager: Manager, kind: "add" | "install" | "shadcn", args: string) {
+  if (kind === "shadcn") {
+    return { pnpm: "pnpm dlx shadcn@latest", npm: "npx shadcn@latest", yarn: "yarn dlx shadcn@latest", bun: "bunx --bun shadcn@latest" }[manager] + ` ${args}`
+  }
   if (kind === "add") {
     return { pnpm: "pnpm dlx shadcn@latest add", npm: "npx shadcn@latest add", yarn: "yarn dlx shadcn@latest add", bun: "bunx --bun shadcn@latest add" }[manager] + ` ${args}`
   }
@@ -53,9 +56,10 @@ function commandFor(manager: Manager, kind: "add" | "install", args: string) {
 /**
  * A command in pnpm / npm / yarn / bun, shadcn-docs style: package-manager tabs
  * on top, the command below, copy at the right. `kind="add"` runs the shadcn CLI
- * with `args` (registry URLs); `kind="install"` installs npm packages.
+ * with `args` (registry URLs); `kind="install"` installs npm packages; `kind="shadcn"`
+ * runs any other shadcn CLI command (`init`, `add … --overwrite`).
  */
-export function PackageCommand({ kind, args, label }: { kind: "add" | "install"; args: string; label?: string }) {
+export function PackageCommand({ kind, args, label }: { kind: "add" | "install" | "shadcn"; args: string; label?: string }) {
   const [manager, setManager] = useManager()
   const command = commandFor(manager, kind, args)
   return (

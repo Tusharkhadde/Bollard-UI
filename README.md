@@ -1,5 +1,12 @@
 # Bollard UI
 
+[![CI](https://github.com/Tusharkhadde/Bollard-UI/actions/workflows/ci.yml/badge.svg)](https://github.com/Tusharkhadde/Bollard-UI/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![shadcn registry](https://img.shields.io/badge/shadcn-registry-black)](https://bollard-ui.vercel.app/components)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+**[Docs and live demos →](https://bollard-ui.vercel.app)**
+
 **340 React components that stop users from making mistakes.** Typo'd emails, an extra zero on a payment, a double charge, deleting in production, a pasted API key, lost work. Copy-paste components built with React, TypeScript and Tailwind CSS, installable with the shadcn CLI. You own the code.
 
 Most UI libraries make interfaces look good. Bollard UI makes them hard to get wrong. Every component targets one specific, costly mistake and catches it with a helpful nudge and, where possible, a one-tap fix. They're accessible, SSR-safe, typed, dependency-light (most need only React and lucide-react; see [Dependencies](#dependencies)) and themed with the standard shadcn CSS variables, so they drop straight into an existing shadcn project.
@@ -381,7 +388,7 @@ Most UI libraries make interfaces look good. Bollard UI makes them hard to get w
 Your project needs Tailwind CSS v4 and shadcn set up first (`npx shadcn@latest init`). Then:
 
 ```bash
-npx shadcn@latest add https://YOUR_DOMAIN/r/email-input.json
+npx shadcn@latest add https://bollard-ui.vercel.app/r/email-input.json
 ```
 
 Replace `email-input` with any component name above. The file lands in your components folder, and you're free to edit it.
@@ -455,8 +462,14 @@ docs/AUTHORING.md                    rules for writing a new component
 
 ## Contributing
 
-New component ideas are welcome. The bar: it prevents a real, specific user mistake, it's original (not a copy of something that already exists), accessible, and dependency-light. Read `docs/AUTHORING.md` and open an issue first to discuss it.
+New component ideas, fixes and docs improvements are welcome. The bar: it prevents a real, specific user mistake, it's original (not a copy of something that already exists), accessible, and dependency-light.
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, scripts and the pull request checklist, and [docs/AUTHORING.md](docs/AUTHORING.md) for the component rules.
+- Open a [component request](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=component_request.yml) before building something new.
+- Report bugs with the [bug report form](https://github.com/Tusharkhadde/Bollard-UI/issues/new?template=bug_report.yml) and security issues privately via [SECURITY.md](SECURITY.md).
+
+Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-MIT © Tushar Khadde
+[MIT](LICENSE) © Tushar Khadde

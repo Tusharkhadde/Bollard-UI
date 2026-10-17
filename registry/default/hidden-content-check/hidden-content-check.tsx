@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hidden-content-check · MIT licence · https://bollard-ui.vercel.app/components/hidden-content-check
+
 import * as React from "react"
 import { Check, ChevronDown, EyeOff, FileWarning, Loader2, ShieldCheck, Trash2 } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -65,6 +67,7 @@ export interface HiddenContentCheckProps extends Omit<React.ComponentProps<"sect
   onRemove?: (finding: HiddenFinding, file: File | Blob) => Promise<File | Blob>
   /** Fires with each report, including after a removal. */
   onReportChange?: (report: HiddenReport) => void
+  /** Override any visible string, including per-kind finding text. */
   messages?: Partial<Omit<Messages, "kind">> & { kind?: Partial<Record<HiddenKind, string>> }
 }
 

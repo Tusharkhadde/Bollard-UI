@@ -1,3 +1,5 @@
+// Bollard UI — coordinate-input · MIT licence · https://bollard-ui.vercel.app/components/coordinate-input
+
 export interface LatLon {
   lat: number
   lon: number

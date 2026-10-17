@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — alt-text-check · MIT licence · https://bollard-ui.vercel.app/components/alt-text-check
+
 import * as React from "react"
 import { CircleCheck, ImageOff, Type } from "lucide-react"
 
@@ -87,6 +89,7 @@ export interface AltTextCheckProps extends Omit<React.ComponentProps<"div">, "de
   value?: AltImage[]
   /** Initial images when uncontrolled. */
   defaultValue?: AltImage[]
+  /** Called with the updated images whenever alt text or the decorative flag changes. */
   onValueChange?: (images: AltImage[]) => void
   /** Called when posting. With problems left, the first click jumps to them and asks again. */
   onPost?: (images: AltImage[]) => void
@@ -98,14 +101,23 @@ export interface AltTextCheckProps extends Omit<React.ComponentProps<"div">, "de
   summaryText?: string
   /** Reasons shown under each flagged image. */
   messages?: Partial<typeof ALT_TEXT_MESSAGES>
+  /** Summary shown when every image passes. */
   allGoodText?: string
+  /** Label for each alt text field. */
   altLabel?: string
+  /** Label for the decorative toggle. */
   decorativeLabel?: string
+  /** Reminder shown for images that contain text. */
   textHint?: string
+  /** Placeholder shown in the field when the image is marked decorative. */
   decorativePlaceholder?: string
+  /** Text for the one-tap fix button. */
   fixLabel?: string
+  /** Text for the button that clears a filename used as alt text. */
   clearLabel?: string
+  /** Post button text. */
   postLabel?: string
+  /** Post button text after problems were shown once. */
   postAnywayLabel?: string
 }
 

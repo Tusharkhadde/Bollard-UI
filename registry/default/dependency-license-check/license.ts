@@ -1,3 +1,5 @@
+// Bollard UI — dependency-license-check · MIT licence · https://bollard-ui.vercel.app/components/dependency-license-check
+
 /** How a license constrains the code that uses it, from least to most restrictive. */
 export type LicenseCategory = "permissive" | "weak" | "unknown" | "strong" | "network" | "source-available" | "missing"
 

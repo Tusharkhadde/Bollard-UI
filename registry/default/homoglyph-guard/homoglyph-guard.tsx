@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — homoglyph-guard · MIT licence · https://bollard-ui.vercel.app/components/homoglyph-guard
+
 import * as React from "react"
 import { Info, ShieldAlert } from "lucide-react"
 

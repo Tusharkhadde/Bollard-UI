@@ -1,7 +1,27 @@
 {
   "title": "Payee Check",
-  "description": "Prevents paying the wrong account by asking the bank who holds it (a pluggable async lookup) and comparing that with the typed name like Confirmation of Payee: match, close match with the real name one tap away, or no match with the name kept hidden and an explicit pay-anyway, plus callouts for first-time payees and large first payments.",
-  "dependencies": ["lucide-react"],
+  "summary": "Asks the bank who holds an account and compares that with the name typed, like Confirmation of Payee, so money doesn't go to the wrong account.",
+  "description": "Payee form that asks your backend who holds the account and compares it with the typed name like Confirmation of Payee: match, close match with the real name one tap away, or no match with the name hidden and an explicit pay-anyway, plus first-payee and large-amount callouts.",
+  "catches": [
+    "Typed name that doesn't match the account holder",
+    "Close matches and typos (Pirya vs Priya), titles and legal suffixes ignored",
+    "First payment to a new payee",
+    "Large first payments, with an optional test payment"
+  ],
+  "limits": [
+    "Needs a lookup backed by your bank or provider's name-check API",
+    "Name matching is fuzzy and can't settle every case",
+    "Doesn't stop a payer who chooses pay-anyway"
+  ],
+  "a11y": [
+    "Account, code and name inputs have visible labels",
+    "Name input has aria-invalid on no match and is described by a polite result region",
+    "Loading state has text; icons are aria-hidden"
+  ],
+  "server": "Run the name check and payment authorization on the server, and log pay-anyway acknowledgements.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Money sent to the wrong account",
   "mistakes": [
     "wrong account number transfer",

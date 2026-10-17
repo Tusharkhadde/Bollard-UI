@@ -1,3 +1,5 @@
+// Bollard UI — passport-validity-check · MIT licence · https://bollard-ui.vercel.app/components/passport-validity-check
+
 /** One destination's passport rule. Check it against the official source before relying on it. */
 export interface PassportRule {
   /** Shown in the heading: "Schengen area". */

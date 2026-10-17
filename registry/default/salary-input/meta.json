@@ -1,6 +1,25 @@
 {
   "title": "Salary Input",
-  "description": "Prevents mis-stated salaries by catching a monthly figure entered as yearly (and back), a bare \"12\" meant as 12 LPA and an extra zero against the role's range, reading every amount back in lakh/crore, per month and per year, and offering a one-tap fix for each.",
+  "summary": "Catches salaries entered in the wrong period or scale, like monthly typed as yearly or a bare \"12\" meant as 12 LPA.",
+  "description": "Salary field that reads \"12 LPA\", \"85k/month\" or \"1.2 Cr\", catches monthly entered as yearly (and back), a bare number meant as lakhs, and an extra zero against the role's range, reads amounts back per month and per year, and offers one-tap fixes.",
+  "catches": [
+    "Monthly figure entered as yearly, and the reverse",
+    "Bare \"12\" likely meant as 12 LPA (or 85 as 85k outside India)",
+    "An extra or missing zero against the expected range",
+    "Units written in the text (LPA, k, lakh, crore, million) overriding the period picker",
+    "Read-back per month and per year, in lakh/crore for INR"
+  ],
+  "limits": [
+    "Checks plausibility against the ranges you pass; it can't know the real offer",
+    "Parses common English and Indian shorthand only",
+    "Does not handle tax, CTC components or variable pay"
+  ],
+  "a11y": [
+    "Visible <label> on the input; read-back and status linked via aria-describedby",
+    "Period picker is a roving-tabindex radiogroup with arrow keys",
+    "Status in a polite live region; dismiss has an aria-label",
+    "After a fix, focus returns to the input"
+  ],
   "dependencies": [
     "lucide-react"
   ],

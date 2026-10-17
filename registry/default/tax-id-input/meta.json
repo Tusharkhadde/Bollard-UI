@@ -1,10 +1,35 @@
 {
   "title": "Tax ID Input",
-  "description": "Prevents invoices going out with a mistyped GSTIN, PAN or EU VAT number by recomputing the GSTIN's mod-36 check character, reading back the state, holder type and country, and pinpointing the exact wrong character with a one-tap fix for look-alikes, swaps and GR instead of EL.",
+  "summary": "Catches mistyped GSTIN, PAN and EU VAT numbers by checking their structure and the GSTIN check character, and pointing at the wrong character.",
+  "description": "Tax number field for GSTIN, PAN and EU VAT that recomputes the GSTIN's mod-36 check character, reads back state, holder type and country, and pinpoints the wrong character with a one-tap fix for look-alikes, swaps and GR instead of EL.",
+  "catches": [
+    "GSTIN check character that doesn't match (mod-36)",
+    "Look-alike characters (O/0, I/1) and swapped neighbours",
+    "State code, PAN holder type and EU country read back",
+    "EU VAT body shape per country, and GR typed instead of EL",
+    "Wrong length for the chosen kind"
+  ],
+  "limits": [
+    "Format looks valid ≠ registered: it does not confirm the number exists or is active",
+    "Use the GST portal or VIES to verify registration",
+    "EU VAT patterns check structure, not national check digits"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid with status via aria-describedby",
+    "Status and fixes in a polite live region",
+    "After a fix, focus returns to the input",
+    "External verify link has visible text"
+  ],
+  "server": "Verify GSTIN/VAT registration with the official service server-side before issuing tax invoices.",
+  "rules": {
+    "verified": null,
+    "sources": [],
+    "note": "GSTIN check-character algorithm, GST state codes, PAN 4th-character holder types and EU VAT body patterns were not re-verified against a primary source this round. Informational; verify registration with the GST portal or VIES."
+  },
   "dependencies": [
     "lucide-react"
   ],
-  "stops": "Invoice sent with wrong GSTIN",
+  "stops": "Invoice sent with a mistyped GSTIN",
   "mistakes": [
     "gstin validation",
     "pan number format",

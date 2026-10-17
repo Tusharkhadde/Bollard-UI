@@ -1,3 +1,5 @@
+// Bollard UI — infra-plan-readback · MIT licence · https://bollard-ui.vercel.app/components/infra-plan-readback
+
 /** What a resource change does, read from `change.actions` in `terraform show -json` / `tofu show -json`. */
 export type PlanAction = "create" | "update" | "replace" | "destroy"
 

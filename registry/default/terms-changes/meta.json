@@ -1,10 +1,54 @@
 {
   "title": "Terms Changes",
-  "description": "Stops people re-accepting updated terms without seeing what changed: it shows a summary and the exact word diff since the version they accepted, calls out changed numbers, keeps Accept locked until every change has stayed on screen long enough to read (an early tap jumps to the next unread one), and hands back a consent record with both versions and a timestamp.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows what changed in updated terms since the version a user accepted, and keeps Accept locked until each change has been on screen.",
+  "description": "Terms re-acceptance with a summary and exact word diff since the accepted version, changed numbers called out, Accept locked until every change has stayed on screen long enough to read (an early tap jumps to the next unread one), and a consent record with both versions.",
+  "catches": [
+    "Every change since the accepted version, as a word diff",
+    "Changed numbers (fees, days, limits), called out",
+    "Changes not yet on screen for the dwell time",
+    "An early Accept tap, which jumps to the next unread change",
+    "Consent record with both versions, timestamp and changes seen"
+  ],
+  "limits": [
+    "\"Seen\" means on screen for dwell ms, not read or understood",
+    "Not legal advice on what counts as valid consent in your jurisdiction",
+    "Store the consent record server-side yourself"
+  ],
+  "a11y": [
+    "Changes region is focusable (tabIndex=0) with an aria-label",
+    "Removed/added text has sr-only prefixes; read changes marked with an aria-labelled check",
+    "Progress in a polite live region; Accept uses aria-disabled and is described by what's left",
+    "Scrolling jumps respect reduced motion"
+  ],
+  "server": "Record consent server-side with the version ids and timestamp, and check the accepted version on later requests.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Terms accepted without seeing changes",
-  "mistakes": ["updated terms no diff", "accept terms blindly", "privacy policy changed", "consent record terms"],
-  "aliases": ["terms of service", "privacy policy", "tos update", "accept terms", "diff", "consent", "legal", "dpdp"],
-  "flows": ["signup-login", "account-settings"],
-  "fields": ["text"]
+  "mistakes": [
+    "updated terms no diff",
+    "accept terms blindly",
+    "privacy policy changed",
+    "consent record terms"
+  ],
+  "aliases": [
+    "terms of service",
+    "privacy policy",
+    "tos update",
+    "accept terms",
+    "diff",
+    "consent",
+    "legal",
+    "dpdp"
+  ],
+  "flows": [
+    "signup-login",
+    "account-settings"
+  ],
+  "fields": [
+    "text"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/text-diff.json"
+  ]
 }

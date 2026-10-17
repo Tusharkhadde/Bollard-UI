@@ -1,3 +1,5 @@
+// Bollard UI — sql-guard · MIT licence · https://bollard-ui.vercel.app/components/sql-guard
+
 /** A small, dependency-free SQL tokenizer and the risk checks behind SqlGuard. Server safe. */
 
 export type SqlTokenType = "space" | "comment" | "string" | "ident" | "number" | "word" | "punct"
@@ -9,7 +11,8 @@ export interface SqlToken {
 
 const rules: [SqlTokenType, RegExp][] = [
   ["space", /\s+/y],
-  ["comment", /--[^\n]*|\/\*[\s\S]*?(?:\*\/|$)/y],
+  // "#" is a MySQL line comment; "#>" and "#-" (Postgres JSON operators) are left alone.
+  ["comment", /--[^\n]*|#(?![>-])[^\n]*|\/\*[\s\S]*?(?:\*\/|$)/y],
   ["string", /[eEnN]?'(?:[^'\\]|''|\\.)*'?|\$(\w*)\$[\s\S]*?(?:\$\1\$|$)/y],
   ["ident", /"(?:[^"]|"")*"?|`[^`]*`?|\[[^\]]*\]?/y],
   ["number", /\d+(?:\.\d+)?/y],
@@ -55,7 +58,9 @@ export interface SqlStatementInfo {
 }
 
 const VERBS = ["SELECT", "INSERT", "UPDATE", "DELETE", "MERGE", "DROP", "TRUNCATE", "ALTER", "CREATE", "GRANT", "REVOKE", "REPLACE"]
-const ENDS = new Set(["AND", "OR", "ORDER", "LIMIT", "RETURNING", "GROUP", ")"])
+// What may follow an always-true term for the whole WHERE to stay always true. AND is
+// left out on purpose: "WHERE 1=1 AND status = 'x'" (the query-builder pattern) narrows it.
+const ENDS = new Set(["OR", "ORDER", "LIMIT", "RETURNING", "GROUP", ")"])
 const unquote = (t: SqlToken) => (t.type === "ident" ? t.value.slice(1, -1).replace(/""/g, '"') : t.value)
 const isName = (t?: SqlToken) => !!t && (t.type === "word" || t.type === "ident")
 
@@ -141,5 +146,5 @@ export function analyzeSql(sql: string): SqlStatementInfo[] {
 
 /** Removes the comment marker in front of a commented-out WHERE. */
 export function uncommentWhere(sql: string) {
-  return sql.replace(/--\s*(where\b)/i, "$1").replace(/\/\*\s*(where\b[\s\S]*?)\s*\*\//i, "$1")
+  return sql.replace(/(?:--|#)\s*(where\b)/i, "$1").replace(/\/\*\s*(where\b[\s\S]*?)\s*\*\//i, "$1")
 }

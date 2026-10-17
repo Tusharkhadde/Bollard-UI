@@ -1,3 +1,5 @@
+// Bollard UI — shift-time-input · MIT licence · https://bollard-ui.vercel.app/components/shift-time-input
+
 const DAY = 1440
 
 export interface ParsedClock {

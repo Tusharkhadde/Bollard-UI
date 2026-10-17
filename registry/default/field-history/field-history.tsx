@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — field-history · MIT licence · https://bollard-ui.vercel.app/components/field-history
+
 import * as React from "react"
 import { History, LoaderCircle, RotateCcw, Undo2 } from "lucide-react"
 
@@ -79,8 +81,11 @@ export interface FieldHistoryProps extends Omit<React.ComponentProps<"div">, "ch
   wasText?: string
   /** Trigger text while a recent change is flagged. `{when}` is filled in. */
   changedText?: string
+  /** Accessible label for the history trigger. */
   historyLabel?: string
+  /** Text for the revert button. */
   revertLabel?: string
+  /** Text for restoring an older value. */
   restoreLabel?: string
   /** Screen reader name of each Restore button. `{value}` is filled in. Defaults to `restoreLabel` plus the value. */
   restoreAriaLabel?: string
@@ -88,7 +93,9 @@ export interface FieldHistoryProps extends Omit<React.ComponentProps<"div">, "ch
   replacesText?: string
   /** Shown after a revert. `{value}` is filled in. */
   revertedText?: string
+  /** Text for the Undo button. */
   undoLabel?: string
+  /** Shown when there is no history. */
   emptyText?: string
   /** Language for "when" ("vor 2 Tagen"). Unset keeps the built-in English wording. */
   locale?: string

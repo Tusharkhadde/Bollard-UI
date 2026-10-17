@@ -1,6 +1,34 @@
 {
   "title": "Notice Period Check",
-  "description": "Stops people resigning towards the wrong last day by working it out from the resignation and the notice policy (days, weeks or months, calendar or working days, notice from the same or the next day) and flagging month-end arithmetic like 31 Jan + 1 month, a last day on a weekend or holiday, an email HR dates differently in its own time zone, unpaid leave pushing the date out, leave set-off and the buyout cost of leaving early, with one-tap fixes and a line to copy to HR.",
+  "summary": "Works out the real last working day from a resignation and the notice policy, so nobody resigns towards the wrong date.",
+  "description": "Notice calculator that works out the last day from the resignation and policy (days, weeks or months; calendar or working days) and flags month-end arithmetic, weekend or holiday last days, HR's time zone dating the email differently, unpaid leave, leave set-off and buyout cost.",
+  "catches": [
+    "Month-end arithmetic such as 31 Jan + 1 month",
+    "Last day on a weekend or holiday",
+    "Resignation email dated differently in HR's time zone",
+    "Unpaid leave pushing the date out, and leave set-off",
+    "Buyout cost of leaving early, plus a line to copy to HR"
+  ],
+  "limits": [
+    "Your contract and policy decide; defaults (notice from the next day) are the common reading, not a rule",
+    "Holidays and leave balance come from your props",
+    "Not legal advice"
+  ],
+  "a11y": [
+    "Section labelled by its heading; every input has a visible label",
+    "The sent-at field's label names the time zone",
+    "Focus moves to the first fix after a change"
+  ],
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "GOV.UK: Handing in your notice",
+        "url": "https://www.gov.uk/handing-in-your-notice"
+      }
+    ],
+    "note": "Informational, not legal advice. Confirmed the UK reading that notice usually runs from the day after it is handed in. Indian contract practices mentioned in the code were not verified."
+  },
   "dependencies": [
     "lucide-react"
   ],

@@ -1,3 +1,5 @@
+// Bollard UI — dimension-input · MIT licence · https://bollard-ui.vercel.app/components/dimension-input
+
 export type DimensionUnit = "mm" | "cm" | "m" | "in" | "ft"
 export type Axis = "w" | "h" | "d"
 export const AXES: Axis[] = ["w", "h", "d"]

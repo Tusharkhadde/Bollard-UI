@@ -1,10 +1,49 @@
 {
   "title": "Seat Reduce",
-  "description": "Stops a lower seat count from cutting people off silently by making you choose who goes, suggesting unaccepted invites first and then the least active members (never the owner or admins), calling out an admin or someone active today if you pick them, and showing the new bill, when it starts and what happens to each person's work before you confirm.",
-  "dependencies": ["lucide-react"],
-  "stops": "Fewer seats locked out active admin",
-  "mistakes": ["reducing seats removed users", "downgrade seats who loses access", "removed admin seat", "seat count billing change"],
-  "aliases": ["seats", "licenses", "team plan", "billing", "downgrade", "remove members", "per seat pricing"],
-  "flows": ["account-settings", "checkout"],
-  "fields": ["number"]
+  "summary": "Makes lowering a seat count an explicit choice of who loses access, with the new bill and what happens to their work.",
+  "description": "Seat-reduction flow that asks who goes, suggests unaccepted invites then least-active members (never owners or admins), warns when you pick an admin or someone active today, and shows the new bill, when it starts and what happens to each person's work.",
+  "catches": [
+    "More members than the new seat count, until you choose who goes",
+    "Unaccepted invites suggested first, then least-active plain members",
+    "Picking an admin, owner or someone active today",
+    "New bill and when it starts",
+    "What happens to each removed person's work"
+  ],
+  "limits": [
+    "Activity and work summaries come from the props you pass",
+    "Does not change billing; onConfirm receives the seats and who goes"
+  ],
+  "a11y": [
+    "Section labelled by its title; member checkboxes have <label>s",
+    "Seat count input has an aria-label; arrow keys change it and +/- buttons have aria-labels",
+    "Selection status and warnings render in polite live regions",
+    "Bill highlight animation skipped under reduced motion"
+  ],
+  "server": "Recheck seats, roles and billing server-side; never let a client choice remove the last owner or admin.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Fewer seats locked out an active admin",
+  "mistakes": [
+    "reducing seats removed users",
+    "downgrade seats who loses access",
+    "removed admin seat",
+    "seat count billing change"
+  ],
+  "aliases": [
+    "seats",
+    "licenses",
+    "team plan",
+    "billing",
+    "downgrade",
+    "remove members",
+    "per seat pricing"
+  ],
+  "flows": [
+    "account-settings",
+    "checkout"
+  ],
+  "fields": [
+    "number"
+  ]
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — upi-collect-guard · MIT licence · https://bollard-ui.vercel.app/components/upi-collect-guard
+
 import * as React from "react"
 import { ArrowUpRight, Loader2, OctagonX, ShieldAlert } from "lucide-react"
 

@@ -1,10 +1,51 @@
 {
   "title": "Heading Outline",
-  "description": "Prevents a heading structure screen reader users can't navigate by showing the live outline of a Markdown draft or any DOM region and flagging skipped levels (drawn as dashed ghost rows), extra or missing H1s, empty headings, bold text posing as a heading and paragraph-length headings, with a one-tap \"Make it H3\" fix and rows that jump to the heading.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows the live heading outline of a Markdown draft or page region and flags skipped levels and fake headings that confuse screen reader users.",
+  "description": "Live heading outline for a Markdown draft or DOM region. Flags skipped levels (shown as dashed ghost rows), extra or missing H1s, empty headings, bold text posing as a heading and overlong headings, with a one-tap level fix and rows that jump to the heading.",
+  "catches": [
+    "Skipped heading levels (H2 to H4)",
+    "More than one H1, or none",
+    "Empty headings",
+    "Bold lines that look like headings but aren't",
+    "Headings long enough to be paragraphs"
+  ],
+  "limits": [
+    "DOM mode reads headings and role=heading; it skips hidden content but cannot judge whether heading text is meaningful",
+    "Markdown mode parses ATX, setext and single-line HTML headings, not every Markdown dialect",
+    "One outline check, not a full WCAG audit"
+  ],
+  "a11y": [
+    "Rendered as a labelled nav",
+    "Summary line is a polite live region",
+    "Jump focuses the heading (adding tabindex=-1 when needed); smooth scroll is skipped under reduced motion",
+    "Focus returns to a nearby row after a fix"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Skipped heading levels confuse screen readers",
-  "mistakes": ["skipped h2 to h4", "multiple h1 on page", "bold text as heading", "heading structure accessibility"],
-  "aliases": ["headings", "h1", "a11y", "accessibility", "wcag", "markdown editor", "document outline", "screen reader", "cms"],
-  "flows": ["forms", "devtools"],
-  "fields": ["text"]
+  "mistakes": [
+    "skipped h2 to h4",
+    "multiple h1 on page",
+    "bold text as heading",
+    "heading structure accessibility"
+  ],
+  "aliases": [
+    "headings",
+    "h1",
+    "a11y",
+    "accessibility",
+    "wcag",
+    "markdown editor",
+    "document outline",
+    "screen reader",
+    "cms"
+  ],
+  "flows": [
+    "forms",
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
 }

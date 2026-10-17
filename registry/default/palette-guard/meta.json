@@ -1,7 +1,26 @@
 {
   "title": "Palette Guard",
-  "description": "Stops chart series becoming indistinguishable for colour-blind readers by simulating protan, deutan and tritan vision (Machado 2009), flagging every pair under a CIEDE2000 threshold that passes Okabe–Ito, and offering the smallest lightness-only fix that clears all clashes, or patterns and direct labels when no colour change can.",
-  "dependencies": ["lucide-react"],
+  "summary": "Simulates colour-blind vision for chart series and flags pairs that become hard to tell apart, with the smallest lightness fix.",
+  "description": "Chart palette check that simulates protan, deutan and tritan vision (Machado 2009), flags every pair under a CIEDE2000 threshold, and offers the smallest lightness-only fix that clears all clashes, or patterns and direct labels when no colour change can.",
+  "catches": [
+    "Series pairs that look alike for protan, deutan or tritan vision",
+    "Pairs already too close in normal vision",
+    "Smallest lightness-only fix that clears every clash",
+    "Cases needing patterns or direct labels instead"
+  ],
+  "limits": [
+    "Simulates full dichromacy (severity 1.0); milder forms are not modelled separately",
+    "A colour difference threshold isn't the same as legibility on your background",
+    "Doesn't check text contrast"
+  ],
+  "a11y": [
+    "Series list is labelled; each colour input has an aria-label",
+    "Clash status is in a polite live region and marked in text (\", clashes\")",
+    "Fix button has an aria-label describing the change"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Chart colours look identical to colour-blind readers",
   "mistakes": [
     "colour blind chart",

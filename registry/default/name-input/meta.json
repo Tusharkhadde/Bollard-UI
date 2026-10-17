@@ -1,6 +1,24 @@
 {
   "title": "Name Input",
-  "description": "Prevents shouty, mangled or swapped names on records by spotting caps lock, all-lowercase, stray digits, doubled spaces and a first/last mix-up, and offering, never forcing, a fix cased the way McDonald, O'Brien, van der Berg and de la Cruz are really written.",
+  "summary": "Spots caps lock, all-lowercase, stray digits and swapped first/last names, and offers (never forces) a correctly cased fix.",
+  "description": "Name field that spots caps lock, all-lowercase, stray digits, doubled spaces and a first/last mix-up, and offers, never forces, a fix cased the way McDonald, O'Brien, van der Berg and de la Cruz are really written, with a Keep option.",
+  "catches": [
+    "ALL CAPS or all-lowercase names",
+    "Digits and doubled spaces",
+    "First and last names swapped (from common-name lists)",
+    "A full name typed into one box: offers to split",
+    "Re-casing that respects Mc/Mac, O', particles and hyphens"
+  ],
+  "limits": [
+    "Casing and swap lists are English/Western-centric; they can be wrong for other naming traditions",
+    "Only suggests; some people really write their name in capitals or lowercase",
+    "Mac names are a list, so unlisted ones aren't re-cased"
+  ],
+  "a11y": [
+    "Visible label; input is described by a polite hint region",
+    "Warnings appear after a pause while typing",
+    "Keep button has an aria-label and title; icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

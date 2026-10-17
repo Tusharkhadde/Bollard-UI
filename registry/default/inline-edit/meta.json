@@ -1,6 +1,24 @@
 {
   "title": "Inline Edit",
-  "description": "Prevents lost and clobbered edits in click-to-edit text: a cancelled edit can be restored, a failed save keeps your draft, and a value changed by someone else mid-edit is flagged instead of silently overwritten (clicking away then keeps the editor open rather than saving over it).",
+  "summary": "Click-to-edit text that keeps your draft when a save fails or you cancel, and warns when someone else changed the value mid-edit.",
+  "description": "Click-to-edit text: a cancelled edit can be restored, a failed save keeps your draft, and a value changed by someone else mid-edit is flagged instead of silently overwritten (clicking away then keeps the editor open rather than saving).",
+  "catches": [
+    "Edit thrown away by Escape: a Restore button brings it back",
+    "Save failure: the draft is kept and the error shown",
+    "Value changed elsewhere while you edit: conflict shown with Use theirs",
+    "Validation errors block saving"
+  ],
+  "limits": [
+    "Conflict detection compares the value prop; it needs your app to push remote changes into it",
+    "Not a merge tool: you choose one version",
+    "No offline queue for failed saves"
+  ],
+  "a11y": [
+    "The read view is a button whose aria-label names the field, current value and Edit",
+    "Input has an aria-label, aria-invalid on error and a hint in a polite live region",
+    "Enter saves and Escape cancels; focus returns to the trigger after closing",
+    "Saving spinner has an aria-label"
+  ],
   "dependencies": [
     "lucide-react"
   ],

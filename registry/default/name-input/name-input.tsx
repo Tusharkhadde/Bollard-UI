@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — name-input · MIT licence · https://bollard-ui.vercel.app/components/name-input
+
 import * as React from "react"
 import { ArrowLeftRight, TriangleAlert, X } from "lucide-react"
 
@@ -62,10 +64,13 @@ export interface NameInputProps
   surname?: boolean
   /** Pause in ms before suggestions appear while typing. Leaving the field shows them at once. */
   delay?: number
+  /** Shown when the name is in capitals. */
   capsMessage?: string
+  /** Shown when the name is all lowercase. */
   lowerMessage?: string
   /** Shown when a name has digits; receives them, e.g. "2". */
   digitsMessage?: (digits: string) => string
+  /** Shown for doubled or stray spaces. */
   spacesMessage?: string
   /** Fix button text; receives the suggested name. */
   fixLabel?: (fix: string) => string
@@ -184,14 +189,19 @@ export interface NameFieldsProps extends Omit<React.ComponentProps<"fieldset">, 
   defaultValue?: PersonName
   /** Called with both names whenever either changes. */
   onValueChange?: (value: PersonName) => void
+  /** Label for the first-name box. */
   firstLabel?: string
+  /** Label for the last-name box. */
   lastLabel?: string
   /** Shown when the two look entered the wrong way round. */
   swapMessage?: string
+  /** Button text to swap first and last. */
   swapLabel?: string
   /** Shown when the whole name went into the first field; receives the word that looks like the surname. */
   splitMessage?: (word: string) => string
+  /** Button text to split a full name. */
   splitLabel?: string
+  /** Accessible label for keeping the name as typed. */
   keepLabel?: string
   /** Pause in ms after typing stops before the pair is checked. */
   delay?: number

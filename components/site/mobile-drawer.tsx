@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { X } from "lucide-react"
 
-import { GITHUB_URL } from "@/lib/site"
+import { REPO_PUBLIC, REPO_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { Logo } from "./logo"
 import { Sidebar } from "./sidebar"
@@ -85,15 +85,20 @@ export function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => 
           <Link href="/" onClick={onClose} className={link(pathname === "/")}>
             Home
           </Link>
+          <Link href="/docs" onClick={onClose} className={link(pathname === "/docs")}>
+            Docs
+          </Link>
           <Link href="/components" onClick={onClose} className={link(pathname.startsWith("/components"))}>
             Components
           </Link>
           <Link href="/#flows" onClick={onClose} className={link(false)}>
             Flows
           </Link>
-          <a href={GITHUB_URL} className={link(false)}>
-            GitHub
-          </a>
+          {REPO_PUBLIC && (
+            <a href={REPO_URL} className={link(false)}>
+              GitHub
+            </a>
+          )}
         </nav>
         <Sidebar className="min-h-0 flex-1" />
       </div>

@@ -1,3 +1,5 @@
+// Bollard UI — security-event-log · MIT licence · https://bollard-ui.vercel.app/components/security-event-log
+
 /** Pure helpers for SecurityEventLog: risk, takeover-pattern grouping and time zone aware day keys. */
 
 export type SecurityEventType =

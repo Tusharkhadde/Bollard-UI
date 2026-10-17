@@ -1,6 +1,25 @@
 {
   "title": "Slug Input",
-  "description": "Prevents broken and colliding URLs: the slug follows the title with proper transliteration (Straße → strasse) until published, reads back the full URL, checks for collisions as you type with the next free slug one tap away, and warns that editing a live slug breaks links, keeping a redirect by default.",
+  "summary": "Keeps URL slugs clean and stable: proper transliteration, a full-URL readback, collision checks, and a warning before editing a live slug.",
+  "description": "Slug field that follows the title with proper transliteration (Straße → strasse) until published, reads back the full URL, checks collisions as you type with the next free slug one tap away, and warns that editing a live slug breaks links, keeping a redirect by default.",
+  "catches": [
+    "Lossy slugify (ß, é and similar), by transliterating first",
+    "Slugs already taken, with the next free one suggested",
+    "Edits to a published slug that would break links",
+    "Removing the redirect from the old slug",
+    "Slugs too long, cut at a word boundary"
+  ],
+  "limits": [
+    "Collision check depends on your checkAvailability",
+    "Transliteration covers Latin-script letters; other scripts are dropped",
+    "Creating the redirect is your server's job"
+  ],
+  "a11y": [
+    "Visible <label> on the input; status via aria-describedby",
+    "Availability and warnings render in a polite live region",
+    "Keep-redirect is a labelled checkbox; icons are aria-hidden"
+  ],
+  "server": "Enforce slug uniqueness with a database constraint and create the old→new redirect server-side.",
   "dependencies": [
     "lucide-react"
   ],

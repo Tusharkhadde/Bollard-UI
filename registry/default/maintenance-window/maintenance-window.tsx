@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — maintenance-window · MIT licence · https://bollard-ui.vercel.app/components/maintenance-window
+
 import * as React from "react"
 import { CalendarClock, CircleCheck, Hourglass, Lock } from "lucide-react"
 
@@ -59,9 +61,13 @@ export interface MaintenanceWindowProps extends React.ComponentProps<"div"> {
   hasUnsavedChanges?: boolean
   /** Templates: `{window}`, `{countdown}`, `{start}`, `{end}` are filled in. */
   scheduledText?: string
+  /** Template shown when the window is close. */
   soonText?: string
+  /** Template shown during the window. */
   activeText?: string
+  /** Shown after the window ends. */
   overText?: string
+  /** Accessible label for the dismiss button. */
   dismissLabel?: string
 }
 
@@ -70,7 +76,8 @@ const bar = "flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-1.5 
 /**
  * Announces planned downtime in the reader's own time zone with a countdown that sharpens as it
  * nears, warns before a long task that would be cut off (see MaintenanceTaskButton), and during the
- * window turns the wrapped form read-only without unmounting it, so unsaved work stays put.
+ * window disables the wrapped form's fields (a disabled fieldset) without unmounting it, so unsaved
+ * work stays put. Your server is not made read-only by this; enforce that on the backend.
  */
 export function MaintenanceWindow({
   start,
@@ -81,7 +88,7 @@ export function MaintenanceWindow({
   hasUnsavedChanges = false,
   scheduledText = "Scheduled maintenance {window} · in {countdown}",
   soonText = "Maintenance starts in {countdown}, at {start}. Editing pauses until {end}.",
-  activeText = "Read-only for maintenance until {end} · {countdown} left. Your unsaved changes stay in this tab, so don't reload.",
+  activeText = "Maintenance until {end} · {countdown} left. Editing is paused in this form; your unsaved changes stay in this tab, so don't reload.",
   overText = "Maintenance is over. Your changes are still here; save when ready.",
   dismissLabel = "Got it",
   className,

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — guarded-switch · MIT licence · https://bollard-ui.vercel.app/components/guarded-switch
+
 import * as React from "react"
 import { LoaderCircle, ShieldAlert, TriangleAlert } from "lucide-react"
 
@@ -31,6 +33,7 @@ export interface GuardedSwitchProps extends Omit<React.ComponentProps<"div">, "c
   tone?: keyof typeof tones
   /** How long the lifted cover stays up, in milliseconds. Pauses while the pointer is over the switch. */
   openFor?: number
+  /** Disables the cover and the switch. */
   disabled?: boolean
   /** Accessible name of the cover. `{label}` is filled in. */
   liftLabel?: string
@@ -38,7 +41,9 @@ export interface GuardedSwitchProps extends Omit<React.ComponentProps<"div">, "c
   armedText?: string
   /** Read back after a flip. `{label}`, `{state}` and `{effect}` are filled in. */
   changedText?: string
+  /** State text when on. */
   onText?: string
+  /** State text when off. */
   offText?: string
 }
 

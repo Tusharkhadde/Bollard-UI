@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unanswered-check · MIT licence · https://bollard-ui.vercel.app/components/unanswered-check
+
 import * as React from "react"
 import { CircleDashed, CircleHelp, Flag, Hourglass, LoaderCircle, SquareSplitHorizontal } from "lucide-react"
 
@@ -50,6 +52,7 @@ const button =
   "inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-4 text-sm font-medium whitespace-nowrap outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-60"
 
 export interface UnansweredCheckProps extends Omit<React.ComponentProps<"section">, "children"> {
+  /** Every question with its answered, required, flagged and saving state. */
   questions: ExamQuestion[]
   /** `exam`: blanks are allowed but cost marks, so submitting with them takes a second click. `survey`: required questions must be answered. */
   mode?: "exam" | "survey"
@@ -65,23 +68,42 @@ export interface UnansweredCheckProps extends Omit<React.ComponentProps<"section
   onTimeUp?: () => void
   /** Final submit. Return a promise to show a pending state; a rejection keeps the answers and says so. */
   onSubmit: () => void | Promise<void>
+  /** Heading of the check. */
   heading?: string
+  /** Heading for unanswered required questions. */
   requiredLabel?: string
+  /** Heading for unanswered optional questions. */
   optionalLabel?: string
+  /** Heading for partly answered questions. */
   partialLabel?: string
+  /** Heading for questions flagged for review. */
   flaggedLabel?: string
+  /** Shown when everything is answered. */
   allDoneText?: string
   /** Templates: `{count}` and `{each}` are filled in. */
   autoSubmitText?: string
+  /** Time per open question. */
   paceText?: string
+  /** Warning in the last seconds. */
   lastSecondsText?: string
+  /** Label of the submit button. */
   submitLabel?: string
+  /** Label when blanks remain. */
   submitWithBlanksLabel?: string
+  /** Label of the second click to submit with blanks. */
   confirmLabel?: string
+  /** Label when required questions block submit. */
   needRequiredLabel?: string
+  /** Label while answers are saving. */
   savingLabel?: string
+  /** Label while onSubmit runs. */
   pendingLabel?: string
+  /** Shown when onSubmit rejects. */
   errorText?: string
+  /** Accessible label of a question jump button. */
+  goToLabel?: (question: string, note?: string) => string
+  /** Screen-reader note on a flagged question that has no answer. */
+  notAnsweredSrText?: string
 }
 
 /**
@@ -116,6 +138,8 @@ export function UnansweredCheck({
   savingLabel = "Saving {count}…",
   pendingLabel = "Submitting…",
   errorText = "Not submitted. Your answers are kept, try again.",
+  goToLabel = (question, note) => `Go to question ${question}${note ? `, ${note}` : ""}`,
+  notAnsweredSrText = ", not answered",
   className,
   ...props
 }: UnansweredCheckProps) {
@@ -223,7 +247,7 @@ export function UnansweredCheck({
                       type="button"
                       onClick={() => onJump(q.id)}
                       title={q.note}
-                      aria-label={`Go to question ${q.label}${q.note ? `, ${q.note}` : ""}`}
+                      aria-label={goToLabel(String(q.label), q.note)}
                       className={cn(
                         "inline-flex h-8 min-w-8 items-center justify-center gap-1 rounded-md border bg-background px-2 text-xs font-medium tabular-nums transition-colors outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50",
                         chip,
@@ -232,7 +256,7 @@ export function UnansweredCheck({
                     >
                       {q.label}
                       {key === "partial" && q.note && <span className="font-normal opacity-80">· {q.note}</span>}
-                      {key === "flagged" && q.answered !== true && <span className="sr-only">, not answered</span>}
+                      {key === "flagged" && q.answered !== true && <span className="sr-only">{notAnsweredSrText}</span>}
                     </button>
                   </li>
                 ))}

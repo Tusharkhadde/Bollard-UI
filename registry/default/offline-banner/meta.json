@@ -1,6 +1,23 @@
 {
   "title": "Offline Banner",
-  "description": "Stops people assuming their actions reached the server by counting queued changes while offline, staying up after reconnecting until the queue has actually synced, and offering Retry if the sync fails.",
+  "summary": "Counts changes queued while offline and stays up after reconnecting until they have actually synced, so nobody assumes their edits reached the server.",
+  "description": "Connection banner that counts queued changes while offline, stays up after reconnecting until the queue has actually synced, offers Retry if the sync fails, and can warn before leaving with unsynced changes.",
+  "catches": [
+    "Edits made offline that haven't synced",
+    "Reconnecting before the queue is flushed: banner stays until it is",
+    "Sync failure, with Retry",
+    "Leaving the page with unsynced changes (guardUnload)"
+  ],
+  "limits": [
+    "Only shows the queue state you pass; it doesn't queue or sync anything itself",
+    "navigator.onLine can report online on a network with no internet"
+  ],
+  "a11y": [
+    "Status text uses role=status",
+    "Hidden banner is inert so it can't take focus",
+    "Retry is a button; the syncing spinner icon is aria-hidden"
+  ],
+  "server": "Make queued writes idempotent so replays after reconnecting don't apply twice.",
   "dependencies": [
     "lucide-react"
   ],

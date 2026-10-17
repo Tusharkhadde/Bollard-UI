@@ -1,0 +1,45 @@
+name: Component request
+description: Propose a new component that stops a specific user mistake.
+title: "[component]: "
+labels: ["component request", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every Bollard UI component stops one real, specific mistake. Search the [docs](https://bollard-ui.vercel.app/components) by the mistake first, as it may already be covered.
+  - type: input
+    id: mistake
+    attributes:
+      label: The mistake it stops
+      description: One line. Who makes it and what it costs them.
+      placeholder: People pay ten times too much by typing an extra zero.
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How the component would catch it
+      description: What the user sees and does. A one-tap fix is better than a blocking error.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence it happens
+      description: Real incidents, product examples, research or standards (links welcome).
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Existing alternatives
+      description: How other libraries or products handle it today, and why this would be better.
+  - type: input
+    id: name
+    attributes:
+      label: Suggested name
+      placeholder: amount-input
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contributing
+      options:
+        - label: I'd like to build this myself (see CONTRIBUTING.md).

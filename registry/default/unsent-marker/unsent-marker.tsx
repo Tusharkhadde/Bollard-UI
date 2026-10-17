@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unsent-marker · MIT licence · https://bollard-ui.vercel.app/components/unsent-marker
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, PenLine, SendHorizontal } from "lucide-react"
 
@@ -96,6 +98,7 @@ export interface UnsentMarkerProps extends Omit<React.ComponentProps<"div">, "ch
   onEdit?: (text: string) => void
   /** Throws it away (asks once). */
   onDiscard?: () => void
+  /** Label on the unsent bubble. */
   notSentLabel?: string
   /** `{when}` is filled in. */
   typedText?: string
@@ -103,10 +106,15 @@ export interface UnsentMarkerProps extends Omit<React.ComponentProps<"div">, "ch
   recipientText?: string
   /** Used when there's no `recipient`. */
   privateText?: string
+  /** Label of the Send button. */
   sendLabel?: string
+  /** Label of the Edit button. */
   editLabel?: string
+  /** Label of the Discard button. */
   discardLabel?: string
+  /** Label of the second Discard tap. */
   confirmDiscardLabel?: string
+  /** Shown when sending fails. */
   failedText?: string
 }
 

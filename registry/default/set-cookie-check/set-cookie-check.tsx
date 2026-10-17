@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — set-cookie-check · MIT licence · https://bollard-ui.vercel.app/components/set-cookie-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Cookie, Info, TriangleAlert, WandSparkles } from "lucide-react"
 

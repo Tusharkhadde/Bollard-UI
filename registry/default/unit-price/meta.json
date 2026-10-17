@@ -1,7 +1,25 @@
 {
   "title": "Unit Price",
-  "description": "Stops shoppers picking the pack that only looks cheaper by putting every option on a common unit price (₹ per 100 g, per litre or per piece), marking the true cheapest, and catching bigger packs that cost more per unit, multi-buys that cost more than singles and packs that shrank at the same price, with a one-tap switch.",
-  "dependencies": ["lucide-react"],
+  "summary": "Puts every pack on a common unit price and marks the real cheapest, catching bulk packs and multi-buys that cost more per unit.",
+  "description": "Pack comparison on a common unit price (₹ per 100 g, per litre or per piece) that marks the true cheapest and catches bigger packs costing more per unit, multi-buys dearer than singles and packs that shrank at the same price, with a one-tap switch.",
+  "catches": [
+    "Bigger packs that cost more per unit",
+    "Multi-buy offers that cost more than buying singles",
+    "Shrinkflation: a smaller pack at the same price",
+    "The true cheapest per dimension (weight, volume, count)"
+  ],
+  "limits": [
+    "Compares only the options and sizes you pass",
+    "Ignores quality, expiry and delivery costs"
+  ],
+  "a11y": [
+    "Options are a roving-tabindex radiogroup with arrow keys",
+    "Cheapest and warnings marked with icons and text",
+    "Findings in a polite live region"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Bigger pack costs more per kg",
   "mistakes": [
     "bigger pack costs more",

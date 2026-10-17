@@ -1,6 +1,22 @@
 {
   "title": "Range Pair",
-  "description": "Prevents filters and bookings built on a backwards, empty or wildly oversized range by catching reversed ends (moving a 28 Dec → 3 Jan end into next year instead of just swapping), equal exclusive ends and year or extra-zero typos, each with a one-tap fix.",
+  "summary": "Catches backwards, empty or wildly oversized date and number ranges, and repairs them the likely way (next year for Dec → Jan).",
+  "description": "From/to field pair that catches reversed ends (moving a 28 Dec → 3 Jan end into next year rather than just swapping), equal exclusive ends, and year or extra-zero typos that make a range huge, each with a one-tap fix.",
+  "catches": [
+    "Reversed ends, with the likelier repair (next year for Dec → Jan)",
+    "Empty ranges when the end is exclusive",
+    "Oversized ranges from a year or extra-zero typo (maxSpan)",
+    "Plain swap as an alternative fix"
+  ],
+  "limits": [
+    "Dates are YYYY-MM-DD in UTC; times of day aren't handled",
+    "maxSpan has to be set for size checks to mean anything"
+  ],
+  "a11y": [
+    "Both ends have visible labels and are described by a polite status region",
+    "Fix and swap are buttons; icons are aria-hidden",
+    "Focus returns to the From field after a fix"
+  ],
   "dependencies": [
     "lucide-react"
   ],

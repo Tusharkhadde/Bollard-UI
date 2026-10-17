@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — embed-code · MIT licence · https://bollard-ui.vercel.app/components/embed-code
+
 import * as React from "react"
 import { Check, Copy, Eye, Globe, Radar, ShieldAlert, TriangleAlert, X } from "lucide-react"
 
@@ -32,11 +34,13 @@ export interface EmbedCodeProps extends Omit<React.ComponentProps<"div">, "defau
   value?: EmbedOptions
   /** Initial options when uncontrolled. */
   defaultValue?: Partial<EmbedOptions>
+  /** Called with the embed options whenever they change. */
   onValueChange?: (options: EmbedOptions) => void
   /** Called with the snippet after it is copied. */
   onCopy?: (snippet: string) => void
   /** Renders the live preview for a src. Defaults to a titled placeholder at the chosen size. */
   renderPreview?: (src: string) => React.ReactNode
+  /** Override any visible label. */
   labels?: Partial<typeof DEFAULT_LABELS>
 }
 

@@ -1,3 +1,5 @@
+// Bollard UI — curl-pipe-guard · MIT licence · https://bollard-ui.vercel.app/components/curl-pipe-guard
+
 // Pure parsing and review for "curl … | sh"-style install one-liners. Safe on the server.
 
 export type PipeIssueKind = "http" | "implied-http" | "ip" | "shortener" | "other-domain" | "code-host" | "sudo" | "insecure" | "no-checksum" | "no-fail" | "unparsed"

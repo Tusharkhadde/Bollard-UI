@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — jwt-inspect · MIT licence · https://bollard-ui.vercel.app/components/jwt-inspect
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Clock, Info, Lock, ShieldAlert, TriangleAlert, X } from "lucide-react"
 

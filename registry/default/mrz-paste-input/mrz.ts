@@ -1,3 +1,5 @@
+// Bollard UI — mrz-paste-input · MIT licence · https://bollard-ui.vercel.app/components/mrz-paste-input
+
 /**
  * ICAO Doc 9303 TD3 (passport) machine readable zone: two lines of 44 characters.
  * Part 3 §4.9: check digits use weights 7-3-1, modulus 10, with 0–9 = 0–9, A–Z = 10–35 and "<" = 0.

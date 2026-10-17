@@ -1,4 +1,26 @@
-{"title": "Clock Skew", "description": "Catches a device clock that's off from server time (Date header or prop), says by how much and what breaks because of it (authenticator codes, \"expires in\" timers, secure sites), and corrects the countdowns inside it; the warning clears itself once the clock is fixed.", "dependencies": ["lucide-react"],
+{
+  "title": "Clock Skew",
+  "summary": "Detects when a device clock is off from server time, says what breaks and corrects countdowns, so OTP codes and timers don't fail mysteriously.",
+  "description": "Compares the device clock with server time (Date header or prop), says by how much and what breaks (authenticator codes, \"expires in\" timers, secure sites), corrects the countdowns inside it, and clears the warning once the clock is fixed.",
+  "catches": [
+    "Device clocks ahead of or behind server time beyond a threshold",
+    "Authenticator codes that will be rejected because of the offset",
+    "\"Expires in\" timers that would show the wrong time",
+    "Clock fixes, by clearing itself when the offset goes away"
+  ],
+  "limits": [
+    "Accuracy is limited by the Date header's one-second resolution and network round-trip",
+    "Needs a server time source (prop or a measurable URL)"
+  ],
+  "a11y": [
+    "A role=\"region\" with an aria-label from the title",
+    "The message is aria-live=\"polite\"",
+    "\"How to fix\" toggle uses aria-expanded and aria-controls",
+    "Animation is skipped with prefers-reduced-motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Wrong phone clock breaks OTP codes",
   "mistakes": [
     "authenticator code not working",

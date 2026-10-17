@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ai-citation-check · MIT licence · https://bollard-ui.vercel.app/components/ai-citation-check
+
 import * as React from "react"
 import { BookOpen, Bot, Check, CircleHelp, ExternalLink, Link2, Loader2, Quote, Scale, Trash2, Wrench, XCircle } from "lucide-react"
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react"
@@ -34,8 +36,11 @@ type Status = keyof Messages["status"]
 export type VerifyResult = boolean | { status: "found" | "not-found"; title?: string; url?: string }
 
 export interface AiCitationCheckProps extends Omit<React.ComponentProps<"textarea">, "value" | "defaultValue" | "onChange" | "onSubmit"> {
+  /** Controlled text. */
   value?: string
+  /** Initial text when uncontrolled. */
   defaultValue?: string
+  /** Called with the new text on every edit or fix. */
   onValueChange?: (value: string) => void
   /** Looks a reference up (Crossref for DOIs, CourtListener for cases, a HEAD request for links). Rejections show as Unverified. */
   verify?: (ref: Reference, signal: AbortSignal) => Promise<VerifyResult>
@@ -47,8 +52,11 @@ export interface AiCitationCheckProps extends Omit<React.ComponentProps<"textare
   onSubmit?: (value: string) => void | Promise<void>
   /** References listed before "Show N more". Default 5. */
   maxVisible?: number
+  /** Class for the outer wrapper. */
   className?: string
+  /** Class for the textarea. */
   textareaClassName?: string
+  /** Override any visible string. */
   messages?: Partial<Omit<Messages, "status" | "kind">> & { status?: Partial<Messages["status"]>; kind?: Partial<Messages["kind"]> }
 }
 

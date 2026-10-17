@@ -1,10 +1,47 @@
 {
   "title": "Branch Target",
-  "description": "Prevents merging or deploying into the wrong place by checking the chosen base against branch rules (feature → main is caught, with a one-tap switch to develop), counting commits the branch drags in that aren't its own, and flagging a head that is behind its target with an Update branch action.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks a merge or deploy target against your branch rules, so a feature branch doesn't land in the wrong base.",
+  "description": "Checks the chosen base against branch rules (feature → main is caught, with a one-tap switch to develop), counts commits the branch would drag in that aren't its own, and flags a head that is behind its target with an Update branch action.",
+  "catches": [
+    "A target the rules don't allow for this head, with a one-tap switch to an allowed one",
+    "Commits the merge would bring in that are not the head's own (wrong fork point)",
+    "A head that is behind its target",
+    "Targeting the head branch itself"
+  ],
+  "limits": [
+    "Uses the branch rules, commit lists and fork point you pass; it does not query Git",
+    "Wildcard rules are simple * patterns; the first matching rule wins"
+  ],
+  "a11y": [
+    "Native <select> with a <label>, aria-invalid when blocked and aria-describedby to its hint",
+    "The hint is aria-live=\"polite\"",
+    "Update uses aria-disabled while updating"
+  ],
+  "server": "Enforce branch protection and allowed merge targets in your Git host; this picker is a guide, not a protection rule.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Feature branch merged into wrong base",
-  "mistakes": ["merged into main instead of develop", "pr opened against wrong branch", "deployed wrong branch", "branch behind target"],
-  "aliases": ["base branch", "pull request", "merge request", "git flow", "deploy target", "main", "develop", "update branch"],
-  "flows": ["devtools"],
-  "fields": ["text"]
+  "mistakes": [
+    "merged into main instead of develop",
+    "pr opened against wrong branch",
+    "deployed wrong branch",
+    "branch behind target"
+  ],
+  "aliases": [
+    "base branch",
+    "pull request",
+    "merge request",
+    "git flow",
+    "deploy target",
+    "main",
+    "develop",
+    "update branch"
+  ],
+  "flows": [
+    "devtools"
+  ],
+  "fields": [
+    "text"
+  ]
 }

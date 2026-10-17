@@ -1,3 +1,5 @@
+// Bollard UI — merge-field-check · MIT licence · https://bollard-ui.vercel.app/components/merge-field-check
+
 /** A recipient row: field name → value. */
 export type MergeRecipient = Record<string, string | null | undefined>
 

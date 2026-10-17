@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — time-confirm · MIT licence · https://bollard-ui.vercel.app/components/time-confirm
+
 import * as React from "react"
 import { TZDate, tzOffset } from "@date-fns/tz"
 import { Clock, TriangleAlert } from "lucide-react"
@@ -106,12 +108,18 @@ export interface TimeConfirmProps
   skippedText?: string
   /** `{time}` is the time that happens twice; `{which}` is `firstLabel` or `secondLabel`. */
   repeatedText?: string
+  /** Label of the first occurrence of a repeated time. */
   firstLabel?: string
+  /** Label of the second occurrence of a repeated time. */
   secondLabel?: string
   /** Label of the fix that switches to the other occurrence or the real time; `{time}` is filled in. */
   useLabel?: string
+  /** Flag for a time on the next day in another zone. */
   nextDayLabel?: string
+  /** Flag for a time on the previous day in another zone. */
   previousDayLabel?: string
+  /** Accessible name of the AM/PM choice; `time` is like "7:30". */
+  meridiemQuestion?: (time: string) => string
 }
 
 const fieldClass =
@@ -160,6 +168,7 @@ export function TimeConfirm({
   previousDayLabel = "previous day",
   placeholder = "e.g. 2:30 pm or 14:30",
   id,
+  meridiemQuestion = (time) => `${time} in the morning or evening?`,
   className,
   onBlur,
   "aria-describedby": describedBy,
@@ -226,7 +235,7 @@ export function TimeConfirm({
       />
       {ambiguous && (
         <LayoutGroup id={`${inputId}-meridiem`}>
-        <div role="radiogroup" aria-label={`${ambiguous.hour12}:${pad(ambiguous.minute)} in the morning or evening?`} className="grid grid-cols-2 gap-1.5">
+        <div role="radiogroup" aria-label={meridiemQuestion(`${ambiguous.hour12}:${pad(ambiguous.minute)}`)} className="grid grid-cols-2 gap-1.5">
           {(["am", "pm"] as const).map((option) => (
             <button
               key={option}

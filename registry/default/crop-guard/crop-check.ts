@@ -1,3 +1,5 @@
+// Bollard UI — crop-guard · MIT licence · https://bollard-ui.vercel.app/components/crop-guard
+
 /** A rectangle in the image's own pixels. */
 export interface Rect {
   x: number

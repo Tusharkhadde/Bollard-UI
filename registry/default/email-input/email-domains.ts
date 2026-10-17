@@ -1,3 +1,5 @@
+// Bollard UI — email-input · MIT licence · https://bollard-ui.vercel.app/components/email-input
+
 /**
  * Pure, server-safe email helpers shared by EmailInput and other components (no React, no DOM).
  */

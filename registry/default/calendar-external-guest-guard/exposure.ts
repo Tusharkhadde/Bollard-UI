@@ -1,3 +1,5 @@
+// Bollard UI — calendar-external-guest-guard · MIT licence · https://bollard-ui.vercel.app/components/calendar-external-guest-guard
+
 /** Who can open an attached file. Mirrors Google Drive's link settings. */
 export type FileAccess = "restricted" | "organization" | "guests" | "anyone"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — secret-paste-guard · MIT licence · https://bollard-ui.vercel.app/components/secret-paste-guard
+
 import * as React from "react"
 import { KeyRound } from "lucide-react"
 

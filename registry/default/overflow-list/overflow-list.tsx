@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — overflow-list · MIT licence · https://bollard-ui.vercel.app/components/overflow-list
+
 import * as React from "react"
 import { CircleAlert, TriangleAlert } from "lucide-react"
 

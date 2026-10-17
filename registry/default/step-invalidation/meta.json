@@ -1,10 +1,47 @@
 {
   "title": "Step Invalidation",
-  "description": "Stops an earlier wizard answer from silently breaking later steps: before the change applies it says exactly what goes (\"Changing plan to Basic clears Region on step 3 and removes SSO and Audit log on step 4\"), then marks those steps, walks back through only them and holds Finish until they're checked, and changing the answer back restores what it removed.",
-  "dependencies": ["lucide-react"],
+  "summary": "Says which later wizard answers an earlier change will clear before it applies, then walks back through only those steps.",
+  "description": "Wizard helper that says exactly what a change to an earlier answer clears (\"Changing plan to Basic clears Region on step 3…\") before applying it, marks affected steps, reviews only them and holds Finish until they're checked; changing back restores what was removed.",
+  "catches": [
+    "Later answers a change would clear or trim, grouped by step",
+    "Steps needing review, marked in the stepper",
+    "Finish attempted before affected steps are checked",
+    "Changing the answer back, which restores what was removed"
+  ],
+  "limits": [
+    "Dependencies are what you declare in the wizard config",
+    "Restore works within the session; it isn't persisted"
+  ],
+  "a11y": [
+    "Stepper buttons use aria-current=\"step\" and aria-labels that include the stale hint",
+    "Impact message is role=status (polite)",
+    "Keep, change and review are labelled buttons; icons are aria-hidden"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Earlier wizard change broke later steps",
-  "mistakes": ["changed step 1 broke step 3", "wizard answers cleared", "multi step form invalidated", "plan change removed options"],
-  "aliases": ["wizard", "stepper", "multi-step form", "onboarding", "plan selection", "dependent steps", "configurator"],
-  "flows": ["forms", "signup-login"],
-  "fields": []
+  "mistakes": [
+    "changed step 1 broke step 3",
+    "wizard answers cleared",
+    "multi step form invalidated",
+    "plan change removed options"
+  ],
+  "aliases": [
+    "wizard",
+    "stepper",
+    "multi-step form",
+    "onboarding",
+    "plan selection",
+    "dependent steps",
+    "configurator"
+  ],
+  "flows": [
+    "forms",
+    "signup-login"
+  ],
+  "fields": [],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/dependent-reset.json"
+  ]
 }

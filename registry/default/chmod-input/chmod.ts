@@ -1,3 +1,5 @@
+// Bollard UI — chmod-input · MIT licence · https://bollard-ui.vercel.app/components/chmod-input
+
 // Pure Unix permission parsing and checks (POSIX chmod modes, OpenSSH key and
 // StrictModes rules). No DOM: safe on the server.
 

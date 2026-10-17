@@ -1,3 +1,5 @@
+// Bollard UI — reset-hard-readback · MIT licence · https://bollard-ui.vercel.app/components/reset-hard-readback
+
 // Pure parsing of `git status --porcelain` and of destructive git commands, and the list of what each would lose.
 
 export type GitOp = "reset-hard" | "clean" | "checkout" | "stash-drop" | "stash-clear"

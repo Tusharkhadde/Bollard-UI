@@ -1,7 +1,26 @@
 {
   "title": "Progress Heartbeat",
-  "description": "Stops people waiting on a dead job or killing a live one by telling working from stalled (no heartbeat for N seconds → \"No progress for 40s\" with Retry), separating \"alive but not advancing\" from silence, showing a time-left range that widens instead of a jumpy countdown, and holding the bar at 99% until the job reports done.",
-  "dependencies": ["lucide-react"],
+  "summary": "Tells a working job from a stalled one using its heartbeat, so nobody waits on a dead job or kills a live one.",
+  "description": "Progress bar that separates working from stalled (no heartbeat for N seconds: \"No progress for 40s\" with Retry), alive-but-not-advancing from silence, shows a time-left range that widens instead of a jumpy countdown, and holds at 99% until the job reports done.",
+  "catches": [
+    "No heartbeat for stallAfter seconds",
+    "Alive but not advancing",
+    "Jumpy countdowns: a widening time-left range instead",
+    "100% shown before the job finishes: held at 99%"
+  ],
+  "limits": [
+    "Needs heartbeat and progress timestamps from your job",
+    "Time-left range is an estimate from recent samples",
+    "Retry and cancel are your callbacks"
+  ],
+  "a11y": [
+    "role=progressbar with min, max, now and aria-valuetext including the status",
+    "Status is text with icons aria-hidden",
+    "Bar motion is reduced under reduced motion"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Killed a job that was still running",
   "mistakes": [
     "progress bar stuck at 99",

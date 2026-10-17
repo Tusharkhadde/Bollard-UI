@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — swipe-delete-row · MIT licence · https://bollard-ui.vercel.app/components/swipe-delete-row
+
 import * as React from "react"
 import { Trash2, Undo2 } from "lucide-react"
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useTransform } from "motion/react"
@@ -29,9 +31,13 @@ export interface SwipeDeleteRowProps extends Omit<React.ComponentProps<"div">, "
   undoFor?: number
   /** Templates: `{item}` is filled in. */
   deleteLabel?: string
+  /** Shown when releasing will delete. */
   releaseText?: string
+  /** Shown after the row is deleted. */
   deletedText?: string
+  /** Label of the Undo button. */
   undoLabel?: string
+  /** Shown when a flick was too fast to count. */
   tooFastText?: string
 }
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — infra-plan-readback · MIT licence · https://bollard-ui.vercel.app/components/infra-plan-readback
+
 import * as React from "react"
 import { Database, Loader2, TriangleAlert } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — drop-confirm · MIT licence · https://bollard-ui.vercel.app/components/drop-confirm
+
 import * as React from "react"
 import { Check, Folder, FolderInput, Hand, LoaderCircle, TriangleAlert, Undo2 } from "lucide-react"
 
@@ -61,17 +63,27 @@ export interface DropConfirmProps extends Omit<React.ComponentProps<"div">, "onD
   undoTimeout?: number
   /** Templates: `{count}` ("12 files"), `{destination}`, `{from}` and `{to}` are filled in. */
   dragText?: string
+  /** Shown when a drop was ignored because it came too fast. */
   flickText?: string
+  /** Warning when the move changes who can see the items. */
   spaceText?: string
+  /** Warning for large moves. */
   largeText?: string
+  /** Shown after a move. */
   movedText?: string
+  /** Shown after Undo. */
   undoneText?: string
+  /** Text for the Move here button. */
   moveHereLabel?: string
+  /** Text for the confirm button. */
   confirmLabel?: string
+  /** Text for the cancel button. */
   cancelLabel?: string
+  /** Text for the Undo button. */
   undoLabel?: string
   /** Hint under the folder while the pointer is settling, and once it's armed. */
   settlingText?: string
+  /** Shown once the pointer has rested long enough to drop. */
   armedText?: string
   /** Screen reader name of Move here. `{label}`, `{count}` and `{destination}` are filled in. */
   moveHereAriaLabel?: string

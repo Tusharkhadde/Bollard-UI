@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — recovery-contact-cooldown · MIT licence · https://bollard-ui.vercel.app/components/recovery-contact-cooldown
+
 import * as React from "react"
 import { CircleCheck, Hourglass, LoaderCircle, ShieldAlert, ShieldCheck } from "lucide-react"
 
@@ -90,7 +92,9 @@ export interface RecoveryContactCooldownProps extends React.ComponentProps<"sect
   now?: DateInput
   /** Controlled status. Pending turns into applied by itself when the time is up. */
   status?: RecoveryCooldownStatus
+  /** Starting status when uncontrolled. */
   defaultStatus?: RecoveryCooldownStatus
+  /** Called when the status changes (cancelled, applied). */
   onStatusChange?: (status: RecoveryCooldownStatus) => void
   /** Cancels the change on the server. May return a Promise; a rejection shows an error. */
   onCancel?: () => void | Promise<void>

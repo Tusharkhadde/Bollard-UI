@@ -3,7 +3,8 @@ import { ArrowUpRight } from "lucide-react"
 
 import { LogoMark } from "@/components/site/logo"
 import { ThemeToggle } from "@/components/site/theme"
-import { GITHUB_URL, registryBase } from "@/lib/catalog"
+import { registryBase } from "@/lib/catalog"
+import { FEEDBACK_HREF, REPO_PUBLIC, REPO_URL, SECURITY_HREF, links } from "@/lib/site"
 
 type FooterLink = { label: string; href: string; external?: boolean }
 
@@ -11,25 +12,36 @@ const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Library",
     links: [
+      { label: "Getting started", href: "/docs" },
+      { label: "Start here", href: "/start-here" },
       { label: "Components", href: "/components" },
       { label: "Browse by flow", href: "/#flows" },
-      { label: "How it works", href: "/#how-it-works" },
       { label: "FAQ", href: "/#faq" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "GitHub", href: GITHUB_URL, external: true },
-      { label: "README", href: `${GITHUB_URL}#readme`, external: true },
+      ...(REPO_PUBLIC
+        ? [
+            { label: "GitHub", href: REPO_URL, external: true },
+            { label: "README", href: links.readme, external: true },
+          ]
+        : []),
+      { label: "Changelog", href: "/changelog" },
+      { label: "Quality", href: "/quality" },
+      { label: "Security", href: "/security" },
+      { label: "License", href: links.license, external: REPO_PUBLIC },
       { label: "Registry JSON", href: `${registryBase}registry.json`, external: true },
-      { label: "License", href: `${GITHUB_URL}/blob/main/LICENSE`, external: true },
     ],
   },
   {
     title: "Community",
     links: [
-      { label: "Report an issue", href: `${GITHUB_URL}/issues`, external: true },
+      REPO_PUBLIC
+        ? { label: "Report an issue", href: links.issues, external: true }
+        : { label: "Send feedback", href: FEEDBACK_HREF, external: true },
+      { label: "Report a vulnerability", href: SECURITY_HREF, external: true },
       { label: "X @devtushark", href: "https://x.com/devtushark", external: true },
       { label: "GitHub @Tusharkhadde", href: "https://github.com/Tusharkhadde", external: true },
     ],
@@ -53,7 +65,7 @@ export function SiteFooter() {
               Bollard UI
             </Link>
             <p className="mt-3 text-[13px] leading-relaxed text-pretty text-muted-foreground">
-              React components that catch the mistake before your users make it. MIT licensed.
+              React components that catch the mistake before your users make it. MIT licensed. Source copied into your project.
             </p>
           </div>
           {columns.map((column) => (

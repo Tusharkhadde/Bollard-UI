@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — boolean-query-input · MIT licence · https://bollard-ui.vercel.app/components/boolean-query-input
+
 import * as React from "react"
 import { TextSearch, TriangleAlert, X } from "lucide-react"
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hreflang-check · MIT licence · https://bollard-ui.vercel.app/components/hreflang-check
+
 import * as React from "react"
 import { Check, CircleAlert, CircleCheck, Info, Languages, Minus, TriangleAlert, WandSparkles, X } from "lucide-react"
 

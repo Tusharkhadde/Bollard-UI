@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — hold-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/hold-to-confirm
+
 import * as React from "react"
 import { Check, LoaderCircle } from "lucide-react"
 import { animate, motion, useMotionValue, useReducedMotion, type AnimationPlaybackControls } from "motion/react"
@@ -25,6 +27,7 @@ export interface HoldToConfirmProps extends Omit<React.ComponentProps<"button">,
   duration?: number
   /** Visual intent. `destructive` is for delete and other irreversible actions. */
   variant?: keyof typeof variants
+  /** Button size. */
   size?: keyof typeof sizes
   /** Shown briefly when someone clicks instead of holding, and read to screen readers. */
   holdHint?: string

@@ -1,10 +1,48 @@
 {
   "title": "Attachment Nudge",
-  "description": "Prevents the \"see attached\" message with nothing attached by spotting attachment phrases (English, Hindi and Hinglish, ignoring quoted replies, negations and shared cloud links) and asking inline to Attach or Send anyway.",
-  "dependencies": ["lucide-react"],
+  "summary": "Notices \"see attached\" in a message with nothing attached and asks inline whether to attach a file or send anyway.",
+  "description": "Spots attachment phrases in English, Hindi and Hinglish (\"PFA\", \"attach kar diya\"), ignoring quoted replies, negations, future mentions and shared cloud links, and asks inline to Attach or Send anyway.",
+  "catches": [
+    "Attachment phrases (\"see attached\", \"PFA\", \"attach kar diya\") with no file attached",
+    "Phrases you add through extraPhrases",
+    "Skips quoted reply lines, negated or future mentions and messages with a Drive, Dropbox or OneDrive link"
+  ],
+  "limits": [
+    "Phrase matching only; other wordings and other languages are missed",
+    "It cannot check that the attached file is the right one"
+  ],
+  "a11y": [
+    "Textarea is labelled (aria-label) and Ctrl/Cmd+Enter sends, exposed via aria-keyshortcuts",
+    "The prompt is a role=\"group\" labelled by its text; focus moves to Attach when it appears and Escape returns to the textarea",
+    "Remove buttons on attachments have aria-labels naming the file",
+    "A polite live region announces changes"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "\"See attached\" sent without attachment",
-  "mistakes": ["forgot attachment", "pfa without file", "attached but nothing attached", "email sent without attachment"],
-  "aliases": ["attachment reminder", "forgot attachment", "pfa", "please find attached", "hinglish", "compose email", "gmail", "chat"],
-  "flows": ["messaging", "india"],
-  "fields": ["file", "text"]
+  "mistakes": [
+    "forgot attachment",
+    "pfa without file",
+    "attached but nothing attached",
+    "email sent without attachment"
+  ],
+  "aliases": [
+    "attachment reminder",
+    "forgot attachment",
+    "pfa",
+    "please find attached",
+    "hinglish",
+    "compose email",
+    "gmail",
+    "chat"
+  ],
+  "flows": [
+    "messaging",
+    "india"
+  ],
+  "fields": [
+    "file",
+    "text"
+  ]
 }

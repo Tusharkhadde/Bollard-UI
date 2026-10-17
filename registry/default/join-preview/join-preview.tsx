@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — join-preview · MIT licence · https://bollard-ui.vercel.app/components/join-preview
+
 import * as React from "react"
 import { ArrowRight, CircleX, LoaderCircle, TriangleAlert } from "lucide-react"
 
@@ -146,11 +148,13 @@ export interface JoinPreviewProps extends Omit<React.ComponentProps<"section">, 
   how?: JoinHow
   /** Initial join type when uncontrolled. */
   defaultHow?: JoinHow
+  /** Called when the user picks a join type. */
   onHowChange?: (how: JoinHow) => void
   /** Controlled key normalisation. */
   normalize?: JoinNormalize
   /** Initial key normalisation when uncontrolled. */
   defaultNormalize?: JoinNormalize
+  /** Called when the user toggles a key normalisation. */
   onNormalizeChange?: (normalize: JoinNormalize) => void
   /** Cardinality you expect. Breaking it turns the fan-out warning red. */
   expect?: JoinCardinality

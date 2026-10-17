@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — chmod-input · MIT licence · https://bollard-ui.vercel.app/components/chmod-input
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, ShieldAlert, TriangleAlert } from "lucide-react"
 

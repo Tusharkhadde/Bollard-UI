@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — pincode-input · MIT licence · https://bollard-ui.vercel.app/components/pincode-input
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, MapPin, RotateCw, TriangleAlert } from "lucide-react"
 

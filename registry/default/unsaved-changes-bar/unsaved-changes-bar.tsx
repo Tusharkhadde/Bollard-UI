@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — unsaved-changes-bar · MIT licence · https://bollard-ui.vercel.app/components/unsaved-changes-bar
+
 import * as React from "react"
 import { CircleAlert, LoaderCircle, PencilLine, Undo2 } from "lucide-react"
 
@@ -54,6 +56,14 @@ export interface UnsavedChangesBarProps extends Omit<React.HTMLAttributes<HTMLDi
   keepLabel?: string
   /** Shown when `onSave` throws something that isn't an `Error`. */
   errorLabel?: string
+  /** Accessible name of the bar. */
+  regionLabel?: string
+  /** Accessible name of the changed-fields list. */
+  changedFieldsLabel?: string
+  /** Accessible label and tooltip of a field's revert button. */
+  revertLabel?: (field: string) => string
+  /** Accessible name of the discard confirmation group. */
+  confirmGroupLabel?: string
 }
 
 const button =
@@ -78,6 +88,10 @@ export function UnsavedChangesBar({
   discardLabel = "Discard",
   keepLabel = "Keep editing",
   errorLabel = "Couldn't save. Your changes are still here.",
+  regionLabel = "Unsaved changes",
+  changedFieldsLabel = "Changed fields",
+  revertLabel = (field) => `Revert ${field}`,
+  confirmGroupLabel = "Confirm discard",
   className,
   ...props
 }: UnsavedChangesBarProps) {
@@ -158,7 +172,7 @@ export function UnsavedChangesBar({
     <div
       data-slot="unsaved-changes-bar"
       role="region"
-      aria-label="Unsaved changes"
+      aria-label={regionLabel}
       hidden={!dirty}
       className={cn(
         "sticky bottom-4 z-40 mx-auto w-full max-w-2xl rounded-lg border bg-popover p-3 text-sm text-popover-foreground shadow-lg",
@@ -176,15 +190,15 @@ export function UnsavedChangesBar({
             <PencilLine aria-hidden className="size-4 shrink-0 text-amber-600 dark:text-amber-400" />
             {headline}
           </p>
-          <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Changed fields">
+          <ul className="mt-2 flex flex-wrap gap-1.5" aria-label={changedFieldsLabel}>
             {fields.map((field, index) => (
               <li key={field}>
                 {onRevertField ? (
                   <button
                     type="button"
                     onClick={() => onRevertField(field)}
-                    aria-label={`Revert ${names[index]}`}
-                    title={`Revert ${names[index]}`}
+                    aria-label={revertLabel(names[index])}
+                    title={revertLabel(names[index])}
                     className="group inline-flex h-6 items-center gap-1 rounded-md bg-muted px-2 text-xs text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
                   >
                     {names[index]}
@@ -204,7 +218,7 @@ export function UnsavedChangesBar({
           <div
             className="flex flex-wrap items-center gap-2"
             role="group"
-            aria-label="Confirm discard"
+            aria-label={confirmGroupLabel}
             onKeyDown={(event) => event.key === "Escape" && cancelDiscard()}
           >
             <span className="text-muted-foreground">

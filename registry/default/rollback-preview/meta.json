@@ -1,10 +1,50 @@
 {
   "title": "Rollback Preview",
-  "description": "Prevents rollbacks that undo more or less than you expect by listing what reverts, what won't undo (irreversible migrations, data written since), the target's age and every newer version it skips, and confirming only when you type the target's name, calling out a different version's name instead of silently not matching.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows what a rollback reverts, what it can't undo and which versions it skips, then confirms by typing the target's name.",
+  "description": "Rollback confirmation listing what reverts, what won't undo (irreversible migrations, data written since), the target's age and every newer version skipped. Confirms only when the target's name is typed, and calls out a different version's name instead of silently not matching.",
+  "catches": [
+    "Changes that revert, listed",
+    "What stays: irreversible migrations and data written since, with consequences",
+    "Newer versions the rollback skips",
+    "Typed name that matches a different version (\"v4\" for \"v40\")",
+    "Case and whitespace differences, normalised (\"V40 \" matches \"v40\")"
+  ],
+  "limits": [
+    "Lists only what you pass; it cannot inspect your deploys or migrations",
+    "Typing a name proves attention, not authorization"
+  ],
+  "a11y": [
+    "Name input has a <label>, aria-invalid on a wrong version and a polite hint via aria-describedby",
+    "Enter in the input confirms when it matches",
+    "Confirm sets aria-busy while pending",
+    "Sections use icons plus text counts; motion skipped under reduced motion"
+  ],
+  "server": "Authorize the rollback server-side and check that the target is still deployable (schema compatibility) before running it.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Rollback skipped more versions than expected",
-  "mistakes": ["rollback reverted too much", "rolled back wrong version", "migration cant undo on rollback", "redeploy old version"],
-  "aliases": ["rollback", "revert deploy", "redeploy", "release", "vercel", "version history", "deployment", "downgrade"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["text"]
+  "mistakes": [
+    "rollback reverted too much",
+    "rolled back wrong version",
+    "migration cant undo on rollback",
+    "redeploy old version"
+  ],
+  "aliases": [
+    "rollback",
+    "revert deploy",
+    "redeploy",
+    "release",
+    "vercel",
+    "version history",
+    "deployment",
+    "downgrade"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "text"
+  ]
 }

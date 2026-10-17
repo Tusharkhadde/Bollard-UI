@@ -1,6 +1,23 @@
 {
   "title": "Column Mapper",
-  "description": "Stops a spreadsheet landing in the wrong fields by checking a column mapping against the values themselves: emails sitting in the phone column, first and last names swapped, DD/MM read as MM/DD (with a readback of what a date becomes), the same field picked twice and required fields left unmapped, each with a one-tap fix.",
+  "summary": "Checks a spreadsheet column mapping against the actual values, so emails don't land in the phone field and DD/MM dates aren't read as MM/DD.",
+  "description": "Checks a column mapping against sample values: emails in the phone column, first and last names swapped, DD/MM read as MM/DD (with a readback of what a date becomes), the same field mapped twice and required fields left unmapped, each with a one-tap fix.",
+  "catches": [
+    "Values that don't fit the mapped field (an email in Phone)",
+    "First and last name columns swapped, using a first-name list",
+    "Day/month order misread, with a readback of what a sample date becomes",
+    "The same field mapped twice, and required fields left unmapped"
+  ],
+  "limits": [
+    "Works from the sample rows you pass; problems further down the file are not seen",
+    "Name-swap detection depends on the firstNames list and can miss uncommon names"
+  ],
+  "a11y": [
+    "Each column uses a native <select>",
+    "After a fix, focus moves to the affected select",
+    "Issues use icons plus text, and each fix and keep action is a button"
+  ],
+  "server": "Validate types and required fields again on the server during import.",
   "dependencies": [
     "lucide-react"
   ],

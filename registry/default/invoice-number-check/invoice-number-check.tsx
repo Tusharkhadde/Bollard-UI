@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — invoice-number-check · MIT licence · https://bollard-ui.vercel.app/components/invoice-number-check
+
 import * as React from "react"
 import { CircleAlert, Hash, TriangleAlert } from "lucide-react"
 
@@ -143,8 +145,11 @@ export const INVOICE_NUMBER_CHECK_MESSAGES = {
 export type InvoiceNumberCheckMessages = typeof INVOICE_NUMBER_CHECK_MESSAGES
 
 export interface InvoiceNumberCheckProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange" | "size"> {
+  /** Controlled invoice number. */
   value?: string
+  /** Initial invoice number when uncontrolled. */
   defaultValue?: string
+  /** Called with the number on every change. */
   onValueChange?: (value: string) => void
   /** Invoices already issued under this GSTIN, any year. */
   issued?: IssuedInvoice[]
@@ -152,7 +157,9 @@ export interface InvoiceNumberCheckProps extends Omit<React.ComponentProps<"inpu
   date?: Date | number | string
   /** Apply the e-invoice rule that a number can't start with 0, / or -. */
   einvoice?: boolean
+  /** BCP 47 locale for dates in messages. */
   locale?: string
+  /** Override any visible string. */
   messages?: Partial<InvoiceNumberCheckMessages>
   /** Classes for the wrapper; `className` styles the input. */
   wrapperClassName?: string

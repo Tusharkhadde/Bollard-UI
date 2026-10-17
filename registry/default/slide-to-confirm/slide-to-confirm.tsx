@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — slide-to-confirm · MIT licence · https://bollard-ui.vercel.app/components/slide-to-confirm
+
 import * as React from "react"
 import { ArrowRight, Check, LoaderCircle } from "lucide-react"
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useTransform } from "motion/react"
@@ -30,8 +32,11 @@ export interface SlideToConfirmProps extends Omit<React.ComponentProps<"div">, "
   threshold?: number
   /** Milliseconds before resetting after confirm. 0 keeps it confirmed. */
   resetAfter?: number
+  /** Visual style. */
   variant?: keyof typeof variants
+  /** Size of the track. */
   size?: keyof typeof sizes
+  /** Disables the slider. */
   disabled?: boolean
 }
 

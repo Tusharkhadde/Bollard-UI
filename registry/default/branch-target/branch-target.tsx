@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — branch-target · MIT licence · https://bollard-ui.vercel.app/components/branch-target
+
 import * as React from "react"
 import { ChevronDown, GitBranch, GitMerge, LoaderCircle, Rocket, TriangleAlert } from "lucide-react"
 
@@ -96,6 +98,7 @@ export interface BranchTargetProps extends Omit<React.ComponentProps<"div">, "de
   value?: string
   /** Selected target when uncontrolled. */
   defaultValue?: string
+  /** Called with the newly chosen target branch. */
   onValueChange?: (target: string) => void
   /** Allowed head → target pairs. Defaults to git-flow. */
   rules?: TargetRule[]
@@ -107,6 +110,7 @@ export interface BranchTargetProps extends Omit<React.ComponentProps<"div">, "de
   mode?: "merge" | "deploy"
   /** Brings the head up to date with the target. May return a promise; shows a pending state. */
   onUpdate?: (target: string) => void | Promise<void>
+  /** Visible label for the target picker. */
   label?: string
   /** Readback under the picker. `{head}`, `{target}`, `{count}` and `{commits}` are filled in. */
   summaryText?: string
@@ -116,7 +120,9 @@ export interface BranchTargetProps extends Omit<React.ComponentProps<"div">, "de
   switchLabel?: string
   /** `{head}` and `{target}` are filled in. */
   updateLabel?: string
+  /** Update button text while onUpdate runs. */
   updatingLabel?: string
+  /** Badge text for protected branches. */
   protectedLabel?: string
   /** How far the head is behind a target, in the picker. `{head}`, `{count}` and `{commits}` are filled in. */
   behindLabel?: string

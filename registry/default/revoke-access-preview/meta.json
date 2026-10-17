@@ -1,7 +1,51 @@
-{"title": "Revoke Access Preview", "description": "Stops a member, token or app removal from silently orphaning their work and breaking things: it lists what they lose, what they own with a reassign-to picker and one-tap reassign-all, sessions that end now (flagging any in use this minute) and integrations that stop because they run on that person's credentials, and the button says if anything will be left unowned.", "dependencies": ["lucide-react"],
+{
+  "title": "Revoke Access Preview",
+  "summary": "Shows what removing a member, token or app will break: owned work left unowned, sessions ended and integrations that stop.",
+  "description": "Pre-removal readback for members, tokens or apps: what they lose, what they own with a reassign picker and one-tap reassign-all, sessions that end (flagging any in use now) and integrations that stop on their credentials. The button says if anything stays unowned.",
+  "catches": [
+    "Owned items left without an owner, with reassign-to and reassign-all",
+    "Sessions that end, flagging any active within liveWithin",
+    "Integrations that stop because they run on that person's credentials",
+    "Integrations that keep running because they belong to the workspace",
+    "Confirm label that names how many items stay unowned"
+  ],
+  "limits": [
+    "Only knows the owned items, sessions and integrations you pass",
+    "Does not revoke anything; onConfirm receives the reassignment"
+  ],
+  "a11y": [
+    "Section labelled by its title; each owned item's picker has a <label>",
+    "Unowned warning in a polite live region with a one-tap fix",
+    "Stops/keeps-running stated as text, not colour alone",
+    "Confirm sets aria-busy while pending; motion skipped under reduced motion"
+  ],
+  "server": "Revoke tokens and sessions server-side, re-check authorization on the removal, and reassign ownership in the same transaction.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Removed member's integrations stopped working",
-  "mistakes": ["removed user broke integration", "revoked token broke prod", "offboarding orphaned files", "remove member lost ownership"],
-  "aliases": ["remove member", "offboarding", "revoke access", "api token", "oauth app", "team members", "reassign", "workspace members"],
-  "flows": ["account-settings", "danger-zone"],
-  "fields": ["email", "secret"]
+  "mistakes": [
+    "removed user broke integration",
+    "revoked token broke prod",
+    "offboarding orphaned files",
+    "remove member lost ownership"
+  ],
+  "aliases": [
+    "remove member",
+    "offboarding",
+    "revoke access",
+    "api token",
+    "oauth app",
+    "team members",
+    "reassign",
+    "workspace members"
+  ],
+  "flows": [
+    "account-settings",
+    "danger-zone"
+  ],
+  "fields": [
+    "email",
+    "secret"
+  ]
 }

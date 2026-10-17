@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — grace-send · MIT licence · https://bollard-ui.vercel.app/components/grace-send
+
 import * as React from "react"
 import { Check, LoaderCircle, Send } from "lucide-react"
 
@@ -21,15 +23,23 @@ export interface GraceSendProps extends Omit<React.ComponentProps<"div">, "child
   delay?: number
   /** Idle button content. */
   children?: React.ReactNode
+  /** Disables the button. */
   disabled?: boolean
   /** Templates: `{s}` is the whole seconds left. */
   countdownLabel?: string
+  /** Helper text under the button. */
   hint?: string
+  /** Cancel button text during the countdown. */
   cancelLabel?: string
+  /** Text of the button that skips the wait. */
   sendNowLabel?: string
+  /** Shown while onSend's promise is pending. */
   pendingLabel?: string
+  /** Shown after onSend resolves. */
   sentLabel?: string
+  /** Announced when the user cancels. */
   cancelledText?: string
+  /** Shown when onSend rejects. */
   failedText?: string
   /** Milliseconds the "Sent" state shows before resetting. 0 keeps it. */
   resetAfter?: number

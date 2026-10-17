@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — wrong-layout-input · MIT licence · https://bollard-ui.vercel.app/components/wrong-layout-input
+
 import * as React from "react"
 import { Check, Languages, X } from "lucide-react"
 

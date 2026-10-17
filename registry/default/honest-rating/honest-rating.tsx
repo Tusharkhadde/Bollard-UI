@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — honest-rating · MIT licence · https://bollard-ui.vercel.app/components/honest-rating
+
 import * as React from "react"
 import { Scale, Split, Star, TriangleAlert } from "lucide-react"
 
@@ -74,10 +76,15 @@ export interface HonestRatingProps extends Omit<React.ComponentProps<"div">, "ch
   onSelectStars?: (stars: number) => void
   /** Templates: `{count}`, `{low}`, `{high}`, `{one}`, `{five}`, `{score}`, `{mean}`. */
   countText?: string
+  /** Shown when the review count is below minReviews. */
   smallSampleText?: string
+  /** Shown for a love-it-or-hate-it split. */
   polarizedText?: string
+  /** Explains the Bayesian sorting score. */
   adjustedText?: string
+  /** Button text to read the 1-star reviews. */
   readLowLabel?: string
+  /** Shown when there are no reviews. */
   emptyText?: string
 }
 

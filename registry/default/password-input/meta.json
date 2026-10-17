@@ -1,6 +1,23 @@
 {
   "title": "Password Input",
-  "description": "Prevents 'wrong password' lockouts that were really Caps Lock, a non-Latin keyboard layout or a pasted trailing space, by warning about each one as it happens.",
+  "summary": "Warns about Caps Lock, a non-Latin keyboard layout and pasted spaces as they happen, so a typo doesn't look like a wrong password.",
+  "description": "Password field that warns as it happens about Caps Lock, a non-Latin keyboard layout (from the physical key vs the character typed) and leading or trailing spaces from a paste, with a one-tap trim and a press-and-hold or toggle peek.",
+  "catches": [
+    "Caps Lock on",
+    "Non-Latin keyboard layout producing other characters",
+    "Pasted leading or trailing spaces, with a one-tap trim",
+    "Typing blind: peek to check"
+  ],
+  "limits": [
+    "Caps Lock state is only known after a key event",
+    "Doesn't check strength or breaches; see Password Policy Input"
+  ],
+  "a11y": [
+    "Visible label; input is described by the hint and warnings",
+    "Peek button has an aria-label, aria-pressed and title; hold works with Space or Enter",
+    "Focus returns to the input after a fix"
+  ],
+  "server": "Rate-limit sign-in attempts on the server; these warnings only reduce honest mistakes.",
   "dependencies": [
     "lucide-react"
   ],

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — two-person-approve · MIT licence · https://bollard-ui.vercel.app/components/two-person-approve
+
 import * as React from "react"
 import { Check, Clock, LoaderCircle, ShieldCheck, TriangleAlert, UserX, X } from "lucide-react"
 
@@ -53,15 +55,34 @@ export interface TwoPersonApproveProps extends Omit<React.ComponentProps<"sectio
   onReject: (decision: { reason: string }) => void | Promise<void>
   /** Templates: `{requester}`, `{approvers}`, `{time}` are filled in. */
   selfText?: string
+  /** Shown when the current user isn't an approver. */
   notApproverText?: string
+  /** Shown when the plan changed since it was reviewed. */
   changedText?: string
+  /** Label of the reviewed-fingerprint chip. */
   reviewedLabel?: string
+  /** Shown once the request has expired. */
   expiredText?: string
+  /** Shown when rejecting without a reason. */
   reasonMissingText?: string
+  /** Shown after approving. */
   approvedText?: string
+  /** Shown after rejecting. */
   rejectedText?: string
+  /** Label of the Approve button. */
   approveLabel?: string
+  /** Label of the Reject button. */
   rejectLabel?: string
+  /** Label of the reject-reason field. */
+  reasonLabel?: string
+  /** Hint after the reason label. */
+  reasonHint?: string
+  /** Screen-reader prefix for a line that changed since review. */
+  changedSrText?: string
+  /** Screen-reader note on the requester chip. */
+  cannotApproveSrText?: string
+  /** Text on the requester chip. */
+  requesterText?: string
 }
 
 /**
@@ -84,6 +105,11 @@ export function TwoPersonApprove({
   rejectedText = "Rejected. Nothing will run.",
   approveLabel = "Approve and run",
   rejectLabel = "Reject",
+  reasonLabel = "Reason",
+  reasonHint = "(required to reject)",
+  changedSrText = "Changed: ",
+  cannotApproveSrText = "cannot approve,",
+  requesterText = "requester",
   className,
   ...props
 }: TwoPersonApproveProps) {
@@ -194,7 +220,7 @@ export function TwoPersonApprove({
                   key={`${index}-${line}`}
                   className={cn("block px-3", isNew && "bg-amber-500/12 motion-safe:animate-[cui-two-person-approve-flash_400ms_ease-out]")}
                 >
-                  {isNew ? <span className="sr-only">Changed: </span> : null}
+                  {isNew ? <span className="sr-only">{changedSrText}</span> : null}
                   {line || " "}
                 </span>
               )
@@ -227,7 +253,7 @@ export function TwoPersonApprove({
             ))}
             <li className="inline-flex items-center gap-1 rounded-full border border-dashed px-2 py-0.5 text-muted-foreground">
               <UserX aria-hidden className="size-3" /> <span className="line-through">{requester.name}</span>
-              <span className="sr-only">cannot approve,</span> requester
+              <span className="sr-only">{cannotApproveSrText}</span> {requesterText}
             </li>
           </ul>
         </div>
@@ -243,7 +269,7 @@ export function TwoPersonApprove({
           <>
             {!blocked ? (
               <div className="grid gap-1.5">
-                <label htmlFor={`${id}-reason`} className="text-xs font-medium">Reason <span className="font-normal text-muted-foreground">(required to reject)</span></label>
+                <label htmlFor={`${id}-reason`} className="text-xs font-medium">{reasonLabel} <span className="font-normal text-muted-foreground">{reasonHint}</span></label>
                 <textarea
                   ref={reasonRef}
                   id={`${id}-reason`}

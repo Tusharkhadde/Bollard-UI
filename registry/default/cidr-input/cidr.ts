@@ -1,3 +1,5 @@
+// Bollard UI — cidr-input · MIT licence · https://bollard-ui.vercel.app/components/cidr-input
+
 /** Pure CIDR maths for IPv4 and IPv6, using BigInt so /0 and /128 are exact. */
 
 export type IpFamily = 4 | 6

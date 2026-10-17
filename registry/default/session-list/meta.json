@@ -1,10 +1,46 @@
 {
   "title": "Session List",
-  "description": "Stops people signing themselves out while cleaning up sessions: this device is pinned and marked, \"Sign out all others\" can never include it, signing out here asks once inline with Cancel focused, and sessions from another country are flagged with honest \"approximate location\" wording.",
-  "dependencies": ["lucide-react"],
+  "summary": "Keeps the current device safe while cleaning up sessions: it's pinned and marked, excluded from \"sign out all others\", and confirmed inline.",
+  "description": "Signed-in sessions list with this device pinned and marked, \"Sign out all others\" that never includes it, an inline confirm (Cancel focused) before signing out here, and sessions from another country flagged with \"approximate location\" wording.",
+  "catches": [
+    "Signing out the current device by accident (inline confirm, Cancel focused)",
+    "\"Sign out all others\" including this device (it never does)",
+    "Sessions from a different country than this device",
+    "Location shown as approximate, not exact"
+  ],
+  "limits": [
+    "Country comparison uses the IP-derived location you pass, which can be wrong (VPNs, mobile carriers)",
+    "Does not revoke sessions itself; your callbacks do"
+  ],
+  "a11y": [
+    "Section labelled by its title; rows set aria-busy while revoking",
+    "Inline confirm is a labelled group; Cancel gets focus, Escape closes and focus returns",
+    "Revoke buttons include sr-only device and location",
+    "Outcome announced in a polite live region"
+  ],
+  "server": "Revoke sessions server-side and never trust a client flag for which session is current.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Signed out own device by mistake",
-  "mistakes": ["sign out all logged me out", "logged out current device", "cant tell which session is mine", "unknown login location"],
-  "aliases": ["active sessions", "devices", "logged in devices", "sign out everywhere", "security settings", "where you're logged in", "login activity"],
-  "flows": ["account-settings", "signup-login"],
+  "mistakes": [
+    "sign out all logged me out",
+    "logged out current device",
+    "cant tell which session is mine",
+    "unknown login location"
+  ],
+  "aliases": [
+    "active sessions",
+    "devices",
+    "logged in devices",
+    "sign out everywhere",
+    "security settings",
+    "where you're logged in",
+    "login activity"
+  ],
+  "flows": [
+    "account-settings",
+    "signup-login"
+  ],
   "fields": []
 }

@@ -1,3 +1,5 @@
+// Bollard UI — palette-guard · MIT licence · https://bollard-ui.vercel.app/components/palette-guard
+
 /** Colour maths for PaletteGuard: sRGB ⇄ CIELAB, CIEDE2000 and Machado (2009) colour-vision simulation. */
 
 export type Vision = "normal" | "protan" | "deutan" | "tritan"

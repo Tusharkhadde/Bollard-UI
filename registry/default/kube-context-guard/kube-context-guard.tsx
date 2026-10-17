@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — kube-context-guard · MIT licence · https://bollard-ui.vercel.app/components/kube-context-guard
+
 import * as React from "react"
 import { Loader2, Server, TriangleAlert } from "lucide-react"
 

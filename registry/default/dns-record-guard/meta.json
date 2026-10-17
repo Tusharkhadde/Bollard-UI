@@ -1,10 +1,65 @@
 {
   "title": "DNS Record Guard",
-  "description": "Stops a DNS edit or delete from quietly breaking things by checking it against the whole zone before saving: email that stops (a removed MX, SPF senders dropped or doubled past the 10-lookup limit, a DKIM selector removed, escalated when the DMARC policy enforces it), a CNAME at the root or beside other records and names left pointing at nothing, then saying how long the change takes to spread with a one-tap “lower TTL first” that counts down until old caches clear.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks a DNS edit or delete against the whole zone before saving, so a removed MX or broken SPF doesn't quietly stop company email.",
+  "description": "Checks a DNS change against the zone: a removed MX, SPF senders dropped or past the 10-lookup limit, a removed DKIM selector (escalated under enforcing DMARC), a CNAME at the root or beside other records and dangling names, then says how long it takes to spread.",
+  "catches": [
+    "Removing MX records that receive company email",
+    "SPF senders dropped, or SPF pushed past the 10 DNS-lookup limit",
+    "A DKIM selector removed while DMARC enforces",
+    "A CNAME at the zone root or beside other records, and names left pointing at nothing",
+    "Long TTLs, with \"lower TTL first\" and a countdown until caches clear"
+  ],
+  "limits": [
+    "Checks only the records you pass; it doesn't query live DNS",
+    "Can't know which third-party senders still need SPF or DKIM"
+  ],
+  "a11y": [
+    "Dialog content is labelled by its title",
+    "Findings are aria-live=\"polite\" and say \"Breaks:\" or \"Risk:\" in text",
+    "The TTL countdown is aria-live=\"polite\"; its progress bar is aria-hidden"
+  ],
+  "server": "Validate zone changes at your DNS provider and keep a record of the previous zone so changes can be rolled back.",
+  "rules": {
+    "verified": "2026-10-17",
+    "sources": [
+      {
+        "label": "RFC 7208: SPF (10 DNS-lookup limit)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7208"
+      },
+      {
+        "label": "RFC 2181: CNAME may have no other data",
+        "url": "https://www.rfc-editor.org/rfc/rfc2181"
+      }
+    ],
+    "note": "Informational. Checked the SPF limit of 10 lookup terms and that a CNAME label may hold no other data. DKIM/DMARC escalation rules were not checked against a standard."
+  },
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Deleted MX record stopped company email",
-  "mistakes": ["dns change broke email", "deleted mx record", "spf too many lookups", "cname at root"],
-  "aliases": ["dns", "mx record", "spf", "dkim", "dmarc", "cname", "ttl", "cloudflare dns", "domain settings", "godaddy"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["url"]
+  "mistakes": [
+    "dns change broke email",
+    "deleted mx record",
+    "spf too many lookups",
+    "cname at root"
+  ],
+  "aliases": [
+    "dns",
+    "mx record",
+    "spf",
+    "dkim",
+    "dmarc",
+    "cname",
+    "ttl",
+    "cloudflare dns",
+    "domain settings",
+    "godaddy"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "url"
+  ]
 }

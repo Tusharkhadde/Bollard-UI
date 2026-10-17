@@ -1,3 +1,5 @@
+// Bollard UI — import-preview · MIT licence · https://bollard-ui.vercel.app/components/import-preview
+
 /** A field in your data that file columns can be mapped onto. */
 export interface ImportField {
   key: string

@@ -1,7 +1,25 @@
 {
   "title": "Readback",
-  "description": "Prevents misread license keys, IBANs and Wi-Fi passwords by grouping characters, labelling every look-alike (zero vs letter O, one vs small L), copying the clean value and offering a large show-to-someone view.",
-  "dependencies": ["lucide-react"],
+  "summary": "Groups a licence key, IBAN or Wi-Fi password and labels every look-alike character, so 0 and O or 1 and l aren't misread.",
+  "description": "Read-out display for license keys, IBANs and Wi-Fi passwords that groups characters, labels every look-alike (zero vs letter O, one vs small L), copies the clean value and offers a large show-to-someone view.",
+  "catches": [
+    "Zero vs letter O, one vs small L, and other look-alikes",
+    "Long values without grouping",
+    "Copying spaces or dashes: copies the clean value",
+    "Reading it across a room: large view"
+  ],
+  "limits": [
+    "Display only; it doesn't validate the value",
+    "Look-alike list is fixed and Latin-only"
+  ],
+  "a11y": [
+    "Screen readers get the value spelled out group by group (\"letter O\", \"small L\"); the visual groups are aria-hidden",
+    "Large view is a labelled dialog opened by a button with aria-haspopup",
+    "Copy result is announced in a polite live region"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Licence key misread, 0 vs O",
   "mistakes": [
     "zero vs o confusion",

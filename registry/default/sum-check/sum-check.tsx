@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — sum-check · MIT licence · https://bollard-ui.vercel.app/components/sum-check
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { CircleAlert, CircleCheck, Info } from "lucide-react"
@@ -101,6 +103,7 @@ const defaultReasons: Record<SumSuspect["reason"], string> = {
 }
 
 export interface SumCheckProps extends Omit<React.ComponentProps<"div">, "children">, SumCheckOptions {
+  /** Rows to add, and the stated total or debit/credit rows. */
   rows: SumRow[]
   /** Formats amounts. Defaults to the row precision; percent adds "%". */
   format?: (value: number) => string
@@ -108,20 +111,31 @@ export interface SumCheckProps extends Omit<React.ComponentProps<"div">, "childr
   onUseSum?: (sum: number) => void
   /** Called when a likely culprit is picked, so the table can scroll to and highlight that row. */
   onSuspectSelect?: (id: string) => void
+  /** Label of the computed sum. */
   sumLabel?: string
+  /** Label of the stated total. */
   totalLabel?: string
+  /** Label of the debits sum. */
   debitsLabel?: string
+  /** Label of the credits sum. */
   creditsLabel?: string
   /** Templates: `{gap}`, `{sum}`, `{total}`, `{higher}`, `{tolerance}`, `{count}`, `{decimals}` are filled in. */
   okText?: string
+  /** Shown when the total is off. `{diff}` is filled in. */
   offText?: string
+  /** Shown when the gap is only rounding. */
   roundingText?: string
+  /** Hint when the gap points to transposed digits. */
   ninesText?: string
+  /** Accessible label of the suspects list. */
   suspectsLabel?: string
+  /** Label of the use-the-sum fix. */
   useSumLabel?: string
   /** The `{decimals}` in `roundingText`: whole numbers, or `{places}` decimal places. */
   wholeNumbersText?: string
+  /** Explains decimal places used for rounding. */
   decimalPlacesText?: string
+  /** Text for each kind of suspected slip. */
   reasons?: Partial<Record<SumSuspect["reason"], string>>
 }
 

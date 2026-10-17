@@ -1,3 +1,5 @@
+// Bollard UI — iam-policy-check · MIT licence · https://bollard-ui.vercel.app/components/iam-policy-check
+
 /**
  * AWS IAM and S3 bucket policy review, following the IAM JSON policy element reference (Action, NotAction,
  * Principal, NotPrincipal, Condition), the iam:PassRole guide and S3 Block Public Access's definition of "public".

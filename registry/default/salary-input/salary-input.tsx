@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — salary-input · MIT licence · https://bollard-ui.vercel.app/components/salary-input
+
 import * as React from "react"
 import { TriangleAlert, X } from "lucide-react"
 

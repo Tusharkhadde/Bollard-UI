@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — chat-audience-check · MIT licence · https://bollard-ui.vercel.app/components/chat-audience-check
+
 import * as React from "react"
 import { Building2, Check, LoaderCircle, SendHorizontal, ShieldAlert, UserRoundSearch, Users, UserX } from "lucide-react"
 
@@ -38,8 +40,11 @@ export const CHAT_AUDIENCE_CHECK_MESSAGES = {
 export type ChatAudienceCheckMessages = typeof CHAT_AUDIENCE_CHECK_MESSAGES
 
 export interface ChatAudienceCheckProps extends Omit<React.ComponentProps<"div">, "defaultValue" | "onSubmit"> {
+  /** Controlled message text. */
   value?: string
+  /** Initial message text when uncontrolled. */
   defaultValue?: string
+  /** Called with the text on every change. */
   onValueChange?: (text: string) => void
   /** Everyone in the chat, you included (mark yourself with `isYou`). */
   members: ChatMember[]
@@ -51,9 +56,11 @@ export interface ChatAudienceCheckProps extends Omit<React.ComponentProps<"div">
   lastPostedAt?: Date | string | number
   /** Forces the careful path (a confidential channel, a file marked internal). Otherwise the text decides. */
   sensitive?: boolean
+  /** Words that make a message worth a second look. Replaces the default list. */
   sensitiveTerms?: string[]
   /** Pass for deterministic "joined 2 days ago" text. */
   now?: Date
+  /** BCP 47 locale for dates. */
   locale?: string
   /** Sends the message. Return a promise for a pending state; the text clears when it resolves. */
   onSend: (text: string) => void | Promise<void>
@@ -63,6 +70,7 @@ export interface ChatAudienceCheckProps extends Omit<React.ComponentProps<"div">
   onViewProfile?: (member: ChatMember) => void
   /** Enter sends and Shift+Enter adds a line. Off: only Ctrl/⌘+Enter sends. */
   sendOnEnter?: boolean
+  /** Override any visible string. */
   messages?: Partial<ChatAudienceCheckMessages>
 }
 

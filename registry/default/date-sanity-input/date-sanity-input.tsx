@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — date-sanity-input · MIT licence · https://bollard-ui.vercel.app/components/date-sanity-input
+
 import * as React from "react"
 import { CalendarCheck, TriangleAlert } from "lucide-react"
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react"

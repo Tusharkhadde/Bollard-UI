@@ -1,3 +1,5 @@
+// Bollard UI — bcc-guard · MIT licence · https://bollard-ui.vercel.app/components/bcc-guard
+
 /**
  * Pure helpers for bcc-guard: who can see whom on an email, how much that gives away, and whether being
  * on the list is itself sensitive. Safe to run on the server.

@@ -1,13 +1,19 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { Finder } from "@/components/site/finder"
 import { catalogItems, categories, registryBase } from "@/lib/catalog"
 import { FLOWS } from "@/lib/kits"
 
+const description =
+  "Search Bollard UI by the mistake you want to stop or the screen you're building: checkout, sign-up, settings, danger zone, India and more."
+
 export const metadata: Metadata = {
   title: "Components",
-  description:
-    "Search Bollard UI by the mistake you want to stop or the screen you're building: checkout, sign-up, settings, danger zone, India and more.",
+  description,
+  alternates: { canonical: "/components" },
+  openGraph: { title: "Components · Bollard UI", description, url: "/components" },
+  twitter: { card: "summary_large_image", title: "Components · Bollard UI", description },
 }
 
 export default function ComponentsPage() {
@@ -21,8 +27,12 @@ export default function ComponentsPage() {
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-[2.25rem]">Components</h1>
           <p className="mt-3 text-base leading-relaxed text-pretty text-muted-foreground">
-            {catalogItems.length} copy-paste components across {categories.length} categories and {FLOWS.length} flows. Search by name or by the mistake you
-            want to stop, or browse by where it happens.
+            Search by name or by the mistake you want to stop, or browse by where it happens. {catalogItems.length} copy-paste components in{" "}
+            {categories.length} categories; a component can appear in several of the {FLOWS.length} flows. New here?{" "}
+            <Link href="/start-here" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
+              Start with the essentials
+            </Link>
+            .
           </p>
         </header>
         <Finder registryBase={registryBase} />

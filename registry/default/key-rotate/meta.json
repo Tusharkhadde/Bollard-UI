@@ -1,10 +1,49 @@
 {
   "title": "Key Rotate",
-  "description": "Stops an API key rotation from taking production down by keeping old and new keys valid until a stated time, showing which clients have been seen on the new key, flagging jobs that won't call again before the old key expires with a one-tap longer window, and blocking an immediate cut-off while the old key is still in use unless you say it leaked.",
-  "dependencies": ["lucide-react"],
-  "stops": "Key rotation took production down",
-  "mistakes": ["rotated api key broke prod", "old key revoked too early", "clients still using old key", "api key rotation"],
-  "aliases": ["api key", "rotate key", "secret rotation", "credentials", "revoke key", "access token", "env vars", "webhook secret"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["secret"]
+  "summary": "Keeps old and new API keys valid during a rotation and shows which clients have switched, so cutting off the old key doesn't take production down.",
+  "description": "Rotation panel that keeps old and new API keys valid until a stated time, shows which clients use the new key, flags rare jobs that won't call before the old key expires, and holds an immediate cut-off while the old key is in use unless it leaked.",
+  "catches": [
+    "Clients still calling with the old key",
+    "Rare jobs whose next call lands after the old key expires",
+    "Immediate revoke while the old key is still in use",
+    "Leaked key: allows an immediate cut-off on purpose"
+  ],
+  "limits": [
+    "Only knows the clients and last-seen times you pass",
+    "Rhythm-based predictions assume jobs keep their schedule",
+    "The overlap window is enforced by your key service, not this UI"
+  ],
+  "a11y": [
+    "Panel labelled by its title; overlap options are native radio inputs with labels",
+    "Client status list and warnings are polite live regions with text, not only icons",
+    "A blocked revoke is announced with role=alert"
+  ],
+  "server": "Enforce key expiry and revocation in the key service, and log last-used times per key so the client list is real.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps prevent a key rotation taking production down",
+  "mistakes": [
+    "rotated api key broke prod",
+    "old key revoked too early",
+    "clients still using old key",
+    "api key rotation"
+  ],
+  "aliases": [
+    "api key",
+    "rotate key",
+    "secret rotation",
+    "credentials",
+    "revoke key",
+    "access token",
+    "env vars",
+    "webhook secret"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "secret"
+  ]
 }

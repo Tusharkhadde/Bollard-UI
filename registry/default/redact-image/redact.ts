@@ -1,3 +1,5 @@
+// Bollard UI — redact-image · MIT licence · https://bollard-ui.vercel.app/components/redact-image
+
 /** A rectangle in the image's own pixels (not screen pixels). */
 export interface Region {
   x: number

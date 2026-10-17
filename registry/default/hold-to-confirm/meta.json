@@ -1,13 +1,47 @@
 {
   "title": "Hold to Confirm",
-  "description": "Prevents stray clicks and taps from triggering destructive actions: the button fires only after a full press-and-hold (mouse, touch or keyboard), rewinds on early release, shows \"Hold to confirm\" when someone just clicks, and lets screen reader and switch users, who can't hold, confirm with a second press instead.",
+  "summary": "A button that fires only after a full press-and-hold, so a stray click or tap doesn't trigger a destructive action.",
+  "description": "Button that runs onConfirm only after a full press-and-hold by mouse, touch or keyboard, rewinds on early release, shows \"Hold to confirm\" on a plain click, and lets users who can't hold (screen reader, switch access) confirm with a second press.",
+  "catches": [
+    "Stray click or tap on a delete or other irreversible button",
+    "Releasing early: progress rewinds",
+    "Plain click: a hint explains to hold",
+    "Users who can't hold: a second press confirms instead"
+  ],
+  "limits": [
+    "Friction, not authorization: anyone who holds it confirms",
+    "The second-press path is quicker than holding, by design",
+    "Doesn't name the target; pair it with clear wording or a readback"
+  ],
+  "a11y": [
+    "Native button; Space or Enter can be held from the keyboard",
+    "Hint text is linked via aria-describedby and status changes use role=status",
+    "aria-busy while onConfirm is pending; icons are aria-hidden",
+    "Fill and label animations are reduced under reduced motion"
+  ],
+  "server": "Authorize the destructive action on the server and make it idempotent.",
   "dependencies": [
     "lucide-react",
     "motion"
   ],
-  "stops": "Destructive action fired by stray click",
-  "mistakes": ["accidental click deleted item", "user tapped delete by mistake", "need long press to confirm", "hold button to delete"],
-  "aliases": ["long press", "press and hold", "hold button", "delete button", "confirm button", "mobile tap", "destructive action"],
-  "flows": ["danger-zone"],
+  "stops": "Helps prevent a destructive action fired by a stray click",
+  "mistakes": [
+    "accidental click deleted item",
+    "user tapped delete by mistake",
+    "need long press to confirm",
+    "hold button to delete"
+  ],
+  "aliases": [
+    "long press",
+    "press and hold",
+    "hold button",
+    "delete button",
+    "confirm button",
+    "mobile tap",
+    "destructive action"
+  ],
+  "flows": [
+    "danger-zone"
+  ],
   "fields": []
 }

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — ctc-breakdown-input · MIT licence · https://bollard-ui.vercel.app/components/ctc-breakdown-input
+
 import * as React from "react"
 import { CircleAlert, Info, TriangleAlert, Wallet } from "lucide-react"
 
@@ -126,16 +128,21 @@ export const CTC_BREAKDOWN_INPUT_MESSAGES = {
 export type CtcBreakdownInputMessages = typeof CTC_BREAKDOWN_INPUT_MESSAGES
 
 export interface CtcBreakdownInputProps extends Omit<React.ComponentProps<"fieldset">, "defaultValue" | "onChange"> {
+  /** Controlled CTC parts. */
   value?: Partial<CtcParts>
+  /** Initial CTC parts when uncontrolled. */
   defaultValue?: Partial<CtcParts>
+  /** Called with the parts whenever one changes. */
   onValueChange?: (parts: CtcParts) => void
   /** Flag the offer when monthly in-hand × 12 is below this share of CTC. */
   minInHandRatio?: number
   /** Flag variable pay above this share of CTC. */
   maxVariableShare?: number
+  /** Override the in-hand assumptions (basic share, PF, professional tax, standard deduction). */
   assumptions?: InHandAssumptions
   /** Merged onto the CTC input. */
   "aria-describedby"?: string
+  /** Override any visible string. */
   messages?: Partial<CtcBreakdownInputMessages>
 }
 

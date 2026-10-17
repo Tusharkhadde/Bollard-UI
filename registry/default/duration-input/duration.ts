@@ -1,3 +1,5 @@
+// Bollard UI — duration-input · MIT licence · https://bollard-ui.vercel.app/components/duration-input
+
 /** Unit for a bare number such as "90". */
 export type DurationUnit = "d" | "h" | "m" | "s"
 /** How "1:30" is read: hours and minutes, minutes and seconds, or decided from the limits (asking when both fit). */

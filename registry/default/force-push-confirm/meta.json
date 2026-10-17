@@ -1,10 +1,48 @@
 {
   "title": "Force Push Confirm",
-  "description": "Stops a force push from silently deleting work on the remote by listing every commit it would drop with author, message and age, marking other people's commits (co-authors and GitHub noreply addresses included) and protected branches, building a --force-with-lease command pinned to the tip you were shown (or --force-if-includes, so an IDE's background fetch can't defeat the lease), and asking you to type the branch name only when someone else's work would be lost.",
-  "dependencies": ["lucide-react"],
+  "summary": "Lists every commit a force push would drop, marks other people's work and builds a safer lease command, so teammates' commits aren't erased.",
+  "description": "Lists every commit a force push would drop with author, message and age, marks other people's commits and protected branches, builds a --force-with-lease command pinned to the tip shown (or --force-if-includes), and asks you to type the branch name.",
+  "catches": [
+    "Commits on the remote that the push would drop",
+    "Commits by other people, including co-authors and GitHub noreply addresses",
+    "Protected branches",
+    "A remote tip that moved since you looked",
+    "Plain --force, replaced by a pinned --force-with-lease"
+  ],
+  "limits": [
+    "Uses the commit lists you pass; it doesn't run git",
+    "--force-with-lease only protects the tip you pinned; your Git host's branch protection is the real guard"
+  ],
+  "a11y": [
+    "Dropped commits are a labelled list",
+    "The lease option is a labelled checkbox; branch confirmation is a typed field",
+    "Warnings use icons plus text"
+  ],
+  "server": "Protect shared branches in your Git host (no force pushes, required reviews); this dialog only prepares a safer command.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Teammates' commits erased by force push",
-  "mistakes": ["force push deleted commits", "git push -f overwrote remote", "lost teammate commits", "force with lease bypassed"],
-  "aliases": ["git push --force", "force-with-lease", "force-if-includes", "rebase", "protected branch", "github", "remote branch"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["code"]
+  "mistakes": [
+    "force push deleted commits",
+    "git push -f overwrote remote",
+    "lost teammate commits",
+    "force with lease bypassed"
+  ],
+  "aliases": [
+    "git push --force",
+    "force-with-lease",
+    "force-if-includes",
+    "rebase",
+    "protected branch",
+    "github",
+    "remote branch"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
 }

@@ -1,6 +1,23 @@
 {
   "title": "Pin Drop Check",
-  "description": "Prevents deliveries to the wrong door by measuring a dropped map pin against the typed address and PIN area (ignoring gaps inside GPS accuracy), flagging pins in water or on a highway from your geo helper, drawing the gap on a to-scale SVG sketch with no map library, and asking \"Use pin or address?\".",
+  "summary": "Measures a dropped map pin against the typed address and PIN area, so a delivery doesn't go to the wrong door.",
+  "description": "Map-pin check that measures the pin against the geocoded address and PIN area (ignoring gaps inside GPS accuracy), flags pins in water or on a highway from your geo helper, draws the gap on a to-scale SVG sketch with no map library, and asks \"Use pin or address?\".",
+  "catches": [
+    "Pin far from the typed address",
+    "Pin outside the PIN or postcode area",
+    "Pin in water or on a highway (from your classify helper)",
+    "Gaps smaller than GPS accuracy are ignored"
+  ],
+  "limits": [
+    "Needs your geocoder for the address and PIN centre",
+    "Surface checks depend on your geo helper",
+    "A straight-line distance, not the route"
+  ],
+  "a11y": [
+    "Sketch is role=img with an aria-label describing the gap",
+    "Choice group is labelled and described by the status",
+    "Loading and result lines have text; icons are aria-hidden"
+  ],
   "dependencies": [
     "lucide-react"
   ],

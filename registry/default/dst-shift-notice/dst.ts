@@ -1,3 +1,5 @@
+// Bollard UI — dst-shift-notice · MIT licence · https://bollard-ui.vercel.app/components/dst-shift-notice
+
 /** Pure helpers for DstShiftNotice. Uses only Intl, so the real tz database decides every clock change. */
 
 export type DstRepeat = "daily" | "weekdays" | "weekly" | "fortnightly"

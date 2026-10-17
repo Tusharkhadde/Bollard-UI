@@ -1,6 +1,25 @@
 {
   "title": "Time Confirm",
-  "description": "Prevents meetings booked 12 hours or a day off by asking AM or PM when a time is ambiguous, spelling out noon and midnight, catching times a DST change skips (with a one-tap move to the real time) or repeats (with a choice of which one), and showing the moment in other time zones with day-shift flags.",
+  "summary": "Asks AM or PM when a typed time is ambiguous and catches times a clock change skips or repeats, so meetings aren't 12 hours off.",
+  "description": "Time input that asks AM or PM when a time is ambiguous, spells out noon and midnight, catches times a DST change skips (one-tap move to the real time) or repeats (pick which), and shows the moment in other zones with day-shift flags.",
+  "catches": [
+    "Hours 1–12 typed without AM/PM",
+    "Noon and midnight, spelled out",
+    "Times skipped by a DST change, with a move to the first real time",
+    "Times repeated by a DST change, with a choice of which",
+    "Other zones' times, flagged when they fall on another day"
+  ],
+  "limits": [
+    "Needs a date and IANA time zone for DST checks",
+    "Parses common English time formats only",
+    "assume24h changes how bare hours are read"
+  ],
+  "a11y": [
+    "Visible <label>; aria-invalid and hint via aria-describedby",
+    "AM/PM choice is a roving-tabindex radiogroup with arrow keys",
+    "Hint in a polite live region",
+    "Animations respect reduced motion"
+  ],
   "dependencies": [
     "@date-fns/tz",
     "lucide-react",

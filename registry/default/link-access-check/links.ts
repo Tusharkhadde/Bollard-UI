@@ -1,3 +1,5 @@
+// Bollard UI — link-access-check · MIT licence · https://bollard-ui.vercel.app/components/link-access-check
+
 /** Pure helpers for LinkAccessCheck: finding cloud doc links in a message and working out who can't open them. */
 
 export type DocProvider = "google" | "microsoft" | "dropbox" | "notion" | "figma" | "box"

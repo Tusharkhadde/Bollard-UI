@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — key-rotate · MIT licence · https://bollard-ui.vercel.app/components/key-rotate
+
 import * as React from "react"
 import { CircleCheck, Clock, KeyRound, LoaderCircle, OctagonX, TriangleAlert } from "lucide-react"
 
@@ -96,7 +98,9 @@ export interface KeyRotateProps extends Omit<React.ComponentProps<"section">, "d
   clients: KeyClient[]
   /** Overlap window in ms (0 = the old key stops working immediately). Controlled. */
   value?: number
+  /** Initial overlap window in ms when uncontrolled. */
   defaultValue?: number
+  /** Called with the chosen overlap window in ms. */
   onValueChange?: (overlap: number) => void
   /** Windows to offer, in ms. */
   options?: number[]

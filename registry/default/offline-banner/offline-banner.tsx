@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — offline-banner · MIT licence · https://bollard-ui.vercel.app/components/offline-banner
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, LoaderCircle, RotateCcw, WifiOff } from "lucide-react"
 
@@ -85,10 +87,15 @@ export interface OfflineBannerProps extends Omit<React.ComponentProps<"div">, "c
   formatCount?: (count: number) => string
   /** Message templates; `{count}` is replaced by `formatCount(queued)`. */
   offlineText?: string
+  /** Shown offline when nothing is queued. */
   offlineEmptyText?: string
+  /** Shown while queued changes sync. */
   syncingText?: string
+  /** Shown once everything has synced. */
   syncedText?: string
+  /** Shown when the sync fails. */
   failedText?: string
+  /** Retry button text. */
   retryLabel?: string
 }
 

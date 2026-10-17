@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — bulk-runner · MIT licence · https://bollard-ui.vercel.app/components/bulk-runner
+
 import * as React from "react"
 import NumberFlow from "@number-flow/react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
@@ -40,15 +42,23 @@ export interface BulkRunnerProps<T> extends Omit<React.ComponentProps<"div">, "c
   doneVerb?: string
   /** What the operation didn't do to items it never reached: "were not emailed". */
   untouchedText?: string
+  /** Start button text. */
   startLabel?: string
+  /** Pause button text. */
   pauseLabel?: string
+  /** Resume button text. */
   resumeLabel?: string
+  /** Stop button text. */
   stopLabel?: string
+  /** Retry-failed button text ({failed} is filled in). */
   retryLabel?: string
   /** Templates: `{done}`, `{failed}`, `{left}`, `{total}`, `{inflight}`, `{verb}` and `{untouched}` are filled in. */
   pausingText?: string
+  /** Shown while in-flight items finish after Stop. */
   stoppingText?: string
+  /** Shown when the job was stopped. */
   stoppedText?: string
+  /** Shown when every item has run. */
   finishedText?: string
 }
 

@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — invite-check · MIT licence · https://bollard-ui.vercel.app/components/invite-check
+
 import * as React from "react"
 import { CalendarCheck, CalendarClock, CopyX, Globe, MapPinOff, Moon, TriangleAlert, Video } from "lucide-react"
 
@@ -124,8 +126,11 @@ export interface InviteCheckProps extends InviteCheckOptions, Omit<React.Compone
   title: string
   /** Start of the event. */
   start: Date | number | string
+  /** People invited, each with an email and optional zone and hours. */
   guests: InviteGuest[]
+  /** Meeting place, if any. */
   location?: string
+  /** Video call link, if any. */
   videoLink?: string
   /** Your zone, for the suggested time. Defaults to the browser's. */
   timeZone?: string
@@ -135,12 +140,17 @@ export interface InviteCheckProps extends InviteCheckOptions, Omit<React.Compone
   onAddVideoLink?: () => void
   /** Replace a guest's address, e.g. a typo'd company domain. */
   onFixGuest?: (email: string, next: string) => void
+  /** Called with a guest's email to remove them. */
   onRemoveGuest?: (email: string) => void
   /** Open the invite this one duplicates. */
   onOpenExisting?: (id: string) => void
+  /** Heading above the check. */
   heading?: string
+  /** Shown when there is neither a location nor a video link. */
   noPlaceText?: string
+  /** Button text to add a video link. */
   addVideoLabel?: string
+  /** Shown when nothing needs attention. */
   allClearText?: string
 }
 

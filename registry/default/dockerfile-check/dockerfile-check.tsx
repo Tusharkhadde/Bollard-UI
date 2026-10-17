@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — dockerfile-check · MIT licence · https://bollard-ui.vercel.app/components/dockerfile-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, Copy, Info, Layers, TriangleAlert, WandSparkles } from "lucide-react"
 

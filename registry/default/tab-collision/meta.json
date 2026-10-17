@@ -1,12 +1,44 @@
 {
   "title": "Tab Collision",
-  "description": "Stops the same record being edited in two tabs, where the last save silently erases the other, by letting only one tab edit (BroadcastChannel with a storage-event fallback) and making the rest read-only until you choose 'Use this tab'.",
+  "summary": "Lets only one browser tab edit a record at a time, so a save in one tab doesn't silently erase edits in another.",
+  "description": "Single-editor lock across tabs: one tab edits (BroadcastChannel, with a localStorage storage-event fallback), the others become read-only until someone picks \"Use this tab\", with a confirm when the other tab has unsaved changes.",
+  "catches": [
+    "The same record open for editing in another tab of this browser",
+    "Taking over while the other tab has unsaved changes (confirm first)",
+    "Status changes reported through onStatusChange"
+  ],
+  "limits": [
+    "Same browser profile only; other devices, browsers or users are not seen",
+    "Read-only mode is up to you to apply using the status",
+    "Does not merge edits"
+  ],
+  "a11y": [
+    "Notice is a region with an aria-label; message in a polite live region",
+    "Confirm step closes with Escape",
+    "Buttons have text labels; icons are aria-hidden"
+  ],
+  "server": "Use optimistic concurrency (version or ETag) on save so concurrent edits from anywhere are rejected, not overwritten.",
   "dependencies": [
     "lucide-react"
   ],
   "stops": "Second tab save erased edits",
-  "mistakes": ["edited in two tabs", "last save overwrote changes", "multiple tabs conflict", "broadcastchannel"],
-  "aliases": ["multiple tabs", "broadcastchannel", "concurrent edit", "conflict", "read only", "edit lock", "cross-tab"],
-  "flows": ["forms"],
+  "mistakes": [
+    "edited in two tabs",
+    "last save overwrote changes",
+    "multiple tabs conflict",
+    "broadcastchannel"
+  ],
+  "aliases": [
+    "multiple tabs",
+    "broadcastchannel",
+    "concurrent edit",
+    "conflict",
+    "read only",
+    "edit lock",
+    "cross-tab"
+  ],
+  "flows": [
+    "forms"
+  ],
   "fields": []
 }

@@ -1,10 +1,49 @@
 {
   "title": "File Guard",
-  "description": "Stops bad uploads before they start by checking size, type, count, empty files and duplicates, and by reading each file's first bytes to catch a renamed extension, with a one-tap rename fix.",
-  "dependencies": ["lucide-react"],
+  "summary": "Checks files before upload, including their first bytes, so renamed, empty, duplicate or oversized files are caught before they start uploading.",
+  "description": "Checks size, type, count, empty files and duplicates, and reads each file's first bytes to catch a renamed extension, with a one-tap rename fix.",
+  "catches": [
+    "Files over maxSize, or more than maxFiles",
+    "Types outside accept",
+    "A file whose content doesn't match its extension (renamed)",
+    "Empty files and duplicates"
+  ],
+  "limits": [
+    "Magic-byte detection covers common formats only",
+    "Runs in the browser and is easy to bypass; it is not a malware scan"
+  ],
+  "a11y": [
+    "The pick button is described by the hint; the native input is hidden from the tab order",
+    "Selected files are a labelled list; remove buttons name the file",
+    "Status is aria-live=\"polite\""
+  ],
+  "server": "Re-validate size, type and content on the server and scan uploads; never trust the client's checks.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Wrong file type uploaded",
-  "mistakes": ["file too large upload", "renamed exe as pdf", "empty file uploaded", "duplicate file upload"],
-  "aliases": ["file upload", "dropzone", "mime type", "file size limit", "magic bytes", "react-dropzone", "pdf upload", "aadhaar upload", "document upload"],
-  "flows": ["forms", "india"],
-  "fields": ["file"]
+  "mistakes": [
+    "file too large upload",
+    "renamed exe as pdf",
+    "empty file uploaded",
+    "duplicate file upload"
+  ],
+  "aliases": [
+    "file upload",
+    "dropzone",
+    "mime type",
+    "file size limit",
+    "magic bytes",
+    "react-dropzone",
+    "pdf upload",
+    "aadhaar upload",
+    "document upload"
+  ],
+  "flows": [
+    "forms",
+    "india"
+  ],
+  "fields": [
+    "file"
+  ]
 }

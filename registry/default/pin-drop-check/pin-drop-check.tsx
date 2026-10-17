@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — pin-drop-check · MIT licence · https://bollard-ui.vercel.app/components/pin-drop-check
+
 import * as React from "react"
 import { CircleAlert, CircleCheck, House, LoaderCircle, MapPin } from "lucide-react"
 

@@ -1,8 +1,29 @@
 {
   "title": "OTP Share Guard",
-  "description": "Stops people reading a one-time code out to a scammer by saying in one sentence what it really approves (\"This code approves a ₹24,999 payment to Croma\", \"This code logs in a new device\"), and, when the app knows a call or screen share is active or the code is for a different action than the user started, switching to a strong never-share warning with press-and-hold to see the code, a delayed Copy, a code that is never drawn while the screen is shared, and a one-tap \"I didn't request this\".",
-  "dependencies": ["lucide-react"],
-  "stops": "OTP read out to a scammer",
+  "summary": "Says in one sentence what a one-time code really approves and warns hard during a call or screen share, so it's less likely to be read out to a scammer.",
+  "description": "OTP display that says what the code approves (\"approves a ₹24,999 payment to Croma\") and, during a call or screen share or when it isn't what the user started, shows a never-share warning with hold-to-reveal, delayed Copy, a code hidden while sharing and \"Not me\".",
+  "catches": [
+    "Code approving something other than what the user started",
+    "Active phone call or screen share while a code is shown",
+    "Code drawn on a shared screen: hidden while sharing",
+    "Quick copy under pressure: Copy is delayed",
+    "\"I didn't request this\" reporting in one tap"
+  ],
+  "limits": [
+    "Call and screen-share state must come from your app (onCall, screenSharing); the web can't detect them reliably",
+    "A determined user can still read the code aloud",
+    "Wording assumes Indian banking defaults (INR); pass your own messages"
+  ],
+  "a11y": [
+    "Hold-to-reveal works with Space or Enter held as well as pointer",
+    "The hidden code is aria-hidden until revealed",
+    "Warnings are text with icons aria-hidden"
+  ],
+  "server": "Bind each code to one action and amount, expire it quickly, and block approval when the user reports \"not me\".",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "stops": "Helps stop an OTP being read out to a scammer",
   "mistakes": [
     "shared otp with scammer",
     "bank caller asked otp",

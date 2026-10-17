@@ -1,3 +1,5 @@
+// Bollard UI — hashtag-input · MIT licence · https://bollard-ui.vercel.app/components/hashtag-input
+
 /** Words common in hashtags, used to split all-lowercase tags into CamelCase. Extend via the `words` prop. */
 export const HASHTAG_WORDS = `
 a about access accessible after ai all and app apps art as at award awards back bank be beauty best big black blog book

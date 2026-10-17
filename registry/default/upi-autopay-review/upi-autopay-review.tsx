@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — upi-autopay-review · MIT licence · https://bollard-ui.vercel.app/components/upi-autopay-review
+
 import * as React from "react"
 import { CalendarClock, ChevronDown, Loader2, Repeat, ShieldAlert, Store, Wallet } from "lucide-react"
 

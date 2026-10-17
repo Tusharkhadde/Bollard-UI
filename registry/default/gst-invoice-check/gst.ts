@@ -1,3 +1,5 @@
+// Bollard UI — gst-invoice-check · MIT licence · https://bollard-ui.vercel.app/components/gst-invoice-check
+
 import { checkTaxId, cleanTaxId, GST_STATES } from "@/registry/default/tax-id-input/tax-id"
 
 /** Union territories without a legislature charge UTGST instead of SGST (UTGST Act, 2017). */

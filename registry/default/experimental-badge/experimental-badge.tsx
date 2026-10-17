@@ -1,5 +1,7 @@
 "use client"
 
+// Bollard UI — experimental-badge · MIT licence · https://bollard-ui.vercel.app/components/experimental-badge
+
 import * as React from "react"
 import { CircleSlash, DatabaseZap, FlaskConical, LoaderCircle, MessageSquareText, Shuffle, Undo2 } from "lucide-react"
 
@@ -38,6 +40,7 @@ const small =
 export interface ExperimentalBadgeProps extends Omit<React.ComponentProps<"span">, "children"> {
   /** The feature's name, e.g. "Smart inbox". */
   feature: string
+  /** How unfinished the feature is. */
   stage?: ExperimentStage
   /** What can go wrong, as concrete sentences. Defaults depend on `stage`. */
   risks?: ExperimentRisk[]
@@ -49,16 +52,23 @@ export interface ExperimentalBadgeProps extends Omit<React.ComponentProps<"span"
   onSwitchBack?: () => void | Promise<void>
   /** What happens to their work when they switch back, e.g. "Your 3 saved views stay here for when you return." */
   switchBackNote?: string
+  /** Controlled open state of the panel. */
   open?: boolean
+  /** Initial open state when uncontrolled. */
   defaultOpen?: boolean
+  /** Called when the panel opens or closes. */
   onOpenChange?: (open: boolean) => void
   /** Badge text. Defaults to the stage name. */
   label?: string
   /** Panel heading; `{feature}` and `{stage}` are filled in. */
   heading?: string
+  /** Text for the feedback link. */
   feedbackLabel?: string
+  /** Text for the switch-back button. */
   switchBackLabel?: string
+  /** Button text while switching back. */
   switchingLabel?: string
+  /** Shown when switching back fails. */
   errorText?: string
 }
 

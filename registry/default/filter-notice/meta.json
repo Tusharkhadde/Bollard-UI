@@ -1,6 +1,21 @@
 {
   "title": "Filter Notice",
-  "description": "Stops people thinking data is missing or bulk-acting on a partial set: it says how many items active filters hide, shows each filter as a removable chip with how many items it hides on its own, and warns when selected items are hidden.",
+  "summary": "Says how many items active filters hide and which filter hides what, so people don't think data is missing or bulk-act on a partial set.",
+  "description": "Says how many items active filters hide, shows each filter as a removable chip with how many items it hides on its own, and warns when selected items are hidden.",
+  "catches": [
+    "Items hidden by active filters, counted",
+    "Which filter hides the most, per chip",
+    "Selected items that are currently hidden"
+  ],
+  "limits": [
+    "Counts come from your props; it doesn't compute them",
+    "Per-filter counts are what each filter hides on its own, so they can add up to more than the total hidden"
+  ],
+  "a11y": [
+    "A role=\"region\" labelled \"Active filters\"",
+    "Counts and warnings are aria-live=\"polite\"",
+    "Filter chips are a labelled list; remove buttons name the filter"
+  ],
   "dependencies": [
     "lucide-react"
   ],

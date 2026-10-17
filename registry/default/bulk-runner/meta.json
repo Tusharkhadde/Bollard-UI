@@ -1,14 +1,52 @@
 {
   "title": "Bulk Runner",
-  "description": "Stops bulk jobs from ending in \"some of it happened, probably\": live done/failed/remaining counts, Pause and Stop that let in-flight items finish and then say exactly what was and wasn't done, failures grouped by reason with retry-failed-only, and a progress bar that never jumps backwards.",
+  "summary": "Runs a bulk job with live done, failed and remaining counts, so a stopped or failed job never ends in \"some of it happened, probably\".",
+  "description": "Shows live done/failed/remaining counts. Pause and Stop let in-flight items finish, then say exactly what was and wasn't done. Failures are grouped by reason with retry-failed-only, and progress never jumps backwards.",
+  "catches": [
+    "Unclear state after a stop, by reporting exactly what was done and left untouched",
+    "Repeated failures, grouped by reason and sorted by count",
+    "Retrying everything, by offering retry of failed items only",
+    "Runaway parallelism, via a concurrency limit"
+  ],
+  "limits": [
+    "Runs in the browser tab: closing or reloading the tab stops the job and loses its progress",
+    "Pause and Stop wait for in-flight items; it cannot cancel a request already sent",
+    "Retries call your run function again, so it must be safe to repeat"
+  ],
+  "a11y": [
+    "role=\"progressbar\" with aria-valuenow/max and an aria-valuetext reading done, failed and remaining",
+    "Phase changes are announced in an aria-live=\"polite\" paragraph",
+    "All controls are native buttons with visible text",
+    "Motion respects prefers-reduced-motion"
+  ],
+  "server": "Make each item operation idempotent and record per-item results on the server, so a retry or a reloaded tab doesn't repeat completed work.",
   "dependencies": [
     "@number-flow/react",
     "lucide-react",
     "motion"
   ],
   "stops": "Bulk job half done, nobody knows",
-  "mistakes": ["bulk job failed partially", "dont know which items failed", "retry only failed", "progress bar jumped back"],
-  "aliases": ["bulk job", "batch progress", "progress bar", "queue", "retry failed", "import job", "bulk email", "background job"],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["number"]
+  "mistakes": [
+    "bulk job failed partially",
+    "dont know which items failed",
+    "retry only failed",
+    "progress bar jumped back"
+  ],
+  "aliases": [
+    "bulk job",
+    "batch progress",
+    "progress bar",
+    "queue",
+    "retry failed",
+    "import job",
+    "bulk email",
+    "background job"
+  ],
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "number"
+  ]
 }

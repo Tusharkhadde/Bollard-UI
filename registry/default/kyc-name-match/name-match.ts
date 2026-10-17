@@ -1,3 +1,5 @@
+// Bollard UI — kyc-name-match · MIT licence · https://bollard-ui.vercel.app/components/kyc-name-match
+
 /**
  * Pure name matching for KYC across ID documents. Sources:
  * - UIDAI FAQ "My name is different in PAN and Aadhaar": name, gender and date of birth should match; a minor name

@@ -1,7 +1,27 @@
 {
   "title": "Invite Check",
-  "description": "Stops a calendar invite landing at 3 AM, on a guest's weekend or holiday, at a typo'd company domain, with no video link or location, or twice, by showing the start in every guest's own zone, offering the nearest start that suits everyone in one tap, and catching duplicate guests hidden by +tags or Gmail dots and invites already sent.",
-  "dependencies": ["lucide-react"],
+  "summary": "Shows a meeting's start in every guest's own time zone and flags 3 AM slots, weekends, holidays, typo'd domains and duplicate guests before you send.",
+  "description": "Pre-send invite check that shows the start in each guest's zone, offers the nearest start that suits everyone, and flags night, weekend or holiday slots, typo'd domains, no video link or location, duplicate guests (+tags, Gmail dots) and resent invites.",
+  "catches": [
+    "Start time outside a guest's working hours, at night or on their weekend",
+    "Guest's holiday, from your holiday source",
+    "Company domain typos among guests",
+    "No video link and no location",
+    "Duplicate guests hidden by +tags or Gmail dots, and an invite already sent"
+  ],
+  "limits": [
+    "Default working hours (9–18) and weekends are assumptions; pass each guest's real ones",
+    "Holidays come only from the source you provide",
+    "Needs each guest's IANA zone; it can't guess where they are"
+  ],
+  "a11y": [
+    "Per-guest start times are a labelled list with text, not only icons",
+    "Issues and suggestions are in a polite live region",
+    "Every fix (reschedule, remove guest, add link) is a button"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
   "stops": "Invite lands at 3 AM for guests",
   "mistakes": [
     "meeting invite wrong time zone",
@@ -26,5 +46,8 @@
   "fields": [
     "email",
     "datetime"
+  ],
+  "registryDependencies": [
+    "https://bollard-ui.vercel.app/r/send-time-check.json"
   ]
 }

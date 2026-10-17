@@ -1,8 +1,32 @@
 {
   "title": "Agent Action Approve",
-  "description": "Stops an AI agent's tool call from doing something nobody approved by reading the call itself and saying in plain words what it will delete, send or change, how far that reaches (one file up to a whole drive or production) and whether it can be undone, marking the one token that changes everything (a lone \\ that means the drive root, an unset $VAR, ../, a C:/Users/ALEX~1 short name), setting what the agent said beside what the call does when they disagree, checking MCP read-only labels against the call, reading inside bash -c, cmd /c and encoded PowerShell, flagging curl | bash, making dangerous calls hold-to-approve, and showing what an \"always allow\" rule would also let through while refusing one for npx, bash -c, chained commands and anything irreversible.",
-  "dependencies": ["lucide-react", "motion"],
-  "stops": "AI agent wipes a whole drive",
+  "summary": "A review screen for an AI agent's tool call that spells out what it will delete, send or change and how far it reaches, before someone approves it.",
+  "description": "Reads an agent's tool call and says plainly what it will delete, send or change, how far it reaches and whether it can be undone. Marks risky tokens, compares the agent's claim with the call, makes dangerous calls hold-to-approve and refuses risky \"always allow\" rules.",
+  "catches": [
+    "Tokens that widen the reach: a lone \\ (drive root), an unset $VAR, ../, 8.3 short names",
+    "A stated intent that disagrees with what the call actually does",
+    "MCP tools labelled read-only whose call writes or deletes",
+    "Commands hidden inside bash -c, cmd /c or encoded PowerShell, and curl | bash",
+    "\"Always allow\" rules that would also let through other commands, and refuses them for npx, bash -c, chained or irreversible calls"
+  ],
+  "limits": [
+    "A review UI only: whether a call is actually blocked depends on your host app honouring the decision",
+    "Static analysis of the call text; it cannot know what a script or binary does once run",
+    "Unknown tools and argument shapes are described less precisely than shell and SQL calls",
+    "\"User approved this\" does not mean the operation is safe"
+  ],
+  "a11y": [
+    "Decision result receives focus (tabIndex=-1) and status text is announced in a role=\"status\" region",
+    "Hold-to-approve works with Space or Enter held down, not just the pointer",
+    "Refusals of an \"always\" rule use role=\"alert\"",
+    "Risk level is shown with text and icon, not colour alone; motion respects prefers-reduced-motion"
+  ],
+  "server": "Enforce the decision at the tool boundary: the agent runtime must refuse calls that were not approved, and check the caller's authorisation for the target.",
+  "dependencies": [
+    "lucide-react",
+    "motion"
+  ],
+  "stops": "Unreviewed agent tool calls",
   "mistakes": [
     "ai agent deleted my files",
     "agent ran rm -rf on wrong folder",
@@ -22,6 +46,11 @@
     "permission prompt",
     "ai sdk"
   ],
-  "flows": ["devtools", "danger-zone"],
-  "fields": ["code"]
+  "flows": [
+    "devtools",
+    "danger-zone"
+  ],
+  "fields": [
+    "code"
+  ]
 }
