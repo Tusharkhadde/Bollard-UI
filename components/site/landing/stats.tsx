@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { Code2, Layers3, Palette, TerminalSquare } from "lucide-react"
 
 import { container } from "./section-heading"
 
@@ -11,29 +12,31 @@ import { container } from "./section-heading"
  */
 export function Stats({ total, categories }: { total: number; categories: number }) {
   const stats = [
-    { value: "Copy-paste", label: "source", note: "lands in your project, yours to edit" },
-    { value: "MIT", label: "licensed", note: "free for commercial use" },
-    { value: "shadcn", label: "CLI", note: `one command each, ${total.toLocaleString("en-US")} to pick from in ${categories} categories` },
-    { value: "React 19+", label: "+ Tailwind v4", note: "TypeScript, SSR-safe" },
+    { value: "Source code", note: "Copied into your app", icon: Code2 },
+    { value: "MIT licensed", note: "Free for commercial use", icon: Layers3 },
+    { value: `${total.toLocaleString("en-US")} components`, note: `Across ${categories} categories`, icon: TerminalSquare },
+    { value: "Your theme", note: "React 19 · Tailwind v4", icon: Palette },
   ]
   return (
     <section aria-label="At a glance" className="border-y">
       <ul className={cn(container, "grid grid-cols-2 px-0 sm:px-0 lg:grid-cols-4 min-[72rem]:border-x")}>
-        {stats.map((stat, i) => (
+        {stats.map(({ value, note, icon: Icon }, i) => (
           <li
-            key={stat.label}
+            key={value}
             className={cn(
-              "flex min-w-0 flex-col gap-1 px-4 py-6 sm:px-6 sm:py-7",
+              "flex min-w-0 items-start gap-3 px-4 py-5 sm:px-6 sm:py-6",
               i % 2 === 1 && "border-l",
               i >= 2 && "border-t lg:border-t-0",
               i === 2 && "lg:border-l",
             )}
           >
-            <p className="flex flex-wrap items-baseline gap-x-1.5">
-              <span className="text-2xl font-semibold tracking-[-0.03em] tabular-nums sm:text-3xl">{stat.value}</span>
-              <span className="text-sm text-muted-foreground">{stat.label}</span>
-            </p>
-            <p className="text-[13px] text-muted-foreground">{stat.note}</p>
+            <span aria-hidden className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-md border bg-background text-muted-foreground">
+              <Icon className="size-4" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-medium tracking-tight">{value}</span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">{note}</span>
+            </span>
           </li>
         ))}
       </ul>

@@ -9,12 +9,12 @@ const load = () => import("./showcase-demos")
 const pick = (key: keyof Awaited<ReturnType<typeof load>>) => React.lazy(() => load().then((mod) => ({ default: mod[key] })))
 
 const demos = {
-  "sql-guard": pick("SqlDemo"),
-  "card-expiry-input": pick("CardExpiryDemo"),
+  "amount-input": pick("AmountDemo"),
+  "email-input": pick("EmailDemo"),
+  "phone-input": pick("PhoneDemo"),
+  "password-input": pick("PasswordDemo"),
   "upi-id-input": pick("UpiDemo"),
-  "cooldown-button": pick("CooldownDemo"),
-  "homoglyph-guard": pick("HomoglyphDemo"),
-  "type-to-confirm": pick("TypeToConfirmDemo"),
+  "card-expiry-input": pick("ExpiryDemo"),
 }
 
 export type ShowcaseName = keyof typeof demos

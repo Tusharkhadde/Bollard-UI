@@ -31,7 +31,7 @@ function FloatingSignals() {
       label: "Amount checked",
       detail: "One extra zero caught",
       icon: ScanSearch,
-      className: "-left-4 top-[17%] xl:-left-16",
+      className: "left-[8%] top-0",
       delay: 0.9,
       drift: -7,
     },
@@ -39,7 +39,7 @@ function FloatingSignals() {
       label: "Safe to retry",
       detail: "Duplicate payment blocked",
       icon: TimerReset,
-      className: "-right-4 top-[39%] xl:-right-16",
+      className: "right-[8%] top-0",
       delay: 1.05,
       drift: 8,
     },
@@ -47,14 +47,14 @@ function FloatingSignals() {
       label: "Action reviewed",
       detail: "Scope made visible",
       icon: ShieldCheck,
-      className: "-left-4 bottom-[11%] xl:-left-16",
+      className: "left-[12%] bottom-0",
       delay: 1.2,
       drift: 5,
     },
   ] as const
 
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden lg:block">
       {signals.map(({ label, detail, icon: Icon, className, delay, drift }) => (
         <motion.div
           key={label}
@@ -62,7 +62,7 @@ function FloatingSignals() {
           animate={
             reduced
               ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 1, scale: 1, x: [10, -10, 10], y: [0, drift, 0] }
+              : { opacity: 1, scale: 1, y: [0, drift, 0] }
           }
           transition={
             reduced
@@ -70,7 +70,6 @@ function FloatingSignals() {
               : {
                   opacity: { duration: 0.45, delay },
                   scale: { duration: 0.45, delay },
-                  x: { duration: 6, delay: delay + 0.2, repeat: Infinity, ease: "easeInOut" },
                   y: { duration: 4.4, delay: delay + 0.2, repeat: Infinity, ease: "easeInOut" },
                 }
           }
@@ -93,8 +92,8 @@ function FloatingSignals() {
 }
 
 /**
- * The landing hero: announcement pill, a centred headline and actions on a
- * masked hairline grid, then the framed product window with a faint amber glow.
+ * A developer-first split hero: a direct value proposition and install path
+ * beside a working product preview.
  */
 export function Hero({ registryBase }: { registryBase: string }) {
   const reduced = !!useReducedMotion()
@@ -102,56 +101,55 @@ export function Hero({ registryBase }: { registryBase: string }) {
     <MotionConfig reducedMotion="user">
       <section aria-labelledby="hero-heading" className="relative isolate">
         <div aria-hidden className="bg-grid-fade pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem]" />
-        <div className={cn(container, "pt-14 pb-16 sm:pt-24 sm:pb-24")}>
-          <motion.div variants={group} initial="hidden" animate="show" className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <motion.div variants={item}>
-              <Link
-                href="/components/agent-action-approve"
-                className="group inline-flex h-7 items-center gap-2 rounded-full border bg-background/70 pr-2.5 pl-1 text-xs text-muted-foreground outline-none backdrop-blur transition-colors hover:border-border-strong hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        <div className={cn(container, "pt-10 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24")}>
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(19rem,0.78fr)_minmax(0,1.22fr)] lg:gap-10 xl:gap-16">
+            <motion.div variants={group} initial="hidden" animate="show" className="flex max-w-xl flex-col items-start text-left">
+              <motion.div variants={item}>
+                <Link
+                  href="/components/agent-action-approve"
+                  className="group inline-flex h-7 items-center gap-2 rounded-full border bg-background/70 pr-2.5 pl-1 text-xs text-muted-foreground outline-none backdrop-blur transition-colors hover:border-border-strong hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                >
+                  <span className="rounded-full bg-brand px-2 py-0.5 text-[10px] font-semibold tracking-wide text-brand-foreground uppercase">New</span>
+                  AI agent safety components
+                  <ArrowRight aria-hidden className="size-3 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                </Link>
+              </motion.div>
+              <motion.h1
+                variants={item}
+                id="hero-heading"
+                className="mt-6 text-[2.6rem] leading-[1.03] font-semibold tracking-[-0.05em] text-balance sm:text-6xl lg:text-[3.8rem] xl:text-[4.25rem]"
               >
-                <span className="rounded-full bg-brand px-2 py-0.5 text-[10px] font-semibold tracking-wide text-brand-foreground uppercase">New</span>
-                AI agent safety components
-                <ArrowRight aria-hidden className="size-3 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
-              </Link>
+                {TAGLINE}
+              </motion.h1>
+              <motion.p variants={item} className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
+                Copy-paste React components that catch costly mistakes while there&apos;s still time to fix them.
+              </motion.p>
+              <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+                <Link href="/components" className={buttonPrimary}>
+                  Explore components <ArrowRight aria-hidden />
+                </Link>
+              </motion.div>
+              <motion.div variants={item} className="mt-3 w-full max-w-[36rem]">
+                <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
+              </motion.div>
+              <motion.p variants={item} className="mt-3 font-mono text-[11.5px] text-muted-foreground">
+                Needs {COMPAT}.{" "}
+                <Link href="/docs" className="underline decoration-border underline-offset-4 outline-none hover:text-foreground hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
+                  Setup guide
+                </Link>
+              </motion.p>
             </motion.div>
-            <motion.h1
-              variants={item}
-              id="hero-heading"
-              className="mt-6 text-[2.5rem] leading-[1.04] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[4.25rem]"
-            >
-              {TAGLINE}
-            </motion.h1>
-            <motion.p variants={item} className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
-              Copy-paste React components that catch wrong amounts, leaked secrets, typo&apos;d emails and accidental deletes, before they ship.
-            </motion.p>
-            <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
-              <Link href="/components" className={buttonPrimary}>
-                Browse components <ArrowRight aria-hidden />
-              </Link>
-              <InstallCommand
-                registryBase={registryBase}
-                name="amount-input"
-                className="min-h-10 w-full min-w-0 rounded-lg py-1 sm:w-[34rem] [&_button]:h-7 [&_button]:rounded-md"
-              />
-            </motion.div>
-            <motion.p variants={item} className="mt-3 font-mono text-[11.5px] text-muted-foreground">
-              Needs {COMPAT}.{" "}
-              <Link href="/docs" className="underline decoration-border underline-offset-4 outline-none hover:text-foreground hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
-                Setup guide
-              </Link>
-            </motion.p>
-          </motion.div>
-
-          <div className="relative mt-14 sm:mt-20">
-            <div aria-hidden className="glow-brand pointer-events-none absolute -top-24 left-1/2 -z-10 h-64 w-[min(56rem,100%)] -translate-x-1/2 opacity-60 blur-2xl dark:opacity-40" />
-            <FloatingSignals />
-            <motion.div
-              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.3 }}
-            >
-              <HeroPreview />
-            </motion.div>
+            <div className="relative min-w-0 lg:py-16">
+              <div aria-hidden className="glow-brand pointer-events-none absolute -inset-10 -z-10 opacity-50 blur-3xl dark:opacity-35" />
+              <FloatingSignals />
+              <motion.div
+                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease, delay: 0.3 }}
+              >
+                <HeroPreview className="relative z-0" />
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

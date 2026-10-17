@@ -7,24 +7,25 @@ import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
-import { AgentScreen, DangerZoneScreen, PaymentsScreen, SignUpScreen } from "./hero-screens"
+import { AmountScreen, EmailScreen, ExpiryScreen, PasswordScreen, PhoneScreen } from "./hero-screens"
 
 const TABS = [
-  { id: "payments", label: "Payments", path: "acme.app/pay/ravi", uses: ["amount-input", "duplicate-payment-guard"], Screen: PaymentsScreen },
-  { id: "signup", label: "Sign-up", path: "acme.app/signup", uses: ["email-input", "phone-input", "password-input", "safe-submit"], Screen: SignUpScreen },
-  { id: "danger", label: "Danger zone", path: "acme.app/settings/danger", uses: ["account-deletion-readback"], Screen: DangerZoneScreen },
-  { id: "agents", label: "AI agents", path: "acme.app/agent", uses: ["agent-action-approve"], Screen: AgentScreen },
+  { id: "amount", label: "Amount", path: "acme.app/checkout", uses: ["amount-input"], Screen: AmountScreen },
+  { id: "email", label: "Email", path: "acme.app/account", uses: ["email-input"], Screen: EmailScreen },
+  { id: "password", label: "Password", path: "acme.app/sign-in", uses: ["password-input"], Screen: PasswordScreen },
+  { id: "phone", label: "Phone", path: "acme.app/profile", uses: ["phone-input"], Screen: PhoneScreen },
+  { id: "expiry", label: "Expiry", path: "acme.app/billing", uses: ["card-expiry-input"], Screen: ExpiryScreen },
 ] as const
 
 type TabId = (typeof TABS)[number]["id"]
 
 /**
- * The hero's product window: a framed browser with four tabs, each a small
+ * The hero's product window: a framed browser with five tabs, each a small
  * screen built from real registry components with a mistake already in it.
  * A sliding pill marks the active tab; arrow keys move between tabs.
  */
 export function HeroPreview({ className }: { className?: string }) {
-  const [active, setActive] = React.useState<TabId>("payments")
+  const [active, setActive] = React.useState<TabId>("amount")
   const tabRefs = React.useRef<Record<string, HTMLButtonElement | null>>({})
   const baseId = React.useId()
   const tab = TABS.find((t) => t.id === active) ?? TABS[0]
@@ -105,7 +106,7 @@ export function HeroPreview({ className }: { className?: string }) {
           role="tabpanel"
           id={`${baseId}-panel`}
           aria-labelledby={`${baseId}-tab-${active}`}
-          className="ink-amber bg-dots relative flex justify-center bg-surface px-3 py-8 sm:min-h-[37rem] sm:px-8 sm:py-12"
+          className="ink-amber bg-dots relative flex justify-center bg-surface px-3 py-6 sm:min-h-[31rem] sm:px-6 sm:py-8"
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
