@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-bollard-field",
+  "title": "useBollardField",
+  "description": "Library-agnostic React field validation state for Bollard, shadcn/ui, or custom controls. Supports sync and async validation without rendering or styling a component.",
+  "files": [
+    {
+      "path": "registry/default/use-bollard-field/use-bollard-field.ts",
+      "content": "// Bollard UI — use-bollard-field · MIT licence · https://bollard-ui.vercel.app/components/use-bollard-field\nimport * as React from \"react\"\n\n/** Return a message when a value is invalid, or nothing when it is valid. */\nexport type BollardValidator<T> = (value: T) => string | undefined | Promise<string | undefined>\n\nexport interface UseBollardFieldOptions<T> {\n  /** The field's initial value. */\n  initialValue: T\n  /** Your validation logic. Sync functions and async checks are both supported. */\n  validate: BollardValidator<T>\n}\n\nexport interface BollardField<T> {\n  value: T\n  /** Connect this to a control's onValueChange, onChange, or equivalent callback. */\n  setValue: (value: T) => void\n  /** Validate on blur and reveal the inline error. */\n  onBlur: () => void\n  error: string | undefined\n  invalid: boolean\n  isValidating: boolean\n  errorId: string\n  /** Spread onto the control to connect its accessible error state. */\n  ariaProps: { \"aria-invalid\": true | undefined; \"aria-describedby\": string | undefined }\n  /** Set a server-side error; it clears when the user edits the value. */\n  setError: (message: string) => void\n  clearError: () => void\n  /** Restore the initial value, or provide a new one. */\n  reset: (value?: T) => void\n  /** Run validation immediately. Resolves true if valid. */\n  validate: () => Promise<boolean>\n}\n\n/** Normalize custom sync/async validation to one promise-based API. */\nexport async function runBollardValidation<T>(validator: BollardValidator<T>, value: T) {\n  const message = await validator(value)\n  return typeof message === \"string\" && message.trim() ? message : undefined\n}\n\n/**\n * Validation state for any React control. Bollard UI controls, shadcn/ui\n * controls and custom controls can all connect through `value`, `setValue`\n * and `ariaProps`; this hook renders no UI and has no styling dependency.\n */\nexport function useBollardField<T>({ initialValue, validate }: UseBollardFieldOptions<T>): BollardField<T> {\n  const [value, setValueState] = React.useState(initialValue)\n  const [error, setErrorState] = React.useState<string>()\n  const [touched, setTouched] = React.useState(false)\n  const [isValidating, setIsValidating] = React.useState(false)\n  const validateRef = React.useRef(validate)\n  const valueRef = React.useRef(value)\n  const requestId = React.useRef(0)\n  const id = React.useId()\n  const errorId = `bollard-${id.replace(/:/g, \"\")}-error`\n\n  React.useEffect(() => {\n    validateRef.current = validate\n  }, [validate])\n\n  React.useEffect(() => {\n    valueRef.current = value\n  }, [value])\n\n  const validateValue = React.useCallback(async (nextValue: T) => {\n    const currentRequest = ++requestId.current\n    setIsValidating(true)\n    try {\n      const message = await runBollardValidation(validateRef.current, nextValue)\n      if (currentRequest === requestId.current) setErrorState(message)\n      return message\n    } catch {\n      const message = \"Unable to validate this value. Try again.\"\n      if (currentRequest === requestId.current) setErrorState(message)\n      return message\n    } finally {\n      if (currentRequest === requestId.current) setIsValidating(false)\n    }\n  }, [])\n\n  const setValue = React.useCallback((nextValue: T) => {\n    requestId.current += 1\n    valueRef.current = nextValue\n    setValueState(nextValue)\n    // A server/previous error shouldn't stick after the user changes the value.\n    setErrorState(undefined)\n    if (touched) void validateValue(nextValue)\n  }, [touched, validateValue])\n\n  const onBlur = React.useCallback(() => {\n    setTouched(true)\n    void validateValue(valueRef.current)\n  }, [validateValue])\n\n  const setError = React.useCallback((message: string) => {\n    requestId.current += 1\n    setIsValidating(false)\n    setErrorState(message)\n  }, [])\n\n  const clearError = React.useCallback(() => {\n    requestId.current += 1\n    setIsValidating(false)\n    setErrorState(undefined)\n  }, [])\n\n  const reset = React.useCallback((nextValue: T = initialValue) => {\n    requestId.current += 1\n    valueRef.current = nextValue\n    setValueState(nextValue)\n    setErrorState(undefined)\n    setTouched(false)\n    setIsValidating(false)\n  }, [initialValue])\n\n  const invalid = Boolean(error)\n  return {\n    value,\n    setValue,\n    onBlur,\n    error,\n    invalid,\n    isValidating,\n    errorId,\n    ariaProps: { \"aria-invalid\": invalid || undefined, \"aria-describedby\": invalid ? errorId : undefined },\n    setError,\n    clearError,\n    reset,\n    validate: async () => !(await validateValue(valueRef.current)),\n  }\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "meta": {
+    "aliases": [
+      "useBollardField",
+      "shadcn validation",
+      "react field validation",
+      "form validation hook",
+      "async validation",
+      "field error",
+      "headless validation"
+    ],
+    "flows": [
+      "forms",
+      "signup-login"
+    ],
+    "fields": [],
+    "summary": "Add touched, async-safe validation state and accessible error props to any React control without changing UI libraries.",
+    "catches": [
+      "Validation coupled to a specific input component or UI library",
+      "Async responses overwriting the result for a newer value",
+      "Inline errors not connected to controls with aria-describedby",
+      "Server errors that remain visible after the user edits the field"
+    ],
+    "limits": [
+      "You provide the validator and render the error message yourself",
+      "This hook manages one field; it does not replace form submission or schema validation",
+      "Validation runs on blur, then again after edits; call validate() for submit-time checks"
+    ],
+    "a11y": [
+      "ariaProps connects the control to the error ID and marks invalid state",
+      "Render the error with id={field.errorId} and role=alert or aria-live=polite",
+      "No focus movement or UI is imposed; the consuming form chooses its summary behavior"
+    ]
+  },
+  "categories": [
+    "More"
+  ],
+  "type": "registry:hook"
+}

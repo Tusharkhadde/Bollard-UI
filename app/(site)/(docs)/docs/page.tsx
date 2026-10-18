@@ -22,6 +22,7 @@ const sections = [
   { id: "cli", label: "Add with the CLI" },
   { id: "manual", label: "Add by hand" },
   { id: "usage", label: "Import and use" },
+  { id: "headless-validation", label: "Headless validation" },
   { id: "aliases", label: "Custom aliases" },
   { id: "updating", label: "Updating a component" },
   { id: "nextjs", label: "Next.js" },
@@ -35,6 +36,30 @@ const usage = `import { AmountInput } from "@/components/ui/amount-input"
 
 export function RentField() {
   return <AmountInput label="Monthly rent" locale="en-IN" currency="INR" typical={24000} />
+}`
+
+const headlessUsage = `import { useBollardField } from "@/hooks/use-bollard-field"
+import { Input } from "@/components/ui/input"
+
+export function EmailField() {
+  const email = useBollardField({
+    initialValue: "",
+    validate: (value) => /.+@.+\\..+/.test(value) ? undefined : "Enter a valid email address.",
+  })
+
+  return (
+    <div className="space-y-2">
+      <label htmlFor="email">Email</label>
+      <Input
+        id="email"
+        value={email.value}
+        onChange={(event) => email.setValue(event.target.value)}
+        onBlur={email.onBlur}
+        {...email.ariaProps}
+      />
+      {email.error && <p id={email.errorId} role="alert">{email.error}</p>}
+    </div>
+  )
 }`
 
 const tree = `components/
@@ -148,6 +173,30 @@ export default function GettingStartedPage() {
             Value-holding components work controlled (<code className={inlineCode}>value</code> + <code className={inlineCode}>onValueChange</code>) or
             uncontrolled (<code className={inlineCode}>defaultValue</code>). Most user-facing strings are props with English defaults; the Props table on each
             page lists them.
+          </p>
+        </Prose>
+      </DocSection>
+
+      <DocSection id="headless-validation" title="Headless validation">
+        <Prose>
+          <p>
+            Want to keep your existing controls? Add the optional <code className={inlineCode}>useBollardField</code> hook. It owns field value,
+            touched/error state and async-safe validation; you keep the markup, styles and submit flow. It has no dependency on shadcn components or
+            Bollard&apos;s styled controls.
+          </p>
+        </Prose>
+        <PackageCommand kind="add" args={`${registryBase}use-bollard-field.json`} label="Copy hook install command" />
+        <CodeBlock lineNumbers={false} files={[code("email-field.tsx", headlessUsage)]} />
+        <Prose>
+          <p>
+            For custom controls such as Select, Date Picker or a Bollard field, connect its value callback to <code className={inlineCode}>setValue</code>.
+            Spread <code className={inlineCode}>ariaProps</code> on the control and render the error using <code className={inlineCode}>errorId</code>.
+            Validation runs on blur, then after edits; call <code className={inlineCode}>validate()</code> when you need an immediate submit-time check.
+            Use <code className={inlineCode}>setError()</code> for a server response and <code className={inlineCode}>reset()</code> after a successful save.
+          </p>
+          <p>
+            This hook is a small field primitive, not a replacement for form or schema libraries. Keep server-side validation authoritative. The existing{" "}
+            <Link className={proseLink} href="/components/error-summary">Error Summary</Link> remains available for submit-time summaries and DOM-registered forms.
           </p>
         </Prose>
       </DocSection>

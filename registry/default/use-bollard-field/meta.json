@@ -1,0 +1,25 @@
+{
+  "title": "useBollardField",
+  "description": "Library-agnostic React field validation state for Bollard, shadcn/ui, or custom controls. Supports sync and async validation without rendering or styling a component.",
+  "registryType": "registry:hook",
+  "summary": "Add touched, async-safe validation state and accessible error props to any React control without changing UI libraries.",
+  "catches": [
+    "Validation coupled to a specific input component or UI library",
+    "Async responses overwriting the result for a newer value",
+    "Inline errors not connected to controls with aria-describedby",
+    "Server errors that remain visible after the user edits the field"
+  ],
+  "limits": [
+    "You provide the validator and render the error message yourself",
+    "This hook manages one field; it does not replace form submission or schema validation",
+    "Validation runs on blur, then again after edits; call validate() for submit-time checks"
+  ],
+  "a11y": [
+    "ariaProps connects the control to the error ID and marks invalid state",
+    "Render the error with id={field.errorId} and role=alert or aria-live=polite",
+    "No focus movement or UI is imposed; the consuming form chooses its summary behavior"
+  ],
+  "aliases": ["useBollardField", "shadcn validation", "react field validation", "form validation hook", "async validation", "field error", "headless validation"],
+  "flows": ["forms", "signup-login"],
+  "fields": []
+}

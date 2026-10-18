@@ -115,13 +115,14 @@ function docsOf(name, meta) {
 const props = {}
 const items = names.map((name) => {
   const meta = JSON.parse(fs.readFileSync(path.join(dir, name, "meta.json"), "utf8"))
+  const type = meta.registryType ?? "registry:ui"
   const files = fs
     .readdirSync(path.join(dir, name))
     .filter((file) => /\.(tsx|ts)$/.test(file))
-    .map((file) => ({ path: `registry/default/${name}/${file}`, type: "registry:ui" }))
+    .map((file) => ({ path: `registry/default/${name}/${file}`, type }))
   const item = {
     name,
-    type: "registry:ui",
+    type,
     title: meta.title,
     description: meta.description,
     categories: [categoryOf(name)],
