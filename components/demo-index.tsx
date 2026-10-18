@@ -341,6 +341,7 @@ import { Demo as GapAwareLineDemo } from "@/components/demos/gap-aware-line"
 import { Demo as FairRankDemo } from "@/components/demos/fair-rank"
 import { Demo as EtaRangeDemo } from "@/components/demos/eta-range"
 import { Demo as PaletteGuardDemo } from "@/components/demos/palette-guard"
+import { Demo as UseBollardFieldDemo } from "@/components/demos/use-bollard-field"
 
 export interface DemoEntry {
   name: string
@@ -691,4 +692,5 @@ export const demos: DemoEntry[] = [
   { name: "fair-rank", title: "Fair Rank", description: "Ranks ties the standard competition way (1, T-2, T-2, 4) at the precision shown so equal-looking scores share a rank, shows movement since last period, and sets aside entries below a minimum sample with the reason and the rank they would have had.", category: "Reading without mistakes", Demo: FairRankDemo },
   { name: "eta-range", title: "ETA Range", description: "Quotes the range covering 90% of deliveries, with a most likely day only when one stands out (\"Thu 15 – Sat 17 Oct, most likely Fri 16\"), counts business days, holidays and the cutoff in the shipper's zone, previews the post-cutoff range and explains when it widened.", category: "Reading without mistakes", Demo: EtaRangeDemo },
   { name: "palette-guard", title: "Palette Guard", description: "Chart palette check that simulates protan, deutan and tritan vision (Machado 2009), flags every pair under a CIEDE2000 threshold, and offers the smallest lightness-only fix that clears all clashes, or patterns and direct labels when no colour change can.", category: "Reading without mistakes", Demo: PaletteGuardDemo },
+  { name: "use-bollard-field", title: "useBollardField", description: "Library-agnostic React field validation state for Bollard, shadcn/ui, or custom controls. Supports sync and async validation without rendering or styling a component.", category: "More", Demo: UseBollardFieldDemo },
 ]

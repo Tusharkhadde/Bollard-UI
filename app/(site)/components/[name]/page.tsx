@@ -14,10 +14,12 @@ import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
 import { cn } from "@/lib/utils"
 
-export const dynamicParams = false
+// Keep the most-used pages pre-rendered; the rest of the catalog is rendered
+// and cached on first request so adding components does not scale build time linearly.
+export const dynamicParams = true
 
 export function generateStaticParams() {
-  return catalog.map((item) => ({ name: item.name }))
+  return catalog.filter((item) => item.essential).map((item) => ({ name: item.name }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ name: string }> }): Promise<Metadata> {

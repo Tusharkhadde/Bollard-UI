@@ -21,7 +21,7 @@ export function Cta({ registryBase }: { registryBase: string }) {
               Put a guard rail where mistakes happen.
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground">
-              Add a component with the shadcn CLI. Its source lands in your repo, MIT licensed and ready for your own changes.
+              Add a ready-made guard with the shadcn CLI, or connect the headless field hook to the controls already in your app.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/components" className={buttonPrimary}>
@@ -37,6 +37,13 @@ export function Cta({ registryBase }: { registryBase: string }) {
                 </Link>
               )}
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Keeping your existing inputs?{" "}
+              <Link href="/components/use-bollard-field" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
+                See the headless integration
+              </Link>
+              .
+            </p>
           </div>
           <div className="min-w-0">
             <InstallCommand registryBase={registryBase} name="type-to-confirm" className="w-full min-w-0 bg-background" />

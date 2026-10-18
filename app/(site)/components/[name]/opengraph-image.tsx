@@ -8,7 +8,7 @@ export const contentType = "image/png"
 export const alt = "A Bollard UI component and the mistake it stops"
 
 export function generateStaticParams() {
-  return catalog.map((item) => ({ name: item.name }))
+  return catalog.filter((item) => item.essential).map((item) => ({ name: item.name }))
 }
 
 /** Per-component card: brand, component name, its "Stops" line, the summary, and where it lives. */

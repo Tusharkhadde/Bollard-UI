@@ -32,12 +32,12 @@ const steps = [
     ),
   },
   {
-    title: "Add it with the CLI",
-    body: "One shadcn command copies the source into your components folder. There is no Bollard UI package to install or update.",
+    title: "Choose your integration",
+    body: "Copy a ready-made guard, or add useBollardField and connect its value, validation and error props to the controls you already use.",
   },
   {
-    title: "It's your code",
-    body: "Plain React and Tailwind on your shadcn theme. Restyle it, rename it, reword every message.",
+    title: "Keep control of the code",
+    body: "The CLI copies source into your project. Your UI library, styling and server rules stay yours.",
   },
 ]
 
@@ -45,8 +45,8 @@ const steps = [
 export function HowItWorks({ registryBase }: { registryBase: string }) {
   return (
     <Section id="how-it-works" labelledBy="how-heading">
-      <SectionHeading id="how-heading" eyebrow="How it works" title="Find it, add it, own it.">
-        Bollard UI works the way shadcn/ui does: you add a component, and it becomes part of your app.
+      <SectionHeading id="how-heading" eyebrow="How it works" title="Keep your UI. Add the guard rail.">
+        Use a complete Bollard component or attach its headless field hook to your existing shadcn, HeroUI or custom React controls.
       </SectionHeading>
       <div className="mt-10 grid min-w-0 gap-10 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)] lg:gap-14">
         <Reveal>

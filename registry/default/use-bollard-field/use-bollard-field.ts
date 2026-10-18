@@ -1,8 +1,15 @@
+"use client"
+
 // Bollard UI — use-bollard-field · MIT licence · https://bollard-ui.vercel.app/components/use-bollard-field
+
 import * as React from "react"
 
-/** Return a message when a value is invalid, or nothing when it is valid. */
-export type BollardValidator<T> = (value: T) => string | undefined | Promise<string | undefined>
+import { createValidationRunner, getBollardAriaProps, type BollardValidator } from "./validation"
+
+export { runBollardValidation } from "./validation"
+export { getBollardAriaProps } from "./validation"
+
+export type { BollardValidator } from "./validation"
 
 export interface UseBollardFieldOptions<T> {
   /** The field's initial value. */
@@ -23,6 +30,8 @@ export interface BollardField<T> {
   errorId: string
   /** Spread onto the control to connect its accessible error state. */
   ariaProps: { "aria-invalid": true | undefined; "aria-describedby": string | undefined }
+  /** Merge existing hint IDs with Bollard's error ID: `ariaPropsFor(hintId)`. */
+  ariaPropsFor: (describedBy?: string) => { "aria-invalid": true | undefined; "aria-describedby": string | undefined }
   /** Set a server-side error; it clears when the user edits the value. */
   setError: (message: string) => void
   clearError: () => void
@@ -30,12 +39,6 @@ export interface BollardField<T> {
   reset: (value?: T) => void
   /** Run validation immediately. Resolves true if valid. */
   validate: () => Promise<boolean>
-}
-
-/** Normalize custom sync/async validation to one promise-based API. */
-export async function runBollardValidation<T>(validator: BollardValidator<T>, value: T) {
-  const message = await validator(value)
-  return typeof message === "string" && message.trim() ? message : undefined
 }
 
 /**
@@ -48,70 +51,56 @@ export function useBollardField<T>({ initialValue, validate }: UseBollardFieldOp
   const [error, setErrorState] = React.useState<string>()
   const [touched, setTouched] = React.useState(false)
   const [isValidating, setIsValidating] = React.useState(false)
-  const validateRef = React.useRef(validate)
   const valueRef = React.useRef(value)
-  const requestId = React.useRef(0)
+  const [runner] = React.useState(() => createValidationRunner(validate, (state) => {
+    if (state.isValidating !== undefined) setIsValidating(state.isValidating)
+    if ("error" in state) setErrorState(state.error)
+  }))
   const id = React.useId()
   const errorId = `bollard-${id.replace(/:/g, "")}-error`
 
   React.useEffect(() => {
-    validateRef.current = validate
-  }, [validate])
+    runner.setValidator(validate)
+  }, [runner, validate])
 
   React.useEffect(() => {
     valueRef.current = value
   }, [value])
 
-  const validateValue = React.useCallback(async (nextValue: T) => {
-    const currentRequest = ++requestId.current
-    setIsValidating(true)
-    try {
-      const message = await runBollardValidation(validateRef.current, nextValue)
-      if (currentRequest === requestId.current) setErrorState(message)
-      return message
-    } catch {
-      const message = "Unable to validate this value. Try again."
-      if (currentRequest === requestId.current) setErrorState(message)
-      return message
-    } finally {
-      if (currentRequest === requestId.current) setIsValidating(false)
-    }
-  }, [])
-
   const setValue = React.useCallback((nextValue: T) => {
-    requestId.current += 1
+    runner.invalidate()
     valueRef.current = nextValue
     setValueState(nextValue)
     // A server/previous error shouldn't stick after the user changes the value.
     setErrorState(undefined)
-    if (touched) void validateValue(nextValue)
-  }, [touched, validateValue])
+    if (touched) void runner.validate(nextValue)
+  }, [runner, touched])
 
   const onBlur = React.useCallback(() => {
     setTouched(true)
-    void validateValue(valueRef.current)
-  }, [validateValue])
+    void runner.validate(valueRef.current)
+  }, [runner])
 
   const setError = React.useCallback((message: string) => {
-    requestId.current += 1
+    runner.invalidate()
     setIsValidating(false)
     setErrorState(message)
-  }, [])
+  }, [runner])
 
   const clearError = React.useCallback(() => {
-    requestId.current += 1
+    runner.invalidate()
     setIsValidating(false)
     setErrorState(undefined)
-  }, [])
+  }, [runner])
 
   const reset = React.useCallback((nextValue: T = initialValue) => {
-    requestId.current += 1
+    runner.invalidate()
     valueRef.current = nextValue
     setValueState(nextValue)
     setErrorState(undefined)
     setTouched(false)
     setIsValidating(false)
-  }, [initialValue])
+  }, [initialValue, runner])
 
   const invalid = Boolean(error)
   return {
@@ -122,10 +111,11 @@ export function useBollardField<T>({ initialValue, validate }: UseBollardFieldOp
     invalid,
     isValidating,
     errorId,
-    ariaProps: { "aria-invalid": invalid || undefined, "aria-describedby": invalid ? errorId : undefined },
+    ariaProps: getBollardAriaProps(errorId, error),
+    ariaPropsFor: (describedBy) => getBollardAriaProps(errorId, error, describedBy),
     setError,
     clearError,
     reset,
-    validate: async () => !(await validateValue(valueRef.current)),
+    validate: async () => !(await runner.validate(valueRef.current)),
   }
 }

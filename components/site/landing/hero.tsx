@@ -122,7 +122,7 @@ export function Hero({ registryBase }: { registryBase: string }) {
                 {TAGLINE}
               </motion.h1>
               <motion.p variants={item} className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
-                Copy-paste React components that catch costly mistakes while there&apos;s still time to fix them.
+                Add a guard rail to your form. Use a ready-made Bollard component, or keep your shadcn, HeroUI, or custom controls and connect them to a headless React hook.
               </motion.p>
               <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
                 <Link href="/components" className={buttonPrimary}>
@@ -131,6 +131,11 @@ export function Hero({ registryBase }: { registryBase: string }) {
               </motion.div>
               <motion.div variants={item} className="mt-3 w-full max-w-[36rem]">
                 <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
+              </motion.div>
+              <motion.div variants={item} className="mt-3 text-sm">
+                <Link href="/components/use-bollard-field" className="rounded-sm text-foreground underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
+                  Keep your controls. Add field validation.
+                </Link>
               </motion.div>
               <motion.p variants={item} className="mt-3 font-mono text-[11.5px] text-muted-foreground">
                 Needs {COMPAT}.{" "}

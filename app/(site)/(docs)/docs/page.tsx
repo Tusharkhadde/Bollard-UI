@@ -91,6 +91,20 @@ const tsPaths = `// tsconfig.json and tsconfig.app.json
   }
 }`
 
+const serverMapping = [
+  "if (!(await email.validate())) return",
+  "const result = await saveProfile({ email: email.value })",
+  "const message = result.fieldErrors?.email?.[0] ?? result.message",
+  "if (message) email.setError(message)",
+].join("\n")
+
+const zodUsage = [
+  "validate: (value) => {",
+  "  const result = emailSchema.safeParse(value)",
+  "  return result.success ? undefined : result.error.issues[0]?.message",
+  "}",
+].join("\n")
+
 export default function GettingStartedPage() {
   const url = `${registryBase}amount-input.json`
   return (
@@ -177,26 +191,44 @@ export default function GettingStartedPage() {
         </Prose>
       </DocSection>
 
-      <DocSection id="headless-validation" title="Headless validation">
+      <DocSection id="headless-validation" title="Keep your existing controls">
         <Prose>
           <p>
             Want to keep your existing controls? Add the optional <code className={inlineCode}>useBollardField</code> hook. It owns field value,
-            touched/error state and async-safe validation; you keep the markup, styles and submit flow. It has no dependency on shadcn components or
-            Bollard&apos;s styled controls.
+            touched/error state and async-safe validation; you keep the markup, styles and submit flow. Its only runtime dependency is React. The registry
+            installs it in your configured <code className={inlineCode}>hooks</code> folder.
           </p>
         </Prose>
         <PackageCommand kind="add" args={`${registryBase}use-bollard-field.json`} label="Copy hook install command" />
         <CodeBlock lineNumbers={false} files={[code("email-field.tsx", headlessUsage)]} />
         <Prose>
           <p>
-            For custom controls such as Select, Date Picker or a Bollard field, connect its value callback to <code className={inlineCode}>setValue</code>.
-            Spread <code className={inlineCode}>ariaProps</code> on the control and render the error using <code className={inlineCode}>errorId</code>.
-            Validation runs on blur, then after edits; call <code className={inlineCode}>validate()</code> when you need an immediate submit-time check.
-            Use <code className={inlineCode}>setError()</code> for a server response and <code className={inlineCode}>reset()</code> after a successful save.
+            Connect a Select, Date Picker, Checkbox, HeroUI control or custom component through the value callback it already exposes. Text inputs use
+            <code className={inlineCode}>onChange</code>; value-based controls use <code className={inlineCode}>onValueChange</code>; checkboxes use{" "}
+            <code className={inlineCode}>checked</code> and <code className={inlineCode}>onCheckedChange</code>. The value type is inferred, including
+            strings, booleans and custom objects.
           </p>
           <p>
-            This hook is a small field primitive, not a replacement for form or schema libraries. Keep server-side validation authoritative. The existing{" "}
-            <Link className={proseLink} href="/components/error-summary">Error Summary</Link> remains available for submit-time summaries and DOM-registered forms.
+            Keep the host control&apos;s appearance and behavior. Pass its invalid state and the hook&apos;s error ID through{" "}
+            <code className={inlineCode}>aria-invalid</code> and <code className={inlineCode}>aria-describedby</code>, then render the message beside it with
+            <code className={inlineCode}>role=&quot;alert&quot;</code> or a polite live region.
+          </p>
+          <p>
+            Validation runs on blur and after edits. Call <code className={inlineCode}>validate()</code> before submitting. Map a field error returned by your
+            server with <code className={inlineCode}>setError()</code>; editing clears that server error so the user can recover. The server must still
+            validate and authorize every request.
+          </p>
+          <CodeBlock lineNumbers={false} files={[code("server-errors.ts", serverMapping)]} />
+          <p>
+            If a schema library owns your rules, delegate to it from <code className={inlineCode}>validate</code> rather than duplicating them. With Zod, call
+            <code className={inlineCode}>safeParse(value)</code> and return the first issue message. When React Hook Form already owns the field value, keep it
+            as the single state owner: use <code className={inlineCode}>Controller</code> and <code className={inlineCode}>fieldState.error</code> for the
+            accessible state instead of adding this hook as a second owner.
+          </p>
+          <CodeBlock lineNumbers={false} files={[code("zod-validation.ts", zodUsage)]} />
+          <p>
+            The existing <Link className={proseLink} href="/components/error-summary">Error Summary</Link> and{" "}
+            <code className={inlineCode}>useFormErrors</code> remain available for DOM-registered forms.
           </p>
         </Prose>
       </DocSection>
