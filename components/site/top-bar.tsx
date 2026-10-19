@@ -27,6 +27,7 @@ export function TopBar({ env }: { env?: string }) {
   const nav = [
     { href: "/docs", label: "Docs", active: pathname === "/docs" },
     { href: "/components", label: "Components", active: pathname.startsWith("/components") },
+    { href: "/guides", label: "Guides", active: pathname.startsWith("/guides") },
     { href: "/start-here", label: "Start here", active: pathname === "/start-here" },
     { href: "/#flows", label: "Flows", active: false },
   ]

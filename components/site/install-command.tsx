@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { trackInstallCopy } from "@/lib/analytics"
 import { CopyConfirm } from "@/registry/default/copy-confirm/copy-confirm"
 
 const asIs = (value: string) => value
@@ -56,6 +57,7 @@ export function InstallCommand({
         value={command}
         label="Copy install command"
         toPlain={asIs}
+        onCopy={() => trackInstallCopy({ component: name, surface: "install-command" })}
         className={cn("h-9 shrink-0 rounded-lg px-3 font-sans text-xs", tone === "inverted" && "border-white/15 bg-white/10 text-white hover:bg-white/20")}
       >
         Copy

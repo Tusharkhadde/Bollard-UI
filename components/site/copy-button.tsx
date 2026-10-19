@@ -11,11 +11,13 @@ export function CopyButton({
   label,
   children,
   className,
+  onCopy,
 }: {
   value: string
   label: string
   children?: React.ReactNode
   className?: string
+  onCopy?: () => void
 }) {
   const [state, setState] = React.useState<"idle" | "copied" | "failed">("idle")
   React.useEffect(() => {
@@ -30,6 +32,7 @@ export function CopyButton({
     try {
       await navigator.clipboard.writeText(value)
       setState("copied")
+      onCopy?.()
     } catch {
       setState("failed")
     }

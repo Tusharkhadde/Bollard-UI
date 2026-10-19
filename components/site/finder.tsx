@@ -8,6 +8,7 @@ import { runFinder, isFiltering } from "@/lib/finder"
 import { FIELDS, FLOWS, KITS, flowLabel, flowShort, kitFor, type Kit } from "@/lib/kits"
 import type { SearchItem } from "@/lib/search"
 import { cn } from "@/lib/utils"
+import { trackInstallCopy } from "@/lib/analytics"
 import { CopyButton } from "./copy-button"
 import { useSite, type CategorySummary } from "./site-shell"
 
@@ -503,6 +504,7 @@ export function IncidentCard({
       <CopyButton
         value={`npx shadcn@latest add ${registryBase}${item.name}.json`}
         label={`Copy install command for ${item.title}`}
+        onCopy={() => trackInstallCopy({ component: item.name, surface: "component-finder" })}
         className="absolute top-3 right-3 size-7 opacity-100 transition-opacity pointer-fine:opacity-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-hover:opacity-100"
       />
     </div>
@@ -580,7 +582,7 @@ function KitCard({ kit, byName, registryBase }: { kit: Kit; byName: Map<string, 
             <code className="min-w-0 flex-1 truncate text-muted-foreground" title={command}>
               npx shadcn@latest add <span className="text-foreground">{members.length} components</span>
             </code>
-            <CopyButton value={command} label={`Copy install command for all ${members.length} components in the ${kit.title}`} className="h-8 shrink-0 px-3 font-sans">
+            <CopyButton value={command} label={`Copy install command for all ${members.length} components in the ${kit.title}`} onCopy={() => trackInstallCopy({ components: members, surface: "flow-kit" })} className="h-8 shrink-0 px-3 font-sans">
               Copy install-all
             </CopyButton>
           </div>

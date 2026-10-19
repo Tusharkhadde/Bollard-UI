@@ -11,6 +11,19 @@ const title = "Bollard UI: React guardrails for forms and critical actions"
 const description =
   "Copy-paste React guardrails for shadcn/ui, plus a headless validation hook for any React controls. Catch invalid input and risky actions. MIT licensed; edit the source in your app."
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Bollard UI",
+  url: SITE_URL,
+  description,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/components?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -44,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body className="min-h-dvh font-sans">{children}</body>
       <Script

@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { CopyConfirm } from "@/registry/default/copy-confirm/copy-confirm"
+import { registryItemsFromArgs, trackInstallCopy } from "@/lib/analytics"
 import { DocsTabs } from "./docs-tabs"
 
 const MANAGERS = ["pnpm", "npm", "yarn", "bun"] as const
@@ -62,6 +63,7 @@ function commandFor(manager: Manager, kind: "add" | "install" | "shadcn", args: 
 export function PackageCommand({ kind, args, label }: { kind: "add" | "install" | "shadcn"; args: string; label?: string }) {
   const [manager, setManager] = useManager()
   const command = commandFor(manager, kind, args)
+  const registryItems = registryItemsFromArgs(args)
   return (
     <div className="rounded-xl border bg-surface" data-package-command={kind}>
       <DocsTabs
@@ -75,6 +77,7 @@ export function PackageCommand({ kind, args, label }: { kind: "add" | "install" 
             value={command}
             label={label ?? "Copy command"}
             toPlain={asIs}
+            onCopy={() => registryItems.length > 0 && trackInstallCopy({ components: registryItems, surface: "package-command", packageManager: manager })}
             className="size-7 border-transparent bg-transparent text-muted-foreground shadow-none hover:bg-accent hover:text-foreground [&_svg]:size-3.5"
           />
         )}

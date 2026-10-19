@@ -16,6 +16,7 @@ const COLLAPSE_KEY = "bollard-ui-sidebar-collapsed"
 const DOC_PAGES = [
   { href: "/docs", label: "Getting started" },
   { href: "/start-here", label: "Start here" },
+  { href: "/guides", label: "Guides" },
   { href: "/changelog", label: "Changelog" },
   { href: "/quality", label: "Quality" },
   { href: "/security", label: "Security" },
@@ -150,7 +151,7 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
           <div className="mb-6">
             <p className={groupLabel}>Get started</p>
             <ul className="space-y-px">
-              {DOC_PAGES.slice(0, 2).map((page) => (
+              {DOC_PAGES.slice(0, 3).map((page) => (
                 <li key={page.href}>
                   <Link href={page.href} aria-current={pathname === page.href ? "page" : undefined} className={cn(itemBase, pathname === page.href && itemActive)}>
                     <span className="min-w-0 flex-1 truncate">{page.label}</span>
@@ -256,7 +257,7 @@ export function Sidebar({ className, autoFocusFilter = false }: { className?: st
           <div className="mt-2 mb-5 border-t pt-5">
             <p className={groupLabel}>Project</p>
             <ul className="space-y-px">
-              {DOC_PAGES.slice(2).map((page) => (
+              {DOC_PAGES.slice(3).map((page) => (
                 <li key={page.href}>
                   <Link href={page.href} aria-current={pathname === page.href ? "page" : undefined} className={cn(itemBase, pathname === page.href && itemActive)}>
                     <span className="min-w-0 flex-1 truncate">{page.label}</span>
