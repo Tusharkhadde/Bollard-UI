@@ -9,7 +9,11 @@ import { transform } from "esbuild"
 // project's Node 20 baseline without requiring a TS runtime or a new dependency.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const bundlePath = path.join(path.dirname(fileURLToPath(import.meta.url)), `.validation-${process.pid}.mjs`)
+const errorSource = fs.readFileSync(path.join(root, "registry/default/use-bollard-field/error.ts"), "utf8")
+const errorCompiled = await transform(errorSource, { loader: "ts", format: "esm", target: "node20" })
+const errorUrl = `data:text/javascript;base64,${Buffer.from(errorCompiled.code).toString("base64")}`
 const source = fs.readFileSync(path.join(root, "registry/default/use-bollard-field/validation.ts"), "utf8")
+  .replace('from "./error"', `from "${errorUrl}"`)
 const compiled = await transform(source, { loader: "ts", format: "esm", target: "node20" })
 fs.writeFileSync(bundlePath, compiled.code)
 const validation = await import(`${pathToFileURL(bundlePath).href}?${Date.now()}`)
@@ -78,6 +82,34 @@ test("turns a thrown async validator into a recoverable field error", async () =
 
   assert.equal(await runner.validate("value"), "Unable to validate this value. Try again.")
   assert.deepEqual(states.at(-1), { error: "Unable to validate this value. Try again.", isValidating: false })
+})
+
+test("reports only current thrown validation failures through the typed callback", async () => {
+  const errors = []
+  const states = []
+  const runner = createValidationRunner(async () => { throw new Error("private server detail") }, (state) => states.push(state), (error) => errors.push(error))
+
+  assert.equal(await runner.validate("value"), "Unable to validate this value. Try again.")
+  assert.equal(errors.length, 1)
+  assert.equal(errors[0].name, "BollardError")
+  assert.equal(errors[0].code, "VALIDATION_FAILED")
+  assert.equal(errors[0].message, "Field validation failed. Try again.")
+  assert.equal(errors[0].cause.message, "private server detail")
+  assert.deepEqual(states.at(-1), { error: "Unable to validate this value. Try again.", isValidating: false })
+})
+
+test("ignores failures from obsolete validations and isolates callback exceptions", async () => {
+  let reject
+  const errors = []
+  const runner = createValidationRunner(() => new Promise((_, done) => { reject = done }), () => {}, (error) => errors.push(error))
+  const pending = runner.validate("old")
+  runner.invalidate()
+  reject(new Error("stale"))
+  await pending
+  assert.equal(errors.length, 0)
+
+  const isolated = createValidationRunner(async () => { throw new Error("offline") }, () => {}, () => { throw new Error("logger failed") })
+  assert.equal(await isolated.validate("value"), "Unable to validate this value. Try again.")
 })
 
 test("preserves existing described-by IDs and adds the field error ID", () => {

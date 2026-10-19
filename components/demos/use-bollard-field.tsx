@@ -8,9 +8,11 @@ const fieldClass =
   "h-10 w-full rounded-md border bg-background px-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive"
 
 export function Demo() {
+  const [validationFailure, setValidationFailure] = React.useState<string>()
   const email = useBollardField({
     initialValue: "priya@acme",
     validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? undefined : "Enter a complete email address, such as priya@example.com.",
+    onError: (error) => setValidationFailure(error.code),
   })
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +29,10 @@ export function Demo() {
           type="email"
           autoComplete="email"
           value={email.value}
-          onChange={(event) => email.setValue(event.target.value)}
+          onChange={(event) => {
+            setValidationFailure(undefined)
+            email.setValue(event.target.value)
+          }}
           onBlur={email.onBlur}
           {...email.ariaProps}
           className={fieldClass}
@@ -45,6 +50,7 @@ export function Demo() {
           {email.isValidating ? "Checking…" : "Continue"}
         </button>
       </div>
+      {validationFailure && <p role="status" className="text-xs text-muted-foreground">Check failed ({validationFailure}). The field remains editable; retry validation after recovery.</p>}
       <p className="border-t pt-3 text-xs text-muted-foreground">The input stays yours. Bollard supplies field state and accessible error props.</p>
     </form>
   )

@@ -1,3 +1,5 @@
+import { toBollardError, type BollardError } from "./error"
+
 /** Return a message when a value is invalid, or nothing when it is valid. */
 export type BollardValidator<T> = (value: T) => string | undefined | Promise<string | undefined>
 
@@ -27,8 +29,13 @@ export async function runBollardValidation<T>(validator: BollardValidator<T>, va
  * newest request may publish state; invalidating a request prevents stale
  * results from restoring an error after the user edits or resets the field.
  */
-export function createValidationRunner<T>(validator: BollardValidator<T>, onState: (state: ValidationStateUpdate) => void) {
+export function createValidationRunner<T>(
+  validator: BollardValidator<T>,
+  onState: (state: ValidationStateUpdate) => void,
+  onError?: (error: BollardError) => void,
+) {
   let currentValidator = validator
+  let currentOnError = onError
   let requestId = 0
 
   return {
@@ -36,6 +43,9 @@ export function createValidationRunner<T>(validator: BollardValidator<T>, onStat
       currentValidator = next
       requestId += 1
       onState({ isValidating: false })
+    },
+    setOnError(next?: (error: BollardError) => void) {
+      currentOnError = next
     },
     invalidate() {
       requestId += 1
@@ -47,11 +57,19 @@ export function createValidationRunner<T>(validator: BollardValidator<T>, onStat
       let error: string | undefined
       try {
         error = await runBollardValidation(currentValidator, value)
-      } catch {
+      } catch (cause) {
         error = "Unable to validate this value. Try again."
+        if (thisRequest === requestId) {
+          try {
+            currentOnError?.(toBollardError(cause))
+          } catch {
+            // Consumer diagnostics must not break the field's recoverable state.
+          }
+        }
       }
       if (thisRequest === requestId) onState({ error, isValidating: false })
       return error
     },
   }
 }
+

@@ -7,12 +7,14 @@
     "Validation coupled to a specific input component or UI library",
     "Async responses overwriting the result for a newer value",
     "Inline errors not connected to controls with aria-describedby",
-    "Server errors that remain visible after the user edits the field"
+    "Server errors that remain visible after the user edits the field",
+    "Thrown async validator failures silently hidden from application-level logging"
   ],
   "limits": [
     "You provide the validator and render the error message yourself",
     "This hook manages one field; it does not replace form submission or schema validation",
-    "Validation runs on blur, then again after edits; call validate() for submit-time checks"
+    "Validation runs on blur, then again after edits; call validate() for submit-time checks",
+    "Thrown validator failures keep a safe inline message and optionally notify onError with a typed BollardError"
   ],
   "a11y": [
     "ariaProps connects the control to the error ID and marks invalid state",

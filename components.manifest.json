@@ -46000,6 +46000,7 @@
       ],
       "registryDependencies": [],
       "files": [
+        "registry/default/use-bollard-field/error.ts",
         "registry/default/use-bollard-field/use-bollard-field.ts",
         "registry/default/use-bollard-field/validation.ts"
       ],

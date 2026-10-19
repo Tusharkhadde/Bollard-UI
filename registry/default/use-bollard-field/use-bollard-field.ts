@@ -5,17 +5,22 @@
 import * as React from "react"
 
 import { createValidationRunner, getBollardAriaProps, type BollardValidator } from "./validation"
+import type { BollardError } from "./error"
 
 export { runBollardValidation } from "./validation"
 export { getBollardAriaProps } from "./validation"
+export { BollardError, toBollardError } from "./error"
 
 export type { BollardValidator } from "./validation"
+export type { BollardErrorOptions } from "./error"
 
 export interface UseBollardFieldOptions<T> {
   /** The field's initial value. */
   initialValue: T
   /** Your validation logic. Sync functions and async checks are both supported. */
   validate: BollardValidator<T>
+  /** Observe thrown validator failures (for logging or form-level recovery). */
+  onError?: (error: BollardError) => void
 }
 
 export interface BollardField<T> {
@@ -46,7 +51,7 @@ export interface BollardField<T> {
  * controls and custom controls can all connect through `value`, `setValue`
  * and `ariaProps`; this hook renders no UI and has no styling dependency.
  */
-export function useBollardField<T>({ initialValue, validate }: UseBollardFieldOptions<T>): BollardField<T> {
+export function useBollardField<T>({ initialValue, validate, onError }: UseBollardFieldOptions<T>): BollardField<T> {
   const [value, setValueState] = React.useState(initialValue)
   const [error, setErrorState] = React.useState<string>()
   const [touched, setTouched] = React.useState(false)
@@ -55,13 +60,17 @@ export function useBollardField<T>({ initialValue, validate }: UseBollardFieldOp
   const [runner] = React.useState(() => createValidationRunner(validate, (state) => {
     if (state.isValidating !== undefined) setIsValidating(state.isValidating)
     if ("error" in state) setErrorState(state.error)
-  }))
+  }, onError))
   const id = React.useId()
   const errorId = `bollard-${id.replace(/:/g, "")}-error`
 
   React.useEffect(() => {
     runner.setValidator(validate)
   }, [runner, validate])
+
+  React.useEffect(() => {
+    runner.setOnError(onError)
+  }, [runner, onError])
 
   React.useEffect(() => {
     valueRef.current = value
