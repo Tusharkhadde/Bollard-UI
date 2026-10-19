@@ -56,6 +56,7 @@ interface RegistryItem {
   files: { path: string }[]
   dependencies?: string[]
   registryDependencies?: string[]
+  type?: string
   meta?: {
     stops?: unknown
     mistakes?: unknown
@@ -157,13 +158,16 @@ export const catalog: CatalogEntry[] = registry.items
     files: item.files.map((file) => file.path),
     dependencies: item.dependencies ?? [],
     registryDependencies: (item.registryDependencies ?? []).map((d) => d.replace(/^.*\/r\/([^/]+)\.json$/, "$1")),
+    integration: item.type === "registry:hook" ? "headless" : "styled",
+    hasDependencies: (item.dependencies ?? []).length > 0,
+    hasA11yGuidance: (list(item.meta?.a11y) ?? []).length > 0,
     ...discovery(item),
     ...pageDocs(item),
   }))
 
 /** The slim list the client needs for the sidebar, the finder and search. */
 export const catalogItems: CatalogItem[] = catalog.map(
-  ({ name, title, description, category, headline, stops, mistakes, aliases, flows, fields, essential }) => ({
+  ({ name, title, description, category, headline, stops, mistakes, aliases, flows, fields, essential, integration, hasDependencies, hasA11yGuidance }) => ({
     name,
     title,
     description,
@@ -175,6 +179,9 @@ export const catalogItems: CatalogItem[] = catalog.map(
     flows,
     fields,
     ...(essential ? { essential } : {}),
+    integration,
+    hasDependencies,
+    hasA11yGuidance,
   }),
 )
 

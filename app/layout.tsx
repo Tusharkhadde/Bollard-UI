@@ -7,9 +7,9 @@ import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
 
-const title = "Bollard UI: build interfaces your users can't break by accident"
+const title = "Bollard UI: React guardrails for forms and critical actions"
 const description =
-  "Copy-paste React components that catch wrong amounts, leaked secrets, typo'd emails and accidental deletes. Built for shadcn/ui. MIT licensed. Source copied into your project."
+  "Copy-paste React guardrails for shadcn/ui, plus a headless validation hook for any React controls. Catch invalid input and risky actions. MIT licensed; edit the source in your app."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

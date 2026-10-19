@@ -37,6 +37,9 @@ jobs:
       - name: Registry is valid
         run: npm run registry:validate
 
+      - name: Unit tests
+        run: npm test
+
       - name: Source headers are stamped
         run: node scripts/stamp-headers.mjs --check
 

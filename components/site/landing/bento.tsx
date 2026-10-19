@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 
+import { CopyButton } from "@/components/site/copy-button"
 import { cn } from "@/lib/utils"
 
 import { LiveDemo, type ShowcaseName } from "./live-demo"
@@ -23,7 +24,7 @@ const cards: { name: ShowcaseName; stage?: string }[] = [
 export type BentoItem = { name: string; title: string; headline: string }
 
 /** Six live components, each with a mistake already in it, captioned with the mistake it stops. */
-export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
+export function Bento({ items, total, registryBase }: { items: BentoItem[]; total: number; registryBase: string }) {
   const byName = new Map(items.map((item) => [item.name, item]))
   const list = cards.flatMap((card) => {
     const item = byName.get(card.name)
@@ -35,13 +36,12 @@ export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
         <SectionHeading id="bento-heading" eyebrow="Component lab" title="Try the guard rails.">
           Each preview is a real component, loaded with a mistake it is built to catch.
         </SectionHeading>
-        <Link
-          href="/components"
-          className="group inline-flex shrink-0 items-center gap-1.5 rounded-md text-sm font-medium outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:mb-1"
-        >
-          All {total} components
-          <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
-        </Link>
+        <div className="flex shrink-0 items-center gap-4 sm:mb-1">
+          <span className="text-xs text-muted-foreground">{total} source components</span>
+          <Link href="/components" className="group inline-flex items-center gap-1.5 rounded-md text-sm font-medium outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
+            Browse catalog <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+          </Link>
+        </div>
       </div>
       <ul className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-2 lg:grid-cols-3">
         {list.map((card, i) => (
@@ -63,13 +63,22 @@ export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
                 <h3 className="text-sm font-medium tracking-tight">{card.title}</h3>
                 <p className="mt-0.5 line-clamp-2 text-[13px] text-muted-foreground">Stops: {card.headline}</p>
               </div>
-              <Link
-                href={`/components/${card.name}`}
-                aria-label={`${card.title} docs`}
-                className="grid size-7 shrink-0 place-items-center rounded-md border text-muted-foreground outline-none transition-colors hover:border-border-strong hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
-              >
-                <ArrowUpRight aria-hidden className="size-3.5" />
-              </Link>
+              <div className="flex shrink-0 items-center gap-1.5">
+                <CopyButton
+                  value={`npx shadcn@latest add ${registryBase}${card.name}.json`}
+                  label={`Copy ${card.title} install command`}
+                  className="h-7 px-2 text-[11px]"
+                >
+                  Install
+                </CopyButton>
+                <Link
+                  href={`/components/${card.name}`}
+                  aria-label={`${card.title} docs`}
+                  className="grid size-7 shrink-0 place-items-center rounded-md border text-muted-foreground outline-none transition-colors hover:border-border-strong hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                >
+                  <ArrowUpRight aria-hidden className="size-3.5" />
+                </Link>
+              </div>
             </div>
           </Reveal>
         ))}

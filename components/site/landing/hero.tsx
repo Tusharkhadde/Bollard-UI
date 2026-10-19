@@ -122,14 +122,15 @@ export function Hero({ registryBase }: { registryBase: string }) {
                 {TAGLINE}
               </motion.h1>
               <motion.p variants={item} className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
-                Add a guard rail to your form. Use a ready-made Bollard component, or keep your shadcn, HeroUI, or custom controls and connect them to a headless React hook.
+                Copy a shadcn-styled guard rail, or add headless validation to the React controls you already use.
               </motion.p>
               <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
-                <Link href="/components" className={buttonPrimary}>
-                  Explore components <ArrowRight aria-hidden />
+                <Link href="#components" className={buttonPrimary}>
+                  Try the live components <ArrowRight aria-hidden />
                 </Link>
               </motion.div>
               <motion.div variants={item} className="mt-3 w-full max-w-[36rem]">
+                <p className="mb-2 font-mono text-[10px] font-medium tracking-[0.13em] text-muted-foreground uppercase">Quick start · Amount guard</p>
                 <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
               </motion.div>
               <motion.div variants={item} className="mt-3 text-sm">

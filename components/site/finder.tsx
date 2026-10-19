@@ -60,6 +60,8 @@ export function Finder({ registryBase }: { registryBase: string }) {
 
   const flowCounts = React.useMemo(() => new Map(FLOWS.map((f) => [f.id, items.filter((i) => i.flows?.includes(f.id)).length])), [items])
   const fieldCounts = React.useMemo(() => new Map(FIELDS.map((f) => [f.id, items.filter((i) => i.fields?.includes(f.id)).length])), [items])
+  const integrationCounts = React.useMemo(() => new Map(["styled", "headless"].map((kind) => [kind, items.filter((item) => item.integration === kind).length])), [items])
+  const dependencyCounts = React.useMemo(() => new Map(["with", "without"].map((kind) => [kind, items.filter((item) => (kind === "with") === Boolean(item.hasDependencies)).length])), [items])
 
   const activeKit = finder.flow ? kitFor(finder.flow) : undefined
   const suggestedKits = !finder.flow && hasQuery ? result.flows.map(kitFor).filter((k): k is Kit => !!k).slice(0, 2) : []
@@ -82,7 +84,7 @@ export function Finder({ registryBase }: { registryBase: string }) {
   )
 
   const openFlow = (flow: string) => {
-    setFinder({ flow, q: "", field: null, category: null })
+    setFinder({ flow, q: "", field: null, category: null, integration: null, dependencies: null })
     window.scrollTo({ top: 0 })
   }
 
@@ -195,6 +197,24 @@ export function Finder({ registryBase }: { registryBase: string }) {
             value={finder.category}
             onChange={(category) => setFinder({ category })}
             options={categories.map((c) => ({ value: c.slug, label: `${c.name} (${c.count})` }))}
+          />
+          <FilterSelect
+            label="Integration"
+            value={finder.integration}
+            onChange={(integration) => setFinder({ integration })}
+            options={[
+              { value: "styled", label: `Styled component (${integrationCounts.get("styled")})` },
+              { value: "headless", label: `Headless · any UI (${integrationCounts.get("headless")})` },
+            ]}
+          />
+          <FilterSelect
+            label="Packages"
+            value={finder.dependencies}
+            onChange={(dependencies) => setFinder({ dependencies })}
+            options={[
+              { value: "with", label: `Adds packages (${dependencyCounts.get("with")})` },
+              { value: "without", label: `No added packages (${dependencyCounts.get("without")})` },
+            ]}
           />
           <p className="ml-auto text-muted-foreground tabular-nums" aria-live="polite" data-finder-count>
             {filtering ? (result.fallback ? "No exact match" : `${result.items.length} of ${items.length}`) : `${items.length} components`}
@@ -461,6 +481,11 @@ export function IncidentCard({
             <span className="shrink-0 rounded border border-brand/40 bg-brand/10 px-1.5 py-px text-[10.5px] font-medium text-amber-800 dark:text-amber-300">Best match</span>
           )}
           {item.essential && !top && <span className="shrink-0 rounded border px-1.5 py-px text-[10.5px] text-muted-foreground">Essential</span>}
+        </span>
+        <span className="flex flex-wrap gap-1.5 pt-0.5 text-[10.5px]">
+          <span className="rounded border px-1.5 py-px text-muted-foreground">{item.integration === "headless" ? "Headless · any UI" : "Styled component"}</span>
+          <span className="rounded border px-1.5 py-px text-muted-foreground">{item.hasDependencies ? "Adds npm packages" : "No added packages"}</span>
+          {item.hasA11yGuidance && <span className="rounded border border-brand/30 bg-brand/5 px-1.5 py-px text-foreground/80">A11y guidance</span>}
         </span>
         <span className="line-clamp-2 text-[13px] leading-5 text-pretty text-muted-foreground">
           <span className="sr-only">Stops: </span>

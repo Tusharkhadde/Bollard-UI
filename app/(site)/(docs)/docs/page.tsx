@@ -62,6 +62,59 @@ export function EmailField() {
   )
 }`
 
+const heroUiUsage = [
+  'import { FieldError, Input, Label, TextField } from "@heroui/react"',
+  'import { useBollardField } from "@/hooks/use-bollard-field"',
+  "",
+  "export function UsernameField() {",
+  "  const username = useBollardField({",
+  '    initialValue: "",',
+  '    validate: (value) => value.length >= 3 ? undefined : "Use at least three characters.",',
+  "  })",
+  "",
+  "  return (",
+  "    <TextField",
+  '      name="username"',
+  "      value={username.value}",
+  "      onChange={username.setValue}",
+  "      onBlur={username.onBlur}",
+  "      isInvalid={username.invalid}",
+  '      validationBehavior="aria"',
+  "    >",
+  "      <Label>Username</Label>",
+  '      <Input autoComplete="username" />',
+  "      {username.error && <FieldError>{username.error}</FieldError>}",
+  "    </TextField>",
+  "  )",
+  "}",
+].join("\n")
+
+const customControlUsage = [
+  'import { useBollardField } from "@/hooks/use-bollard-field"',
+  "",
+  "export function UsernameField() {",
+  "const username = useBollardField({",
+  '  initialValue: "",',
+  '  validate: (value) => value.length >= 3 ? undefined : "Use at least three characters.",',
+  "})",
+  "",
+  "return (",
+  "  <div>",
+  '    <label htmlFor="username">Username</label>',
+  "    <input",
+  '      id="username"',
+  "      value={username.value}",
+  "      onChange={(event) => username.setValue(event.target.value)}",
+  "      onBlur={username.onBlur}",
+  '      {...username.ariaPropsFor("username-hint")}',
+  "    />",
+  '    <p id="username-hint">Shown on your public profile.</p>',
+  '    {username.error && <p id={username.errorId} role="alert">{username.error}</p>}',
+  "  </div>",
+  ")",
+  "}",
+].join("\n")
+
 const tree = `components/
   ui/
     amount-input.tsx   ← written by the CLI, yours to edit
@@ -198,6 +251,19 @@ export default function GettingStartedPage() {
             touched/error state and async-safe validation; you keep the markup, styles and submit flow. Its only runtime dependency is React. The registry
             installs it in your configured <code className={inlineCode}>hooks</code> folder.
           </p>
+          <p>
+            The ready-made UI components use Bollard&apos;s shadcn-compatible styling and Tailwind v4 theme tokens. For HeroUI or a different design system, use
+            the hook and keep that library&apos;s control as the only visual input. The catalog labels these two integration paths and lists extra npm packages
+            before you install.
+          </p>
+          <p>
+            For current HeroUI React, connect the hook to its TextField value and error state. The snippet keeps HeroUI&apos;s label, input and error slots;
+            see the{" "}
+            <a className={proseLink} href="https://heroui.com/en/docs/react/components/text-field" rel="noreferrer">HeroUI TextField docs</a> for the API details.
+          </p>
+          <CodeBlock lineNumbers={false} files={[code("hero-ui-field.tsx", heroUiUsage)]} />
+          <p>For a custom control, merge Bollard&apos;s error ID with your existing hint IDs and keep your own visual states:</p>
+          <CodeBlock lineNumbers={false} files={[code("custom-field.tsx", customControlUsage)]} />
         </Prose>
         <PackageCommand kind="add" args={`${registryBase}use-bollard-field.json`} label="Copy hook install command" />
         <CodeBlock lineNumbers={false} files={[code("email-field.tsx", headlessUsage)]} />

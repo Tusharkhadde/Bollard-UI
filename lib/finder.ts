@@ -1,20 +1,16 @@
 // The /components finder state (query + filters), its URL form, and the one
 // function that turns it into a result list. The grid, the sidebar and ⌘K all
 // go through here so they always agree.
-import { slugify } from "./utils-slug"
+import { filterFinderItems, shouldUseUnfilteredFallback, type FinderFacets } from "./finder-filters"
 import { search, type SearchItem } from "./search"
 
-export interface FinderState {
+export interface FinderState extends FinderFacets {
   q: string
-  flow: string | null
-  field: string | null
-  /** Category slug. */
-  category: string | null
 }
 
-export const emptyFinder: FinderState = { q: "", flow: null, field: null, category: null }
+export const emptyFinder: FinderState = { q: "", flow: null, field: null, category: null, integration: null, dependencies: null }
 
-export const isFiltering = (s: FinderState) => !!(s.q.trim() || s.flow || s.field || s.category)
+export const isFiltering = (s: FinderState) => !!(s.q.trim() || s.flow || s.field || s.category || s.integration || s.dependencies)
 
 export function finderFromSearch(search: string): FinderState {
   const params = new URLSearchParams(search)
@@ -23,6 +19,8 @@ export function finderFromSearch(search: string): FinderState {
     flow: params.get("flow") || null,
     field: params.get("field") || null,
     category: params.get("category") || null,
+    integration: params.get("integration") || null,
+    dependencies: params.get("dependencies") || null,
   }
 }
 
@@ -32,6 +30,8 @@ export function finderToSearch(s: FinderState) {
   if (s.flow) params.set("flow", s.flow)
   if (s.field) params.set("field", s.field)
   if (s.category) params.set("category", s.category)
+  if (s.integration) params.set("integration", s.integration)
+  if (s.dependencies) params.set("dependencies", s.dependencies)
   const text = params.toString().replace(/\+/g, "%20")
   return text ? `?${text}` : ""
 }
@@ -46,15 +46,10 @@ export interface FinderResult<T> {
 
 /** Filters first (flow, field, category), then ranks by the query. Never empty when there's a query. */
 export function runFinder<T extends SearchItem>(items: T[], s: FinderState): FinderResult<T> {
-  const filtered = items.filter(
-    (item) =>
-      (!s.flow || item.flows?.includes(s.flow)) &&
-      (!s.field || item.fields?.includes(s.field)) &&
-      (!s.category || slugify(item.category) === s.category),
-  )
+  const filtered = filterFinderItems(items, s)
   if (!s.q.trim()) return { items: filtered, fallback: false, flows: [] }
   const ranked = search(filtered, s.q)
-  if (!ranked.fallback || filtered.length === items.length) return ranked
+  if (!ranked.fallback || !shouldUseUnfilteredFallback(filtered.length, items.length)) return ranked
   // The filters left nothing for this query: look across everything instead.
   const wide = search(items, s.q)
   return { items: wide.items.slice(0, 6), fallback: true, flows: wide.flows }

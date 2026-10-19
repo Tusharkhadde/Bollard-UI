@@ -34,6 +34,10 @@ export default function ComponentsPage() {
             </Link>
             .
           </p>
+          <p className="mt-3 text-[13px] leading-5 text-muted-foreground">
+            Styled components use shadcn theme tokens with Tailwind v4. The headless hook works with any React UI library. All target React 19+;{" "}
+            <Link href="/docs#nextjs" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">framework setup notes</Link> cover Next.js and Vite.
+          </p>
         </header>
         <Finder registryBase={registryBase} />
       </div>

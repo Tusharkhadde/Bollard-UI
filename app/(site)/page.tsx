@@ -5,6 +5,7 @@ import { Cta } from "@/components/site/landing/cta"
 import { Faq } from "@/components/site/landing/faq"
 import { Flows } from "@/components/site/landing/flows"
 import { Hero } from "@/components/site/landing/hero"
+import { IntegrationPaths } from "@/components/site/landing/integration-paths"
 import { HowItWorks } from "@/components/site/landing/how-it-works"
 import { Stats } from "@/components/site/landing/stats"
 import { WhyNot } from "@/components/site/landing/why-not"
@@ -28,7 +29,8 @@ export default function Home() {
     <main className="overflow-x-clip">
       <Hero registryBase={registryBase} />
       <Stats total={total} categories={categories.length} />
-      <Bento items={bentoItems} total={total} />
+      <IntegrationPaths registryBase={registryBase} />
+      <Bento items={bentoItems} total={total} registryBase={registryBase} />
       <Flows flows={flows} />
       <HowItWorks registryBase={registryBase} />
       <WhyNot />

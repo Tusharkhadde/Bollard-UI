@@ -21,6 +21,9 @@ export interface SearchItem {
   flows?: string[]
   fields?: string[]
   essential?: boolean
+  integration?: "headless" | "styled"
+  hasDependencies?: boolean
+  hasA11yGuidance?: boolean
 }
 
 // ---------------------------------------------------------------------------

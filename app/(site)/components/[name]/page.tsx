@@ -413,6 +413,17 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           <p className="max-w-[65ch] text-base leading-relaxed text-pretty text-muted-foreground" data-summary>
             {item.summary ?? item.description}
           </p>
+          <ul aria-label="Compatibility and setup" className="flex flex-wrap gap-1.5 text-[11px]">
+            <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">
+              {item.integration === "headless" ? "Headless · any React UI" : "Styled · shadcn theme"}
+            </li>
+            <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">React 19+</li>
+            {item.integration === "styled" && <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">Tailwind v4</li>}
+            <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">
+              {deps.length ? `${deps.length} extra npm ${deps.length === 1 ? "package" : "packages"}` : "No extra npm packages"}
+            </li>
+            {a11y.length > 0 && <li className="rounded-md border border-brand/30 bg-brand/5 px-2 py-1 text-foreground/80">A11y guidance in docs</li>}
+          </ul>
           {item.stops && (
             <p className="flex items-start gap-2.5 text-[15px] leading-6 text-foreground" data-stops>
               <span className="mt-[3px] inline-flex shrink-0 items-center gap-1.5 rounded-md border border-brand/40 bg-brand/10 px-1.5 py-0.5 font-mono text-[10.5px] font-medium tracking-[0.12em] text-amber-800 uppercase dark:text-amber-300">
