@@ -3,7 +3,7 @@
 // Bollard UI — address-check · MIT licence · https://bollard-ui.vercel.app/components/address-check
 
 import * as React from "react"
-import { LoaderCircle, MapPinOff, PackageX, Tag } from "lucide-react"
+import { CircleAlert, LoaderCircle, MapPinOff, PackageX, RotateCw, Tag } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -34,8 +34,16 @@ export interface AddressCheckProps extends Omit<React.ComponentProps<"fieldset">
   defaultValue?: Partial<Address>
   /** Called with the whole address on every change. */
   onValueChange?: (value: Address) => void
-  /** Looks up where a postcode is. Resolve null when unknown; rejections are ignored. */
-  lookupPostcode?: (country: string, postcode: string, signal: AbortSignal) => Promise<PostcodePlace | null>
+  /** Looks up where a postcode is. Resolve null when no result is returned, undefined when it can't be checked. */
+  lookupPostcode?: (country: string, postcode: string, signal: AbortSignal) => Promise<PostcodePlace | null | undefined>
+  /** Message when the postcode lookup returns no place. */
+  postcodeLookupEmptyMessage?: string
+  /** Message when no local lookup data is available. */
+  postcodeLookupUnknownMessage?: string
+  /** Message when the lookup fails. */
+  postcodeLookupFailedMessage?: string
+  /** Retry button label after a lookup failure. */
+  postcodeLookupRetryLabel?: string
   /** Country codes offered in the picker, from the built-in rules. */
   countries?: string[]
   /** Labels and placeholders. */
@@ -95,14 +103,22 @@ export function AddressCheck({
   invalidPostcodeMessage = "{label} should be {example}.",
   cityMismatchMessage = "{postcode} is in {city}, not {typed}.",
   cityMissingMessage = "{postcode} is in {city}.",
+  postcodeLookupEmptyMessage = "No area details were returned for this postcode.",
+  postcodeLookupUnknownMessage = "This postcode wasn't checked by a directory.",
+  postcodeLookupFailedMessage = "Couldn't look up this postcode.",
+  postcodeLookupRetryLabel = "Retry",
   className,
   ...props
 }: AddressCheckProps) {
   const [inner, setInner] = React.useState<Address>({ ...EMPTY, ...defaultValue })
   const [focused, setFocused] = React.useState<keyof Address>()
   const [noNumberOk, setNoNumberOk] = React.useState(false)
-  const [places, setPlaces] = React.useState<Record<string, PostcodePlace | null>>({})
+  const [places, setPlaces] = React.useState<Record<string, PostcodePlace | null | undefined>>({})
+  const [lookupErrors, setLookupErrors] = React.useState<Record<string, true>>({})
   const [loading, setLoading] = React.useState(false)
+  const [attempt, setAttempt] = React.useState(0)
+  const lookupRef = React.useRef(lookupPostcode)
+  React.useEffect(() => { lookupRef.current = lookupPostcode }, [lookupPostcode])
   const rootRef = React.useRef<HTMLFieldSetElement>(null)
   const id = React.useId()
   const address = value ?? inner
@@ -111,13 +127,20 @@ export function AddressCheck({
   const postcodeOk = checkPostcode(address.country, address.postcode).status === "ok"
 
   React.useEffect(() => {
-    if (!lookupPostcode || !postcodeOk || key in places) return
+    const lookup = lookupRef.current
+    if (!lookup || !postcodeOk || key in places) return
     const controller = new AbortController()
     const timer = setTimeout(() => {
       setLoading(true)
-      lookupPostcode(address.country, address.postcode.trim(), controller.signal)
-        .then((place) => setPlaces((all) => ({ ...all, [key]: place })))
-        .catch(() => {})
+      Promise.resolve()
+        .then(() => controller.signal.aborted ? undefined : lookup(address.country, address.postcode.trim(), controller.signal))
+        .then((place) => {
+          if (controller.signal.aborted) return
+          setPlaces((all) => ({ ...all, [key]: place }))
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setLookupErrors((all) => ({ ...all, [key]: true }))
+        })
         .finally(() => !controller.signal.aborted && setLoading(false))
     }, 300)
     return () => {
@@ -125,7 +148,7 @@ export function AddressCheck({
       controller.abort()
       setLoading(false)
     }
-  }, [key, postcodeOk, lookupPostcode, places, address.country, address.postcode])
+  }, [key, postcodeOk, Boolean(lookupPostcode), places, address.country, address.postcode, attempt])
 
   const update = (patch: Partial<Address>) => {
     const next = { ...address, ...patch }
@@ -196,7 +219,7 @@ export function AddressCheck({
         onChange={(e) => update({ [field]: e.target.value })}
         onFocus={() => setFocused(field)}
         onBlur={() => setFocused(undefined)}
-        aria-describedby={`${id}-${field}-hint`}
+        aria-describedby={field === "postcode" && rule?.postcodeLabel !== null ? `${id}-${field}-hint ${id}-postcode-lookup` : `${id}-${field}-hint`}
         data-warning={visible(field).length ? "" : undefined}
         data-flash={field}
         className={fieldClass}
@@ -232,6 +255,21 @@ export function AddressCheck({
       </div>
       {(visible("postcode").length > 0 || visible("city").length > 0) && (
         <div className="-mt-1.5">{warnings("postcode")}{warnings("city")}</div>
+      )}
+      {rule?.postcodeLabel !== null && (
+        <div id={`${id}-postcode-lookup`} aria-live="polite" className="-mt-2 text-xs text-muted-foreground">
+          {loading && <p className="flex items-center gap-1.5"><LoaderCircle aria-hidden className="size-3.5 animate-spin" /> Looking up this postcode…</p>}
+          {!loading && key in places && places[key] === undefined && <p>{postcodeLookupUnknownMessage}</p>}
+          {!loading && key in places && places[key] === null && <p>{postcodeLookupEmptyMessage}</p>}
+          {!loading && lookupErrors[key] && (
+            <p className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5"><CircleAlert aria-hidden className="size-3.5" />{postcodeLookupFailedMessage}</span>
+              <button type="button" onClick={() => { setLookupErrors((all) => { const next = { ...all }; delete next[key]; return next }); setAttempt((n) => n + 1) }} className={fixClass}>
+                <RotateCw aria-hidden className="size-3" /> {postcodeLookupRetryLabel}
+              </button>
+            </p>
+          )}
+        </div>
       )}
       <figure className="rounded-lg border border-dashed bg-muted/40 p-3">
         <figcaption className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">

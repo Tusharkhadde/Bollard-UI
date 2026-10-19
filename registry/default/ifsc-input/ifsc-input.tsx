@@ -89,7 +89,14 @@ export function IfscInput({
     const controller = new AbortController()
     const timer = setTimeout(() => {
       setResult({ code, state: "checking" })
-      lookupRef.current!(code, controller.signal).then(
+      let request: Promise<IfscDetails | null | undefined>
+      try {
+        request = lookupRef.current!(code, controller.signal)
+      } catch {
+        if (!controller.signal.aborted) setResult({ code, state: "failed" })
+        return
+      }
+      request.then(
         (details) => {
           if (controller.signal.aborted) return
           setResult({ code, state: "done", details })

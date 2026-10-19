@@ -30,7 +30,7 @@ export interface UpiIdInputProps extends Omit<React.ComponentProps<"input">, "va
   onValueChange?: (value: string) => void
   /** Asks your backend who the ID is registered to. Return null when it cannot confirm the ID. */
   verify?: (vpa: string, signal: AbortSignal) => Promise<UpiVerification | null>
-  /** Called with the verification result, or null when the ID changes. */
+  /** Called with the result, or null when the ID changes or cannot be verified. */
   onVerifiedChange?: (result: UpiVerification | null) => void
   /** The name the user expects to pay; a different registered name is called out. */
   expectedName?: string
@@ -136,7 +136,14 @@ export function UpiIdInput({
     if (!checkable || !verifyRef.current) return
     const controller = new AbortController()
     setCheck({ vpa, state: "checking" })
-    verifyRef.current(vpa, controller.signal).then(
+    let request: Promise<UpiVerification | null>
+    try {
+      request = verifyRef.current(vpa, controller.signal)
+    } catch {
+      setCheck({ vpa, state: "failed" })
+      return () => controller.abort()
+    }
+    request.then(
       (result) => {
         if (controller.signal.aborted) return
         setCheck({ vpa, state: "done", result })

@@ -30,13 +30,14 @@ export const PINCODE_MESSAGES = {
   useCity: "Use {city}",
   checking: "Finding the area…",
   failed: "Couldn't look up this PIN.",
+  notChecked: "This preview doesn't have details for this PIN.",
   retry: "Retry",
   notFound: "No post office uses {pin}. Check it on a recent letter or bill.",
   moreAreas: "+{count} more",
   or: "or",
 }
 
-type Lookup = { pin: string; state: "checking" } | { pin: string; state: "done"; place: PinPlace | null } | { pin: string; state: "failed" }
+type Lookup = { pin: string; state: "checking" } | { pin: string; state: "done"; place: PinPlace | null | undefined } | { pin: string; state: "failed" }
 const fill = (s: string, d: Record<string, string>) => s.replace(/\{(\w+)\}/g, (m, k: string) => d[k] ?? m)
 const fixClass =
   "inline-flex h-6 items-center gap-1 rounded-md border border-amber-500/40 px-2 font-medium whitespace-nowrap text-amber-900 transition-colors hover:bg-amber-500/10 dark:text-amber-200 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
@@ -62,9 +63,9 @@ export interface PincodeInputProps extends Omit<React.ComponentProps<"input">, "
   city?: string
   /** Lets the user take the PIN's district in one tap. */
   onUseCity?: (city: string) => void
-  /** Finds where a complete Indian PIN is. Resolve null when no post office has it. See createIndiaPostLookup. */
-  lookup?: (pin: string, signal: AbortSignal) => Promise<PinPlace | null>
-  /** Called with the place once found, or null when the PIN changes or isn't found. */
+  /** Finds where a complete Indian PIN is. Resolve null when no place is returned, undefined when the lookup cannot check it. See createIndiaPostLookup. */
+  lookup?: (pin: string, signal: AbortSignal) => Promise<PinPlace | null | undefined>
+  /** Called with the place once found, or null when the PIN changes or isn't found/checked. */
   onPlaceChange?: (place: PinPlace | null) => void
   /** Override any message or label. */
   messages?: Partial<typeof PINCODE_MESSAGES>
@@ -124,11 +125,18 @@ export function PincodeInput({
     const controller = new AbortController()
     const timer = setTimeout(() => {
       setResult({ pin: code, state: "checking" })
-      lookupRef.current!(code, controller.signal).then(
+      let request: Promise<PinPlace | null | undefined>
+      try {
+        request = lookupRef.current!(code, controller.signal)
+      } catch {
+        if (!controller.signal.aborted) setResult({ pin: code, state: "failed" })
+        return
+      }
+      request.then(
         (place) => {
           if (controller.signal.aborted) return
           setResult({ pin: code, state: "done", place })
-          placeRef.current?.(place)
+          placeRef.current?.(place ?? null)
         },
         () => !controller.signal.aborted && setResult({ pin: code, state: "failed" })
       )
@@ -231,6 +239,7 @@ export function PincodeInput({
           warn("failed", t.failed, (
             <button type="button" onClick={() => setAttempt((n) => n + 1)} className={fixClass}><RotateCw aria-hidden className="size-3" /> {t.retry}</button>
           ))}
+        {current?.state === "done" && current.place === undefined && <p className="py-1 text-muted-foreground">{t.notChecked}</p>}
         {place === null && (
           <div role="alert" className="flex gap-2 rounded-md border border-red-500/30 bg-red-500/10 px-2.5 py-2 text-sm text-red-900 motion-safe:animate-[cui-pincode-input-reveal_250ms_ease-out] dark:text-red-100">
             <CircleAlert aria-hidden className="mt-0.5 size-4 shrink-0 text-red-600 dark:text-red-400" />
