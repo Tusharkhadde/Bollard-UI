@@ -10,7 +10,7 @@ import { branchWithZeros, findIfscProblem, IFSC_BANK_CODES, IFSC_PATTERN, normal
 
 export { branchWithZeros, createRazorpayIfscLookup, findIfscProblem, IFSC_BANK_CODES, IFSC_GUESSED_CODES, IFSC_PATTERN, normalizeIfsc, sameBank, type IfscDetails, type IfscProblem, type IfscRail } from "./ifsc"
 
-type Lookup = { code: string; state: "checking" } | { code: string; state: "done"; details: IfscDetails | null } | { code: string; state: "failed" }
+type Lookup = { code: string; state: "checking" } | { code: string; state: "done"; details: IfscDetails | null | undefined } | { code: string; state: "failed" }
 
 export interface IfscInputProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange"> {
   /** Visible label. */
@@ -21,9 +21,9 @@ export interface IfscInputProps extends Omit<React.ComponentProps<"input">, "val
   defaultValue?: string
   /** Called with the cleaned, uppercased code on every change. */
   onValueChange?: (value: string) => void
-  /** Finds the branch for a complete code. Resolve null when it doesn't exist. See createRazorpayIfscLookup. */
-  lookup?: (ifsc: string, signal: AbortSignal) => Promise<IfscDetails | null>
-  /** Called with the branch once found, or null when the code changes or isn't found. */
+  /** Finds the branch for a complete code. Resolve null if it doesn't exist, undefined if this lookup can't check it. See createRazorpayIfscLookup. */
+  lookup?: (ifsc: string, signal: AbortSignal) => Promise<IfscDetails | null | undefined>
+  /** Called with the branch once found, or null when the code changes or isn't found/checked. */
   onDetailsChange?: (details: IfscDetails | null) => void
   /** The bank the user picked earlier in the form (name or 4-letter code), compared with the IFSC's bank. */
   expectedBank?: string
@@ -35,6 +35,8 @@ export interface IfscInputProps extends Omit<React.ComponentProps<"input">, "val
   mismatchMessage?: string
   /** Shown when the lookup finds no branch. */
   notFoundMessage?: string
+  /** Shown when a lookup can't confirm a code (for example, an offline preview). */
+  notCheckedMessage?: string
 }
 
 const field =
@@ -62,6 +64,7 @@ export function IfscInput({
   requiredRail,
   mismatchMessage = "but you picked",
   notFoundMessage = "No branch has this IFSC.",
+  notCheckedMessage = "This IFSC wasn't checked against a branch directory.",
   id,
   className,
   ref,
@@ -90,7 +93,7 @@ export function IfscInput({
         (details) => {
           if (controller.signal.aborted) return
           setResult({ code, state: "done", details })
-          detailsRef.current?.(details)
+          detailsRef.current?.(details ?? null)
         },
         () => !controller.signal.aborted && setResult({ code, state: "failed" })
       )
@@ -162,6 +165,9 @@ export function IfscInput({
           warnLine("Couldn't look up the branch.", (
             <button type="button" onClick={() => setAttempt((n) => n + 1)} className={fix}><RotateCw aria-hidden className="size-3" /> Retry</button>
           ))}
+        {current?.state === "done" && current.details === undefined && (
+          <p className="py-1 text-muted-foreground">{notCheckedMessage}</p>
+        )}
         {details === null && (
           <div role="alert" className={cn("flex gap-2 rounded-md border border-red-500/30 bg-red-500/10 px-2.5 py-2 text-sm text-red-900 dark:text-red-100", reveal)}>
             <CircleAlert aria-hidden className="mt-0.5 size-4 shrink-0 text-red-600 dark:text-red-400" />
