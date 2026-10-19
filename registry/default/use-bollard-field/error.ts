@@ -1,3 +1,5 @@
+// Bollard UI — use-bollard-field · MIT licence · https://bollard-ui.vercel.app/components/use-bollard-field
+
 /** A dependency-free error shape for handling failures in Bollard integrations. */
 export interface BollardErrorOptions extends ErrorOptions {
   code?: string

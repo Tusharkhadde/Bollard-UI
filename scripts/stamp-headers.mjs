@@ -27,19 +27,20 @@ for (const name of fs.readdirSync(dir).sort()) {
     total++
     const full = path.join(folder, file)
     const text = fs.readFileSync(full, "utf8")
-    const lines = text.split("\n")
+    const eol = text.includes("\r\n") ? "\r\n" : "\n"
+    const lines = text.split(/\r?\n/)
     const want = header(name)
     const at = lines.slice(0, 5).findIndex(isHeader)
     let next
     if (at >= 0) {
       if (lines[at] === want) continue
       lines[at] = want
-      next = lines.join("\n")
+      next = lines.join(eol)
     } else if (isDirective(lines[0] ?? "")) {
       // "use client" must stay the first statement in the file.
-      next = [lines[0], "", want, ...lines.slice(1)].join("\n")
+      next = [lines[0], "", want, ...lines.slice(1)].join(eol)
     } else {
-      next = [want, "", ...lines].join("\n")
+      next = [want, "", ...lines].join(eol)
     }
     missing++
     if (!check) {

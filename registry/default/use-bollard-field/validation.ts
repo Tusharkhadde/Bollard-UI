@@ -1,3 +1,5 @@
+// Bollard UI — use-bollard-field · MIT licence · https://bollard-ui.vercel.app/components/use-bollard-field
+
 import { toBollardError, type BollardError } from "./error"
 
 /** Return a message when a value is invalid, or nothing when it is valid. */
