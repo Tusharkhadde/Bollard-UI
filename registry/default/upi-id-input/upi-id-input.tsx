@@ -17,7 +17,7 @@ export interface UpiVerification {
   name?: string
 }
 
-type Check = { vpa: string; state: "checking" } | { vpa: string; state: "done"; result: UpiVerification } | { vpa: string; state: "failed" }
+type Check = { vpa: string; state: "checking" } | { vpa: string; state: "done"; result: UpiVerification | null } | { vpa: string; state: "failed" }
 
 export interface UpiIdInputProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange"> {
   /** Visible label. */
@@ -28,8 +28,8 @@ export interface UpiIdInputProps extends Omit<React.ComponentProps<"input">, "va
   defaultValue?: string
   /** Called with the cleaned ID on every change; a pasted upi://pay link becomes its `pa`. */
   onValueChange?: (value: string) => void
-  /** Asks your backend who the ID is registered to. Called once the ID settles and looks well formed. */
-  verify?: (vpa: string, signal: AbortSignal) => Promise<UpiVerification>
+  /** Asks your backend who the ID is registered to. Return null when it cannot confirm the ID. */
+  verify?: (vpa: string, signal: AbortSignal) => Promise<UpiVerification | null>
   /** Called with the verification result, or null when the ID changes. */
   onVerifiedChange?: (result: UpiVerification | null) => void
   /** The name the user expects to pay; a different registered name is called out. */
@@ -57,6 +57,7 @@ export const UPI_ID_MESSAGES = {
   handleIs: "@{handle} is {app}",
   checking: "Checking who this ID belongs to…",
   checkFailed: "Couldn't check this ID.",
+  notChecked: "This ID wasn't checked against a live directory.",
   retry: "Retry",
   notFound: "No account uses this UPI ID. Check each letter with the payee.",
   registeredTo: "Registered to {name}.",
@@ -227,6 +228,7 @@ export function UpiIdInput({
         {!issue && ready && handle?.note && line(warn, handle.note)}
         {current?.state === "checking" && line(<LoaderCircle aria-hidden className="size-3.5 animate-spin" />, t.checking, null, "text-muted-foreground motion-safe:animate-pulse")}
         {current?.state === "failed" && line(warn, t.checkFailed, <button type="button" onClick={() => setAttempt((n) => n + 1)} className={fix}><RotateCw aria-hidden className="size-3" /> {t.retry}</button>)}
+        {current?.state === "done" && current.result === null && line(<CircleAlert aria-hidden className="size-3.5" />, t.notChecked, null, "text-muted-foreground")}
         {result?.valid === false && (
           <div role="alert" className={cn("flex gap-2 rounded-md border border-red-500/30 bg-red-500/10 px-2.5 py-2 text-sm text-red-900 dark:text-red-100", reveal)}>
             <CircleAlert aria-hidden className="mt-0.5 size-4 shrink-0 text-red-600 dark:text-red-400" />

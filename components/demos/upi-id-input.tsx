@@ -2,16 +2,8 @@
 
 import * as React from "react"
 
-import { UpiIdInput, type UpiVerification } from "@/registry/default/upi-id-input/upi-id-input"
-
-// A pretend UPI directory standing in for a validate-VPA call.
-const directory: Record<string, string> = {
-  "rohan.sharma@okaxis": "ROHAN SHARMA",
-  "9876543210@ybl": "PRIYA MEHTA",
-  "kumarstores@ybl": "RAVI VERMA",
-}
-const verify = (vpa: string) =>
-  new Promise<UpiVerification>((resolve) => setTimeout(() => resolve(directory[vpa] ? { valid: true, name: directory[vpa] } : { valid: false }), 300))
+import { UpiIdInput } from "@/registry/default/upi-id-input/upi-id-input"
+import { verifyDemoUpi } from "./upi-id-input-directory"
 
 const presets = [
   { label: "Typo'd handle", value: "rohan.sharma@okaxsi", expectedName: "Rohan Sharma" },
@@ -25,7 +17,7 @@ export function Demo() {
   const { value, expectedName } = presets[preset]
   return (
     <div className="grid w-full max-w-sm gap-3">
-      <UpiIdInput key={preset} label="Pay to UPI ID" defaultValue={value} expectedName={expectedName} verify={verify} />
+      <UpiIdInput key={preset} label="Pay to UPI ID" defaultValue={value} expectedName={expectedName} verify={verifyDemoUpi} />
       <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
         Try:
         {presets.map((p, i) => (
@@ -34,6 +26,7 @@ export function Demo() {
           </button>
         ))}
       </div>
+      <p className="text-xs leading-relaxed text-muted-foreground">This preview checks three sample IDs only. Your UPI ID is not sent anywhere or checked against a live directory.</p>
     </div>
   )
 }
