@@ -53,6 +53,8 @@ export async function ogFonts() {
 
 /** Shortens at a word boundary (for image text, where nothing can wrap forever). */
 export function clampWords(text: string, max: number) {
-  const clean = text.replace(/\s+/g, " ").trim()
+  // Satori's embedded Geist font does not include every keyboard glyph. Keep
+  // generated cards deterministic instead of letting it fetch fallback fonts.
+  const clean = text.replace(/⌘/g, "Cmd+").replace(/⌫/g, "Backspace").replace(/\+\+/g, "+").replace(/\s+/g, " ").trim()
   return clean.length <= max ? clean : clean.slice(0, max - 1).replace(/\s+\S*$/, "").replace(/[,;:]$/, "") + "…"
 }

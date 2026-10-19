@@ -10,9 +10,17 @@ import { cn } from "@/lib/utils"
 const codeClass = "rounded-md border bg-surface px-1.5 py-0.5 font-mono text-[12.5px] text-foreground"
 const linkClass = "text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground"
 
-export function readRepoFile(file: string) {
+const repoFiles = {
+  "CHANGELOG.md": () => fs.readFileSync(path.join(process.cwd(), "CHANGELOG.md"), "utf8"),
+  "LICENSE": () => fs.readFileSync(path.join(process.cwd(), "LICENSE"), "utf8"),
+  "package.json": () => fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
+  ".nvmrc": () => fs.readFileSync(path.join(process.cwd(), ".nvmrc"), "utf8"),
+  ".github/workflows/ci.yml": () => fs.readFileSync(path.join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8"),
+} as const
+
+export function readRepoFile(file: keyof typeof repoFiles) {
   try {
-    return fs.readFileSync(path.join(process.cwd(), file), "utf8")
+    return repoFiles[file]()
   } catch {
     return null
   }
