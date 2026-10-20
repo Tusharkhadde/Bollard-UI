@@ -16,4 +16,5 @@ test("extracts registry item names without retaining arbitrary command content",
     ["email-input", "safe-submit"],
   )
   assert.deepEqual(analytics.registryItemsFromArgs("--overwrite"), [])
+  assert.deepEqual(analytics.registryItemsFromArgs("@bollard/agent-pack @bollard/undo-toast"), ["agent-pack", "undo-toast"])
 })

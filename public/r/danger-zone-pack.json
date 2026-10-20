@@ -4,11 +4,11 @@
   "title": "Danger Zone Pack",
   "description": "Deliberate confirmations and recovery paths for destructive actions.",
   "registryDependencies": [
-    "danger-zone",
-    "type-to-confirm",
-    "account-deletion-readback",
-    "hold-to-confirm",
-    "undo-toast"
+    "@bollard/danger-zone",
+    "@bollard/type-to-confirm",
+    "@bollard/account-deletion-readback",
+    "@bollard/hold-to-confirm",
+    "@bollard/undo-toast"
   ],
   "files": [
     {

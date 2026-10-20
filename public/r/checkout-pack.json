@@ -4,11 +4,11 @@
   "title": "Checkout Pack",
   "description": "Prevent payment mistakes before customers submit.",
   "registryDependencies": [
-    "amount-input",
-    "safe-submit",
-    "duplicate-payment-guard",
-    "card-expiry-input",
-    "charge-summary"
+    "@bollard/amount-input",
+    "@bollard/safe-submit",
+    "@bollard/duplicate-payment-guard",
+    "@bollard/card-expiry-input",
+    "@bollard/charge-summary"
   ],
   "files": [
     {

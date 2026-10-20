@@ -4,12 +4,12 @@
   "title": "Forms Pack",
   "description": "Keep form entries, drafts and submissions on track.",
   "registryDependencies": [
-    "draft-restore",
-    "unsaved-changes-bar",
-    "error-summary",
-    "safe-submit",
-    "date-sanity-input",
-    "review-step"
+    "@bollard/draft-restore",
+    "@bollard/unsaved-changes-bar",
+    "@bollard/error-summary",
+    "@bollard/safe-submit",
+    "@bollard/date-sanity-input",
+    "@bollard/review-step"
   ],
   "files": [
     {

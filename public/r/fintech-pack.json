@@ -4,10 +4,10 @@
   "title": "Fintech Pack",
   "description": "Payment and transfer safeguards in one install.",
   "registryDependencies": [
-    "amount-input",
-    "duplicate-payment-guard",
-    "bank-transfer-timing",
-    "charge-summary"
+    "@bollard/amount-input",
+    "@bollard/duplicate-payment-guard",
+    "@bollard/bank-transfer-timing",
+    "@bollard/charge-summary"
   ],
   "files": [
     {

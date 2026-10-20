@@ -4,6 +4,7 @@ import Link from "next/link"
 import { CodeBlock } from "@/components/site/code-block"
 import { DocPage, DocSection, Note, Prose, inlineCode, proseLink } from "@/components/site/doc-page"
 import { PackageCommand } from "@/components/site/package-command"
+import { RegistrySetup } from "@/components/site/registry-setup"
 import { registryBase } from "@/lib/catalog"
 import { highlight } from "@/lib/highlight"
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 
 const sections = [
   { id: "prerequisites", label: "Prerequisites" },
-  { id: "cli", label: "Add with the CLI" },
+  { id: "cli", label: "Configure and add" },
   { id: "manual", label: "Add by hand" },
   { id: "usage", label: "Import and use" },
   { id: "headless-validation", label: "Headless validation" },
@@ -188,10 +189,11 @@ export default function GettingStartedPage() {
         <PackageCommand kind="shadcn" args="init" label="Copy init command" />
       </DocSection>
 
-      <DocSection id="cli" title="Add with the CLI">
+      <DocSection id="cli" title="Configure and add with the CLI">
+        <RegistrySetup className="mb-5 rounded-xl border bg-surface p-5" />
         <PackageCommand kind="add" args={url} label="Copy install command" />
         <Prose>
-          <p>The CLI reads your <code className={inlineCode}>components.json</code>, then:</p>
+          <p>After the one-time namespace setup, the CLI reads your <code className={inlineCode}>components.json</code>, then:</p>
           <ol>
             <li>
               writes the component to your <code className={inlineCode}>ui</code> folder, for example{" "}

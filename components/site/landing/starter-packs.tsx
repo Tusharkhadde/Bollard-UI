@@ -1,6 +1,7 @@
 "use client"
 
 import { CopyButton } from "@/components/site/copy-button"
+import { trackStarterPackCopy } from "@/lib/analytics"
 import { Section, SectionHeading } from "./section-heading"
 
 const PACKS = [
@@ -27,7 +28,7 @@ export function StarterPacks({ registryBase }: { registryBase: string }) {
         {PACKS.map(([name, label, description, components, count]) => (
           <li key={name} className="flex min-w-0 items-start justify-between gap-3 bg-background p-4 sm:p-5">
             <div className="min-w-0"><h3 className="min-h-5 text-sm font-medium">{label}</h3><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p><p className="mt-3 font-mono text-[11px] text-muted-foreground">{count} components · {components.join(", ")}</p></div>
-            <CopyButton value={`npx shadcn@latest add @bollard/${name}`} label={`Copy ${label} pack install command`} className="h-8 shrink-0 px-2.5 text-[11px]">Copy</CopyButton>
+            <CopyButton value={`npx shadcn@latest add @bollard/${name}`} label={`Copy ${label} pack install command`} onCopy={() => trackStarterPackCopy(name)} className="h-8 shrink-0 px-2.5 text-[11px]">Copy</CopyButton>
           </li>
         ))}
       </ul>

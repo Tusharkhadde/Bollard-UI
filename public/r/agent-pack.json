@@ -4,9 +4,9 @@
   "title": "Agent Pack",
   "description": "Human-in-the-loop components for safer AI-assisted work.",
   "registryDependencies": [
-    "agent-action-approve",
-    "ai-paste-guard",
-    "undo-toast"
+    "@bollard/agent-action-approve",
+    "@bollard/ai-paste-guard",
+    "@bollard/undo-toast"
   ],
   "files": [
     {

@@ -4,12 +4,12 @@
   "title": "Sign-up Pack",
   "description": "Catch account-creation mistakes early.",
   "registryDependencies": [
-    "email-input",
-    "password-input",
-    "username-input",
-    "phone-input",
-    "otp-paste-input",
-    "name-input"
+    "@bollard/email-input",
+    "@bollard/password-input",
+    "@bollard/username-input",
+    "@bollard/phone-input",
+    "@bollard/otp-paste-input",
+    "@bollard/name-input"
   ],
   "files": [
     {

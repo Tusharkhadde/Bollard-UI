@@ -29,6 +29,7 @@ export function TopBar({ env }: { env?: string }) {
     { href: "/components", label: "Components", active: pathname.startsWith("/components") },
     { href: "/guides", label: "Guides", active: pathname.startsWith("/guides") },
     { href: "/start-here", label: "Start here", active: pathname === "/start-here" },
+    { href: "/#use-cases", label: "Use cases", active: pathname.startsWith("/use-cases") },
     { href: "/#flows", label: "Flows", active: false },
     { href: "/components?category=agent-human-in-the-loop", label: "Agent safety", badge: "HITL", active: false },
   ]

@@ -11,6 +11,7 @@ import { Stats } from "@/components/site/landing/stats"
 import { WhyNot } from "@/components/site/landing/why-not"
 import { DisastersPrevented } from "@/components/site/landing/disasters-prevented"
 import { StarterPacks } from "@/components/site/landing/starter-packs"
+import { UseCasePaths } from "@/components/site/landing/use-case-paths"
 import { catalog, categories, registryBase } from "@/lib/catalog"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
 
@@ -31,6 +32,7 @@ export default function Home() {
     <main className="overflow-x-clip">
       <Hero registryBase={registryBase} />
       <Stats total={total} categories={categories.length} />
+      <UseCasePaths />
       <IntegrationPaths registryBase={registryBase} />
       <StarterPacks registryBase={registryBase} />
       <Bento items={bentoItems} total={total} registryBase={registryBase} />

@@ -4,12 +4,12 @@
   "title": "Scheduling Pack",
   "description": "Avoid date, timezone and overlap mistakes.",
   "registryDependencies": [
-    "unambiguous-date",
-    "timezone-picker",
-    "time-confirm",
-    "relative-date-input",
-    "timezone-mismatch",
-    "event-overlap"
+    "@bollard/unambiguous-date",
+    "@bollard/timezone-picker",
+    "@bollard/time-confirm",
+    "@bollard/relative-date-input",
+    "@bollard/timezone-mismatch",
+    "@bollard/event-overlap"
   ],
   "files": [
     {

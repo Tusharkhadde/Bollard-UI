@@ -4,12 +4,12 @@
   "title": "Dev Tools Pack",
   "description": "Keep risky developer actions in the right environment.",
   "registryDependencies": [
-    "environment-badge",
-    "kube-context-guard",
-    "force-push-confirm",
-    "sql-guard",
-    "env-paste",
-    "curl-pipe-guard"
+    "@bollard/environment-badge",
+    "@bollard/kube-context-guard",
+    "@bollard/force-push-confirm",
+    "@bollard/sql-guard",
+    "@bollard/env-paste",
+    "@bollard/curl-pipe-guard"
   ],
   "files": [
     {

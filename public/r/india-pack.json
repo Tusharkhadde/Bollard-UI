@@ -4,12 +4,12 @@
   "title": "India Pack",
   "description": "India-aware identity, payment and amount inputs.",
   "registryDependencies": [
-    "phone-input",
-    "aadhaar-input",
-    "ifsc-input",
-    "upi-id-input",
-    "pincode-input",
-    "amount-input"
+    "@bollard/phone-input",
+    "@bollard/aadhaar-input",
+    "@bollard/ifsc-input",
+    "@bollard/upi-id-input",
+    "@bollard/pincode-input",
+    "@bollard/amount-input"
   ],
   "files": [
     {

@@ -4,11 +4,11 @@
   "title": "Settings Pack",
   "description": "Make account changes easier to review and recover.",
   "registryDependencies": [
-    "email-change-guard",
-    "session-list",
-    "unsaved-changes-bar",
-    "reauth-gate",
-    "backup-codes"
+    "@bollard/email-change-guard",
+    "@bollard/session-list",
+    "@bollard/unsaved-changes-bar",
+    "@bollard/reauth-gate",
+    "@bollard/backup-codes"
   ],
   "files": [
     {

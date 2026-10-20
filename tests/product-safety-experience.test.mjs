@@ -14,6 +14,7 @@ test("ships installable starter packs for every flow", () => {
     const pack = items.find((item) => item.name === name)
     assert.ok(pack, `${name} is missing`)
     assert.ok(pack.registryDependencies?.length, `${name} has no registry dependencies`)
+    assert.ok(pack.registryDependencies.every((dependency) => dependency.startsWith("@bollard/")), `${name} must resolve dependencies through the Bollard namespace`)
   }
 })
 

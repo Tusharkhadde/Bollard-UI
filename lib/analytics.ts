@@ -1,6 +1,6 @@
 /** Browser-only, privacy-conscious event tracking for product adoption decisions. */
 export function registryItemsFromArgs(args: string) {
-  return [...new Set([...args.matchAll(/\/r\/([a-z0-9-]+)\.json\b/g)].map((match) => match[1]))]
+  return [...new Set([...args.matchAll(/(?:\/r\/|@bollard\/)([a-z0-9-]+)(?:\.json)?\b/g)].map((match) => match[1]))]
 }
 
 type InstallCopyEvent = {
@@ -28,4 +28,19 @@ export function trackInstallCopy({ component, components, surface, packageManage
     surface,
     package_manager: packageManager,
   })
+}
+
+function track(event: string, parameters: Record<string, string>) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return
+  window.gtag("event", event, parameters)
+}
+
+/** Track a public starter-pack identifier only; no copied command or visitor data is sent. */
+export function trackStarterPackCopy(pack: string) {
+  track("bollard_starter_pack_copied", { pack })
+}
+
+/** Track which public use-case path a visitor intentionally opens. */
+export function trackUseCaseSelected({ useCase, surface }: { useCase: string; surface: string }) {
+  track("bollard_use_case_selected", { use_case: useCase, surface })
 }

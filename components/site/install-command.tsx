@@ -8,12 +8,12 @@ const asIs = (value: string) => value
 
 /**
  * The shadcn install line, styled as a terminal prompt. `registryBase` is the
- * site's /r/ URL, so the command shown is exactly the command copied and run:
- * the full https:// URL, never an abbreviation.
+ * site's shadcn namespace. The command shown is exactly the command copied and
+ * run; the namespace setup lives in the getting-started instructions.
  *
  * It always reads from "$ npx". When the box is narrow the line wraps between
- * "npx shadcn@latest add" and the URL (hanging indent), and the URL itself may
- * break after a "/" on very small screens. Copy copies the same full command.
+ * "npx shadcn@latest add" and the registry name (hanging indent). Copy copies
+ * the same short command.
  */
 export function InstallCommand({
   registryBase,

@@ -4,11 +4,11 @@
   "title": "Messaging Pack",
   "description": "Review recipients, attachments and sensitive text before sending.",
   "registryDependencies": [
-    "reply-all-guard",
-    "recipient-check",
-    "attachment-nudge",
-    "grace-send",
-    "secret-paste-guard"
+    "@bollard/reply-all-guard",
+    "@bollard/recipient-check",
+    "@bollard/attachment-nudge",
+    "@bollard/grace-send",
+    "@bollard/secret-paste-guard"
   ],
   "files": [
     {
