@@ -10,7 +10,7 @@ import { EnvironmentBadge } from "@/registry/default/environment-badge/environme
 import { GithubIcon } from "./github-icon"
 import { Logo } from "./logo"
 import { useSite } from "./site-shell"
-import { ThemeButton } from "./theme"
+import { AccentMenu, ThemeButton } from "./theme"
 
 const navLink =
   "relative rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
@@ -30,6 +30,7 @@ export function TopBar({ env }: { env?: string }) {
     { href: "/guides", label: "Guides", active: pathname.startsWith("/guides") },
     { href: "/start-here", label: "Start here", active: pathname === "/start-here" },
     { href: "/#flows", label: "Flows", active: false },
+    { href: "/components?category=agent-human-in-the-loop", label: "Agent safety", badge: "HITL", active: false },
   ]
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/65">
@@ -48,7 +49,7 @@ export function TopBar({ env }: { env?: string }) {
         <nav aria-label="Main" className="ml-4 hidden items-center gap-0.5 md:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} aria-current={item.active ? "page" : undefined} className={cn(navLink, item.active && "text-foreground")}>
-              {item.label}
+              {item.label}{item.badge && <span className="ml-1.5 rounded-full border px-1.5 py-0.5 font-mono text-[9px] tracking-wide text-brand">{item.badge}</span>}
             </Link>
           ))}
           {REPO_PUBLIC && (
@@ -82,6 +83,7 @@ export function TopBar({ env }: { env?: string }) {
             </a>
           )}
           <ThemeButton />
+          <AccentMenu />
         </div>
       </div>
     </header>
