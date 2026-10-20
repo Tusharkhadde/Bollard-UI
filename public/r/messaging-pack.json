@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "messaging-pack",
+  "title": "Messaging Pack",
+  "description": "Review recipients, attachments and sensitive text before sending.",
+  "registryDependencies": [
+    "reply-all-guard",
+    "recipient-check",
+    "attachment-nudge",
+    "grace-send",
+    "secret-paste-guard"
+  ],
+  "files": [
+    {
+      "path": "registry/default/messaging-pack/pack.ts",
+      "content": "export const messagingPack = [\"reply-all-guard\", \"recipient-check\", \"attachment-nudge\", \"grace-send\", \"secret-paste-guard\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "messaging"
+    ],
+    "fields": [
+      "text"
+    ],
+    "summary": "A safety pack for messages and sharing.",
+    "catches": [
+      "Wrong recipients",
+      "Forgotten attachments"
+    ],
+    "limits": [
+      "Enforce sharing policy server-side."
+    ],
+    "a11y": [
+      "Included components offer visible send checks."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

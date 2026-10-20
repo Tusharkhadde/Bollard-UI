@@ -2,6 +2,8 @@
 import type { ComponentType } from "react"
 
 import { Demo as AgentActionApproveDemo } from "@/components/demos/agent-action-approve"
+import { Demo as AiPasteGuardDemo } from "@/components/demos/ai-paste-guard"
+import { Demo as UndoToastDemo } from "@/components/demos/undo-toast"
 import { Demo as McpToolReviewDemo } from "@/components/demos/mcp-tool-review"
 import { Demo as ResetHardReadbackDemo } from "@/components/demos/reset-hard-readback"
 import { Demo as AccountDeletionReadbackDemo } from "@/components/demos/account-deletion-readback"
@@ -17,7 +19,6 @@ import { Demo as HoldToConfirmDemo } from "@/components/demos/hold-to-confirm"
 import { Demo as TwoStepButtonDemo } from "@/components/demos/two-step-button"
 import { Demo as SlideToConfirmDemo } from "@/components/demos/slide-to-confirm"
 import { Demo as TypeToConfirmDemo } from "@/components/demos/type-to-confirm"
-import { Demo as UndoToastDemo } from "@/components/demos/undo-toast"
 import { Demo as ImpactPreviewDemo } from "@/components/demos/impact-preview"
 import { Demo as BulkScopeConfirmDemo } from "@/components/demos/bulk-scope-confirm"
 import { Demo as DropConfirmDemo } from "@/components/demos/drop-confirm"
@@ -135,7 +136,6 @@ import { Demo as CurlPipeGuardDemo } from "@/components/demos/curl-pipe-guard"
 import { Demo as PortExposeGuardDemo } from "@/components/demos/port-expose-guard"
 import { Demo as PhotoSpecCheckDemo } from "@/components/demos/photo-spec-check"
 import { Demo as DocUploadMatchDemo } from "@/components/demos/doc-upload-match"
-import { Demo as AiPasteGuardDemo } from "@/components/demos/ai-paste-guard"
 import { Demo as SshKeyInputDemo } from "@/components/demos/ssh-key-input"
 import { Demo as JwtInspectDemo } from "@/components/demos/jwt-inspect"
 import { Demo as CertPasteCheckDemo } from "@/components/demos/cert-paste-check"
@@ -352,7 +352,9 @@ export interface DemoEntry {
 }
 
 export const demos: DemoEntry[] = [
-  { name: "agent-action-approve", title: "Agent Action Approve", description: "Reads an agent's tool call and says plainly what it will delete, send or change, how far it reaches and whether it can be undone. Marks risky tokens, compares the agent's claim with the call, makes dangerous calls hold-to-approve and refuses risky \"always allow\" rules.", category: "Destructive actions", Demo: AgentActionApproveDemo },
+  { name: "agent-action-approve", title: "Agent Action Approve", description: "Reads an agent's tool call and says plainly what it will delete, send or change, how far it reaches and whether it can be undone. Marks risky tokens, compares the agent's claim with the call, makes dangerous calls hold-to-approve and refuses risky \"always allow\" rules.", category: "Agent / Human-in-the-loop", Demo: AgentActionApproveDemo },
+  { name: "ai-paste-guard", title: "AI Paste Guard", description: "Reads the HTML clipboard data pasted into an AI prompt box and holds it when it carries invisible text (same-colour, zero-size, display:none, off-screen, comments, alt/title instructions, Unicode tag payloads), shows each hidden passage and can paste only the visible text.", category: "Agent / Human-in-the-loop", Demo: AiPasteGuardDemo },
+  { name: "undo-toast", title: "Undo Toast", description: "Deferred actions with an undo window: actions apply optimistically and commit only after a countdown that pauses on hover, focus or a hidden tab, with Ctrl/⌘+Z, a commit on page close (pagehide), and a rollback notice if the commit fails.", category: "Agent / Human-in-the-loop", Demo: UndoToastDemo },
   { name: "mcp-tool-review", title: "MCP Tool Review", description: "Review card for MCP tool changes after approval: fingerprints each definition, diffs the description word by word, marks injected instructions (<IMPORTANT> blocks, \"do not tell the user\", ~/.ssh, other servers' tools), new free-text parameters and flipped read-only hints.", category: "Destructive actions", Demo: McpToolReviewDemo },
   { name: "reset-hard-readback", title: "Reset Hard Readback", description: "Readback for destructive git commands from porcelain status: edited files with +/- lines, staged new files, untracked and ignored files (.env and keys first), commits the branch moves past with unpushed ones marked, stash ids to recover, what stays, and a stash-first option.", category: "Destructive actions", Demo: ResetHardReadbackDemo },
   { name: "account-deletion-readback", title: "Account Deletion Readback", description: "Before Delete, lists what goes, sole-owner teams (with transfer), App Store / Google Play plans that keep billing until cancelled there, the restore deadline, what is kept and a data export. Delete unlocks after a typed confirmation and can wait for the paid period to end.", category: "Destructive actions", Demo: AccountDeletionReadbackDemo },
@@ -368,7 +370,6 @@ export const demos: DemoEntry[] = [
   { name: "two-step-button", title: "Two-Step Button", description: "Destructive button where the first click arms it with a draining timer and a second deliberate click confirms; accidental double-clicks, held keys, blur, Escape or the timeout all disarm it.", category: "Destructive actions", Demo: TwoStepButtonDemo },
   { name: "slide-to-confirm", title: "Slide to Confirm", description: "Slide-to-confirm control where the thumb must travel the whole track (threshold), a held arrow key stops short of the end, an async confirm shows a pending state, and a rejection slides it back.", category: "Destructive actions", Demo: SlideToConfirmDemo },
   { name: "type-to-confirm", title: "Type to Confirm", description: "GitHub-style confirm dialog (native <dialog>) that unlocks only after the exact phrase is typed, highlighting matched characters and flagging a typo the moment it happens; errors keep the dialog open.", category: "Destructive actions", Demo: TypeToConfirmDemo },
-  { name: "undo-toast", title: "Undo Toast", description: "Deferred actions with an undo window: actions apply optimistically and commit only after a countdown that pauses on hover, focus or a hidden tab, with Ctrl/⌘+Z, a commit on page close (pagehide), and a rollback notice if the commit fails.", category: "Destructive actions", Demo: UndoToastDemo },
   { name: "impact-preview", title: "Impact Preview", description: "Delete confirmation that loads every dependent of a parent object, grouped by type with counts and samples and marked deleted, detached or kept, and keeps Confirm locked until the list has loaded.", category: "Destructive actions", Demo: ImpactPreviewDemo },
   { name: "bulk-scope-confirm", title: "Bulk Scope Confirm", description: "States the exact count and risky subsets (\"including 12 you don't own\"), defaults to only the selected items on this page, and locks Confirm if the match count changes while the dialog is open.", category: "Destructive actions", Demo: BulkScopeConfirmDemo },
   { name: "drop-confirm", title: "Drop Confirm", description: "The target names exactly what will move and where, ignores a drop before the pointer has rested on it, asks once before large moves or moves that change who can see the items, and offers Undo, with a Move here button for keyboard and touch.", category: "Destructive actions", Demo: DropConfirmDemo },
@@ -486,7 +487,6 @@ export const demos: DemoEntry[] = [
   { name: "port-expose-guard", title: "Port Expose Guard", description: "Port mapping check for docker run, compose and Kubernetes Services that says who can reach each port and flags databases on 0.0.0.0 (which Docker opens ahead of ufw), host networking, -P, NodePort or public LoadBalancers, wrong container ports and unquoted 22:22 YAML, with fixes.", category: "Parsers and analyzers", Demo: PortExposeGuardDemo },
   { name: "photo-spec-check", title: "Photo Spec Check", description: "Photo upload check against portal presets (UPSC, SSC, NTA, NEET, US visa) or your spec: real file type, KB, pixels, shape, print size, over-compression, face size and centring, background and colour, with a canvas fix that crops, resizes and re-encodes.", category: "Parsers and analyzers", Demo: PhotoSpecCheckDemo },
   { name: "doc-upload-match", title: "Doc Upload Match", description: "Checks a file against the document asked for (Aadhaar back instead of front, Aadhaar in the PAN slot, a password-locked e-Aadhaar PDF, a multi-page PDF, a tiny, blurry or HEIC photo, a screenshot of a screenshot) using in-browser signals plus an optional classify hook.", category: "Parsers and analyzers", Demo: DocUploadMatchDemo },
-  { name: "ai-paste-guard", title: "AI Paste Guard", description: "Reads the HTML clipboard data pasted into an AI prompt box and holds it when it carries invisible text (same-colour, zero-size, display:none, off-screen, comments, alt/title instructions, Unicode tag payloads), shows each hidden passage and can paste only the visible text.", category: "Parsers and analyzers", Demo: AiPasteGuardDemo },
   { name: "ssh-key-input", title: "SSH Key Input", description: "Public-key field that flags a pasted private key loudly (rotate it; extract the public half in one tap), catches DSA and short RSA keys, wrapped or cut-off keys, wrong type prefixes, SSH2 export format and duplicates, and shows the SHA256 fingerprint as ssh-keygen does.", category: "Parsers and analyzers", Demo: SshKeyInputDemo },
   { name: "jwt-inspect", title: "JWT Inspect", description: "Local JWT decoder that never sends the token anywhere and flags alg none, HS vs RS key confusion, an expired token or future nbf (in the reader's zone), millisecond timestamps, a missing aud or iss, very long lifetimes, and secrets or personal data readable in the payload.", category: "Parsers and analyzers", Demo: JwtInspectDemo },
   { name: "cert-paste-check", title: "Cert Paste Check", description: "Identifies certificates, private keys and CSRs in a paste and catches a chain out of order or missing its intermediate, expired or expiring certificates, a hostname the SANs don't cover, self-signed certificates in production and a non-matching key.", category: "Parsers and analyzers", Demo: CertPasteCheckDemo },

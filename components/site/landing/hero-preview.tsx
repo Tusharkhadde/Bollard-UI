@@ -3,147 +3,39 @@
 import * as React from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
+import { AmountInput } from "@/registry/default/amount-input/amount-input"
 
-import { AmountScreen, EmailScreen, ExpiryScreen, PasswordScreen, PhoneScreen } from "./hero-screens"
-
-const TABS = [
-  { id: "amount", label: "Amount", path: "acme.app/checkout", uses: ["amount-input"], Screen: AmountScreen },
-  { id: "email", label: "Email", path: "acme.app/account", uses: ["email-input"], Screen: EmailScreen },
-  { id: "password", label: "Password", path: "acme.app/sign-in", uses: ["password-input"], Screen: PasswordScreen },
-  { id: "phone", label: "Phone", path: "acme.app/profile", uses: ["phone-input"], Screen: PhoneScreen },
-  { id: "expiry", label: "Expiry", path: "acme.app/billing", uses: ["card-expiry-input"], Screen: ExpiryScreen },
-] as const
-
-type TabId = (typeof TABS)[number]["id"]
-
-/**
- * The hero's product window: a framed browser with five tabs, each a small
- * screen built from real registry components with a mistake already in it.
- * A sliding pill marks the active tab; arrow keys move between tabs.
- */
+/** One transfer scenario: no carousel or secondary tab competes with the contrast. */
 export function HeroPreview({ className }: { className?: string }) {
-  const [active, setActive] = React.useState<TabId>("amount")
-  const tabRefs = React.useRef<Record<string, HTMLButtonElement | null>>({})
-  const baseId = React.useId()
-  const tab = TABS.find((t) => t.id === active) ?? TABS[0]
-
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    const i = TABS.findIndex((t) => t.id === active)
-    const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0
-    const jump = event.key === "Home" ? 0 : event.key === "End" ? TABS.length - 1 : -1
-    if (!step && jump < 0) return
-    event.preventDefault()
-    const next = jump >= 0 ? TABS[jump] : TABS[(i + step + TABS.length) % TABS.length]
-    setActive(next.id)
-    tabRefs.current[next.id]?.focus()
-  }
+  const [withBollard, setWithBollard] = React.useState(false)
 
   return (
-    // Outer bezel: a borderless tinted rim around the window (one hairline only, on the inner window), like a product shot.
     <div className={cn("rounded-[1rem] bg-foreground/[0.04] p-1 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.22)] sm:p-1.5 dark:bg-white/[0.05] dark:shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)]", className)}>
       <div className="overflow-hidden rounded-xl border bg-background">
-        {/* Chrome: traffic lights, address, tabs */}
         <div className="flex h-11 items-center gap-3 border-b px-3 sm:px-4">
-          <div aria-hidden className="hidden shrink-0 gap-1.5 sm:flex">
-            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
-            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
-            <span className="size-2.5 rounded-full bg-foreground/25 ring-1 ring-foreground/10 ring-inset" />
-          </div>
-          <div className="mx-auto flex h-7 min-w-0 max-w-[16rem] flex-1 items-center justify-center gap-1.5 truncate rounded-md border bg-muted px-3 font-mono text-xs text-foreground/80">
-            <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500/80" />
-            <span className="truncate">{tab.path}</span>
-          </div>
+          <div aria-hidden className="hidden shrink-0 gap-1.5 sm:flex"><span className="size-2.5 rounded-full bg-foreground/25" /><span className="size-2.5 rounded-full bg-foreground/25" /><span className="size-2.5 rounded-full bg-foreground/25" /></div>
+          <div className="mx-auto flex h-7 min-w-0 max-w-[16rem] flex-1 items-center justify-center gap-1.5 truncate rounded-md border bg-muted px-3 font-mono text-xs text-foreground/80"><span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500/80" />acme.app/transfer</div>
           <div aria-hidden className="hidden w-[2.625rem] shrink-0 sm:block" />
         </div>
-
-        <div className="flex items-center border-b px-2 py-2 sm:px-3">
-          <div
-            role="tablist"
-            aria-label="Example screens"
-            onKeyDown={onKeyDown}
-            className="flex min-w-0 gap-0.5 overflow-x-auto rounded-lg [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {TABS.map((t) => {
-              const selected = t.id === active
-              return (
-                <button
-                  key={t.id}
-                  ref={(node) => {
-                    tabRefs.current[t.id] = node
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`${baseId}-tab-${t.id}`}
-                  aria-selected={selected}
-                  aria-controls={`${baseId}-panel`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActive(t.id)}
-                  className={cn(
-                    "relative h-8 shrink-0 rounded-md px-3 text-[13px] whitespace-nowrap outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                    selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
-                  )}
-                >
-                  {selected && (
-                    <motion.span
-                      layoutId={`${baseId}-pill`}
-                      aria-hidden
-                      className="absolute inset-0 rounded-md border bg-accent"
-                      transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                    />
-                  )}
-                  <span className="relative">{t.label}</span>
-                </button>
-              )
-            })}
-          </div>
+        <div role="group" aria-label="Transfer safety comparison" className="flex gap-1 border-b bg-background p-2 sm:px-3">
+          <button type="button" aria-pressed={!withBollard} onClick={() => setWithBollard(false)} className={cn("h-8 rounded-md px-3 text-xs font-medium outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50", !withBollard ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground")}>Without Bollard</button>
+          <button type="button" aria-pressed={withBollard} onClick={() => setWithBollard(true)} className={cn("h-8 rounded-md px-3 text-xs font-medium outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50", withBollard ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground")}>With Bollard</button>
         </div>
-
-        {/* Screen */}
-        <div
-          role="tabpanel"
-          id={`${baseId}-panel`}
-          aria-labelledby={`${baseId}-tab-${active}`}
-          className="ink-amber bg-dots relative flex justify-center bg-surface px-3 py-6 sm:min-h-[31rem] sm:px-6 sm:py-8"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.16, ease: "easeOut" }}
-              className="flex w-full min-w-0 items-center justify-center"
-            >
-              <tab.Screen />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* What this screen is made of */}
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 border-t px-4 py-3 text-xs text-muted-foreground sm:px-5">
-          <span>Built with</span>
-          {tab.uses.map((name) => (
-            <Link
-              key={name}
-              href={`/components/${name}`}
-              className="rounded-md border px-1.5 py-0.5 font-mono text-[11px] text-foreground outline-none transition-colors hover:border-border-strong hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50"
-            >
-              {name}
-            </Link>
-          ))}
-          {/* Right-hand anchor so every tab's row is balanced, whether it lists one component or four. */}
-          <Link
-            href="/components"
-            className="ml-auto hidden items-center gap-1 rounded-md text-xs text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:inline-flex"
-          >
-            All components
-            <ArrowRight aria-hidden className="size-3" />
-          </Link>
-        </div>
+        <div className="ink-amber bg-dots flex min-h-[29rem] justify-center bg-surface px-3 py-6 sm:px-6 sm:py-8"><TransferComparison withBollard={withBollard} /></div>
+        <div className="flex items-center gap-2 border-t px-4 py-3 text-xs text-muted-foreground sm:px-5"><span>Built with</span><Link href="/components/amount-input" className="rounded-md border px-1.5 py-0.5 font-mono text-[11px] text-foreground outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50">amount-input</Link><Link href="/components" className="ml-auto hidden items-center gap-1 text-xs text-muted-foreground hover:text-foreground sm:inline-flex">All components <ArrowRight aria-hidden className="size-3" /></Link></div>
       </div>
     </div>
   )
+}
+
+function TransferComparison({ withBollard }: { withBollard: boolean }) {
+  const [confirmed, setConfirmed] = React.useState(false)
+  const [sent, setSent] = React.useState(false)
+  React.useEffect(() => { setConfirmed(false); setSent(false) }, [withBollard])
+
+  if (!withBollard) return <div className="w-full max-w-sm self-center rounded-lg border bg-card p-5"><h3 className="text-sm font-medium">Send money</h3><label className="mt-4 block text-sm font-medium" htmlFor="unsafe-transfer">Amount (₹)</label><input id="unsafe-transfer" defaultValue="1,00,000" className="mt-1 h-10 w-full rounded-md border bg-background px-3 font-mono outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50" /><button type="button" onClick={() => setSent(true)} className="mt-4 h-10 w-full rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground">Send</button>{sent && <p role="alert" className="mt-3 rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">Fictional failure: transfer rejected after the amount was submitted.</p>}</div>
+
+  return <div className="w-full max-w-sm self-center rounded-lg border bg-card p-5"><h3 className="text-sm font-medium">Send money</h3><AmountInput label="Amount (₹)" locale="en-IN" currency="INR" defaultValue={100000} typical={10000} /><label className="mt-3 flex items-start gap-2 text-sm"><input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} className="mt-1 size-4 accent-[var(--brand)]" />I confirm this transfer is ₹1,00,000, not ₹10,000.</label><button type="button" disabled={!confirmed} onClick={() => setSent(true)} className="mt-4 h-10 w-full rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50">Confirm and send</button>{sent && <p role="status" className="mt-3 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-3 text-sm text-foreground">Confirmation recorded. Your server should validate and send the transfer.</p>}</div>
 }

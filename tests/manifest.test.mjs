@@ -2,10 +2,10 @@ import assert from "node:assert/strict"
 import test from "node:test"
 import { buildManifest } from "../scripts/build-manifest.mjs"
 
-test("manifest inventories all 341 registry components and the headless hook", () => {
+test("manifest inventories all registry components and the headless hook", () => {
   const manifest = buildManifest(process.cwd())
 
-  assert.equal(manifest.components.length, 341)
+  assert.equal(manifest.components.length, 352)
   assert.ok(manifest.components.some((component) => component.name === "use-bollard-field"))
   assert.ok(manifest.components.every((component) => component.fields && component.name))
 })

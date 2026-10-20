@@ -26,7 +26,7 @@ export function InstallCommand({
   className?: string
   tone?: "default" | "inverted"
 }) {
-  const command = `npx shadcn@latest add ${registryBase}${name}.json`
+  const command = `npx shadcn@latest add @bollard/${name}`
   const dim = tone === "default" ? "text-muted-foreground" : "text-white/60"
   const dimmer = tone === "default" ? "text-muted-foreground/80" : "text-white/45"
 
@@ -45,12 +45,7 @@ export function InstallCommand({
           <span aria-hidden className="select-none text-amber-700 dark:text-amber-400">
             ${" "}
           </span>
-          <span className={cn("whitespace-nowrap", dim)}>npx shadcn@latest add</span>{" "}
-          <span className="[overflow-wrap:anywhere]">
-            <span className={dimmer}>{registryBase}</span>
-            <span className="font-semibold">{name}</span>
-            <span className={dimmer}>.json</span>
-          </span>
+          <span className={cn("whitespace-nowrap", dim)}>npx shadcn@latest add</span>{" "}<span className="font-semibold whitespace-nowrap">@bollard/{name}</span>
         </code>
       </div>
       <CopyConfirm

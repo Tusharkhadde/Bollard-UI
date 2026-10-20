@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "danger-zone-pack",
+  "title": "Danger Zone Pack",
+  "description": "Deliberate confirmations and recovery paths for destructive actions.",
+  "registryDependencies": [
+    "danger-zone",
+    "type-to-confirm",
+    "account-deletion-readback",
+    "hold-to-confirm",
+    "undo-toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/danger-zone-pack/pack.ts",
+      "content": "export const dangerZonePack = [\"danger-zone\", \"type-to-confirm\", \"account-deletion-readback\", \"hold-to-confirm\", \"undo-toast\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "danger-zone"
+    ],
+    "fields": [
+      "text"
+    ],
+    "summary": "A pack for destructive actions that need a deliberate second look.",
+    "catches": [
+      "Accidental deletes",
+      "Unclear account removal"
+    ],
+    "limits": [
+      "Enforce deletion policy on the server."
+    ],
+    "a11y": [
+      "Included components use visible labels and keyboard-safe confirmation."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

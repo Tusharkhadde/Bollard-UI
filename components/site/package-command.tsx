@@ -12,6 +12,7 @@ type Manager = (typeof MANAGERS)[number]
 const KEY = "bollard-ui-package-manager"
 const EVENT = "bollard-ui-package-manager"
 const asIs = (value: string) => value
+const shortRegistryArgs = (args: string) => args.replace(/https:\/\/bollard-ui\.vercel\.app\/r\/([a-z0-9-]+)\.json/g, "@bollard/$1")
 
 function read(): Manager {
   try {
@@ -62,7 +63,8 @@ function commandFor(manager: Manager, kind: "add" | "install" | "shadcn", args: 
  */
 export function PackageCommand({ kind, args, label }: { kind: "add" | "install" | "shadcn"; args: string; label?: string }) {
   const [manager, setManager] = useManager()
-  const command = commandFor(manager, kind, args)
+  const displayArgs = kind === "add" ? shortRegistryArgs(args) : args
+  const command = commandFor(manager, kind, displayArgs)
   const registryItems = registryItemsFromArgs(args)
   return (
     <div className="rounded-xl border bg-surface" data-package-command={kind}>
@@ -87,7 +89,7 @@ export function PackageCommand({ kind, args, label }: { kind: "add" | "install" 
           content: (
             <div className="overflow-x-auto px-4 py-3.5 [scrollbar-width:thin]">
               <code className="font-mono text-[12.5px] whitespace-nowrap">
-                <span className="text-muted-foreground">{commandFor(m, kind, "").trim()}</span> {args}
+                <span className="text-muted-foreground">{commandFor(m, kind, "").trim()}</span> {displayArgs}
               </code>
             </div>
           ),

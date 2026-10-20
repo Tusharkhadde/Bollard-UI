@@ -53,19 +53,19 @@ export function Bento({ items, total, registryBase }: { items: BentoItem[]; tota
               "group/card flex min-w-0 flex-col overflow-hidden bg-card transition-colors duration-200 hover:bg-surface",
             )}
           >
-            <div className="ink-amber bg-dots flex flex-1 items-center justify-center border-b bg-surface px-5 py-8 sm:px-8 sm:py-10">
+            <div className="ink-amber bg-dots flex h-[22rem] items-center justify-center overflow-hidden border-b bg-surface px-5 py-8 sm:px-8 sm:py-10">
               <div className={cn("w-full", card.stage ?? "max-w-md")}>
                 <LiveDemo name={card.name} />
               </div>
             </div>
-            <div className="flex items-start justify-between gap-4 px-5 py-4">
+            <div className="flex min-h-24 items-start justify-between gap-4 px-5 py-4">
               <div className="min-w-0">
                 <h3 className="text-sm font-medium tracking-tight">{card.title}</h3>
                 <p className="mt-0.5 line-clamp-2 text-[13px] text-muted-foreground">Stops: {card.headline}</p>
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <CopyButton
-                  value={`npx shadcn@latest add ${registryBase}${card.name}.json`}
+                  value={`npx shadcn@latest add @bollard/${card.name}`}
                   label={`Copy ${card.title} install command`}
                   className="h-7 px-2 text-[11px]"
                 >

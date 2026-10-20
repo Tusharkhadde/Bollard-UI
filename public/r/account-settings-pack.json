@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "account-settings-pack",
+  "title": "Settings Pack",
+  "description": "Make account changes easier to review and recover.",
+  "registryDependencies": [
+    "email-change-guard",
+    "session-list",
+    "unsaved-changes-bar",
+    "reauth-gate",
+    "backup-codes"
+  ],
+  "files": [
+    {
+      "path": "registry/default/account-settings-pack/pack.ts",
+      "content": "export const accountSettingsPack = [\"email-change-guard\", \"session-list\", \"unsaved-changes-bar\", \"reauth-gate\", \"backup-codes\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "account-settings"
+    ],
+    "fields": [
+      "email"
+    ],
+    "summary": "Guardrails for account settings and recovery details.",
+    "catches": [
+      "Unsaved changes",
+      "Unsafe email changes"
+    ],
+    "limits": [
+      "Require authentication server-side."
+    ],
+    "a11y": [
+      "Included components expose status in text."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

@@ -117,7 +117,7 @@ export function Hero({ registryBase }: { registryBase: string }) {
               <motion.h1
                 variants={item}
                 id="hero-heading"
-                className="mt-6 text-[2.6rem] leading-[1.03] font-semibold tracking-[-0.05em] text-balance sm:text-6xl lg:text-[3.8rem] xl:text-[4.25rem]"
+                className="mt-6 line-clamp-3 text-[2.6rem] leading-[1.03] font-semibold tracking-[-0.05em] text-balance sm:text-6xl lg:text-[3.8rem] xl:text-[4.25rem]"
               >
                 {TAGLINE}
               </motion.h1>

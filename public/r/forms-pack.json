@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "forms-pack",
+  "title": "Forms Pack",
+  "description": "Keep form entries, drafts and submissions on track.",
+  "registryDependencies": [
+    "draft-restore",
+    "unsaved-changes-bar",
+    "error-summary",
+    "safe-submit",
+    "date-sanity-input",
+    "review-step"
+  ],
+  "files": [
+    {
+      "path": "registry/default/forms-pack/pack.ts",
+      "content": "export const formsPack = [\"draft-restore\", \"unsaved-changes-bar\", \"error-summary\", \"safe-submit\", \"date-sanity-input\", \"review-step\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "forms"
+    ],
+    "fields": [
+      "text"
+    ],
+    "summary": "A form safety pack for validation, drafts and review.",
+    "catches": [
+      "Lost drafts",
+      "Double submits"
+    ],
+    "limits": [
+      "Validate all form data server-side."
+    ],
+    "a11y": [
+      "Included components use labels and error announcements."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

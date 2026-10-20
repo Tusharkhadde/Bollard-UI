@@ -18,7 +18,7 @@ test("publishes five distinct developer-intent guides with actionable components
     assert.match(guide.description, /\S/)
     assert.match(guide.component, /^[a-z0-9-]+$/)
     assert.match(guide.mistake, /\S/)
-    assert.match(guide.installCommand, /^npx shadcn@latest add https:\/\/bollard-ui\.vercel\.app\/r\/[a-z0-9-]+\.json$/)
+    assert.match(guide.installCommand, /^npx shadcn@latest add @bollard\/[a-z0-9-]+$/)
   }
 })
 

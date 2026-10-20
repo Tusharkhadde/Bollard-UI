@@ -68,7 +68,7 @@
     ]
   },
   "categories": [
-    "Parsers and analyzers"
+    "Agent / Human-in-the-loop"
   ],
   "type": "registry:ui"
 }

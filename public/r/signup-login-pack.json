@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signup-login-pack",
+  "title": "Sign-up Pack",
+  "description": "Catch account-creation mistakes early.",
+  "registryDependencies": [
+    "email-input",
+    "password-input",
+    "username-input",
+    "phone-input",
+    "otp-paste-input",
+    "name-input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/signup-login-pack/pack.ts",
+      "content": "export const signupLoginPack = [\"email-input\", \"password-input\", \"username-input\", \"phone-input\", \"otp-paste-input\", \"name-input\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "signup-login"
+    ],
+    "fields": [
+      "email",
+      "phone",
+      "name"
+    ],
+    "summary": "Inputs for safer sign-up and login flows.",
+    "catches": [
+      "Email typos",
+      "Weak passwords"
+    ],
+    "limits": [
+      "Server-side identity verification is still required."
+    ],
+    "a11y": [
+      "Included fields announce validation feedback."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

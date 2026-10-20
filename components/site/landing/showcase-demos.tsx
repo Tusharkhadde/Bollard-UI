@@ -14,7 +14,7 @@ export function AmountDemo() {
 }
 
 export function EmailDemo() {
-  return <EmailInput label="Work email" defaultValue="priya.sharma@gmial.con" className="w-full max-w-none" />
+  return <div className="grid gap-2"><EmailInput label="Work email" defaultValue="priya.sharma@gmial.con" className="w-full max-w-none" /><p className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 font-mono text-[11px]"><del className="text-destructive">gmial.con</del><span className="px-1 text-muted-foreground">→</span><ins className="font-semibold text-emerald-700 no-underline dark:text-emerald-300">gmail.com</ins></p></div>
 }
 
 export function PasswordDemo() {

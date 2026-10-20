@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "agent-pack",
+  "title": "Agent Pack",
+  "description": "Human-in-the-loop components for safer AI-assisted work.",
+  "registryDependencies": [
+    "agent-action-approve",
+    "ai-paste-guard",
+    "undo-toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/agent-pack/pack.ts",
+      "content": "export const agentPack = [\"agent-action-approve\", \"ai-paste-guard\", \"undo-toast\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "devtools"
+    ],
+    "fields": [
+      "code",
+      "text"
+    ],
+    "summary": "Approval, paste review and undo primitives for agent-assisted workflows.",
+    "catches": [
+      "Unreviewed agent actions",
+      "Hidden instructions",
+      "Irreversible actions"
+    ],
+    "limits": [
+      "Your host application must enforce approvals."
+    ],
+    "a11y": [
+      "Included components announce decisions and expose keyboard controls."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

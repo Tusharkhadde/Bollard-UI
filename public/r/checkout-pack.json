@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkout-pack",
+  "title": "Checkout Pack",
+  "description": "Prevent payment mistakes before customers submit.",
+  "registryDependencies": [
+    "amount-input",
+    "safe-submit",
+    "duplicate-payment-guard",
+    "card-expiry-input",
+    "charge-summary"
+  ],
+  "files": [
+    {
+      "path": "registry/default/checkout-pack/pack.ts",
+      "content": "export const checkoutPack = [\"amount-input\", \"safe-submit\", \"duplicate-payment-guard\", \"card-expiry-input\", \"charge-summary\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "checkout"
+    ],
+    "fields": [
+      "amount"
+    ],
+    "summary": "Checkout guardrails for amounts, cards, duplicate submits and totals.",
+    "catches": [
+      "Extra zeros",
+      "Duplicate charges"
+    ],
+    "limits": [
+      "Use idempotency and price validation on the server."
+    ],
+    "a11y": [
+      "Included controls provide visible and announced feedback."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

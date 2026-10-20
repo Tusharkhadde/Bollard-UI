@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "india-pack",
+  "title": "India Pack",
+  "description": "India-aware identity, payment and amount inputs.",
+  "registryDependencies": [
+    "phone-input",
+    "aadhaar-input",
+    "ifsc-input",
+    "upi-id-input",
+    "pincode-input",
+    "amount-input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/india-pack/pack.ts",
+      "content": "export const indiaPack = [\"phone-input\", \"aadhaar-input\", \"ifsc-input\", \"upi-id-input\", \"pincode-input\", \"amount-input\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "india"
+    ],
+    "fields": [
+      "phone",
+      "id-number",
+      "amount"
+    ],
+    "summary": "A pack for Indian phone, identity, payment and number formats.",
+    "catches": [
+      "Invalid UPI and IFSC details",
+      "Hard-to-read rupee amounts"
+    ],
+    "limits": [
+      "Verify payment and identity data server-side."
+    ],
+    "a11y": [
+      "Included inputs have labels and announced validation feedback."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

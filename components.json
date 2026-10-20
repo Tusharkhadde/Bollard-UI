@@ -16,5 +16,8 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
+  "registries": {
+    "@bollard": "https://bollard-ui.vercel.app/r/{name}.json"
+  },
   "iconLibrary": "lucide"
 }

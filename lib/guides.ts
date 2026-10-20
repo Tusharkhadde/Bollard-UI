@@ -1,5 +1,3 @@
-const REGISTRY_BASE = "https://bollard-ui.vercel.app/r/"
-
 export interface Guide {
   slug: string
   title: string
@@ -14,7 +12,7 @@ export interface Guide {
 
 const defineGuide = (guide: Omit<Guide, "installCommand">): Guide => ({
   ...guide,
-  installCommand: `npx shadcn@latest add ${REGISTRY_BASE}${guide.component}.json`,
+  installCommand: `npx shadcn@latest add @bollard/${guide.component}`,
 })
 
 /** Search-intent pages that connect common implementation problems to a runnable guard rail. */

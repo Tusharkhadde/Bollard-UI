@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "devtools-pack",
+  "title": "Dev Tools Pack",
+  "description": "Keep risky developer actions in the right environment.",
+  "registryDependencies": [
+    "environment-badge",
+    "kube-context-guard",
+    "force-push-confirm",
+    "sql-guard",
+    "env-paste",
+    "curl-pipe-guard"
+  ],
+  "files": [
+    {
+      "path": "registry/default/devtools-pack/pack.ts",
+      "content": "export const devtoolsPack = [\"environment-badge\", \"kube-context-guard\", \"force-push-confirm\", \"sql-guard\", \"env-paste\", \"curl-pipe-guard\"] as const\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "flows": [
+      "devtools"
+    ],
+    "fields": [
+      "code"
+    ],
+    "summary": "Guardrails for developer tools and infrastructure workflows.",
+    "catches": [
+      "Wrong environment",
+      "Unsafe shell commands"
+    ],
+    "limits": [
+      "Run policy enforcement at the execution boundary."
+    ],
+    "a11y": [
+      "Included components announce warnings and outcomes."
+    ]
+  },
+  "categories": [
+    "Starter packs"
+  ],
+  "type": "registry:ui"
+}

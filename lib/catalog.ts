@@ -222,4 +222,4 @@ export function readDemo(name: string) {
 export { REPO_URL, SITE_URL }
 
 export const registryBase = `${SITE_URL}/r/`
-export const installCommand = (name: string) => `npx shadcn@latest add ${registryBase}${name}.json`
+export const installCommand = (name: string) => `npx shadcn@latest add @bollard/${name}`

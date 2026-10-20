@@ -18,7 +18,7 @@ export function GET() {
     `- [Guides](${SITE_URL}/guides): implementation pages for common React form and action problems.`,
     "",
     "## Install",
-    "Use `npx shadcn@latest add https://bollard-ui.vercel.app/r/<component>.json`. The command copies source files into the user's project.",
+    "Use `npx shadcn@latest add @bollard/<component>`. The command copies source files into the user's project; URL installs at /r/<component>.json remain supported.",
     "",
     "## High-intent guides",
     ...GUIDES.map((guide) => `- [${guide.title}](${SITE_URL}/guides/${guide.slug}): install \`${guide.installCommand}\`.`),

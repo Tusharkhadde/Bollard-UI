@@ -9,6 +9,8 @@ import { IntegrationPaths } from "@/components/site/landing/integration-paths"
 import { HowItWorks } from "@/components/site/landing/how-it-works"
 import { Stats } from "@/components/site/landing/stats"
 import { WhyNot } from "@/components/site/landing/why-not"
+import { DisastersPrevented } from "@/components/site/landing/disasters-prevented"
+import { StarterPacks } from "@/components/site/landing/starter-packs"
 import { catalog, categories, registryBase } from "@/lib/catalog"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
 
@@ -30,7 +32,9 @@ export default function Home() {
       <Hero registryBase={registryBase} />
       <Stats total={total} categories={categories.length} />
       <IntegrationPaths registryBase={registryBase} />
+      <StarterPacks registryBase={registryBase} />
       <Bento items={bentoItems} total={total} registryBase={registryBase} />
+      <DisastersPrevented />
       <Flows flows={flows} />
       <HowItWorks registryBase={registryBase} />
       <WhyNot />

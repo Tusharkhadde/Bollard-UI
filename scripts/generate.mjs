@@ -9,6 +9,8 @@ const HOMEPAGE = "https://bollard-ui.vercel.app"
 
 const CATEGORIES = [
 // Each component sits in exactly one category; the generator warns when one is missing or listed twice.
+  ["Starter packs", ["fintech-pack", "agent-pack", "danger-zone-pack", "india-pack", "checkout-pack", "signup-login-pack", "account-settings-pack", "forms-pack", "messaging-pack", "devtools-pack", "scheduling-pack"]],
+  ["Agent / Human-in-the-loop", ["agent-action-approve", "ai-paste-guard", "undo-toast"]],
   ["Destructive actions", ["agent-action-approve", "mcp-tool-review", "reset-hard-readback", "account-deletion-readback", "force-push-confirm", "infra-plan-readback", "recovery-contact-cooldown", "migration-preview", "feature-flag-rollout", "branch-target", "session-list", "sign-in-approve", "hold-to-confirm", "two-step-button", "slide-to-confirm", "type-to-confirm", "undo-toast", "impact-preview", "bulk-scope-confirm", "drop-confirm", "danger-zone", "click-shield", "shortcut-confirm", "guarded-switch", "swipe-delete-row", "grace-send", "two-person-approve", "trash-countdown", "range-select-guard", "reauth-gate", "rollback-preview", "edit-lock", "archive-or-delete", "revoke-access-preview", "transfer-ownership", "cancel-readback", "merge-records", "move-readback", "reset-preview", "replace-file", "dns-record-guard", "key-rotate", "retention-change", "seat-reduce"]],
   ["Submits and rate limits", ["cooldown-button", "safe-submit", "bulk-runner", "spend-cap-button", "scheduled-queue"]],
   ["Validators", ["commit-combobox", "relative-date-input", "namesake-select", "cheque-check", "kyc-name-match", "aadhaar-input", "password-policy-input", "passenger-name-input", "email-change-guard", "invoice-number-check", "pin-drop-check", "pincode-input", "password-hint-guard", "coupon-input", "paste-target-guard", "email-input", "password-input", "match-field", "amount-input", "date-sanity-input", "clean-paste-input", "otp-paste-input", "url-input", "phone-input", "char-budget", "code-input", "inline-edit", "checksum-input", "name-input", "near-duplicate-input", "slug-input", "homoglyph-guard", "contrast-picker", "address-check", "tax-id-input", "filename-input", "coordinate-input", "zero-result-rescue", "mixed-value-field", "card-expiry-input", "username-input", "ifsc-input", "upi-id-input", "shortcut-recorder", "hashtag-input", "timezone-picker", "scope-picker", "brand-color-input", "wrong-layout-input"]],
@@ -19,6 +21,15 @@ const CATEGORIES = [
   ["Sharing, sending and paying", ["bcc-guard", "hidden-content-check", "prompt-data-guard", "bill-split-check", "callback-number-check", "quote-lock", "calendar-external-guest-guard", "chat-audience-check", "out-of-office-check", "retract-window", "card-bill-pay", "otp-share-guard", "bank-transfer-timing", "gift-card-scam-guard", "commit-secret-guard", "publish-preview", "upi-autopay-review", "upi-collect-guard", "tds-invoice-total", "link-access-check", "reply-all-guard", "duplicate-payment-guard", "bulk-send-guard", "pii-post-guard", "recurring-charge-readback", "gst-invoice-check", "role-preview", "visibility-picker", "recipient-check", "secret-paste-guard", "external-link", "charge-summary", "send-time-check", "fill-before-copy", "photo-location-guard", "currency-hint", "mention-guard", "share-link", "merge-field-check", "forward-guard", "payee-check", "csv-export-guard", "link-unfurl-check", "qr-share", "redact-image", "sms-segments", "export-scope", "invite-check", "large-attachment", "embed-code", "alt-text-check", "stale-reply", "tip-picker", "refund-picker", "plan-change-readback", "payment-reference", "truncation-preview"]],
   ["Reading without mistakes", ["dockerfile-check", "gitignore-check", "workflow-yaml-guard", "iam-policy-check", "hreflang-check", "redirect-rule-input", "set-cookie-check", "qr-scan-check", "env-diff", "join-preview", "dedupe-key-picker", "dual-axis-guard", "secret-field", "text-diff", "readback", "copy-confirm", "middle-truncate", "precise-number", "unambiguous-date", "deadline", "change-highlight", "spell-out", "honest-bar", "change-readout", "size-context", "sum-check", "status-chip", "sort-indicator", "diff-table", "amount-in-words", "overflow-list", "honest-rating", "unit-price", "abbr-hint", "error-explainer", "partial-period", "gap-aware-line", "fair-rank", "eta-range", "palette-guard"]],
 ]
+
+// Agent controls are deliberately discoverable as their own category instead of
+// being buried among the broader destructive-action and parser families.
+const AGENT_ITEMS = new Set(["agent-action-approve", "ai-paste-guard", "undo-toast"])
+for (const [category, items] of CATEGORIES) {
+  if (category !== "Agent / Human-in-the-loop") {
+    for (let index = items.length - 1; index >= 0; index--) if (AGENT_ITEMS.has(items[index])) items.splice(index, 1)
+  }
+}
 
 const root = path.resolve(import.meta.dirname, "..")
 const dir = path.join(root, "registry/default")
