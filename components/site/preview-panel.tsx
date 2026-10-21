@@ -18,7 +18,7 @@ const iconButton =
  * site theme), a reset, and a link to the standalone /preview/<name> page.
  * Without `code` it renders the stage alone.
  */
-export function PreviewPanel({ name, code }: { name: string; code?: React.ReactNode }) {
+export function PreviewPanel({ name, code, implementationContext }: { name: string; code?: React.ReactNode; implementationContext?: string }) {
   const siteDark = useResolvedDark()
   const [override, setOverride] = React.useState<"light" | "dark" | null>(null)
   const [key, setKey] = React.useState(0)
@@ -43,12 +43,17 @@ export function PreviewPanel({ name, code }: { name: string; code?: React.ReactN
 
   const tools = (
     <>
+      {implementationContext ? (
+        <CopyButton value={implementationContext} label="Copy implementation context" className="h-7 px-2 text-[11px]">
+          <><span className="sm:hidden">Context</span><span className="hidden sm:inline">Copy implementation context</span></>
+        </CopyButton>
+      ) : null}
       <CopyButton
         value={`Build a polished, accessible React example using the Bollard UI ${name} component. Preserve its public props, include keyboard support and prefers-reduced-motion-safe feedback. Install with: npx shadcn@4.21.0 add @bollard/${name}`}
         label="Copy prompt for v0/Cursor"
         className="h-7 px-2 text-[11px]"
       >
-        Copy prompt for v0/Cursor
+        <><span className="sm:hidden">Prompt</span><span className="hidden sm:inline">Copy prompt for v0/Cursor</span></>
       </CopyButton>
       <button type="button" onClick={() => setKey((k) => k + 1)} aria-label="Reset demo" title="Reset demo" className={iconButton}>
         <RotateCcw className="size-3.5" aria-hidden />

@@ -41,13 +41,13 @@ export function TopBar({ env }: { env?: string }) {
           onClick={openDrawer}
           aria-label="Open navigation"
           data-drawer-trigger
-          className="-ml-1.5 grid size-8 place-items-center rounded-md text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 lg:hidden"
+          className="-ml-1.5 grid size-8 place-items-center rounded-md text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 xl:hidden"
         >
           <Menu className="size-4" aria-hidden />
         </button>
         <Logo />
         {env && <EnvironmentBadge env={env} variant="badge" className="ml-1 hidden sm:inline-flex" />}
-        <nav aria-label="Main" className="ml-4 hidden items-center gap-0.5 md:flex">
+        <nav aria-label="Main" className="ml-4 hidden items-center gap-0.5 xl:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} aria-current={item.active ? "page" : undefined} className={cn(navLink, item.active && "text-foreground")}>
               {item.label}{item.badge && <span className="ml-1.5 rounded-full border px-1.5 py-0.5 font-mono text-[9px] tracking-wide text-brand">{item.badge}</span>}

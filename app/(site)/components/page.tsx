@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { Finder } from "@/components/site/finder"
-import { catalogItems, categories, registryBase } from "@/lib/catalog"
+import { catalogItems, categories } from "@/lib/catalog"
 import { FLOWS } from "@/lib/kits"
 
 const description =
@@ -39,7 +39,7 @@ export default function ComponentsPage() {
             <Link href="/docs#nextjs" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">framework setup notes</Link> cover Next.js and Vite.
           </p>
         </header>
-        <Finder registryBase={registryBase} />
+        <Finder />
       </div>
     </main>
   )

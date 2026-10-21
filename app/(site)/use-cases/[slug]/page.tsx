@@ -4,10 +4,10 @@ import { ArrowRight, Check, ShieldCheck } from "lucide-react"
 import { notFound } from "next/navigation"
 
 import { InstallCommand } from "@/components/site/install-command"
+import { CopyButton } from "@/components/site/copy-button"
 import { RegistrySetup } from "@/components/site/registry-setup"
 import { buttonPrimary } from "@/components/site/button-styles"
-import { registryBase } from "@/lib/catalog"
-import { USE_CASES, useCaseBySlug } from "@/lib/use-cases"
+import { USE_CASES, findUseCaseBySlug } from "@/lib/use-cases"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -17,7 +17,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const useCase = useCaseBySlug(slug)
+  const useCase = findUseCaseBySlug(slug)
   if (!useCase) return { title: "Use case not found" }
   return {
     title: useCase.eyebrow,
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function UseCasePage({ params }: Props) {
   const { slug } = await params
-  const useCase = useCaseBySlug(slug)
+  const useCase = findUseCaseBySlug(slug)
   if (!useCase) notFound()
 
   return (
@@ -73,12 +73,23 @@ export default async function UseCasePage({ params }: Props) {
         </aside>
       </section>
 
+      <section className="border-y bg-background">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div><p className="font-mono text-[11px] font-medium tracking-[0.14em] text-brand uppercase">Integration recipe</p><h2 className="mt-2 text-2xl font-semibold tracking-tight">A starting point for your flow.</h2></div>
+            <CopyButton value={useCase.recipe} label={`Copy ${useCase.eyebrow} integration recipe`} className="h-9 px-3">Copy recipe</CopyButton>
+          </div>
+          <pre className="mt-5 overflow-x-auto rounded-xl border bg-surface p-4 text-xs leading-relaxed sm:p-5"><code>{useCase.recipe}</code></pre>
+          <p className="mt-4 max-w-4xl text-sm leading-relaxed text-muted-foreground"><strong className="font-medium text-foreground">Server boundary:</strong> {useCase.serverBoundary}</p>
+        </div>
+      </section>
+
       <section className="border-y bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
           <p className="font-mono text-[11px] font-medium tracking-[0.14em] text-muted-foreground uppercase">One command for this flow</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight">{useCase.packLabel}.</h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">Start with the related components, then edit the copied source in your own product.</p>
-          <InstallCommand registryBase={registryBase} name={useCase.pack} className="mt-5 max-w-2xl bg-background" />
+          <InstallCommand name={useCase.pack} className="mt-5 max-w-2xl bg-background" />
           <RegistrySetup className="mt-8 max-w-2xl rounded-xl border bg-background p-5" />
         </div>
       </section>

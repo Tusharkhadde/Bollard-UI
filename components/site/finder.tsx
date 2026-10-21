@@ -25,10 +25,11 @@ const label = "font-mono text-[11px] font-medium tracking-[0.14em] text-muted-fo
  * category cards, then a section per flow) or the ranked results. Everything is in
  * the URL (?q=&flow=&field=&category=) via the site shell, which the sidebar reads too.
  */
-export function Finder({ registryBase }: { registryBase: string }) {
+export function Finder() {
   const { items, categories, finder, setFinder, clearFinder } = useSite()
   const [limit, setLimit] = React.useState(PAGE)
   const [draft, setDraft] = React.useState(finder.q)
+  const [selectedNames, setSelectedNames] = React.useState<string[]>([])
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   // Keep the box in step when the query changes elsewhere (sidebar, back button, example chip).
@@ -58,6 +59,8 @@ export function Finder({ registryBase }: { registryBase: string }) {
   const filtering = isFiltering(finder)
   const hasQuery = finder.q.trim().length > 0
   const byName = React.useMemo(() => new Map(items.map((item) => [item.name, item])), [items])
+  const toggleSelection = (name: string) => setSelectedNames((current) => current.includes(name) ? current.filter((item) => item !== name) : [...current, name])
+  const selectedCommand = `npx shadcn@4.21.0 add ${selectedNames.map((name) => `@bollard/${name}`).join(" ")}`
 
   const flowCounts = React.useMemo(() => new Map(FLOWS.map((f) => [f.id, items.filter((i) => i.flows?.includes(f.id)).length])), [items])
   const fieldCounts = React.useMemo(() => new Map(FIELDS.map((f) => [f.id, items.filter((i) => i.fields?.includes(f.id)).length])), [items])
@@ -235,6 +238,14 @@ export function Finder({ registryBase }: { registryBase: string }) {
         </div>
       </div>
 
+      {selectedNames.length > 0 && (
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-brand/30 bg-brand/5 p-3 sm:p-4" data-custom-pack aria-live="polite">
+          <p className="min-w-0 flex-1 text-sm"><span className="font-medium">Custom pack</span><span className="ml-2 text-muted-foreground">{selectedNames.length} selected</span></p>
+          <CopyButton value={selectedCommand} label={`Copy install command for ${selectedNames.length} selected components`} onCopy={() => trackInstallCopy({ components: selectedNames, surface: "custom-pack" })} className="h-8 px-3">Copy install command</CopyButton>
+          <button type="button" onClick={() => setSelectedNames([])} className={cn("rounded-md px-2 py-1 text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline", focusRing)}>Clear</button>
+        </div>
+      )}
+
       {/* Browse view */}
       {!filtering && (
         <>
@@ -288,14 +299,14 @@ export function Finder({ registryBase }: { registryBase: string }) {
                   View all {total} <ArrowRight aria-hidden className="size-3.5" />
                 </button>
               </div>
-              <CardGrid items={members} registryBase={registryBase} hideFlow={flow.id} />
+              <CardGrid items={members} hideFlow={flow.id} selectedNames={selectedNames} onToggleSelection={toggleSelection} />
             </section>
           ))}
         </>
       )}
 
       {/* Results */}
-      {activeKit && <KitCard kit={activeKit} byName={byName} registryBase={registryBase} />}
+      {activeKit && <KitCard kit={activeKit} byName={byName} />}
 
       {filtering && result.fallback && (
         <div className="rounded-xl border border-dashed p-5" data-finder-fallback>
@@ -319,7 +330,7 @@ export function Finder({ registryBase }: { registryBase: string }) {
             id="all-heading"
             title={result.fallback ? "Closest matches" : finder.flow && !hasQuery ? `Everything in ${flowLabel(finder.flow)}` : hasQuery ? "Best matches first" : "Results"}
           />
-          <CardGrid items={shown} registryBase={registryBase} hideFlow={finder.flow} ranked={hasQuery && !result.fallback} />
+      <CardGrid items={shown} hideFlow={finder.flow} ranked={hasQuery && !result.fallback} selectedNames={selectedNames} onToggleSelection={toggleSelection} />
           {list.length > shown.length && (
             <div className="flex justify-center pt-2">
               <button
@@ -434,20 +445,22 @@ function FilterSelect({
 
 function CardGrid({
   items,
-  registryBase,
   hideFlow,
   ranked = false,
+  selectedNames,
+  onToggleSelection,
 }: {
   items: SearchItem[]
-  registryBase: string
   hideFlow?: string | null
   ranked?: boolean
+  selectedNames: string[]
+  onToggleSelection: (name: string) => void
 }) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" data-component-grid>
       {items.map((item, i) => (
         <li key={item.name} className="min-w-0">
-          <IncidentCard item={item} registryBase={registryBase} hideFlow={hideFlow} top={ranked && i === 0} />
+          <IncidentCard item={item} hideFlow={hideFlow} top={ranked && i === 0} selected={selectedNames.includes(item.name)} onToggleSelection={() => onToggleSelection(item.name)} />
         </li>
       ))}
     </ul>
@@ -457,14 +470,16 @@ function CardGrid({
 /** A component card: name, the mistake it stops, and its flow tags. The install copy button appears on hover/focus (always on touch). */
 export function IncidentCard({
   item,
-  registryBase,
   hideFlow,
   top = false,
+  selected = false,
+  onToggleSelection,
 }: {
   item: SearchItem
-  registryBase: string
   hideFlow?: string | null
   top?: boolean
+  selected?: boolean
+  onToggleSelection?: () => void
 }) {
   const tags = (item.flows ?? []).filter((f) => f !== hideFlow).slice(0, 2)
   return (
@@ -507,6 +522,10 @@ export function IncidentCard({
         onCopy={() => trackInstallCopy({ component: item.name, surface: "component-finder" })}
         className="absolute top-3 right-3 size-7 opacity-100 transition-opacity pointer-fine:opacity-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-hover:opacity-100"
       />
+      <label className="absolute right-3 bottom-3 inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-background/95 px-2 py-1 text-[11px] text-muted-foreground shadow-xs outline-none focus-within:ring-[3px] focus-within:ring-ring/50">
+        <input type="checkbox" checked={selected} onChange={onToggleSelection} aria-label={`${selected ? "Remove" : "Add"} ${item.title} ${selected ? "from" : "to"} custom pack`} className="size-3.5 accent-[var(--brand)]" />
+        {selected ? "Selected" : "Add"}
+      </label>
     </div>
   )
 }
@@ -546,7 +565,7 @@ function KitTile({ kit, byName, onOpen, wide = false }: { kit: Kit; byName: Map<
   )
 }
 
-function KitCard({ kit, byName, registryBase }: { kit: Kit; byName: Map<string, SearchItem>; registryBase: string }) {
+function KitCard({ kit, byName }: { kit: Kit; byName: Map<string, SearchItem> }) {
   const members = kit.components.filter((name) => byName.has(name))
   const command = `npx shadcn@4.21.0 add ${members.map((name) => `@bollard/${name}`).join(" ")}`
   return (

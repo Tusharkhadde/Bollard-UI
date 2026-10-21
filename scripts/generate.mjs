@@ -132,8 +132,8 @@ function usageOf(name, files, meta) {
     .map((match) => match[1])
     .find((identifier) => meta.registryType === "registry:hook" ? /^use[A-Z]/.test(identifier) : /^[A-Z]/.test(identifier))
   if (!exported) return `See the examples at ${HOMEPAGE}/components/${name}`
-  const module = meta.registryType === "registry:hook" ? `@/components/${name}/${path.basename(entry)}` : `@/components/ui/${name}`
-  return `import { ${exported} } from "${module}"`
+  const importPath = meta.registryType === "registry:hook" ? `@/components/${name}/${path.basename(entry)}` : `@/components/ui/${name}`
+  return `import { ${exported} } from "${importPath}"`
 }
 
 const props = {}

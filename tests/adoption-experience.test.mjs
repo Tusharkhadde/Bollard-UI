@@ -7,15 +7,18 @@ import { fileURLToPath } from "node:url"
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8")
 
-test("publishes focused use-case routes for the three highest-intent safety jobs", () => {
+test("publishes copyable safety recipes for payments, deletion, agents and sign-up", () => {
   const useCases = read("lib/use-cases.ts")
   const page = read("app/(site)/use-cases/[slug]/page.tsx")
 
-  for (const slug of ["safe-payments", "danger-zone", "agent-approvals"]) {
+  for (const slug of ["safe-payments", "danger-zone", "agent-approvals", "signup-safety"]) {
     assert.match(useCases, new RegExp(`slug: "${slug}"`))
   }
   assert.match(page, /generateStaticParams/)
   assert.match(page, /InstallCommand/)
+  assert.match(page, /Copy recipe/)
+  assert.match(page, /Server boundary/)
+  assert.match(useCases, /client-side UX/)
 })
 
 test("gives users the shadcn namespace setup and tracks pack and use-case intent", () => {

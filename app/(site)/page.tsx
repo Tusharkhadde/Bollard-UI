@@ -12,7 +12,7 @@ import { WhyNot } from "@/components/site/landing/why-not"
 import { DisastersPrevented } from "@/components/site/landing/disasters-prevented"
 import { StarterPacks } from "@/components/site/landing/starter-packs"
 import { UseCasePaths } from "@/components/site/landing/use-case-paths"
-import { catalog, categories, registryBase } from "@/lib/catalog"
+import { catalog, categories } from "@/lib/catalog"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
 
 export const metadata: Metadata = { alternates: { canonical: "/" } }
@@ -30,18 +30,18 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip">
-      <Hero registryBase={registryBase} />
+      <Hero />
       <Stats total={total} categories={categories.length} />
       <UseCasePaths />
-      <IntegrationPaths registryBase={registryBase} />
-      <StarterPacks registryBase={registryBase} />
-      <Bento items={bentoItems} total={total} registryBase={registryBase} />
+      <IntegrationPaths />
+      <StarterPacks />
+      <Bento items={bentoItems} total={total} />
       <DisastersPrevented />
       <Flows flows={flows} />
-      <HowItWorks registryBase={registryBase} />
+      <HowItWorks />
       <WhyNot />
       <Faq />
-      <Cta registryBase={registryBase} />
+      <Cta />
     </main>
   )
 }

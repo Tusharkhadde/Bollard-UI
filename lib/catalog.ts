@@ -30,6 +30,7 @@ export interface PageDocs {
 
 export interface CatalogEntry extends SearchItem, PageDocs {
   files: string[]
+  targets: string[]
   dependencies: string[]
   registryDependencies: string[]
 }
@@ -53,7 +54,7 @@ interface RegistryItem {
   title: string
   description: string
   categories?: string[]
-  files: { path: string }[]
+  files: { path: string; target?: string }[]
   dependencies?: string[]
   registryDependencies?: string[]
   type?: string
@@ -156,6 +157,7 @@ export const catalog: CatalogEntry[] = registry.items
     description: item.description,
     category: item.categories?.[0] ?? "More",
     files: item.files.map((file) => file.path),
+    targets: item.files.map((file) => file.target).filter((target): target is string => typeof target === "string"),
     dependencies: item.dependencies ?? [],
     registryDependencies: (item.registryDependencies ?? []).map((d) => d.replace(/^.*\/r\/([^/]+)\.json$/, "$1")),
     integration: item.type === "registry:hook" ? "headless" : "styled",

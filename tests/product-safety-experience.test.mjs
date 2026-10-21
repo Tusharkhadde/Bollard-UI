@@ -36,3 +36,11 @@ test("offers prompt copying and all four theme accents", () => {
   assert.match(theme, /return "indigo"/)
   for (const accent of ["Amber", "Indigo", "Emerald", "Rose"]) assert.match(theme, new RegExp(accent))
 })
+
+test("lets developers assemble a custom registry pack with keyboard-operable selection", () => {
+  const finder = read("components/site/finder.tsx")
+  assert.match(finder, /data-custom-pack/)
+  assert.match(finder, /type="checkbox" checked=\{selected\}/)
+  assert.match(finder, /@bollard\/\$\{name\}/)
+  assert.match(finder, /surface: "custom-pack"/)
+})

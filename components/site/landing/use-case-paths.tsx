@@ -1,22 +1,22 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Bot, CreditCard, OctagonAlert } from "lucide-react"
+import { ArrowRight, Bot, CreditCard, OctagonAlert, UserPlus } from "lucide-react"
 
 import { trackUseCaseSelected } from "@/lib/analytics"
 import { USE_CASES } from "@/lib/use-cases"
 import { Section, SectionHeading } from "./section-heading"
 
-const icons = { "safe-payments": CreditCard, "danger-zone": OctagonAlert, "agent-approvals": Bot } as const
+const icons = { "safe-payments": CreditCard, "danger-zone": OctagonAlert, "agent-approvals": Bot, "signup-safety": UserPlus } as const
 
 /** Directs high-intent visitors to a page written for the risky flow they are building. */
 export function UseCasePaths() {
   return (
     <Section id="use-cases" labelledBy="use-cases-heading" padding="pt-6 pb-14 sm:pt-8 sm:pb-16" bordered={false}>
       <SectionHeading id="use-cases-heading" eyebrow="Build for the risky moment" title="Start with the action that needs a guard rail.">
-        Focused recipes for the three flows where a generic input or confirmation dialog often falls short.
+        Focused recipes for payments, account creation, destructive changes and agent actions.
       </SectionHeading>
-      <ul className="mt-7 grid overflow-hidden rounded-xl border bg-border md:grid-cols-3">
+      <ul className="mt-7 grid overflow-hidden rounded-xl border bg-border sm:grid-cols-2 xl:grid-cols-4">
         {USE_CASES.map((useCase) => {
           const Icon = icons[useCase.slug]
           return (

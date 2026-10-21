@@ -7,8 +7,7 @@ import { CopyConfirm } from "@/registry/default/copy-confirm/copy-confirm"
 const asIs = (value: string) => value
 
 /**
- * The shadcn install line, styled as a terminal prompt. `registryBase` is the
- * site's shadcn namespace. The command shown is exactly the command copied and
+ * The shadcn install line, styled as a terminal prompt. The command shown is exactly the command copied and
  * run; the namespace setup lives in the getting-started instructions.
  *
  * It always reads from "$ npx". When the box is narrow the line wraps between
@@ -16,19 +15,16 @@ const asIs = (value: string) => value
  * the same short command.
  */
 export function InstallCommand({
-  registryBase,
   name,
   className,
   tone = "default",
 }: {
-  registryBase: string
   name: string
   className?: string
   tone?: "default" | "inverted"
 }) {
   const command = `npx shadcn@4.21.0 add @bollard/${name}`
   const dim = tone === "default" ? "text-muted-foreground" : "text-white/60"
-  const dimmer = tone === "default" ? "text-muted-foreground/80" : "text-white/45"
 
   return (
     <div

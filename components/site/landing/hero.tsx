@@ -95,7 +95,7 @@ function FloatingSignals() {
  * A developer-first split hero: a direct value proposition and install path
  * beside a working product preview.
  */
-export function Hero({ registryBase }: { registryBase: string }) {
+export function Hero() {
   const reduced = !!useReducedMotion()
   return (
     <MotionConfig reducedMotion="user">
@@ -131,7 +131,7 @@ export function Hero({ registryBase }: { registryBase: string }) {
               </motion.div>
               <motion.div variants={item} className="mt-3 w-full max-w-[36rem]">
                 <p className="mb-2 font-mono text-[10px] font-medium tracking-[0.13em] text-muted-foreground uppercase">Quick start · Amount guard</p>
-                <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
+                <InstallCommand name="amount-input" className="w-full min-w-0" />
               </motion.div>
               <motion.div variants={item} className="mt-3 text-sm">
                 <Link href="/components/use-bollard-field" className="rounded-sm text-foreground underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">

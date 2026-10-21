@@ -18,7 +18,7 @@ const PACKS = [
   ["scheduling-pack", "Scheduling", "Clarify dates and time zones.", ["unambiguous-date", "timezone-picker", "time-confirm"], 6],
 ] as const
 
-export function StarterPacks({ registryBase }: { registryBase: string }) {
+export function StarterPacks() {
   return (
     <Section id="starter-packs" labelledBy="starter-packs-heading">
       <SectionHeading id="starter-packs-heading" eyebrow="Starter packs" title="Install guardrails by workflow.">

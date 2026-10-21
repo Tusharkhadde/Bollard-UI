@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Package, Puzzle, ServerCog } from "lucide-react"
 
 import { CodeBlock } from "@/components/site/code-block"
+import { ComponentFeedback } from "@/components/site/component-feedback"
 import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
@@ -12,6 +13,8 @@ import { catalog, categories, readDemo, readProps, readSource, registryBase, SIT
 import { highlight } from "@/lib/highlight"
 import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
+import { buildImplementationContext } from "@/lib/implementation-context"
+import { toInstalledImport } from "@/lib/registry-imports"
 import { cn } from "@/lib/utils"
 
 // Keep the most-used pages pre-rendered; the rest of the catalog is rendered
@@ -72,7 +75,7 @@ function pageDescription(item: CatalogEntry) {
 
 /** Imports as the shadcn CLI writes them: @/registry/default/<dir>/<file> → @/components/ui/<file>. */
 function asInstalled(source: string) {
-  return source.replace(/@\/registry\/default\/[\w-]+\/([\w.-]+)/g, "@/components/ui/$1")
+  return toInstalledImport(source)
 }
 
 /** Four components to show next: same kit first, then shared flows, then same category. */
@@ -292,6 +295,17 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
   const regDeps = item.registryDependencies
   const propsDoc = readProps(name)
   const hasProps = !!propsDoc && propsDoc.props.length > 0
+  const implementationContext = buildImplementationContext({
+    name,
+    title: item.title,
+    targets: item.targets,
+    dependencies: deps,
+    registryDependencies: regDeps.map((dependency) => `@bollard/${dependency}`),
+    usage: usage ?? `import { ${name.replace(/(^|-)([a-z])/g, (_, _dash, letter) => letter.toUpperCase())} } from "@/components/ui/${name}"`,
+    propNames: propsDoc?.props.map((prop) => prop.name) ?? [],
+    limitations: item.limits,
+    serverGuidance: item.server,
+  })
   const catches = item.catches ?? []
   const a11y = item.a11y ?? []
   const limits = item.limits ?? []
@@ -446,8 +460,10 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         </header>
 
         <section aria-label="Example" className="pt-8" id="preview">
-          <PreviewPanel name={name} code={codeTab} />
+          <PreviewPanel name={name} code={codeTab} implementationContext={implementationContext} />
         </section>
+
+        <ComponentFeedback component={name} />
 
         <DocSection id="installation" title="Installation">
           <DocsTabs

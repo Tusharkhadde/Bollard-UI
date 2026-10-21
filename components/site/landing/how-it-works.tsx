@@ -42,7 +42,7 @@ const steps = [
 ]
 
 /** A short path from finding a guard to owning the copied source. */
-export function HowItWorks({ registryBase }: { registryBase: string }) {
+export function HowItWorks() {
   return (
     <Section id="how-it-works" labelledBy="how-heading">
       <SectionHeading id="how-heading" eyebrow="How it works" title="Keep your UI. Add the guard rail.">
@@ -66,7 +66,7 @@ export function HowItWorks({ registryBase }: { registryBase: string }) {
         </Reveal>
         <Reveal delay={0.06} className="grid min-w-0 gap-3">
           <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">Install a component</p>
-          <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
+          <InstallCommand name="amount-input" className="w-full min-w-0" />
           <p className="px-1 text-[13px] leading-relaxed text-pretty text-muted-foreground">
             Needs {COMPAT} (<code className="font-mono text-[12px] text-foreground">npx shadcn@4.21.0 init</code> once). The CLI writes{" "}
             <code className="font-mono text-[12px] text-foreground">components/ui/amount-input.tsx</code> and installs the packages it lists. Later

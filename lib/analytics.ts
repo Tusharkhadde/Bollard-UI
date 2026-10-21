@@ -44,3 +44,8 @@ export function trackStarterPackCopy(pack: string) {
 export function trackUseCaseSelected({ useCase, surface }: { useCase: string; surface: string }) {
   track("bollard_use_case_selected", { use_case: useCase, surface })
 }
+
+/** Anonymous binary usefulness signal; never accepts free text or user-entered values. */
+export function trackComponentFeedback({ component, helpful }: { component: string; helpful: boolean }) {
+  track("bollard_component_feedback", { component, helpful: helpful ? "yes" : "no" })
+}

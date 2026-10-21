@@ -26,7 +26,7 @@ const paths = [
   },
 ] as const
 
-export function IntegrationPaths({ registryBase }: { registryBase: string }) {
+export function IntegrationPaths() {
   return (
     <Section id="start-with-your-stack" labelledBy="integration-paths-heading" padding="pt-10 pb-14 sm:pt-12 sm:pb-16" bordered={false}>
       <div className="flex flex-col gap-6 border-b pb-6 sm:flex-row sm:items-end sm:justify-between sm:pb-7">
@@ -51,7 +51,7 @@ export function IntegrationPaths({ registryBase }: { registryBase: string }) {
               </div>
             </div>
             <p className="mt-4 text-[11px] font-medium text-muted-foreground">Install from the registry</p>
-            <InstallCommand registryBase={registryBase} name={name} className="mt-2 rounded-lg" />
+            <InstallCommand name={name} className="mt-2 rounded-lg" />
             <Link href={href} className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-foreground underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
               {action} <ArrowRight aria-hidden className="size-3.5" />
             </Link>

@@ -40,6 +40,9 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      - name: Lint
+        run: npm run lint
+
       - name: Source headers are stamped
         run: node scripts/stamp-headers.mjs --check
 
@@ -47,9 +50,18 @@ jobs:
         run: npx tsc --noEmit --incremental false -p .
 
       - name: Registry build
-        run: npx shadcn build
+        run: npm run registry:build
+
+      - name: Consumer install smoke
+        run: npm run test:consumer
 
       - name: Site build
         run: npm run build
         env:
           NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Install browser for critical journeys
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser journeys
+        run: npm run test:e2e

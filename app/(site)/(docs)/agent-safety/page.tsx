@@ -5,7 +5,6 @@ import { CodeBlock } from "@/components/site/code-block"
 import { DocPage, DocSection, Note, Prose, inlineCode, proseLink } from "@/components/site/doc-page"
 import { InstallCommand } from "@/components/site/install-command"
 import { RegistrySetup } from "@/components/site/registry-setup"
-import { registryBase } from "@/lib/catalog"
 import { highlight } from "@/lib/highlight"
 
 const description = "Add a human approval step to consequential AI agent tool calls with Bollard UI. Review the proposed action, enforce the decision at the tool boundary, then resume safely."
@@ -64,7 +63,7 @@ export default function AgentSafetyPage() {
 
       <DocSection id="install" title="Install the review surface">
         <RegistrySetup className="rounded-xl border bg-surface p-5" />
-        <InstallCommand registryBase={registryBase} name="agent-pack" className="mt-5" />
+        <InstallCommand name="agent-pack" className="mt-5" />
         <p className="text-sm text-muted-foreground">The pack includes <code className={inlineCode}>agent-action-approve</code>, <code className={inlineCode}>ai-paste-guard</code> and <code className={inlineCode}>undo-toast</code>.</p>
       </DocSection>
 

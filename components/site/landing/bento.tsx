@@ -24,7 +24,7 @@ const cards: { name: ShowcaseName; stage?: string }[] = [
 export type BentoItem = { name: string; title: string; headline: string }
 
 /** Six live components, each with a mistake already in it, captioned with the mistake it stops. */
-export function Bento({ items, total, registryBase }: { items: BentoItem[]; total: number; registryBase: string }) {
+export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
   const byName = new Map(items.map((item) => [item.name, item]))
   const list = cards.flatMap((card) => {
     const item = byName.get(card.name)

@@ -10,7 +10,7 @@ import { Reveal } from "./reveal"
 import { container, sectionAnchor } from "./section-heading"
 
 /** A quiet closing band with the install path beside the final action. */
-export function Cta({ registryBase }: { registryBase: string }) {
+export function Cta() {
   return (
     <section id="get-started" aria-labelledby="cta-heading" className={`${sectionAnchor} border-t`}>
       <div className={`${container} py-16 sm:py-20`}>
@@ -46,7 +46,7 @@ export function Cta({ registryBase }: { registryBase: string }) {
             </p>
           </div>
           <div className="min-w-0">
-            <InstallCommand registryBase={registryBase} name="type-to-confirm" className="w-full min-w-0 bg-background" />
+            <InstallCommand name="type-to-confirm" className="w-full min-w-0 bg-background" />
             <p className="mt-2.5 font-mono text-[11.5px] text-muted-foreground">Needs {COMPAT}</p>
           </div>
         </Reveal>

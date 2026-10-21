@@ -109,15 +109,20 @@ export default function QualityPage() {
                   date;
                 </li>
                 <li>
-                  type-checks the whole project in strict mode (<code className={inlineCode}>tsc --noEmit</code>);
+                  runs the unit-test suite, ESLint, and strict TypeScript checking (<code className={inlineCode}>tsc --noEmit</code>);
                 </li>
                 <li>
-                  builds the registry with <code className={inlineCode}>shadcn build</code>, which produces the <code className={inlineCode}>/r/&lt;name&gt;.json</code>{" "}
-                  files the CLI installs;
+                  runs the registry build and post-processing, which produces the <code className={inlineCode}>/r/&lt;name&gt;.json</code> files the CLI installs;
                 </li>
-                <li>builds the docs site, which renders every component&apos;s live demo.</li>
+                <li>
+                  installs <code className={inlineCode}>file-guard</code> from the generated local registry into a temporary shadcn consumer and type-checks its component and helper imports;
+                </li>
+                <li>builds the docs site and runs browser journeys for a keyboard guard interaction, theme switch and narrow viewport.</li>
               </ol>
               <p>The repository is private for now, so CI results aren&apos;t public.</p>
+              <p>
+                These are repository-level checks, not a claim that every component has its own passing test. The consumer smoke covers one generated component and its helper targets; the browser check covers a few critical journeys only. Documentation counts below describe what is written, not behavior coverage.
+              </p>
             </>
           ) : (
             <p>Each change is type-checked and the registry is rebuilt before release.</p>
@@ -161,8 +166,9 @@ export default function QualityPage() {
       <DocSection id="not-yet" title="Not verified yet">
         <Prose>
           <ul>
-            <li>No automated unit tests for rule logic (tax, cheque, EMI and similar) are published yet.</li>
-            <li>No published clean-install matrix (Vite, custom aliases, Windows) yet.</li>
+            <li>Browser checks cover a small critical path, not every component, assistive technology or browser engine.</li>
+            <li>No published clean-install matrix across Vite, custom aliases and Windows yet.</li>
+            <li>Installable registry component sources are not included in the ESLint gate yet; the current registry-wide baseline has untriaged React compiler and JSX findings.</li>
             <li>No recorded screen-reader test results; accessibility notes describe what the source does.</li>
             <li>No stable or experimental status labels yet.</li>
           </ul>
