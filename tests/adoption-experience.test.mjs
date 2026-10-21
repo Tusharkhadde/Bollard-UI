@@ -26,10 +26,20 @@ test("gives users the shadcn namespace setup and tracks pack and use-case intent
 
   assert.match(setup, /"@bollard"/)
   assert.match(setup, /components\.json/)
+  assert.match(setup, /registry add @bollard=https:\/\/bollard-ui\.vercel\.app\/r\/\{name\}\.json/)
   assert.match(analytics, /bollard_starter_pack_copied/)
   assert.match(analytics, /bollard_use_case_selected/)
   assert.match(packs, /trackStarterPackCopy/)
   assert.match(paths, /trackUseCaseSelected/)
+})
+
+test("ships an agent-safety quickstart that documents the approval lifecycle", () => {
+  const quickstart = read("app/(site)/(docs)/agent-safety/page.tsx")
+  assert.match(quickstart, /Tool request/)
+  assert.match(quickstart, /Policy check/)
+  assert.match(quickstart, /Human approval/)
+  assert.match(quickstart, /Execute and record/)
+  assert.match(quickstart, /agent-action-approve/)
 })
 
 test("keeps all use-case pages discoverable to crawlers", () => {

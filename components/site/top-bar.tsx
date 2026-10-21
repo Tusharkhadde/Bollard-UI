@@ -31,7 +31,7 @@ export function TopBar({ env }: { env?: string }) {
     { href: "/start-here", label: "Start here", active: pathname === "/start-here" },
     { href: "/#use-cases", label: "Use cases", active: pathname.startsWith("/use-cases") },
     { href: "/#flows", label: "Flows", active: false },
-    { href: "/components?category=agent-human-in-the-loop", label: "Agent safety", badge: "HITL", active: false },
+    { href: "/agent-safety", label: "Agent safety", badge: "HITL", active: pathname === "/agent-safety" },
   ]
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/65">

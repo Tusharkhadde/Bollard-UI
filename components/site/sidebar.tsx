@@ -17,6 +17,7 @@ const DOC_PAGES = [
   { href: "/docs", label: "Getting started" },
   { href: "/start-here", label: "Start here" },
   { href: "/guides", label: "Guides" },
+  { href: "/agent-safety", label: "Agent safety" },
   { href: "/changelog", label: "Changelog" },
   { href: "/quality", label: "Quality" },
   { href: "/security", label: "Security" },
