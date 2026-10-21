@@ -21,7 +21,10 @@ test("ships installable starter packs for every flow", () => {
 test("keeps the hero comparison, prevention proof, packs, and playground discoverable", () => {
   const home = read("app/(site)/page.tsx")
   assert.match(home, /StarterPacks/)
+  assert.match(home, /SitePreview/)
   assert.match(home, /DisastersPrevented/)
+  assert.ok(fs.existsSync(path.join(root, "public/images/website-preview.png")))
+  assert.match(read("components/site/landing/site-preview.tsx"), /alt="Bollard UI homepage preview/)
   assert.match(read("components/site/landing/hero-preview.tsx"), /Without Bollard/)
   assert.match(read("components/site/landing/hero-preview.tsx"), /With Bollard/)
   assert.ok(fs.existsSync(path.join(root, "app/(site)/playground/page.tsx")))
