@@ -29,6 +29,8 @@ Stack: Next.js 16, React 19, Tailwind CSS v4, TypeScript 5. Run `npm install` on
 ## Verify before you finish
 Run `npm run generate` and then `npm run typecheck` from the repo root, and fix every error. Commit the regenerated `registry.json` and `components/demo-index.tsx` with your change. In your pull request, give each component's name, a one-line pitch and the mistake it stops.
 
+Before release, also run `npm test`, `npm run lint`, `npm run registry:build`, `npm run test:consumer`, `npm run build`, and `npm run test:e2e`. `npm run lint` covers the site, shared site UI, libraries, scripts and tests; the installable component source lint baseline still needs triage before it can be enabled. The consumer smoke installs `file-guard` from the generated local payload into a temporary shadcn project and type-checks both the component and helper targets; it reuses workspace dependencies, so it is not a clean package-manager install matrix. The browser journey check expects a production build and Chromium (`npx playwright install chromium`). Component previews include a “Copy implementation context” handoff with the public install command, file targets, dependencies, usage and known server-side limits.
+
 ## API conventions (every component follows these)
 - Root element gets `data-slot="<name>"` and accepts `className` (merged with `cn`) plus the rest of the native props of its main element via `...props`, unless that would be misleading.
 - Value-holding components support both controlled and uncontrolled use: `value` + `onValueChange(value)` and `defaultValue`. Event-style callbacks are named `onX` (`onConfirm`, `onSave`, `onRetry`). Async callbacks may return a Promise; the component shows a pending state and catches the rejection.
