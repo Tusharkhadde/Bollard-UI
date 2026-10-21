@@ -13,7 +13,8 @@
     {
       "path": "registry/default/fintech-pack/pack.ts",
       "content": "export const fintechPack = [\"amount-input\", \"duplicate-payment-guard\", \"bank-transfer-timing\", \"charge-summary\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/fintech-pack/pack.ts"
     }
   ],
   "meta": {
@@ -33,8 +34,12 @@
     ],
     "a11y": [
       "Included components provide accessible labels and status."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/fintech-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/fintech-pack",
   "categories": [
     "Starter packs"
   ],

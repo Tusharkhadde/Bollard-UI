@@ -12,7 +12,7 @@ const asIs = (value: string) => value
  * run; the namespace setup lives in the getting-started instructions.
  *
  * It always reads from "$ npx". When the box is narrow the line wraps between
- * "npx shadcn@latest add" and the registry name (hanging indent). Copy copies
+ * "npx shadcn@4.21.0 add" and the registry name (hanging indent). Copy copies
  * the same short command.
  */
 export function InstallCommand({
@@ -26,7 +26,7 @@ export function InstallCommand({
   className?: string
   tone?: "default" | "inverted"
 }) {
-  const command = `npx shadcn@latest add @bollard/${name}`
+  const command = `npx shadcn@4.21.0 add @bollard/${name}`
   const dim = tone === "default" ? "text-muted-foreground" : "text-white/60"
   const dimmer = tone === "default" ? "text-muted-foreground/80" : "text-white/45"
 
@@ -45,7 +45,7 @@ export function InstallCommand({
           <span aria-hidden className="select-none text-amber-700 dark:text-amber-400">
             ${" "}
           </span>
-          <span className={cn("whitespace-nowrap", dim)}>npx shadcn@latest add</span>{" "}<span className="font-semibold whitespace-nowrap">@bollard/{name}</span>
+          <span className={cn("whitespace-nowrap", dim)}>npx shadcn@4.21.0 add</span>{" "}<span className="font-semibold whitespace-nowrap">@bollard/{name}</span>
         </code>
       </div>
       <CopyConfirm

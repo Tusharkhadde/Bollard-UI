@@ -15,7 +15,8 @@
     {
       "path": "registry/default/devtools-pack/pack.ts",
       "content": "export const devtoolsPack = [\"environment-badge\", \"kube-context-guard\", \"force-push-confirm\", \"sql-guard\", \"env-paste\", \"curl-pipe-guard\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/devtools-pack/pack.ts"
     }
   ],
   "meta": {
@@ -35,8 +36,12 @@
     ],
     "a11y": [
       "Included components announce warnings and outcomes."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/devtools-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/devtools-pack",
   "categories": [
     "Starter packs"
   ],

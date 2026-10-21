@@ -12,7 +12,7 @@ export interface Guide {
 
 const defineGuide = (guide: Omit<Guide, "installCommand">): Guide => ({
   ...guide,
-  installCommand: `npx shadcn@latest add @bollard/${guide.component}`,
+  installCommand: `npx shadcn@4.21.0 add @bollard/${guide.component}`,
 })
 
 /** Search-intent pages that connect common implementation problems to a runnable guard rail. */

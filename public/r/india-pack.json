@@ -15,7 +15,8 @@
     {
       "path": "registry/default/india-pack/pack.ts",
       "content": "export const indiaPack = [\"phone-input\", \"aadhaar-input\", \"ifsc-input\", \"upi-id-input\", \"pincode-input\", \"amount-input\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/india-pack/pack.ts"
     }
   ],
   "meta": {
@@ -37,8 +38,12 @@
     ],
     "a11y": [
       "Included inputs have labels and announced validation feedback."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/india-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/india-pack",
   "categories": [
     "Starter packs"
   ],

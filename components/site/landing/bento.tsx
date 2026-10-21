@@ -65,7 +65,7 @@ export function Bento({ items, total, registryBase }: { items: BentoItem[]; tota
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <CopyButton
-                  value={`npx shadcn@latest add @bollard/${card.name}`}
+                  value={`npx shadcn@4.21.0 add @bollard/${card.name}`}
                   label={`Copy ${card.title} install command`}
                   className="h-7 px-2 text-[11px]"
                 >

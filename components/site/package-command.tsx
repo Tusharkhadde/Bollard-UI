@@ -47,10 +47,10 @@ function useManager() {
 
 function commandFor(manager: Manager, kind: "add" | "install" | "shadcn", args: string) {
   if (kind === "shadcn") {
-    return { pnpm: "pnpm dlx shadcn@latest", npm: "npx shadcn@latest", yarn: "yarn dlx shadcn@latest", bun: "bunx --bun shadcn@latest" }[manager] + ` ${args}`
+    return { pnpm: "pnpm dlx shadcn@4.21.0", npm: "npx shadcn@4.21.0", yarn: "yarn dlx shadcn@4.21.0", bun: "bunx --bun shadcn@4.21.0" }[manager] + ` ${args}`
   }
   if (kind === "add") {
-    return { pnpm: "pnpm dlx shadcn@latest add", npm: "npx shadcn@latest add", yarn: "yarn dlx shadcn@latest add", bun: "bunx --bun shadcn@latest add" }[manager] + ` ${args}`
+    return { pnpm: "pnpm dlx shadcn@4.21.0 add", npm: "npx shadcn@4.21.0 add", yarn: "yarn dlx shadcn@4.21.0 add", bun: "bunx --bun shadcn@4.21.0 add" }[manager] + ` ${args}`
   }
   return { pnpm: "pnpm add", npm: "npm install", yarn: "yarn add", bun: "bun add" }[manager] + ` ${args}`
 }

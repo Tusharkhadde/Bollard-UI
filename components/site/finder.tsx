@@ -502,7 +502,7 @@ export function IncidentCard({
         </span>
       </Link>
       <CopyButton
-        value={`npx shadcn@latest add ${registryBase}${item.name}.json`}
+        value={`npx shadcn@4.21.0 add @bollard/${item.name}`}
         label={`Copy install command for ${item.title}`}
         onCopy={() => trackInstallCopy({ component: item.name, surface: "component-finder" })}
         className="absolute top-3 right-3 size-7 opacity-100 transition-opacity pointer-fine:opacity-0 pointer-fine:group-focus-within:opacity-100 pointer-fine:group-hover:opacity-100"
@@ -548,7 +548,7 @@ function KitTile({ kit, byName, onOpen, wide = false }: { kit: Kit; byName: Map<
 
 function KitCard({ kit, byName, registryBase }: { kit: Kit; byName: Map<string, SearchItem>; registryBase: string }) {
   const members = kit.components.filter((name) => byName.has(name))
-  const command = `npx shadcn@latest add ${members.map((name) => `${registryBase}${name}.json`).join(" ")}`
+  const command = `npx shadcn@4.21.0 add ${members.map((name) => `@bollard/${name}`).join(" ")}`
   return (
     <section aria-labelledby="kit-heading" className="overflow-hidden rounded-xl border bg-surface" data-kit-card={kit.flow}>
       <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[1fr_1.1fr] lg:gap-8">
@@ -580,7 +580,7 @@ function KitCard({ kit, byName, registryBase }: { kit: Kit; byName: Map<string, 
               $
             </span>
             <code className="min-w-0 flex-1 truncate text-muted-foreground" title={command}>
-              npx shadcn@latest add <span className="text-foreground">{members.length} components</span>
+              npx shadcn@4.21.0 add <span className="text-foreground">{members.length} components</span>
             </code>
             <CopyButton value={command} label={`Copy install command for all ${members.length} components in the ${kit.title}`} onCopy={() => trackInstallCopy({ components: members, surface: "flow-kit" })} className="h-8 shrink-0 px-3 font-sans">
               Copy install-all

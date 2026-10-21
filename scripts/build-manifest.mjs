@@ -33,7 +33,7 @@ export function buildManifest(base = root) {
       registryDependencies: tracked(meta, "registryDependencies", Array.isArray(item.registryDependencies) || item.registryDependencies === undefined, (item.registryDependencies ?? []).join(", ") || "No other Bollard registry items required."),
       docsPage: tracked(meta, "docsPage", docsPageExists, "Rendered by the shared dynamic component-doc route."),
       mistakeLine: tracked(meta, "mistakeLine", typeof meta.stops === "string" && meta.stops.trim().length > 0, meta.stops ?? "Add a one-line mistake/outcome."),
-      installCommand: tracked(meta, "installCommand", sourceFiles.length > 0, `npx shadcn@latest add ${registry.homepage}/r/${item.name}.json`, false),
+      installCommand: tracked(meta, "installCommand", sourceFiles.length > 0, `npx shadcn@4.21.0 add @bollard/${item.name}`, false),
       usageExample: tracked(meta, "usageExample", fs.existsSync(demoPath), fs.existsSync(demoPath) ? `components/demos/${item.name}.tsx` : "Add a minimal runnable example."),
       exampleRuns: tracked(meta, "exampleRuns", meta.exampleRunsVerified === true, "Must be confirmed by the example typecheck or clean-install fixture."),
       propsTable: tracked(meta, "propsTable", Array.isArray(componentProps?.props) && componentProps.props.length > 0, componentProps?.props?.length ? `${componentProps.props.length} source-extracted props.` : "No extracted public props table."),

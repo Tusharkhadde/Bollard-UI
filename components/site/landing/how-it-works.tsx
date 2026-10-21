@@ -68,7 +68,7 @@ export function HowItWorks({ registryBase }: { registryBase: string }) {
           <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">Install a component</p>
           <InstallCommand registryBase={registryBase} name="amount-input" className="w-full min-w-0" />
           <p className="px-1 text-[13px] leading-relaxed text-pretty text-muted-foreground">
-            Needs {COMPAT} (<code className="font-mono text-[12px] text-foreground">npx shadcn@latest init</code> once). The CLI writes{" "}
+            Needs {COMPAT} (<code className="font-mono text-[12px] text-foreground">npx shadcn@4.21.0 init</code> once). The CLI writes{" "}
             <code className="font-mono text-[12px] text-foreground">components/ui/amount-input.tsx</code> and installs the packages it lists. Later
             changes don&apos;t reach your copy automatically:{" "}
             <Link href="/docs#updating" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">

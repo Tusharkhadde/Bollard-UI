@@ -34,7 +34,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
-    "registry:build": "node scripts/generate.mjs && shadcn build",
+    "registry:build": "node scripts/generate.mjs && shadcn build && node scripts/patch-registry-payloads.mjs",
     "generate": "node scripts/generate.mjs",
     "registry:validate": "node scripts/validate-registry.mjs",
     "headers:stamp": "node scripts/stamp-headers.mjs",

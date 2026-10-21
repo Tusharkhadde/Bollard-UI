@@ -27,7 +27,7 @@ Most UI libraries make interfaces look good. **Bollard UI makes them hard to get
 Every component targets one specific, costly mistake and catches it with a helpful nudge and, where possible, a one-tap fix.
 
 - 🛡️ **Mistake-first design**: Focused on guardrails—destructive actions, typo-catching inputs, data safety, and awareness.
-- 📦 **Zero lock-in**: Directly add components into your codebase using `npx shadcn@latest add`. You own and control the code.
+- 📦 **Zero lock-in**: Directly add components into your codebase using `npx shadcn@4.21.0 add`. You own and control the code.
 - 🎨 **Shadcn native**: Styled with standard CSS variables. Works out of the box with light/dark mode and your existing theme.
 - ♿ **Accessible & SSR-safe**: Built with strict ARIA patterns, keyboard navigation, and zero SSR hydration mismatches.
 - 🪶 **Dependency-light**: Most components require only React and `lucide-react`. Optional packages are auto-installed by shadcn.
@@ -61,17 +61,29 @@ Every component targets one specific, costly mistake and catches it with a helpf
 Ensure your project has [Tailwind CSS v4](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com) set up:
 
 ```bash
-npx shadcn@latest init
+npx shadcn@4.21.0 init
 ```
+
+Before namespaced installs, merge this registry entry into the `registries` object in `components.json` (preserve any existing registry entries):
+
+```json
+{
+  "registries": {
+    "@bollard": "https://bollard-ui.vercel.app/r/{name}.json"
+  }
+}
+```
+
+Check discovery with `npx shadcn@4.21.0 list @bollard`.
 
 ### 2. Install any component
 Run the shadcn CLI with the component's registry URL:
 
 ```bash
-npx shadcn@latest add https://bollard-ui.vercel.app/r/email-input.json
+npx shadcn@4.21.0 add @bollard/email-input
 ```
 
-Replace `email-input` with any component name from the catalog. The component file will be placed in your `components/ui/` folder, fully editable.
+Replace `email-input` with any component name from the catalog. The component file will be placed in your `components/ui/` folder; private helpers are placed in `components/<component-name>/` to avoid flat-file collisions. Both are fully editable.
 
 ---
 
@@ -597,7 +609,7 @@ Most components need only **React** and **lucide-react**. Some specialized compo
 | `date-fns` | Reliable date parsing and relative date formatting (5 components) |
 | `libphonenumber-js` | International phone number parsing and validation (2 components) |
 
-> **Note:** You do not need to install these manually. When you run `npx shadcn@latest add`, the CLI automatically resolves and installs any required dependencies for that specific component.
+> **Note:** You do not need to install these manually. When you run `npx shadcn@4.21.0 add`, the CLI automatically resolves and installs any required dependencies for that specific component.
 
 ---
 

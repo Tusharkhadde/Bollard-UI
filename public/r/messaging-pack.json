@@ -14,7 +14,8 @@
     {
       "path": "registry/default/messaging-pack/pack.ts",
       "content": "export const messagingPack = [\"reply-all-guard\", \"recipient-check\", \"attachment-nudge\", \"grace-send\", \"secret-paste-guard\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/messaging-pack/pack.ts"
     }
   ],
   "meta": {
@@ -34,8 +35,12 @@
     ],
     "a11y": [
       "Included components offer visible send checks."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/messaging-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/messaging-pack",
   "categories": [
     "Starter packs"
   ],

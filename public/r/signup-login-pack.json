@@ -15,7 +15,8 @@
     {
       "path": "registry/default/signup-login-pack/pack.ts",
       "content": "export const signupLoginPack = [\"email-input\", \"password-input\", \"username-input\", \"phone-input\", \"otp-paste-input\", \"name-input\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/signup-login-pack/pack.ts"
     }
   ],
   "meta": {
@@ -37,8 +38,12 @@
     ],
     "a11y": [
       "Included fields announce validation feedback."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/signup-login-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/signup-login-pack",
   "categories": [
     "Starter packs"
   ],

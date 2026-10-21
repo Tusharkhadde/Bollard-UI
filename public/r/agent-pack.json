@@ -12,7 +12,8 @@
     {
       "path": "registry/default/agent-pack/pack.ts",
       "content": "export const agentPack = [\"agent-action-approve\", \"ai-paste-guard\", \"undo-toast\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/agent-pack/pack.ts"
     }
   ],
   "meta": {
@@ -34,8 +35,12 @@
     ],
     "a11y": [
       "Included components announce decisions and expose keyboard controls."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/agent-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/agent-pack",
   "categories": [
     "Starter packs"
   ],

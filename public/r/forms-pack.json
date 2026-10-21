@@ -15,7 +15,8 @@
     {
       "path": "registry/default/forms-pack/pack.ts",
       "content": "export const formsPack = [\"draft-restore\", \"unsaved-changes-bar\", \"error-summary\", \"safe-submit\", \"date-sanity-input\", \"review-step\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/forms-pack/pack.ts"
     }
   ],
   "meta": {
@@ -35,8 +36,12 @@
     ],
     "a11y": [
       "Included components use labels and error announcements."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/forms-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/forms-pack",
   "categories": [
     "Starter packs"
   ],

@@ -44,7 +44,7 @@ export function PreviewPanel({ name, code }: { name: string; code?: React.ReactN
   const tools = (
     <>
       <CopyButton
-        value={`Build a polished, accessible React example using the Bollard UI ${name} component. Preserve its public props, include keyboard support and prefers-reduced-motion-safe feedback. Install with: npx shadcn@latest add https://bollard-ui.vercel.app/r/${name}.json`}
+        value={`Build a polished, accessible React example using the Bollard UI ${name} component. Preserve its public props, include keyboard support and prefers-reduced-motion-safe feedback. Install with: npx shadcn@4.21.0 add @bollard/${name}`}
         label="Copy prompt for v0/Cursor"
         className="h-7 px-2 text-[11px]"
       >

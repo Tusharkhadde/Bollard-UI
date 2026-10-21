@@ -123,6 +123,19 @@ function docsOf(name, meta) {
   return out
 }
 
+function usageOf(name, files, meta) {
+  if (name.endsWith("-pack")) return `npx shadcn@4.21.0 add @bollard/${name}`
+  const entry = files.find((file) => file.endsWith(`${name}.tsx`)) ?? files.find((file) => meta.registryType === "registry:hook" && file.includes("use-bollard-field.ts"))
+  if (!entry) return `See the examples at ${HOMEPAGE}/components/${name}`
+  const source = fs.readFileSync(path.join(dir, name, entry), "utf8")
+  const exported = [...source.matchAll(/export\s+(?:declare\s+)?(?:function|const|class)\s+([A-Za-z_$][\w$]*)/g)]
+    .map((match) => match[1])
+    .find((identifier) => meta.registryType === "registry:hook" ? /^use[A-Z]/.test(identifier) : /^[A-Z]/.test(identifier))
+  if (!exported) return `See the examples at ${HOMEPAGE}/components/${name}`
+  const module = meta.registryType === "registry:hook" ? `@/components/${name}/${path.basename(entry)}` : `@/components/ui/${name}`
+  return `import { ${exported} } from "${module}"`
+}
+
 const props = {}
 const items = names.map((name) => {
   const meta = JSON.parse(fs.readFileSync(path.join(dir, name, "meta.json"), "utf8"))
@@ -130,7 +143,15 @@ const items = names.map((name) => {
   const files = fs
     .readdirSync(path.join(dir, name))
     .filter((file) => /\.(tsx|ts)$/.test(file))
-    .map((file) => ({ path: `registry/default/${name}/${file}`, type }))
+    .map((file) => ({
+      path: `registry/default/${name}/${file}`,
+      type,
+      // Keep the public component entry in the configured ui directory. Helpers
+      // live in a component-scoped folder so generic names cannot collide.
+      ...((file === `${name}.tsx`)
+        ? { target: `@ui/${name}.tsx` }
+        : { target: `@components/${name}/${file}` }),
+    }))
   const item = {
     name,
     type,
@@ -138,11 +159,18 @@ const items = names.map((name) => {
     description: meta.description,
     categories: [categoryOf(name)],
     files,
+    docs: `${HOMEPAGE}/components/${name}`,
   }
   if (meta.dependencies?.length) item.dependencies = meta.dependencies
   if (meta.registryDependencies?.length) item.registryDependencies = meta.registryDependencies
   // Discovery fields (shadcn's free-form `meta`). Every one is optional; bad values are dropped, never fatal.
-  const discovery = { ...discoveryOf(name, meta), ...docsOf(name, meta) }
+  const discovery = {
+    ...discoveryOf(name, meta),
+    ...docsOf(name, meta),
+    usage: usageOf(name, fs.readdirSync(path.join(dir, name)).filter((file) => /\.(tsx|ts)$/.test(file)), meta),
+    runtimeDependencies: meta.dependencies?.length ? [...meta.dependencies] : [],
+    zeroRuntimeDependencies: !meta.dependencies?.length,
+  }
   if (Object.keys(discovery).length) item.meta = discovery
   // Props come from the source itself (scripts/props.mjs). Never fatal.
   try {

@@ -14,7 +14,8 @@
     {
       "path": "registry/default/account-settings-pack/pack.ts",
       "content": "export const accountSettingsPack = [\"email-change-guard\", \"session-list\", \"unsaved-changes-bar\", \"reauth-gate\", \"backup-codes\"] as const\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "@components/account-settings-pack/pack.ts"
     }
   ],
   "meta": {
@@ -34,8 +35,12 @@
     ],
     "a11y": [
       "Included components expose status in text."
-    ]
+    ],
+    "usage": "npx shadcn@4.21.0 add @bollard/account-settings-pack",
+    "runtimeDependencies": [],
+    "zeroRuntimeDependencies": true
   },
+  "docs": "https://bollard-ui.vercel.app/components/account-settings-pack",
   "categories": [
     "Starter packs"
   ],
