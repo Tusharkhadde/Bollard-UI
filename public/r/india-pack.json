@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/india-pack/pack.ts",
-      "content": "export const indiaPack = [\"phone-input\", \"aadhaar-input\", \"ifsc-input\", \"upi-id-input\", \"pincode-input\", \"amount-input\"] as const\n",
+      "content": "// Bollard UI — india-pack · MIT licence · https://bollard-ui.vercel.app/components/india-pack\n\nexport const indiaPack = [\"phone-input\", \"aadhaar-input\", \"ifsc-input\", \"upi-id-input\", \"pincode-input\", \"amount-input\"] as const\n",
       "type": "registry:ui",
       "target": "@components/india-pack/pack.ts"
     }

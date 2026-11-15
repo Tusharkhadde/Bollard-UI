@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/default/checkout-pack/pack.ts",
-      "content": "export const checkoutPack = [\"amount-input\", \"safe-submit\", \"duplicate-payment-guard\", \"card-expiry-input\", \"charge-summary\"] as const\n",
+      "content": "// Bollard UI — checkout-pack · MIT licence · https://bollard-ui.vercel.app/components/checkout-pack\n\nexport const checkoutPack = [\"amount-input\", \"safe-submit\", \"duplicate-payment-guard\", \"card-expiry-input\", \"charge-summary\"] as const\n",
       "type": "registry:ui",
       "target": "@components/checkout-pack/pack.ts"
     }

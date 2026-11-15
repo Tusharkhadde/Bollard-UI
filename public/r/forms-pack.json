@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/forms-pack/pack.ts",
-      "content": "export const formsPack = [\"draft-restore\", \"unsaved-changes-bar\", \"error-summary\", \"safe-submit\", \"date-sanity-input\", \"review-step\"] as const\n",
+      "content": "// Bollard UI — forms-pack · MIT licence · https://bollard-ui.vercel.app/components/forms-pack\n\nexport const formsPack = [\"draft-restore\", \"unsaved-changes-bar\", \"error-summary\", \"safe-submit\", \"date-sanity-input\", \"review-step\"] as const\n",
       "type": "registry:ui",
       "target": "@components/forms-pack/pack.ts"
     }

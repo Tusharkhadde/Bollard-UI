@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/scheduling-pack/pack.ts",
-      "content": "export const schedulingPack = [\"unambiguous-date\", \"timezone-picker\", \"time-confirm\", \"relative-date-input\", \"timezone-mismatch\", \"event-overlap\"] as const\n",
+      "content": "// Bollard UI — scheduling-pack · MIT licence · https://bollard-ui.vercel.app/components/scheduling-pack\n\nexport const schedulingPack = [\"unambiguous-date\", \"timezone-picker\", \"time-confirm\", \"relative-date-input\", \"timezone-mismatch\", \"event-overlap\"] as const\n",
       "type": "registry:ui",
       "target": "@components/scheduling-pack/pack.ts"
     }

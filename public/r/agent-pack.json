@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/default/agent-pack/pack.ts",
-      "content": "export const agentPack = [\"agent-action-approve\", \"ai-paste-guard\", \"undo-toast\"] as const\n",
+      "content": "// Bollard UI — agent-pack · MIT licence · https://bollard-ui.vercel.app/components/agent-pack\n\nexport const agentPack = [\"agent-action-approve\", \"ai-paste-guard\", \"undo-toast\"] as const\n",
       "type": "registry:ui",
       "target": "@components/agent-pack/pack.ts"
     }

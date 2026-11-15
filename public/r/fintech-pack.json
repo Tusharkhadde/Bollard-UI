@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/fintech-pack/pack.ts",
-      "content": "export const fintechPack = [\"amount-input\", \"duplicate-payment-guard\", \"bank-transfer-timing\", \"charge-summary\"] as const\n",
+      "content": "// Bollard UI — fintech-pack · MIT licence · https://bollard-ui.vercel.app/components/fintech-pack\n\nexport const fintechPack = [\"amount-input\", \"duplicate-payment-guard\", \"bank-transfer-timing\", \"charge-summary\"] as const\n",
       "type": "registry:ui",
       "target": "@components/fintech-pack/pack.ts"
     }

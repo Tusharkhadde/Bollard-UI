@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/default/messaging-pack/pack.ts",
-      "content": "export const messagingPack = [\"reply-all-guard\", \"recipient-check\", \"attachment-nudge\", \"grace-send\", \"secret-paste-guard\"] as const\n",
+      "content": "// Bollard UI — messaging-pack · MIT licence · https://bollard-ui.vercel.app/components/messaging-pack\n\nexport const messagingPack = [\"reply-all-guard\", \"recipient-check\", \"attachment-nudge\", \"grace-send\", \"secret-paste-guard\"] as const\n",
       "type": "registry:ui",
       "target": "@components/messaging-pack/pack.ts"
     }

@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/default/danger-zone-pack/pack.ts",
-      "content": "export const dangerZonePack = [\"danger-zone\", \"type-to-confirm\", \"account-deletion-readback\", \"hold-to-confirm\", \"undo-toast\"] as const\n",
+      "content": "// Bollard UI — danger-zone-pack · MIT licence · https://bollard-ui.vercel.app/components/danger-zone-pack\n\nexport const dangerZonePack = [\"danger-zone\", \"type-to-confirm\", \"account-deletion-readback\", \"hold-to-confirm\", \"undo-toast\"] as const\n",
       "type": "registry:ui",
       "target": "@components/danger-zone-pack/pack.ts"
     }

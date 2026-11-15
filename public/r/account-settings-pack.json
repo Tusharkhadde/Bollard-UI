@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/default/account-settings-pack/pack.ts",
-      "content": "export const accountSettingsPack = [\"email-change-guard\", \"session-list\", \"unsaved-changes-bar\", \"reauth-gate\", \"backup-codes\"] as const\n",
+      "content": "// Bollard UI — account-settings-pack · MIT licence · https://bollard-ui.vercel.app/components/account-settings-pack\n\nexport const accountSettingsPack = [\"email-change-guard\", \"session-list\", \"unsaved-changes-bar\", \"reauth-gate\", \"backup-codes\"] as const\n",
       "type": "registry:ui",
       "target": "@components/account-settings-pack/pack.ts"
     }
