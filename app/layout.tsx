@@ -7,21 +7,30 @@ import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
 
-const title = "Bollard UI: React guardrails for forms and critical actions"
+const title = "Bollard UI: React form guardrails and validation"
 const description =
-  "Copy-paste React guardrails for shadcn/ui, plus a headless validation hook for any React controls. Catch invalid input and risky actions. MIT licensed; edit the source in your app."
+  "Copy-paste React guardrails for forms and risky actions. Install with shadcn, or add a headless validation hook to existing controls. MIT licensed."
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Bollard UI",
-  url: SITE_URL,
-  description,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/components?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Bollard UI",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon.svg`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Bollard UI",
+      url: SITE_URL,
+      description,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: "en",
+    },
+  ],
 }
 
 export const metadata: Metadata = {
@@ -31,17 +40,24 @@ export const metadata: Metadata = {
     template: "%s · Bollard UI",
   },
   description,
+  applicationName: "Bollard UI",
+  authors: [{ name: "Bollard UI" }],
+  creator: "Bollard UI",
+  publisher: "Bollard UI",
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     type: "website",
     siteName: "Bollard UI",
     title,
     description,
     url: "/",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "React components for safer forms and critical actions" }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: [{ url: "/opengraph-image", alt: "React components for safer forms and critical actions" }],
   },
 }
 

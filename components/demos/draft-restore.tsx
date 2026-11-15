@@ -22,7 +22,9 @@ export function Demo() {
   // Pretend the form was edited 5 minutes ago and the tab closed before saving.
   React.useEffect(() => {
     const stored: StoredDraft = { v: 1, savedAt: Date.now() - 5 * 60_000, base, values: draft }
-    localStorage.setItem(KEY, JSON.stringify(stored))
+    try { localStorage.setItem(KEY, JSON.stringify(stored)) } catch {
+      // The demo remains usable when browser storage is blocked or full.
+    }
     setOpened(1)
   }, [])
 

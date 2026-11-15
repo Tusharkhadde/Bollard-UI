@@ -19,8 +19,13 @@ export interface SavedPosition {
 /** Reads a saved position, ignoring anything malformed or older than `maxAge` ms. */
 export function readPosition(storageKey: string, now: number, maxAge = 30 * DAY): SavedPosition | null {
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) ?? "null") as SavedPosition | null
-    return saved && typeof saved.key === "string" && now - saved.at < maxAge ? saved : null
+    const value: unknown = JSON.parse(localStorage.getItem(storageKey) ?? "null")
+    if (!value || typeof value !== "object") return null
+    const saved = value as Partial<SavedPosition>
+    return typeof saved.key === "string" && saved.key.length > 0 && Number.isFinite(saved.at) &&
+      saved.at! <= now && maxAge > 0 && now - saved.at! < maxAge
+      ? saved as SavedPosition
+      : null
   } catch {
     return null
   }
@@ -112,7 +117,13 @@ export function ResumeMarker<T>({
     const current = Array.from(root.querySelectorAll<HTMLElement>("[data-resume-key]")).find(
       (el) => el.getBoundingClientRect().bottom > top + 24,
     )
-    if (current) localStorage.setItem(key, JSON.stringify({ key: current.dataset.resumeKey, at: Date.now() }))
+    if (current?.dataset.resumeKey) {
+      try {
+        localStorage.setItem(key, JSON.stringify({ key: current.dataset.resumeKey, at: Date.now() }))
+      } catch {
+        // Reading and scrolling still work when browser storage is unavailable.
+      }
+    }
   }, [key])
 
   // Leaving the page saves straight away instead of waiting for the dwell timer.

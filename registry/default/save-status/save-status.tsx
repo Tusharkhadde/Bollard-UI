@@ -65,8 +65,17 @@ export function useAutosave<T>(
 
   const keepDraft = React.useCallback(
     (serialized: string) => {
-      if (draftKey) localStorage.setItem(draftKey, serialized)
-      setStatus("offline")
+      let stored = false
+      if (draftKey) {
+        try {
+          localStorage.setItem(draftKey, serialized)
+          stored = true
+        } catch {
+          // Keep the editing flow alive when storage is blocked or full.
+        }
+      }
+      setError(stored || !draftKey ? undefined : "Offline; this device could not keep a local copy.")
+      setStatus(stored || !draftKey ? "offline" : "error")
     },
     [draftKey]
   )
@@ -86,7 +95,11 @@ export function useAutosave<T>(
     try {
       await saveRef.current(target)
       lastSaved.current = serialized
-      if (draftKey) localStorage.removeItem(draftKey)
+      if (draftKey) {
+        try { localStorage.removeItem(draftKey) } catch {
+          // The server save succeeded; an old local draft must not turn it into a reported failure.
+        }
+      }
       setSavedAt(Date.now())
       setError(undefined)
       setStatus("saved")
@@ -94,7 +107,7 @@ export function useAutosave<T>(
       queued.current = false // stop and show Retry instead of hammering a failing server
       if (!navigator.onLine) keepDraft(serialized)
       else {
-        setError(err instanceof Error ? err.message : undefined)
+        setError("Couldn't save. Check your connection and try again.")
         setStatus("error")
       }
     } finally {

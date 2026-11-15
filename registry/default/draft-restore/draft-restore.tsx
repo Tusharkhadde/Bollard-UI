@@ -30,8 +30,19 @@ export interface DraftChange {
 /** Reads a draft, dropping it if it is corrupt or older than `ttl` ms. */
 export function readDraft(key: string, ttl: number, now = Date.now()): StoredDraft | null {
   try {
-    const draft = JSON.parse(localStorage.getItem(key) ?? "null") as StoredDraft | null
-    if (draft?.v === 1 && now - draft.savedAt < ttl) return draft
+    const value: unknown = JSON.parse(localStorage.getItem(key) ?? "null")
+    if (!value || typeof value !== "object") {
+      clearDraft(key)
+      return null
+    }
+    const draft = value as Partial<StoredDraft>
+    const isValues = (values: unknown): values is FormValues =>
+      !!values && typeof values === "object" && !Array.isArray(values) &&
+      Object.values(values).every((entry) => typeof entry === "string")
+    if (
+      draft.v === 1 && Number.isFinite(draft.savedAt) && draft.savedAt! <= now &&
+      ttl > 0 && now - draft.savedAt! < ttl && isValues(draft.base) && isValues(draft.values)
+    ) return draft as StoredDraft
   } catch {}
   clearDraft(key)
   return null

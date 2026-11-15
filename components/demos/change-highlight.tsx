@@ -17,7 +17,9 @@ export function Demo() {
 
   React.useEffect(() => {
     // Pretend the last visit saw 9 open orders, so the demo opens showing what moved since.
-    localStorage.setItem("demo:open-orders", "9")
+    try { localStorage.setItem("demo:open-orders", "9") } catch {
+      // The live value changes still demonstrate the component without storage.
+    }
     setSeeded(true)
     const first = setTimeout(() => setTick(1), 300)
     const id = setInterval(() => setTick((t) => t + 1), 2400)

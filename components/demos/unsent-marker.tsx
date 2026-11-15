@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { readUnsent, saveUnsent, UnsentMarker, useUnsentDraft, type UnsentDraft } from "@/registry/default/unsent-marker/unsent-marker"
+import { clearUnsent, readUnsent, saveUnsent, UnsentMarker, useUnsentDraft, type UnsentDraft } from "@/registry/default/unsent-marker/unsent-marker"
 
 type Chat = "priya" | "arjun"
 const CHATS: Record<Chat, { name: string; last: string }> = {
@@ -77,7 +77,7 @@ export function Demo() {
   // Seed one draft "left two hours ago" before the thread mounts, so the demo opens on the catch.
   React.useEffect(() => {
     saveUnsent(keyOf("priya"), "Yes, confirmed! Paying the deposit tonight.", Date.now() - 2 * 3_600_000)
-    localStorage.removeItem(keyOf("arjun"))
+    clearUnsent(keyOf("arjun"))
     setChat("priya")
   }, [])
 

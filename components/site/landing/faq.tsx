@@ -5,6 +5,14 @@ import { Section, SectionHeading } from "./section-heading"
 
 const items: { q: string; a: React.ReactNode }[] = [
   {
+    q: "What is Bollard UI?",
+    a: "Bollard UI is a library of copy-paste React components that help prevent mistakes in forms and critical actions, plus a headless validation hook for your existing controls.",
+  },
+  {
+    q: "How do the guardrails prevent mistakes?",
+    a: "They make risky inputs and actions easier to review with clear readbacks, validation, pending states, confirmations and recovery paths. Your app still owns server-side validation and authorization.",
+  },
+  {
     q: "Is it free?",
     a: "Yes. Every component is MIT licensed, free for personal and commercial projects. Keep the license notice and do what you like with the code.",
   },

@@ -2,6 +2,7 @@ export type UseCase = {
   slug: "safe-payments" | "danger-zone" | "agent-approvals" | "signup-safety"
   eyebrow: string
   title: string
+  seoTitle: string
   description: string
   pack: string
   packLabel: string
@@ -16,6 +17,7 @@ export const USE_CASES: readonly UseCase[] = [
     slug: "safe-payments",
     eyebrow: "Payments and checkout",
     title: "Let people catch the extra zero before money moves.",
+    seoTitle: "React payment and checkout guardrails",
     description: "Add amount readbacks, duplicate-submit protection and recipient checks to the moments where a small form mistake is expensive.",
     pack: "fintech-pack",
     packLabel: "Install the fintech pack",
@@ -32,6 +34,7 @@ export const USE_CASES: readonly UseCase[] = [
     slug: "danger-zone",
     eyebrow: "Destructive account actions",
     title: "Make destructive actions understandable before they happen.",
+    seoTitle: "React confirmations for destructive actions",
     description: "Replace habitual confirmation dialogs with readbacks, typed acknowledgements and recovery windows that match the consequence of the action.",
     pack: "danger-zone-pack",
     packLabel: "Install the danger-zone pack",
@@ -48,6 +51,7 @@ export const USE_CASES: readonly UseCase[] = [
     slug: "agent-approvals",
     eyebrow: "AI agent safety",
     title: "Keep a human in the loop when an agent can cause real change.",
+    seoTitle: "React approval patterns for AI agent actions",
     description: "Show the action, scope and consequence before an agent sends a message, changes data or uses a sensitive value.",
     pack: "agent-pack",
     packLabel: "Install the agent-safety pack",
@@ -64,6 +68,7 @@ export const USE_CASES: readonly UseCase[] = [
     slug: "signup-safety",
     eyebrow: "Sign-up and account creation",
     title: "Catch address typos before account access is sent.",
+    seoTitle: "React sign-up form safety and validation",
     description: "Pair a typo-aware email field with a pending-aware submit action, then verify ownership server-side before activating the account.",
     pack: "signup-login-pack",
     packLabel: "Install the sign-up pack",

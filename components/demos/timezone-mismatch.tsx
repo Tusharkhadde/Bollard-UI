@@ -17,7 +17,9 @@ export function Demo() {
 
   // Start every visit with a fresh question so the catch is visible.
   React.useEffect(() => {
-    localStorage.removeItem(storageKey)
+    try { localStorage.removeItem(storageKey) } catch {
+      // The question can still be shown for this visit without persisted state.
+    }
     setReady(true)
   }, [run])
 

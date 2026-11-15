@@ -7,23 +7,43 @@ import { PresenterModeProvider, PresenterToggle, PresentingBar, Sensitive } from
 
 function ShareButton() {
   const [stream, setStream] = React.useState<MediaStream>()
+  const [error, setError] = React.useState<string>()
+  React.useEffect(() => {
+    if (!stream) return
+    const videoTracks = stream.getVideoTracks()
+    const onEnded = () => setStream(undefined)
+    videoTracks.forEach((track) => track.addEventListener("ended", onEnded))
+    return () => {
+      videoTracks.forEach((track) => {
+        track.removeEventListener("ended", onEnded)
+        track.stop()
+      })
+    }
+  }, [stream])
   const toggle = async () => {
+    setError(undefined)
     if (stream) {
-      stream.getTracks().forEach((track) => track.stop())
-      stream.getTracks().forEach((track) => track.dispatchEvent(new Event("ended")))
-      return setStream(undefined)
+      setStream(undefined)
+      return
+    }
+    if (!navigator.mediaDevices?.getDisplayMedia) {
+      setError("Screen sharing is not available in this browser.")
+      return
     }
     try {
       setStream(await navigator.mediaDevices.getDisplayMedia({ video: true }))
     } catch {
-      // Picker dismissed.
+      setError("Screen sharing was cancelled or blocked. Your sensitive values remain covered.")
     }
   }
   return (
+    <div className="grid justify-items-end gap-1">
     <button type="button" onClick={() => void toggle()} className="inline-flex h-8 items-center gap-1.5 rounded-md border px-3 text-sm font-medium shadow-xs outline-none hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30">
       <ScreenShare aria-hidden className="size-4" />
       {stream ? "Stop sharing" : "Share screen"}
     </button>
+    {error && <p role="status" className="max-w-56 text-right text-xs text-muted-foreground">{error}</p>}
+    </div>
   )
 }
 

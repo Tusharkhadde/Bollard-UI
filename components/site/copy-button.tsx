@@ -32,10 +32,11 @@ export function CopyButton({
     try {
       await navigator.clipboard.writeText(value)
       setState("copied")
-      onCopy?.()
     } catch {
       setState("failed")
+      return
     }
+    onCopy?.()
   }
 
   return (

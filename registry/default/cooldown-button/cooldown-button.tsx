@@ -19,7 +19,13 @@ const storageKey = (id: string) => `bollard-ui:cooldown:${id}`
 function readState(id: string): CooldownState | null {
   try {
     const raw = sessionStorage.getItem(storageKey(id))
-    return raw ? (JSON.parse(raw) as CooldownState) : null
+    if (!raw) return null
+    const value: unknown = JSON.parse(raw)
+    if (!value || typeof value !== "object") return null
+    const state = value as Partial<CooldownState>
+    return Number.isSafeInteger(state.attempts) && state.attempts! >= 0 && Number.isFinite(state.until) && state.until! >= 0
+      ? state as CooldownState
+      : null
   } catch {
     return null
   }
@@ -175,8 +181,8 @@ export function CooldownButton({
     try {
       await onAction()
       commit(state.attempts + 1)
-    } catch (err) {
-      setError(err instanceof Error && err.message ? err.message : errorMessage)
+    } catch {
+      setError(errorMessage)
     } finally {
       setPending(false)
     }

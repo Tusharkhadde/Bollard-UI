@@ -8,6 +8,7 @@ import { CopyButton } from "@/components/site/copy-button"
 import { RegistrySetup } from "@/components/site/registry-setup"
 import { buttonPrimary } from "@/components/site/button-styles"
 import { USE_CASES, findUseCaseBySlug } from "@/lib/use-cases"
+import { SITE_URL } from "@/lib/site"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const useCase = findUseCaseBySlug(slug)
   if (!useCase) return { title: "Use case not found" }
   return {
-    title: useCase.eyebrow,
+    title: useCase.seoTitle,
     description: useCase.description,
     alternates: { canonical: `/use-cases/${useCase.slug}` },
-    openGraph: { title: useCase.title, description: useCase.description, url: `/use-cases/${useCase.slug}` },
+    openGraph: { type: "article", title: useCase.title, description: useCase.description, url: `/use-cases/${useCase.slug}` },
+    twitter: { card: "summary_large_image", title: useCase.title, description: useCase.description, images: [`${SITE_URL}/opengraph-image`] },
   }
 }
 

@@ -24,7 +24,9 @@ export function Demo() {
   React.useEffect(() => setHeaders(demoResponseHeaders(Date.now())), [])
 
   const reset = () => {
-    Object.keys(localStorage).forEach((key) => key.startsWith(storageKey) && localStorage.removeItem(key))
+    try { Object.keys(localStorage).forEach((key) => key.startsWith(storageKey) && localStorage.removeItem(key)) } catch {
+      // Reset the visible demo state even when storage cannot be cleared.
+    }
     setSnoozed(undefined)
     setRun((value) => value + 1)
   }

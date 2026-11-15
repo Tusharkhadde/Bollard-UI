@@ -5,7 +5,8 @@
   "catches": [
     "An account switch made in another tab of the same browser (BroadcastChannel, with a storage-event fallback)",
     "The page's account differing from the most recently active account",
-    "Ambiguous action buttons, by naming the acting account on the button"
+    "Ambiguous action buttons, by naming the acting account on the button",
+    "Rejected actions, with a safe visible retry message"
   ],
   "limits": [
     "Only sees switches reported through its own channel; switches made elsewhere (another browser, device or app) are invisible",

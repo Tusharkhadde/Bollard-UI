@@ -25,9 +25,13 @@ export function announceActiveAccount(id: string, channel = DEFAULT_CHANNEL) {
     localStorage.setItem(channel, id)
   } catch {}
   if (typeof BroadcastChannel === "undefined") return
-  const bc = new BroadcastChannel(channel)
-  bc.postMessage(id)
-  bc.close()
+  try {
+    const bc = new BroadcastChannel(channel)
+    bc.postMessage(id)
+    bc.close()
+  } catch {
+    // The storage event remains available as a fallback when BroadcastChannel is blocked.
+  }
 }
 
 /** The account most recently made active in any tab of this browser. */
@@ -40,7 +44,10 @@ export function useActiveAccount(initial: string, channel = DEFAULT_CHANNEL) {
     } catch {}
     const onStorage = (event: StorageEvent) => event.key === channel && event.newValue && setActive(event.newValue)
     window.addEventListener("storage", onStorage)
-    const bc = typeof BroadcastChannel === "undefined" ? null : new BroadcastChannel(channel)
+    let bc: BroadcastChannel | null = null
+    try { if (typeof BroadcastChannel !== "undefined") bc = new BroadcastChannel(channel) } catch {
+      // The storage event is enough to keep the warning useful.
+    }
     if (bc) bc.onmessage = (event: MessageEvent) => typeof event.data === "string" && setActive(event.data)
     return () => {
       window.removeEventListener("storage", onStorage)
@@ -87,6 +94,8 @@ export interface AccountSwitchGuardProps extends React.ComponentProps<"div"> {
   explicitActionLabel?: string
   /** Text for the button that switches the page to the newly active account. */
   switchPageLabel?: string
+  /** Safe, visible message shown when the action callback rejects. */
+  actionFailedText?: string
 }
 
 /**
@@ -108,6 +117,7 @@ export function AccountSwitchGuard({
   actionLabel = "Post",
   explicitActionLabel = "Post as {account}",
   switchPageLabel = "Open as {active}",
+  actionFailedText = "That action didn't go through. Check your connection and try again.",
   className,
   children,
   ...props
@@ -115,6 +125,7 @@ export function AccountSwitchGuard({
   const synced = useActiveAccount(pageAccountId, channel)
   const activeId = activeAccountId ?? synced
   const [pending, setPending] = React.useState(false)
+  const [actionFailed, setActionFailed] = React.useState(false)
   const chipRef = React.useRef<HTMLSpanElement>(null)
   const identityId = React.useId()
   const nameOf = (id: string) => accounts.find((a) => a.id === id)?.name ?? id
@@ -132,11 +143,12 @@ export function AccountSwitchGuard({
   }, [mismatch, activeId])
 
   const act = async () => {
+    setActionFailed(false)
     setPending(true)
     try {
       await onAction(pageAccountId)
     } catch {
-      // The caller reports its own failure; the button just becomes usable again.
+      setActionFailed(true)
     } finally {
       setPending(false)
     }
@@ -188,6 +200,7 @@ export function AccountSwitchGuard({
           {mismatch ? fill(explicitActionLabel, values) : actionLabel}
         </button>
       </div>
+      {actionFailed && <p role="alert" className="border-t px-3 py-2 text-sm text-destructive">{actionFailedText}</p>}
     </div>
   )
 }

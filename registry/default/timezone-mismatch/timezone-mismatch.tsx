@@ -29,12 +29,18 @@ const DAY = 86_400_000
 
 /** Offset from UTC in minutes for `timeZone` at `at` (Asia/Kolkata → 330). 0 for a zone the runtime doesn't know. */
 export function zoneOffset(timeZone: string, at: number) {
-  const offset = tzOffset(timeZone, new Date(at))
-  return Number.isFinite(offset) ? offset : 0
+  try {
+    const offset = tzOffset(timeZone, new Date(at))
+    return Number.isFinite(offset) ? offset : 0
+  } catch {
+    return 0
+  }
 }
 
 /** Whether the runtime's tz database knows `timeZone`. */
-export const isKnownZone = (timeZone: string) => Number.isFinite(tzOffset(timeZone, new Date(0)))
+export const isKnownZone = (timeZone: string) => {
+  try { return Number.isFinite(tzOffset(timeZone, new Date(0))) } catch { return false }
+}
 
 /**
  * Whether two zones show the same wall clock now and through the coming
@@ -101,7 +107,9 @@ const fill = (template: string, values: Record<string, string>) =>
 
 function readChoices(key: string): Record<string, string> {
   try {
-    return JSON.parse(localStorage.getItem(key) ?? "{}")
+    const value: unknown = JSON.parse(localStorage.getItem(key) ?? "{}")
+    if (!value || typeof value !== "object" || Array.isArray(value)) return {}
+    return Object.fromEntries(Object.entries(value).filter((entry): entry is [string, "device" | "account"] => entry[1] === "device" || entry[1] === "account"))
   } catch {
     return {}
   }
@@ -170,7 +178,11 @@ export function TimezoneMismatch({
   }, [done])
 
   const choose = (choice: "device" | "account") => {
-    if (storageKey !== null) localStorage.setItem(storageKey, JSON.stringify({ ...readChoices(storageKey), [pair]: choice }))
+    if (storageKey !== null) {
+      try { localStorage.setItem(storageKey, JSON.stringify({ ...readChoices(storageKey), [pair]: choice })) } catch {
+        // The choice still applies for this visit when storage is unavailable.
+      }
+    }
     setAnswered(true)
     setDone(zoneCity(choice === "device" ? device! : accountTimeZone))
     if (choice === "device") onUseDeviceZone(device!)

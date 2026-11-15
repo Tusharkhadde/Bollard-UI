@@ -18,7 +18,9 @@ export function Demo() {
 
   // Pretend the reader stopped at section 14 two days ago, then mount the reader.
   React.useEffect(() => {
-    localStorage.setItem(`bollard-ui:resume:${STORAGE}`, JSON.stringify({ key: "s-14", at: Date.now() - 2 * 86_400_000 }))
+    try { localStorage.setItem(`bollard-ui:resume:${STORAGE}`, JSON.stringify({ key: "s-14", at: Date.now() - 2 * 86_400_000 })) } catch {
+      // The reader still works without a saved resume marker.
+    }
     setRun((value) => value + 1)
   }, [])
 

@@ -136,7 +136,9 @@ export function inspectLink(
 function readTrusted(): string[] {
   try {
     const saved: unknown = JSON.parse(sessionStorage.getItem(STORAGE_KEY) ?? "[]")
-    return Array.isArray(saved) ? saved.filter((d): d is string => typeof d === "string") : []
+    return Array.isArray(saved)
+      ? saved.filter((d): d is string => typeof d === "string" && d.length <= 253 && /^[a-z0-9.-]+$/i.test(d)).slice(0, 100)
+      : []
   } catch {
     return []
   }

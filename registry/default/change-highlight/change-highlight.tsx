@@ -98,9 +98,11 @@ export function ChangeHighlight({
     if (!storageKey) return
     try {
       const stored = localStorage.getItem(storageKey)
-      const seen = stored === null ? null : (JSON.parse(stored) as ChangeValue)
-      if (seen === null) localStorage.setItem(storageKey, JSON.stringify(last.current))
-      else if (!Object.is(seen, last.current)) setVisitFrom(seen)
+      const parsed: unknown = stored === null ? null : JSON.parse(stored)
+      const seen = typeof parsed === "string" || (typeof parsed === "number" && Number.isFinite(parsed)) ? parsed : null
+      if (seen === null) {
+        try { localStorage.setItem(storageKey, JSON.stringify(last.current)) } catch {}
+      } else if (!Object.is(seen, last.current)) setVisitFrom(seen)
     } catch {
       // Storage blocked or corrupt: the live highlight still works.
     }

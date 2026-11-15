@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
 
-export const alt = "Bollard UI: build interfaces your users can't break by accident. Copy-paste React components for shadcn/ui."
+export const alt = "Bollard UI React guardrails for safer forms and critical actions, with copy-paste components and a headless validation hook."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -84,12 +84,12 @@ export default async function OpengraphImage() {
               <span style={{ marginLeft: 6, fontSize: 18, color: MUTED, border: `1px solid ${LINE}`, borderRadius: 999, padding: "5px 14px" }}>for shadcn/ui</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", marginTop: 40, fontSize: 58, lineHeight: 1.05, fontWeight: 700, letterSpacing: -2.6 }}>
-              <span>Build interfaces</span>
-              <span>your users can&apos;t</span>
-              <span style={{ color: AMBER }}>break by accident.</span>
+              <span>React guardrails</span>
+              <span>for forms and</span>
+              <span style={{ color: AMBER }}>critical actions.</span>
             </div>
             <div style={{ display: "flex", marginTop: 26, fontSize: 25, color: MUTED, lineHeight: 1.38 }}>
-              {"Copy-paste React components that catch wrong amounts, leaked secrets and accidental deletes."}
+              {"Copy-paste components and a headless hook to help prevent input mistakes and risky actions."}
             </div>
             <div style={{ display: "flex", gap: 10, marginTop: "auto" }}>
               {["MIT licensed", "Copy-paste", "React 19", "Tailwind v4"].map((t) => (

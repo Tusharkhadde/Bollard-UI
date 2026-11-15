@@ -6,6 +6,7 @@ export interface Guide {
   componentTitle: string
   mistake: string
   outcome: string
+  example: string
   steps: string[]
   installCommand: string
 }
@@ -25,6 +26,19 @@ export const GUIDES: Guide[] = [
     componentTitle: "Safe Submit",
     mistake: "The same form or payment is sent twice while the first request is still pending.",
     outcome: "One deliberate submission, a visible pending state, and a form that remains recoverable if the request fails.",
+    example: `import { SafeSubmit } from "@/components/ui/safe-submit"
+
+async function pay({ idempotencyKey }: { idempotencyKey: string }) {
+  const response = await fetch("/api/payments", {
+    method: "POST",
+    headers: { "Idempotency-Key": idempotencyKey },
+  })
+  if (!response.ok) throw new Error("Payment failed")
+}
+
+<SafeSubmit onSubmit={pay} pendingLabel="Paying…" successLabel="Paid">
+  Pay now
+</SafeSubmit>`,
     steps: [
       "Install the component into your shadcn project.",
       "Pass the async save or payment handler you already use.",
@@ -39,6 +53,13 @@ export const GUIDES: Guide[] = [
     componentTitle: "Email Input",
     mistake: "A sign-up is lost because an address such as gmial.com is saved without a useful correction path.",
     outcome: "Clear inline feedback before submit, with the final ownership and deliverability check still handled by your server.",
+    example: `import { EmailInput } from "@/components/ui/email-input"
+
+<EmailInput
+  label="Work email"
+  defaultValue="priya@gmial.con"
+  autoComplete="email"
+/>`,
     steps: [
       "Install the input and place it where you would use a normal form control.",
       "Use its correction prompt as assistance, not proof that an inbox belongs to a person.",
@@ -53,6 +74,25 @@ export const GUIDES: Guide[] = [
     componentTitle: "Type to Confirm",
     mistake: "A destructive action is approved on autopilot because the dialog hides what will be deleted.",
     outcome: "A deliberate confirmation step that states the exact action while preserving keyboard and screen-reader access.",
+    example: `import * as React from "react"
+import { TypeToConfirm } from "@/components/ui/type-to-confirm"
+
+export function DeleteRepository() {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)}>Delete repository</button>
+      <TypeToConfirm
+        open={open}
+        onOpenChange={setOpen}
+        phrase="acme/website"
+        description="Permanently deletes this repository and its issues."
+        onConfirm={() => deleteRepository("acme/website")}
+      />
+    </>
+  )
+}`,
     steps: [
       "Install the confirmation component near the destructive action.",
       "Require the person to type a meaningful target or phrase before enabling deletion.",
@@ -67,6 +107,14 @@ export const GUIDES: Guide[] = [
     componentTitle: "UPI ID Input",
     mistake: "A payment form blocks an unfamiliar UPI ID just because it is not in a local demo list.",
     outcome: "Format guidance in the browser and a clear handoff to your payment provider for real account verification.",
+    example: `import { UpiIdInput } from "@/components/ui/upi-id-input"
+
+<UpiIdInput
+  label="Pay to UPI ID"
+  defaultValue="rohan.sharma@okaxis"
+  expectedName="Rohan Sharma"
+  verify={verifyPayeeWithYourProvider}
+/>`,
     steps: [
       "Install the input and use it for VPA entry.",
       "Treat a well-formed unknown ID as unverified, not invalid.",
@@ -81,6 +129,29 @@ export const GUIDES: Guide[] = [
     componentTitle: "useBollardField",
     mistake: "Adding validation forces a team to replace the controls and design system it already owns.",
     outcome: "Async-safe field state, accessible error wiring, and typed failure reporting while the control remains yours.",
+    example: `import { useBollardField } from "@/hooks/use-bollard-field"
+
+export function EmailField() {
+  const email = useBollardField({
+    initialValue: "",
+    validate: (value) => /.+@.+\\..+/.test(value)
+      ? undefined
+      : "Enter a valid email address.",
+  })
+
+  return (
+    <label>
+      Work email
+      <input
+        value={email.value}
+        onChange={(event) => email.setValue(event.target.value)}
+        onBlur={email.onBlur}
+        {...email.ariaProps}
+      />
+      {email.error && <span id={email.errorId} role="alert">{email.error}</span>}
+    </label>
+  )
+}`,
     steps: [
       "Install the hook and connect value, blur, and aria props to your existing control.",
       "Use your current validator or schema adapter for the rule itself.",

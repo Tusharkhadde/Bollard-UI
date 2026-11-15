@@ -17,7 +17,9 @@ export interface UnsentDraft {
 export function readUnsent(key: string): UnsentDraft | null {
   try {
     const draft = JSON.parse(localStorage.getItem(key) ?? "null") as UnsentDraft | null
-    return draft && typeof draft.text === "string" && draft.text.trim() ? draft : null
+    return draft && typeof draft.text === "string" && draft.text.trim() && Number.isFinite(draft.at) && draft.at <= Date.now()
+      ? draft
+      : null
   } catch {
     return null
   }

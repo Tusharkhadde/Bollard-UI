@@ -122,11 +122,11 @@ export function Hero() {
                 {TAGLINE}
               </motion.h1>
               <motion.p variants={item} className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
-                Copy a shadcn-styled guard rail, or add headless validation to the React controls you already use.
+                Add a copy-paste guard rail with the shadcn CLI, or keep your UI and use the headless validation hook on the controls you already have.
               </motion.p>
               <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
                 <Link href="#components" className={buttonPrimary}>
-                  Try the live components <ArrowRight aria-hidden />
+                  Browse components <ArrowRight aria-hidden />
                 </Link>
               </motion.div>
               <motion.div variants={item} className="mt-3 w-full max-w-[36rem]">

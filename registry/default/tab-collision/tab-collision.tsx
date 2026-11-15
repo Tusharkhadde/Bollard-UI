@@ -9,18 +9,36 @@ import { cn } from "@/lib/utils"
 
 type Message = { type: "hello" | "here" | "claim" | "bye"; tab: string; at: number; dirty?: boolean }
 
+function isMessage(value: unknown): value is Message {
+  if (!value || typeof value !== "object") return false
+  const message = value as Partial<Message>
+  return (message.type === "hello" || message.type === "here" || message.type === "claim" || message.type === "bye") &&
+    typeof message.tab === "string" && Number.isFinite(message.at) &&
+    (message.dirty === undefined || typeof message.dirty === "boolean")
+}
+
 /** Fallback listeners in this document; `storage` events only reach other tabs, so same-page instances are told directly. */
 const sameDocument = new Set<{ name: string; onMessage: (message: Message) => void }>()
 
 /** BroadcastChannel where it exists, otherwise a localStorage write that other tabs see as a `storage` event. */
 export function openTabChannel(name: string, onMessage: (message: Message) => void) {
   if (typeof BroadcastChannel !== "undefined") {
-    const channel = new BroadcastChannel(name)
-    channel.onmessage = (event: MessageEvent<Message>) => onMessage(event.data)
-    return { post: (message: Message) => channel.postMessage(message), close: () => channel.close() }
+    try {
+      const channel = new BroadcastChannel(name)
+      channel.onmessage = (event: MessageEvent<unknown>) => { if (isMessage(event.data)) onMessage(event.data) }
+      return { post: (message: Message) => channel.postMessage(message), close: () => channel.close() }
+    } catch {
+      // Fall through to storage events when BroadcastChannel is unavailable.
+    }
   }
   const onStorage = (event: StorageEvent) => {
-    if (event.key === name && event.newValue) onMessage(JSON.parse(event.newValue) as Message)
+    if (event.key !== name || !event.newValue) return
+    try {
+      const message: unknown = JSON.parse(event.newValue)
+      if (isMessage(message)) onMessage(message)
+    } catch {
+      // Ignore corrupt cross-tab messages instead of breaking the listener.
+    }
   }
   const self = { name, onMessage }
   window.addEventListener("storage", onStorage)
