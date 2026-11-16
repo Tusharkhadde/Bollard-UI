@@ -16,7 +16,7 @@ export const CONTACT_EMAIL = "tusharkhadde06@gmail.com"
 export const FEEDBACK_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Bollard UI feedback")}`
 export const SECURITY_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Bollard UI security report")}`
 
-export const TAGLINE = "React components for safer forms and critical actions."
+export const TAGLINE = "shadcn React components for safer forms and risky actions."
 export const LICENSE_LINE = "MIT licensed. Source copied into your project."
 export const COMPAT = "React 19+ · Tailwind v4 · shadcn"
 

@@ -16,7 +16,17 @@ import { UseCasePaths } from "@/components/site/landing/use-case-paths"
 import { catalog, categories } from "@/lib/catalog"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
 
-export const metadata: Metadata = { alternates: { canonical: "/" } }
+const homeTitle = "shadcn React Components for Safer Forms & Risky Actions"
+const homeDescription =
+  "Copy-paste shadcn components for React form validation, email typo checks, and confirm dialogs that make risky actions easier to review."
+
+export const metadata: Metadata = {
+  title: homeTitle,
+  description: homeDescription,
+  alternates: { canonical: "/" },
+  openGraph: { title: homeTitle, description: homeDescription, url: "/", locale: "en_US" },
+  twitter: { title: homeTitle, description: homeDescription },
+}
 
 export default function Home() {
   const total = catalog.length

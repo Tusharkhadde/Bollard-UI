@@ -19,9 +19,9 @@ const gaEnabled =
   /^G-[A-Z0-9]+$/.test(gaMeasurementId) &&
   (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_GA_DEV_ANALYTICS === "1")
 
-const title = "Bollard UI: React form guardrails and validation"
+const title = "shadcn React Components for Safer Forms & Risky Actions"
 const description =
-  "Copy-paste React guardrails for forms and risky actions. Install with shadcn, or add a headless validation hook to existing controls. MIT licensed."
+  "Copy-paste shadcn components for React form validation, email typo checks, and confirm dialogs that make risky actions easier to review."
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -49,17 +49,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: title,
-    template: "%s · Bollard UI",
+    template: "%s | Bollard UI",
   },
   description,
   applicationName: "Bollard UI",
   authors: [{ name: "Bollard UI" }],
   creator: "Bollard UI",
   publisher: "Bollard UI",
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
+  },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     type: "website",
     siteName: "Bollard UI",
+    locale: "en_US",
     title,
     description,
     url: "/",
@@ -67,6 +72,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@devtushark",
+    creator: "@devtushark",
     title,
     description,
     images: [{ url: "/opengraph-image", alt: "React components for safer forms and critical actions" }],
