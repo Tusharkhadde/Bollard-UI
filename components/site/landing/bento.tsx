@@ -67,6 +67,7 @@ export function Bento({ items, total }: { items: BentoItem[]; total: number }) {
                 <CopyButton
                   value={`npx shadcn@4.21.0 add @bollard/${card.name}`}
                   label={`Copy ${card.title} install command`}
+                  trackInstall={{ component: card.name, surface: "bento" }}
                   className="h-7 px-2 text-[11px]"
                 >
                   Install

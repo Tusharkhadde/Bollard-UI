@@ -1,28 +1,35 @@
 /** Browser-only, privacy-conscious event tracking for product adoption decisions. */
+
+declare global {
+  interface Window {
+    gtag?: (command: "event", event: string, parameters?: Record<string, string | string[] | boolean | undefined>) => void
+  }
+}
+
+/** No-op unless GA4 has loaded and exposed gtag; never throws into caller code. */
+function track(event: string, parameters: Record<string, string | string[] | undefined>) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return
+  window.gtag("event", event, parameters)
+}
+
+/** Extract public registry item names from an install command; nothing else is read. */
 export function registryItemsFromArgs(args: string) {
   return [...new Set([...args.matchAll(/(?:\/r\/|@bollard\/)([a-z0-9-]+)(?:\.json)?\b/g)].map((match) => match[1]))]
 }
 
-type InstallCopyEvent = {
+export type InstallClickEvent = {
   component?: string
   components?: string[]
   surface: string
   packageManager?: string
 }
 
-declare global {
-  interface Window {
-    gtag?: (command: "event", event: string, parameters: Record<string, string | string[] | undefined>) => void
-  }
-}
-
 /**
- * Track an intentional install-command copy. Command text and visitor-entered
+ * Track an install-command copy (`install_click`). Command text and visitor-entered
  * values are never sent; events contain only public component identifiers.
  */
-export function trackInstallCopy({ component, components, surface, packageManager }: InstallCopyEvent) {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return
-  window.gtag("event", "bollard_install_command_copied", {
+export function trackInstallCopy({ component, components, surface, packageManager }: InstallClickEvent) {
+  track("install_click", {
     component,
     components,
     surface,
@@ -30,14 +37,24 @@ export function trackInstallCopy({ component, components, surface, packageManage
   })
 }
 
-function track(event: string, parameters: Record<string, string>) {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return
-  window.gtag("event", event, parameters)
+/** Starter packs copy install commands too; only the public pack identifier is sent. */
+export function trackStarterPackCopy(pack: string) {
+  track("install_click", { component: pack, surface: "starter-pack" })
 }
 
-/** Track a public starter-pack identifier only; no copied command or visitor data is sent. */
-export function trackStarterPackCopy(pack: string) {
-  track("bollard_starter_pack_copied", { pack })
+/** Track a component or snippet copy (`copy_code`). Public file names only, never file contents. */
+export function trackCopyCode({ component, file, surface }: { component?: string; file?: string; surface: string }) {
+  track("copy_code", { component, file, surface })
+}
+
+/** Track a click on a GitHub link (`github_click`). Public URL and link label only. */
+export function trackGithubClick({ url, label }: { url: string; label?: string }) {
+  track("github_click", { link_url: url, link_label: label })
+}
+
+/** Track a click through to the documentation (`docs_visit`). Public path and link label only. */
+export function trackDocsVisit({ path, label }: { path: string; label?: string }) {
+  track("docs_visit", { link_path: path, link_label: label })
 }
 
 /** Track which public use-case path a visitor intentionally opens. */

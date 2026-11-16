@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
 
+import { trackInstallCopy, type InstallClickEvent } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 
 /** A small copy-to-clipboard button that says "Copied" for a moment. Announces the result politely. */
@@ -12,12 +13,15 @@ export function CopyButton({
   children,
   className,
   onCopy,
+  trackInstall,
 }: {
   value: string
   label: string
   children?: React.ReactNode
   className?: string
   onCopy?: () => void
+  /** Serializable install-copy context for server components; tracked as install_click. */
+  trackInstall?: Omit<InstallClickEvent, "surface"> & { surface: string }
 }) {
   const [state, setState] = React.useState<"idle" | "copied" | "failed">("idle")
   React.useEffect(() => {
@@ -37,6 +41,7 @@ export function CopyButton({
       return
     }
     onCopy?.()
+    if (trackInstall) trackInstallCopy(trackInstall)
   }
 
   return (

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { ChevronDown, FileCode2, Terminal } from "lucide-react"
 
+import { trackCopyCode } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { CopyConfirm } from "@/registry/default/copy-confirm/copy-confirm"
 
@@ -27,12 +28,15 @@ export function CodeBlock({
   lineNumbers = true,
   collapsible = false,
   bare = false,
+  component,
   className,
 }: {
   files: CodeFile[]
   lineNumbers?: boolean
   collapsible?: boolean
   bare?: boolean
+  /** Component slug, when the block shows that component's source; sent with copy_code. */
+  component?: string
   className?: string
 }) {
   const [index, setIndex] = React.useState(0)
@@ -70,7 +74,7 @@ export function CodeBlock({
           </span>
         )}
         <span className="hidden font-mono text-[11px] text-muted-foreground/80 tabular-nums sm:inline">{file.lines} lines</span>
-        <CopyConfirm value={file.source.trimEnd()} label={`Copy ${name}`} toPlain={asIs} className="size-7 border-transparent bg-transparent text-muted-foreground shadow-none hover:bg-accent hover:text-foreground [&_svg]:size-3.5" />
+        <CopyConfirm value={file.source.trimEnd()} label={`Copy ${name}`} toPlain={asIs} onCopy={() => trackCopyCode({ component, file: name, surface: "code-block" })} className="size-7 border-transparent bg-transparent text-muted-foreground shadow-none hover:bg-accent hover:text-foreground [&_svg]:size-3.5" />
       </div>
       <div
         role={files.length > 1 ? "tabpanel" : undefined}

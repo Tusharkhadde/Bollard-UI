@@ -3,9 +3,21 @@ import Script from "next/script"
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
+import { Analytics } from "@/components/site/analytics"
 import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
+
+/**
+ * GA4 loads only when a measurement ID is configured (set NEXT_PUBLIC_GA_MEASUREMENT_ID
+ * in Vercel), and never in development unless NEXT_PUBLIC_GA_DEV_ANALYTICS=1 is also set.
+ * The ID is shape-checked so a bad value can't break the inline bootstrap below.
+ */
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const gaEnabled =
+  typeof gaMeasurementId === "string" &&
+  /^G-[A-Z0-9]+$/.test(gaMeasurementId) &&
+  (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_GA_DEV_ANALYTICS === "1")
 
 const title = "Bollard UI: React form guardrails and validation"
 const description =
@@ -76,18 +88,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body className="min-h-dvh font-sans">{children}</body>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-JX4N0EV7CG"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-JX4N0EV7CG');
-        `}
-      </Script>
+      {gaEnabled && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaMeasurementId}', { send_page_view: true });
+            `}
+          </Script>
+          {/* Global link clicks (page views are handled by gtag config + enhanced measurement). */}
+          <Analytics />
+        </>
+      )}
     </html>
   )
 }

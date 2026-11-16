@@ -328,10 +328,11 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
   const codeTab = demoCode ? (
     <CodeBlock
       collapsible
+      component={name}
       files={[{ path: `${name}-demo.tsx`, source: demoCode, lines: demoCode.split("\n").length, code: highlight(demoCode) }]}
     />
   ) : (
-    <CodeBlock collapsible files={files} />
+    <CodeBlock collapsible component={name} files={files} />
   )
 
   type Step = { title: React.ReactNode; body?: React.ReactNode }
@@ -362,7 +363,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           Copy and paste the following code into <code className={inlineCode}>components/ui</code>
         </>
       ),
-      body: <CodeBlock collapsible files={files} />,
+      body: <CodeBlock collapsible component={name} files={files} />,
     },
     {
       title: "Update the import paths to match your project setup.",
@@ -488,7 +489,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
 
         {usage && (
           <DocSection id="usage" title="Usage">
-            <CodeBlock lineNumbers={false} files={[{ path: `${name}-usage.tsx`, source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
+            <CodeBlock lineNumbers={false} component={name} files={[{ path: `${name}-usage.tsx`, source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
           </DocSection>
         )}
 

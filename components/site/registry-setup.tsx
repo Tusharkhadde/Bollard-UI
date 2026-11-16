@@ -1,6 +1,7 @@
 "use client"
 
 import { CopyButton } from "@/components/site/copy-button"
+import { trackCopyCode } from "@/lib/analytics"
 
 const registrySnippet = `{
   "registries": {
@@ -14,7 +15,7 @@ export function RegistrySetup({ className }: { className?: string }) {
     <div className={className}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-medium">Add the Bollard namespace once</p>
-        <CopyButton value={registrySnippet} label="Copy Bollard registry configuration" className="h-8 px-2.5 text-[11px]">
+        <CopyButton value={registrySnippet} label="Copy Bollard registry configuration" onCopy={() => trackCopyCode({ file: "components.json", surface: "registry-config" })} className="h-8 px-2.5 text-[11px]">
           Copy config
         </CopyButton>
       </div>
