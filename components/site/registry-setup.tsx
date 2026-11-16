@@ -2,10 +2,11 @@
 
 import { CopyButton } from "@/components/site/copy-button"
 import { trackCopyCode } from "@/lib/analytics"
+import { SITE_URL } from "@/lib/site"
 
 const registrySnippet = `{
   "registries": {
-    "@bollard": "https://bollard-ui.vercel.app/r/{name}.json"
+    "@bollard": "${SITE_URL}/r/{name}.json"
   }
 }`
 

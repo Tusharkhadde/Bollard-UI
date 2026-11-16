@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Package
 
 import { CodeBlock } from "@/components/site/code-block"
 import { ComponentFeedback } from "@/components/site/component-feedback"
+import { JsonLd } from "@/components/site/json-ld"
 import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
@@ -350,9 +351,34 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
 
   return (
     <div className="flex gap-12 px-4 pt-8 pb-16 sm:px-8 lg:px-10 lg:pt-10 xl:gap-16">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+              { "@type": "ListItem", position: 2, name: "Components", item: `${SITE_URL}/components` },
+              { "@type": "ListItem", position: 3, name: item.title, item: `${SITE_URL}/components/${name}` },
+            ],
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            name: item.title,
+            description: item.summary ?? item.description,
+            url: `${SITE_URL}/components/${name}`,
+            license: "https://opensource.org/license/mit",
+            isAccessibleForFree: true,
+            programmingLanguage: ["TypeScript", "React"],
+            runtimePlatform: "React",
+          },
+        ],
+      }} />
       <main id="top" className="min-w-0 flex-1 xl:max-w-[46rem] 2xl:max-w-[52rem]">
         <nav aria-label="Breadcrumb" className="mb-4">
           <ol className="flex min-w-0 items-center gap-1.5 text-[13px] text-muted-foreground">
+            <li><Link href="/" className="rounded-sm outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">Home</Link></li>
+            <li aria-hidden><ChevronRight className="size-3.5 shrink-0 opacity-60" /></li>
             <li>
               <Link href="/components" className="rounded-sm outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
                 Components
@@ -405,6 +431,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
               {item.integration === "headless" ? "Headless · any React UI" : "Styled · shadcn theme"}
             </li>
             <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">React 19+</li>
+            <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">MIT licensed</li>
             {item.integration === "styled" && <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">Tailwind v4</li>}
             <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">
               {deps.length ? `${deps.length} extra npm ${deps.length === 1 ? "package" : "packages"}` : "No extra npm packages"}

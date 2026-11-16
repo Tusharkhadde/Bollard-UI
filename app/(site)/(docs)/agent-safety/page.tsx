@@ -2,9 +2,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { CodeBlock } from "@/components/site/code-block"
+import { ArticleByline } from "@/components/site/article-byline"
 import { DocPage, DocSection, Note, Prose, inlineCode, proseLink } from "@/components/site/doc-page"
 import { InstallCommand } from "@/components/site/install-command"
+import { JsonLd } from "@/components/site/json-ld"
 import { RegistrySetup } from "@/components/site/registry-setup"
+import { articleSchema } from "@/lib/article-metadata"
 import { highlight } from "@/lib/highlight"
 
 const description = "Add a human approval step to consequential AI agent tool calls with Bollard UI. Review the proposed action, enforce the decision at the tool boundary, then resume safely."
@@ -44,6 +47,8 @@ const code = (path: string, source: string) => ({ path, source, lines: source.sp
 export default function AgentSafetyPage() {
   return (
     <DocPage eyebrow="Agent / human-in-the-loop" title="Add approval where an agent can cause change." lead="Bollard renders the review surface. Your agent runtime must pause before the side effect, persist the decision, and enforce it when the tool is resumed." sections={sections}>
+      <JsonLd data={articleSchema("/agent-safety", "Add approval where an agent can cause change.", description)} />
+      <ArticleByline />
       <DocSection id="lifecycle" title="Approval lifecycle">
         <ol className="grid gap-3 sm:grid-cols-2">
           {[

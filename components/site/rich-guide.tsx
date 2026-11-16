@@ -1,6 +1,9 @@
 import Link from "next/link"
 
 import { DocPage } from "@/components/site/doc-page"
+import { ArticleByline } from "@/components/site/article-byline"
+import { JsonLd } from "@/components/site/json-ld"
+import { articlePathForTitle, articleSchema } from "@/lib/article-metadata"
 
 export type RichGuideSection = {
   title: string
@@ -25,6 +28,8 @@ export function RichGuideArticle({
 }) {
   return (
     <DocPage eyebrow={eyebrow} title={title} lead={lead}>
+      <JsonLd data={articleSchema(articlePathForTitle(title) ?? "/guides", title, lead)} />
+      <ArticleByline />
       <div className="space-y-10 pt-8">
         {sections.map((section, index) => (
           <section key={section.title} aria-labelledby={`guide-section-${index}`} className="space-y-4">

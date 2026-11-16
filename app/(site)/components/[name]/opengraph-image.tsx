@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og"
 
 import { catalog } from "@/lib/catalog"
+import { SITE_URL } from "@/lib/site"
 import { OG, OgHazard, OgMark, clampWords, ogFonts, ogSize } from "@/lib/og"
 
 export const size = ogSize
@@ -69,7 +70,7 @@ export default async function ComponentOgImage({ params }: { params: Promise<{ n
           </div>
           {summary && <div style={{ display: "flex", marginTop: 26, fontSize: 25, lineHeight: 1.45, color: OG.MUTED, maxWidth: 980 }}>{summary}</div>}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-            <span style={{ fontFamily: "Geist Mono", fontSize: 21, color: OG.MUTED }}>{`bollard-ui.vercel.app/components/${name}`}</span>
+            <span style={{ fontFamily: "Geist Mono", fontSize: 21, color: OG.MUTED }}>{`${SITE_URL.replace(/^https?:\/\//, "")}/components/${name}`}</span>
             <span style={{ fontSize: 19, color: OG.MUTED }}>Copy-paste React · shadcn/ui · MIT</span>
           </div>
         </div>

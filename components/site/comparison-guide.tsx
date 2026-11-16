@@ -1,6 +1,9 @@
 import Link from "next/link"
 
 import { DocPage } from "@/components/site/doc-page"
+import { ArticleByline } from "@/components/site/article-byline"
+import { JsonLd } from "@/components/site/json-ld"
+import { articlePathForTitle, articleSchema } from "@/lib/article-metadata"
 
 export type ComparisonFaq = { question: string; answer: string }
 
@@ -21,6 +24,8 @@ export function ComparisonGuide({
 }) {
   return (
     <DocPage eyebrow="Comparison guide" title={title} lead={lead}>
+      <JsonLd data={articleSchema(articlePathForTitle(title) ?? "/guides", title, lead)} />
+      <ArticleByline />
       <div className="space-y-10 pt-8">
         <div className="overflow-x-auto rounded-xl border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">

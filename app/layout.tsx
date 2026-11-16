@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
 import { Analytics } from "@/components/site/analytics"
+import { JsonLd } from "@/components/site/json-ld"
 import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
@@ -25,24 +26,11 @@ const description =
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: "Bollard UI",
-      url: SITE_URL,
-      logo: `${SITE_URL}/icon.svg`,
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: "Bollard UI",
-      url: SITE_URL,
-      description,
-      publisher: { "@id": `${SITE_URL}/#organization` },
-      inLanguage: "en",
-    },
-  ],
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: "Bollard UI",
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.svg`,
 }
 
 export const metadata: Metadata = {
@@ -92,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <JsonLd data={structuredData} />
       </head>
       <body className="min-h-dvh font-sans">{children}</body>
       {gaEnabled && (

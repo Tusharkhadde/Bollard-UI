@@ -14,8 +14,11 @@ import { DisastersPrevented } from "@/components/site/landing/disasters-prevente
 import { StarterPacks } from "@/components/site/landing/starter-packs"
 import { SitePreview } from "@/components/site/landing/site-preview"
 import { UseCasePaths } from "@/components/site/landing/use-case-paths"
+import { JsonLd } from "@/components/site/json-ld"
 import { catalog, categories } from "@/lib/catalog"
+import { HOME_FAQS } from "@/lib/home-faq"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
+import { SITE_URL } from "@/lib/site"
 
 const homeTitle = "shadcn React Components for Safer Forms & Risky Actions"
 const homeDescription =
@@ -42,6 +45,39 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
+            name: "Bollard UI",
+            url: SITE_URL,
+            description: homeDescription,
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-US",
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "@id": `${SITE_URL}/#software-source-code`,
+            name: "Bollard UI",
+            description: homeDescription,
+            url: SITE_URL,
+            license: "https://opensource.org/license/mit",
+            isAccessibleForFree: true,
+            programmingLanguage: ["TypeScript", "React"],
+            runtimePlatform: "React",
+          },
+          {
+            "@type": "FAQPage",
+            mainEntity: HOME_FAQS.map(({ question, answer }) => ({
+              "@type": "Question",
+              name: question,
+              acceptedAnswer: { "@type": "Answer", text: answer },
+            })),
+          },
+        ],
+      }} />
       <Hero />
       <SitePreview />
       <Stats total={total} categories={categories.length} />
