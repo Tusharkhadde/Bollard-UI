@@ -1,0 +1,24 @@
+import type { Metadata } from "next"
+
+import { ComparisonGuide } from "@/components/site/comparison-guide"
+
+const title = "Bollard UI vs Confirm Dialogs: Choose the Right Review"
+const description = "Standard confirm dialogs fit routine decisions; Bollard UI adds explicit target readbacks and typed confirmation for higher-risk React actions."
+export const metadata: Metadata = { title, description, alternates: { canonical: "/guides/bollard-ui-vs-confirm-dialogs" }, openGraph: { title: `${title} | Bollard UI`, description, url: "/guides/bollard-ui-vs-confirm-dialogs", type: "article" }, twitter: { title: `${title} | Bollard UI`, description, card: "summary_large_image" } }
+
+const rows = [
+  { topic: "Routine choice", bollard: "Often more interaction than needed for reversible, low-impact actions.", other: "A familiar confirmation can be enough when the choice is clear and reversible." },
+  { topic: "Hard-to-reverse action", bollard: "Can repeat the target, consequence or require typing the target.", other: "A generic “Are you sure?” may not make scope or impact clear." },
+  { topic: "Security boundary", bollard: "Provides a review surface; your API still authorizes the action.", other: "A dialog alone never protects the server-side operation." },
+]
+const sections = [
+  { title: "A confirmation dialog is a pattern, not a complete safety policy", paragraphs: ["A standard confirm dialog is useful when someone needs a clear final chance to proceed or cancel. It is familiar and lightweight, and it fits many reversible changes. For a destructive action, a generic prompt can be too vague: it may omit the target, affected records, consequences or recovery window. Bollard UI offers components that make the proposed action more explicit, including type-to-confirm and account-deletion readback patterns.", "Choose the lightest interaction that addresses the likely mistake. A dialog is not automatically safer because it adds a click. Repeating the exact target or offering an undo window may prevent more errors with less friction. Reserve typed confirmation for consequential actions where the target itself is easy to confuse."], code: { filename: "Typed target for repository deletion", source: `import { TypeToConfirm } from "@/components/ui/type-to-confirm"\n\n<TypeToConfirm\n  open={open}\n  onOpenChange={setOpen}\n  phrase={repository.slug}\n  description={\`Permanently deletes \${repository.slug} and its issues.\`}\n  onConfirm={() => deleteRepository(repository.id)}\n/>` } },
+  { title: "Show scope before asking for consent", paragraphs: ["A useful review names the resource and explains the consequence in language the user recognizes. “Delete Acme staging” is clearer than “This action cannot be undone” when multiple environments exist. If the action affects members, integrations or billing, summarize those effects before the confirmation control. Keep cancellation available and make the safe path as easy to find as the destructive path.", "The decision should remain specific to the action displayed. If the target changes while the dialog is open, reset the confirmation state. If the operation is delayed, show its pending status and prevent duplicate submission. When an API returns an ambiguous timeout, check status before retrying a non-idempotent action."], code: { filename: "Keep the action server-owned", source: `async function deleteRepository(id: string) {\n  const response = await fetch(\`/api/repositories/\${id}\`, { method: "DELETE" })\n  if (!response.ok) throw new Error("The repository was not deleted")\n}\n\n// The endpoint authenticates, authorizes and checks current scope.\n// The dialog only gathers the user's deliberate confirmation.` } },
+]
+const faqs = [
+  { question: "Should every destructive button open a typed dialog?", answer: "No. Match friction to impact and reversibility. Use typed confirmation for high-consequence actions with a confusing target, and lighter patterns for routine changes." },
+  { question: "Can a confirm dialog replace authorization?", answer: "No. Authenticate and authorize at the server endpoint, and validate the current target and policy when the action runs." },
+  { question: "When is undo better than confirmation?", answer: "Undo is often a good fit when the action can be reversed safely for a short, clearly communicated period." },
+]
+
+export default function ConfirmDialogsComparisonPage() { return <ComparisonGuide title={title} lead="Standard confirm dialogs remain useful. Add stronger target readbacks only when the action’s impact and the chance of confusion justify the extra step." rows={rows} sections={sections} faqs={faqs} cta={{ href: "/components/type-to-confirm", label: "Review the destructive-action components", detail: "Compare typed confirmation, readback and undo patterns, then choose the smallest guardrail that fits your risk." }} /> }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { Bento } from "@/components/site/landing/bento"
 import { Cta } from "@/components/site/landing/cta"
@@ -52,6 +53,16 @@ export default function Home() {
       <Flows flows={flows} />
       <HowItWorks />
       <WhyNot />
+      <section aria-labelledby="comparison-guides-heading" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+        <h2 id="comparison-guides-heading" className="text-xl font-semibold tracking-tight">Choose the tools that fit your React form</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          {[
+            ["Bollard UI vs Zod validation", "/guides/bollard-ui-vs-zod-validation"],
+            ["Bollard UI vs React Hook Form", "/guides/bollard-ui-vs-react-hook-form"],
+            ["Bollard UI vs confirm dialogs", "/guides/bollard-ui-vs-confirm-dialogs"],
+          ].map(([label, href]) => <li key={href}><Link href={href} className="block rounded-xl border p-4 text-sm font-medium transition-colors hover:border-border-strong hover:bg-surface">{label}<span className="mt-1 block text-xs font-normal text-muted-foreground">See where the tools complement each other.</span></Link></li>)}
+        </ul>
+      </section>
       <Faq />
       <Cta />
     </main>

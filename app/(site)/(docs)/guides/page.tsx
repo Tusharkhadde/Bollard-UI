@@ -30,6 +30,16 @@ export default function GuidesPage() {
           </li>
         ))}
       </ul>
+      <section className="space-y-3 pt-10" aria-labelledby="comparison-guides">
+        <h2 id="comparison-guides" className="text-xl font-semibold tracking-tight">How Bollard UI fits with other tools</h2>
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {[
+            ["Bollard UI vs Zod validation", "/guides/bollard-ui-vs-zod-validation"],
+            ["Bollard UI vs React Hook Form", "/guides/bollard-ui-vs-react-hook-form"],
+            ["Bollard UI vs confirm dialogs", "/guides/bollard-ui-vs-confirm-dialogs"],
+          ].map(([label, href]) => <li key={href}><Link href={href} className="group flex h-full items-center justify-between gap-3 rounded-xl border p-4 text-sm font-medium transition-colors hover:border-border-strong hover:bg-surface">{label}<ArrowRight aria-hidden className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" /></Link></li>)}
+        </ul>
+      </section>
     </DocPage>
   )
 }
