@@ -31,7 +31,7 @@ test("gives users the shadcn namespace setup and tracks pack and use-case intent
   assert.match(setup, /components\.json/)
   assert.match(setup, /https:\/\/bollard-ui\.vercel\.app\/r\/\{name\}\.json/)
   assert.match(setup, /shadcn@4\.21\.0 list/)
-  assert.match(analytics, /bollard_starter_pack_copied/)
+  assert.match(analytics, /install_click/)
   assert.match(analytics, /bollard_use_case_selected/)
   assert.match(packs, /trackStarterPackCopy/)
   assert.match(paths, /trackUseCaseSelected/)
