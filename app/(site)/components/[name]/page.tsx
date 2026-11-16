@@ -9,7 +9,7 @@ import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
 import { Toc } from "@/components/site/toc"
-import { catalog, categories, readDemo, readProps, readSource, registryBase, SITE_URL, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
+import { catalog, categories, installCommand, readDemo, readProps, readSource, registryBase, SITE_URL, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
 import { highlight } from "@/lib/highlight"
 import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
@@ -29,48 +29,17 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const { name } = await params
   const item = catalog.find((entry) => entry.name === name)
   if (!item) return {}
-  const description = pageDescription(item)
-  const title = `${item.title} · Bollard UI`
+  const mistake = item.stops ?? item.headline ?? item.summary ?? item.description
+  const description = `${mistake.replace(/[.!?]+$/, "")}. Install ${item.name} with shadcn; MIT licensed shadcn component.`
+  const title = `${item.title} for React: ${mistake.replace(/[.!?]+$/, "")}`
   const path = `/components/${name}`
   return {
     title: item.title,
     description,
     alternates: { canonical: path },
-    openGraph: { type: "article", title, description, url: `${SITE_URL}${path}` },
-    twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/components/${name}/opengraph-image`] },
+    openGraph: { type: "article", title: `${title} | Bollard UI`, description, url: `${SITE_URL}${path}` },
+    twitter: { card: "summary_large_image", title: `${title} | Bollard UI`, description, images: [`${SITE_URL}/components/${name}/opengraph-image`] },
   }
-}
-
-const MAX_DESCRIPTION = 160
-
-/** "Teammates' commits" → "teammates' commits", but "KYC rejected" stays as is. */
-const lowerFirst = (text: string) => (/^[A-Z][a-z]/.test(text) ? text.charAt(0).toLowerCase() + text.slice(1) : text)
-
-/** Whole sentences that fit in `max`, or "" when even the first one is too long. */
-function sentencesWithin(text: string, max: number) {
-  let out = ""
-  for (const sentence of text.replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s+(?=[A-Z0-9"“(])/)) {
-    const next = out ? `${out} ${sentence}` : sentence
-    if (next.length > max) break
-    out = next
-  }
-  return out
-}
-
-/**
- * Meta description, at most 160 characters and never cut mid-sentence: the summary
- * (or the description) in whole sentences, else the "Stops" line plus the title,
- * and only as a last resort a word-boundary cut.
- */
-function pageDescription(item: CatalogEntry) {
-  const source = item.summary ?? item.description
-  const whole = sentencesWithin(source, MAX_DESCRIPTION)
-  if (whole) return whole
-  const stops = item.stops ? `Stops ${lowerFirst(item.stops).replace(/\.$/, "")}.` : `${(item.headline ?? item.title).replace(/\.$/, "")}.`
-  const withTitle = `${stops} ${item.title}, a copy-paste React component for shadcn/ui.`
-  if (withTitle.length <= MAX_DESCRIPTION) return withTitle
-  if (stops.length <= MAX_DESCRIPTION) return stops
-  return source.slice(0, MAX_DESCRIPTION - 1).replace(/\s+\S*$/, "").replace(/[,;:]$/, "") + "…"
 }
 
 /** Imports as the shadcn CLI writes them: @/registry/default/<dir>/<file> → @/components/ui/<file>. */
@@ -428,6 +397,9 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           <p className="max-w-[65ch] text-base leading-relaxed text-pretty text-muted-foreground" data-summary>
             {item.summary ?? item.description}
           </p>
+          <p className="max-w-full overflow-hidden text-ellipsis rounded-md border bg-surface px-3 py-2 font-mono text-xs text-muted-foreground" data-install-command>
+            {installCommand(name)}
+          </p>
           <ul aria-label="Compatibility and setup" className="flex flex-wrap gap-1.5 text-[11px]">
             <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">
               {item.integration === "headless" ? "Headless · any React UI" : "Styled · shadcn theme"}
@@ -602,7 +574,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         </DocSection>
 
         {pairs.length > 0 && (
-          <DocSection id="pairs" title="Pairs well with">
+        <DocSection id="pairs" title="Related components">
             <ul className="grid gap-3 sm:grid-cols-2">
               {pairs.map((pair) => (
                 <li key={pair.name} className="min-w-0">
