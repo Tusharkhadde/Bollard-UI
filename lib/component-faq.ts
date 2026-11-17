@@ -1,3 +1,6 @@
+// ⚠️  SYNC WARNING: The FAQ-generation logic here is mirrored in
+// scripts/verify-seo-aeo.mjs for the uniqueness check. If you change question
+// templates, category branches, or answer structure, update both files.
 import { type CatalogEntry, readProps } from "./catalog"
 
 export type ComponentFaq = {

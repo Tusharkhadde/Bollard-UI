@@ -1,3 +1,6 @@
+// ⚠️  SYNC WARNING: The FAQ-generation logic below mirrors lib/component-faq.ts.
+// If you change question templates, category branches, or answer structure in
+// component-faq.ts, update the corresponding section here.
 import fs from "node:fs"
 import path from "node:path"
 
