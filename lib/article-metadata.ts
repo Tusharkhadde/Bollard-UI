@@ -1,7 +1,7 @@
 import { SITE_URL } from "@/lib/site"
 
 export const ARTICLE_DATE_PUBLISHED = "2026-11-16"
-export const ARTICLE_DATE_MODIFIED = "2026-11-16"
+export const ARTICLE_DATE_MODIFIED = "2026-11-17"
 export const ARTICLE_AUTHOR = "Tushar Khadde"
 
 const ARTICLE_PATHS: Record<string, string> = {

@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react"
 import { LogoMark } from "@/components/site/logo"
 import { ThemeToggle } from "@/components/site/theme"
 import { registryBase } from "@/lib/catalog"
-import { FEEDBACK_HREF, REPO_PUBLIC, REPO_URL, SECURITY_HREF, links } from "@/lib/site"
+import { REPO_PUBLIC, REPO_URL, links } from "@/lib/site"
 
 type FooterLink = { label: string; href: string; external?: boolean }
 
@@ -43,10 +43,8 @@ const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Community",
     links: [
-      REPO_PUBLIC
-        ? { label: "Report an issue", href: links.issues, external: true }
-        : { label: "Send feedback", href: FEEDBACK_HREF, external: true },
-      { label: "Report a vulnerability", href: SECURITY_HREF, external: true },
+      { label: "Report an issue", href: `${REPO_URL}/issues`, external: true },
+      { label: "Report a vulnerability", href: `${REPO_URL}/security/advisories/new`, external: true },
       { label: "X @devtushark", href: "https://x.com/devtushark", external: true },
       { label: "GitHub @Tusharkhadde", href: "https://github.com/Tusharkhadde", external: true },
     ],

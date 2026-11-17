@@ -1,6 +1,7 @@
 import { SiteShell } from "@/components/site/site-shell"
 import { SiteFooter } from "@/components/site/site-footer"
 import { TopBar } from "@/components/site/top-bar"
+import { GitHubStars } from "@/components/site/github-stars"
 import { catalogItems, categories } from "@/lib/catalog"
 
 // Mark preview deployments without adding a local development badge.
@@ -10,7 +11,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <SiteShell items={catalogItems} categories={categories}>
       <div className="flex min-h-dvh flex-col">
-        <TopBar env={env} />
+        <TopBar env={env} githubBadge={<GitHubStars />} />
         <div className="flex-1">{children}</div>
         <SiteFooter />
       </div>

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, Search } from "lucide-react"
 
-import { REPO_PUBLIC, REPO_URL } from "@/lib/site"
+import { REPO_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { EnvironmentBadge } from "@/registry/default/environment-badge/environment-badge"
 import { GithubIcon } from "./github-icon"
@@ -16,12 +16,11 @@ const navLink =
   "relative rounded-md px-2.5 py-1.5 text-[13px] text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
 /**
- * Sticky site header: logo, primary nav, ⌘K search, GitHub (only while the repo is
- * public, see REPO_PUBLIC) and the theme switch.
+ * Sticky site header: logo, primary nav, ⌘K search, GitHub and the theme switch.
  * Blurred translucent background with a hairline bottom border. Below lg the
  * menu button opens the drawer (the docs sidebar).
  */
-export function TopBar({ env }: { env?: string }) {
+export function TopBar({ env, githubBadge }: { env?: string; githubBadge?: React.ReactNode }) {
   const { openSearch, openDrawer } = useSite()
   const pathname = usePathname()
   const nav = [
@@ -53,11 +52,12 @@ export function TopBar({ env }: { env?: string }) {
               {item.label}{item.badge && <span className="ml-1.5 rounded-full border px-1.5 py-0.5 font-mono text-[9px] tracking-wide text-brand">{item.badge}</span>}
             </Link>
           ))}
-          {REPO_PUBLIC && (
+          {(
             <a href={REPO_URL} className={navLink}>
               GitHub
             </a>
           )}
+          {githubBadge}
         </nav>
         <div className="ml-auto flex items-center gap-1.5">
           <button
@@ -74,7 +74,7 @@ export function TopBar({ env }: { env?: string }) {
               ⌘K
             </kbd>
           </button>
-          {REPO_PUBLIC && (
+          {(
             <a
               href={REPO_URL}
               aria-label="Bollard UI on GitHub"
