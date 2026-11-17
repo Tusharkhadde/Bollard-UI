@@ -3,12 +3,18 @@ import Link from "next/link"
 import { DocPage } from "@/components/site/doc-page"
 import { ArticleByline } from "@/components/site/article-byline"
 import { JsonLd } from "@/components/site/json-ld"
+import { PackageCommand } from "@/components/site/package-command"
 import { articlePathForTitle, articleSchema } from "@/lib/article-metadata"
 
 export type RichGuideSection = {
   title: string
   paragraphs: string[]
   code?: { filename: string; source: string }
+  table?: {
+    caption?: string
+    headers: string[]
+    rows: string[][]
+  }
 }
 
 export function RichGuideArticle({
@@ -30,6 +36,11 @@ export function RichGuideArticle({
     <DocPage eyebrow={eyebrow} title={title} lead={lead}>
       <JsonLd data={articleSchema(articlePathForTitle(title) ?? "/guides", title, lead)} />
       <ArticleByline />
+      {components[0] && (
+        <div className="pt-6">
+          <PackageCommand kind="shadcn" args={`add @bollard/${components[0].name}`} label={`Copy install command for ${components[0].label}`} />
+        </div>
+      )}
       <div className="space-y-10 pt-8">
         {sections.map((section, index) => (
           <section key={section.title} aria-labelledby={`guide-section-${index}`} className="space-y-4">
@@ -37,6 +48,33 @@ export function RichGuideArticle({
             <div className="space-y-4 text-[15px] leading-7 text-pretty text-muted-foreground">
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph.replace(/<[^>]*>/g, "")}</p>)}
             </div>
+            {section.table && (
+              <div className="overflow-x-auto rounded-xl border">
+                <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
+                  {section.table.caption && <caption className="sr-only">{section.table.caption}</caption>}
+                  <thead className="bg-surface text-xs text-muted-foreground">
+                    <tr className="border-b">
+                      {section.table.headers.map((h, i) => (
+                        <th key={i} scope="col" className="px-4 py-3 font-medium">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {section.table.rows.map((row, rIdx) => (
+                      <tr key={rIdx} className="align-top">
+                        {row.map((cell, cIdx) => (
+                          cIdx === 0 ? (
+                            <th key={cIdx} scope="row" className="px-4 py-3 font-medium text-foreground">{cell}</th>
+                          ) : (
+                            <td key={cIdx} className="px-4 py-3 text-muted-foreground">{cell}</td>
+                          )
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
             {section.code && (
               <div className="overflow-x-auto rounded-xl border bg-zinc-950 p-4 text-zinc-100">
                 <p className="mb-3 font-mono text-xs text-zinc-400">{section.code.filename}</p>

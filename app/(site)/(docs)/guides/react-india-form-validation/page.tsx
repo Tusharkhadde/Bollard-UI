@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { RichGuideArticle } from "@/components/site/rich-guide"
 import { catalog } from "@/lib/catalog"
 
-const title = "React Form Validation for India: Aadhaar, UPI & More"
+const title = "React Form Validation for India: Aadhaar and UPI"
 const description = "Build India-aware React forms for Aadhaar, IFSC, UPI IDs, PIN codes, +91 phones and lakh-aware amounts, with careful client and server validation."
 
 export const metadata: Metadata = {

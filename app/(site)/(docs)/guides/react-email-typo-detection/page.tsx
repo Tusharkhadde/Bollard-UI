@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { RichGuideArticle } from "@/components/site/rich-guide"
 
-const title = "Email Typo Detection in React Forms: Suggest, Don’t Rewrite"
+const title = "React Email Typo Detection: Suggest, Don't Edit"
 const description = "Catch common email domain typos in React forms with a clear suggestion, keep the user in control and verify mailbox ownership on the server."
 
 export const metadata: Metadata = {

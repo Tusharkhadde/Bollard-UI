@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react"
 
 import { LogoMark } from "@/components/site/logo"
 import { ThemeToggle } from "@/components/site/theme"
-import { registryBase } from "@/lib/catalog"
 import { REPO_PUBLIC, REPO_URL, links } from "@/lib/site"
 
 type FooterLink = { label: string; href: string; external?: boolean }
@@ -13,31 +12,29 @@ const columns: { title: string; links: FooterLink[] }[] = [
     title: "Library",
     links: [
       { label: "Getting started", href: "/docs" },
+      { label: "About Bollard UI", href: "/about" },
       { label: "Start here", href: "/start-here" },
       { label: "Components", href: "/components" },
-      { label: "Browse by flow", href: "/#flows" },
-      { label: "Use-case recipes", href: "/#use-cases" },
+      { label: "Flow hubs", href: "/flows" },
+      { label: "Guides & Tutorials", href: "/guides" },
       { label: "Agent safety", href: "/agent-safety" },
       { label: "Bollard UI vs Zod", href: "/guides/bollard-ui-vs-zod-validation" },
       { label: "Bollard UI vs React Hook Form", href: "/guides/bollard-ui-vs-react-hook-form" },
       { label: "Bollard UI vs confirm dialogs", href: "/guides/bollard-ui-vs-confirm-dialogs" },
-      { label: "FAQ", href: "/#faq" },
     ],
   },
   {
-    title: "Resources",
+    title: "Guides & Safety",
     links: [
-      ...(REPO_PUBLIC
-        ? [
-            { label: "GitHub", href: REPO_URL, external: true },
-            { label: "README", href: links.readme, external: true },
-          ]
-        : []),
+      { label: "Prevent duplicate submit", href: "/guides/react-prevent-duplicate-form-submit" },
+      { label: "India form validation", href: "/guides/react-india-form-validation" },
+      { label: "Type to confirm dialogs", href: "/guides/react-type-to-confirm-dialog" },
+      { label: "Email typo detection", href: "/guides/react-email-typo-detection" },
+      { label: "AI agent approvals", href: "/guides/human-in-the-loop-ai-agent-approvals" },
       { label: "Changelog", href: "/changelog" },
-      { label: "Quality", href: "/quality" },
-      { label: "Security", href: "/security" },
+      { label: "Quality standards", href: "/quality" },
+      { label: "Security policy", href: "/security" },
       { label: "License", href: links.license, external: REPO_PUBLIC },
-      { label: "Registry JSON", href: `${registryBase}registry.json`, external: true },
     ],
   },
   {

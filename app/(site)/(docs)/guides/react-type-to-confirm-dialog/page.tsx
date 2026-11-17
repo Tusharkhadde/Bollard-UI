@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { RichGuideArticle } from "@/components/site/rich-guide"
 
-const title = "Type to Confirm Dialogs in React: Safer Destructive Actions"
+const title = "React Type to Confirm Dialogs for Safety"
 const description = "Build a React type-to-confirm dialog that names the exact destructive target, supports keyboard users and keeps authorization on the server."
 
 export const metadata: Metadata = {

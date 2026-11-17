@@ -10,13 +10,18 @@ import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
 import { Toc } from "@/components/site/toc"
-import { catalog, categories, installCommand, readDemo, readProps, readSource, registryBase, SITE_URL, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
+import { catalog, categories, readDemo, readProps, readSource, registryBase, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
 import { highlight } from "@/lib/highlight"
 import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
 import { buildImplementationContext } from "@/lib/implementation-context"
 import { toInstalledImport } from "@/lib/registry-imports"
 import { cn } from "@/lib/utils"
+
+import componentDates from "@/lib/component-dates.json"
+import { absoluteUrl, REPO_URL, SITE_NAME, SITE_URL } from "@/lib/site"
+
+const DATES = componentDates as Record<string, string>
 
 // Keep the most-used pages pre-rendered; the rest of the catalog is rendered
 // and cached on first request so adding components does not scale build time linearly.
@@ -30,16 +35,39 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const { name } = await params
   const item = catalog.find((entry) => entry.name === name)
   if (!item) return {}
-  const mistake = item.stops ?? item.headline ?? item.summary ?? item.description
-  const description = `${mistake.replace(/[.!?]+$/, "")}. Install ${item.name} with shadcn; MIT licensed shadcn component.`
-  const title = `${item.title} for React: ${mistake.replace(/[.!?]+$/, "")}`
+  const rawMistake = (item.stops ?? item.headline ?? item.summary ?? item.description).replace(/[.!?]+$/, "").trim()
+  
+  // Format description: mistake + shadcn + MIT licensed, strictly <= 155 chars
+  let description = `Stops ${rawMistake.toLowerCase()}. Copy-paste shadcn React component, MIT licensed.`
+  if (description.length > 155) {
+    const maxMistake = 155 - "Stops … Copy-paste shadcn React component, MIT licensed.".length
+    description = `Stops ${rawMistake.slice(0, maxMistake).trim()}… Copy-paste shadcn React component, MIT licensed.`
+  }
+
+  // Format title: primary query first, under 48 chars so suffixed "%s | Bollard UI" is strictly <= 65 chars
+  let title = `${item.title} Component`
+  if (title.length > 46) {
+    title = item.title
+  }
+
   const path = `/components/${name}`
   return {
-    title: item.title,
+    title,
     description,
     alternates: { canonical: path },
-    openGraph: { type: "article", title: `${title} | Bollard UI`, description, url: `${SITE_URL}${path}` },
-    twitter: { card: "summary_large_image", title: `${title} | Bollard UI`, description, images: [`${SITE_URL}/components/${name}/opengraph-image`] },
+    openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      url: absoluteUrl(path),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      images: [absoluteUrl(`/components/${name}/opengraph-image`)],
+    },
   }
 }
 
@@ -349,6 +377,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
   const pagerButton =
     "grid size-8 place-items-center rounded-md border bg-background text-muted-foreground outline-none transition-colors hover:border-border-strong hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
+  const lastUpdated = DATES[name] || "2026-10-16"
+
   return (
     <div className="flex gap-12 px-4 pt-8 pb-16 sm:px-8 lg:px-10 lg:pt-10 xl:gap-16">
       <JsonLd data={{
@@ -371,6 +401,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
             isAccessibleForFree: true,
             programmingLanguage: ["TypeScript", "React"],
             runtimePlatform: "React",
+            codeRepository: REPO_URL,
+            dateModified: `${lastUpdated}T00:00:00Z`,
           },
         ],
       }} />
@@ -420,12 +452,25 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
               ) : null}
             </div>
           </div>
-          <p className="max-w-[65ch] text-base leading-relaxed text-pretty text-muted-foreground" data-summary>
-            {item.summary ?? item.description}
-          </p>
-          <p className="max-w-full overflow-hidden text-ellipsis rounded-md border bg-surface px-3 py-2 font-mono text-xs text-muted-foreground" data-install-command>
-            {installCommand(name)}
-          </p>
+
+          {/* Self-contained Answer Block for AEO / GEO */}
+          <div className="rounded-xl border border-brand/40 bg-brand/[0.04] p-4.5 sm:p-5" data-answer-block>
+            <p className="text-[15px] sm:text-[15.5px] leading-relaxed text-foreground/95 font-medium">
+              {item.title} is a copy-paste React component that {item.stops ? `stops ${item.stops.toLowerCase()}` : `prevents costly form mistakes`} before the user submits. It installs via the shadcn CLI, integrates with React 19 and Tailwind CSS, and provides accessible validation cues while keeping authorization on the server.
+            </p>
+            <div className="mt-3.5">
+              <PackageCommand kind="add" args={url} label={`Copy ${item.title} install command`} />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 text-xs text-muted-foreground pt-1">
+            <span>Version <span className="font-mono text-foreground font-medium">0.1.0</span></span>
+            <span aria-hidden>·</span>
+            <span>Last updated <time dateTime={lastUpdated} className="font-medium text-foreground">{formatDate(lastUpdated)}</time></span>
+            <span aria-hidden>·</span>
+            <span>Free &amp; MIT licensed</span>
+          </div>
+
           <ul aria-label="Compatibility and setup" className="flex flex-wrap gap-1.5 text-[11px]">
             <li className="rounded-md border bg-surface px-2 py-1 text-muted-foreground">
               {item.integration === "headless" ? "Headless · any React UI" : "Styled · shadcn theme"}
@@ -465,7 +510,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
 
         <ComponentFeedback component={name} />
 
-        <DocSection id="installation" title="Installation">
+        <DocSection id="installation" title={`How do I install ${item.title}?`}>
           <DocsTabs
             label="Installation method"
             variant="segmented"
@@ -487,45 +532,45 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         </DocSection>
 
         {usage && (
-          <DocSection id="usage" title="Usage">
+          <DocSection id="usage" title={`How do I use ${item.title} in React?`}>
             <CodeBlock lineNumbers={false} component={name} files={[{ path: `${name}-usage.tsx`, source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
           </DocSection>
         )}
 
         {catches.length > 0 && (
-          <DocSection id="catches" title="What it catches">
+          <DocSection id="catches" title={`What input mistakes does ${item.title} catch?`}>
             <BulletCard items={catches} />
           </DocSection>
         )}
 
         {hasProps && propsDoc && (
-          <DocSection id="props" title="Props">
+          <DocSection id="props" title={`What props does ${item.title} accept?`}>
             <PropsTable doc={propsDoc} />
           </DocSection>
         )}
 
         {a11y.length > 0 && (
-          <DocSection id="accessibility" title="Accessibility">
+          <DocSection id="accessibility" title={`How is ${item.title} accessible?`}>
             <BulletCard items={a11y} tone="muted" />
             <p className="text-[13px] text-muted-foreground">Only what the source does. Test with your own screen reader and content before shipping.</p>
           </DocSection>
         )}
 
         {hasLimits && (
-          <DocSection id="limitations" title="Limitations">
+          <DocSection id="limitations" title={`What are the limitations and server boundaries?`}>
             {item.server && <ServerCallout text={item.server} />}
             {limits.length > 0 && <BulletCard items={limits} tone="muted" />}
           </DocSection>
         )}
 
         {item.rules && (
-          <DocSection id="rules" title="Rules">
+          <DocSection id="rules" title={`What validation rules apply to ${item.title}?`}>
             <RulesBox rules={item.rules} />
           </DocSection>
         )}
 
         {hasStops && (
-          <DocSection id="stops" title="What it stops">
+          <DocSection id="stops" title={`What expensive mistakes does ${item.title} stop?`}>
             <div className="overflow-hidden rounded-xl border">
               {item.stops && (
                 <div className="flex items-start gap-3 border-b bg-surface px-4 py-3.5 last:border-b-0 sm:px-5">
@@ -575,7 +620,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           </DocSection>
         )}
 
-        <DocSection id="dependencies" title="Dependencies">
+        <DocSection id="dependencies" title={`What dependencies does ${item.title} require?`}>
           {deps.length || regDeps.length ? (
             <ul className="flex flex-wrap gap-1.5">
               {deps.map((dep) => (
@@ -601,7 +646,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         </DocSection>
 
         {pairs.length > 0 && (
-        <DocSection id="pairs" title="Related components">
+        <DocSection id="pairs" title={`Which components pair with ${item.title}?`}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {pairs.map((pair) => (
                 <li key={pair.name} className="min-w-0">

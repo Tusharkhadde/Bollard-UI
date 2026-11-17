@@ -4,7 +4,6 @@ import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
 import { Analytics } from "@/components/site/analytics"
-import { JsonLd } from "@/components/site/json-ld"
 import { SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { ComparisonGuide } from "@/components/site/comparison-guide"
 
-const title = "Bollard UI vs Zod Validation: Use Both Where They Fit"
+const title = "Bollard UI vs Zod: Complementary Validation"
 const description = "Compare Bollard UI and Zod: Zod describes and parses data rules, while Bollard adds React guidance for common input mistakes and risky actions."
 export const metadata: Metadata = { title, description, alternates: { canonical: "/guides/bollard-ui-vs-zod-validation" }, openGraph: { title: `${title} | Bollard UI`, description, url: "/guides/bollard-ui-vs-zod-validation", type: "article" }, twitter: { title: `${title} | Bollard UI`, description, card: "summary_large_image" } }
 

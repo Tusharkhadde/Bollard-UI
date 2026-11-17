@@ -20,12 +20,14 @@ import { HOME_FAQS } from "@/lib/home-faq"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
 import { SITE_URL } from "@/lib/site"
 
-const homeTitle = "shadcn React Components for Safer Forms & Risky Actions"
+const homeTitle = "Bollard UI: shadcn React Components for Safer Forms"
 const homeDescription =
   "Copy-paste shadcn components for React form validation, email typo checks, and confirm dialogs that make risky actions easier to review."
 
 export const metadata: Metadata = {
-  title: homeTitle,
+  title: {
+    absolute: homeTitle,
+  },
   description: homeDescription,
   alternates: { canonical: "/" },
   openGraph: { title: homeTitle, description: homeDescription, url: "/", locale: "en_US" },
@@ -56,6 +58,42 @@ export default function Home() {
             description: homeDescription,
             publisher: { "@id": `${SITE_URL}/#organization` },
             inLanguage: "en-US",
+          },
+          {
+            "@type": "Person",
+            "@id": `${SITE_URL}/#author`,
+            name: "Tushar Khadde",
+            url: "https://github.com/Tusharkhadde",
+            sameAs: [
+              "https://github.com/Tusharkhadde",
+              "https://x.com/devtushark",
+            ],
+            jobTitle: "Creator & Maintainer",
+          },
+          {
+            "@type": "Organization",
+            "@id": `${SITE_URL}/#organization`,
+            name: "Bollard UI",
+            url: SITE_URL,
+            logo: `${SITE_URL}/icon.svg`,
+            founder: { "@id": `${SITE_URL}/#author` },
+            sameAs: [
+              "https://github.com/Tusharkhadde/Bollard-UI",
+              "https://x.com/devtushark",
+            ],
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": `${SITE_URL}/#software`,
+            name: "Bollard UI",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Any",
+            description: homeDescription,
+            url: SITE_URL,
+            license: "https://opensource.org/license/mit",
+            isAccessibleForFree: true,
+            author: { "@id": `${SITE_URL}/#author` },
+            publisher: { "@id": `${SITE_URL}/#organization` },
           },
           {
             "@type": "SoftwareSourceCode",
@@ -98,6 +136,44 @@ export default function Home() {
             ["Bollard UI vs confirm dialogs", "/guides/bollard-ui-vs-confirm-dialogs"],
           ].map(([label, href]) => <li key={href}><Link href={href} className="block rounded-xl border p-4 text-sm font-medium transition-colors hover:border-border-strong hover:bg-surface">{label}<span className="mt-1 block text-xs font-normal text-muted-foreground">See where the tools complement each other.</span></Link></li>)}
         </ul>
+      </section>
+      <section aria-labelledby="featured-guides-heading" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+        <div className="flex items-center justify-between">
+          <h2 id="featured-guides-heading" className="text-xl font-semibold tracking-tight">Practical React form safety guides</h2>
+          <Link href="/guides" className="text-sm font-medium text-muted-foreground hover:text-foreground">Browse all guides →</Link>
+        </div>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          {[
+            ["Prevent Duplicate Submissions", "/guides/react-prevent-duplicate-form-submit", "Eliminate double clicks, duplicate charges, and lost timeout state with safe submits."],
+            ["India Form Validation", "/guides/react-india-form-validation", "Guide entry for Aadhaar, IFSC, UPI IDs, PIN codes, and lakh-aware numbers."],
+            ["Type to Confirm Dialogs", "/guides/react-type-to-confirm-dialog", "Require conscious intent for irreversible actions with accessible typed phrases."],
+          ].map(([label, href, detail]) => (
+            <li key={href}>
+              <Link href={href} className="block rounded-xl border p-4 text-sm font-medium transition-colors hover:border-border-strong hover:bg-surface">
+                {label}
+                <span className="mt-1 block text-xs font-normal text-muted-foreground">{detail}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="about-bollard-heading" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 border-t border-border/50">
+        <div className="max-w-3xl space-y-3">
+          <h2 id="about-bollard-heading" className="text-xl font-semibold tracking-tight">
+            About Bollard UI
+          </h2>
+          <p className="text-[15px] leading-7 text-muted-foreground">
+            Bollard UI is an open-source registry of copy-paste React components built by{" "}
+            <a href="https://github.com/Tusharkhadde" target="_blank" rel="noreferrer" className="text-foreground underline underline-offset-4 hover:text-foreground/80">
+              Tushar Khadde
+            </a>{" "}
+            (<a href="https://x.com/devtushark" target="_blank" rel="noreferrer" className="text-foreground underline underline-offset-4 hover:text-foreground/80">@devtushark</a>) to stop expensive user mistakes in web applications. Unlike schema validation libraries like Zod that enforce types on submit or blur, and unlike generic modal dialogs that people dismiss on autopilot, Bollard UI provides proactive, inline UX guardrails—catching extra zeros in currency fields, detecting mistyped email domains, and requiring typed confirmations for destructive actions—right inside your existing shadcn and Tailwind setup. Learn more on our{" "}
+            <Link href="/about" className="text-foreground underline underline-offset-4 hover:text-foreground/80">
+              about page
+            </Link>
+            .
+          </p>
+        </div>
       </section>
       <Faq />
       <Cta />

@@ -123,7 +123,7 @@ export function DeleteRepository() {
   }),
   defineGuide({
     slug: "react-field-validation-without-changing-ui-library",
-    title: "Add React field validation without changing your UI library",
+    title: "Headless React Field Validation Guide",
     description: "Use a headless field hook with shadcn/ui, HeroUI, or a custom control while retaining your existing markup, styles, and accessibility decisions.",
     component: "use-bollard-field",
     componentTitle: "useBollardField",

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { ComparisonGuide } from "@/components/site/comparison-guide"
 
-const title = "Bollard UI vs Confirm Dialogs: Choose the Right Review"
+const title = "Bollard UI vs Confirm Dialogs: Which to Choose"
 const description = "Standard confirm dialogs fit routine decisions; Bollard UI adds explicit target readbacks and typed confirmation for higher-risk React actions."
 export const metadata: Metadata = { title, description, alternates: { canonical: "/guides/bollard-ui-vs-confirm-dialogs" }, openGraph: { title: `${title} | Bollard UI`, description, url: "/guides/bollard-ui-vs-confirm-dialogs", type: "article" }, twitter: { title: `${title} | Bollard UI`, description, card: "summary_large_image" } }
 

@@ -1,16 +1,16 @@
 // Site-wide constants with no Node imports, safe for the root layout and the OG image.
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://bollard-ui.vercel.app").replace(/\/$/, "")
-
-/**
- * The source repository is private for now. Every GitHub link on the site (header
- * icon, CTA, footer GitHub/README/License/issues) renders only when this is true;
- * otherwise the site points at its own pages and the feedback address below.
- * Flip to true when the repo goes public and the GitHub links come back.
- */
+export const SITE_NAME = "Bollard UI"
+export const TWITTER_HANDLE = "@devtushark"
 export const REPO_PUBLIC = false
 export const REPO_URL = "https://github.com/Tusharkhadde/Bollard-UI"
-/** @deprecated Use REPO_URL, and only when REPO_PUBLIC is true. */
 export const GITHUB_URL = REPO_URL
+
+/** Build a canonical absolute URL from a relative or absolute site path. */
+export function absoluteUrl(path: string = ""): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`
+  return `${SITE_URL}${normalized === "/" ? "" : normalized}`
+}
 
 export const CONTACT_EMAIL = "tusharkhadde06@gmail.com"
 export const FEEDBACK_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Bollard UI feedback")}`

@@ -29,6 +29,7 @@ const sections = [
   { id: "nextjs", label: "Next.js" },
   { id: "vite", label: "Vite" },
   { id: "server", label: "Guard rails, not enforcement" },
+  { id: "about", label: "About Bollard UI" },
 ]
 
 const code = (path: string, source: string) => ({ path, source, lines: source.split("\n").length, code: highlight(source) })
@@ -383,6 +384,21 @@ export default function GettingStartedPage() {
           </Link>
           .
         </p>
+      </DocSection>
+      <DocSection id="about" title="About Bollard UI">
+        <Prose>
+          <p>
+            Bollard UI is an open-source registry of copy-paste React components built by{" "}
+            <a href="https://github.com/Tusharkhadde" target="_blank" rel="noreferrer" className={proseLink}>
+              Tushar Khadde
+            </a>{" "}
+            (<a href="https://x.com/devtushark" target="_blank" rel="noreferrer" className={proseLink}>@devtushark</a>) to stop expensive user mistakes in forms and risky actions. Unlike schema validation libraries like Zod that enforce types on submit or blur, and unlike generic modal dialogs that people dismiss on autopilot, Bollard UI provides proactive, inline UX guardrails—catching extra zeros in currency fields, detecting mistyped email domains, and requiring typed confirmations for destructive actions—right inside your existing shadcn and Tailwind setup. Read more on the dedicated{" "}
+            <Link className={proseLink} href="/about">
+              About page
+            </Link>
+            .
+          </p>
+        </Prose>
       </DocSection>
     </DocPage>
   )

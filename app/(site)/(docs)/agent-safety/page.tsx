@@ -10,7 +10,7 @@ import { RegistrySetup } from "@/components/site/registry-setup"
 import { articleSchema } from "@/lib/article-metadata"
 import { highlight } from "@/lib/highlight"
 
-const description = "Add a human approval step to consequential AI agent tool calls with Bollard UI. Review the proposed action, enforce the decision at the tool boundary, then resume safely."
+const description = "Add a human approval step to AI agent tool calls. Review proposed actions, enforce decisions at the tool boundary, and resume safely. MIT licensed."
 
 export const metadata: Metadata = {
   title: "AI agent safety quickstart",
