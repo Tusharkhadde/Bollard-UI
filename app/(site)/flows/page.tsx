@@ -5,7 +5,7 @@ import { ChevronRight, ArrowRight } from "lucide-react"
 import { JsonLd } from "@/components/site/json-ld"
 import { catalog } from "@/lib/catalog"
 import { FLOWS } from "@/lib/kits"
-import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/site"
+import { absoluteUrl, SAME_AS_PROFILES, SITE_NAME, SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Application Flows & Mistake Prevention",
@@ -25,6 +25,14 @@ export default function FlowsIndexPage() {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#publisher`,
+        name: "Bollard UI",
+        url: SITE_URL,
+        logo: `${SITE_URL}/icon.svg`,
+        sameAs: SAME_AS_PROFILES,
+      },
+      {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
@@ -33,9 +41,12 @@ export default function FlowsIndexPage() {
       },
       {
         "@type": "CollectionPage",
+        "@id": `${absoluteUrl("/flows")}#webpage`,
         name: "Application Flows & Mistake Prevention",
         description: "Browse copy-paste React components that stop expensive user mistakes across key application flows.",
         url: absoluteUrl("/flows"),
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": `${SITE_URL}/#publisher` },
       },
     ],
   }

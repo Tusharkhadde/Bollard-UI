@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { DocPage, DocSection, Prose, proseLink, inlineCode } from "@/components/site/doc-page"
 import { JsonLd } from "@/components/site/json-ld"
-import { SITE_URL, GITHUB_URL, TWITTER_HANDLE, CONTACT_EMAIL } from "@/lib/site"
+import { SITE_URL, GITHUB_URL, TWITTER_HANDLE, ISSUES_URL, SECURITY_ADVISORIES_URL } from "@/lib/site"
 
 const aboutTitle = "About Bollard UI"
 const aboutDescription =
@@ -53,11 +53,11 @@ export default function AboutPage() {
                 `https://x.com/${TWITTER_HANDLE.replace("@", "")}`,
               ],
               jobTitle: "Creator & Maintainer",
-              worksFor: { "@id": `${SITE_URL}/#organization` },
+              worksFor: { "@id": `${SITE_URL}/#publisher` },
             },
             {
               "@type": "Organization",
-              "@id": `${SITE_URL}/#organization`,
+              "@id": `${SITE_URL}/#publisher`,
               name: "Bollard UI",
               url: SITE_URL,
               logo: `${SITE_URL}/icon.svg`,
@@ -177,13 +177,13 @@ export default function AboutPage() {
               . You are free to use it in commercial applications, open-source projects, or internal tools without restriction.
             </p>
             <p>
-              To report security vulnerabilities, share feedback, or propose component patterns, reach out directly at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className={proseLink}>
-                {CONTACT_EMAIL}
-              </a>{" "}
-              or open an issue on the{" "}
+              To report security vulnerabilities, visit{" "}
+              <a href={SECURITY_ADVISORIES_URL} target="_blank" rel="noreferrer" className={proseLink}>
+                GitHub security advisories
+              </a>
+              . For feedback, feature requests, or component ideas, open an issue on the{" "}
               <a
-                href={GITHUB_URL}
+                href={ISSUES_URL}
                 target="_blank"
                 rel="noreferrer"
                 className={proseLink}

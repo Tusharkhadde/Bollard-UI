@@ -4,9 +4,9 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import { ESSENTIALS, FIELD_IDS, FLOW_IDS, KITS } from "@/lib/kits"
-import { REPO_URL, SITE_URL } from "@/lib/site"
-import type { SearchItem } from "@/lib/search"
+import { ESSENTIALS, FIELD_IDS, FLOW_IDS, KITS } from "./kits"
+import { REPO_URL, SITE_URL } from "./site"
+import type { SearchItem } from "./search"
 
 /** What the client gets per component: enough to search, filter and draw a card. */
 export type CatalogItem = SearchItem

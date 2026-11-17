@@ -15,10 +15,13 @@ import { StarterPacks } from "@/components/site/landing/starter-packs"
 import { SitePreview } from "@/components/site/landing/site-preview"
 import { UseCasePaths } from "@/components/site/landing/use-case-paths"
 import { JsonLd } from "@/components/site/json-ld"
+import { FactsTable } from "@/components/site/facts-table"
 import { catalog, categories } from "@/lib/catalog"
+import { getSiteFacts } from "@/lib/facts"
 import { HOME_FAQS } from "@/lib/home-faq"
 import { FLOWS, flowHref, kitFor } from "@/lib/kits"
-import { SITE_URL } from "@/lib/site"
+import { ARTICLE_DATE_MODIFIED } from "@/lib/article-metadata"
+import { GITHUB_URL, SAME_AS_PROFILES, DISAMBIGUATING_DESCRIPTION, SITE_URL } from "@/lib/site"
 
 const homeTitle = "Bollard UI: shadcn React Components for Safer Forms"
 const homeDescription =
@@ -51,60 +54,53 @@ export default function Home() {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "Person",
+            "@id": `${SITE_URL}/#author`,
+            name: "Tushar Khadde",
+            url: "https://github.com/Tusharkhadde",
+            sameAs: SAME_AS_PROFILES,
+            jobTitle: "Creator & Maintainer",
+          },
+          {
+            "@type": "Organization",
+            "@id": `${SITE_URL}/#publisher`,
+            name: "Bollard UI",
+            url: SITE_URL,
+            logo: `${SITE_URL}/icon.svg`,
+            founder: { "@id": `${SITE_URL}/#author` },
+            sameAs: SAME_AS_PROFILES,
+          },
+          {
             "@type": "WebSite",
             "@id": `${SITE_URL}/#website`,
             name: "Bollard UI",
             url: SITE_URL,
             description: homeDescription,
-            publisher: { "@id": `${SITE_URL}/#organization` },
+            publisher: { "@id": `${SITE_URL}/#publisher` },
             inLanguage: "en-US",
           },
           {
-            "@type": "Person",
-            "@id": `${SITE_URL}/#author`,
-            name: "Tushar Khadde",
-            url: "https://github.com/Tusharkhadde",
-            sameAs: [
-              "https://github.com/Tusharkhadde",
-              "https://x.com/devtushark",
-            ],
-            jobTitle: "Creator & Maintainer",
-          },
-          {
-            "@type": "Organization",
-            "@id": `${SITE_URL}/#organization`,
-            name: "Bollard UI",
-            url: SITE_URL,
-            logo: `${SITE_URL}/icon.svg`,
-            founder: { "@id": `${SITE_URL}/#author` },
-            sameAs: [
-              "https://github.com/Tusharkhadde/Bollard-UI",
-              "https://x.com/devtushark",
-            ],
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": `${SITE_URL}/#software`,
-            name: "Bollard UI",
-            applicationCategory: "DeveloperApplication",
-            operatingSystem: "Any",
-            description: homeDescription,
-            url: SITE_URL,
-            license: "https://opensource.org/license/mit",
-            isAccessibleForFree: true,
-            author: { "@id": `${SITE_URL}/#author` },
-            publisher: { "@id": `${SITE_URL}/#organization` },
-          },
-          {
             "@type": "SoftwareSourceCode",
-            "@id": `${SITE_URL}/#software-source-code`,
+            "@id": `${SITE_URL}/#library`,
             name: "Bollard UI",
+            alternateName: ["Bollard UI", "bollard-ui", "@bollard registry"],
             description: homeDescription,
+            disambiguatingDescription: DISAMBIGUATING_DESCRIPTION,
             url: SITE_URL,
-            license: "https://opensource.org/license/mit",
-            isAccessibleForFree: true,
-            programmingLanguage: ["TypeScript", "React"],
+            codeRepository: GITHUB_URL,
+            license: "https://opensource.org/licenses/MIT",
+            programmingLanguage: "TypeScript",
             runtimePlatform: "React",
+            softwareRequirements: "React 19+, Tailwind CSS v4, shadcn CLI",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+            isAccessibleForFree: true,
+            author: { "@id": `${SITE_URL}/#publisher` },
+            publisher: { "@id": `${SITE_URL}/#publisher` },
+            dateModified: `${ARTICLE_DATE_MODIFIED}T00:00:00Z`,
           },
           {
             "@type": "FAQPage",
@@ -174,6 +170,12 @@ export default function Home() {
             .
           </p>
         </div>
+      </section>
+      <section aria-labelledby="facts-heading" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 border-t border-border/50">
+        <h2 id="facts-heading" className="text-xl font-semibold tracking-tight text-foreground mb-4">
+          Bollard UI Facts & Technical Specifications
+        </h2>
+        <FactsTable facts={getSiteFacts()} title="" />
       </section>
       <Faq />
       <Cta />

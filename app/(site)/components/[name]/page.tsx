@@ -4,13 +4,17 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Package, Puzzle, ServerCog } from "lucide-react"
 
 import { CodeBlock } from "@/components/site/code-block"
+import { ComponentFaqSection } from "@/components/site/component-faq"
 import { ComponentFeedback } from "@/components/site/component-feedback"
+import { FactsTable } from "@/components/site/facts-table"
 import { JsonLd } from "@/components/site/json-ld"
 import { DocsTabs } from "@/components/site/docs-tabs"
 import { PackageCommand } from "@/components/site/package-command"
 import { PreviewPanel } from "@/components/site/preview-panel"
 import { Toc } from "@/components/site/toc"
 import { catalog, categories, readDemo, readProps, readSource, registryBase, type CatalogEntry, type PropsDoc, type RulesInfo } from "@/lib/catalog"
+import { getComponentFaqs } from "@/lib/component-faq"
+import { getComponentFacts } from "@/lib/facts"
 import { highlight } from "@/lib/highlight"
 import { KITS, fieldLabel, flowHref, flowShort } from "@/lib/kits"
 import { usageFromDemo } from "@/lib/usage"
@@ -19,7 +23,7 @@ import { toInstalledImport } from "@/lib/registry-imports"
 import { cn } from "@/lib/utils"
 
 import componentDates from "@/lib/component-dates.json"
-import { absoluteUrl, REPO_URL, SITE_NAME, SITE_URL } from "@/lib/site"
+import { absoluteUrl, GITHUB_URL, SAME_AS_PROFILES, SITE_NAME, SITE_URL } from "@/lib/site"
 
 const DATES = componentDates as Record<string, string>
 
@@ -319,6 +323,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
     item.rules && { id: "rules", label: "Rules" },
     hasStops && { id: "stops", label: "What it stops" },
     { id: "dependencies", label: "Dependencies" },
+    { id: "facts", label: "Facts & specs" },
+    { id: "faq", label: "FAQ" },
     pairs.length > 0 && { id: "pairs", label: "Pairs well with" },
   ].filter((s): s is { id: string; label: string } => !!s)
 
@@ -378,6 +384,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
     "grid size-8 place-items-center rounded-md border bg-background text-muted-foreground outline-none transition-colors hover:border-border-strong hover:bg-accent hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
 
   const lastUpdated = DATES[name] || "2026-10-16"
+  const componentFacts = getComponentFacts(item, lastUpdated)
+  const componentFaqs = getComponentFaqs(item)
 
   return (
     <div className="flex gap-12 px-4 pt-8 pb-16 sm:px-8 lg:px-10 lg:pt-10 xl:gap-16">
@@ -385,7 +393,16 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "Organization",
+            "@id": `${SITE_URL}/#publisher`,
+            name: "Bollard UI",
+            url: SITE_URL,
+            logo: `${SITE_URL}/icon.svg`,
+            sameAs: SAME_AS_PROFILES,
+          },
+          {
             "@type": "BreadcrumbList",
+            "@id": `${SITE_URL}/components/${name}#breadcrumbs`,
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
               { "@type": "ListItem", position: 2, name: "Components", item: `${SITE_URL}/components` },
@@ -394,15 +411,31 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           },
           {
             "@type": "SoftwareSourceCode",
+            "@id": `${SITE_URL}/components/${name}#code`,
             name: item.title,
             description: item.summary ?? item.description,
             url: `${SITE_URL}/components/${name}`,
-            license: "https://opensource.org/license/mit",
+            license: "https://opensource.org/licenses/MIT",
             isAccessibleForFree: true,
             programmingLanguage: ["TypeScript", "React"],
             runtimePlatform: "React",
-            codeRepository: REPO_URL,
+            codeRepository: GITHUB_URL,
+            isPartOf: { "@id": `${SITE_URL}/#library` },
+            author: { "@id": `${SITE_URL}/#publisher` },
+            publisher: { "@id": `${SITE_URL}/#publisher` },
             dateModified: `${lastUpdated}T00:00:00Z`,
+          },
+          {
+            "@type": "FAQPage",
+            "@id": `${SITE_URL}/components/${name}#faq`,
+            mainEntity: componentFaqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
           },
         ],
       }} />
@@ -643,6 +676,14 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
           ) : (
             <p className="text-sm text-muted-foreground">None beyond React and Tailwind CSS.</p>
           )}
+        </DocSection>
+
+        <DocSection id="facts" title={`${item.title} facts & technical specifications`}>
+          <FactsTable facts={componentFacts} title="" />
+        </DocSection>
+
+        <DocSection id="faq" title={`Frequently asked questions about ${item.title}`}>
+          <ComponentFaqSection faqs={componentFaqs} componentTitle={item.title} />
         </DocSection>
 
         {pairs.length > 0 && (

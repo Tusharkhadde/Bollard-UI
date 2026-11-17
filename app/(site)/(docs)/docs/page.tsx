@@ -3,10 +3,13 @@ import Link from "next/link"
 
 import { CodeBlock } from "@/components/site/code-block"
 import { DocPage, DocSection, Note, Prose, inlineCode, proseLink } from "@/components/site/doc-page"
+import { FactsTable } from "@/components/site/facts-table"
 import { PackageCommand } from "@/components/site/package-command"
 import { RegistrySetup } from "@/components/site/registry-setup"
 import { registryBase } from "@/lib/catalog"
+import { getDocsFacts } from "@/lib/facts"
 import { highlight } from "@/lib/highlight"
+import { DISAMBIGUATING_DESCRIPTION } from "@/lib/site"
 
 const description =
   "Set up Bollard UI: React 19+, Tailwind v4 and shadcn init, add a component with the CLI or by hand, use it, and update it later. Notes for Next.js and Vite."
@@ -28,6 +31,7 @@ const sections = [
   { id: "updating", label: "Updating a component" },
   { id: "nextjs", label: "Next.js" },
   { id: "vite", label: "Vite" },
+  { id: "facts", label: "Technical facts" },
   { id: "server", label: "Guard rails, not enforcement" },
   { id: "about", label: "About Bollard UI" },
 ]
@@ -165,7 +169,7 @@ export default function GettingStartedPage() {
   return (
     <DocPage
       title="Getting started"
-      lead="Bollard UI is not a package. Each component is a source file the shadcn CLI copies into your project, so you need a shadcn setup once and then one command per component."
+      lead={`${DISAMBIGUATING_DESCRIPTION} Each component is a source file the shadcn CLI copies into your project.`}
       sections={sections}
     >
       <DocSection id="prerequisites" title="Prerequisites">
@@ -363,6 +367,15 @@ export default function GettingStartedPage() {
         <CodeBlock lineNumbers={false} files={[code("vite.config.ts", viteConfig), code("tsconfig.json", tsPaths)]} />
       </DocSection>
 
+      <DocSection id="facts" title="Technical facts & specifications">
+        <Prose>
+          <p>
+            Key architectural facts, licensing, runtime requirements, and boundaries for Bollard UI:
+          </p>
+        </Prose>
+        <FactsTable facts={getDocsFacts()} title="" />
+      </DocSection>
+
       <DocSection id="server" title="Guard rails, not enforcement">
         <Note tone="brand">
           Bollard UI components catch honest mistakes in the browser. They don&apos;t replace server-side validation, authorization, rate limits, idempotency
@@ -388,7 +401,7 @@ export default function GettingStartedPage() {
       <DocSection id="about" title="About Bollard UI">
         <Prose>
           <p>
-            Bollard UI is an open-source registry of copy-paste React components built by{" "}
+            {DISAMBIGUATING_DESCRIPTION} Built by{" "}
             <a href="https://github.com/Tusharkhadde" target="_blank" rel="noreferrer" className={proseLink}>
               Tushar Khadde
             </a>{" "}

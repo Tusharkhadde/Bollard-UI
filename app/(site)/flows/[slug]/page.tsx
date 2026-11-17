@@ -3,11 +3,12 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ChevronRight, ArrowRight } from "lucide-react"
 
+import { ComponentFaqSection } from "@/components/site/component-faq"
 import { JsonLd } from "@/components/site/json-ld"
 import { PackageCommand } from "@/components/site/package-command"
 import { catalog } from "@/lib/catalog"
 import { FLOWS, kitFor, type FlowId } from "@/lib/kits"
-import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/site"
+import { absoluteUrl, SAME_AS_PROFILES, SITE_NAME, SITE_URL } from "@/lib/site"
 
 export const dynamicParams = false
 
@@ -72,6 +73,171 @@ const FLOW_INTROS: Record<string, { eyebrow: string; title: string; answer: stri
   },
 }
 
+const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
+  checkout: [
+    {
+      question: "How do I prevent double-clicks from charging customers twice in React?",
+      answer: "Use Safe Submit (`safe-submit`) to lock the submit button the instant it is clicked and generate an idempotency key header. Install with `npx shadcn@4.21.0 add @bollard/safe-submit`. Limitation: the payment gateway and backend must process the idempotency key to prevent network replays.",
+    },
+    {
+      question: "How do I catch extra zeros in currency input fields?",
+      answer: "Amount Input (`amount-input`) compares the entered number to a typical baseline and warns if the user entered 10x or 100x the expected magnitude. Install with `npx shadcn@4.21.0 add @bollard/amount-input`. Limitation: does not enforce bank balance or credit limits.",
+    },
+    {
+      question: "How do I validate card expiration dates before payment submission?",
+      answer: "Card Expiry Input (`card-expiry-input`) auto-formats MM/YY and flags expired dates immediately. Install with `npx shadcn@4.21.0 add @bollard/card-expiry-input`. Limitation: does not verify bank card status or account validity.",
+    },
+    {
+      question: "How do I show customers a clear readback of line items before checkout?",
+      answer: "Review Step (`review-step`) displays a final confirmation summary table before checkout. Install with `npx shadcn@4.21.0 add @bollard/review-step`. Limitation: prices and inventory must still be verified on the server.",
+    },
+  ],
+  "signup-login": [
+    {
+      question: "How do I detect email domain typos like gmial.com in React?",
+      answer: "Email Input (`email-input`) suggests known domain corrections like gmail.com without rewriting what the user typed. Install with `npx shadcn@4.21.0 add @bollard/email-input`. Limitation: format checking does not guarantee the mailbox is active or owned by the registrant.",
+    },
+    {
+      question: "How do I prevent OTP paste errors in authentication flows?",
+      answer: "Otp Input (`otp-input`) splits pasted verification codes across discrete inputs without dropping digits. Install with `npx shadcn@4.21.0 add @bollard/otp-input`. Limitation: OTP generation and rate limiting must be managed by your auth provider.",
+    },
+    {
+      question: "How do I warn users about weak or compromised passwords?",
+      answer: "Password Strength Meter (`password-strength-meter`) computes password entropy and checks common dictionary words locally. Install with `npx shadcn@4.21.0 add @bollard/password-strength-meter`. Limitation: does not replace server-side checks against pwned credential databases.",
+    },
+    {
+      question: "How do I handle international phone numbers and prefixes?",
+      answer: "Phone Input (`phone-input`) standardizes country dialing codes and E.164 formats. Install with `npx shadcn@4.21.0 add @bollard/phone-input`. Limitation: does not confirm line connectivity without SMS verification.",
+    },
+  ],
+  "danger-zone": [
+    {
+      question: "Why are standard 'Are you sure?' confirm dialogs ineffective for destructive actions?",
+      answer: "Users develop confirmation fatigue and automatically click OK without reading the prompt text. Use Type to Confirm (`type-to-confirm`) to require typing the resource slug. Install with `npx shadcn@4.21.0 add @bollard/type-to-confirm`. Limitation: typed input is a UI guard, not permission authorization.",
+    },
+    {
+      question: "How do I prevent stray clicks on high-risk admin buttons?",
+      answer: "Hold to Confirm (`hold-to-confirm`) requires pressing and holding the button for 2-3 seconds before triggering. Install with `npx shadcn@4.21.0 add @bollard/hold-to-confirm`. Limitation: long presses can be simulated by automated scripts.",
+    },
+    {
+      question: "How do I provide a safe undo window after deletion?",
+      answer: "Undo Toast (`undo-toast`) delays permanent deletion by 5 to 10 seconds, allowing users to cancel an accidental click. Install with `npx shadcn@4.21.0 add @bollard/undo-toast`. Limitation: requires soft-delete or staging queues on the backend.",
+    },
+    {
+      question: "How do I clearly display which resources will be affected by a destructive action?",
+      answer: "Account Deletion Readback (`account-deletion-readback`) itemizes deleted workspaces, members, and data before confirming. Install with `npx shadcn@4.21.0 add @bollard/account-deletion-readback`. Limitation: actual cascade deletion logic belongs in database transactions.",
+    },
+  ],
+  "account-settings": [
+    {
+      question: "How do I warn users when they navigate away from an unsaved form?",
+      answer: "Unsaved Changes Bar (`unsaved-changes-bar`) monitors dirty form state and shows a persistent warning bar before page unloads. Install with `npx shadcn@4.21.0 add @bollard/unsaved-changes-bar`. Limitation: browser tab crashes cannot be intercepted.",
+    },
+    {
+      question: "How do I confirm email changes with re-authentication?",
+      answer: "Reauth Guard (`reauth-guard`) prompts for current password or passkey verification before updating sensitive profile fields. Install with `npx shadcn@4.21.0 add @bollard/reauth-guard`. Limitation: session verification must be validated on the backend.",
+    },
+    {
+      question: "How do I safely show active sessions and revoke devices?",
+      answer: "Session List (`session-list`) displays device type, IP, and location for active logins with instant revoke triggers. Install with `npx shadcn@4.21.0 add @bollard/session-list`. Limitation: session token revocation must be handled by your session store or Redis.",
+    },
+    {
+      question: "How do I prevent accidental timezone mismatches in user profiles?",
+      answer: "Timezone Select (`timezone-select`) detects the browser timezone and alerts if it differs from the saved account preference. Install with `npx shadcn@4.21.0 add @bollard/timezone-select`. Limitation: users traveling between regions must explicitly confirm changes.",
+    },
+  ],
+  forms: [
+    {
+      question: "How do I prevent form drafts from being lost on accidental reload?",
+      answer: "Draft Restore (`draft-restore`) saves form values to local storage and offers a one-click restore prompt on return. Install with `npx shadcn@4.21.0 add @bollard/draft-restore`. Limitation: do not cache sensitive data like credit cards or SSNs in browser storage.",
+    },
+    {
+      question: "How do I track form submission progress and highlight missing required fields?",
+      answer: "Form Progress (`form-progress`) indicates completion percentages and directs focus to incomplete fields on submit. Install with `npx shadcn@4.21.0 add @bollard/form-progress`. Limitation: complex business validation rules still require schema validation.",
+    },
+    {
+      question: "How do I handle hidden form fields submitting stale values?",
+      answer: "Hidden Field Guard (`hidden-field-guard`) checks hidden and conditional inputs to ensure clean payloads. Install with `npx shadcn@4.21.0 add @bollard/hidden-field-guard`. Limitation: always filter received payloads on the API layer.",
+    },
+    {
+      question: "How do I prevent users from submitting a form before uploads finish?",
+      answer: "Upload Wait (`upload-wait`) disables submit buttons while background file uploads are actively processing. Install with `npx shadcn@4.21.0 add @bollard/upload-wait`. Limitation: failed uploads must provide a clear retry option.",
+    },
+  ],
+  messaging: [
+    {
+      question: "How do I prevent accidental 'Reply All' emails to company-wide distribution lists?",
+      answer: "Reply All Warning (`reply-all-warning`) alerts when an email reply targets more than 5 recipients or an external domain. Install with `npx shadcn@4.21.0 add @bollard/reply-all-warning`. Limitation: mail server routing rules enforce final delivery.",
+    },
+    {
+      question: "How do I catch accidentally pasted API keys or secrets before sending messages?",
+      answer: "Secret Paste Guard (`secret-paste-guard`) detects regex patterns matching AWS keys, GitHub tokens, and private keys. Install with `npx shadcn@4.21.0 add @bollard/secret-paste-guard`. Limitation: proprietary or custom token formats may require custom regex patterns.",
+    },
+    {
+      question: "How do I alert users when sending messages to external domains?",
+      answer: "External Recipient Badge (`external-recipient-badge`) flags recipients outside your corporate domain. Install with `npx shadcn@4.21.0 add @bollard/external-recipient-badge`. Limitation: email aliases must be resolved by your email server.",
+    },
+    {
+      question: "How do I remind users about forgotten attachments mentioned in text?",
+      answer: "Attachment Check (`attachment-check`) scans draft text for words like 'attached' or 'attachment' if no file is uploaded. Install with `npx shadcn@4.21.0 add @bollard/attachment-check`. Limitation: does not verify that the attached file contains the correct contents.",
+    },
+  ],
+  devtools: [
+    {
+      question: "How do I prevent executing dangerous database commands against production?",
+      answer: "Environment Badge (`environment-badge`) displays prominent visual banners and confirmation steps for production environments. Install with `npx shadcn@4.21.0 add @bollard/environment-badge`. Limitation: cloud IAM permissions and read-only database replicas are required for security.",
+    },
+    {
+      question: "How do I stop accidental git force-pushes in web developer portals?",
+      answer: "Force Push Confirm (`force-push-confirm`) requires explicit typing and reason entry before running force pushes. Install with `npx shadcn@4.21.0 add @bollard/force-push-confirm`. Limitation: Git branch protection rules must be configured in your Git provider.",
+    },
+    {
+      question: "How do I prevent runaway database queries in internal SQL runners?",
+      answer: "Query Guard (`query-guard`) checks SQL statements for missing WHERE clauses and adds automatic LIMIT statements. Install with `npx shadcn@4.21.0 add @bollard/query-guard`. Limitation: database statement timeouts must be configured on the database engine.",
+    },
+    {
+      question: "How do I warn developers before pasting shell commands from untrusted sites?",
+      answer: "Terminal Paste Guard (`terminal-paste-guard`) detects hidden newlines and carriage returns that execute immediately upon paste. Install with `npx shadcn@4.21.0 add @bollard/terminal-paste-guard`. Limitation: developers must review pasted script contents.",
+    },
+  ],
+  scheduling: [
+    {
+      question: "How do I prevent confusion between MM/DD and DD/MM date formats?",
+      answer: "Unambiguous Date (`unambiguous-date`) writes months out as words (e.g. '04 Apr 2026') to eliminate ambiguity. Install with `npx shadcn@4.21.0 add @bollard/unambiguous-date`. Limitation: canonical timestamps must still be formatted as ISO 8601 (YYYY-MM-DD).",
+    },
+    {
+      question: "How do I prevent scheduling meetings across conflicting timezones?",
+      answer: "Timezone Difference Alert (`timezone-difference-alert`) computes local business hours for all attendees and flags middle-of-the-night invites. Install with `npx shadcn@4.21.0 add @bollard/timezone-difference-alert`. Limitation: calendar availability APIs must verify actual free/busy slots.",
+    },
+    {
+      question: "How do I detect overlapping bookings in appointment forms?",
+      answer: "Overlap Check (`overlap-check`) flags double-booked time windows in real time. Install with `npx shadcn@4.21.0 add @bollard/overlap-check`. Limitation: backend booking APIs must use serializable database transactions to prevent race conditions.",
+    },
+    {
+      question: "How do I validate recurring schedule frequencies?",
+      answer: "Recurrence Preview (`recurrence-preview`) displays an interactive calendar list of the next 10 occurrences before saving. Install with `npx shadcn@4.21.0 add @bollard/recurrence-preview`. Limitation: maximum recurrence end dates must be bounded on the server.",
+    },
+  ],
+  india: [
+    {
+      question: "How do I validate 12-digit Aadhaar numbers without violating UIDAI privacy rules?",
+      answer: "Aadhaar Input (`aadhaar-input`) groups 12 digits into 4-digit blocks, masks the first 8 digits, and validates the Verhoeff checksum. Install with `npx shadcn@4.21.0 add @bollard/aadhaar-input`. Limitation: client format checks do not verify identity; government OTP verification is required.",
+    },
+    {
+      question: "How do I validate Indian IFSC bank codes in React?",
+      answer: "IFSC Input (`ifsc-input`) ensures the 11-character format (4 letters, 0, 6 characters) and displays the resolved bank branch name. Install with `npx shadcn@4.21.0 add @bollard/ifsc-input`. Limitation: bank branch directories change; payment gateways must verify routing eligibility.",
+    },
+    {
+      question: "How do I validate UPI IDs without falsely rejecting valid custom domains?",
+      answer: "UPI ID Input (`upi-id-input`) validates the username@bank format and looks up verified payee names before payment. Install with `npx shadcn@4.21.0 add @bollard/upi-id-input`. Limitation: NPCI handle lists change; never block a well-formed handle solely because it is unlisted in client code.",
+    },
+    {
+      question: "How do I format currency amounts with Indian Lakh and Crore numbering?",
+      answer: "Amount Input (`amount-input`) formatted with `locale=\"en-IN\"` displays ₹5,00,000 correctly and catches misplaced extra zeros. Install with `npx shadcn@4.21.0 add @bollard/amount-input`. Limitation: server must validate transfer amounts in paise.",
+    },
+  ],
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const flow = FLOWS.find((f) => f.id === slug)
@@ -115,10 +281,19 @@ export default async function FlowPage({ params }: { params: Promise<{ slug: str
   const items = catalog.filter((item) => (item.flows ?? []).includes(slug as FlowId))
   const kit = kitFor(slug)
   const canonicalPath = slug === "india" ? "/india" : `/flows/${slug}`
+  const flowFaqs = FLOW_FAQS[slug] || []
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#publisher`,
+        name: "Bollard UI",
+        url: SITE_URL,
+        logo: `${SITE_URL}/icon.svg`,
+        sameAs: SAME_AS_PROFILES,
+      },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -129,9 +304,12 @@ export default async function FlowPage({ params }: { params: Promise<{ slug: str
       },
       {
         "@type": "CollectionPage",
+        "@id": `${absoluteUrl(canonicalPath)}#webpage`,
         name: info.title,
         description: info.answer,
         url: absoluteUrl(canonicalPath),
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": `${SITE_URL}/#publisher` },
         mainEntity: {
           "@type": "ItemList",
           numberOfItems: items.length,
@@ -143,6 +321,22 @@ export default async function FlowPage({ params }: { params: Promise<{ slug: str
           })),
         },
       },
+      ...(flowFaqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${absoluteUrl(canonicalPath)}#faq`,
+              mainEntity: flowFaqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            },
+          ]
+        : []),
     ],
   }
 
@@ -241,6 +435,16 @@ export default async function FlowPage({ params }: { params: Promise<{ slug: str
           ))}
         </div>
       </section>
+
+      {/* Frequently Asked Questions */}
+      {flowFaqs.length > 0 && (
+        <section aria-labelledby="flow-faq-heading" className="mt-14 border-t pt-10 space-y-4">
+          <h2 id="flow-faq-heading" className="text-xl font-semibold tracking-tight text-foreground">
+            Frequently Asked Questions about {flow.label} Guardrails
+          </h2>
+          <ComponentFaqSection faqs={flowFaqs} componentTitle={flow.label} />
+        </section>
+      )}
 
       {/* Cross-linking other flow hubs */}
       <footer className="mt-16 border-t pt-8 space-y-4">

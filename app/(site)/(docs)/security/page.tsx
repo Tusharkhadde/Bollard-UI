@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { DocPage, DocSection, Note, Prose, inlineCode, proseLink } from "@/components/site/doc-page"
 import { catalog, registryBase } from "@/lib/catalog"
-import { CONTACT_EMAIL, REPO_PUBLIC, REPO_URL, SECURITY_HREF } from "@/lib/site"
+import { SECURITY_HREF } from "@/lib/site"
 
 const description =
   "How to report a vulnerability in Bollard UI privately, what is in scope, and why UI guard rails never replace server-side enforcement."
@@ -29,19 +29,10 @@ export default function SecurityPage() {
       <DocSection id="report" title="Report a vulnerability">
         <Prose>
           <p>
-            Don&apos;t post security problems publicly. Email{" "}
-            <a className={proseLink} href={SECURITY_HREF}>
-              {CONTACT_EMAIL}
-            </a>{" "}
-            with &ldquo;Bollard UI security&rdquo; in the subject
-            {REPO_PUBLIC ? (
-              <>
-                , or use{" "}
-                <a className={proseLink} href={`${REPO_URL}/security/advisories/new`}>
-                  GitHub&apos;s private vulnerability reporting
-                </a>
-              </>
-            ) : null}
+            Don&apos;t post security problems in public issues. Please report security concerns through{" "}
+            <a className={proseLink} href={SECURITY_HREF} target="_blank" rel="noreferrer">
+              GitHub&apos;s private vulnerability reporting
+            </a>
             . Include:
           </p>
           <ul>

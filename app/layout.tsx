@@ -4,9 +4,30 @@ import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
 import { Analytics } from "@/components/site/analytics"
-import { SITE_URL } from "@/lib/site"
+import { SAME_AS_PROFILES, SITE_URL } from "@/lib/site"
 import { themeScript } from "@/lib/theme-script"
 import "./globals.css"
+
+const rootStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#publisher`,
+      name: "Bollard UI",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon.svg`,
+      sameAs: SAME_AS_PROFILES,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Bollard UI",
+      publisher: { "@id": `${SITE_URL}/#publisher` },
+    },
+  ],
+}
 
 /**
  * GA4 loads only when a measurement ID is configured (set NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -22,15 +43,6 @@ const gaEnabled =
 const title = "shadcn React Components for Safer Forms & Risky Actions"
 const description =
   "Copy-paste shadcn components for React form validation, email typo checks, and confirm dialogs that make risky actions easier to review."
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${SITE_URL}/#organization`,
-  name: "Bollard UI",
-  url: SITE_URL,
-  logo: `${SITE_URL}/icon.svg`,
-}
 
 function parseVerificationToken(raw?: string): string | undefined {
   if (!raw) return undefined
@@ -97,7 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootStructuredData).replace(/</g, "\\u003c") }}
         />
       </head>
       <body className="min-h-dvh font-sans">{children}</body>

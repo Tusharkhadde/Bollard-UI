@@ -12,9 +12,19 @@ export function absoluteUrl(path: string = ""): string {
   return `${SITE_URL}${normalized === "/" ? "" : normalized}`
 }
 
-export const CONTACT_EMAIL = "tusharkhadde06@gmail.com"
-export const FEEDBACK_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Bollard UI feedback")}`
-export const SECURITY_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Bollard UI security report")}`
+export const ISSUES_URL = `${REPO_URL}/issues`
+export const SECURITY_ADVISORIES_URL = `${REPO_URL}/security/advisories/new`
+export const FEEDBACK_HREF = ISSUES_URL
+export const SECURITY_HREF = SECURITY_ADVISORIES_URL
+
+export const DISAMBIGUATING_DESCRIPTION =
+  "Bollard UI is an independent open-source React component library for preventing user input mistakes, unrelated to physical bollards or other products with a similar name."
+
+export const SAME_AS_PROFILES = [
+  "https://github.com/Tusharkhadde",
+  "https://github.com/Tusharkhadde/Bollard-UI",
+  "https://x.com/devtushark",
+]
 
 export const TAGLINE = "shadcn React components for safer forms and risky actions."
 export const LICENSE_LINE = "MIT licensed. Source copied into your project."

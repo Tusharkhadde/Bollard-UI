@@ -6,7 +6,7 @@ import { motion, MotionConfig, useReducedMotion, type Variants } from "motion/re
 
 import { buttonPrimary } from "@/components/site/button-styles"
 import { InstallCommand } from "@/components/site/install-command"
-import { COMPAT, TAGLINE } from "@/lib/site"
+import { COMPAT, DISAMBIGUATING_DESCRIPTION, TAGLINE } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 import { HeroPreview } from "./hero-preview"
@@ -58,7 +58,7 @@ function FloatingSignals() {
       {signals.map(({ label, detail, icon: Icon, className, delay, drift }) => (
         <motion.div
           key={label}
-          initial={{ opacity: 0, scale: 0.96, y: 10 }}
+          initial={false}
           animate={
             reduced
               ? { opacity: 1, scale: 1, y: 0 }
@@ -96,14 +96,13 @@ function FloatingSignals() {
  * beside a working product preview.
  */
 export function Hero() {
-  const reduced = !!useReducedMotion()
   return (
     <MotionConfig reducedMotion="user">
       <section aria-labelledby="hero-heading" className="relative isolate">
         <div aria-hidden className="bg-grid-fade pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem]" />
         <div className={cn(container, "pt-10 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24")}>
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(19rem,0.78fr)_minmax(0,1.22fr)] lg:gap-10 xl:gap-16">
-            <motion.div variants={group} initial="hidden" animate="show" className="flex max-w-xl flex-col items-start text-left">
+            <motion.div variants={group} initial={false} animate="show" className="flex max-w-xl flex-col items-start text-left">
               <motion.div variants={item}>
                 <Link
                   href="/components/agent-action-approve"
@@ -123,6 +122,9 @@ export function Hero() {
               </motion.h1>
               <motion.p variants={item} className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-lg">
                 Add a copy-paste guard rail with the shadcn CLI, or keep your UI and use the headless validation hook on the controls you already have.
+              </motion.p>
+              <motion.p variants={item} className="mt-2.5 max-w-lg text-xs leading-relaxed text-muted-foreground/80">
+                {DISAMBIGUATING_DESCRIPTION}
               </motion.p>
               <motion.div variants={item} className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
                 <Link href="#components" className={buttonPrimary}>
@@ -149,7 +151,7 @@ export function Hero() {
               <div aria-hidden className="glow-brand pointer-events-none absolute -inset-10 -z-10 opacity-50 blur-3xl dark:opacity-35" />
               <FloatingSignals />
               <motion.div
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease, delay: 0.3 }}
               >

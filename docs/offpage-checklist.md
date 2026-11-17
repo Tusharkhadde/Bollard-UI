@@ -29,23 +29,17 @@ This document outlines the actionable off-page steps, indexation workflows, and 
 
 ---
 
-## 2. GitHub Repository Optimization (High-Authority Entity Anchor)
+## 2. GitHub Repository & sameAs Profile Action List (TODO Profiles to Create)
 
-GitHub is one of the highest-authority entity anchors recognized by Google Knowledge Graph, OpenAI, and Claude.
+Hard SEO Rule Note: Unverified `sameAs` links are strictly omitted from JSON-LD schema until created. Maintainer action list:
 
-- [ ] Repository: `https://github.com/Tusharkhadde/Bollard-UI`
-- [ ] **About / Description**:
-  > "341 copy-paste React components (shadcn CLI install) that stop expensive user mistakes in forms and risky actions."
-- [ ] **Website Field**: Set strictly to `https://bollard-ui.vercel.app`.
-- [ ] **Repository Topics**: Add all 12 target topics:
+- [ ] **GitHub Repository Topics:** Add the 12 target topics to `https://github.com/Tusharkhadde/Bollard-UI`:
   `react`, `nextjs`, `shadcn`, `tailwindcss`, `form-validation`, `accessibility`, `typescript`, `ui-components`, `human-in-the-loop`, `design-system`, `input-validation`, `geo`
-- [ ] **README Header**:
-  Include direct links to the documentation:
-  ```markdown
-  [![Website](https://img.shields.io/badge/docs-bollard--ui.vercel.app-blue)](https://bollard-ui.vercel.app)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  ```
-- [ ] When ready to open source code visibility, set `REPO_PUBLIC = true` in `lib/site.ts`.
+- [ ] **Dev.to Profile / Organization:** Create `https://dev.to/devtushark` or `https://dev.to/bollardui`. Publish technical writeups linking to the 8 deep guides. Once verified, add to `SAME_AS_PROFILES` in `lib/site.ts`.
+- [ ] **npm Publisher / Organization:** Create npm account/scope `@bollard` or `~tusharkhadde` on `https://www.npmjs.com`.
+- [ ] **YouTube Channel / Demos:** Create YouTube channel and record short 30-second silent screen recordings of "mistakes prevented" (e.g. extra zero slip, type-to-confirm, email typo suggestion).
+- [ ] **Product Hunt Maker Profile:** Set up maker page and schedule launch.
+- [ ] **Show HN Post:** Draft Hacker News Show HN submission.
 
 ---
 

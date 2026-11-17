@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site"
+import { SITE_URL, SAME_AS_PROFILES } from "@/lib/site"
 
 export const ARTICLE_DATE_PUBLISHED = "2026-11-16"
 export const ARTICLE_DATE_MODIFIED = "2026-11-17"
@@ -31,13 +31,40 @@ export function articleSchema(path: string, headline: string, description: strin
   const url = `${SITE_URL}${path}`
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline,
-    description,
-    datePublished: ARTICLE_DATE_PUBLISHED,
-    dateModified: ARTICLE_DATE_MODIFIED,
-    author: { "@type": "Person", name: ARTICLE_AUTHOR },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    publisher: { "@type": "Organization", name: "Bollard UI", url: SITE_URL },
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#publisher`,
+        name: "Bollard UI",
+        url: SITE_URL,
+        logo: `${SITE_URL}/icon.svg`,
+        founder: {
+          "@type": "Person",
+          "@id": `${SITE_URL}/#author`,
+          name: ARTICLE_AUTHOR,
+          url: "https://github.com/Tusharkhadde",
+          sameAs: SAME_AS_PROFILES,
+        },
+        sameAs: SAME_AS_PROFILES,
+      },
+      {
+        "@type": "TechArticle",
+        "@id": `${url}#article`,
+        headline,
+        description,
+        url,
+        datePublished: ARTICLE_DATE_PUBLISHED,
+        dateModified: ARTICLE_DATE_MODIFIED,
+        author: { "@id": `${SITE_URL}/#publisher` },
+        publisher: { "@id": `${SITE_URL}/#publisher` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${SITE_URL}/#website`,
+          name: "Bollard UI",
+          url: SITE_URL,
+        },
+      },
+    ],
   }
 }

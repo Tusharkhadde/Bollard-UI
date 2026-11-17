@@ -42,6 +42,7 @@
     "registry:validate": "node scripts/validate-registry.mjs",
     "headers:stamp": "node scripts/stamp-headers.mjs",
     "manifest:build": "node scripts/build-manifest.mjs",
+    "check:seo": "node scripts/verify-seo-aeo.mjs",
     "check:component-seo": "node scripts/check-component-seo.mjs",
     "check:jsonld": "node scripts/check-jsonld.mjs"
   },
