@@ -11,6 +11,8 @@ test("publishes crawler and coding-agent discovery artifacts", () => {
   assert.match(read("app/llms.txt/route.ts"), /text\/plain/)
   assert.match(read("app/sitemap.ts"), /GUIDES/)
   assert.match(read("app/layout.tsx"), /application\/ld\+json/)
+  assert.match(read("app/layout.tsx"), /GOOGLE_SITE_VERIFICATION/)
+  assert.match(read("app/layout.tsx"), /google:\s*googleVerification/)
 })
 
 test("makes guides reachable from the site navigation", () => {

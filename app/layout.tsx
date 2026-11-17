@@ -33,6 +33,22 @@ const structuredData = {
   logo: `${SITE_URL}/icon.svg`,
 }
 
+function parseVerificationToken(raw?: string): string | undefined {
+  if (!raw) return undefined
+  const trimmed = raw.trim()
+  if (!trimmed) return undefined
+  const contentMatch = trimmed.match(/content=["']([^"']+)["']/i)
+  if (contentMatch) return contentMatch[1].trim()
+  return trimmed.replace(/^["']|["']$/g, "").trim()
+}
+
+const googleVerification = parseVerificationToken(
+  process.env.GOOGLE_SITE_VERIFICATION || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+)
+const bingVerification = parseVerificationToken(
+  process.env.BING_SITE_VERIFICATION || process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+)
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -45,8 +61,8 @@ export const metadata: Metadata = {
   creator: "Bollard UI",
   publisher: "Bollard UI",
   verification: {
-    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
-    ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
+    ...(googleVerification ? { google: googleVerification } : {}),
+    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
