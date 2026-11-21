@@ -1,0 +1,40 @@
+name: Registry PR smoke
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: registry-pr-smoke-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    if: github.event.pull_request.head.ref == 'dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run registry:build
+      - name: Verify generated registry files and sample components
+        run: node --input-type=module -e '
+          import fs from "node:fs";
+          const registry = JSON.parse(fs.readFileSync("registry.json", "utf8"));
+          for (const item of registry.items) {
+            const file = `public/r/${item.name}.json`;
+            if (!fs.existsSync(file)) throw new Error(`Missing generated registry file: ${file}`);
+          }
+          for (const name of ["amount-input", "email-input", "type-to-confirm"]) {
+            const file = `public/r/${name}.json`;
+            if (!fs.existsSync(file)) throw new Error(`Missing sample registry file: ${file}`);
+            const item = JSON.parse(fs.readFileSync(file, "utf8"));
+            if (item.name !== name) throw new Error(`Unexpected item in ${file}: ${item.name}`);
+          }
+        '

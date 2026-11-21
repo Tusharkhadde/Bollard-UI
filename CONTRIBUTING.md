@@ -69,9 +69,16 @@ Then:
 
 Grep the existing `meta.json` descriptions before picking a name, to make sure the idea isn't already covered.
 
+## Branch and release flow
+
+- Branch `feat/*` and `fix/*` work from `dev`; open pull requests into `dev` first.
+- Vercel creates a preview deployment for `dev` and pull requests. Review the generated preview URL and test the changed pages/components there before merging.
+- Releases go through a pull request from `dev` to `main`. CI and the registry smoke check must pass before merge. After the release lands, update the changelog for the released changes.
+- `main` is production and deploys to https://bollard-ui.vercel.app. Do not merge feature branches directly into `main`.
+
 ## Pull requests
 
-- Branch from `main` and keep each pull request to one component or one focused change.
+- Branch from `dev` and keep each pull request to one component or one focused change.
 - Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages and the PR title, for example `feat(amount-input): flag a missing zero`, `fix(site): sidebar scroll on load`, `docs: clarify install steps`.
 - Commit the regenerated `registry.json` and `components/demo-index.tsx` when you add or rename a component. Don't commit `public/r/*.json` by hand edits; regenerate them.
 - Fill in the pull request template, including screenshots for any visual change (light, dark and mobile).
