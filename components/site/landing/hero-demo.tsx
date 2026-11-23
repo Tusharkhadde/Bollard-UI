@@ -6,9 +6,14 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 
 import { trackHeroSceneChange } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
-import { AgentActionApprove, type ToolCall } from "@/registry/default/agent-action-approve/agent-action-approve"
+import type { ToolCall } from "@/registry/default/agent-action-approve/agent-action-approve"
 import { AmountInput } from "@/registry/default/amount-input/amount-input"
-import { EmailInput } from "@/registry/default/email-input/email-input"
+
+// Only the first scene is needed for first paint; the other two load once the page is idle.
+const loadAgent = () => import("@/registry/default/agent-action-approve/agent-action-approve")
+const loadEmail = () => import("@/registry/default/email-input/email-input")
+const AgentActionApprove = React.lazy(() => loadAgent().then((m) => ({ default: m.AgentActionApprove })))
+const EmailInput = React.lazy(() => loadEmail().then((m) => ({ default: m.EmailInput })))
 
 /*
  * The hero demo: three scenes of real Bollard components, driven by one timeline.
@@ -162,6 +167,19 @@ export function HeroDemo({ className }: { className?: string }) {
   const autoSeen = React.useRef(new Set<SceneId>())
   /** Where the progress bar starts for the current run, so it lines up with the timeline. */
   const [barStart, setBarStart] = React.useState(SCENES[0].steps[SCENES[0].poster].at)
+
+  React.useEffect(() => {
+    const preload = () => {
+      void loadAgent()
+      void loadEmail()
+    }
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(preload, { timeout: 2500 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const timer = window.setTimeout(preload, 1500)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   // Reduced motion: no autoplay. Show the caught state and offer Play.
   React.useEffect(() => {
@@ -375,6 +393,7 @@ export function HeroDemo({ className }: { className?: string }) {
                   transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
                   className={cn("w-full", scene.id === "agent" ? "max-w-[24rem]" : "max-w-[22.5rem]")}
                 >
+                  <React.Suspense fallback={<div className="h-64" />}>
                   {scene.id === "agent" ? (
                     // The approval card is long; zoom it (layout-aware, unlike scale) so it fits the fixed stage.
                     <div className="[zoom:0.8] sm:[zoom:0.84]">
@@ -420,6 +439,7 @@ export function HeroDemo({ className }: { className?: string }) {
                       </div>
                     </div>
                   )}
+                  </React.Suspense>
                 </motion.div>
               </AnimatePresence>
 

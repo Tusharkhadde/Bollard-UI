@@ -15,8 +15,9 @@ test("hero headline is server-rendered and the demo uses real registry component
   assert.doesNotMatch(hero, /DISAMBIGUATING_DESCRIPTION|COMPAT|shadcn@4\.21\.0/)
 
   const demo = read("components/site/landing/hero-demo.tsx")
-  for (const component of ["AmountInput", "EmailInput", "AgentActionApprove"]) {
-    assert.match(demo, new RegExp(`@/registry/default/.+${component}|${component}.*from "@/registry/default/`))
+  for (const [slug, component] of [["amount-input", "AmountInput"], ["email-input", "EmailInput"], ["agent-action-approve", "AgentActionApprove"]]) {
+    assert.match(demo, new RegExp(`"@/registry/default/${slug}/${slug}"`))
+    assert.match(demo, new RegExp(`<${component}\\b`))
   }
   assert.match(demo, /locale="en-IN"/)
   assert.match(demo, /currency="INR"/)
