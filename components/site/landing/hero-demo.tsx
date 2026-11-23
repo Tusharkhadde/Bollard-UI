@@ -377,7 +377,7 @@ export function HeroDemo({ className }: { className?: string }) {
                 >
                   {scene.id === "agent" ? (
                     // The approval card is long; zoom it (layout-aware, unlike scale) so it fits the fixed stage.
-                    <div className="[zoom:0.8] sm:[zoom:0.86]">
+                    <div className="[zoom:0.8] sm:[zoom:0.84]">
                       <AgentActionApprove call={AGENT_CALL} onDecision={noop} className="bg-card text-left shadow-[0_18px_50px_-30px_rgb(0_0_0/0.45)]" />
                     </div>
                   ) : (
