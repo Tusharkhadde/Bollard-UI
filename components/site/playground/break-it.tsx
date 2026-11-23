@@ -310,24 +310,32 @@ function PasswordStage({ onCaught }: { onCaught: () => void }) {
 }
 
 function PhoneStage({ onCaught }: { onCaught: () => void }) {
-  const [phone, setPhone] = React.useState("")
-  const settled = useSettled(phone, 600)
+  // The phone input tidies what it is given as you type (it strips a doubled +91 and says so),
+  // so the raw keystrokes are read from the input event, before the tidy-up.
+  const ref = React.useRef<HTMLDivElement>(null)
+  const [raw, setRaw] = React.useState("")
+  const settled = useSettled(raw, 400)
   React.useEffect(() => {
     if (!settled.replace(/\D/g, "")) return
     const result = normalizePhone(settled, "IN")
     if (result.notes.length || result.unknownCode) onCaught()
   }, [settled, onCaught])
+  const type = (text: string) => {
+    const input = ref.current?.querySelector<HTMLInputElement>("input:not([type=hidden])")
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set
+    if (!input || !setter) return
+    setter.call(input, text)
+    input.dispatchEvent(new Event("input", { bubbles: true }))
+  }
   return (
-    <div>
-      <PhoneInput
-        label="Mobile number"
-        value={phone}
-        onValueChange={setPhone}
-        defaultCountry="IN"
-        preferredCountries={["IN", "US", "GB", "AE", "SG"]}
-        className="max-w-none"
-      />
-      <ShowMe onClick={() => setPhone("+91 +91 98765 43210")} />
+    <div
+      ref={ref}
+      onInputCapture={(event) => {
+        if (event.target instanceof HTMLInputElement) setRaw(event.target.value)
+      }}
+    >
+      <PhoneInput label="Mobile number" defaultCountry="IN" preferredCountries={["IN", "US", "GB", "AE", "SG"]} className="max-w-none" />
+      <ShowMe onClick={() => type("+91 +91 98765 43210")} />
     </div>
   )
 }

@@ -159,6 +159,7 @@ export function HeroDemo({ className }: { className?: string }) {
   const elapsed = React.useRef(SCENES[0].steps[SCENES[0].poster].at)
   /** Bumped by every scene start, so a stale timer's cleanup can't touch the new scene's clock. */
   const token = React.useRef(0)
+  const autoSeen = React.useRef(new Set<SceneId>())
   /** Where the progress bar starts for the current run, so it lines up with the timeline. */
   const [barStart, setBarStart] = React.useState(SCENES[0].steps[SCENES[0].poster].at)
 
@@ -194,7 +195,9 @@ export function HeroDemo({ className }: { className?: string }) {
     token.current += 1
     elapsed.current = next.steps[first].at
     setBarStart(next.steps[first].at)
-    trackHeroSceneChange({ scene: next.id, trigger })
+    // Autoplay loops forever; report each scene's automatic start once per page view, presses every time.
+    if (trigger !== "auto" || !autoSeen.current.has(next.id)) trackHeroSceneChange({ scene: next.id, trigger })
+    if (trigger === "auto") autoSeen.current.add(next.id)
   }, [])
 
   // The timeline: wait until the next step (or the scene's end), then advance.
