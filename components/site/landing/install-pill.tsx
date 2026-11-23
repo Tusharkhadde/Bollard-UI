@@ -53,7 +53,7 @@ export function InstallPill({
       data-install-pill
       className={cn(
         "group/pill relative inline-flex max-w-full min-w-0 items-center gap-2.5 rounded-full border bg-background/80 font-mono text-muted-foreground shadow-xs backdrop-blur outline-none transition-[border-color,background-color,color,box-shadow] hover:border-border-strong hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-card/70",
-        size === "md" ? "h-10 pr-1.5 pl-4 text-[13px]" : "h-8 pr-1 pl-3 text-xs",
+        size === "md" ? "h-10 gap-2 pr-1.5 pl-3.5 text-[12px] min-[400px]:gap-2.5 min-[400px]:pl-4 min-[400px]:text-[13px]" : "h-8 pr-1 pl-3 text-xs",
         className,
       )}
     >

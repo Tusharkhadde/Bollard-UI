@@ -83,8 +83,8 @@ function FeaturedPack({ pack }: { pack: Pack }) {
       <div className="mt-auto pt-5">
         <div className="flex items-center gap-2 border-t pt-4">
           <code className="min-w-0 flex-1 truncate font-mono text-[11.5px] text-muted-foreground">
-            <span aria-hidden className="text-brand">$ </span>
-            {shortInstall(name).replace("npx ", "")}
+            <span aria-hidden className="text-brand">add </span>
+            @bollard/{name}
           </code>
           <PackCopy name={name} label={label} />
         </div>

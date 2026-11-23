@@ -302,7 +302,7 @@ html {
 
 /* Gradient headline ink: solid enough to read, with a quiet sheen. */
 .landing-ink {
-  background: linear-gradient(180deg, var(--foreground) 30%, color-mix(in oklch, var(--foreground) 62%, transparent));
+  background: linear-gradient(180deg, var(--foreground) 45%, color-mix(in oklch, var(--foreground) 78%, transparent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

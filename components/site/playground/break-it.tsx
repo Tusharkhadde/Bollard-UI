@@ -142,7 +142,7 @@ export function BreakIt({ className }: { className?: string }) {
           role="tablist"
           aria-label="Components to break"
           aria-orientation="vertical"
-          className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
+          className="-mx-4 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
         >
           {BREAK_IT_TABS.map((t, i) => {
             const selected = i === active

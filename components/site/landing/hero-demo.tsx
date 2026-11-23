@@ -157,6 +157,8 @@ export function HeroDemo({ className }: { className?: string }) {
   const stageRef = React.useRef<HTMLDivElement>(null)
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([])
   const elapsed = React.useRef(SCENES[0].steps[SCENES[0].poster].at)
+  /** Bumped by every scene start, so a stale timer's cleanup can't touch the new scene's clock. */
+  const token = React.useRef(0)
   /** Where the progress bar starts for the current run, so it lines up with the timeline. */
   const [barStart, setBarStart] = React.useState(SCENES[0].steps[SCENES[0].poster].at)
 
@@ -189,6 +191,7 @@ export function HeroDemo({ className }: { className?: string }) {
     setSceneIndex(index)
     setStep(first)
     setRun((r) => r + 1)
+    token.current += 1
     elapsed.current = next.steps[first].at
     setBarStart(next.steps[first].at)
     trackHeroSceneChange({ scene: next.id, trigger })
@@ -200,15 +203,18 @@ export function HeroDemo({ className }: { className?: string }) {
     const nextAt = step + 1 < scene.steps.length ? scene.steps[step + 1].at : scene.duration
     const wait = Math.max(0, nextAt - elapsed.current)
     const startedAt = performance.now()
+    const mine = token.current
+    let fired = false
     const timer = window.setTimeout(() => {
+      fired = true
       elapsed.current = nextAt
       if (step + 1 < scene.steps.length) setStep(step + 1)
       else goTo((sceneIndex + 1) % SCENES.length, "auto")
     }, wait)
     return () => {
       window.clearTimeout(timer)
-      // Paused mid-wait: remember how far we got so resuming doesn't restart the gap.
-      elapsed.current = Math.min(nextAt, elapsed.current + (performance.now() - startedAt))
+      // Paused mid-wait (same scene, timer not fired): remember how far we got so resuming doesn't restart the gap.
+      if (!fired && token.current === mine) elapsed.current = Math.min(nextAt, elapsed.current + (performance.now() - startedAt))
     }
   }, [paused, step, scene, sceneIndex, goTo])
 
@@ -316,7 +322,7 @@ export function HeroDemo({ className }: { className?: string }) {
                     selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  <TabIcon aria-hidden className="size-3.5 shrink-0" />
+                  <TabIcon aria-hidden className="hidden size-3.5 shrink-0 sm:block" />
                   <span className="truncate">{s.tab}</span>
                   <span aria-hidden className="absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-foreground/[0.06]">
                     {selected && (
@@ -355,7 +361,7 @@ export function HeroDemo({ className }: { className?: string }) {
               ref={stageRef}
               inert
               aria-hidden
-              className="ink-amber bg-dots relative flex h-[23.5rem] items-center justify-center overflow-hidden bg-surface px-4 sm:h-[24.5rem] sm:px-8"
+              className="ink-amber bg-dots relative flex h-[27rem] items-center justify-center overflow-hidden bg-surface px-4 sm:px-8"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
@@ -363,11 +369,14 @@ export function HeroDemo({ className }: { className?: string }) {
                   initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8, filter: "blur(4px)" }}
-                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full max-w-[22.5rem]"
+                  transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+                  className={cn("w-full", scene.id === "agent" ? "max-w-[24rem]" : "max-w-[22.5rem]")}
                 >
                   {scene.id === "agent" ? (
-                    <AgentActionApprove call={AGENT_CALL} onDecision={noop} className="bg-card text-left shadow-[0_18px_50px_-30px_rgb(0_0_0/0.45)]" />
+                    // The approval card is long; zoom it (layout-aware, unlike scale) so it fits the fixed stage.
+                    <div className="[zoom:0.8] sm:[zoom:0.86]">
+                      <AgentActionApprove call={AGENT_CALL} onDecision={noop} className="bg-card text-left shadow-[0_18px_50px_-30px_rgb(0_0_0/0.45)]" />
+                    </div>
                   ) : (
                     <div className="rounded-xl border bg-card p-5 text-left shadow-[0_18px_50px_-30px_rgb(0_0_0/0.45)]">
                       <div className="mb-4 flex items-center gap-2.5">

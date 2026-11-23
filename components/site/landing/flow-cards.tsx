@@ -141,7 +141,7 @@ function Card({ flow }: { flow: FlowCard }) {
         </span>
       </span>
       <Preview key={run} id={flow.id} playing={playing} />
-      {flow.blurb && <span className="line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{flow.blurb}</span>}
+      {flow.blurb && <span className="line-clamp-2 text-[13px] leading-relaxed max-sm:hidden text-muted-foreground">{flow.blurb}</span>}
       <span className="mt-auto inline-flex items-center gap-1 text-[13px] text-muted-foreground transition-colors group-hover:text-foreground">
         Browse the flow
         <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
