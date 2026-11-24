@@ -257,7 +257,9 @@ const pagesToCheck = allHtmlFiles.filter((filePath) => {
 
 // Check key representative templates
 const templatesToVerify = [
-  { name: "Homepage", rel: "index.html", mustHave: ["h1", "facts", "faq", "install", "json-ld"] },
+  // The homepage specs table moved to /about with the landing redesign; /about is checked for it instead.
+  { name: "Homepage", rel: "index.html", mustHave: ["h1", "faq", "install", "json-ld"] },
+  { name: "About", rel: "about.html", mustHave: ["h1", "facts", "json-ld"] },
   { name: "Component Page", rel: "components/amount-input.html", mustHave: ["h1", "answer", "facts", "faq", "install", "json-ld"] },
   { name: "Flow Hub", rel: "flows/checkout.html", mustHave: ["h1", "answer", "faq", "install", "json-ld"] },
   { name: "Guide", rel: "guides/react-prevent-duplicate-form-submit.html", mustHave: ["h1", "faq-or-sections", "install", "json-ld"] },
@@ -273,7 +275,8 @@ for (const tmpl of templatesToVerify) {
   const html = fs.readFileSync(targetFile, "utf8")
   const hasH1 = /<h1[^>]*>[\s\S]*?<\/h1>/i.test(html)
   const hasJsonLd = /<script\s+type="application\/ld\+json">/i.test(html)
-  const hasInstall = /(npx|pnpm dlx|bunx)\s+(--bun\s+)?shadcn@4\.21\.0[\s\S]*?add/i.test(html)
+  // Pinned (shadcn@4.21.0 add) or short (shadcn add @bollard/…) commands both count.
+  const hasInstall = /(npx|pnpm dlx|bunx)\s+(--bun\s+)?shadcn(@4\.21\.0)?(<!-- -->)?\s*[\s\S]{0,80}?add/i.test(html)
   const hasFacts = /facts\s+(&amp;|&)\s+(technical\s+)?specifications/i.test(html) || /id="facts"/i.test(html) || /aria-labelledby="facts-heading"/i.test(html)
   const hasFaq = /Frequently Asked Questions/i.test(html) || /<details/i.test(html)
 
@@ -285,7 +288,7 @@ for (const tmpl of templatesToVerify) {
     console.error(`❌ [${tmpl.name}] Missing JSON-LD script in server HTML`)
     totalErrors++
   }
-  if (!hasInstall) {
+  if (tmpl.mustHave.includes("install") && !hasInstall) {
     console.error(`❌ [${tmpl.name}] Missing shadcn install command in server HTML`)
     totalErrors++
   }

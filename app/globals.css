@@ -213,3 +213,97 @@ html {
 .glow-brand {
   background: radial-gradient(50% 50% at 50% 50%, color-mix(in oklch, var(--brand) 22%, transparent), transparent 70%);
 }
+
+/* --- Landing (homepage) --- */
+
+/* Hero demo: the active scene's progress bar. Duration, delay and play state come from the timeline. */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.hero-progress {
+  transform: scaleX(0);
+  animation-name: hero-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/*
+ * Hero backdrop: two slow, soft brand-tinted blobs over the hairline grid. Pure CSS
+ * (no JS, no layout), and still under prefers-reduced-motion.
+ */
+@keyframes landing-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.08);
+  }
+}
+@keyframes landing-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-5%, -3%, 0) scale(0.95);
+  }
+}
+.landing-aurora::before,
+.landing-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  will-change: transform;
+}
+.landing-aurora::before {
+  top: -12rem;
+  right: -6rem;
+  width: 42rem;
+  height: 30rem;
+  background: radial-gradient(closest-side, color-mix(in oklch, var(--brand) 26%, transparent), transparent);
+  animation: landing-drift-a 22s ease-in-out infinite;
+}
+.landing-aurora::after {
+  top: 6rem;
+  left: -10rem;
+  width: 34rem;
+  height: 26rem;
+  background: radial-gradient(closest-side, color-mix(in oklch, oklch(0.8 0.15 75) 20%, transparent), transparent);
+  animation: landing-drift-b 26s ease-in-out infinite;
+}
+.dark .landing-aurora::before {
+  background: radial-gradient(closest-side, color-mix(in oklch, var(--brand) 30%, transparent), transparent);
+}
+.dark .landing-aurora::after {
+  background: radial-gradient(closest-side, color-mix(in oklch, oklch(0.8 0.15 75) 10%, transparent), transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-aurora::before,
+  .landing-aurora::after {
+    animation: none;
+  }
+}
+
+/* A hairline grid for the hero that fades out toward the edges. */
+.landing-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 30%, black 20%, transparent 72%);
+}
+
+/* Gradient headline ink: solid enough to read, with a quiet sheen. */
+.landing-ink {
+  background: linear-gradient(180deg, var(--foreground) 45%, color-mix(in oklch, var(--foreground) 78%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

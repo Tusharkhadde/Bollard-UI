@@ -66,3 +66,37 @@ export function trackUseCaseSelected({ useCase, surface }: { useCase: string; su
 export function trackComponentFeedback({ component, helpful }: { component: string; helpful: boolean }) {
   track("bollard_component_feedback", { component, helpful: helpful ? "yes" : "no" })
 }
+
+/* ---------- Homepage engagement (landing redesign) ----------
+ * Every event below carries only fixed, public identifiers (scene ids, component
+ * slugs, CTA names). Nothing a visitor types is ever passed in or sent.
+ */
+
+/** The hero demo moved to another scene, by autoplay, a tab press or the Play button. */
+export function trackHeroSceneChange({ scene, trigger }: { scene: string; trigger: "auto" | "tab" | "play" }) {
+  track("hero_scene_change", { scene, trigger })
+}
+
+/** A visitor opened a tab in the homepage "Try to break it" playground. */
+export function trackPlaygroundTab({ component }: { component: string }) {
+  track("playground_tab", { component })
+}
+
+/** A guard visibly caught a mistake the visitor made. Only the component slug is sent, never the value. */
+export function trackMistakeCaught({ component, surface }: { component: string; surface: string }) {
+  track("mistake_caught", { component, surface })
+}
+
+/**
+ * An install command was copied from a landing surface (`copy_install`). By default it also
+ * records the long-standing `install_click`, so existing adoption reports keep counting copies.
+ */
+export function trackCopyInstall({ component, surface, alsoInstallClick = true }: { component: string; surface: string; alsoInstallClick?: boolean }) {
+  track("copy_install", { component, surface })
+  if (alsoInstallClick) trackInstallCopy({ component, surface })
+}
+
+/** A primary call to action on the homepage was pressed. `cta` is a fixed name, `surface` the section. */
+export function trackCtaClick({ cta, surface }: { cta: string; surface: string }) {
+  track("cta_click", { cta, surface })
+}

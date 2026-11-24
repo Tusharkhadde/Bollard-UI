@@ -93,7 +93,7 @@ export function SiteFooter() {
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6">
           <p className="text-[13px] text-muted-foreground">
             © 2026 Bollard UI. Built by{" "}
-            <a href="https://github.com/Tusharkhadde" className="rounded-sm text-foreground outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50">
+            <a href="https://github.com/Tusharkhadde" className="rounded-sm text-foreground underline decoration-border underline-offset-4 outline-none hover:decoration-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50">
               Tushar Khadde
             </a>
             .
