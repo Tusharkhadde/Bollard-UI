@@ -1,12 +1,18 @@
-import { CodeBlock } from "@/components/site/code-block"
-import { InstallCommand } from "@/components/site/install-command"
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
+import { CodeBlock } from "@/components/site/code-block"
 import { highlight } from "@/lib/highlight"
-import { COMPAT } from "@/lib/site"
 
+import { InstallPill } from "./install-pill"
 import { Reveal } from "./reveal"
 import { Section, SectionHeading } from "./section-heading"
+
+const config = `{
+  "registries": {
+    "@bollard": "https://bollard-ui.vercel.app/r/{name}.json"
+  }
+}`
 
 const usage = `import { AmountInput } from "@/components/ui/amount-input"
 
@@ -23,60 +29,67 @@ export function RentField() {
 
 const steps = [
   {
-    title: "Find the mistake",
+    title: "Add the registry once",
     body: (
       <>
-        Search by what goes wrong, like &ldquo;extra zero&rdquo; or &ldquo;pasted key&rdquo;, with{" "}
-        <kbd className="rounded border bg-surface px-1 font-mono text-[11px] text-foreground">⌘K</kbd>, or browse by flow.
+        Merge the <code className="font-mono text-[12.5px] text-foreground">@bollard</code> namespace into your{" "}
+        <code className="font-mono text-[12.5px] text-foreground">components.json</code>.
       </>
     ),
   },
   {
-    title: "Choose your integration",
-    body: "Copy a ready-made guard, or add useBollardField and connect its value, validation and error props to the controls you already use.",
+    title: "Install the guard you need",
+    body: "The shadcn CLI copies the source into your project and installs what it lists. No runtime package to keep in sync.",
+    pill: true,
   },
   {
-    title: "Keep control of the code",
-    body: "The CLI copies source into your project. Your UI library, styling and server rules stay yours.",
+    title: "Drop it in",
+    body: "Use it like any input. Your theme, your copy, your server rules; edit the source whenever you like.",
   },
 ]
 
-/** A short path from finding a guard to owning the copied source. */
+/** Section 7: three steps beside the code that does them. */
 export function HowItWorks() {
   return (
     <Section id="how-it-works" labelledBy="how-heading">
-      <SectionHeading id="how-heading" eyebrow="How it works" title="Keep your UI. Add the guard rail.">
-        Use a complete Bollard component or attach its headless field hook to your existing shadcn, HeroUI or custom React controls.
-      </SectionHeading>
-      <div className="mt-10 grid min-w-0 gap-10 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)] lg:gap-14">
-        <Reveal>
-          <ol className="divide-y border-y">
-            {steps.map((step, i) => (
-              <li key={step.title} className="flex gap-4 py-5 first:pt-5 last:pb-5">
-                <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border font-mono text-xs tabular-nums text-brand">
-                  0{i + 1}
-                </span>
-                <span>
-                  <h3 className="text-[15px] font-medium tracking-tight">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-pretty text-muted-foreground">{step.body}</p>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </Reveal>
-        <Reveal delay={0.06} className="grid min-w-0 gap-3">
-          <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">Install a component</p>
-          <InstallCommand name="amount-input" className="w-full min-w-0" />
-          <p className="px-1 text-[13px] leading-relaxed text-pretty text-muted-foreground">
-            Needs {COMPAT} (<code className="font-mono text-[12px] text-foreground">npx shadcn@4.21.0 init</code> once). The CLI writes{" "}
-            <code className="font-mono text-[12px] text-foreground">components/ui/amount-input.tsx</code> and installs the packages it lists. Later
-            changes don&apos;t reach your copy automatically:{" "}
-            <Link href="/docs#updating" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
-              how to update
+      <Reveal>
+        <SectionHeading id="how-heading" eyebrow="How it works" title="Three steps. Then it's your code.">
+          Bollard works like shadcn/ui: source you own, styled by your Tailwind theme. Keeping your own inputs? Attach the{" "}
+          <Link href="/components/use-bollard-field" className="text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">
+            headless field hook
+          </Link>{" "}
+          instead.
+        </SectionHeading>
+      </Reveal>
+      <div className="mt-12 grid min-w-0 gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
+        <ol className="relative grid gap-8">
+          <span aria-hidden className="absolute top-4 bottom-4 left-[0.9375rem] w-px bg-gradient-to-b from-brand/60 via-border to-transparent" />
+          {steps.map((step, i) => (
+            <Reveal as="li" key={step.title} delay={i * 0.06} className="relative flex gap-4">
+              <span className="relative z-10 grid size-8 shrink-0 place-items-center rounded-full border bg-background font-mono text-xs font-medium text-brand tabular-nums">
+                {i + 1}
+              </span>
+              <div className="min-w-0 pt-1">
+                <h3 className="text-[15px] font-semibold tracking-tight">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-pretty text-muted-foreground">{step.body}</p>
+                {step.pill && <InstallPill name="amount-input" surface="how-it-works" size="sm" className="mt-3" />}
+              </div>
+            </Reveal>
+          ))}
+          <Reveal as="li" delay={0.2} className="pl-12">
+            <Link href="/docs" className="group inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground">
+              Full setup guide <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
             </Link>
-            .
-          </p>
-          <CodeBlock files={[{ path: "rent-field.tsx", source: usage, lines: usage.split("\n").length, code: highlight(usage) }]} />
+          </Reveal>
+        </ol>
+        <Reveal delay={0.06} className="min-w-0">
+          <CodeBlock
+            className="shadow-[0_30px_70px_-45px_rgb(0_0_0/0.5)]"
+            files={[
+              { path: "rent-field.tsx", source: usage, lines: usage.split("\n").length, code: highlight(usage) },
+              { path: "components.json", source: config, lines: config.split("\n").length, code: highlight(config) },
+            ]}
+          />
         </Reveal>
       </div>
     </Section>

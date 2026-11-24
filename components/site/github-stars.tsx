@@ -2,9 +2,11 @@ import { REPO_URL } from "@/lib/site"
 
 type Repository = { stargazers_count?: unknown }
 
-/** Cached for a day; unavailable or private repositories simply omit the badge. */
-export async function GitHubStars() {
-  let starCount: number | null = null
+/**
+ * The repository's star count, cached for a day (ISR). Null when GitHub is unreachable,
+ * rate-limited or the repository is private, so callers can fall back to static copy.
+ */
+export async function fetchStarCount(): Promise<number | null> {
   try {
     const response = await fetch("https://api.github.com/repos/Tusharkhadde/Bollard-UI", {
       headers: { Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
@@ -13,10 +15,15 @@ export async function GitHubStars() {
     })
     if (!response.ok) return null
     const repository = await response.json() as Repository
-    if (typeof repository.stargazers_count === "number" && repository.stargazers_count >= 0) starCount = repository.stargazers_count
+    return typeof repository.stargazers_count === "number" && repository.stargazers_count >= 0 ? repository.stargazers_count : null
   } catch {
-    starCount = null
+    return null
   }
+}
+
+/** Cached for a day; unavailable or private repositories simply omit the badge. */
+export async function GitHubStars() {
+  const starCount = await fetchStarCount()
   if (starCount === null) return null
   const count = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(starCount)
   return (

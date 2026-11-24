@@ -3,6 +3,9 @@ import Link from "next/link"
 
 import { DocPage, DocSection, Prose, proseLink, inlineCode } from "@/components/site/doc-page"
 import { JsonLd } from "@/components/site/json-ld"
+import { FactsTable } from "@/components/site/facts-table"
+import { COMPARISON_GUIDES, DisastersList, FEATURED_GUIDES, GuideLinks, WhyNotList } from "@/components/site/about-sections"
+import { getSiteFacts } from "@/lib/facts"
 import { SITE_URL, GITHUB_URL, TWITTER_HANDLE, ISSUES_URL, SECURITY_ADVISORIES_URL } from "@/lib/site"
 
 const aboutTitle = "About Bollard UI"
@@ -72,6 +75,18 @@ export default function AboutPage() {
       />
 
       <div className="space-y-12 pt-8">
+        <DocSection id="overview" title="What Bollard UI is">
+          <Prose>
+            <p>
+              Bollard UI is an open-source registry of copy-paste React components built by{" "}
+              <a href="https://github.com/Tusharkhadde" target="_blank" rel="noreferrer" className={proseLink}>
+                Tushar Khadde
+              </a>{" "}
+              (<a href="https://x.com/devtushark" target="_blank" rel="noreferrer" className={proseLink}>@devtushark</a>) to stop expensive user mistakes in web applications. Unlike schema validation libraries like Zod that enforce types on submit or blur, and unlike generic modal dialogs that people dismiss on autopilot, Bollard UI provides proactive, inline UX guardrails—catching extra zeros in currency fields, detecting mistyped email domains, and requiring typed confirmations for destructive actions—right inside your existing shadcn and Tailwind setup.
+            </p>
+          </Prose>
+        </DocSection>
+
         <DocSection id="creator" title="Who builds Bollard UI">
           <Prose>
             <p>
@@ -165,6 +180,28 @@ export default function AboutPage() {
               </li>
             </ul>
           </Prose>
+        </DocSection>
+
+        <DocSection id="compared" title="Why not just validation or a confirm dialog?">
+          <WhyNotList />
+          <GuideLinks items={COMPARISON_GUIDES} />
+        </DocSection>
+
+        <DocSection id="disasters-prevented" title="Small pauses prevent expensive mistakes">
+          <DisastersList />
+        </DocSection>
+
+        <DocSection id="facts" title="Bollard UI facts & technical specifications">
+          <FactsTable facts={getSiteFacts()} title="" />
+        </DocSection>
+
+        <DocSection id="guides" title="Practical React form safety guides">
+          <GuideLinks items={FEATURED_GUIDES} />
+          <p className="text-sm">
+            <Link href="/guides" className={proseLink}>
+              Browse all guides
+            </Link>
+          </p>
         </DocSection>
 
         <DocSection id="license-contact" title="License and contact">

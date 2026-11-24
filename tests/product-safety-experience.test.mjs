@@ -18,16 +18,21 @@ test("ships installable starter packs for every flow", () => {
   }
 })
 
-test("keeps the hero comparison, prevention proof, packs, and playground discoverable", () => {
+test("keeps the comparison, packs, playground and moved proof discoverable", () => {
   const home = read("app/(site)/page.tsx")
-  assert.match(home, /StarterPacks/)
-  assert.match(home, /SitePreview/)
-  assert.match(home, /DisastersPrevented/)
-  assert.ok(fs.existsSync(path.join(root, "public/images/website-preview.png")))
-  assert.match(read("components/site/landing/site-preview.tsx"), /alt="Bollard UI homepage preview/)
-  assert.match(read("components/site/landing/hero-preview.tsx"), /Without Bollard/)
-  assert.match(read("components/site/landing/hero-preview.tsx"), /With Bollard/)
+  for (const section of ["HomeHero", "TrustStrip", "PlaygroundSection", "WithoutWith", "FlowCards", "StarterPacks", "HowItWorks", "Faq", "Cta"]) {
+    assert.match(home, new RegExp(`<${section}\\b`))
+  }
+  // The homepage no longer shows a screenshot of itself.
+  assert.doesNotMatch(home, /SitePreview|website-preview/)
+  const comparison = read("components/site/landing/without-with.tsx")
+  assert.match(comparison, /Without Bollard/)
+  assert.match(comparison, /With Bollard/)
+  // The fictional scenarios, comparison, facts and About paragraph moved to /about.
+  const about = read("app/(site)/(docs)/about/page.tsx")
+  for (const part of ["DisastersList", "WhyNotList", "FactsTable", "AboutPage"]) assert.match(about, new RegExp(part))
   assert.ok(fs.existsSync(path.join(root, "app/(site)/playground/page.tsx")))
+  assert.match(read("components/site/landing/playground-section.tsx"), /href|BreakIt/)
 })
 
 test("offers prompt copying and all four theme accents", () => {
