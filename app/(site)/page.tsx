@@ -8,6 +8,7 @@ import { HowItWorks } from "@/components/site/landing/how-it-works"
 import { PlaygroundSection } from "@/components/site/landing/playground-section"
 import { StarterPacks } from "@/components/site/landing/starter-packs"
 import { TrustStrip } from "@/components/site/landing/trust-strip"
+import { UseCasePaths } from "@/components/site/landing/use-case-paths"
 import { WithoutWith } from "@/components/site/landing/without-with"
 import { JsonLd } from "@/components/site/json-ld"
 import { catalog } from "@/lib/catalog"
@@ -106,6 +107,7 @@ export default function Home() {
       }} />
       <HomeHero total={total} />
       <TrustStrip total={total} />
+      <UseCasePaths />
       <PlaygroundSection />
       <WithoutWith />
       <FlowCards flows={flows} />

@@ -44,7 +44,7 @@ const source = component.values.find((value) => value["@type"] === "SoftwareSour
 if (!source || !component.html.includes(source.name) || !component.html.includes(source.description)) throw new Error("Component source schema does not match visible content.")
 
 const article = schemas("/guides/react-type-to-confirm-dialog")
-const articleData = article.values.find((value) => value["@type"] === "Article")
+const articleData = article.values.find((value) => value["@type"] === "Article" || value["@type"] === "TechArticle")
 if (!articleData) throw new Error("Guide page is missing Article JSON-LD.")
 for (const field of [articleData.headline, articleData.description, articleData.author.name, articleData.datePublished, articleData.dateModified]) {
   if (!article.html.includes(field)) throw new Error(`Guide Article schema field is not visible: ${field}`)

@@ -96,6 +96,7 @@
   --grid-line: oklch(0.141 0.005 285.823 / 6%);
 }
 
+:root[data-accent="amber"] { --brand: oklch(0.769 0.188 70); --ring: oklch(0.769 0.188 70); }
 :root[data-accent="indigo"] { --brand: oklch(0.585 0.2 277); --ring: oklch(0.585 0.2 277); }
 :root[data-accent="emerald"] { --brand: oklch(0.696 0.17 162); --ring: oklch(0.596 0.14 162); }
 :root[data-accent="rose"] { --brand: oklch(0.645 0.22 15); --ring: oklch(0.645 0.22 15); }

@@ -48,14 +48,19 @@ export function articleSchema(path: string, headline: string, description: strin
         sameAs: SAME_AS_PROFILES,
       },
       {
-        "@type": "TechArticle",
+        "@type": "Article",
         "@id": `${url}#article`,
         headline,
         description,
         url,
         datePublished: ARTICLE_DATE_PUBLISHED,
         dateModified: ARTICLE_DATE_MODIFIED,
-        author: { "@id": `${SITE_URL}/#publisher` },
+        author: {
+          "@type": "Organization",
+          "@id": `${SITE_URL}/#publisher`,
+          name: "Bollard UI",
+          url: SITE_URL,
+        },
         publisher: { "@id": `${SITE_URL}/#publisher` },
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         isPartOf: {

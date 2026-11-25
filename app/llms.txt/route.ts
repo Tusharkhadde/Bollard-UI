@@ -28,7 +28,7 @@ const STANDALONE_GUIDES = [
   {
     title: "Human in the Loop AI Agent Approvals in React",
     path: "/guides/human-in-the-loop-ai-agent-approvals",
-    install: "npx shadcn@4.21.0 add @bollard/agent-action-card",
+    install: "npx shadcn@4.21.0 add @bollard/agent-action-approve",
   },
   {
     title: "Bollard UI vs Zod Validation: Complementary Guardrails",

@@ -148,8 +148,8 @@ const items = names.map((name) => {
       type,
       // Keep the public component entry in the configured ui directory. Helpers
       // live in a component-scoped folder so generic names cannot collide.
-      ...((file === `${name}.tsx`)
-        ? { target: `@ui/${name}.tsx` }
+      ...((file === `${name}.tsx` || file === `${name}.ts`)
+        ? { target: `@ui/${file}` }
         : { target: `@components/${name}/${file}` }),
     }))
   const item = {
@@ -174,7 +174,12 @@ const items = names.map((name) => {
   if (Object.keys(discovery).length) item.meta = discovery
   // Props come from the source itself (scripts/props.mjs). Never fatal.
   try {
-    const extracted = extractProps(path.join(dir, name, `${name}.tsx`), name)
+    const sourceName = fs.existsSync(path.join(dir, name, `${name}.tsx`))
+      ? `${name}.tsx`
+      : fs.existsSync(path.join(dir, name, `${name}.ts`))
+        ? `${name}.ts`
+        : null
+    const extracted = sourceName ? extractProps(path.join(dir, name, sourceName), name) : null
     if (extracted) props[name] = extracted
   } catch (error) {
     warnings.push(`${name}: props extraction failed (${error.message})`)

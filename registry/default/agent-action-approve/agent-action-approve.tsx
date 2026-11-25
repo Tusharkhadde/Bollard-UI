@@ -113,6 +113,7 @@ export function AgentActionApprove({ call, allowedHosts, holdMs = 1200, onDecisi
   const resultRef = React.useRef<HTMLDivElement>(null)
   const alwaysRef = React.useRef<HTMLButtonElement>(null)
   const raf = React.useRef(0)
+  const callRef = React.useRef(sig)
   const busy = pending !== null
   const intent = typeof call?.intent === "string" ? call.intent.trim() : ""
   const hold = a.risk === "high"
@@ -120,11 +121,16 @@ export function AgentActionApprove({ call, allowedHosts, holdMs = 1200, onDecisi
 
   // A new call resets the card.
   React.useEffect(() => {
+    callRef.current = sig
     setDecision(null)
     setAlways(false)
     setError(false)
     setTapped(false)
-  }, [a])
+    setPending(null)
+    setProgress(0)
+    cancelAnimationFrame(raf.current)
+    raf.current = 0
+  }, [sig])
   React.useEffect(() => () => cancelAnimationFrame(raf.current), [])
   // The buttons are gone once decided; keep focus on the card instead of dropping it to the page.
   React.useEffect(() => {
@@ -133,24 +139,33 @@ export function AgentActionApprove({ call, allowedHosts, holdMs = 1200, onDecisi
 
   const decide = async (d: AgentDecision) => {
     if (busy || decision) return
+    const appliedSig = sig
     setPending(d.type)
     setError(false)
     try {
       await onDecision?.(d)
+      if (callRef.current !== appliedSig) return
       setDecision(d)
       setStatus(d.type === "deny" ? m.denied : d.type === "once" ? m.approved : `${m.allowed}: ${d.rule}`)
     } catch {
+      if (callRef.current !== appliedSig) return
       setError(true)
     } finally {
-      setPending(null)
+      if (callRef.current === appliedSig) setPending(null)
     }
   }
 
   const startHold = () => {
     if (busy || decision) return
+    const appliedSig = sig
     setTapped(false)
     const t0 = performance.now()
     const tick = (now: number) => {
+      if (callRef.current !== appliedSig) {
+        raf.current = 0
+        setProgress(0)
+        return
+      }
       const p = Math.min(1, (now - t0) / holdMs)
       setProgress(p)
       if (p < 1) raf.current = requestAnimationFrame(tick)

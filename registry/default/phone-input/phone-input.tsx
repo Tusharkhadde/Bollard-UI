@@ -328,7 +328,10 @@ export function PhoneInput<C extends string = PhoneCountryCode>({
           <select
             aria-label={countryLabel}
             value={result.country}
-            onChange={(event) => commit(text, event.target.value as C, true)}
+            onChange={(event) => {
+              const nextCountry = event.target.value as C
+              commit(result.unknownCode ? result.national : text, nextCountry, true)
+            }}
             className="absolute inset-0 cursor-pointer appearance-none opacity-0 outline-none dark:[color-scheme:dark]"
           >
             {options.pinned.map((code) => option(code, `pinned-${code}`))}
@@ -355,7 +358,6 @@ export function PhoneInput<C extends string = PhoneCountryCode>({
           }}
           onBlur={(event) => {
             setTouched(true)
-            if (text) commit(text, country, true)
             onBlur?.(event)
           }}
           className="h-full min-w-0 flex-1 bg-transparent px-3 font-mono text-base tabular-nums outline-none placeholder:text-muted-foreground md:text-sm"

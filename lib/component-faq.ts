@@ -86,7 +86,7 @@ export function getComponentFaqs(item: CatalogEntry): ComponentFaq[] {
   if (item.integration === "headless" || name.startsWith("use-")) {
     faqs.push({
       question: `How do I consume the ${item.name} hook?`,
-      answer: `Import { ${item.title.replace(/\s+/g, "")} } from "@/components/ui/${item.name}". Returns form bindings and error states. Supports props: ${propNames.join(", ") || "default options"}. Limitation: headless hook requires connecting your own UI components.`,
+      answer: `Import { useBollardField } from "@/components/ui/${item.name}". Returns form bindings and error states. Supports options: ${propNames.join(", ") || "default options"}. Limitation: headless hook requires connecting your own UI components.`,
     })
   } else {
     faqs.push({

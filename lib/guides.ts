@@ -129,7 +129,7 @@ export function DeleteRepository() {
     componentTitle: "useBollardField",
     mistake: "Adding validation forces a team to replace the controls and design system it already owns.",
     outcome: "Async-safe field state, accessible error wiring, and typed failure reporting while the control remains yours.",
-    example: `import { useBollardField } from "@/hooks/use-bollard-field"
+    example: `import { useBollardField } from "@/components/ui/use-bollard-field"
 
 export function EmailField() {
   const email = useBollardField({

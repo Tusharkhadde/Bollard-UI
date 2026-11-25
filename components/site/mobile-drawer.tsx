@@ -39,7 +39,7 @@ export function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => 
         first.focus()
       }
     }
-    const onResize = () => window.matchMedia("(min-width: 1024px)").matches && onClose()
+    const onResize = () => window.matchMedia("(min-width: 1280px)").matches && onClose()
     window.addEventListener("keydown", onKey)
     window.addEventListener("resize", onResize)
     return () => {

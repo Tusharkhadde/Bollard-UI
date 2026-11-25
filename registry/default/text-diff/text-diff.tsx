@@ -1,3 +1,5 @@
+"use client"
+
 // Bollard UI — text-diff · MIT licence · https://bollard-ui.vercel.app/components/text-diff
 
 import * as React from "react"
@@ -53,12 +55,18 @@ function backtrack(a: string[], b: string[], trace: Int32Array[], depth: number,
     const prevK = down ? k + 1 : k - 1
     const prevX = at(prevK)
     const prevY = prevX - prevK
-    while (x > prevX && y > prevY) ops.push({ type: "equal", value: a[--x] }), y--
+    while (x > prevX && y > prevY) {
+      ops.push({ type: "equal", value: a[--x] })
+      y--
+    }
     if (down) ops.push({ type: "insert", value: b[--y] })
     else ops.push({ type: "delete", value: a[--x] })
     k = prevK
   }
-  while (x > 0 && y > 0) ops.push({ type: "equal", value: a[--x] }), y--
+  while (x > 0 && y > 0) {
+    ops.push({ type: "equal", value: a[--x] })
+    y--
+  }
   return ops.reverse()
 }
 

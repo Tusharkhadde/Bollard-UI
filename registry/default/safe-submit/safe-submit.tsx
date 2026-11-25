@@ -175,7 +175,7 @@ export function SafeSubmit({
         aria-describedby={status === "error" ? errorId : undefined}
         onClick={(event) => {
           const form = event.currentTarget.form
-          if (form && !pending && !form.checkValidity()) return // let the browser show its validation
+          if (form && !pending && !form.noValidate && !form.checkValidity()) return // let the browser show its validation
           event.preventDefault()
           void run(form ? new FormData(form) : undefined)
         }}

@@ -46,6 +46,7 @@ export function SiteShell({
   const [search, setSearch] = React.useState<{ open: boolean; query: string }>({ open: false, query: "" })
   const [drawer, setDrawer] = React.useState(false)
   const [finder, setFinderState] = React.useState<FinderState>(emptyFinder)
+  const skipFinderWrite = React.useRef(false)
   const pathname = usePathname()
   const onIndex = pathname === "/components"
   const closeDrawer = React.useCallback(() => setDrawer(false), [])
@@ -59,7 +60,10 @@ export function SiteShell({
   // On /components the URL is the source of truth: read it on arrival and on back/forward.
   React.useEffect(() => {
     if (!onIndex) return
-    const read = () => setFinderState(finderFromSearch(window.location.search))
+    const read = () => {
+      skipFinderWrite.current = true
+      setFinderState(finderFromSearch(window.location.search))
+    }
     read()
     window.addEventListener("popstate", read)
     return () => window.removeEventListener("popstate", read)
@@ -68,6 +72,10 @@ export function SiteShell({
   // …and write it back, so a filtered view can be shared or bookmarked.
   React.useEffect(() => {
     if (!onIndex) return
+    if (skipFinderWrite.current) {
+      skipFinderWrite.current = false
+      return
+    }
     const next = `${window.location.pathname}${finderToSearch(finder)}`
     if (next !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(window.history.state, "", next)
   }, [finder, onIndex])

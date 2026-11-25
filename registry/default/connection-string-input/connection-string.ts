@@ -1,5 +1,7 @@
 // Bollard UI — connection-string-input · MIT licence · https://bollard-ui.vercel.app/components/connection-string-input
 
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+
 /**
  * Database connection URLs, split the way drivers split them and checked for
  * the mistakes that break or weaken a connection. Sources: libpq connection
@@ -281,7 +283,7 @@ export function checkConnectionString(raw: string, environment: DbEnvironment = 
     for (const [key] of parsed.params) {
       if (LIBPQ_KEYWORDS.includes(key) || DRIVER_EXTRAS.includes(key) || (key === "ssl" && param("ssl") === "true")) continue
       const guess = key === "ssl" ? undefined : nearest(key, LIBPQ_KEYWORDS)
-      issues.push({ kind: "unknown-param", severity: "warning", detail: { key, guess: guess ?? "" }, fixes: guess ? [{ label: "fix-use", detail: { value: guess }, next: clean.replace(new RegExp(`([?&])${key}=`), `$1${guess}=`) }] : [] })
+      issues.push({ kind: "unknown-param", severity: "warning", detail: { key, guess: guess ?? "" }, fixes: guess ? [{ label: "fix-use", detail: { value: guess }, next: clean.replace(new RegExp(`([?&])${escapeRegExp(key)}=`), `$1${guess}=`) }] : [] })
     }
     const mode = param("sslmode")
     const systemRoots = param("sslrootcert") === "system"

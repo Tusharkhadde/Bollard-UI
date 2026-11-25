@@ -2,7 +2,7 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://bollard-ui.vercel.app").replace(/\/$/, "")
 export const SITE_NAME = "Bollard UI"
 export const TWITTER_HANDLE = "@devtushark"
-export const REPO_PUBLIC = false
+export const REPO_PUBLIC = true
 export const REPO_URL = "https://github.com/Tusharkhadde/Bollard-UI"
 export const GITHUB_URL = REPO_URL
 

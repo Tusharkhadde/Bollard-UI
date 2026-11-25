@@ -190,7 +190,7 @@ export function AmountInWords({
                 {unknown.suggestion ? (
                   <button
                     type="button"
-                    onClick={() => update(typed.replace(new RegExp(`\\b${unknown.word}\\b`, "i"), unknown.suggestion as string))}
+                    onClick={() => update(typed.replace(new RegExp(`(?<![\\p{L}\\p{N}_])${unknown.word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}_])`, "iu"), unknown.suggestion as string))}
                     className={cn(fixClass, "border-amber-500/40 text-amber-900 hover:bg-amber-500/10 dark:text-amber-200")}
                   >
                     Use “{unknown.suggestion}”

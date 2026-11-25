@@ -43,7 +43,8 @@ const pagesToCheck = allHtmlFiles.filter((filePath) => {
   const rel = path.relative(distDir, filePath)
   if (rel.startsWith("_") || rel.includes("/_")) return false
   if (rel.includes("500.html") || rel.includes("404.html")) return false
-  if (rel.startsWith("preview/") || rel.includes("/preview/")) return false
+  const normalizedRel = rel.split(path.sep).join("/")
+  if (normalizedRel.startsWith("preview/") || normalizedRel.includes("/preview/")) return false
   return true
 })
 

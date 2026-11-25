@@ -44,7 +44,7 @@ export function RentField() {
   return <AmountInput label="Monthly rent" locale="en-IN" currency="INR" typical={24000} />
 }`
 
-const headlessUsage = `import { useBollardField } from "@/hooks/use-bollard-field"
+const headlessUsage = `import { useBollardField } from "@/components/ui/use-bollard-field"
 import { Input } from "@/components/ui/input"
 
 export function EmailField() {
@@ -70,7 +70,7 @@ export function EmailField() {
 
 const heroUiUsage = [
   'import { FieldError, Input, Label, TextField } from "@heroui/react"',
-  'import { useBollardField } from "@/hooks/use-bollard-field"',
+  'import { useBollardField } from "@/components/ui/use-bollard-field"',
   "",
   "export function UsernameField() {",
   "  const username = useBollardField({",
@@ -96,7 +96,7 @@ const heroUiUsage = [
 ].join("\n")
 
 const customControlUsage = [
-  'import { useBollardField } from "@/hooks/use-bollard-field"',
+  'import { useBollardField } from "@/components/ui/use-bollard-field"',
   "",
   "export function UsernameField() {",
   "const username = useBollardField({",

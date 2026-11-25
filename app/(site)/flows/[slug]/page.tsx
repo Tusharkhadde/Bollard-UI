@@ -99,11 +99,11 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I prevent OTP paste errors in authentication flows?",
-      answer: "Otp Input (`otp-input`) splits pasted verification codes across discrete inputs without dropping digits. Install with `npx shadcn@4.21.0 add @bollard/otp-input`. Limitation: OTP generation and rate limiting must be managed by your auth provider.",
+      answer: "OTP Paste Input (`otp-paste-input`) splits pasted verification codes across discrete inputs without dropping digits. Install with `npx shadcn@4.21.0 add @bollard/otp-paste-input`. Limitation: OTP generation and rate limiting must be managed by your auth provider.",
     },
     {
       question: "How do I warn users about weak or compromised passwords?",
-      answer: "Password Strength Meter (`password-strength-meter`) computes password entropy and checks common dictionary words locally. Install with `npx shadcn@4.21.0 add @bollard/password-strength-meter`. Limitation: does not replace server-side checks against pwned credential databases.",
+      answer: "Password Policy Input (`password-policy-input`) checks password rules and mismatches locally. Install with `npx shadcn@4.21.0 add @bollard/password-policy-input`. Limitation: do not rely on client rules alone; enforce policy in the backend.",
     },
     {
       question: "How do I handle international phone numbers and prefixes?",
@@ -135,7 +135,7 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I confirm email changes with re-authentication?",
-      answer: "Reauth Guard (`reauth-guard`) prompts for current password or passkey verification before updating sensitive profile fields. Install with `npx shadcn@4.21.0 add @bollard/reauth-guard`. Limitation: session verification must be validated on the backend.",
+      answer: "Email Change Guard (`email-change-guard`) makes email updates explicit and reversible. Install with `npx shadcn@4.21.0 add @bollard/email-change-guard`. Limitation: ownership and session verification must be enforced on the backend.",
     },
     {
       question: "How do I safely show active sessions and revoke devices?",
@@ -143,7 +143,7 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I prevent accidental timezone mismatches in user profiles?",
-      answer: "Timezone Select (`timezone-select`) detects the browser timezone and alerts if it differs from the saved account preference. Install with `npx shadcn@4.21.0 add @bollard/timezone-select`. Limitation: users traveling between regions must explicitly confirm changes.",
+      answer: "Timezone Picker (`timezone-picker`) detects browser and saved timezone choices for profile flows. Install with `npx shadcn@4.21.0 add @bollard/timezone-picker`. Limitation: users traveling between regions must explicitly confirm changes.",
     },
   ],
   forms: [
@@ -167,7 +167,7 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
   messaging: [
     {
       question: "How do I prevent accidental 'Reply All' emails to company-wide distribution lists?",
-      answer: "Reply All Warning (`reply-all-warning`) alerts when an email reply targets more than 5 recipients or an external domain. Install with `npx shadcn@4.21.0 add @bollard/reply-all-warning`. Limitation: mail server routing rules enforce final delivery.",
+      answer: "Reply All Guard (`reply-all-guard`) alerts when an email reply expands the recipient audience. Install with `npx shadcn@4.21.0 add @bollard/reply-all-guard`. Limitation: mail server routing rules enforce final delivery.",
     },
     {
       question: "How do I catch accidentally pasted API keys or secrets before sending messages?",
@@ -175,11 +175,11 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I alert users when sending messages to external domains?",
-      answer: "External Recipient Badge (`external-recipient-badge`) flags recipients outside your corporate domain. Install with `npx shadcn@4.21.0 add @bollard/external-recipient-badge`. Limitation: email aliases must be resolved by your email server.",
+      answer: "External Link (`external-link`) flags links that leave the expected trusted scope. Install with `npx shadcn@4.21.0 add @bollard/external-link`. Limitation: email aliases must be resolved by your email server.",
     },
     {
       question: "How do I remind users about forgotten attachments mentioned in text?",
-      answer: "Attachment Check (`attachment-check`) scans draft text for words like 'attached' or 'attachment' if no file is uploaded. Install with `npx shadcn@4.21.0 add @bollard/attachment-check`. Limitation: does not verify that the attached file contains the correct contents.",
+      answer: "Attachment Nudge (`attachment-nudge`) reminds users when draft text mentions an attachment without a file. Install with `npx shadcn@4.21.0 add @bollard/attachment-nudge`. Limitation: it does not verify that an attached file contains the correct contents.",
     },
   ],
   devtools: [
@@ -193,11 +193,11 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I prevent runaway database queries in internal SQL runners?",
-      answer: "Query Guard (`query-guard`) checks SQL statements for missing WHERE clauses and adds automatic LIMIT statements. Install with `npx shadcn@4.21.0 add @bollard/query-guard`. Limitation: database statement timeouts must be configured on the database engine.",
+      answer: "SQL Guard (`sql-guard`) checks SQL statements for missing WHERE clauses and destructive patterns. Install with `npx shadcn@4.21.0 add @bollard/sql-guard`. Limitation: database statement timeouts must be configured on the database engine.",
     },
     {
       question: "How do I warn developers before pasting shell commands from untrusted sites?",
-      answer: "Terminal Paste Guard (`terminal-paste-guard`) detects hidden newlines and carriage returns that execute immediately upon paste. Install with `npx shadcn@4.21.0 add @bollard/terminal-paste-guard`. Limitation: developers must review pasted script contents.",
+      answer: "Curl Pipe Guard (`curl-pipe-guard`) detects shell pipelines that may execute downloaded code. Install with `npx shadcn@4.21.0 add @bollard/curl-pipe-guard`. Limitation: developers must review pasted script contents.",
     },
   ],
   scheduling: [
@@ -207,15 +207,15 @@ const FLOW_FAQS: Record<string, { question: string; answer: string }[]> = {
     },
     {
       question: "How do I prevent scheduling meetings across conflicting timezones?",
-      answer: "Timezone Difference Alert (`timezone-difference-alert`) computes local business hours for all attendees and flags middle-of-the-night invites. Install with `npx shadcn@4.21.0 add @bollard/timezone-difference-alert`. Limitation: calendar availability APIs must verify actual free/busy slots.",
+      answer: "Meeting Time Spread (`meeting-time-spread`) compares attendee timezones and flags poor meeting windows. Install with `npx shadcn@4.21.0 add @bollard/meeting-time-spread`. Limitation: calendar availability APIs must verify actual free/busy slots.",
     },
     {
       question: "How do I detect overlapping bookings in appointment forms?",
-      answer: "Overlap Check (`overlap-check`) flags double-booked time windows in real time. Install with `npx shadcn@4.21.0 add @bollard/overlap-check`. Limitation: backend booking APIs must use serializable database transactions to prevent race conditions.",
+      answer: "Event Overlap (`event-overlap`) flags double-booked time windows in real time. Install with `npx shadcn@4.21.0 add @bollard/event-overlap`. Limitation: backend booking APIs must use serializable database transactions to prevent race conditions.",
     },
     {
       question: "How do I validate recurring schedule frequencies?",
-      answer: "Recurrence Preview (`recurrence-preview`) displays an interactive calendar list of the next 10 occurrences before saving. Install with `npx shadcn@4.21.0 add @bollard/recurrence-preview`. Limitation: maximum recurrence end dates must be bounded on the server.",
+      answer: "Recurring Charge Readback (`recurring-charge-readback`) displays the next charge schedule before saving. Install with `npx shadcn@4.21.0 add @bollard/recurring-charge-readback`. Limitation: recurrence end dates must be bounded on the server.",
     },
   ],
   india: [
